@@ -29,7 +29,7 @@ import os
 import re
 import socket
 import subprocess
-from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule
+from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
@@ -161,18 +161,6 @@ keys = [
 groups = []
 
 # WORKSPACES
-
-#group_names = [("1", {'layout': 'max'}),
-#               ("2", {'layout': 'max'}),
-#               ("3", {'layout': 'monadtall'}),
-#               ("4", {'layout': 'monadtall'}),
-#               ("5", {'layout': 'monadtall'}),
-#               ("6", {'layout': 'monadtall'}),
-#               ("7", {'layout': 'float'}),
-#               ("8", {'layout': 'max'}),
-#               ("9", {'layout': 'monadtall'}),
-#               ("0", {'layout': 'monadtall'})]
-
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
 group_labels = ["web", "mail", "chat", "files", "media", "text", "steam", "games", "photo", "video",]
 group_layouts = ["max", "max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "max", "monadtall", "monadtall",]
