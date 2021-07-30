@@ -160,18 +160,22 @@ keys = [
 
 groups = []
 
-# FOR QWERTY KEYBOARDS
+# WORKSPACES
+
+#group_names = [("1", {'layout': 'max'}),
+#               ("2", {'layout': 'max'}),
+#               ("3", {'layout': 'monadtall'}),
+#               ("4", {'layout': 'monadtall'}),
+#               ("5", {'layout': 'monadtall'}),
+#               ("6", {'layout': 'monadtall'}),
+#               ("7", {'layout': 'float'}),
+#               ("8", {'layout': 'max'}),
+#               ("9", {'layout': 'monadtall'}),
+#               ("0", {'layout': 'monadtall'})]
+
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-
-# FOR AZERTY KEYBOARDS
-#group_names = ["ampersand", "eacute", "quotedbl", "apostrophe", "parenleft", "section", "egrave", "exclam", "ccedilla", "agrave",]
-
-group_labels = ["1 ", "2 ", "3 ", "4 ", "5 ", "6 ", "7 ", "8 ", "9 ", "0",]
-#group_labels = ["", "", "", "", "", "", "", "", "", "",]
-#group_labels = ["Web", "Edit/chat", "Image", "Gimp", "Meld", "Video", "Vb", "Files", "Mail", "Music",]
-
-group_layouts = ["monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall", "monadtall",]
-#group_layouts = ["monadtall", "matrix", "monadtall", "bsp", "monadtall", "matrix", "monadtall", "bsp", "monadtall", "monadtall",]
+group_labels = ["web", "mail", "chat", "files", "media", "text", "steam", "games", "photo", "video",]
+group_layouts = ["max", "max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "max", "monadtall", "monadtall",]
 
 for i in range(len(group_names)):
     groups.append(
@@ -226,7 +230,7 @@ def init_colors():
             ["#c0c5ce", "#c0c5ce"], # color 2
             ["#fba922", "#fba922"], # color 3
             ["#3384d0", "#3384d0"], # color 4 3384d0
-            ["#cccccc", "#cccccc"], # color 5 f3f4f5
+            ["#dddddd", "#dddddd"], # color 5 f3f4f5
             ["#cd1f3f", "#cd1f3f"], # color 6
             ["#62FF00", "#62FF00"], # color 7
             ["#ff00aa", "#ff00aa"], # color 8 6790eb
