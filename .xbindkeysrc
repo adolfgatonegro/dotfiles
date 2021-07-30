@@ -1,0 +1,6 @@
+"xte 'keydown Control_L' 'key space' 'keyup Control_L'"
+     b:8 + release
+
+"xte 'key Super_L'"
+     b:9 + release
+
