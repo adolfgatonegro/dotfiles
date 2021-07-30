@@ -1,0 +1,4 @@
+feh -B black \
+--geometry 1000x500 \
+--fullscreen \
+-- scale-down

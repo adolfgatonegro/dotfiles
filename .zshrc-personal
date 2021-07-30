@@ -1,0 +1,2 @@
+# github dotfiles backup
+alias dotfiles="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
