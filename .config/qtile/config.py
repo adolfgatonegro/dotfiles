@@ -29,7 +29,7 @@ import os
 import re
 import socket
 import subprocess
-from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, Match
+from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
@@ -214,11 +214,11 @@ layouts = [
 
 def init_colors():
     return [["#2F343F", "#2F343F"], # color 0
-            ["#2F343F", "#2F343F"], # color 1
+            ["#1a1a1a", "#1a1a1a"], # color 1
             ["#c0c5ce", "#c0c5ce"], # color 2
             ["#fba922", "#fba922"], # color 3
             ["#3384d0", "#3384d0"], # color 4 3384d0
-            ["#dddddd", "#dddddd"], # color 5 f3f4f5
+            ["#eeeeee", "#eeeeee"], # color 5 f3f4f5
             ["#cd1f3f", "#cd1f3f"], # color 6
             ["#62FF00", "#62FF00"], # color 7
             ["#ff00aa", "#ff00aa"], # color 8 6790eb
@@ -232,8 +232,8 @@ colors = init_colors()
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Noto Sans",
-                fontsize = 12,
+    return dict(font="Source Sans Pro",
+                fontsize = 11,
                 padding = 2,
                 background=colors[1])
 
@@ -242,7 +242,7 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
-               widget.GroupBox(font="Noto Sans Bold",
+               widget.GroupBox(font="Source Sans Pro Bold",
                         fontsize = 11,
                         borderwidth = 0,
                         disable_drag = True,
@@ -261,7 +261,7 @@ def init_widgets_list():
                         background = colors[1]
                         ),
                widget.CurrentLayout(
-                        font = "Noto Sans",
+                        font = "Source Sans Pro",
                         fontsize = 11,
                         foreground = colors[9],
                         background = colors[1]
@@ -272,7 +272,7 @@ def init_widgets_list():
                         foreground = colors[9],
                         background = colors[1]
                         ),
-               widget.WindowName(font="Noto Sans",
+               widget.WindowName(font="Source Sans Pro",
                         fontsize = 11,
                         foreground = colors[5],
                         background = colors[1]
@@ -411,7 +411,7 @@ def init_widgets_list():
                #          ),
                widget.Systray(
                         background=colors[1],
-                        icon_size=18,
+                        icon_size=17,
                         padding = 2
                         ),
                widget.Sep(
@@ -423,7 +423,7 @@ def init_widgets_list():
                widget.Clock(
                         foreground = colors[5],
                         background = colors[1],
-                        font="Noto Sans Bold",
+                        font="Source Sans Pro Bold",
                         fontsize = 11,
                         padding = 5,
                         format="%a %d %b  %H:%M"
