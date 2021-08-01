@@ -46,6 +46,10 @@ super + d
     rofi -show drun
 super + shift + d
 	rofi -show window
+button8
+    xte "keydown Super_L" "keydown Shift_L" "keydown d" "keyup Super_L" "keyup Shift_L" "keyup d"
+button9
+    xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape
