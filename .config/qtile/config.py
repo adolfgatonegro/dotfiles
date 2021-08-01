@@ -191,8 +191,8 @@ layout_theme = init_layout_theme()
 layouts = [
     layout.MonadTall(**layout_theme),
 #    layout.MonadWide(),
-    layout.Matrix(**layout_theme),
-#    layout.Bsp(**layout_theme),
+#    layout.Matrix(**layout_theme),
+    layout.Bsp(ratio = 1.0,**layout_theme),
     layout.Floating(**layout_theme),
 #    layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme)
