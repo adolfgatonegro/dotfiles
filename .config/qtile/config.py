@@ -29,7 +29,7 @@ import os
 import re
 import socket
 import subprocess
-from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule
+from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
@@ -159,20 +159,18 @@ keys = [
 
     ]
 
-groups = []
-
-# WORKSPACES
-group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["web ", "files ", "media ", "chat ", "text ", "steam ", "games ", "photo ", "video ", "vm", ]
-group_layouts = ["max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "max", "monadtall", "monadtall", "floating", ]
-
-for i in range(len(group_names)):
-    groups.append(
-        Group(
-            name=group_names[i],
-            layout=group_layouts[i].lower(),
-            label=group_labels[i],
-        ))
+groups = [
+    Group("1", label="web ", layout="max", matches=[Match(wm_class=["firefox"])]),
+    Group("2", label="files ", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
+    Group("3", label="media ", layout="monadtall"),
+    Group("4", label="chat ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
+    Group("5", label="text ", layout="monadtall", matches=[Match(wm_class=["subl"])]),
+    Group("6", label="steam ", layout="floating", matches=[Match(wm_class=["Steam"])]),
+    Group("7", label="games ", layout="max"),
+    Group("8", label="photo ", layout="monadtall"),
+    Group("9", label="video ", layout="monadtall"),
+    Group("0", label="vm ", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+]
 
 for i in groups:
     keys.extend([
@@ -464,50 +462,6 @@ mouse = [
 dgroups_key_binder = None
 dgroups_app_rules = []
 
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-# BEGIN
-
-#########################################################
-################ assgin apps to groups ##################
-#########################################################
-# @hook.subscribe.client_new
-# def assign_app_group(client):
-#     d = {}
-#     #####################################################################################
-#     ### Use xprop fo find  the value of WM_CLASS(STRING) -> First field is sufficient ###
-#     #####################################################################################
-#     d[group_names[0]] = ["Navigator", "Firefox", "Vivaldi-stable", "Vivaldi-snapshot", "Chromium", "Google-chrome", "Brave", "Brave-browser",
-#               "navigator", "firefox", "vivaldi-stable", "vivaldi-snapshot", "chromium", "google-chrome", "brave", "brave-browser", ]
-#     d[group_names[1]] = [ "Atom", "Subl", "Geany", "Brackets", "Code-oss", "Code", "TelegramDesktop", "Discord",
-#                "atom", "subl", "geany", "brackets", "code-oss", "code", "telegramDesktop", "discord", ]
-#     d[group_names[2]] = ["Inkscape", "Nomacs", "Ristretto", "Nitrogen", "Feh",
-#               "inkscape", "nomacs", "ristretto", "nitrogen", "feh", ]
-#     d[group_names[3]] = ["Gimp", "gimp" ]
-#     d[group_names[4]] = ["Meld", "meld", "org.gnome.meld" "org.gnome.Meld" ]
-#     d[group_names[5]] = ["Vlc","vlc", "Mpv", "mpv" ]
-#     d[group_names[6]] = ["VirtualBox Manager", "VirtualBox Machine", "Vmplayer",
-#               "virtualbox manager", "virtualbox machine", "vmplayer", ]
-#     d[group_names[7]] = ["Thunar", "Nemo", "Caja", "Nautilus", "org.gnome.Nautilus", "Pcmanfm", "Pcmanfm-qt",
-#               "thunar", "nemo", "caja", "nautilus", "org.gnome.nautilus", "pcmanfm", "pcmanfm-qt", ]
-#     d[group_names[8]] = ["Evolution", "Geary", "Mail", "Thunderbird",
-#               "evolution", "geary", "mail", "thunderbird" ]
-#     d[group_names[9]] = ["Spotify", "Pragha", "Clementine", "Deadbeef", "Audacious",
-#               "spotify", "pragha", "clementine", "deadbeef", "audacious" ]
-#     ######################################################################################
-#
-# wm_class = client.window.get_wm_class()[0]
-#
-#     for i in range(len(d)):
-#         if wm_class in list(d.values())[i]:
-#             group = list(d.keys())[i]
-#             client.togroup(group)
-#             client.group.cmd_toscreen(toggle=False)
-
-# END
-# ASSIGN APPLICATIONS TO A SPECIFIC GROUPNAME
-
-
-
 main = None
 
 @hook.subscribe.startup_once
@@ -558,6 +512,8 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'ssh-askpass'},
     {'wmname': 'Picture-in-Picture'},
     {'wmclass': 'Steam'},
+    {'wmclass': 'VirtualBox Manager'},
+    {'wmclass': 'VirtualBox Machine'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
