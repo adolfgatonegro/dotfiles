@@ -62,7 +62,8 @@ keys = [
 
     Key([mod], "f", lazy.window.toggle_fullscreen()),
     Key([mod], "q", lazy.window.kill()),
-
+    Key([mod], "w", lazy.to_screen(0)),
+    Key([mod], "e", lazy.to_screen(1)),
 
 # SUPER + SHIFT KEYS
 
@@ -162,8 +163,8 @@ groups = []
 
 # WORKSPACES
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0",]
-group_labels = ["web", "mail", "chat", "files", "media", "text", "steam", "games", "photo", "video",]
-group_layouts = ["max", "max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "max", "monadtall", "monadtall",]
+group_labels = ["web ", "files ", "media ", "chat ", "text ", "steam ", "games ", "photo ", "video ", "vm", ]
+group_layouts = ["max", "monadtall", "monadtall", "monadtall", "monadtall", "floating", "max", "monadtall", "monadtall", "floating", ]
 
 for i in range(len(group_names)):
     groups.append(
@@ -411,15 +412,15 @@ def init_widgets_list():
                #          ),
                widget.Systray(
                         background=colors[1],
-                        icon_size=17,
-                        padding = 2
+                        icon_size = 16,
+                        padding = 5
                         ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 10,
-                        foreground = colors[9],
-                        background = colors[1]
-                        ),
+               #widget.Sep(
+               #         linewidth = 1,
+               #         padding = 10,
+               #         foreground = colors[9],
+               #         background = colors[1]
+               #         ),
                widget.Clock(
                         foreground = colors[5],
                         background = colors[1],
@@ -447,8 +448,8 @@ widgets_screen2 = init_widgets_screen2()
 
 
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=26, opacity=0.8)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=26, opacity=0.8))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=24, opacity=0.8)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=24, opacity=0.8))]
 screens = init_screens()
 
 
@@ -555,6 +556,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wname': 'Open File'},
     {'wname': 'pinentry'},
     {'wmclass': 'ssh-askpass'},
+    {'wmname': 'Picture-in-Picture'},
     {'wmclass': 'Steam'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
