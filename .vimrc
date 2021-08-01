@@ -15,3 +15,7 @@ set number
 
 " Show file stats
 set ruler
+
+" Set decent tabs
+set tabstop=4
+set shiftwidth=4

@@ -37,17 +37,19 @@ super + shift + t
 super + F2
    thunar
 
-#Rofi
-super + F12
-    rofi -show drun
-
 ##################################
 # SYSTEM
 ##################################
 
-#dmenu
+#Rofi
 super + d
-   j4-dmenu-desktop --dmenu="dmenu -i -sb '#ff00aa' -sf '#111111'" --term="kitty" --no-generic
+    rofi -show drun
+super + alt + d
+    rofi-theme-selector
+
+#dmenu
+#super + d
+#   j4-dmenu-desktop --dmenu="dmenu -i -sb '#ff00aa' -sf '#111111'" --term="kitty" --no-generic
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape

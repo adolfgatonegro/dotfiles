@@ -276,7 +276,7 @@ def init_widgets_list():
                         ),
               widget.CurrentLayout(
                         font = "Ubuntu",
-                        fontsize = 11,
+                        fontsize = 10,
 			padding = 0,
                         foreground = colors[5],
                         background = colors[3]
