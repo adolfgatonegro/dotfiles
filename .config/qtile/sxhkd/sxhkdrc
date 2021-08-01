@@ -44,12 +44,8 @@ super + F2
 #Rofi
 super + d
     rofi -show drun
-super + alt + d
-    rofi-theme-selector
-
-#dmenu
-#super + d
-#   j4-dmenu-desktop --dmenu="dmenu -i -sb '#ff00aa' -sf '#111111'" --term="kitty" --no-generic
+super + shift + d
+	rofi -show window
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape
