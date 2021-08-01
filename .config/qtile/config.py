@@ -284,7 +284,7 @@ def init_widgets_list():
               widget.Sep(
                         linewidth = 0,
                         background = colors[3],
-                        padding = 10
+                        padding = 5
                         ),
               widget.Clock(
                         foreground = colors[5],
