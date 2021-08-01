@@ -161,13 +161,13 @@ keys = [
 
 groups = [
     Group("1", label="web ", layout="max", matches=[Match(wm_class=["firefox"])]),
-    Group("2", label="files ", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
+    Group("2", label="sys ", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
     Group("3", label="media ", layout="monadtall"),
     Group("4", label="chat ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
     Group("5", label="text ", layout="monadtall", matches=[Match(wm_class=["subl"])]),
     Group("6", label="steam ", layout="floating", matches=[Match(wm_class=["Steam"])]),
     Group("7", label="games ", layout="max"),
-    Group("8", label="photo ", layout="monadtall"),
+    Group("8", label="photo ", layout="max", matches=[Match(wm_class=["gimp"])]),
     Group("9", label="video ", layout="monadtall"),
     Group("0", label="vm ", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
@@ -241,6 +241,12 @@ widget_defaults = init_widgets_defaults()
 def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
+               widget.Image(
+                        filename = "~/Documents/Customisation/gato.png",
+                        background = colors[1],
+                        margin = 3,
+                        scale = True
+                        ),
                widget.GroupBox(font="Source Sans Pro Bold",
                         fontsize = 11,
                         borderwidth = 0,
