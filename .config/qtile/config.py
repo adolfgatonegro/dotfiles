@@ -1,10 +1,8 @@
-# Copyright (c) 2010 Aldo Cortesi
-# Copyright (c) 2010, 2014 dequis
-# Copyright (c) 2012 Randall Ma
-# Copyright (c) 2012-2014 Tycho Andersen
-# Copyright (c) 2012 Craig Barnes
-# Copyright (c) 2013 horsik
-# Copyright (c) 2013 Tao Sauvage
+# Gatonegro (https://gatoneg.ro/)
+# Custom config.py for Qtile window manager. 
+#
+# Copyright (c) 2010 Aldo Cortesi, 2010, 2014 dequis, 2012 Randall Ma,
+#  2012-2014 Tycho Andersen, 2012 Craig Barnes, 2013 horsik, 2013 Tao Sauvage
 #
 # Permission is hereby granted, free of charge, to any person obtaining a copy
 # of this software and associated documentation files (the "Software"), to deal
@@ -15,15 +13,6 @@
 #
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
-#
-# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-# SOFTWARE.
-
 
 import os
 import re
@@ -160,16 +149,16 @@ keys = [
     ]
 
 groups = [
-    Group("1", label="web ", layout="max", matches=[Match(wm_class=["firefox"])]),
-    Group("2", label="sys ", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
-    Group("3", label="media ", layout="monadtall"),
-    Group("4", label="chat ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
-    Group("5", label="text ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
-    Group("6", label="steam ", layout="floating", matches=[Match(wm_class=["Steam"])]),
-    Group("7", label="games ", layout="max"),
-    Group("8", label="photo ", layout="max", matches=[Match(wm_class=["gimp"])]),
-    Group("9", label="video ", layout="monadtall"),
-    Group("0", label="vm ", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox"])]),
+    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
+    Group("3", label="MEDIA", layout="monadtall"),
+    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
+    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
+    Group("6", label="STEAM", layout="floating", matches=[Match(wm_class=["Steam"])]),
+    Group("7", label="GAMES", layout="max"),
+    Group("8", label="GFX", layout="max", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
+    Group("9", label="VID", layout="monadtall"),
+    Group("0", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 for i in groups:
@@ -192,38 +181,35 @@ for i in groups:
 def init_layout_theme():
     return {"margin":4,
             "border_width":1,
-            "border_focus": "#ff00aa", # 5e81ac
-            "border_normal": "#333333" # 4c566a
+            "border_focus": "#ff00aa",
+            "border_normal": "#444444"
             }
 
 layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(margin=4, border_width=1, border_focus="#ff00aa", border_normal="#333333"),
-    layout.MonadWide(margin=4, border_width=1, border_focus="#ff00aa", border_normal="#333333"),
+    layout.MonadTall(**layout_theme),
+#    layout.MonadWide(),
     layout.Matrix(**layout_theme),
-    layout.Bsp(**layout_theme),
+#    layout.Bsp(**layout_theme),
     layout.Floating(**layout_theme),
-    layout.RatioTile(**layout_theme),
+#    layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme)
 ]
 
 # COLORS FOR THE BAR
 
 def init_colors():
-    return [["#2F343F", "#2F343F"], # color 0
-            ["#1a1a1a", "#1a1a1a"], # color 1
-            ["#c0c5ce", "#c0c5ce"], # color 2
-            ["#fba922", "#fba922"], # color 3
-            ["#3384d0", "#3384d0"], # color 4 3384d0
-            ["#eeeeee", "#eeeeee"], # color 5 f3f4f5
-            ["#cd1f3f", "#cd1f3f"], # color 6
-            ["#62FF00", "#62FF00"], # color 7
-            ["#ff00aa", "#ff00aa"], # color 8 6790eb
-            ["#888888", "#888888"], # color 9 a9a9a9
-            ["#444444", "#444444"]] # color 10
-
+    return [["#ff00aa", "#ff00aa"], # color 0 accent
+            ["#800055", "#800055"], # color 1 accent dark
+            ["#ff80d4", "#ff80d4"], # color 2 accent light
+            ["#111111", "#111111"], # color 3 bg
+            ["#ffffff", "#ffffff"], # color 4 lightest
+            ["#cdcdcd", "#cdcdcd"], # color 5 light
+            ["#888888", "#888888"], # color 6 darker
+            ["#444444", "#444444"], # color 7 dark
+            ["#222222", "#222222"]] # color 8 darkest
 
 colors = init_colors()
 
@@ -233,8 +219,8 @@ colors = init_colors()
 def init_widgets_defaults():
     return dict(font="Source Sans Pro",
                 fontsize = 11,
-                padding = 2,
-                background=colors[1])
+                padding = 0,
+                background=colors[3])
 
 widget_defaults = init_widgets_defaults()
 
@@ -242,197 +228,77 @@ def init_widgets_list():
     prompt = "{0}@{1}: ".format(os.environ["USER"], socket.gethostname())
     widgets_list = [
                widget.Image(
-                        filename = "~/Documents/Customisation/gato.png",
-                        background = colors[1],
+                        filename = "~/.config/qtile/icons/gato.png",
+                        background = colors[3],
                         margin = 3,
                         scale = True
                         ),
-               widget.GroupBox(font="Source Sans Pro Bold",
-                        fontsize = 11,
-                        borderwidth = 0,
+               widget.GroupBox(font="Ubuntu Bold",
+                        fontsize = 9,
+                        padding_y = 2,
+                        padding_x = 4,
+                        borderwidth = 1,
                         disable_drag = True,
-                        active = colors[5],
-                        inactive = colors[9],
-                        rounded = False,
-                        highlight_method = "text",
-                        this_current_screen_border = colors[8],
-                        foreground = colors[2],
-                        background = colors[1]
+                        active = colors[4],
+                        inactive = colors[6],
+                        rounded = True,
+                        highlight_method = "block",
+                        block_highlight_text_color = colors[8],
+			this_current_screen_border = colors[0],
+                        this_screen_border = colors[0],
+                        other_current_screen_border = colors[1],
+                        other_screen_border = colors[1],
+			urgent_alert_method = "block",
+			urgent_border = colors[2],
+			urgent_text = colors[4],
+                        foreground = colors[4],
+                        background = colors[3]
                         ),
                widget.Sep(
-                        linewidth = 1,
+                        linewidth = 0,
                         padding = 10,
-                        foreground = colors[9],
-                        background = colors[1]
+                        background = colors[3]
                         ),
-               widget.CurrentLayout(
-                        font = "Source Sans Pro",
-                        fontsize = 11,
-                        foreground = colors[9],
-                        background = colors[1]
-                        ),
-               widget.Sep(
-                        linewidth = 1,
-                        padding = 10,
-                        foreground = colors[9],
-                        background = colors[1]
-                        ),
-               widget.WindowName(font="Source Sans Pro",
+             widget.WindowName(font="Ubuntu",
                         fontsize = 11,
                         foreground = colors[5],
-                        background = colors[1]
+                        background = colors[3]
                         ),
-               # widget.Net(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          interface="enp0s31f6",
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          padding = 0,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.NetGraph(
-               #          font="Noto Sans",
-               #          fontsize=12,
-               #          bandwidth="down",
-               #          interface="auto",
-               #          fill_color = colors[8],
-               #          foreground=colors[2],
-               #          background=colors[1],
-               #          graph_color = colors[8],
-               #          border_color = colors[2],
-               #          padding = 0,
-               #          border_width = 1,
-               #          line_width = 1,
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # # do not activate in Virtualbox - will break qtile
-               # widget.ThermalSensor(
-               #          foreground = colors[5],
-               #          foreground_alert = colors[6],
-               #          background = colors[1],
-               #          metric = True,
-               #          padding = 3,
-               #          threshold = 80
-               #          ),
-               # # battery option 1  ArcoLinux Horizontal icons do not forget to import arcobattery at the top
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # arcobattery.BatteryIcon(
-               #          padding=0,
-               #          scale=0.7,
-               #          y_poss=2,
-               #          theme_path=home + "/.config/qtile/icons/battery_icons_horiz",
-               #          update_interval = 5,
-               #          background = colors[1]
-               #          ),
-               # # battery option 2  from Qtile
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.Battery(
-               #          font="Noto Sans",
-               #          update_interval = 10,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-	           #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[6],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.CPUGraph(
-               #          border_color = colors[2],
-               #          fill_color = colors[8],
-               #          graph_color = colors[8],
-               #          background=colors[1],
-               #          border_width = 1,
-               #          line_width = 1,
-               #          core = "all",
-               #          type = "box"
-               #          ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               # widget.TextBox(
-               #          font="FontAwesome",
-               #          text="  ",
-               #          foreground=colors[4],
-               #          background=colors[1],
-               #          padding = 0,
-               #          fontsize=16
-               #          ),
-               # widget.Memory(
-               #          font="Noto Sans",
-               #          format = '{MemUsed}M/{MemTotal}M',
-               #          update_interval = 1,
-               #          fontsize = 12,
-               #          foreground = colors[5],
-               #          background = colors[1],
-               #         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               #widget.TextBox(
-               #         font="FontAwesome",
-               #         text="  ",
-               #         foreground=colors[3],
-               #         background=colors[1],
-               #         padding = 0,
-               #         fontsize=16
-               #         ),
-               # widget.Sep(
-               #          linewidth = 1,
-               #          padding = 10,
-               #          foreground = colors[2],
-               #          background = colors[1]
-               #          ),
-               widget.Systray(
-                        background=colors[1],
+              widget.Systray(
+                        background = colors[3],
                         icon_size = 16,
                         padding = 5
                         ),
-               #widget.Sep(
-               #         linewidth = 1,
-               #         padding = 10,
-               #         foreground = colors[9],
-               #         background = colors[1]
-               #         ),
-               widget.Clock(
+              widget.Sep(
+                        linewidth = 0,
+                        background = colors[3],
+                        padding = 10
+                        ),
+              widget.CurrentLayout(
+                        font = "Ubuntu",
+                        fontsize = 11,
+			padding = 0,
                         foreground = colors[5],
-                        background = colors[1],
-                        font="Source Sans Pro Bold",
+                        background = colors[3]
+                        ),
+              widget.Sep(
+                        linewidth = 0,
+                        background = colors[3],
+                        padding = 10
+                        ),
+              widget.Clock(
+                        foreground = colors[5],
+                        background = colors[3],
+                        font="Ubuntu Bold",
                         fontsize = 11,
                         padding = 5,
                         format="%a %d %b  %H:%M"
                         ),
+	       widget.Sep(
+			background = colors[3],
+			linewidth = 0,
+			padding = 5
+			)
                ]
     return widgets_list
 
@@ -445,6 +311,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
+    del widgets_screen2[4:5] 
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
