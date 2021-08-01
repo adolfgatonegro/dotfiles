@@ -47,7 +47,7 @@ super + F12
 
 #dmenu
 super + d
-   dmenu_run -i -sb '#ff00aa' -sf '#111111'
+   j4-dmenu-desktop --dmenu="dmenu -i -sb '#ff00aa' -sf '#111111'" --term="kitty" --no-generic
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape
