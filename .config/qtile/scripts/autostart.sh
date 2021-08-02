@@ -27,4 +27,4 @@ picom --config $HOME/.config/qtile/scripts/picom.conf &
 #starting user applications at boot time
 run nitrogen --restore &
 run volumeicon &
-run redshift-gtk &
+run redshift &

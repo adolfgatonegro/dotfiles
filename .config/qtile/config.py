@@ -244,49 +244,49 @@ def init_widgets_list():
                         rounded = True,
                         highlight_method = "block",
                         block_highlight_text_color = colors[8],
-			this_current_screen_border = colors[0],
+						this_current_screen_border = colors[0],
                         this_screen_border = colors[0],
                         other_current_screen_border = colors[1],
                         other_screen_border = colors[1],
-			urgent_alert_method = "block",
-			urgent_border = colors[2],
-			urgent_text = colors[4],
+						urgent_alert_method = "block",
+						urgent_border = colors[2],
+						urgent_text = colors[4],
                         foreground = colors[4],
                         background = colors[3]
                         ),
-               widget.Sep(
+               	widget.Sep(
                         linewidth = 0,
                         padding = 10,
                         background = colors[3]
                         ),
-             widget.WindowName(font="Ubuntu",
+             	widget.WindowName(font="Ubuntu",
                         fontsize = 11,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              widget.Systray(
+              	widget.Systray(
                         background = colors[3],
                         icon_size = 16,
                         padding = 5
                         ),
-              widget.Sep(
+              	widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 10
                         ),
-              widget.CurrentLayout(
+              	widget.CurrentLayout(
                         font = "Ubuntu",
                         fontsize = 10,
-			padding = 0,
+						padding = 0,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              widget.Sep(
+              	widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 5
                         ),
-              widget.Clock(
+              	widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
                         font="Ubuntu Bold",
@@ -294,13 +294,13 @@ def init_widgets_list():
                         padding = 5,
                         format="%a %d %b  %H:%M"
                         ),
-	       widget.Sep(
-			background = colors[3],
-			linewidth = 0,
-			padding = 5
-			)
+	       		widget.Sep(
+					background = colors[3],
+					linewidth = 0,
+					padding = 5
+					)
                ]
-    return widgets_list
+return widgets_list
 
 widgets_list = init_widgets_list()
 
