@@ -179,7 +179,7 @@ for i in groups:
 
 
 def init_layout_theme():
-    return {"margin":4,
+    return {"margin":3,
             "border_width":1,
             "border_focus": "#ff00aa",
             "border_normal": "#444444"
@@ -217,7 +217,7 @@ colors = init_colors()
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Source Sans Pro",
+    return dict(font="Ubuntu",
                 fontsize = 11,
                 padding = 0,
                 background=colors[3])
