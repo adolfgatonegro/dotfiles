@@ -192,7 +192,7 @@ layouts = [
     layout.MonadTall(**layout_theme),
 #    layout.MonadWide(),
 #    layout.Matrix(**layout_theme),
-    layout.Bsp(ratio = 1.0,**layout_theme),
+    layout.Bsp(ratio = 1.10,**layout_theme),
     layout.Floating(**layout_theme),
 #    layout.RatioTile(**layout_theme),
     layout.Max(**layout_theme)
@@ -254,39 +254,39 @@ def init_widgets_list():
                         foreground = colors[4],
                         background = colors[3]
                         ),
-               	widget.Sep(
+               widget.Sep(
                         linewidth = 0,
                         padding = 10,
                         background = colors[3]
                         ),
-             	widget.WindowName(font="Ubuntu",
+             widget.WindowName(font="Ubuntu",
                         fontsize = 11,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              	widget.Systray(
+              widget.Systray(
                         background = colors[3],
                         icon_size = 16,
                         padding = 5
                         ),
-              	widget.Sep(
+              widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 10
                         ),
-              	widget.CurrentLayout(
+              widget.CurrentLayout(
                         font = "Ubuntu",
                         fontsize = 10,
 						padding = 0,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              	widget.Sep(
+              widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 5
                         ),
-              	widget.Clock(
+              widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
                         font="Ubuntu Bold",
@@ -294,13 +294,12 @@ def init_widgets_list():
                         padding = 5,
                         format="%a %d %b  %H:%M"
                         ),
-	       		widget.Sep(
-					background = colors[3],
-					linewidth = 0,
-					padding = 5
-					)
-               ]
-return widgets_list
+			  widget.Sep(
+			            background = colors[3],
+						linewidth = 0,
+						padding = 5
+						)]
+    return widgets_list
 
 widgets_list = init_widgets_list()
 
@@ -394,3 +393,4 @@ auto_fullscreen = True
 focus_on_window_activation = "focus" # or smart
 
 wmname = "LG3D"
+
