@@ -6,11 +6,11 @@
 super + d
     rofi -i -show drun
 
-super + Tab
+alt + Tab
 	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
 button8
-    xte "keydown Super_L" "keydown Tab" "keyup Super_L" "keyup Tab"
+    xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
 button9
     xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
 
