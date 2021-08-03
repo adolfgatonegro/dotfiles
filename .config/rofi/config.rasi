@@ -2,7 +2,7 @@ configuration {
 	modi: "drun,run,window";
 	display-drun: "Run: ";
 	display-run: "Bin: ";
-	display-window: "Switch: ";
+	display-window: "Switch to: ";
 	theme: "~/.config/rofi/themes/gatonegro.rasi";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 }

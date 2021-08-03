@@ -4,11 +4,13 @@
 
 # Launcher
 super + d
-    rofi -show drun
-super + shift + d
-	rofi -show window
+    rofi -i -show drun
+
+super + Tab
+	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
+
 button8
-    xte "keydown Super_L" "keydown Shift_L" "keydown d" "keyup Super_L" "keyup Shift_L" "keyup d"
+    xte "keydown Super_L" "keydown Tab" "keyup Super_L" "keyup Tab"
 button9
     xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
 
@@ -18,12 +20,10 @@ button9
 ##################################
 
 # Browser
-#super + F1
 super + b
     firefox
 
-# Firefox Private Window
-#super + shift + F1
+# Browser Private Window
 super + shift + b
     firefox --private-window
 
@@ -50,7 +50,7 @@ super + shift + t
 super + F2
    thunar
 
-# cmus
+# Cmus
 super + m
    kitty -e cmus
 
@@ -58,7 +58,7 @@ super + m
 super + i
   discord
 
-# editor
+# Editors
 super + e
   kitty -e vim
 
