@@ -150,15 +150,15 @@ keys = [
     ]
 
 groups = [
-    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox"])]),
-    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
-    Group("3", label="MEDIA", layout="monadtall"),
-    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
-    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
-    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
-    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
-    Group("8", label="AV", layout="monadtall"),
-    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+    Group("1", label="WEB", layout="mx", matches=[Match(wm_class=["firefox"])]),
+    Group("2", label="SYS", layout="mt", matches=[Match(wm_class=["thunar"])]),
+    Group("3", label="MEDIA", layout="mt"),
+    Group("4", label="CHAT", layout="mt", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
+    Group("5", label="TEXT", layout="mt", matches=[Match(wm_class=["subl", "obsidian"])]),
+    Group("6", label="GAMES", layout="mt", matches=[Match(wm_class=["Steam"])]),
+    Group("7", label="GFX", layout="mt", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
+    Group("8", label="AV", layout="mt"),
+    Group("9", label="VBOX", layout="fl", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 for i in groups:
