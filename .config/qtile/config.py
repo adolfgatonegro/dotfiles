@@ -49,16 +49,17 @@ keys = [
 
 # SUPER + FUNCTION KEYS
 
-    Key([mod], "f", lazy.window.toggle_fullscreen()),
-    Key([mod], "q", lazy.window.kill()),
-    Key([mod], "w", lazy.to_screen(0)),
-    Key([mod], "e", lazy.to_screen(1)),
+    Key([mod], "F11", lazy.window.toggle_fullscreen()),
+#    Key([mod], "q", lazy.window.kill()),
+#    Key([mod], "w", lazy.to_screen(0)),
+#    Key([mod], "e", lazy.to_screen(1)),
 
 # SUPER + SHIFT KEYS
 
     Key([mod, "shift"], "q", lazy.window.kill()),
     Key([mod, "shift"], "r", lazy.restart()),
-
+    Key([mod, "shift"], "w", lazy.to_screen(0)),
+    Key([mod, "shift"], "e", lazy.to_screen(1)),
 
 # QTILE LAYOUT KEYS
     Key([mod], "n", lazy.layout.normalize()),
@@ -233,10 +234,11 @@ def init_widgets_list():
                         margin = 3,
                         scale = True
                         ),
-               widget.GroupBox(font="Ubuntu Bold",
+               widget.GroupBox(
+			            font="Ubuntu Bold",
                         fontsize = 9,
                         padding_y = 2,
-                        padding_x = 4,
+                        padding_x = 2,
                         borderwidth = 1,
                         disable_drag = True,
                         active = colors[4],
@@ -259,50 +261,69 @@ def init_widgets_list():
                         padding = 10,
                         background = colors[3]
                         ),
-             widget.WindowName(font="Ubuntu",
+               widget.WindowName(
+			            font="Ubuntu",
                         fontsize = 11,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              widget.Systray(
+               widget.Sep(
+                        linewidth = 0,
+                        padding = 10,
+                        background = colors[3]
+                        ),
+		       widget.Cmus(
+			  			background = colors[3],
+						foreground = colors[5],
+						font = "Ubuntu",
+						fontsize = 10,
+						noplay_color = colors[6],
+						padding = 0,
+						update_interval = 1
+			            ),
+               widget.Sep(
+                        linewidth = 0,
+                        background = colors[3],
+                        padding = 5
+                        ),
+               widget.Systray(
                         background = colors[3],
                         icon_size = 16,
                         padding = 5
                         ),
-              widget.Sep(
+               widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 10
                         ),
-              widget.CurrentLayout(
+               widget.CurrentLayout(
                         font = "Ubuntu",
-                        fontsize = 10,
+                        fontsize = 9,
 						padding = 0,
                         foreground = colors[5],
                         background = colors[3]
                         ),
-              widget.Sep(
+               widget.Sep(
                         linewidth = 0,
                         background = colors[3],
                         padding = 5
                         ),
-              widget.Clock(
+               widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
-                        font="Ubuntu Bold",
-                        fontsize = 11,
+                        font="Ubuntu",
+                        fontsize = 10,
                         padding = 5,
                         format="%a %d %b  %H:%M"
                         ),
-			  widget.Sep(
+			   widget.Sep(
 			            background = colors[3],
 						linewidth = 0,
-						padding = 5
+						padding = 2
 						)]
     return widgets_list
 
 widgets_list = init_widgets_list()
-
 
 def init_widgets_screen1():
     widgets_screen1 = init_widgets_list()
@@ -310,7 +331,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[4:5] 
+    del widgets_screen2[5:8] 
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()

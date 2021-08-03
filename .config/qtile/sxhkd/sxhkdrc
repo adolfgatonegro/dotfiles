@@ -2,16 +2,29 @@
 # GATONEGRO'S KEYBINDINGS
 #####################################################################
 
+# Launcher
+super + d
+    rofi -show drun
+super + shift + d
+	rofi -show window
+button8
+    xte "keydown Super_L" "keydown Shift_L" "keydown d" "keyup Super_L" "keyup Shift_L" "keyup d"
+button9
+    xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
+
+
 ##################################
 # APPLICATIONS
 ##################################
 
-# Firefox
-super + F1
+# Browser
+#super + F1
+super + b
     firefox
 
 # Firefox Private Window
-super + shift + F1
+#super + shift + F1
+super + shift + b
     firefox --private-window
 
 # Kitty
@@ -37,19 +50,21 @@ super + shift + t
 super + F2
    thunar
 
+# cmus
+super + m
+   kitty -e cmus
+
+# Discord
+super + i
+  discord
+
+# editor
+super + e
+  kitty -e vim
+
 ##################################
 # SYSTEM
 ##################################
-
-#Rofi
-super + d
-    rofi -show drun
-super + shift + d
-	rofi -show window
-button8
-    xte "keydown Super_L" "keydown Shift_L" "keydown d" "keyup Super_L" "keyup Shift_L" "keyup d"
-button9
-    xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
 
 #Xcfe4-TaskManager
 ctrl + shift + Escape
@@ -78,10 +93,6 @@ super + Escape
 #reload sxhkd:
 super + shift + s
    pkill -USR1 -x sxhkd
-
-#arcolinux-tweak-tool
-ctrl + alt + e
-    arcolinux-tweak-tool
 
 #arcolinux-logout
 super + x
@@ -149,11 +160,13 @@ XF86MonBrightnessDown
 # SCREENSHOTS
 ##################################
 
-#Scrot
+# Flameshot
 Print
 	flameshot gui
-#    scrot 'ArcoLinux-%Y-%m-%d-%s_screenshot_$wx$h.jpg' -e 'mv $f $$(xdg-user-dir PICTURES)'
 
-#screeenshooter
 ctrl + Print
-     xfce4-screenshooter
+	flameshot full -c
+
+ctrl + shift + Print
+	flameshot launcher
+
