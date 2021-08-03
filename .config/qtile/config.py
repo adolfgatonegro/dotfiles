@@ -155,11 +155,10 @@ groups = [
     Group("3", label="MEDIA", layout="monadtall"),
     Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
     Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
-    Group("6", label="STEAM", layout="floating", matches=[Match(wm_class=["Steam"])]),
-    Group("7", label="GAMES", layout="max"),
-    Group("8", label="GFX", layout="max", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
-    Group("9", label="VID", layout="monadtall"),
-    Group("0", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
+    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
+    Group("8", label="AV", layout="monadtall"),
+    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 for i in groups:
@@ -190,13 +189,10 @@ layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(**layout_theme),
-#    layout.MonadWide(),
-#    layout.Matrix(**layout_theme),
-    layout.Bsp(ratio = 1.10,**layout_theme),
-    layout.Floating(**layout_theme),
-#    layout.RatioTile(**layout_theme),
-    layout.Max(**layout_theme)
+    layout.MonadTall(name="mt", **layout_theme),
+	layout.RatioTile(name="rt", **layout_theme),
+    layout.Floating(name="fl", **layout_theme),
+    layout.Max(name="mx", **layout_theme)
 ]
 
 # COLORS FOR THE BAR
@@ -296,6 +292,12 @@ def init_widgets_list():
                         background = colors[3],
                         padding = 10
                         ),
+#               widget.CurrentLayoutIcon(
+#                        foreground = colors[5],
+#                        background = colors[3],
+#						scale = 0.4,
+#						custom_icons_path = "~/.config/qtile/icons",
+#                        ),
                widget.CurrentLayout(
                         font = "Ubuntu",
                         fontsize = 9,
