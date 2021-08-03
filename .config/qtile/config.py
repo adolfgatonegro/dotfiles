@@ -22,14 +22,11 @@ from libqtile.config import Drag, Key, Screen, Group, Drag, Click, Rule, Match
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
 from libqtile.widget import Spacer
-#import arcobattery
 
-#mod4 or mod = super key
-mod = "mod4"
+mod = "mod4"	### Set mod key to SUPER
 mod1 = "alt"
 mod2 = "control"
 home = os.path.expanduser('~')
-
 
 @lazy.function
 def window_to_prev_group(qtile):
@@ -43,27 +40,69 @@ def window_to_next_group(qtile):
         i = qtile.groups.index(qtile.currentGroup)
         qtile.currentWindow.togroup(qtile.groups[i + 1].name)
 
+### KEY BINDINGS (Most keys are defined in sxhkd)
+
 keys = [
 
-# Most of our keybindings are in sxhkd file - except these
+### Qtile
+    Key([mod, "shift"], "r",
+		lazy.restart(),
+		desc="Restart Qtile"
+		),
 
-# SUPER + FUNCTION KEYS
+### Window controls
+    Key([mod, "shift"], "q",
+		lazy.window.kill(),
+		desc="Close active window"
+		),
+    Key([mod2, "mod1"],"f",
+		lazy.window.toggle_fullscreen(),
+		desc="Toggle fullscreen for active window"
+		),
+    Key([mod2, "mod1"], "space",
+		lazy.window.toggle_floating(),
+		desc="Toggle floating layout for active window"
+		),
 
-    Key([mod], "F11", lazy.window.toggle_fullscreen()),
-#    Key([mod], "q", lazy.window.kill()),
-#    Key([mod], "w", lazy.to_screen(0)),
-#    Key([mod], "e", lazy.to_screen(1)),
+### Layout controls
+    Key([mod], "space",
+		lazy.next_layout(),
+		desc="Switch to next layout"
+		),
+    Key([mod], "n",
+		lazy.layout.normalize(),
+		desc="Normalize window size ratios"
+		),
 
-# SUPER + SHIFT KEYS
+### Switch groups
+    Key([mod], "Tab",
+		lazy.screen.next_group(),
+		desc="Switch to next group"
+		),
+    Key([mod, "shift" ], "Tab",
+		lazy.screen.prev_group(),
+		desc="Switch to previous group"
+		),
 
-    Key([mod, "shift"], "q", lazy.window.kill()),
-    Key([mod, "shift"], "r", lazy.restart()),
-    Key([mod, "shift"], "w", lazy.to_screen(0)),
-    Key([mod, "shift"], "e", lazy.to_screen(1)),
+### Switch monitor focus
+	Key([mod, "shift"], "w",
+		lazy.to_screen(0),
+		desc="Keyboard focus to monitor 1"
+		),
+    Key([mod, "shift"], "e",
+		lazy.to_screen(1),
+		desc="Keyboard focus to monitor 2"
+		),
+	Key([mod], "period",
+        lazy.next_screen(),
+        desc="Move focus to next monitor"
+        ),
+	Key([mod], "comma",
+		lazy.prev_screen(),
+		desc="Move focus to prev monitor"
+		),
 
-# QTILE LAYOUT KEYS
-    Key([mod], "n", lazy.layout.normalize()),
-    Key([mod], "space", lazy.next_layout()),
+
 
 # CHANGE FOCUS
     Key([mod], "Up", lazy.layout.up()),
@@ -145,36 +184,27 @@ keys = [
     Key([mod, "shift"], "Right", lazy.layout.swap_right()),
 
 # TOGGLE FLOATING LAYOUT
-    Key([mod, "shift"], "space", lazy.window.toggle_floating()),
 
     ]
 
 groups = [
-    Group("1", label="WEB", layout="mx", matches=[Match(wm_class=["firefox"])]),
-    Group("2", label="SYS", layout="mt", matches=[Match(wm_class=["thunar"])]),
-    Group("3", label="MEDIA", layout="mt"),
-    Group("4", label="CHAT", layout="mt", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
-    Group("5", label="TEXT", layout="mt", matches=[Match(wm_class=["subl", "obsidian"])]),
-    Group("6", label="GAMES", layout="mt", matches=[Match(wm_class=["Steam"])]),
-    Group("7", label="GFX", layout="mt", matches=[Match(wm_class=["gimp","gimp-2.10"])]),
-    Group("8", label="AV", layout="mt"),
-    Group("9", label="VBOX", layout="fl", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox"])]),
+    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
+    Group("3", label="MEDIA", layout="monadtall"),
+    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
+    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
+    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
+    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),
+    Group("8", label="AV", layout="monadtall"),
+    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 for i in groups:
     keys.extend([
-
-#CHANGE WORKSPACES
+### Switch to group
         Key([mod], i.name, lazy.group[i.name].toscreen()),
-        Key([mod], "Tab", lazy.screen.next_group()),
-        Key([mod, "shift" ], "Tab", lazy.screen.prev_group()),
-#        Key(["mod1"], "Tab", lazy.screen.next_group()),
-#        Key(["mod1", "shift"], "Tab", lazy.screen.prev_group()),
-
-# MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND STAY ON WORKSPACE
-        #Key([mod, "shift"], i.name, lazy.window.togroup(i.name)),
-# MOVE WINDOW TO SELECTED WORKSPACE 1-10 AND FOLLOW MOVED WINDOW TO WORKSPACE
-        Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
+### Send window to group
+		Key([mod, "shift"], i.name, lazy.window.togroup(i.name) , lazy.group[i.name].toscreen()),
     ])
 
 
@@ -189,10 +219,10 @@ layout_theme = init_layout_theme()
 
 
 layouts = [
-    layout.MonadTall(name="mt", **layout_theme),
-	layout.RatioTile(name="rt", **layout_theme),
-    layout.Floating(name="fl", **layout_theme),
-    layout.Max(name="mx", **layout_theme)
+    layout.MonadTall(**layout_theme),
+	layout.RatioTile(**layout_theme),
+    layout.Floating(**layout_theme),
+    layout.Max(**layout_theme)
 ]
 
 # COLORS FOR THE BAR
@@ -254,8 +284,8 @@ def init_widgets_list():
                         ),
                widget.Sep(
                         linewidth = 0,
-                        padding = 10,
-                        background = colors[3]
+                        background = colors[3],
+                        padding = 5
                         ),
                widget.WindowName(
 			            font="Ubuntu",
@@ -290,26 +320,42 @@ def init_widgets_list():
                widget.Sep(
                         linewidth = 0,
                         background = colors[3],
-                        padding = 10
-                        ),
-#               widget.CurrentLayoutIcon(
-#                        foreground = colors[5],
-#                        background = colors[3],
-#						scale = 0.4,
-#						custom_icons_path = "~/.config/qtile/icons",
-#                        ),
-               widget.CurrentLayout(
-                        font = "Ubuntu",
-                        fontsize = 9,
-						padding = 0,
-                        foreground = colors[5],
-                        background = colors[3]
+                        padding = 5
                         ),
                widget.Sep(
                         linewidth = 0,
-                        background = colors[3],
+                        background = colors[1],
                         padding = 5
                         ),
+               widget.CurrentScreen(
+			            font="Ubuntu Bold",
+                        fontsize = 9,
+                        foreground = colors[5],
+                        background = colors[1],
+						active_text = "•",
+						inactive_text = "•",
+						padding = 0,
+						active_color = colors[4],
+						inactive_color = colors[8]
+                        ),
+               widget.CurrentLayoutIcon(
+                        foreground = colors[5],
+                        background = colors[1],
+						scale = 0.5,
+						custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")]
+                        ),
+#               widget.CurrentLayout(
+#                        font = "Ubuntu",
+#                        fontsize = 9,
+#						padding = 0,
+#                        foreground = colors[5],
+#                        background = colors[3]
+#                        ),
+#               widget.Sep(
+#                        linewidth = 0,
+#                        background = colors[3],
+#                        padding = 5
+#                        ),
                widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
@@ -333,7 +379,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[5:8] 
+    del widgets_screen2[6:9] 
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
@@ -409,6 +455,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'Steam'},
     {'wmclass': 'VirtualBox Manager'},
     {'wmclass': 'VirtualBox Machine'},
+    {'wmclass': 'photoshop.exe'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True

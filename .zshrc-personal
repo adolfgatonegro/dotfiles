@@ -1,4 +1,4 @@
-alias dotgit="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # github dotfiles backup
+alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # github dotfiles backup
 # change ls to exa
 alias ls='exa -l --color=always --group-directories-first' # default listing
 alias la='exa -al --color=always --group-directories-first'  # all files and dirs
