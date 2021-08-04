@@ -227,9 +227,9 @@ layouts = [
 # COLORS FOR THE BAR
 
 def init_colors():
-    return [["#ff00aa", "#ff00aa"], # color 0 accent
-            ["#800055", "#800055"], # color 1 accent dark
-            ["#ff80d4", "#ff80d4"], # color 2 accent light
+    return [["#b3007a", "#b3007a"], # color 0 accent
+            ["#4d0034", "#4d0034"], # color 1 accent dark
+            ["#ff00aa", "#ff00aa"], # color 2 accent light
             ["#111111", "#111111"], # color 3 bg
             ["#ffffff", "#ffffff"], # color 4 lightest
             ["#cdcdcd", "#cdcdcd"], # color 5 light
@@ -270,7 +270,7 @@ def init_widgets_list():
                         rounded = False,
                         highlight_method = "block",
                         block_highlight_text_color = colors[4],
-						this_current_screen_border = colors[1],
+						this_current_screen_border = colors[0],
                         this_screen_border = colors[0],
                         other_current_screen_border = colors[1],
                         other_screen_border = colors[1],
