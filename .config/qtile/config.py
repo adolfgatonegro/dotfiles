@@ -188,15 +188,15 @@ keys = [
     ]
 
 groups = [
-    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),
-    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
-    Group("3", label="MEDIA", layout="monadtall"),
-    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),
-    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
-    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
-    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),
-    Group("8", label="AV", layout="monadtall"),
-    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),#WEB
+    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),#SYS
+    Group("3", label="MEDIA", layout="monadtall"),#MEDIA
+    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),#CHAT
+    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),#TEXT
+    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),#GAMES
+    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),#GFX
+    Group("8", label="AV", layout="monadtall"),#AV
+    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),#VBOX
 ]
 
 for i in groups:
@@ -244,8 +244,8 @@ colors = init_colors()
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Ubuntu",
-                fontsize = 11,
+    return dict(font="Ubuntu Mono",
+                fontsize = 12,
                 padding = 0,
                 background=colors[3])
 
@@ -261,8 +261,8 @@ def init_widgets_list():
                         scale = True
                         ),
                widget.GroupBox(
-			            font="Ubuntu Bold",
-                        fontsize = 9,
+			            #font="Ubuntu Mono",
+                        #fontsize = 10,
                         padding_y = 2,
                         padding_x = 2,
                         borderwidth = 1,
@@ -288,8 +288,8 @@ def init_widgets_list():
                         padding = 5
                         ),
                widget.WindowName(
-			            font="Ubuntu",
-                        fontsize = 11,
+			            #font="Ubuntu",
+                        #fontsize = 11,
                         foreground = colors[5],
                         background = colors[3]
                         ),
@@ -301,8 +301,8 @@ def init_widgets_list():
 		       widget.Cmus(
 			  			background = colors[3],
 						foreground = colors[5],
-						font = "Ubuntu",
-						fontsize = 10,
+						#font = "Ubuntu",
+						#fontsize = 10,
 						noplay_color = colors[6],
 						padding = 0,
 						update_interval = 1
@@ -328,8 +328,8 @@ def init_widgets_list():
                         padding = 5
                         ),
                widget.CurrentScreen(
-			            font="Ubuntu Bold",
-                        fontsize = 9,
+			            #font="Ubuntu Bold",
+                        #fontsize = 9,
                         foreground = colors[5],
                         background = colors[1],
 						active_text = "•",
@@ -359,8 +359,8 @@ def init_widgets_list():
                widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
-                        font="Ubuntu",
-                        fontsize = 10,
+                        #font="Ubuntu",
+                        #fontsize = 10,
                         padding = 5,
                         format="%a %d %b  %H:%M"
                         ),
