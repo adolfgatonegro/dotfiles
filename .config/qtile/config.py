@@ -186,17 +186,16 @@ keys = [
 # TOGGLE FLOATING LAYOUT
 
     ]
-
 groups = [
-    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),#WEB
-    Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),#SYS
-    Group("3", label="MEDIA", layout="monadtall"),#MEDIA
-    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),#CHAT
-    Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),#TEXT
-    Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),#GAMES
-    Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),#GFX
-    Group("8", label="AV", layout="monadtall"),#AV
-    Group("9", label="VBOX", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),#VBOX
+    Group("1", label="web", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),#WEB
+    Group("2", label="sys", layout="monadtall", matches=[Match(wm_class=["thunar"])]),#SYS
+    Group("3", label="mus", layout="monadtall"),#MEDIA
+    Group("4", label="chat", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),#CHAT
+    Group("5", label="txt", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),#TEXT
+    Group("6", label="games", layout="monadtall", matches=[Match(wm_class=["Steam"])]),#GAMES
+    Group("7", label="gfx", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),#GFX
+    Group("8", label="a/v", layout="monadtall"),#AV
+    Group("9", label="vbox", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),#VBOX
 ]
 
 for i in groups:
@@ -244,7 +243,7 @@ colors = init_colors()
 # WIDGETS FOR THE BAR
 
 def init_widgets_defaults():
-    return dict(font="Ubuntu Mono",
+    return dict(font="UbuntuMono Nerd Font",
                 fontsize = 12,
                 padding = 0,
                 background=colors[3])
@@ -261,18 +260,17 @@ def init_widgets_list():
                         scale = True
                         ),
                widget.GroupBox(
-			            #font="Ubuntu Mono",
-                        #fontsize = 10,
-                        padding_y = 2,
-                        padding_x = 2,
-                        borderwidth = 1,
+#						fontsize = 12,
+						padding_x = 2,
+						padding_y = 5,
+                        borderwidth = 2,
                         disable_drag = True,
                         active = colors[4],
                         inactive = colors[6],
-                        rounded = True,
+                        rounded = False,
                         highlight_method = "block",
-                        block_highlight_text_color = colors[8],
-						this_current_screen_border = colors[0],
+                        block_highlight_text_color = colors[4],
+						this_current_screen_border = colors[1],
                         this_screen_border = colors[0],
                         other_current_screen_border = colors[1],
                         other_screen_border = colors[1],
@@ -288,8 +286,6 @@ def init_widgets_list():
                         padding = 5
                         ),
                widget.WindowName(
-			            #font="Ubuntu",
-                        #fontsize = 11,
                         foreground = colors[5],
                         background = colors[3]
                         ),
@@ -328,8 +324,6 @@ def init_widgets_list():
                         padding = 5
                         ),
                widget.CurrentScreen(
-			            #font="Ubuntu Bold",
-                        #fontsize = 9,
                         foreground = colors[5],
                         background = colors[1],
 						active_text = "•",
@@ -359,10 +353,9 @@ def init_widgets_list():
                widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
-                        #font="Ubuntu",
-                        #fontsize = 10,
+						fontsize = 12,
                         padding = 5,
-                        format="%a %d %b  %H:%M"
+                        format="%a %d %b %H:%M"
                         ),
 			   widget.Sep(
 			            background = colors[3],
