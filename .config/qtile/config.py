@@ -188,10 +188,10 @@ keys = [
     ]
 
 groups = [
-    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox"])]),
+    Group("1", label="WEB", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),
     Group("2", label="SYS", layout="monadtall", matches=[Match(wm_class=["thunar"])]),
     Group("3", label="MEDIA", layout="monadtall"),
-    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),
+    Group("4", label="CHAT", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),
     Group("5", label="TEXT", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
     Group("6", label="GAMES", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
     Group("7", label="GFX", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","photoshop.exe"])]),
@@ -379,7 +379,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
     widgets_screen2 = init_widgets_list()
-    del widgets_screen2[6:9] 
+    del widgets_screen2[5:8] 
     return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
@@ -460,7 +460,7 @@ floating_layout = layout.Floating(float_rules=[
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
 
-focus_on_window_activation = "focus" # or smart
+focus_on_window_activation = "smart"
 
 wmname = "LG3D"
 
