@@ -9,3 +9,9 @@ alias mv='mv -i -v'
 alias rm="rm -v"
 # pulsemixer for sound
 alias sound="pulsemixer"
+# edit config files
+alias vqt="vim ~/.config/qtile/config.py"
+alias vzp="vim ~/.zshrc-personal"
+alias vsx="vim ~/.config/qtile/sxhkd/sxhkdrc"
+alias vkt="vim ~/.config/kitty/kitty.conf"
+alias vro="vim ~/.config/rofi/config.rasi"
