@@ -287,7 +287,8 @@ def init_widgets_list():
                         ),
                widget.WindowName(
                         foreground = colors[5],
-                        background = colors[3]
+                        background = colors[3],
+						fontsize = 11,
                         ),
                widget.Sep(
                         linewidth = 0,
