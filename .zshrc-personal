@@ -15,3 +15,5 @@ alias vzp="vim ~/.zshrc-personal"
 alias vsx="vim ~/.config/qtile/sxhkd/sxhkdrc"
 alias vkt="vim ~/.config/kitty/kitty.conf"
 alias vro="vim ~/.config/rofi/config.rasi"
+# exit terminal
+alias q="exit"
