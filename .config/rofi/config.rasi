@@ -1,8 +1,10 @@
 configuration {
 	modi: "drun,run,window";
+	display-combi: "Launch: ";
 	display-drun: "Run: ";
 	display-run: "Bin: ";
 	display-window: "Switch to: ";
 	theme: "~/.config/rofi/themes/gatonegro.rasi";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
+	run-shell-command: "kitty --hold {cmd}";
 }

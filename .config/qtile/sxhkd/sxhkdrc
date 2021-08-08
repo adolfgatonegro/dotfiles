@@ -9,6 +9,10 @@ super + d
 alt + Tab
 	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
+super + shift + period
+    rofi -show emoji -modi emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
+
+
 button8
     xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
 button9
@@ -34,21 +38,12 @@ super + Return
 super + KP_Enter
     kitty
 
-super + t
-    kitty
-
 # Thunar
 super + shift + Return
     thunar
 
 super + shift + KP_Enter
     thunar
-
-super + shift + t
-    thunar
-
-super + F2
-   thunar
 
 # Cmus
 super + m

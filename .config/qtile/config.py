@@ -260,7 +260,6 @@ def init_widgets_list():
                         scale = True
                         ),
                widget.GroupBox(
-#						fontsize = 12,
 						padding_x = 2,
 						padding_y = 5,
                         borderwidth = 2,
@@ -298,8 +297,7 @@ def init_widgets_list():
 		       widget.Cmus(
 			  			background = colors[3],
 						foreground = colors[5],
-						#font = "Ubuntu",
-						#fontsize = 10,
+						fontsize = 10,
 						noplay_color = colors[6],
 						padding = 0,
 						update_interval = 1
@@ -336,27 +334,16 @@ def init_widgets_list():
                widget.CurrentLayoutIcon(
                         foreground = colors[5],
                         background = colors[1],
-						scale = 0.5,
+						scale = 0.4,
 						custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")]
                         ),
-#               widget.CurrentLayout(
-#                        font = "Ubuntu",
-#                        fontsize = 9,
-#						padding = 0,
-#                        foreground = colors[5],
-#                        background = colors[3]
-#                        ),
-#               widget.Sep(
-#                        linewidth = 0,
-#                        background = colors[3],
-#                        padding = 5
-#                        ),
                widget.Clock(
                         foreground = colors[5],
                         background = colors[3],
 						fontsize = 12,
                         padding = 5,
-                        format="%a %d %b %H:%M"
+                        format="%a %d %H:%M"
+                        #format="%a %d %b %H:%M"
                         ),
 			   widget.Sep(
 			            background = colors[3],
