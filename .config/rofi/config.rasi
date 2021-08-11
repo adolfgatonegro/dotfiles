@@ -1,5 +1,5 @@
 configuration {
-	modi: "drun,run,window";
+	modi: "drun,run,window,emoji,calc";
 	display-combi: "Launch: ";
 	display-drun: "Run: ";
 	display-run: "Bin: ";

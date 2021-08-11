@@ -10,7 +10,7 @@ alt + Tab
 	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
 super + shift + period
-    rofi -show emoji -modi emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
+    rofi -show emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
 
 button8

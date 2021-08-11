@@ -14,7 +14,6 @@ start the conky to learn the shortcuts
 run sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
 #starting utility applications at boot time
-#run variety &
 run nm-applet &
 run pamac-tray &
 run xfce4-power-manager &
@@ -28,3 +27,4 @@ picom --config $HOME/.config/qtile/scripts/picom.conf &
 run nitrogen --restore &
 run volumeicon &
 run redshift &
+run mailspring &

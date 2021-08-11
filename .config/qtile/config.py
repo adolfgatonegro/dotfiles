@@ -188,7 +188,7 @@ keys = [
     ]
 groups = [
     Group("1", label="web", layout="max", matches=[Match(wm_class=["firefox", "mailspring"])]),#WEB
-    Group("2", label="sys", layout="monadtall", matches=[Match(wm_class=["thunar"])]),#SYS
+    Group("2", label="sys", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),#SYS
     Group("3", label="mus", layout="monadtall"),#MEDIA
     Group("4", label="chat", layout="monadtall", matches=[Match(wm_class=["discord", "ferdi", "whatsapp-nativefier-d40211"])]),#CHAT
     Group("5", label="txt", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),#TEXT
@@ -309,8 +309,7 @@ def init_widgets_list():
                         ),
                widget.Systray(
                         background = colors[3],
-                        icon_size = 16,
-                        padding = 5
+                        padding = 2
                         ),
                widget.Sep(
                         linewidth = 0,
@@ -437,6 +436,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'VirtualBox Manager'},
     {'wmclass': 'VirtualBox Machine'},
     {'wmclass': 'photoshop.exe'},
+    {'wmclass': 'transmission-gtk'},
 
 ],  fullscreen_border_width = 0, border_width = 0)
 auto_fullscreen = True
