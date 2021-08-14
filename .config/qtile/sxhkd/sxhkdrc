@@ -3,15 +3,14 @@
 #####################################################################
 
 # Launcher
-super + d
-    rofi -i -show drun
+#super + d
+#    rofi -i -show drun
 
 alt + Tab
 	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
-super + shift + period
-    rofi -show emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
-
+super + control + period
+    rofi -show emoji -modi emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
 
 button8
     xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
@@ -31,18 +30,12 @@ super + b
 super + shift + b
     firefox --private-window
 
-# Kitty
-super + Return
+# Terminal
+super + t
     kitty
 
-super + KP_Enter
-    kitty
-
-# Thunar
-super + shift + Return
-    thunar
-
-super + shift + KP_Enter
+# File manager
+super + f
     thunar
 
 # Cmus
@@ -82,11 +75,11 @@ ctrl + alt + o
     ~/.config/qtile/scripts/picom-toggle.sh
 
 #Xkill
-super + Escape
-    xkill
+#super + Escape
+#    xkill
 
 #reload sxhkd:
-super + shift + s
+super + control + s
    pkill -USR1 -x sxhkd
 
 #arcolinux-logout
