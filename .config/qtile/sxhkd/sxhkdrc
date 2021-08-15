@@ -15,7 +15,7 @@ super + control + period
 button8
     xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
 button9
-    xte "keydown Super_L" "keydown d" "keyup Super_L" "keyup d"
+    xte "keydown Super_L" "keydown Shift_L" "keydown Return" "keyup Super_L" "keyup Shift_L" "keyup Return"
 
 
 ##################################
