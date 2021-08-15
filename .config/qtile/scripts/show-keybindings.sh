@@ -3,8 +3,8 @@
 #            /o   ooooo
 #         oooooo oooooooo+
 #      /.  o ooo oooo ooooo\
-#    oo    /oooo ooo    \           QTILE KEYBINDINGS HELPER 
-#  .oo     ( ooo ooo+oooooo         qtkeys.sh
+#    oo    /oooo ooo    \           QTILE KEYBINDINGS HELPER
+#  .oo     ( ooo ooo+oooooo         show-keybindings.sh
 #  ooo     ooooo&ooo   oooooo       ........................
 #  oooo    &oooooooo     oooo       Gatonegro
 #   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
@@ -31,5 +31,5 @@ keybindings=$(sed -n '/KEYS_START/,/KEYS_END/p' ~/.config/qtile/config.py | \
 		-e 's/\s*#/\n/')
 
 echo "$keybindings" | yad --text-info --title="Gato's Qtile Key Bindings" \
-		--back='#222222' --fore='#dedede' --geometry=740x680 \
+		--back='#222222' --fore='#dedede' --geometry=740x700 \
 		--fontname="UbuntuMono Nerd Font 11" --button="Got it:1"

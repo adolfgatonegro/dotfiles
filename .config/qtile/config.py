@@ -46,7 +46,7 @@ myTerm = "kitty"	# Set kitty as default terminal, no need to guess
 # KEYS_START
 keys = [
 	# KEYS_GROUP Qtile Basics #
-	Key([mod], "F1", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/qtkeys.sh")]), desc = "Show Qtile keybindings"),
+	Key([mod], "F1", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/show-keybindings.sh")]), desc = "Show Qtile keybindings"),
 	Key([mod], "Return", lazy.spawn(myTerm+" -e"), desc = "Launch terminal"),
 	Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
 	Key([mod, "shift"], "c", lazy.window.kill(), desc = "Close the focused window"),
@@ -72,16 +72,18 @@ keys = [
 	Key([mod, "shift"], "w", lazy.to_screen(1), desc = "Switch focus to monitor 1"),
 	Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to monitor 2"),
 	Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next monitor"),
-	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous monitor")
+	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous monitor"),
+	Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-toggle.sh")]), desc = "Toggle between 1 and 2 displays"),
+	Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-rotate.sh")]), desc = "Rotate the main display"),
 ]
 # KEYS_END
 
 ### GROUPS ###
 groups = [
-	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox", "mailspring"])]), # Web  
+	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox"])]), # Web  
 	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]), # System
 	Group("3", label=" ", layout="monadtall"), # Music
-	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]), # Chat
+	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]), # Comms
 	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]), # Text
 	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]), # Gaming
 	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]), # Graphics
