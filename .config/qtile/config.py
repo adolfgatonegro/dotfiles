@@ -43,153 +43,38 @@ from typing import List  # noqa: F401
 mod = "mod4"		# Set mod key to Super
 myTerm = "kitty"	# Set kitty as default terminal, no need to guess
 
-### KEYBINDINGS ###
-
-	# THE BASICS
-	# ----------
-	# mod+Return			Launch terminal
-	# mod+shift+Return		Run application launcher
-	# mod+shift+c			Close the focused window
-	# mod+Escape			Launch xkill
-	# mod+control+r			Restart Qtile
-	# mod+control+q			Shutdown Qtile
-	#
-	# LAYOUTS
-	# -------
-	# mod+Tab				Cycle through available layouts
-	# mod+j					Lazy layout down (switch focus down)
-	# mod+k					Lazy layout up (switch focus up)
-	# mod+shift+j			Lazy layout shuffle down (move windows down in stack)
-	# mod+shift+k			Lazy layout shuffle up ((move windows up in stack)
-	# mod+shift+h			Shrink window size in MonadTall
-	# mod+shift+l			Expand window size in MonadTall
-	# mod+shift+m			Toggle between minimum and maximum window sizes
-	# mod+shift+n			Normalise windo size ratios
-	# mod+shift+f			Toggle floating
-	# mod+shift+F11			Toggle fullscreen
-	# mod+shift+Tab			Flip MonadTall layout
-	# mod+space				Switch focus to other panes in stack
-	# mod+shift+space		Toggle between split and unsplit sides of stack
-	#
-	# MULTI-MONITOR
-	# -------------
-	# mod+shift+w			Switch focus to monitor 1
-	# mod+shift+e			Switch focus to monitor 2
-	# mod+shift+period		Switch focus to next monitor
-	# mod+shift+comma		Switch focus to previous monitor
-	#
-	# GROUPS
-	# ----------
-	# mod+(1-9)				Switch to group (1-9)
-	# mod+shift+(1-9)		Send focused window to group (1-9)
-	#
-
+# KEYS_START
 keys = [
-	### THE BASICS ###
-	Key([mod], "Return",
-		lazy.spawn(myTerm+" -e"),
-		desc = "Launch terminal"
-		),
-	Key([mod, "shift"], "Return",
-		lazy.spawn("rofi -show drun"),
-		desc = "Run application launcher"
-		),
-	Key([mod, "shift"], "c",
-		lazy.window.kill(),
-		desc = "Close the focused window"
-		),
-	Key([mod], "Escape",
-		lazy.spawn("xkill"),
-		desc = "Launch xkill"
-		),
-	Key([mod, "control"], "r",
-		lazy.restart(),
-		desc = "Restart Qtile"
-		),
-	Key([mod, "control"], "q",
-		lazy.shutdown(),
-		desc = "Shutdown Qtile"
-		),
-	### LAYOUTS ###
-	Key([mod], "Tab",
-		lazy.next_layout(),
-		desc = "Cycle through available layouts"
-		),
-	Key([mod], "j",
-		lazy.layout.down(),
-		desc = "Switch focus down"
-		),
-	Key([mod], "k",
-		lazy.layout.up(),
-		desc = "Switch focus up"
-		),
-	Key([mod, "shift"], "j",
-		lazy.layout.shuffle_down(),
-		lazy.layout.section_down(),
-		desc = "Move window down in stack"
-		),
-	Key([mod, "shift"], "k",
-		lazy.layout.shuffle_up(),
-		lazy.layout.section_up(),
-		desc = "Move window up in stack"
-		),
-	Key([mod, "shift"], "h",
-		lazy.layout.shrink(),
-		lazy.layout.decrease_nmaster(),
-		desc = "Shrink window (MonadTall), decrease number in master pane (Tile)"
-		),
-	Key([mod, "shift"], "l",
-		lazy.layout.grow(),
-		lazy.layout.increase_nmaster(),
-		desc = "Expand window (MonadTall), increase number in master pane (Tile)"
-		),
-	Key([mod, "shift"], "m",
-		lazy.layout.maximize(),
-		desc = "Toggle between minimum and maximum window sizes"
-		),
-	Key([mod, "shift"], "n",
-		lazy.layout.normalize(),
-		desc = "Normalise window size ratios"
-		),
-	Key([mod, "shift"], "f",
-		lazy.window.toggle_floating(),
-		desc = "Toggle floating"
-		),
-	Key([mod, "shift"], "F11",
-		lazy.window.toggle_fullscreen(),
-		desc = "Toggle fullscreen"
-		),
-	Key([mod, "shift"], "Tab",
-		lazy.layout.rotate(),
-		lazy.layout.flip(),
-		desc = "Flip master pane side (MonadTall)"
-		),
-	Key([mod], "space",
-		lazy.layout.next(),
-		desc = "Switch focus to other panes in stack"
-		),
-	Key([mod, "shift"], "space",
-		lazy.layout.toggle_split(),
-		desc = "Toggle between split and unsplit sides of stack"
-		),
-	### MULTI-MONITOR ###
-	Key([mod, "shift"], "w",
-		lazy.to_screen(1),
-		desc = "Switch focus to monitor 1"
-		),
-	Key([mod, "shift"], "e",
-		lazy.to_screen(2),
-		desc = "Switch focus to monitor 2"
-		),
-	Key([mod, "shift"], "period",
-		lazy.next_screen(),
-		desc = "Switch focus to next monitor"
-		),
-	Key([mod, "shift"], "comma",
-		lazy.prev_screen(),
-		desc = "Switch focus to previous monitor"
-		)
+	# KEYS_GROUP Qtile Basics #
+	Key([mod], "F1", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/qtkeys.sh")]), desc = "Show Qtile keybindings"),
+	Key([mod], "Return", lazy.spawn(myTerm+" -e"), desc = "Launch terminal"),
+	Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
+	Key([mod, "shift"], "c", lazy.window.kill(), desc = "Close the focused window"),
+	Key([mod], "Escape", lazy.spawn("xkill"), desc = "Launch xkill"),
+	Key([mod, "control"], "r", lazy.restart(), desc = "Restart Qtile"),
+	Key([mod, "control"], "q", lazy.shutdown(), desc = "Shutdown Qtile"),
+	# KEYS_GROUP Layout control #
+	Key([mod], "Tab", lazy.next_layout(), desc = "Cycle through available layouts"),
+	Key([mod], "j", lazy.layout.down(),	desc = "Switch focus down"),
+	Key([mod], "k", lazy.layout.up(), desc = "Switch focus up"),
+	Key([mod, "shift"], "j", lazy.layout.shuffle_down(), lazy.layout.section_down(), desc = "Move window down in stack"),
+	Key([mod, "shift"], "k", lazy.layout.shuffle_up(), lazy.layout.section_up(), desc = "Move window up in stack"),
+	Key([mod, "shift"], "h", lazy.layout.shrink(), lazy.layout.decrease_nmaster(), desc = "Shrink window (MonadTall), decrease number in master pane (Tile)"),
+	Key([mod, "shift"], "l", lazy.layout.grow(), lazy.layout.increase_nmaster(), desc = "Expand window (MonadTall), increase number in master pane (Tile)"),
+	Key([mod, "shift"], "m", lazy.layout.maximize(), desc = "Toggle between minimum and maximum window sizes"),
+	Key([mod, "shift"], "n", lazy.layout.normalize(), desc = "Normalise window size ratios"),
+	Key([mod, "shift"], "f", lazy.window.toggle_floating(), desc = "Toggle floating"),
+	Key([mod, "shift"], "F11", lazy.window.toggle_fullscreen(), desc = "Toggle fullscreen"),
+	Key([mod, "shift"], "Tab", lazy.layout.rotate(), lazy.layout.flip(), desc = "Flip master pane side (MonadTall)"),
+	Key([mod], "space", lazy.layout.next(), desc = "Switch focus to other panes in stack"),
+	Key([mod, "shift"], "space", lazy.layout.toggle_split(), desc = "Toggle between split and unsplit sides of stack"),
+	# KEYS_GROUP Multi-monitor #
+	Key([mod, "shift"], "w", lazy.to_screen(1), desc = "Switch focus to monitor 1"),
+	Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to monitor 2"),
+	Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next monitor"),
+	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous monitor")
 ]
+# KEYS_END
 
 ### GROUPS ###
 groups = [
@@ -198,10 +83,10 @@ groups = [
 	Group("3", label=" ", layout="monadtall"),	# Music
 	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),	# Chat
 	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),	# Text
-	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),	# Gaming
-	Group("7", label=" ", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10"])]),	# Graphics
+	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),	# Gaming
+	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]),	# Graphics
 	Group("8", label=" ", layout="monadtall"),	# Audio/video
-	Group("9", label=" ", layout="floating", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),	# VirtualBox
+	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),	# VirtualBox
 ]
 
 ### KEYBINDINGS - GROUPS ###
@@ -245,7 +130,7 @@ layouts = [
 colors = [["#222222", "#222222"], # 0 Panel background
 		  ["#ffffff", "#ffffff"], # 1 Active group foreground
 		  ["#ff00aa", "#b32d86"], # 2 Active group background
-		  ["#888888", "#888888"], # 3 Inactive group foreground
+		  ["#777777", "#777777"], # 3 Inactive group foreground
 		  ["#7f205f", "#7f205f"], # 4 Other groups background
 		  ["#cdcdcd", "#cdcdcd"], # 5 Generic text foreground
 		  ["#66194c", "#66194c"], # 6 Coloured widget background
@@ -278,10 +163,16 @@ def init_widgets_list():
 		# 2
 		widget.GroupBox(
 			fontsize = 14,
-			borderwidth = 2,
+			center_aligned = True,
+			borderwidth = 0,
+			padding_x = 6,
+			padding_y = 4,
+			margin_x = 6,
+			margin_y = 3,
 			active = colors[1],
 			inactive = colors[3],
 			highlight_method = "block",
+			highlight_color = colors[1],
 			block_highlight_text_color = colors[1],
 			this_current_screen_border = colors[2],
 			this_screen_border = colors[2],
@@ -295,7 +186,8 @@ def init_widgets_list():
 			),
 		# 4
 		widget.Cmus(
-			update_interval = 1
+			update_interval = 1,
+			play_color = colors[2]
 			),
 		# 5
 		widget.Systray(
@@ -315,19 +207,41 @@ def init_widgets_list():
 			),
 		# 8
 		widget.Volume(
-			fmt = "  {}"
+			fmt = "  {}",
+			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
 			),
 		# 9
+		widget.Sep(
+			linewidth = 0,
+			padding = 6
+			),
+		# 10
+		widget.CurrentScreen(
+            active_color = colors[1],
+			active_text = "",
+			inactive_text = "",
+			inactive_color = colors[0],
+			fontsize = 13,
+			padding = 6,
+			background = colors[6]
+            ),
+		# 11
 		widget.CurrentLayoutIcon(
-            scale = 0.4,
+            scale = 0.5,
+			margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 			background = colors[6]
             ),
-		# 10
-		widget.CurrentLayout(
-			background = colors[6]
+		# 12
+		widget.Sep(
+			linewidth = 0,
+			padding = 6
 			),
-		# 11
+		# 10
+		# widget.CurrentLayout(
+		#	background = colors[6]
+		#	),
+		# 13
 		widget.Clock(
 			format = "%a %d %H:%M"
 			),
@@ -347,7 +261,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
 	widgets_screen2 = init_widgets_list()
-	del widgets_screen2[4:8] # Slice the widgets we don't want on screen 2
+	del widgets_screen2[4:9] # Slice the widgets we don't want on screen 2
 	return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
@@ -421,6 +335,8 @@ floating_layout = layout.Floating(float_rules=[
 #   {'wmclass': 'VirtualBox Machine'},
     {'wmclass': 'transmission-gtk'},
     {'wmclass': 'gimp-2.10'},
+    {'wmclass': 'Yad'},
+    {'wmclass': 'nvidia-settings'},
 ], fullscreen_border_width = 0, border_width = 0)
 
 auto_fullscreen = True
@@ -429,5 +345,4 @@ reconfigure_screens = True
 auto_minimize = True
 
 wmname = "LG3D"
-
 
