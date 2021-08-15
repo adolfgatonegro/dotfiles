@@ -78,15 +78,15 @@ keys = [
 
 ### GROUPS ###
 groups = [
-	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox", "mailspring"])]),	# Web
-	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),	# System
-	Group("3", label=" ", layout="monadtall"),	# Music
-	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]),	# Chat
-	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),	# Text
-	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),	# Gaming
-	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]),	# Graphics
-	Group("8", label=" ", layout="monadtall"),	# Audio/video
-	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),	# VirtualBox
+	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox", "mailspring"])]), # Web  
+	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]), # System
+	Group("3", label=" ", layout="monadtall"), # Music
+	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "whatsapp-nativefier-d40211"])]), # Chat
+	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]), # Text
+	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]), # Gaming
+	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]), # Graphics
+	Group("8", label=" ", layout="monadtall"), # Audio/video
+	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]), # VirtualBox
 ]
 
 ### KEYBINDINGS - GROUPS ###
