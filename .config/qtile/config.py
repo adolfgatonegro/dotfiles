@@ -86,7 +86,7 @@ groups = [
 	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),	# Gaming
 	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]),	# Graphics
 	Group("8", label=" ", layout="monadtall"),	# Audio/video
-	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),	# VirtualBox
+	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),	# VirtualBox
 ]
 
 ### KEYBINDINGS - GROUPS ###
@@ -127,13 +127,13 @@ layouts = [
 ]
 
 ### COLOUR PALETTE ###
-colors = [["#222222", "#222222"], # 0 Panel background
-		  ["#ffffff", "#ffffff"], # 1 Active group foreground
-		  ["#ff00aa", "#b32d86"], # 2 Active group background
-		  ["#777777", "#777777"], # 3 Inactive group foreground
-		  ["#7f205f", "#7f205f"], # 4 Other groups background
-		  ["#cdcdcd", "#cdcdcd"], # 5 Generic text foreground
-		  ["#66194c", "#66194c"], # 6 Coloured widget background
+colors = [["#0d0d0d", "#111111"], # 0 Panel background
+		  ["#ffffff", "#ffffff"], # 1 Selected group foreground
+		  ["#e60099", "#ff00aa"], # 2 Selected group background
+		  ["#666666", "#666666"], # 3 Inactive group foreground
+		  ["#4d0033", "#660044"], # 4 Other groups background
+		  ["#cccccc", "#cccccc"], # 5 Generic text foreground
+		  ["#4d0033", "#330022"], # 6 Coloured widget background
 ]
 
 ### WIDGET DEFAULTS ###
@@ -162,14 +162,14 @@ def init_widgets_list():
 			),
 		# 2
 		widget.GroupBox(
-			fontsize = 14,
-			center_aligned = True,
+			fontsize = 15,
+			rounded = False,
 			borderwidth = 0,
-			padding_x = 6,
+			padding_x = 7,
 			padding_y = 4,
-			margin_x = 6,
+			margin_x = 4,
 			margin_y = 3,
-			active = colors[1],
+			active = colors[5],
 			inactive = colors[3],
 			highlight_method = "block",
 			highlight_color = colors[1],
@@ -182,40 +182,51 @@ def init_widgets_list():
 			urgent_text = colors[1],
 			),
 		# 3
-		widget.WindowName(
+		widget.Sep(
+			linewidth = 0,
+			padding = 6
 			),
 		# 4
+		widget.WindowName(
+			),
+		# 5
 		widget.Cmus(
 			update_interval = 1,
 			play_color = colors[2]
 			),
-		# 5
+		# 6
 		widget.Systray(
 			),
-		# 6
+		# 7
 		widget.Net(
 		  # interface = "enp0s3", # VBox adapter
 			interface = "eno1",
 			format = "{down}  {up}  "
 			),
-		# 7
+		# 8
 		widget.CheckUpdates(
 			update_interval = 7200,
 			distro = "Arch_checkupdates",
 			display_format = "  {updates}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
 			),
-		# 8
+		# 9
 		widget.Volume(
 			fmt = "  {}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
 			),
-		# 9
+		# 10
 		widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 10
+		# 11
+		widget.Sep(
+			linewidth = 0,
+			padding = 4,
+			background = colors[6]
+			),
+		# 12
 		widget.CurrentScreen(
             active_color = colors[1],
 			active_text = "",
@@ -225,23 +236,23 @@ def init_widgets_list():
 			padding = 6,
 			background = colors[6]
             ),
-		# 11
+		# 13
 		widget.CurrentLayoutIcon(
             scale = 0.5,
 			margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 			background = colors[6]
             ),
-		# 12
+		# 14
 		widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 10
+		# 14
 		# widget.CurrentLayout(
 		#	background = colors[6]
 		#	),
-		# 13
+		# 15
 		widget.Clock(
 			format = "%a %d %H:%M"
 			),
@@ -261,7 +272,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
 	widgets_screen2 = init_widgets_list()
-	del widgets_screen2[4:9] # Slice the widgets we don't want on screen 2
+	del widgets_screen2[5:9] # Slice the widgets we don't want on screen 2
 	return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
