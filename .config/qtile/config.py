@@ -69,12 +69,12 @@ keys = [
 	Key([mod], "space", lazy.layout.next(), desc = "Switch focus to other panes in stack"),
 	Key([mod, "shift"], "space", lazy.layout.toggle_split(), desc = "Toggle between split and unsplit sides of stack"),
 	# KEYS_GROUP Multi-monitor #
-	Key([mod, "shift"], "w", lazy.to_screen(1), desc = "Switch focus to monitor 1"),
-	Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to monitor 2"),
-	Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next monitor"),
-	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous monitor"),
-	Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-toggle.sh")]), desc = "Toggle between 1 and 2 displays"),
-	Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-rotate.sh")]), desc = "Rotate the main display"),
+	Key([mod, "shift"], "w", lazy.to_screen(1), desc = "Switch focus to display 1"),
+	Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to display 2"),
+	Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next display"),
+	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous display"),
+	Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-toggle.sh")]), desc = "Toggle display 2 on/off"),
+	Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-rotate.sh")]), desc = "Rotate display 1"),
 ]
 # KEYS_END
 
@@ -164,6 +164,7 @@ def init_widgets_list():
 			),
 		# 2
 		widget.GroupBox(
+			disable_drag = True,
 			fontsize = 15,
 			rounded = False,
 			borderwidth = 0,

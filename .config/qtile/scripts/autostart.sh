@@ -24,7 +24,7 @@ picom &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
 #starting user applications at boot time
-echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill
+echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill &
 #run volumeicon &
 run redshift &
 run mailspring &
