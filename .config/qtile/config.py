@@ -194,43 +194,48 @@ def init_widgets_list():
 		widget.WindowName(
 			),
 		# 5
+		widget.Sep(
+			linewidth = 0,
+			padding = 6
+			),
+		# 6
 		widget.Cmus(
 			update_interval = 1,
 			play_color = colors[7]
 			),
-		# 6
+		# 7
 		widget.Systray(
 			),
-		# 7
+		# 8
 		widget.Net(
 		  # interface = "enp0s3", # VBox adapter
 			interface = "eno1",
 			format = "{down}  {up}  "
 			),
-		# 8
+		# 9
 		widget.CheckUpdates(
 			update_interval = 3600,
 			distro = "Arch",
 			display_format = "  {updates}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
 			),
-		# 9
+		# 10
 		widget.Volume(
 			fmt = "  {}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
 			),
-		# 10
+		# 11
 		widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 11
+		# 12
 		widget.Sep(
 			linewidth = 0,
 			padding = 4,
 			background = colors[6]
 			),
-		# 12
+		# 13
 		widget.CurrentScreen(
             active_color = colors[1],
 			active_text = "",
@@ -240,26 +245,27 @@ def init_widgets_list():
 			padding = 6,
 			background = colors[6]
             ),
-		# 13
+		# 14
 		widget.CurrentLayoutIcon(
             scale = 0.5,
 			margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 			background = colors[6]
             ),
-		# 14
+		# 15
 		widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 14
+		# 16
 		# widget.CurrentLayout(
 		#	background = colors[6]
 		#	),
-		# 15
+		# 16
 		widget.Clock(
 			format = "%a %d %H:%M"
 			),
+		# 17
 		widget.Sep(
 			linewidth = 0,
 			padding = 2
@@ -276,7 +282,7 @@ def init_widgets_screen1():
 
 def init_widgets_screen2():
 	widgets_screen2 = init_widgets_list()
-	del widgets_screen2[5:9] # Slice the widgets we don't want on screen 2
+	del widgets_screen2[6:10] # Slice the widgets we don't want on screen 2
 	return widgets_screen2
 
 widgets_screen1 = init_widgets_screen1()
