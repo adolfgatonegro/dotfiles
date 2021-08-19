@@ -53,7 +53,7 @@ element-icon {
 /* colors */
 
 * {
-	bg:      						#222222ff; /* background */
+	bg:      						#222222dd; /* background */
 	fg:      						#f1f1f1ff; /* foreground */
 	ac:      						#ff00aaaa; /* accent */
 	red:     						#ff50c5ff;
@@ -65,7 +65,7 @@ element-icon {
 }
 
 * {
-    background-color:             	@bg;
+    background-color:             	transparent;
 }
 
 window {
@@ -74,6 +74,7 @@ window {
     border-radius: 					10px;
     padding: 						15;
     width: 							25%;
+    background-color:				@bg;
 }
 
 prompt {
