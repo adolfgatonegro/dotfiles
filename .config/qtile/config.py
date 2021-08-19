@@ -136,6 +136,7 @@ colors = [["#0d0d0d", "#111111"], # 0 Panel background
 		  ["#4d0033", "#660044"], # 4 Other groups background
 		  ["#cccccc", "#cccccc"], # 5 Generic text foreground
 		  ["#4d0033", "#330022"], # 6 Coloured widget background
+		  ["#00ffff", "#00ffff"], # 7 Coloured widget foreground
 ]
 
 ### WIDGET DEFAULTS ###
@@ -195,7 +196,7 @@ def init_widgets_list():
 		# 5
 		widget.Cmus(
 			update_interval = 1,
-			play_color = colors[2]
+			play_color = colors[7]
 			),
 		# 6
 		widget.Systray(
@@ -326,6 +327,9 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'ssh-askpass'},
     {'wmname': 'branchdialog'},
     {'wmname': 'pinentry'},
+ 	{'role': 'Dialog'},
+	{'role': 'PictureInPicture'},
+	{'role': 'GtkFileChooserDialog'},
     {'wmclass': 'Arcolinux-welcome-app.py'},
     {'wmclass': 'Arcolinux-tweak-tool.py'},
     {'wmclass': 'Arcolinux-calamares-tool.py'},
@@ -342,11 +346,8 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'feh'},
     {'wmclass': 'Galculator'},
     {'wmclass': 'xfce4-terminal'},
-    {'wname': 'Open File'},
-    {'wmname': 'Picture-in-Picture'},
     {'wmclass': 'Steam'},
     {'wmclass': 'VirtualBox Manager'},
-#   {'wmclass': 'VirtualBox Machine'},
     {'wmclass': 'transmission-gtk'},
     {'wmclass': 'gimp-2.10'},
     {'wmclass': 'Yad'},

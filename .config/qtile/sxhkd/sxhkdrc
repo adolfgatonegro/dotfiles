@@ -36,7 +36,7 @@ super + t
 
 # File manager
 super + f
-    thunar
+	thunar	
 
 # Cmus
 super + m
