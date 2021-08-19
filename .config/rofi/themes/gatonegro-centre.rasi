@@ -1,3 +1,20 @@
+/*
+              /o   ooooo          
+           oooooo oooooooo+       
+        /.  o ooo oooo ooooo\     
+      oo    /oooo ooo    \           GATO'S CENTRED ROFI THEME
+    .oo     ( ooo ooo+oooooo         gatonegro-centre.rasi
+    ooo     ooooo&ooo   oooooo       ....................
+    oooo    &oooooooo     oooo       Gatonegro
+     ooooo, / (   oooo.    /oo       https://gatoneg.ro/
+       ooooooo    o        oo     
+         ooooooooooo&//ooo(       
+            ooooooooooo/         
+  
+  A simple centred theme, with support for rofi-calc and rofi-emoji.
+
+*/
+
 configuration {
     lines:							10;
     columns:						1;
