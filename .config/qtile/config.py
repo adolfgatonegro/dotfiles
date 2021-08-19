@@ -307,13 +307,20 @@ def start_once():
 	subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
 ### SET FLOATING WINDOWS AUTOMATICALLY ###
-@hook.subscribe.client_new
-def set_floating(window):
-	if (window.window.get_wm_transient_for()
-		or window.window.get_wm_type() in floating_types):
-	   window.floating = True
+#@hook.subscribe.client_new
+#def set_floating(window):
+#	if (window.window.get_wm_transient_for()
+#		or window.window.get_wm_type() in floating_types):
+#	   window.floating = True
+#
+#floating_types = ["notification", "toolbar", "splash", "dialog"]
 
-floating_types = ["notification", "toolbar", "splash", "dialog"]
+@hook.subscribe.client_new
+def floating_dialogs(window):
+    dialog = window.window.get_wm_type() == 'dialog'
+    transient = window.window.get_wm_transient_for()
+    if dialog or transient:
+        window.floating = True
 
 follow_mouse_focus = True
 bring_front_click = False
@@ -321,6 +328,7 @@ cursor_warp = False
 
 ### FLOATING LAYOUT RULES ###
 floating_layout = layout.Floating(float_rules=[
+	Match(func=lambda c: bool(c.is_transient_for())),
     {'wmclass': 'confirmreset'},
     {'wmclass': 'makebranch'},
     {'wmclass': 'maketag'},
