@@ -6,16 +6,19 @@
 #super + d
 #    rofi -i -show drun
 
-alt + Tab
-	rofi -i -show window -window-format "\{w\} -  \{t\}" -theme ~/.config/rofi/themes/gatonegro-centre.rasi
+super + c
+	rofi -i -show calc
 
-super + control + period
-    rofi -show emoji -modi emoji -theme ~/.config/rofi/themes/gatonegro-centre.rasi
+alt + Tab
+	rofi -i -show window
+
+super + period
+    rofi -i -show emoji
 
 button8
     xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
 button9
-    xte "keydown Super_L" "keydown Shift_L" "keydown Return" "keyup Super_L" "keyup Shift_L" "keyup Return"
+    xte "keydown Super_L" "keydown r" "keyup Super_L" "keyup r"
 
 
 ##################################

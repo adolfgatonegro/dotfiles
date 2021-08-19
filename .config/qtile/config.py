@@ -48,7 +48,7 @@ keys = [
 	# KEYS_GROUP Qtile Basics #
 	Key([mod], "F1", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/show-keybindings.sh")]), desc = "Show Qtile keybindings"),
 	Key([mod], "Return", lazy.spawn(myTerm+" -e"), desc = "Launch terminal"),
-	Key([mod, "shift"], "Return", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
+	Key([mod], "r", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
 	Key([mod, "shift"], "c", lazy.window.kill(), desc = "Close the focused window"),
 	Key([mod], "Escape", lazy.spawn("xkill"), desc = "Launch xkill"),
 	Key([mod, "control"], "r", lazy.restart(), desc = "Restart Qtile"),
@@ -86,7 +86,7 @@ groups = [
 	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]), # Comms
 	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]), # Text
 	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]), # Gaming
-	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10"])]), # Graphics
+	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]), # Graphics
 	Group("8", label=" ", layout="monadtall"), # Audio/video
 	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]), # VirtualBox
 ]
@@ -209,8 +209,8 @@ def init_widgets_list():
 			),
 		# 8
 		widget.CheckUpdates(
-			update_interval = 7200,
-			distro = "Arch_checkupdates",
+			update_interval = 3600,
+			distro = "Arch",
 			display_format = "  {updates}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
 			),
@@ -358,6 +358,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'VirtualBox Manager'},
     {'wmclass': 'transmission-gtk'},
     {'wmclass': 'gimp-2.10'},
+    {'wmclass': 'org.inkscape.Inkscape'},
     {'wmclass': 'Yad'},
     {'wmclass': 'nvidia-settings'},
 ], fullscreen_border_width = 0, border_width = 0)

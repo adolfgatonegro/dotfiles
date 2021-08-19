@@ -1,10 +1,6 @@
 configuration {
-	modi: "drun,run,window,emoji,calc";
-	display-combi: "Launch: ";
-	display-drun: "Run: ";
-	display-run: "Bin: ";
-	display-window: "Switch to: ";
-	theme: "~/.config/rofi/themes/gatonegro.rasi";
+	modi: "drun,run,window,calc,emoji";
+	theme: "~/.config/rofi/themes/gatonegro-centre.rasi";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 	run-shell-command: "kitty --hold {cmd}";
 }
