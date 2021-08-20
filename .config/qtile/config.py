@@ -215,7 +215,7 @@ def init_widgets_list():
 		# 9
 		widget.CheckUpdates(
 			update_interval = 3600,
-			distro = "Arch",
+			distro = "Arch_checkupdates",
 			display_format = "  {updates}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
 			),
@@ -257,10 +257,6 @@ def init_widgets_list():
 			linewidth = 0,
 			padding = 6
 			),
-		# 16
-		# widget.CurrentLayout(
-		#	background = colors[6]
-		#	),
 		# 16
 		widget.Clock(
 			format = "%a %d %H:%M"
