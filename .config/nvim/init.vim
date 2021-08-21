@@ -28,9 +28,7 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 		Plugin 'VundleVim/Vundle.vim'						" Vundle
 		Plugin 'itchyny/lightline.vim'						" Lightline
-		Plugin 'preservim/nerdtree'							" NERDTree
-		Plugin 'ryanoasis/vim-devicons'						" Icons for NT
-		Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'	" Syntax highlighting for NT
+		Plugin 'vifm/vifm.vim'								" Vifm
 		Plugin 'ap/vim-css-color'							" CSS colour previews
 call vundle#end()
 
@@ -38,7 +36,7 @@ call vundle#end()
 " General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256				" Set 256 colour support
-set termguicolors
+set termguicolors			" Set termguicolors
 set number relativenumber	" Display line numbers
 set nobackup				" Don't make auto-backups
 set confirm					" Ask about saving changes instead of yelling at me
@@ -51,18 +49,13 @@ syntax enable
 :imap ii <Esc>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" NERDTree
+" Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <C-n> :NERDTreeToggle<CR>
-let g:NERDTreeDirArrowExpandable = ''
-let g:NERDTreeDirArrowCollapsible = ''
-let NERDTreeShowLineNumbers=1
-let NERDTreeShowHidden=1
-let NERDTreeMinimalUI = 1
-let g:NERDTreeWinSize=38
-
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+map <Leader>vv :Vifm<CR>
+map <Leader>vs :VsplitVifm<CR>
+map <Leader>sp :SplitVifm<CR>
+map <Leader>dv :DiffVifm<CR>
+map <Leader>tv :TabVifm<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dynamic line numbers
