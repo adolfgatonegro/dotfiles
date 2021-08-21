@@ -1,110 +1,32 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+#
+#            /o   ooooo          
+#         oooooo oooooooo+       
+#      /.  o ooo oooo ooooo\     
+#    oo    /oooo ooo    \           ZSH
+#  .oo     ( ooo ooo+oooooo         .zshrc
+#  ooo     ooooo&ooo   oooooo       ....................
+#  oooo    &oooooooo     oooo       Gatonegro
+#   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
+#     ooooooo    o        oo     
+#       ooooooooooo&//ooo(       
+#          ooooooooooo/         
+#  
+#  
 
-# Path to your oh-my-zsh installation.
-#installation via script from github
-#export ZSH="/home/$USER/.oh-my-zsh"
-#installation via paru -S oh-my-zsh-git
+# Path to oh-my-zsh.
 export ZSH=/usr/share/oh-my-zsh/
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-# if you installed the package oh-my-zsh-powerline-theme-git then you type here "powerline" as zsh theme
-
-# some decent themes
-# nebirhos, kolo, awesomepanda, gozilla
+# Set oh-my-zsh theme
 ZSH_THEME="gozilla"
 
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
-# If set to an empty array, this variable will have no effect.
-
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
-# ZSH_THEME_RANDOM_IGNORED=(pygmalion tjkirch_mod)
-
-# Uncomment the following line to use case-sensitive completion.
-# CASE_SENSITIVE="true"
-
-# Uncomment the following line to use hyphen-insensitive completion.
-# Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
-
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
-
-# Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
-
-# Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
-
-# Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
-
-# Uncomment the following line if you want to disable marking untracked files
-# under VCS as dirty. This makes repository status check for large repositories
-# much, much faster.
-# DISABLE_UNTRACKED_FILES_DIRTY="true"
-
-# Uncomment the following line if you want to change the command execution time
-# stamp shown in the history command output.
-# You can set one of the optional three formats:
-# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
-# or set a custom format using the strftime function format specifications,
-# see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
-
-# Would you like to use another custom folder than $ZSH/custom?
-# ZSH_CUSTOM=/path/to/new-custom-folder
-
-# Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
-# Example format: plugins=(rails git textmate ruby lighthouse)
-# Add wisely, as too many plugins slow down shell startup.
+# Load zsh plugins
 plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
-
-# User configuration
-
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
-
-# Compilation flags
-# export ARCHFLAGS="-arch x86_64"
-
-
-####   ARCOLINUX SETTINGS   ####
-
-
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# User configuration
 
 setopt GLOB_DOTS
 
@@ -113,12 +35,9 @@ setopt GLOB_DOTS
 
 export HISTCONTROL=ignoreboth:erasedups
 
-# Make nano the default editor
-
-export EDITOR='nano'
-export VISUAL='nano'
-
-#PS1='[\u@\h \W]\$ '
+# Set Nvim as default editor
+export EDITOR='nvim'
+export VISUAL='nvim'
 
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
@@ -159,8 +78,6 @@ alias userlist="cut -d: -f1 /etc/passwd"
 alias merge="xrdb -merge ~/.Xresources"
 
 # Aliases for software managment
-# pacman or pm
-#alias pacman='sudo pacman --color auto'
 alias update='sudo pacman -Syyu'
 
 # yay as aur helper - updates everything
@@ -181,19 +98,6 @@ alias update-fc='sudo fc-cache -fv'
 alias skel='cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
 #backup contents of /etc/skel to hidden backup folder in home/user
 alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-
-#copy bashrc-latest over on bashrc - cb= copy bashrc
-#alias cb='sudo cp /etc/skel/.bashrc ~/.bashrc && source ~/.bashrc'
-#copy /etc/skel/.zshrc over on ~/.zshrc - cb= copy zshrc
-alias cz='sudo cp /etc/skel/.zshrc ~/.zshrc && exec zsh'
-
-#switch between bash and zsh
-alias tobash="sudo chsh $USER -s /bin/bash && echo 'Now log out.'"
-alias tozsh="sudo chsh $USER -s /bin/zsh && echo 'Now log out.'"
-
-#switch between lightdm and sddm
-alias tolightdm="sudo pacman -S lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed ; sudo systemctl enable lightdm.service -f ; echo 'Lightm is active - reboot now'"
-alias tosddm="sudo pacman -S sddm --noconfirm --needed ; sudo systemctl enable sddm.service -f ; echo 'Sddm is active - reboot now'"
 
 #quickly kill conkies
 alias kc='killall conky'
@@ -219,14 +123,6 @@ alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --
 
 #mounting the folder Public for exchange between host and guest on virtualbox
 alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
-
-#shopt
-#shopt -s autocd # change to named directory
-#shopt -s cdspell # autocorrects cd misspellings
-#shopt -s cmdhist # save multi-line commands in history as single line
-#shopt -s dotglob
-#shopt -s histappend # do not overwrite history
-#shopt -s expand_aliases # expand aliases
 
 #youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "
@@ -256,21 +152,6 @@ alias rg="rg --sort path"
 #get the error messages from journalctl
 alias jctl="journalctl -p 3 -xb"
 
-#nano for important configuration files
-#know what you do in these files
-alias nlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
-alias npacman="sudo $EDITOR /etc/pacman.conf"
-alias ngrub="sudo $EDITOR /etc/default/grub"
-alias nconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
-alias nmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
-alias nmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias nsddm="sudo $EDITOR /etc/sddm.conf"
-alias nfstab="sudo $EDITOR /etc/fstab"
-alias nnsswitch="sudo $EDITOR /etc/nsswitch.conf"
-alias nsamba="sudo $EDITOR /etc/samba/smb.conf"
-alias nb="$EDITOR ~/.bashrc"
-alias nz="$EDITOR ~/.zshrc"
-
 #gpg
 #verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
@@ -282,7 +163,7 @@ alias fix-key="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.co
 
 #maintenance
 alias big="expac -H M '%m\t%n' | sort -h | nl"
-alias downgrada="sudo downgrade --ala-url https://bike.seedhost.eu/arcolinux/"
+alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 
 #systeminfo
 alias probe="sudo -E hw-probe -all -upload"
@@ -326,23 +207,73 @@ ex ()
 
 #create a file called .zshrc-personal and put all your personal aliases
 #in there. They will not be overwritten by skel.
+#[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
 
-[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
+###########################################################
 
-# reporting tools - install when not installed
-# install neofetch
+bindkey -v
+
+export EDITOR='nvim'
+export VISUAL='nvim'
+
+###########################################################
+# ALIASES
+###########################################################
+
+# load NeoVim instead of Vim
+alias vim='nvim'
+alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # github dotfiles backup
+
+# change ls to exa
+alias ls='exa -l --color=always --group-directories-first' # default listing
+alias la='exa -al --color=always --group-directories-first'  # all files and dirs
+alias l.='exa -al | egrep "^\."' # hidden files
+
+# verbose copy/move/remove with confirmation
+alias cp="cp -i -v"
+alias mv='mv -i -v'
+alias rm="rm -v"
+
+# pulsemixer for sound
+alias sound="pulsemixer"
+
+# edit config files
+alias vqtile="$EDITOR ~/.config/qtile/config.py"
+alias vpicom="$EDITOR ~/.config/picom/picom.conf"
+alias vautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
+alias vsxhkd="$EDITOR ~/.config/qtile/sxhkd/sxhkdrc"
+alias vkitty="$EDITOR ~/.config/kitty/kitty.conf"
+alias vrofi="$EDITOR ~/.config/rofi/config.rasi"
+alias vinitv="$EDITOR ~/.config/nvim/init.vim"
+alias vbash="$EDITOR ~/.bashrc"
+alias vzsh="$EDITOR ~/.zshrc"
+
+# edit system config files
+alias vlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
+alias vpacman="sudo $EDITOR /etc/pacman.conf"
+alias vgrub="sudo $EDITOR /etc/default/grub"
+alias vconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
+alias vmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
+alias vmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
+alias vsddm="sudo $EDITOR /etc/sddm.conf"
+alias vfstab="sudo $EDITOR /etc/fstab"
+alias vnsswitch="sudo $EDITOR /etc/nsswitch.conf"
+alias vsamba="sudo $EDITOR /etc/samba/smb.conf"
+
+# exit terminal
+alias q="exit"
+# replace cat, as sad as that sounds
+alias cat="bat"
+# Vim mode indicator
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
+
+# END CONFIG
+###########################################################
 neofetch
-# install screenfetch
-#screenfetch
-# install ufetch-git
-#ufetch
-# install ufetch-arco-git
-#ufetch-arco
-# install arcolinux-paleofetch-git
-#paleofetch
-# install alsi
-#alsi
-# install arcolinux-bin-git - standard on ArcoLinux isos (or sfetch - smaller)
-#hfetch
-# install lolcat
-#sfetch | lolcat
+
