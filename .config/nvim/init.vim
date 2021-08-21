@@ -27,6 +27,7 @@ call vundle#begin()
 
 " let Vundle manage Vundle, required
 		Plugin 'VundleVim/Vundle.vim'						" Vundle
+		Plugin 'itchyny/lightline.vim'						" Lightline
 		Plugin 'preservim/nerdtree'							" NERDTree
 		Plugin 'ryanoasis/vim-devicons'						" Icons for NT
 		Plugin 'tiagofumo/vim-nerdtree-syntax-highlight'	" Syntax highlighting for NT
@@ -78,23 +79,58 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
 
-set statusline=
-set statusline+=%1*
-set statusline+=\ %F
-set statusline+=\ %m
-set statusline+=%r
-set statusline+=\ %=
-set statusline+=%2*
-set statusline+=\ %y 
-set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
-set statusline+=\ %l
-set statusline+=:
-set statusline+=%L
-set statusline+=\ %c
-set statusline+=\ %p%%
-set statusline+=\ 
-hi User1 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#e60099 ctermbg=89
-hi User2 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#3a3a3a ctermbg=237
+let g:lightline = {
+		\ 'colorscheme': 'powerlineish',
+		\ }
+
+"set statusline=
+"set statusline+=%1*
+"set statusline+=\ %{StatuslineMode()}
+"set statusline+=\ 
+"set statusline+=%2*
+"set statusline+=\ %F
+"set statusline+=\ %r
+"set statusline+=%m
+"set statusline+=%=
+"set statusline+=%2*
+"set statusline+=\ %y
+"set statusline+=\ | 
+"set statusline+=\ %{&ff}
+"set statusline+=\ %{strlen(&fenc)?&fenc:'none'}
+"set statusline+=\ %P
+"set statusline+=\ %L
+"set statusline+=\ 
+"set statusline+=%1*
+"set statusline+=\ %l
+"set statusline+=:
+"set statusline+=%c
+"set statusline+=\ 
+"hi User1 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#e60099 ctermbg=89
+"hi User2 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#222222 ctermbg=235
+"
+"function! StatuslineMode()
+"  let l:mode=mode()
+"  if l:mode==#"n"
+"    return "NORMAL"
+"  elseif l:mode==?"Vs"
+"    return "V-BLOCK"
+"  elseif l:mode==?"v"
+"    return "VISUAL"
+"  elseif l:mode==#"i"
+"    return "INSERT"
+"  elseif l:mode==#"R"
+"    return "REPLACE"
+"  elseif l:mode==?"s"
+"    return "SELECT"
+"  elseif l:mode==#"t"
+"    return "TERMINAL"
+"  elseif l:mode==#"c"
+"    return "COMMAND"
+"  elseif l:mode==#"!"
+"    return "SHELL"
+"  endif
+"endfunction
+
 
 " Something to keep in mind for later: 
 " https://pastebin.com/qWRQVzES
@@ -116,3 +152,7 @@ set guifont=UbuntuMono\ Nerd\ Font\ Mono:h11	" Set font for GUI
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set mouse=a
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Misc settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set noshowmode

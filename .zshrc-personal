@@ -1,3 +1,5 @@
+bindkey -v
+
 export EDITOR='nvim'
 export VISUAL='nvim'
 
@@ -29,3 +31,11 @@ alias vinitv="nvim ~/.config/nvim/init.vim"
 alias q="exit"
 # replace cat, as sad as that sounds
 alias cat="bat"
+# Vim mode indicator
+function zle-line-init zle-keymap-select {
+    RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
+    RPS2=$RPS1
+    zle reset-prompt
+}
+zle -N zle-line-init
+zle -N zle-keymap-select
