@@ -39,7 +39,7 @@ super + t
 
 # File manager
 super + f
-	kitty -e vifm
+	kitty -e ~/.config/vifm/scripts/vifmrun
 	#thunar
 	#pcmanfm
 

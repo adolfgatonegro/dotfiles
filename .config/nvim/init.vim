@@ -30,6 +30,9 @@ call vundle#begin()
 		Plugin 'itchyny/lightline.vim'						" Lightline
 		Plugin 'vifm/vifm.vim'								" Vifm
 		Plugin 'ap/vim-css-color'							" CSS colour previews
+		Plugin 'tpope/vim-commentary'						" Toggle comments
+		Plugin 'tpope/vim-surround'							" Handle/edit surrounding characters
+		Plugin 'mattn/emmet-vim'							" Emmet
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -47,6 +50,9 @@ syntax enable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 :imap ii <Esc>
+
+" Remap Emmet autocompletion to Ctrl+Z
+let g:user_emmet_leader_key='<C-Z>'
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
@@ -132,7 +138,9 @@ let g:lightline = {
 " Text, tabs, indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set tabstop=4				" Set tab size to 4 spaces
+set shiftwidth=4
 set smarttab				" Use smart tabs
+set autoindent
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Splits and tabs

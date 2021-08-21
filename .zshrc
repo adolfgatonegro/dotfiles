@@ -262,9 +262,14 @@ alias vsamba="sudo $EDITOR /etc/samba/smb.conf"
 
 # exit terminal
 alias q="exit"
+
 # replace cat, as sad as that sounds
 alias cat="bat"
-# Vim mode indicator
+
+# Run Vifm with Überzug image previews
+alias vifm="$HOME/.config/vifm/scripts/vifmrun"
+
+# Vim mode indicator for zsh prompt
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
     RPS2=$RPS1

@@ -1,3 +1,20 @@
+"
+"            /o   ooooo          
+"         oooooo oooooooo+       
+"      /.  o ooo oooo ooooo\     
+"    oo    /oooo ooo    \           VIFM
+"  .oo     ( ooo ooo+oooooo         vifmrc
+"  ooo     ooooo&ooo   oooooo       ....................
+"  oooo    &oooooooo     oooo       Gatonegro
+"   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
+"     ooooooo    o        oo     
+"       ooooooooooo&//ooo(       
+"          ooooooooooo/         
+"
+" Because file management in the terminal is fun, apparently.
+" Includes file previews using Überzug, with scripts originally provided
+" by the author of Überzug, and then lifted from DT's GitLab.
+
 " vim: filetype=vifm :
 " Sample configuration file for vifm (last updated: 9 September, 2020)
 " You can edit this file by hand.
@@ -172,7 +189,11 @@ command! reload :write | restart full
 
 " Pdf
 filextype {*.pdf},<application/pdf> zathura %c %i &, apvlv %c, xpdf %c
-fileviewer {*.pdf},<application/pdf> pdftotext -nopgbrk %c -
+fileviewer {*.pdf},<application/pdf>
+		\ vifmimg pdfpreview %px %py %pw %ph %c
+		\ %pc
+		\ vifmimg clear
+		" \ pdftotext -nopgbrk %c -
 
 " PostScript
 filextype {*.ps,*.eps,*.ps.gz},<application/postscript>
@@ -213,7 +234,10 @@ fileviewer {*.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
            \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
            \*.as[fx]},
           \<video/*>
-         \ ffprobe -pretty %c 2>&1
+		  \ vifmimg videopreview %px %py %pw %ph %c
+		  \ %pc
+		  \ vifmimg clear
+         "\ ffprobe -pretty %c 2>&1
 
 " Web
 filextype {*.html,*.htm},<text/html>
@@ -241,7 +265,9 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ {View in shotwell}
         \ shotwell,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
-         \ identify %f
+        \ vifmimg draw %px %py %pw %ph %c
+		\ %pc
+		\ vifmimg clear
 
 " OpenRaster
 filextype *.ora
@@ -383,6 +409,22 @@ filextype */
 " filetype * open
 " For Windows:
 " filetype * start, explorer
+
+" DISPLAYING ICONS IN VIFM
+" file types
+set classify=' :dir:/, :exe:, :reg:, :link:'
+" various file names
+set classify+=' ::../::, ::*.sh::, ::*.[hc]pp::, ::*.[hc]::, ::/^copying|license$/::, ::.git/,,*.git/::, ::*.epub,,*.fb2,,*.djvu::, ::*.pdf::, ::*.htm,,*.html,,**.[sx]html,,*.xml::'
+" archives
+set classify+=' ::*.7z,,*.ace,,*.arj,,*.bz2,,*.cpio,,*.deb,,*.dz,,*.gz,,*.jar,,*.lzh,,*.lzma,,*.rar,,*.rpm,,*.rz,,*.tar,,*.taz,,*.tb2,,*.tbz,,*.tbz2,,*.tgz,,*.tlz,,*.trz,,*.txz,,*.tz,,*.tz2,,*.xz,,*.z,,*.zip,,*.zoo::'
+" images
+set classify+=' ::*.bmp,,*.gif,,*.jpeg,,*.jpg,,*.ico,,*.png,,*.ppm,,*.svg,,*.svgz,,*.tga,,*.tif,,*.tiff,,*.xbm,,*.xcf,,*.xpm,,*.xspf,,*.xwd::'
+" audio
+set classify+=' ::*.aac,,*.anx,,*.asf,,*.au,,*.axa,,*.flac,,*.m2a,,*.m4a,,*.mid,,*.midi,,*.mp3,,*.mpc,,*.oga,,*.ogg,,*.ogx,,*.ra,,*.ram,,*.rm,,*.spx,,*.wav,,*.wma,,*.ac3::'
+" media
+set classify+=' ::*.avi,,*.ts,,*.axv,,*.divx,,*.m2v,,*.m4p,,*.m4v,,.mka,,*.mkv,,*.mov,,*.mp4,,*.flv,,*.mp4v,,*.mpeg,,*.mpg,,*.nuv,,*.ogv,,*.pbm,,*.pgm,,*.qt,,*.vob,,*.wmv,,*.xvid::'
+" office files
+set classify+=' ::*.doc,,*.docx::, ::*.xls,,*.xls[mx]::, ::*.pptx,,*.ppt::'
 
 " ------------------------------------------------------------------------------
 
