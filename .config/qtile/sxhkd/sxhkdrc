@@ -3,7 +3,7 @@
 #####################################################################
 
 # Launcher
-#super + d
+#super + r
 #    rofi -i -show drun
 
 super + c
@@ -39,7 +39,9 @@ super + t
 
 # File manager
 super + f
-	thunar	
+	kitty -e vifm
+	#thunar
+	#pcmanfm
 
 # Cmus
 super + m
@@ -51,7 +53,7 @@ super + i
 
 # Editors
 super + e
-  kitty -e vim
+  kitty -e nvim
 
 ##################################
 # SYSTEM
