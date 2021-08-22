@@ -179,3 +179,6 @@ set mouse=a
 " Misc settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set noshowmode
+set ignorecase				" Case insensitive search terms
+set smartcase				" unless there's an uppercase character
+
