@@ -41,7 +41,10 @@ super + t
 super + f
 	kitty -e ~/.config/vifm/scripts/vifmrun
 	#thunar
-	#pcmanfm
+
+# File manager (GUI)
+super + shift + f
+	thunar
 
 # Cmus
 super + m
