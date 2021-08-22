@@ -1,0 +1,9 @@
+" General Settings
+set configversion 2.0
+set theme base16-dracula
+set completions.Bmark.autoselect false
+
+" Binds
+bind M fillcmdline bmarks -t
+bind m fillcmdline bmarks
+
