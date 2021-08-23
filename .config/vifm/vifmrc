@@ -159,6 +159,14 @@ command! mkcd :mkdir %a | cd %a
 command! vgrep vim "+grep %a"
 command! reload :write | restart full
 
+" Extract highlighted archive with scripts/extract
+" Usage:
+" :extract 			Extract into current folder
+" :extract %D		Extract into current folder of the other pane
+" :extract! sub		Extract into sub/ inside current folder
+command! extract extract %a %f %n
+command! extract! extract -f %a %f %n
+
 " ------------------------------------------------------------------------------
 
 " The file type is for the default programs to be used with

@@ -11,34 +11,29 @@
 #       ooooooooooo&//ooo(       
 #          ooooooooooo/         
 #  
-#  
+#  Just a zsh config. Based on the default ArcoLinux config
+#  but slowly becoming its own thing. 👌
 
-# Path to oh-my-zsh.
-export ZSH=/usr/share/oh-my-zsh/
 
-# Set oh-my-zsh theme
-ZSH_THEME="gozilla"
-
-# Load zsh plugins
-plugins=(git)
-
-source $ZSH/oh-my-zsh.sh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
-# User configuration
-
-setopt GLOB_DOTS
-
-# If not running interactively, don't do anything
-[[ $- != *i* ]] && return
-
-export HISTCONTROL=ignoreboth:erasedups
-
-# Set Nvim as default editor
+############
+## EXPORT ##
+############
+export TERM="xterm-256color"	# Proper terminal colours, please
 export EDITOR='nvim'
 export VISUAL='nvim'
+export HISTCONTROL=ignoreboth:erasedups
+export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|neofetch)"
 
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
+
+
+#######################
+## ZSH CONFIGURATION ##
+#######################
+
+[[ $- != *i* ]] && return	# If not running interactively, don't do anything
+
+# Set $PATH
 if [ -d "$HOME/.bin" ] ;
   then PATH="$HOME/.bin:$PATH"
 fi
@@ -47,7 +42,25 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Colorize the grep command output for ease of use (good for log files)##
+###############
+## OH-MY-ZSH ##
+###############
+
+export ZSH=/usr/share/oh-my-zsh/	# Path to oh-my-zsh
+ZSH_THEME="gozilla"					# Set the theme
+
+# Load plugins
+plugins=(git)
+source $ZSH/oh-my-zsh.sh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+
+#############
+## ALIASES ##
+#############
+ 
+# Colorize the grep command output for ease of use (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
@@ -94,20 +107,8 @@ alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
 #add new fonts
 alias update-fc='sudo fc-cache -fv'
 
-#copy/paste all content of /etc/skel over to home folder - backup of config created - beware
-alias skel='cp -Rf ~/.config ~/.config-backup-$(date +%Y.%m.%d-%H.%M.%S) && cp -rf /etc/skel/* ~'
-#backup contents of /etc/skel to hidden backup folder in home/user
-alias bupskel='cp -Rf /etc/skel ~/.skel-backup-$(date +%Y.%m.%d-%H.%M.%S)'
-
-#quickly kill conkies
-alias kc='killall conky'
-
 #hardware info --short
 alias hw="hwinfo --short"
-
-#skip integrity check
-alias yayskip='yay -S --mflags --skipinteg'
-alias trizenskip='trizen -S --skipinteg'
 
 #check vulnerabilities microcode
 alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
@@ -117,6 +118,7 @@ alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacma
 alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
 alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
 alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
+
 #our experimental - best option for the moment
 alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
@@ -156,6 +158,7 @@ alias jctl="journalctl -p 3 -xb"
 #verify signature for isos
 alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
 alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
+
 #receive the key of a developer
 alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
 alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
@@ -205,39 +208,24 @@ ex ()
   fi
 }
 
-#create a file called .zshrc-personal and put all your personal aliases
-#in there. They will not be overwritten by skel.
-#[[ -f ~/.zshrc-personal ]] && . ~/.zshrc-personal
+## Gato's aliases
 
-###########################################################
+alias vim='nvim'	# Neovim, please
+alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # GitHub dotfiles repo
 
-bindkey -v
-
-export EDITOR='nvim'
-export VISUAL='nvim'
-
-###########################################################
-# ALIASES
-###########################################################
-
-# load NeoVim instead of Vim
-alias vim='nvim'
-alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # github dotfiles backup
-
-# change ls to exa
+# exa is a better ls than ls
 alias ls='exa -l --color=always --group-directories-first' # default listing
 alias la='exa -al --color=always --group-directories-first'  # all files and dirs
-alias l.='exa -al | egrep "^\."' # hidden files
+alias lh='exa -al | egrep "^\."' # hidden files
 
-# verbose copy/move/remove with confirmation
+# Verbose output for file operation commands
 alias cp="cp -i -v"
 alias mv='mv -i -v'
 alias rm="rm -v"
 
-# pulsemixer for sound
-alias sound="pulsemixer"
+alias sound="pulsemixer"	# Sound settings from the terminal
 
-# edit config files
+# Edit common config files
 alias vqtile="$EDITOR ~/.config/qtile/config.py"
 alias vpicom="$EDITOR ~/.config/picom/picom.conf"
 alias vautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
@@ -248,7 +236,7 @@ alias vinitv="$EDITOR ~/.config/nvim/init.vim"
 alias vbash="$EDITOR ~/.bashrc"
 alias vzsh="$EDITOR ~/.zshrc"
 
-# edit system config files
+# Edit system config files (only if you really have to)
 alias vlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
 alias vpacman="sudo $EDITOR /etc/pacman.conf"
 alias vgrub="sudo $EDITOR /etc/default/grub"
@@ -260,16 +248,14 @@ alias vfstab="sudo $EDITOR /etc/fstab"
 alias vnsswitch="sudo $EDITOR /etc/nsswitch.conf"
 alias vsamba="sudo $EDITOR /etc/samba/smb.conf"
 
-# exit terminal
-alias q="exit"
+alias q="exit"										# Quick exit
+alias cat="bat"										# A better cat
+alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
 
-# replace cat, as sad as that sounds
-alias cat="bat"
+# Set Vi mode
+bindkey -v 
 
-# Run Vifm with Überzug image previews
-alias vifm="$HOME/.config/vifm/scripts/vifmrun"
-
-# Vim mode indicator for zsh prompt
+# Vi mode indicator for zsh prompt
 function zle-line-init zle-keymap-select {
     RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
     RPS2=$RPS1
@@ -278,7 +264,8 @@ function zle-line-init zle-keymap-select {
 zle -N zle-line-init
 zle -N zle-keymap-select
 
-# END CONFIG
-###########################################################
-neofetch
+#########################
+## END OF CONFIG FILE ###
+#########################
 
+neofetch	# Waste CPU cycles just to make the terminal look a bit nicer when launching
