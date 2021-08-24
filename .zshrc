@@ -22,7 +22,7 @@ export TERM="xterm-256color"	# Proper terminal colours, please
 export EDITOR='nvim'
 export VISUAL='nvim'
 export HISTCONTROL=ignoreboth:erasedups
-export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|neofetch)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
 
@@ -211,7 +211,17 @@ ex ()
 ## Gato's aliases
 
 alias vim='nvim'	# Neovim, please
-alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME" # GitHub dotfiles repo
+alias pacmans='pacman -Ss'		# Search for packages
+alias pacmani='sudo pacman -S'	# Install package with pacman
+alias parus='paru -Ss'			# Same, but for the AUR
+alias parui='paru -S'			# Install package with paru
+
+# GitHub dotfiles repo
+alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
+alias dotsa="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME add"
+alias dotss="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME status"
+alias dotsc="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME commit -m"
+alias dotsp="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME push"
 
 # exa is a better ls than ls
 alias ls='exa -l --color=always --group-directories-first' # default listing

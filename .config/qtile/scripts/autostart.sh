@@ -1,14 +1,30 @@
 #!/bin/bash
+#
+#            /o   ooooo
+#         oooooo oooooooo+
+#      /.  o ooo oooo ooooo\
+#    oo    /oooo ooo    \           AUTOSTART SCRIPT
+#  .oo     ( ooo ooo+oooooo         autostart.sh
+#  ooo     ooooo&ooo   oooooo       ........................
+#  oooo    &oooooooo     oooo       Gatonegro
+#   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
+#     ooooooo    o        oo
+#       ooooooooooo&//ooo(
+#          ooooooooooo/
+#
+#  Just some stuff that I want to autostart. That's what autostart
+#  scripts tend to be for, right?
 
-#start the conky to learn the shortcuts
-#(conky -c $HOME/.config/qtile/scripts/system-overview) &
+#!/bin/bash
 
-#start sxhkd to replace Qtile native key-bindings
+# Set custom keymap
+xmodmap ~/.Xmodmap &
+
+# Start sxhkd for extra keybindings
 sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 
-#starting utility applications at boot time
+# System applications
 nm-applet &
-#run pamac-tray &
 xfce4-power-manager &
 numlockx on &
 blueberry-tray &
@@ -16,8 +32,7 @@ picom &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
 
-#starting user applications at boot time
+# User applications
 echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save &
-#volumeicon &
 redshift &
 mailspring &

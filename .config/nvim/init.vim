@@ -52,6 +52,7 @@ syntax enable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remap ESC to ii
 :imap ii <Esc>
+let mapleader = "º"
 
 " Remap Emmet autocompletion to Ctrl+Z
 let g:user_emmet_leader_key='<C-Z>'
