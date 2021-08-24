@@ -81,15 +81,15 @@ keys = [
 
 ### GROUPS ###
 groups = [
-	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox"])]), # Web  
-	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]), # System
-	Group("3", label=" ", layout="monadtall"), # Music
-	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]), # Comms
-	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]), # Text
-	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]), # Gaming
-	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]), # Graphics
-	Group("8", label=" ", layout="monadtall"), # Audio/video
-	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]), # VirtualBox
+	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
+	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),
+	Group("3", label=" ", layout="monadtall"),
+	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
+	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
+	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
+	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]),
+	Group("8", label=" ", layout="monadtall"),
+	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 ### KEYBINDINGS - GROUPS ###
@@ -119,15 +119,6 @@ layouts = [
     layout.Stack(num_stacks=2,**layout_theme),
     layout.Max(**layout_theme),
 	layout.Floating(**layout_theme),
-    # layout.Columns(border_focus_stack='#d75f5f'),
-	# layout.Zoomy(**layout_theme),
-    # layout.Tile(**layout_theme),
-    # layout.Bsp(),
-    # layout.Matrix(),
-    # layout.MonadWide(),
-    # layout.RatioTile(),
-    # layout.TreeTab(),
-    # layout.VerticalTile(),
 ]
 
 ### COLOUR PALETTE ###
@@ -210,7 +201,6 @@ def init_widgets_list():
 			),
 		# 8
 		widget.Net(
-		  # interface = "enp0s3", # VBox adapter
 			interface = "eno1",
 			format = "{down}  {up}  "
 			),
@@ -219,7 +209,7 @@ def init_widgets_list():
 			update_interval = 3600,
 			distro = "Arch_checkupdates",
 			display_format = "  {updates}",
-			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
+			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
 			),
 		# 10
 		widget.Volume(
@@ -311,14 +301,6 @@ def start_once():
 	subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
 
 ### SET FLOATING WINDOWS AUTOMATICALLY ###
-#@hook.subscribe.client_new
-#def set_floating(window):
-#	if (window.window.get_wm_transient_for()
-#		or window.window.get_wm_type() in floating_types):
-#	   window.floating = True
-#
-#floating_types = ["notification", "toolbar", "splash", "dialog"]
-
 @hook.subscribe.client_new
 def floating_dialogs(window):
     dialog = window.window.get_wm_type() == 'dialog'
