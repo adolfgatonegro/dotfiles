@@ -31,5 +31,5 @@ keybindings=$(sed -n '/KEYS_START/,/KEYS_END/p' ~/.config/qtile/config.py | \
 		-e 's/\s*#/\n/')
 
 echo "$keybindings" | yad --text-info --title="Gato's Qtile Key Bindings" \
-		--back='#222222' --fore='#dedede' --geometry=740x700 \
+		--back='#222222' --fore='#dedede' --geometry=740x750 \
 		--fontname="UbuntuMono Nerd Font 11" --button="Got it:1"
