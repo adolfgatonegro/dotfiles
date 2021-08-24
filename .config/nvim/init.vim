@@ -18,6 +18,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible			" be iMproved, required
 filetype off				" required
+filetype plugin on
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Call Vundle plugin manager
@@ -33,6 +34,7 @@ call vundle#begin()
 		Plugin 'tpope/vim-commentary'						" Toggle comments
 		Plugin 'tpope/vim-surround'							" Handle/edit surrounding characters
 		Plugin 'mattn/emmet-vim'							" Emmet
+		Plugin 'vimwiki/vimwiki'							" VimWiki
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -62,6 +64,12 @@ map <Leader>vs :VsplitVifm<CR>
 map <Leader>sp :SplitVifm<CR>
 map <Leader>dv :DiffVifm<CR>
 map <Leader>tv :TabVifm<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" VimWiki
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimwiki_list = [{'path': '~/Documents/wiki/',
+                      \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dynamic line numbers

@@ -364,6 +364,7 @@ floating_layout = layout.Floating(float_rules=[
     {'wmclass': 'org.inkscape.Inkscape'},
     {'wmclass': 'Yad'},
     {'wmclass': 'nvidia-settings'},
+    {'wmclass': 'pulseaudio-equalizer-gtk'},
 ], fullscreen_border_width = 0, border_width = 0)
 
 auto_fullscreen = True
