@@ -15,8 +15,6 @@
 #  Just some stuff that I want to autostart. That's what autostart
 #  scripts tend to be for, right?
 
-#!/bin/bash
-
 # Set custom keymap
 xmodmap ~/.Xmodmap &
 
