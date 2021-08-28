@@ -202,7 +202,7 @@ def init_widgets_list():
 		# 8
 		widget.Net(
 			interface = "eno1",
-			format = "{down}  {up}  "
+			format = "  {down}  {up}"
 			),
 		# 9
 		widget.CheckUpdates(
