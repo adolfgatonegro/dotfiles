@@ -28,11 +28,9 @@ configuration {
     separator-style: 				"none";
     hide-scrollbar: 				true;
     fullscreen: 					false;
-    fake-transparency: 				false;
     scroll-method: 					0;
-    window-format: 					"{w} - {t}";
+    window-format: 					"{t}";
     click-to-exit: 					true;
-    show-match: 					false;
     combi-hide-mode-prefix: 		false;
     display-window: 				"";
     display-run: 					"";
@@ -45,15 +43,15 @@ configuration {
 
 /* icon size */
 element-icon {
-	size:							16;
+	size:							1.1em;
 	border:							0px;
-	padding:						0 6px 0 2px;
+	padding:						0 1.5em 0 0.5em;
 }
 
 /* colors */
 
 * {
-	bg:      						#222222dd; /* background */
+	bg:      						#222222ee; /* background */
 	fg:      						#f1f1f1ff; /* foreground */
 	ac:      						#ff00aaaa; /* accent */
 	red:     						#ff50c5ff;
@@ -131,6 +129,9 @@ element {
     padding: 						8px;
 	background-color:				transparent;
 }
+element-text{
+	text-color: inherit;
+}
 element normal.normal {
     text-color:       				@fg;
 }
@@ -170,8 +171,8 @@ sidebar {
 
 button {
     background-color:             	@fg;
-    margin: 						20px 5px;
-    padding: 						5px;
+    margin: 						0px;
+    padding: 						5px 35px;
     text-color: 					@bg;
     border: 						0px;
     border-radius: 					4px;
