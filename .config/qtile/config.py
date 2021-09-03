@@ -85,7 +85,7 @@ groups = [
 	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),
 	Group("3", label=" ", layout="monadtall"),
 	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
-	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "obsidian"])]),
+	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "DesktopEditors"])]),
 	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
 	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]),
 	Group("8", label=" ", layout="monadtall"),
