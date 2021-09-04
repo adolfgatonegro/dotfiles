@@ -1,3 +1,4 @@
+" vim: filetype=vifm :
 "
 "            /o   ooooo          
 "         oooooo oooooooo+       
@@ -15,7 +16,6 @@
 " Includes file previews using Überzug, with scripts originally provided
 " by the author of Überzug, and then lifted from DT's GitLab.
 
-" vim: filetype=vifm :
 " Sample configuration file for vifm (last updated: 9 September, 2020)
 " You can edit this file by hand.
 " The " character at the beginning of a line comments out the line.
@@ -29,8 +29,8 @@
 " you will need to change this setting.
 
 set vicmd=nvim
-" set vicmd=elvis\ -G\ termcap
-" set vicmd=vile
+set milleroptions=lsize:1,csize:2
+set millerview
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -200,7 +200,7 @@ filextype {*.pdf},<application/pdf>
 		" \ zathura %c %i &,
 		" \ apvlv %c, 
 		" \ xpdf %c,
-		\ llpp %c,
+		\ firefox %c,
 fileviewer {*.pdf},<application/pdf>
 		" \ pdftotext -nopgbrk %c -
 		\ vifmimg pdfpreview %px %py %pw %ph %c
