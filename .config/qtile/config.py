@@ -80,16 +80,17 @@ keys = [
 # KEYS_END
 
 ### GROUPS ###
+#          - Group icons
 groups = [
-	Group("1", label=" ", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
-	Group("2", label=" ", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),
-	Group("3", label=" ", layout="monadtall"),
-	Group("4", label=" ", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
-	Group("5", label=" ", layout="monadtall", matches=[Match(wm_class=["subl", "DesktopEditors"])]),
-	Group("6", label=" ", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
-	Group("7", label=" ", layout="floating", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]),
-	Group("8", label=" ", layout="monadtall"),
-	Group("9", label=" ", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
+	Group("1", label="1", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
+	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),
+	Group("3", label="3", layout="monadtall"),
+	Group("4", label="4", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
+	Group("5", label="5", layout="monadtall", matches=[Match(wm_class=["subl", "DesktopEditors"])]),
+	Group("6", label="6", layout="monadtall", matches=[Match(wm_class=["Steam"])]),
+	Group("7", label="7", layout="monadtall", matches=[Match(wm_class=["gimp","gimp-2.10","org.inkscape.Inkscape"])]),
+	Group("8", label="8", layout="monadtall"),
+	Group("9", label="9", layout="monadtall", matches=[Match(wm_class=["VirtualBox Manager", "VirtualBox Machine"])]),
 ]
 
 ### KEYBINDINGS - GROUPS ###
@@ -115,10 +116,9 @@ layout_theme = {"border_width" : 2,
 ### LAYOUTS ###
 layouts = [
     layout.MonadTall(**layout_theme),
+    layout.Max(**layout_theme),
     layout.RatioTile(ratio=1.5,**layout_theme),
     layout.Stack(num_stacks=2,**layout_theme),
-    layout.Max(**layout_theme),
-	layout.Floating(**layout_theme),
 ]
 
 ### COLOUR PALETTE ###
@@ -159,25 +159,29 @@ def init_widgets_list():
 		# 2
 		widget.GroupBox(
 			disable_drag = True,
-			fontsize = 15,
 			rounded = False,
-			borderwidth = 0,
-			padding_x = 7,
-			padding_y = 4,
-			margin_x = 4,
-			margin_y = 3,
-			active = colors[5],
-			inactive = colors[3],
-			highlight_method = "block",
-			highlight_color = colors[1],
-			block_highlight_text_color = colors[1],
-			this_current_screen_border = colors[2],
-			this_screen_border = colors[2],
-			other_current_screen_border = colors[4],
-			other_screen_border = colors[4],
-			urgent_border = colors[6],
-			urgent_text = colors[1],
-			),
+			#fontsize = 15,
+			#borderwidth = 0,
+			#padding_x = 7,
+			#padding_y = 4,
+			#margin_x = 4,
+			#margin_y = 3,
+			#active = colors[5],
+			#inactive = colors[3],
+			#highlight_method = "block",
+			#highlight_color = colors[1],
+			#block_highlight_text_color = colors[1],
+			#this_current_screen_border = colors[2],
+			#this_screen_border = colors[2],
+			#other_current_screen_border = colors[4],
+			#other_screen_border = colors[4],
+			#urgent_border = colors[6],
+			#urgent_text = colors[1],
+            padding_x = 0,
+            highlight_method = "text",
+            this_current_screen_border = colors[2],
+            other_current_screen_boder = colors [4],
+            ),
 		# 3
 		widget.Sep(
 			linewidth = 0,
@@ -233,13 +237,13 @@ def init_widgets_list():
 			active_text = "",
 			inactive_text = "",
 			inactive_color = colors[0],
-			fontsize = 13,
+			fontsize = 12,
 			padding = 6,
 			background = colors[6]
             ),
 		# 14
 		widget.CurrentLayoutIcon(
-            scale = 0.5,
+            scale = 0.4,
 			margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 			background = colors[6]
