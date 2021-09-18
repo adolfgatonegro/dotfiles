@@ -247,16 +247,12 @@ alias vbash="$EDITOR ~/.bashrc"
 alias vzsh="$EDITOR ~/.zshrc"
 
 # Edit system config files (only if you really have to)
-alias vlightdm="sudo $EDITOR /etc/lightdm/lightdm.conf"
-alias vpacman="sudo $EDITOR /etc/pacman.conf"
-alias vgrub="sudo $EDITOR /etc/default/grub"
-alias vconfgrub="sudo $EDITOR /boot/grub/grub.cfg"
-alias vmkinitcpio="sudo $EDITOR /etc/mkinitcpio.conf"
-alias vmirrorlist="sudo $EDITOR /etc/pacman.d/mirrorlist"
-alias vsddm="sudo $EDITOR /etc/sddm.conf"
-alias vfstab="sudo $EDITOR /etc/fstab"
-alias vnsswitch="sudo $EDITOR /etc/nsswitch.conf"
-alias vsamba="sudo $EDITOR /etc/samba/smb.conf"
+alias vlightdm="sudoedit /etc/lightdm/lightdm.conf"
+alias vpacman="sudoedit /etc/pacman.conf"
+alias vgrub="sudoedit /etc/default/grub"
+alias vconfgrub="sudoedit /boot/grub/grub.cfg"
+alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
+alias vfstab="sudoedit /etc/fstab"
 
 alias q="exit"										# Quick exit
 alias cat="bat"										# A better cat

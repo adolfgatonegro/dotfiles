@@ -91,61 +91,12 @@ let g:lightline = {
 		\ 'colorscheme': 'powerlineish',
 		\ }
 
-"set statusline=
-"set statusline+=%1*
-"set statusline+=\ %{StatuslineMode()}
-"set statusline+=\ 
-"set statusline+=%2*
-"set statusline+=\ %F
-"set statusline+=\ %r
-"set statusline+=%m
-"set statusline+=%=
-"set statusline+=%2*
-"set statusline+=\ %y
-"set statusline+=\ | 
-"set statusline+=\ %{&ff}
-"set statusline+=\ %{strlen(&fenc)?&fenc:'none'}
-"set statusline+=\ %P
-"set statusline+=\ %L
-"set statusline+=\ 
-"set statusline+=%1*
-"set statusline+=\ %l
-"set statusline+=:
-"set statusline+=%c
-"set statusline+=\ 
-"hi User1 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#e60099 ctermbg=89
-"hi User2 cterm=bold guifg=#dfdfdf ctermfg=15 guibg=#222222 ctermbg=235
-"
-"function! StatuslineMode()
-"  let l:mode=mode()
-"  if l:mode==#"n"
-"    return "NORMAL"
-"  elseif l:mode==?"Vs"
-"    return "V-BLOCK"
-"  elseif l:mode==?"v"
-"    return "VISUAL"
-"  elseif l:mode==#"i"
-"    return "INSERT"
-"  elseif l:mode==#"R"
-"    return "REPLACE"
-"  elseif l:mode==?"s"
-"    return "SELECT"
-"  elseif l:mode==#"t"
-"    return "TERMINAL"
-"  elseif l:mode==#"c"
-"    return "COMMAND"
-"  elseif l:mode==#"!"
-"    return "SHELL"
-"  endif
-"endfunction
-
-
-" Something to keep in mind for later: 
-" https://pastebin.com/qWRQVzES
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tabs, indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set tw=80					" Set text width
+set fo+=t					" Set format options to include text width
 set tabstop=4				" Set tab size to 4 spaces
 set shiftwidth=4
 set smarttab				" Use smart tabs

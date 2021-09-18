@@ -29,8 +29,6 @@
 " you will need to change this setting.
 
 set vicmd=nvim
-set milleroptions=lsize:1,csize:2
-set millerview
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -197,10 +195,10 @@ command! extract! extract -f %a %f %n
 
 " Pdf
 filextype {*.pdf},<application/pdf>
-		" \ zathura %c %i &,
+		 \ zathura %c %i &,
 		" \ apvlv %c, 
 		" \ xpdf %c,
-		\ firefox %c,
+		"\ firefox %c,
 fileviewer {*.pdf},<application/pdf>
 		" \ pdftotext -nopgbrk %c -
 		\ vifmimg pdfpreview %px %py %pw %ph %c
