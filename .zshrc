@@ -50,11 +50,10 @@ export ZSH=/usr/share/oh-my-zsh/	# Path to oh-my-zsh
 ZSH_THEME="gozilla"					# Set the theme
 
 # Load plugins
-plugins=(git)
 source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-
+source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 
 #############
 ## ALIASES ##

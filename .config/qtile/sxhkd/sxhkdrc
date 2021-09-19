@@ -51,7 +51,7 @@ super + m
    kitty -e cmus
 
 # Discord
-super + i
+super + d
   discord
 
 # Editors
@@ -62,18 +62,6 @@ super + e
 # SYSTEM
 ##################################
 
-#Xcfe4-TaskManager
-ctrl + shift + Escape
-    xfce4-taskmanager
-
-#Xfce4-settings-manager
-ctrl + alt + m
-     xfce4-settings-manager
-
-#Xfce4-appfinder
-alt + F3
-    xfce4-appfinder
-
 #xfce4-terminal dropdown
 F12
     xfce4-terminal --drop-down
@@ -81,10 +69,6 @@ F12
 #Picom Toggle
 ctrl + alt + o
     ~/.config/qtile/scripts/picom-toggle.sh
-
-#Xkill
-#super + Escape
-#    xkill
 
 #reload sxhkd:
 super + control + s
@@ -94,14 +78,6 @@ super + control + s
 super + x
     arcolinux-logout
 
-
-##################################
-# AUDIO
-##################################
-
-# Pulse Audio Control
-ctrl + alt + u
-    pavucontrol
 
 ##################################
 #     MULTIMEDIA KEYS
