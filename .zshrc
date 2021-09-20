@@ -14,7 +14,6 @@
 #  Just a zsh config. Based on the default ArcoLinux config
 #  but slowly becoming its own thing. 👌
 
-
 ############
 ## EXPORT ##
 ############
@@ -86,16 +85,6 @@ alias wget="wget -c"
 #userlist
 alias userlist="cut -d: -f1 /etc/passwd"
 
-#merge new settings
-alias merge="xrdb -merge ~/.Xresources"
-
-# Aliases for software managment
-alias update='sudo pacman -Syyu'
-
-# yay as aur helper - updates everything
-alias pksyua="paru -Syu --noconfirm"
-alias upall="paru -Syu --noconfirm"
-
 #ps
 alias psa="ps auxf"
 alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
@@ -144,8 +133,6 @@ alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | n
 #iso and version used to install ArcoLinux
 alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
 
-#Cleanup orphaned packages
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 #search content with ripgrep
 alias rg="rg --sort path"
@@ -210,10 +197,16 @@ ex ()
 ## Gato's aliases
 
 alias vim='nvim'	# Neovim, please
-alias pacmans='pacman -Ss'		# Search for packages
-alias pacmani='sudo pacman -S'	# Install package with pacman
-alias parus='paru -Ss'			# Same, but for the AUR
-alias parui='paru -S'			# Install package with paru
+alias pacss='pacman -Ss'		# Search for package
+alias pacs='sudo pacman -S'	# Install package with pacman
+alias pacu='sudo pacman -U'	# Install package from local file
+alias pacqi='pacman -Qi'		# Display information about local package
+alias pacsi='pacman -Si'		# Display info about package in repo
+alias pacrn='sudo pacman -Rn'	# Remove package and dependencies
+alias paruss='paru -Ss'			# Same, but for the AUR
+alias parus='paru -S'			# Install package with paru
+alias update='sudo pacman -Syu'	# Sync repos and update
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # GitHub dotfiles repo
 alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
