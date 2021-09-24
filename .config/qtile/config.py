@@ -83,7 +83,7 @@ keys = [
 #          - Group icons
 groups = [
 	Group("1", label="1", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
-	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["thunar", "pcmanfm", "transmission-gtk"])]),
+	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["Thunar", "pcmanfm", "transmission-gtk"])]),
 	Group("3", label="3", layout="monadtall"),
 	Group("4", label="4", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
 	Group("5", label="5", layout="monadtall", matches=[Match(wm_class=["subl", "DesktopEditors"])]),

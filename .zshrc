@@ -11,8 +11,7 @@
 #       ooooooooooo&//ooo(       
 #          ooooooooooo/         
 #  
-#  Just a zsh config. Based on the default ArcoLinux config
-#  but slowly becoming its own thing. 👌
+#  Just a zsh config.
 
 ############
 ## EXPORT ##
@@ -40,6 +39,9 @@ fi
 if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+autoload -Uz compinit && compinit
 
 ###############
 ## OH-MY-ZSH ##
@@ -69,9 +71,6 @@ alias df='df -h'
 #pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-
-#arcolinux logout unlock
-alias rmlogoutlock="sudo rm /tmp/arcologout.lock"
 
 #free
 alias free="free -mt"
@@ -111,9 +110,6 @@ alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pac
 alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
 
-#mounting the folder Public for exchange between host and guest on virtualbox
-alias vbm="sudo /usr/local/bin/arcolinux-vbox-share"
-
 #youtube-dl
 alias yta-aac="youtube-dl --extract-audio --audio-format aac "
 alias yta-best="youtube-dl --extract-audio --audio-format best "
@@ -152,7 +148,6 @@ alias fix-key="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.co
 
 #maintenance
 alias big="expac -H M '%m\t%n' | sort -h | nl"
-alias downgrada="sudo downgrade --ala-url https://ant.seedhost.eu/arcolinux/"
 
 #systeminfo
 alias probe="sudo -E hw-probe -all -upload"
@@ -160,9 +155,6 @@ alias probe="sudo -E hw-probe -all -upload"
 #shutdown or reboot
 alias ssn="sudo shutdown now"
 alias sr="sudo reboot"
-
-#update betterlockscreen images
-alias bls="betterlockscreen -u /usr/share/backgrounds/arcolinux/"
 
 #give the list of all installed desktops - xsessions desktops
 alias xd="ls /usr/share/xsessions"
@@ -225,7 +217,8 @@ alias cp="cp -i -v"
 alias mv='mv -i -v'
 alias rm="rm -v"
 
-alias sound="pulsemixer"	# Sound settings from the terminal
+alias sound='pulsemixer'	# Sound settings from the terminal
+alias randomwall='echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save'	# Set a random wallpaper
 
 # Edit common config files
 alias vqtile="$EDITOR ~/.config/qtile/config.py"
