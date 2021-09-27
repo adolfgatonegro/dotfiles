@@ -36,7 +36,6 @@ from libqtile import qtile
 from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
 from libqtile.command import lazy
 from libqtile import layout, bar, widget, hook
-from libqtile.lazy import lazy
 from typing import List  # noqa: F401
 
 ### VARIABLES ###
@@ -80,7 +79,6 @@ keys = [
 # KEYS_END
 
 ### GROUPS ###
-#          - Group icons
 groups = [
 	Group("1", label="1", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
 	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["Thunar", "pcmanfm", "transmission-gtk"])]),
@@ -157,30 +155,11 @@ def init_widgets_list():
 			filename = "~/.config/qtile/icons/gato.png",
 			margin = 3,
 			scale = True,
-            mouse_callbacks = {'Button1': lambda:
-                qtile.cmd_spawn([os.path.expanduser("~/.config/qtile/scripts/random-wallpaper.sh")])}
-			),
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn([os.path.expanduser("~/.config/qtile/scripts/random-wallpaper.sh")])}),
 		# 2
 		widget.GroupBox(
 			disable_drag = True,
 			rounded = False,
-			#fontsize = 15,
-			#borderwidth = 0,
-			#padding_x = 7,
-			#padding_y = 4,
-			#margin_x = 4,
-			#margin_y = 3,
-			#active = colors[5],
-			#inactive = colors[3],
-			#highlight_method = "block",
-			#highlight_color = colors[1],
-			#block_highlight_text_color = colors[1],
-			#this_current_screen_border = colors[2],
-			#this_screen_border = colors[2],
-			#other_current_screen_border = colors[4],
-			#other_screen_border = colors[4],
-			#urgent_border = colors[6],
-			#urgent_text = colors[1],
             padding_x = 0,
             highlight_method = "text",
             this_current_screen_border = colors[2],
@@ -209,7 +188,8 @@ def init_widgets_list():
 			),
 		# 8
 		widget.Net(
-			interface = "eno1",
+			interface = "eno1",         # Foxes
+			#interface = "wlp3s0",      # Hekate
 			format = "  {down}  {up}"
 			),
 		# 9
@@ -225,17 +205,32 @@ def init_widgets_list():
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
 			),
 		# 11
-		widget.Sep(
+#        widget.Backlight(
+#            fmt = '  {}',
+#            backlight_name = 'amdgpu_bl0'
+#            ),
+#        # 12
+#		widget.Battery(
+#            charge_char = '',
+#            discharge_char = '',
+#            empty_char = '',
+#            full_char = '',
+#            unknown_char = '',
+#            format = '{char} {percent:2.0%}',
+#            show_short_text = False,
+#            ),
+        # 13
+        widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 12
+		# 14
 		widget.Sep(
 			linewidth = 0,
 			padding = 4,
 			background = colors[6]
 			),
-		# 13
+		# 15
 		widget.CurrentScreen(
             active_color = colors[1],
 			active_text = "",
@@ -245,23 +240,23 @@ def init_widgets_list():
 			padding = 6,
 			background = colors[6]
             ),
-		# 14
+		# 16
 		widget.CurrentLayoutIcon(
             scale = 0.4,
 			margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
 			background = colors[6]
             ),
-		# 15
+		# 17
 		widget.Sep(
 			linewidth = 0,
 			padding = 6
 			),
-		# 16
+		# 18
 		widget.Clock(
 			format = "%a %d %H:%M"
 			),
-		# 17
+		# 19
 		widget.Sep(
 			linewidth = 0,
 			padding = 2
