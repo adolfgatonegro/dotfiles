@@ -100,7 +100,9 @@ for i in groups:
 			lazy.group[i.name].toscreen(),
             desc="Switch to group {}".format(i.name)
 			),
-        Key([mod, "shift"], i.name,
+        Key([mod, "shift"], i.name, lazy.window.togroup(i.name, switch_group=True),
+            desc="Send focused window to group {} and switch".format(i.name)),
+        Key([mod, "control"], i.name,
 			lazy.window.togroup(i.name),
 			desc="Send focused window to group {}".format(i.name)
 			),
@@ -154,7 +156,9 @@ def init_widgets_list():
 		widget.Image(
 			filename = "~/.config/qtile/icons/gato.png",
 			margin = 3,
-			scale = True
+			scale = True,
+            mouse_callbacks = {'Button1': lambda:
+                qtile.cmd_spawn([os.path.expanduser("~/.config/qtile/scripts/random-wallpaper.sh")])}
 			),
 		# 2
 		widget.GroupBox(

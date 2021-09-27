@@ -218,7 +218,6 @@ alias mv='mv -i -v'
 alias rm="rm -v"
 
 alias sound='pulsemixer'	# Sound settings from the terminal
-alias randomwall='echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save'	# Set a random wallpaper
 
 # Edit common config files
 alias vqtile="$EDITOR ~/.config/qtile/config.py"

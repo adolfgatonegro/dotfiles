@@ -62,10 +62,6 @@ super + e
 # SYSTEM
 ##################################
 
-#xfce4-terminal dropdown
-F12
-    xfce4-terminal --drop-down
-
 #Picom Toggle
 ctrl + alt + o
     ~/.config/qtile/scripts/picom-toggle.sh
