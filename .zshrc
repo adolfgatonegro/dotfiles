@@ -19,11 +19,30 @@
 export TERM="xterm-256color"	# Proper terminal colours, please
 export EDITOR='nvim'
 export VISUAL='nvim'
+
 export HISTCONTROL=ignoreboth:erasedups
 export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
+export SAVEHIST=1000
+export HISTFILE=~/.zsh_history
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
 
+############
+## PROMPT ##
+############
+
+autoload -Uz promptinit
+promptinit
+
+autoload -Uz vcs_info	# Load version control info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats '%F{015} %F{001}%b '	# Format vcs_info_msg_0_ variable
+ 
+setopt PROMPT_SUBST		# Setup prompt with git branch name
+PROMPT=' %F{001}%f %F{006}%B%1~%B ${vcs_info_msg_0_}'
+
+echo -e -n "\x1b[\x33 q" # Set blinking cursor
 
 #######################
 ## ZSH CONFIGURATION ##
@@ -43,15 +62,6 @@ fi
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 
-###############
-## OH-MY-ZSH ##
-###############
-
-export ZSH=/usr/share/oh-my-zsh/	# Path to oh-my-zsh
-ZSH_THEME="gozilla"					# Set the theme
-
-# Load plugins
-source $ZSH/oh-my-zsh.sh
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
@@ -198,6 +208,7 @@ alias pacrn='sudo pacman -Rn'	# Remove package and dependencies
 alias paruss='paru -Ss'			# Same, but for the AUR
 alias parus='paru -S'			# Install package with paru
 alias update='sudo pacman -Syu'	# Sync repos and update
+alias ch='checkupdates'			# Safely check for updates
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
 # GitHub dotfiles repo
@@ -243,16 +254,16 @@ alias cat="bat"										# A better cat
 alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
 
 # Set Vi mode
-bindkey -v 
+#bindkey -v 
 
 # Vi mode indicator for zsh prompt
-function zle-line-init zle-keymap-select {
-    RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
-    RPS2=$RPS1
-    zle reset-prompt
-}
-zle -N zle-line-init
-zle -N zle-keymap-select
+#function zle-line-init zle-keymap-select {
+#    RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
+#    RPS2=$RPS1
+#    zle reset-prompt
+#}
+#zle -N zle-line-init
+#zle -N zle-keymap-select
 
 #########################
 ## END OF CONFIG FILE ###
