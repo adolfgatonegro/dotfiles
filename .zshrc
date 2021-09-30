@@ -37,10 +37,10 @@ promptinit
 autoload -Uz vcs_info	# Load version control info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' formats '%F{008}on %F{015} %B%F{001}%b '	# Format vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# Format vcs_info_msg_0_ variable
  
 setopt PROMPT_SUBST		# Setup prompt with git branch name
-PROMPT=' %F{001}%f %F{006}%B%1~%b ${vcs_info_msg_0_}%b'
+PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
 
 echo -e -n "\x1b[\x33 q" # Set blinking cursor
 
