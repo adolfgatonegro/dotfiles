@@ -65,20 +65,21 @@ fi
 
 # you can change these
 lc="${reset}${bold}${red}"         # labels
-nc="${reset}${bold}${red}"         # user and hostname
-ic="${reset}"                       # info
-c0="${reset}${cyan}"                # first color
+nc="${reset}${bold}${white}"       # user and hostname
+ic="${reset}"                      # info
+c0="${reset}${cyan}"               # first color
 
 ## OUTPUT
 
 cat <<EOF
-${c0}          .
-${c0}         /#\         ${nc}${USER}${ic}@${nc}${host}${reset}
+
+${c0}          .          ${nc}${USER}${lc}@${nc}${host}${reset}
+${c0}         /#\         
 ${c0}        /###\        ${lc}OS:        ${ic}${os}${reset}
-${c0}       /p^###\       ${lc}KERNEL:    ${ic}${kernel}${reset}
-${c0}      /##P^q##\      ${lc}UPTIME:    ${ic}${uptime}${reset}
-${c0}     /##(   )##\     ${lc}PACKAGES:  ${ic}${packages}${reset}
-${c0}    /###P   q#,^\    ${lc}SHELL:     ${ic}${shell}${reset}
-${c0}   /P^         ^q\   ${lc}${uitype}:        ${ic}${ui}${reset}
+${c0}       /p^###\       ${lc}Kernel:    ${ic}${kernel}${reset}
+${c0}      /##P^q##\      ${lc}Uptime:    ${ic}${uptime}${reset}
+${c0}     /##(   )##\     ${lc}Packages:  ${ic}${packages}${reset}
+${c0}    /###P   q#,^\    ${lc}Shell:     ${ic}${shell}${reset}
+${c0}   /P^         ^q\   ${lc}WM:        ${ic}${ui}${reset}
 
 EOF

@@ -21,7 +21,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 
 export HISTCONTROL=ignoreboth:erasedups
-export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
+export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|ufetch|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
 export SAVEHIST=1000
 export HISTFILE=~/.zsh_history
 
@@ -249,8 +249,9 @@ alias vconfgrub="sudoedit /boot/grub/grub.cfg"
 alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
 alias vfstab="sudoedit /etc/fstab"
 
-alias q="exit"										# Quick exit
-alias cat="bat"										# A better cat
+alias _='sudo'										# Faster sudo
+alias q='exit'										# Quick exit
+alias cat='bat'										# A better cat
 alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
 
 # Set Vi mode
