@@ -37,10 +37,10 @@ promptinit
 autoload -Uz vcs_info	# Load version control info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' formats '%F{015} %F{001}%b '	# Format vcs_info_msg_0_ variable
+zstyle ':vcs_info:git:*' formats '%F{008}on %F{015} %B%F{001}%b '	# Format vcs_info_msg_0_ variable
  
 setopt PROMPT_SUBST		# Setup prompt with git branch name
-PROMPT=' %F{001}%f %F{006}%B%1~%B ${vcs_info_msg_0_}'
+PROMPT=' %F{001}%f %F{006}%B%1~%b ${vcs_info_msg_0_}%b'
 
 echo -e -n "\x1b[\x33 q" # Set blinking cursor
 
@@ -198,7 +198,7 @@ ex ()
 
 ## Gato's aliases
 
-alias vim='nvim'	# Neovim, please
+alias v='nvim'	# Neovim, please
 alias pacss='pacman -Ss'		# Search for package
 alias pacs='sudo pacman -S'	# Install package with pacman
 alias pacu='sudo pacman -U'	# Install package from local file
@@ -269,4 +269,4 @@ alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previ
 ## END OF CONFIG FILE ###
 #########################
 
-neofetch	# Waste CPU cycles just to make the terminal look a bit nicer when launching
+ufetch	# Waste CPU cycles just to make the terminal look a bit nicer when launching
