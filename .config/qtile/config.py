@@ -326,6 +326,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(title='branchdialog'),
     Match(title='pinentry'),
     Match(role='Dialog'),
+    Match(role='About'),
 	Match(role='PictureInPicture'),
 	Match(role='GtkFileChooserDialog'),
     Match(wm_class='arcolinux-logout'),

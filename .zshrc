@@ -20,12 +20,22 @@ export TERM="xterm-256color"	# Proper terminal colours, please
 export EDITOR='nvim'
 export VISUAL='nvim'
 
-export HISTCONTROL=ignoreboth:erasedups
-export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|ufetch|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
-export SAVEHIST=1000
-export HISTFILE=~/.zsh_history
-
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
+
+#############
+## HISTORY ##
+#############
+
+#export HISTCONTROL=ignoreboth:erasedups
+export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|ufetch|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
+export HISTFILE=$HOME/.config/zsh/.zsh_history
+export HISTTIMEFORMAT="[%F %T]"
+
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 
 ############
 ## PROMPT ##
@@ -255,7 +265,7 @@ alias cat='bat'										# A better cat
 alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
 
 # Set Vi mode
-#bindkey -v 
+# bindkey -e 
 
 # Vi mode indicator for zsh prompt
 #function zle-line-init zle-keymap-select {

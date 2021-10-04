@@ -15,10 +15,10 @@ alt + Tab
 super + period
     rofi -i -show emoji
 
-button8
-    xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
-button9
-    xte "keydown Super_L" "keydown r" "keyup Super_L" "keyup r"
+#button8
+#    xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
+#button9
+#    xte "keydown Super_L" "keydown r" "keyup Super_L" "keyup r"
 
 
 ##################################

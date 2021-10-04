@@ -28,8 +28,7 @@ sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
 nm-applet &
 xfce4-power-manager &
 numlockx on &
-blueberry-tray &
-# picom --experimental-backends &
+solaar -w hide &
 picom &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
 /usr/lib/xfce4/notifyd/xfce4-notifyd &
@@ -37,4 +36,4 @@ picom &
 # User applications
 echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save &
 redshift &
-mailspring &
+mailspring -b &
