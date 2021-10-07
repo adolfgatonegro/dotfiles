@@ -13,20 +13,18 @@
 #  
 #  Just a zsh config.
 
-############
-## EXPORT ##
-############
+# EXPORT
+
 export TERM="xterm-256color"	# Proper terminal colours, please
 export EDITOR='nvim'
 export VISUAL='nvim'
-
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
+export LESSHISTFILE=-			# less doesn't need a history file, seriously
 
-#############
-## HISTORY ##
-#############
 
-#export HISTCONTROL=ignoreboth:erasedups
+# HISTORY
+
+export HISTCONTROL=ignoreboth:erasedups
 export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|ufetch|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
 export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
@@ -37,9 +35,8 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 
-############
-## PROMPT ##
-############
+
+# PROMPT
 
 autoload -Uz promptinit
 promptinit
@@ -52,11 +49,10 @@ zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# Format vc
 setopt PROMPT_SUBST		# Setup prompt with git branch name
 PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
 
-echo -e -n "\x1b[\x33 q" # Set blinking cursor
+# echo -e -n "\x1b[\x33 q" # Set blinking cursor
 
-#######################
-## ZSH CONFIGURATION ##
-#######################
+
+# ZSH CONFIGURATION
 
 [[ $- != *i* ]] && return	# If not running interactively, don't do anything
 
@@ -69,40 +65,37 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
+# Set case-insensitive autocompletion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 autoload -Uz compinit && compinit
 
+# Source plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
+source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-#############
-## ALIASES ##
-#############
+# zsh-vi-mode cursor
+ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
+ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
+ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
+
+# ALIASES
  
 # Colorize the grep command output for ease of use (good for log files)
 alias grep='grep --color=auto'
 alias egrep='egrep --color=auto'
 alias fgrep='fgrep --color=auto'
 
-#readable output
+# Readable output
 alias df='df -h'
 
-#pacman unlock
+# pacman unlock
 alias unlock="sudo rm /var/lib/pacman/db.lck"
 alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
 
-#free
+# free
 alias free="free -mt"
-
-#use all cores
-alias uac="sh ~/.bin/main/000*"
-
-#continue download
-alias wget="wget -c"
-
-#userlist
-alias userlist="cut -d: -f1 /etc/passwd"
 
 #ps
 alias psa="ps auxf"
@@ -116,9 +109,6 @@ alias update-fc='sudo fc-cache -fv'
 
 #hardware info --short
 alias hw="hwinfo --short"
-
-#check vulnerabilities microcode
-alias microcode='grep . /sys/devices/system/cpu/vulnerabilities/*'
 
 #get fastest mirrors in your neighborhood
 alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
@@ -149,7 +139,6 @@ alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | n
 #iso and version used to install ArcoLinux
 alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
 
-
 #search content with ripgrep
 alias rg="rg --sort path"
 
@@ -171,13 +160,6 @@ alias big="expac -H M '%m\t%n' | sort -h | nl"
 
 #systeminfo
 alias probe="sudo -E hw-probe -all -upload"
-
-#shutdown or reboot
-alias ssn="sudo shutdown now"
-alias sr="sudo reboot"
-
-#give the list of all installed desktops - xsessions desktops
-alias xd="ls /usr/share/xsessions"
 
 # # ex = EXtractor for all kinds of archives
 # # usage: ex <file>
@@ -208,16 +190,17 @@ ex ()
 
 ## Gato's aliases
 
-alias v='nvim'	# Neovim, please
-alias pacss='pacman -Ss'		# Search for package
-alias pacs='sudo pacman -S'	# Install package with pacman
-alias pacu='sudo pacman -U'	# Install package from local file
-alias pacqi='pacman -Qi'		# Display information about local package
-alias pacsi='pacman -Si'		# Display info about package in repo
-alias pacrn='sudo pacman -Rn'	# Remove package and dependencies
-alias paruss='paru -Ss'			# Same, but for the AUR
-alias parus='paru -S'			# Install package with paru
-alias update='sudo pacman -Syu'	# Sync repos and update
+alias v='nvim'						# Neovim, please
+alias pacss='pacman -Ss'			# Search for package
+alias pacs='sudo pacman -S'			# Install package with pacman
+alias pacu='sudo pacman -U'			# Install package from local file
+alias pacqi='pacman -Qi'			# Display information about local package
+alias pacsi='pacman -Si'			# Display info about package in repo
+alias pacrn='sudo pacman -Rn'		# Remove package and dependencies
+alias paruss='paru -Ss'				# Same, but for the AUR
+alias parusua='paru -Sua'			# Update AUR packages
+alias parus='paru -S'				# Install package with paru
+alias update='sudo pacman -Syyu'	# Sync repos and update
 alias ch='checkupdates'			# Safely check for updates
 alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
 
@@ -255,29 +238,14 @@ alias vzsh="$EDITOR ~/.zshrc"
 alias vlightdm="sudoedit /etc/lightdm/lightdm.conf"
 alias vpacman="sudoedit /etc/pacman.conf"
 alias vgrub="sudoedit /etc/default/grub"
-alias vconfgrub="sudoedit /boot/grub/grub.cfg"
+alias vgrubcfg="sudoedit /boot/grub/grub.cfg"
 alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
 alias vfstab="sudoedit /etc/fstab"
 
 alias _='sudo'										# Faster sudo
 alias q='exit'										# Quick exit
 alias cat='bat'										# A better cat
-alias vifm="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
+alias less='bat'									# A better less
+alias vf="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
 
-# Set Vi mode
-# bindkey -e 
-
-# Vi mode indicator for zsh prompt
-#function zle-line-init zle-keymap-select {
-#    RPS1="${${KEYMAP/vicmd/[N]}/(main|viins)/}"
-#    RPS2=$RPS1
-#    zle reset-prompt
-#}
-#zle -N zle-line-init
-#zle -N zle-keymap-select
-
-#########################
-## END OF CONFIG FILE ###
-#########################
-
-ufetch	# Waste CPU cycles just to make the terminal look a bit nicer when launching
+ufetch
