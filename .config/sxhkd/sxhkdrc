@@ -16,7 +16,7 @@ super + period
     rofi -i -show emoji
 
 super + F4
-	rofi-edit
+	~/.bin/rofi-edit
 
 #button8
 #    xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
@@ -50,15 +50,15 @@ super + shift + f
 
 # Cmus
 super + m
-   kitty -e cmus
+	kitty -e cmus
 
 # Discord
 super + d
-  discord
+	discord
 
 # Editors
 super + e
-  kitty -e nvim
+	kitty -e nvim
 
 ##################################
 # SYSTEM
@@ -66,15 +66,15 @@ super + e
 
 #Picom Toggle
 ctrl + alt + o
-    ~/.config/qtile/scripts/picom-toggle.sh
+	~/.config/qtile/scripts/picom-toggle.sh
 
 #reload sxhkd:
 super + control + s
-   pkill -USR1 -x sxhkd
+	pkill -USR1 -x sxhkd
 
 #arcolinux-logout
 super + x
-    arcolinux-logout
+	arcolinux-logout
 
 
 ##################################

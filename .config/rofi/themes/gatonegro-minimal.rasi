@@ -1,0 +1,48 @@
+/*
+              /o   ooooo          
+           oooooo oooooooo+       
+        /.  o ooo oooo ooooo\     
+      oo    /oooo ooo    \           FULLSCREEN MINIMAL THEME
+    .oo     ( ooo ooo+oooooo         gatonegro-minimal.rasi
+    ooo     ooooo&ooo   oooooo       ....................
+    oooo    &oooooooo     oooo       Gatonegro
+     ooooo, / (   oooo.    /oo       https://gatoneg.ro/
+       ooooooo    o        oo     
+         ooooooooooo&//ooo(       
+            ooooooooooo/         
+  
+  Very simple, minimalistic fullscreen theme for rofi, adapted from an old
+  comment u/QballCow made on r/linux4noobs.
+*/
+
+configuration {
+    show-icons:   false;
+    sidebar-mode: false;
+}
+
+* {
+    background-color: transparent;
+    text-color:     white;
+    spacing:        30;
+	columns:		2;
+}
+
+window {
+    font: "UbuntuMono Nerd Font Mono 11";
+    fullscreen: 		true;
+    transparency: 		"background";
+    background-color: 	#000000dd;
+    children: [ dummy1, hdum, dummy2 ];
+}
+
+hdum {
+    orientation: horizontal;
+    children: [ dummy3, mainbox, dummy4 ];
+}
+element-text{
+	text-color:	inherit;
+}
+element selected {
+    text-color: #ff00aa;
+}
+
