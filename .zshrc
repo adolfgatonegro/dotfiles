@@ -191,18 +191,24 @@ ex ()
 ## Gato's aliases
 
 alias v='nvim'						# Neovim, please
-alias pacss='pacman -Ss'			# Search for package
-alias pacs='sudo pacman -S'			# Install package with pacman
-alias pacu='sudo pacman -U'			# Install package from local file
-alias pacqi='pacman -Qi'			# Display information about local package
-alias pacsi='pacman -Si'			# Display info about package in repo
-alias pacrn='sudo pacman -Rn'		# Remove package and dependencies
-alias paruss='paru -Ss'				# Same, but for the AUR
-alias parusua='paru -Sua'			# Update AUR packages
-alias parus='paru -S'				# Install package with paru
+alias ch='checkupdates'				# Check for updates
+
+# Pacman/Paru
+alias pac-s='sudo pacman -S'		# Install package from repos
+alias pac-u='sudo pacman -U'		# Install package from local file
+alias pac-ss='pacman -Ss'			# Search for package
+alias pac-qi='pacman -Qi'			# Display information about local package
+alias pac-si='pacman -Si'			# Display info about package in repo
+alias pac-rn='sudo pacman -Rn'		# Remove package and dependencies
+alias pac-rns='sudo pacman -Rns'	# Remove package and all dependencies
+alias paru-s='paru -S'				# Install package from AUR
+alias paru-ss='paru -Ss'			# Search for AUR package
+alias paru-sua='paru -Sua'			# Update AUR packages
+alias paru-qi='paru -Qi'			# Display information about local AUR package
+alias paru-si='paru -Si'			# Display info about package in AUR
+
 alias update='sudo pacman -Syyu'	# Sync repos and update
-alias ch='checkupdates'			# Safely check for updates
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'
+alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# Remove orphans and leftover packages
 
 # GitHub dotfiles repo
 alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
@@ -227,7 +233,7 @@ alias sound='pulsemixer'	# Sound settings from the terminal
 alias vqtile="$EDITOR ~/.config/qtile/config.py"
 alias vpicom="$EDITOR ~/.config/picom/picom.conf"
 alias vautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
-alias vsxhkd="$EDITOR ~/.config/qtile/sxhkd/sxhkdrc"
+alias vsxhkd="$EDITOR ~/.config/sxhkd/sxhkdrc"
 alias vkitty="$EDITOR ~/.config/kitty/kitty.conf"
 alias vrofi="$EDITOR ~/.config/rofi/config.rasi"
 alias vinitv="$EDITOR ~/.config/nvim/init.vim"

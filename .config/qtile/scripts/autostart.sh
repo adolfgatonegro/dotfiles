@@ -22,7 +22,7 @@ xmodmap ~/.Xmodmap &
 xset r rate 300 50 &
 
 # Start sxhkd for extra keybindings
-sxhkd -c ~/.config/qtile/sxhkd/sxhkdrc &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
 
 # System applications
 nm-applet &

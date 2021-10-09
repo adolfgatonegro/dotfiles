@@ -1,0 +1,53 @@
+#!/bin/bash
+
+myTerm=kitty
+myEdit=nvim
+
+menu(){
+	printf "1) Qtile config\n"
+	printf "2) Qtile autostart\n"
+	printf "3) ZSH\n"
+	printf "4) sxhkd\n"
+	printf "5) Kitty\n"
+	printf "6) Rofi\n"
+	printf "7) Picom\n"
+}
+
+main(){
+	choice=$(menu | rofi -dmenu | cut -d\) -f1)
+
+	case $choice in
+			1)
+				$myTerm -e $myEdit $HOME/.config/qtile/config.py
+        break
+        ;;
+			2)
+				$myTerm -e $myEdit $HOME/.config/qtile/scripts/autostart.sh
+        break
+		;;
+		3)
+			$myTerm -e $myEdit $HOME/.zshrc
+            break
+            ;;
+		4)
+			$myTerm -e $myEdit $HOME/.config/sxhkd/sxhkdrc
+            break
+            ;;
+		5)
+			$myTerm -e $myEdit $HOME/.config/kitty/kitty.conf
+            break
+            ;;
+		6)
+			$myTerm -e $myEdit $HOME/.config/rofi/config.rasi
+            break
+            ;;
+		7)
+			$myTerm -e $myEdit $HOME/.config/picom/picom.conf
+            break
+            ;;
+
+        esac
+}
+
+main
+
