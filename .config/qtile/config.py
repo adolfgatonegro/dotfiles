@@ -81,7 +81,7 @@ keys = [
 ### GROUPS ###
 groups = [
 	Group("1", label="1", layout="monadtall", matches=[Match(wm_class=["firefox"])]),
-	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["Thunar", "pcmanfm", "transmission-gtk"])]),
+	Group("2", label="2", layout="monadtall", matches=[Match(wm_class=["Thunar", "transmission-gtk"])]),
 	Group("3", label="3", layout="monadtall"),
 	Group("4", label="4", layout="monadtall", matches=[Match(wm_class=["discord", "mailspring", "whatsapp-nativefier-d40211"])]),
 	Group("5", label="5", layout="monadtall", matches=[Match(wm_class=["subl", "DesktopEditors"])]),
@@ -155,7 +155,8 @@ def init_widgets_list():
 			filename = "~/.config/qtile/icons/gato.png",
 			margin = 3,
 			scale = True,
-            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn([os.path.expanduser("~/.config/qtile/scripts/random-wallpaper.sh")])}),
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn([os.path.expanduser("~/.bin/random-wallpaper")])}
+            ),
 		# 2
 		widget.GroupBox(
 			disable_drag = True,
@@ -197,7 +198,8 @@ def init_widgets_list():
 			update_interval = 3600,
 			distro = "Arch_checkupdates",
 			display_format = "  {updates}",
-			mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
+			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
+                'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
 			),
 		# 10
 		widget.Volume(

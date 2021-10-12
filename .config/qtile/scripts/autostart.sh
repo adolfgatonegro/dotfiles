@@ -31,7 +31,7 @@ numlockx on &
 solaar -w hide &
 picom &
 /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-/usr/lib/xfce4/notifyd/xfce4-notifyd &
+dunst &
 
 # User applications
 echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save &

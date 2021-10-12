@@ -1,0 +1,5 @@
+#!/bin/bash
+
+updates=$(checkupdates) && \
+notify-send -t 5000 -u normal "Available updates" "$updates" \
+	-i ~/.icons/arch-logo-240px.png 
