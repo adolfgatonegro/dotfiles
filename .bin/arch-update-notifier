@@ -9,6 +9,6 @@ then
 	-i ~/.icons/arch-logo-240px.png
 else
 	notify-send -t 5000 -u normal "System updates available" \
-	"The following	packages can be updated:\n$updates" \
+	"The following packages can be updated:\n$updates" \
 	-i ~/.icons/arch-logo-240px.png
 fi
