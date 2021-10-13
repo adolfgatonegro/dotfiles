@@ -76,6 +76,9 @@ super + control + s
 super + x
 	arcolinux-logout
 
+#Dunst context
+control + apostrophe
+	dunstctl context
 
 ##################################
 #     MULTIMEDIA KEYS
