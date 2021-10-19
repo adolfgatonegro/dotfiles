@@ -195,7 +195,7 @@ def init_widgets_list():
 			),
 		# 9
 		widget.CheckUpdates(
-			update_interval = 3600,
+			update_interval = 1800,
 			distro = "Arch_checkupdates",
 			display_format = "  {updates}",
 			mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
