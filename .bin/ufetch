@@ -74,14 +74,14 @@ c1="${reset}${cyan}"               # second color
 
 cat <<EOF
 
-${c0}          ▄           
-${c0}         ▟█▙          ${lc}Host:      ${ic}${host}${reset}
-${c0}        ▝▜██▙         ${lc}OS:        ${ic}${os}${reset}
-${c0}       ▟▇▆███▙        ${lc}Kernel:    ${ic}${kernel}${reset}
-${c0}      ▟███████▙       ${lc}Uptime:    ${ic}${uptime}${reset}
-${c0}     ▟██▛▔▔▔▜██▙      ${lc}Packages:  ${ic}${packages}${reset}
-${c0}    ▟███▘   ▝███▙     ${lc}Shell:     ${ic}${shell}${reset}
-${c0}   ▟█▛▘       ▝▜▆▄    ${lc}WM:        ${ic}${ui}${reset}
-${c0}  ▝▘             ▝▘   
+${c0}           ▄            
+${c0}          ▟█▙           ${lc}Host:      ${ic}${host}${reset}
+${c0}         ▝▜██▙          ${lc}OS:        ${ic}${os}${reset}
+${c0}        ▟▇▆███▙         ${lc}Kernel:    ${ic}${kernel}${reset}
+${c0}       ▟███████▙        ${lc}Uptime:    ${ic}${uptime}${reset}
+${c0}      ▟██▛▔▔▔▜██▙       ${lc}Packages:  ${ic}${packages}${reset}
+${c0}     ▟███▘   ▝███▙      ${lc}Shell:     ${ic}${shell}${reset}
+${c0}    ▟█▛▘       ▝▜▆▄     ${lc}WM:        ${ic}${ui}${reset}
+${c0}   ▝▘             ▝▘    
 
 EOF
