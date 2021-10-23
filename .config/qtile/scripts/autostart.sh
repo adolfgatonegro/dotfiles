@@ -5,7 +5,7 @@
 #⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀------------
 #⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Autostart script for use with Qtile.
 #⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
-#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Foxes-specific section can be commented out on Hekate.
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
 #⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 #
@@ -21,10 +21,15 @@ dunst &								# notification daemon
 numlockx on &						# set numlock to on
 sxhkd -c ~/.config/sxhkd/sxhkdrc &	# start sxhkd
 redshift &							# adjust display colour temperature
-echo -n --head=0,--head=1 | \		# set random wallpaper (dual monitor)
+echo -n --head=0,--head=1 | \		# set random wallpaper 
 	xargs -n 1 -d , \
 	nitrogen --random --set-zoom-fill --save &
 
 # Foxes
-solaar -w hide &					# mouse management
-mailspring -b &						# email client
+case $HOSTNAME in
+	foxes)
+		solaar -w hide &			# mouse management
+		mailspring -b &				# email client
+		;;
+esac
+
