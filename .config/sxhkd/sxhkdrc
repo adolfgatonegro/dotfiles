@@ -1,145 +1,117 @@
-#####################################################################
-# GATONEGRO'S KEYBINDINGS
-#####################################################################
+#
+# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀sxhkdrc
+#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀-------
+#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for sxhkd.
+#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Some simple key bindings to launch stuff.
+#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+#
+# -----------------------------------------------------------------------------  
 
-# Launcher
-#super + r
-#    rofi -i -show drun
+super + ctrl + s
+	pkill -USR1 -x sxhkd		# reload sxhkd
+
+
+# Rofi
 
 super + c
-	rofi -i -show calc
+	rofi -i -show calc			# rofi-calc
 
 alt + Tab
-	rofi -i -show window
+	rofi -i -show window		# window mode
 
 super + period
-    rofi -i -show emoji
+    rofi -i -show emoji			# rofi-emoji
 
 super + F4
-	~/.bin/rofi-edit
+	~/.bin/rofi-edit			# edit config files
 
-#button8
-#    xte "keydown Alt_L" "keydown Tab" "keyup Alt_L" "keyup Tab"
-#button9
-#    xte "keydown Super_L" "keydown r" "keyup Super_L" "keyup r"
+ctrl + alt + x
+	rofi -show power-menu -modi power-menu:~/.bin/rofi-power-menu	# power menu
 
-##################################
-# APPLICATIONS
-##################################
 
-# Browser
+# Programs
+
 super + b
-    firefox
+    firefox						# web browser
 
-# Browser Private Window
 super + shift + b
-    firefox --private-window
+    firefox --private-window	# web browser - private window
 
-# Terminal
 super + t
-    kitty
+    kitty						# terminal
 
-# File manager
 super + f
-	kitty -e ~/.config/vifm/scripts/vifmrun
-	#thunar
+	kitty -e ~/.bin/vifmrun		# file manager
 
-# File manager (GUI)
 super + shift + f
-	thunar
+	thunar						# gui file manager
 
-# Cmus
 super + m
-	kitty -e cmus
+	kitty -e cmus				# music player
 
-# Discord
 super + d
-	discord
+	discord						# discord
 
-# Editors
 super + e
-	kitty -e nvim
+	kitty -e nvim				# text editor
 
-##################################
-# SYSTEM
-##################################
 
-#Picom Toggle
+# System
+
 ctrl + alt + o
-	~/.config/qtile/scripts/picom-toggle.sh
+	~/.config/qtile/scripts/picom-toggle.sh		# toggle picom
 
-#reload sxhkd:
-super + control + s
-	pkill -USR1 -x sxhkd
+ctrl + alt + l
+	betterlockscreen -l dim		# lock screen
 
-#arcolinux-logout
-super + x
-	arcolinux-logout
+ctrl + apostrophe
+	dunstctl context			# dunst context
 
-#Dunst context
-control + apostrophe
-	dunstctl context
 
-##################################
-#     MULTIMEDIA KEYS
-##################################
+# Multimedia keys
 
-#Volume up
 XF86AudioRaiseVolume
-    amixer set Master 2%+
+    amixer set Master 2%+		# volume up
 
-#Volume down
 XF86AudioLowerVolume
-    amixer set Master 2%-
+    amixer set Master 2%-		# volume down
 
-#Volume mute
 XF86AudioMute
-    amixer -D pulse set Master 1+ toggle
+    amixer -D pulse set Master 1+ toggle	# volume mute
 
-#Playerctl works for Pragha, Spotify and others
-#Delete the line for playerctl if you want to use mpc
-#and replace it with the corresponding code
-#mpc works for e.g.ncmpcpp
-#mpc toggle
-#mpc next
-#mpc prev
-#mpc stop
-
-#Play
 XF86AudioPlay
-    playerctl play-pause
+    playerctl play-pause		# play/pause
 
-#Next
 XF86AudioNext
-    playerctl next
+    playerctl next				# next
 
-#previous
 XF86AudioPrev
-    playerctl previous
+    playerctl previous			# previous
 
-#Stop
 XF86AudioStop
-    playerctl stop
+    playerctl stop				# stop
 
-#Brightness up
+
+# Display backlight
+
 XF86MonBrightnessUp
-    xbacklight -inc 10
+    xbacklight -inc 10			# brightness up
 
-#Brightness down
 XF86MonBrightnessDown
-    xbacklight -dec 10
+    xbacklight -dec 10			# brightness down
 
-##################################
-# SCREENSHOTS
-##################################
 
-# Flameshot
+# Screenshot
+
 Print
-	flameshot gui
+	flameshot gui				# screen area with gui
 
 ctrl + Print
-	flameshot full -c
+	flameshot full -c			# full screen to clipboard
 
 ctrl + shift + Print
-	flameshot launcher
+	flameshot launcher			# capture mode gui
 

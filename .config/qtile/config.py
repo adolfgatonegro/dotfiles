@@ -1,19 +1,15 @@
 #
-#            /o   ooooo          
-#         oooooo oooooooo+       
-#      /.  o ooo oooo ooooo\     
-#    oo    /oooo ooo    \           QTILE WINDOW MANAGER
-#  .oo     ( ooo ooo+oooooo         config.py
-#  ooo     ooooo&ooo   oooooo       ....................
-#  oooo    &oooooooo     oooo       Gatonegro
-#   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
-#     ooooooo    o        oo     
-#       ooooooooooo&//ooo(       
-#          ooooooooooo/         
+# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀config.py
+#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀-------------
+#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for the Qtile window manager.
+#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Originally based on the default ArcoLinux config by
+#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀Erik Dubois, with snippets borrowed from or inspired by
+#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀Derek Taylor (DistroTube on YouTube).
 #
-# Adapted from the default ArcoLinux config by Erik Dubois, with bits and bobs
-# borrowed from Derek Taylor (DistroTube on YouTube).
-#
+# -----------------------------------------------------------------------------
+
 # Copyright (c) 2010 Aldo Cortesi, 2010, 2014 dequis, (c) 2012 Randall Ma,
 # 2012-2014 Tycho Andersen, 2012 Craig Barnes, 2013 horsik, 2013 Tao Sauvage
 #
@@ -73,8 +69,8 @@ keys = [
 	Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to display 2"),
 	Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next display"),
 	Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous display"),
-	Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-toggle.sh")]), desc = "Toggle display 2 on/off"),
-	Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/display-rotate.sh")]), desc = "Rotate display 1"),
+	Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.bin/display-toggle")]), desc = "Toggle display 2 on/off"),
+	Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.bin/display-rotate")]), desc = "Rotate display 1"),
 ]
 # KEYS_END
 

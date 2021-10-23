@@ -252,6 +252,6 @@ alias _='sudo'										# Faster sudo
 alias q='exit'										# Quick exit
 alias cat='bat'										# A better cat
 alias less='bat'									# A better less
-alias vf="$HOME/.config/vifm/scripts/vifmrun"		# Vifm with Überzug file previews
+alias vf="vifmrun"		# Vifm with Überzug file previews
 
 ufetch

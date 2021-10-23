@@ -1,39 +1,30 @@
 #!/bin/bash
 #
-#            /o   ooooo
-#         oooooo oooooooo+
-#      /.  o ooo oooo ooooo\
-#    oo    /oooo ooo    \           AUTOSTART SCRIPT
-#  .oo     ( ooo ooo+oooooo         autostart.sh
-#  ooo     ooooo&ooo   oooooo       ........................
-#  oooo    &oooooooo     oooo       Gatonegro
-#   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
-#     ooooooo    o        oo
-#       ooooooooooo&//ooo(
-#          ooooooooooo/
+# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀autostart.sh
+#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀------------
+#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Autostart script for use with Qtile.
+#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Foxes-specific section can be commented out on Hekate.
+#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 #
-#  Just some stuff that I want to autostart. That's what autostart
-#  scripts tend to be for, right?
+# -----------------------------------------------------------------------------
 
-# Set custom keymap
-xmodmap ~/.Xmodmap &
+# The basics
+xmodmap ~/.Xmodmap &				# set custom keymap
+xset r rate 300 50 &				# modify keyboard repeat rate to double-ish
+lxsession &							# polkit
+picom &								# compositor
+nm-applet &							# network manager applet
+dunst &								# notification daemon
+numlockx on &						# set numlock to on
+sxhkd -c ~/.config/sxhkd/sxhkdrc &	# start sxhkd
+redshift &							# adjust display colour temperature
+echo -n --head=0,--head=1 | \		# set random wallpaper (dual monitor)
+	xargs -n 1 -d , \
+	nitrogen --random --set-zoom-fill --save &
 
-# Set keyboard repeat rate to double(ish)
-xset r rate 300 50 &
-
-# Start sxhkd for extra keybindings
-sxhkd -c ~/.config/sxhkd/sxhkdrc &
-
-# System applications
-nm-applet &
-xfce4-power-manager &
-numlockx on &
-solaar -w hide &
-picom &
-/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1 &
-dunst &
-
-# User applications
-echo -n --head=0,--head=1 | xargs -n 1 -d , nitrogen --random --set-zoom-fill --save &
-redshift &
-mailspring -b &
+# Foxes
+solaar -w hide &					# mouse management
+mailspring -b &						# email client

@@ -1,21 +1,15 @@
 "
-"            /o   ooooo          
-"         oooooo oooooooo+       
-"      /.  o ooo oooo ooooo\     
-"    oo    /oooo ooo    \           NEOVIM CONFIGURATION FILE
-"  .oo     ( ooo ooo+oooooo         init.vim
-"  ooo     ooooo&ooo   oooooo       ....................
-"  oooo    &oooooooo     oooo       Gatonegro
-"   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
-"     ooooooo    o        oo     
-"       ooooooooooo&//ooo(       
-"          ooooooooooo/         
+" ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+"⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀init.vim
+"⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀--------
+"⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for Neovim.
+"⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
+"⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Requires Vundle and Vifm.
+"⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
+"⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 "
-"  Nothing fancy, just a standard Nvim config file...
-"
-"  (I don't know why I keep doing this 😹)
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" -----------------------------------------------------------------------------  
+
 set nocompatible			" be iMproved, required
 filetype off				" required
 filetype plugin on
@@ -27,14 +21,14 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle, required
-		Plugin 'VundleVim/Vundle.vim'						" Vundle
-		Plugin 'itchyny/lightline.vim'						" Lightline
-		Plugin 'vifm/vifm.vim'								" Vifm
-		Plugin 'ap/vim-css-color'							" CSS colour previews
-		Plugin 'tpope/vim-commentary'						" Toggle comments
-		Plugin 'tpope/vim-surround'							" Handle/edit surrounding characters
-		Plugin 'mattn/emmet-vim'							" Emmet
-		Plugin 'vimwiki/vimwiki'							" VimWiki
+		Plugin 'VundleVim/Vundle.vim'		" Vundle
+		Plugin 'itchyny/lightline.vim'		" Lightline
+		Plugin 'vifm/vifm.vim'				" Vifm
+		Plugin 'ap/vim-css-color'			" CSS colour previews
+		Plugin 'tpope/vim-commentary'		" Toggle comments
+		Plugin 'tpope/vim-surround'			" Handle/edit surrounding characters
+		Plugin 'mattn/emmet-vim'			" Emmet
+		Plugin 'vimwiki/vimwiki'			" VimWiki
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -60,7 +54,7 @@ let g:user_emmet_leader_key='<C-Z>'
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-map <Leader>vv :Vifm<CR>
+map <Leader>vf :Vifm<CR>
 map <Leader>vs :VsplitVifm<CR>
 map <Leader>sp :SplitVifm<CR>
 map <Leader>dv :DiffVifm<CR>
