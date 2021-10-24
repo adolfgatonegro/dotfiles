@@ -73,17 +73,16 @@ ctrl + alt + l
 ctrl + apostrophe
 	dunstctl context			# dunst context
 
-
 # Multimedia keys
 
 XF86AudioRaiseVolume
-    amixer set Master 2%+		# volume up
+    ~/.bin/volume-ctrl 2%+		# volume up
 
 XF86AudioLowerVolume
-    amixer set Master 2%-		# volume down
+    ~/.bin/volume-ctrl 2%-		# volume down
 
 XF86AudioMute
-    amixer -D pulse set Master 1+ toggle	# volume mute
+    ~/.bin/volume-ctrl toggle		# volume mute
 
 XF86AudioPlay
     playerctl play-pause		# play/pause

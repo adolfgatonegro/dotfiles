@@ -49,17 +49,16 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 10
+    progress_bar_height = 5
 
     # Set the frame width of the progress bar
-    progress_bar_frame_width = 1
+    progress_bar_frame_width = 0
 
     # Set the minimum width for the progress bar
     progress_bar_min_width = 175
 
     # Set the maximum width for the progress bar
     progress_bar_max_width = 350
-
 
     # Show how many messages are currently hidden (because of
     # notification_limit).
@@ -196,7 +195,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
 
     ### History ###
 
@@ -303,7 +302,7 @@
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    icon = /usr/share/icons/Adwaita/16x16/status/:usr/share/icons/Adwaita/16x16/devices/
+    # icon = /path/to/icon
 
 [urgency_critical]
     background = "#900000"
@@ -312,6 +311,7 @@
     timeout = 0
     # Icon for notifications with critical urgency, uncomment to enable
     #icon = /path/to/icon
+
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
@@ -426,5 +426,10 @@
 #[stack-volumes]
 #    appname = "some_volume_notifiers"
 #    set_stack_tag = "volume"
+[volume-ctrl]
+	appname = "volume-ctrl"
+	history_ignore = yes
+	timeout = 2
+	highlight = "#ff00aa"
 #
 # vim: ft=cfg
