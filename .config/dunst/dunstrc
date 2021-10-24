@@ -196,7 +196,7 @@
     max_icon_size = 32
 
     # Paths to default icons.
-    icon_path = /usr/share/icons/Adwaita/16x16/status/:usr/share/icons/Adwaita/16x16/devices/
+    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/
 
     ### History ###
 
@@ -303,7 +303,7 @@
     foreground = "#ffffff"
     timeout = 10
     # Icon for notifications with normal urgency, uncomment to enable
-    #icon = /path/to/icon
+    icon = /usr/share/icons/Adwaita/16x16/status/:usr/share/icons/Adwaita/16x16/devices/
 
 [urgency_critical]
     background = "#900000"
