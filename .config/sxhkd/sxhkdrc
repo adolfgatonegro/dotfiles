@@ -16,6 +16,9 @@ super + ctrl + s
 
 # Rofi
 
+super + space
+	rofi -i -show drun			# alt rofi shortcut
+
 super + c
 	rofi -i -show calc			# rofi-calc
 
