@@ -247,7 +247,7 @@ def init_widgets_list():
                                 ),)
     elif myHost == "hekate":
         widgets_list.insert(-9, widget.Net(
-                                    interface = "eno1",
+                                    interface = "wlp3s0",
                                     format = "  {down}  {up}"
                                 ),)
         widgets_list.insert(-7, widget.Backlight(
