@@ -1,63 +1,30 @@
 #
-#            /o   ooooo          
-#         oooooo oooooooo+       
-#      /.  o ooo oooo ooooo\     
-#    oo    /oooo ooo    \           ZSH
-#  .oo     ( ooo ooo+oooooo         .zshrc
-#  ooo     ooooo&ooo   oooooo       ....................
-#  oooo    &oooooooo     oooo       Gatonegro
-#   ooooo, / (   oooo.    /oo       https://gatoneg.ro/
-#     ooooooo    o        oo     
-#       ooooooooooo&//ooo(       
-#          ooooooooooo/         
-#  
-#  Just a zsh config.
+# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀.zshrc
+#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀-------
+#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for ZSH.
+#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Nothing fancy, just some plugins, settings, and a
+#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀bunch of aliases that I rarely remember.
+#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+#
+# -----------------------------------------------------------------------------  
 
-# EXPORT
+# Basic configuration
+[[ $- != *i* ]] && return		# If not running interactively, don't do anything
 
-export TERM="xterm-256color"	# Proper terminal colours, please
-export EDITOR='nvim'
-export VISUAL='nvim'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"	# Use bat as manpager
-export LESSHISTFILE=-			# less doesn't need a history file, seriously
+export TERM="xterm-256color" # proper terminal colours
+export EDITOR='nvim' # neovim as editor
+export VISUAL='nvim' # neovim as visual editor
+export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager
+export LESSHISTFILE=- # less doesn't need a history file, seriously
+export HISTCONTROL=ignoreboth:erasedups # keep the zsh history clean
+export HISTSIZE=1000000 # save a *ton* of commands for some reason
+export SAVEHIST=$HISTSIZE # same value
+export HISTFILE=$HOME/.config/zsh/.zsh_history # keep the history file inside .config/zsh
+export HISTTIMEFORMAT="[%F %T]" # add timestamp to history
 
-
-# HISTORY
-
-export HISTCONTROL=ignoreboth:erasedups
-export HISTORY_IGNORE="(ls|cd|pwd|exit|q|cd -|cd ..|ufetch|neofetch|dots|dotsa|dotss|dotsc|dotsp)"
-export HISTSIZE=1000000
-export SAVEHIST=$HISTSIZE
-export HISTFILE=$HOME/.config/zsh/.zsh_history
-export HISTTIMEFORMAT="[%F %T]"
-
-setopt INC_APPEND_HISTORY
-setopt EXTENDED_HISTORY
-setopt HIST_IGNORE_ALL_DUPS
-
-
-# PROMPT
-
-autoload -Uz promptinit
-promptinit
-
-autoload -Uz vcs_info	# Load version control info
-precmd() { vcs_info }
-
-zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# Format vcs_info_msg_0_ variable
- 
-setopt PROMPT_SUBST		# Setup prompt with git branch name
-PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
-
-# echo -e -n "\x1b[\x33 q" # Set blinking cursor
-
-
-# ZSH CONFIGURATION
-
-[[ $- != *i* ]] && return	# If not running interactively, don't do anything
-
-# Set $PATH
-if [ -d "$HOME/.bin" ] ;
+if [ -d "$HOME/.bin" ] ;		# add .bin and .local/bin to PATH
   then PATH="$HOME/.bin:$PATH"
 fi
 
@@ -65,9 +32,26 @@ if [ -d "$HOME/.local/bin" ] ;
   then PATH="$HOME/.local/bin:$PATH"
 fi
 
-# Set case-insensitive autocompletion
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
-autoload -Uz compinit && compinit
+setopt INC_APPEND_HISTORY # add stuff to history incrementally instead of waiting for exit
+setopt EXTENDED_HISTORY # save command, timestamp, and duration of execution
+setopt HIST_IGNORE_ALL_DUPS # removes duplicate commands
+
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' # case-insensitive autocompletion
+autoload -Uz compinit && compinit # initialise autocompletion
+
+# Prompt
+autoload -Uz promptinit
+promptinit
+
+autoload -Uz vcs_info	# load vcs info
+precmd() { vcs_info }
+
+zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# format vcs_info_msg_0_
+ 
+setopt PROMPT_SUBST		# setup prompt with git branch name
+PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
+
+# echo -e -n "\x1b[\x33 q" # Set blinking cursor. zsh-vi-mode already covers that.
 
 # Source plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -75,94 +59,12 @@ source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
-# zsh-vi-mode cursor
+# zsh-vi-mode - configure cursor
 ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
 ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
 ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 
-# ALIASES
- 
-# Colorize the grep command output for ease of use (good for log files)
-alias grep='grep --color=auto'
-alias egrep='egrep --color=auto'
-alias fgrep='fgrep --color=auto'
-
-# Readable output
-alias df='df -h'
-
-# pacman unlock
-alias unlock="sudo rm /var/lib/pacman/db.lck"
-alias rmpacmanlock="sudo rm /var/lib/pacman/db.lck"
-
-# free
-alias free="free -mt"
-
-#ps
-alias psa="ps auxf"
-alias psgrep="ps aux | grep -v grep | grep -i -e VSZ -e"
-
-#grub update
-alias update-grub="sudo grub-mkconfig -o /boot/grub/grub.cfg"
-
-#add new fonts
-alias update-fc='sudo fc-cache -fv'
-
-#hardware info --short
-alias hw="hwinfo --short"
-
-#get fastest mirrors in your neighborhood
-alias mirror="sudo reflector -f 30 -l 30 --number 10 --verbose --save /etc/pacman.d/mirrorlist"
-alias mirrord="sudo reflector --latest 30 --number 10 --sort delay --save /etc/pacman.d/mirrorlist"
-alias mirrors="sudo reflector --latest 30 --number 10 --sort score --save /etc/pacman.d/mirrorlist"
-alias mirrora="sudo reflector --latest 30 --number 10 --sort age --save /etc/pacman.d/mirrorlist"
-
-#our experimental - best option for the moment
-alias mirrorx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 5 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-alias mirrorxx="sudo reflector --age 6 --latest 20  --fastest 20 --threads 20 --sort rate --protocol https --save /etc/pacman.d/mirrorlist"
-
-#youtube-dl
-alias yta-aac="youtube-dl --extract-audio --audio-format aac "
-alias yta-best="youtube-dl --extract-audio --audio-format best "
-alias yta-flac="youtube-dl --extract-audio --audio-format flac "
-alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
-alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
-alias yta-opus="youtube-dl --extract-audio --audio-format opus "
-alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
-alias yta-wav="youtube-dl --extract-audio --audio-format wav "
-
-alias ytv-best="youtube-dl -f bestvideo+bestaudio "
-
-#Recent Installed Packages
-alias rip="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -200 | nl"
-alias riplong="expac --timefmt='%Y-%m-%d %T' '%l\t%n %v' | sort | tail -3000 | nl"
-
-#iso and version used to install ArcoLinux
-alias iso="cat /etc/dev-rel | awk -F '=' '/ISO/ {print $2}'"
-
-#search content with ripgrep
-alias rg="rg --sort path"
-
-#get the error messages from journalctl
-alias jctl="journalctl -p 3 -xb"
-
-#gpg
-#verify signature for isos
-alias gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-alias fix-gpg-check="gpg2 --keyserver-options auto-key-retrieve --verify"
-
-#receive the key of a developer
-alias gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias fix-gpg-retrieve="gpg2 --keyserver-options auto-key-retrieve --receive-keys"
-alias fix-key="[ -d ~/.gnupg ] || mkdir ~/.gnupg ; cp /etc/pacman.d/gnupg/gpg.conf ~/.gnupg/ ; echo 'done'"
-
-#maintenance
-alias big="expac -H M '%m\t%n' | sort -h | nl"
-
-#systeminfo
-alias probe="sudo -E hw-probe -all -upload"
-
-# # ex = EXtractor for all kinds of archives
-# # usage: ex <file>
+# ex - file extractor
 ex ()
 {
   if [ -f $1 ] ; then
@@ -188,48 +90,49 @@ ex ()
   fi
 }
 
-## Gato's aliases
 
-alias v='nvim'						# Neovim, please
-alias ch='checkupdates'				# Check for updates
+# Aliases
+alias grep='grep --color=auto'		# add colour to grep
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias df='df -h'					# human-readable output for df
 
-# Pacman/Paru
-alias pac-s='sudo pacman -S'		# Install package from repos
-alias pac-u='sudo pacman -U'		# Install package from local file
-alias pac-ss='pacman -Ss'			# Search for package
-alias pac-qi='pacman -Qi'			# Display information about local package
-alias pac-si='pacman -Si'			# Display info about package in repo
-alias pac-rn='sudo pacman -Rn'		# Remove package and dependencies
-alias pac-rns='sudo pacman -Rns'	# Remove package and all dependencies
-alias paru-s='paru -S'				# Install package from AUR
-alias paru-ss='paru -Ss'			# Search for AUR package
-alias paru-sua='paru -Sua'			# Update AUR packages
-alias paru-qi='paru -Qi'			# Display information about local AUR package
-alias paru-si='paru -Si'			# Display info about package in AUR
+# Aliases - pacman
+alias ch='checkupdates'				# check for updates
 
-alias update='sudo pacman -Syyu'	# Sync repos and update
-alias cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# Remove orphans and leftover packages
+alias pac-s='sudo pacman -S'		# install package from repos
+alias pac-u='sudo pacman -U'		# install package from local file
+alias pac-ss='pacman -Ss'			# search for package
+alias pac-qi='pacman -Qi'			# display information about local package
+alias pac-si='pacman -Si'			# display info about package in repo
+alias pac-rn='sudo pacman -Rn'		# remove package and dependencies
+alias pac-rns='sudo pacman -Rns'	# remove package and all dependencies
+alias paru-s='paru -S'				# install package from AUR
+alias paru-ss='paru -Ss'			# search for AUR package
+alias paru-qi='paru -Qi'			# display information about local AUR package
+alias paru-rn='paru -Rn'			# remove package with paru
+alias paru-si='paru -Si'			# display info about package in AUR
 
-# GitHub dotfiles repo
-alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
-alias dotsa="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME add"
-alias dotss="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME status"
-alias dotsc="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME commit -m"
-alias dotsp="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME push"
+alias update='sudo pacman -Syyu'	# sync repos and update
+alias aurupdate='paru -Sua'			# update AUR packages
 
-# exa is a better ls than ls
-alias ls='exa -l --color=always --group-directories-first' # default listing
-alias la='exa -al --color=always --group-directories-first'  # all files and dirs
-alias lh='exa -al | egrep "^\."' # hidden files
+alias pac-cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# remove orphans and leftover packages
+alias pac-unlock="sudo rm /var/lib/pacman/db.lck" 		# unlock pacman database 
 
-# Verbose output for file operation commands
-alias cp="cp -i -v"
-alias mv='mv -i -v'
-alias rm="rm -v"
+alias mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
-alias sound='pulsemixer'	# Sound settings from the terminal
+# Aliases - System configuration
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg" # update grub configuration
 
-# Edit common config files
+# Aliases - Edit system config files
+alias vlightdm="sudoedit /etc/lightdm/lightdm.conf"
+alias vpacman="sudoedit /etc/pacman.conf"
+alias vgrub="sudoedit /etc/default/grub"
+alias vgrubcfg="sudoedit /boot/grub/grub.cfg"
+alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
+alias vfstab="sudoedit /etc/fstab"
+
+# Aliases - Edit common config files
 alias vqtile="$EDITOR ~/.config/qtile/config.py"
 alias vpicom="$EDITOR ~/.config/picom/picom.conf"
 alias vautostart="$EDITOR ~/.config/qtile/scripts/autostart.sh"
@@ -240,18 +143,38 @@ alias vinitv="$EDITOR ~/.config/nvim/init.vim"
 alias vbash="$EDITOR ~/.bashrc"
 alias vzsh="$EDITOR ~/.zshrc"
 
-# Edit system config files (only if you really have to)
-alias vlightdm="sudoedit /etc/lightdm/lightdm.conf"
-alias vpacman="sudoedit /etc/pacman.conf"
-alias vgrub="sudoedit /etc/default/grub"
-alias vgrubcfg="sudoedit /boot/grub/grub.cfg"
-alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
-alias vfstab="sudoedit /etc/fstab"
+# Aliases - Dotfiles repo
+alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
+alias dots-a="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME add"
+alias dots-s="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME status"
+alias dots-c="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME commit"
+alias dots-p="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME push"
 
-alias _='sudo'										# Faster sudo
-alias q='exit'										# Quick exit
-alias cat='bat'										# A better cat
-alias less='bat'									# A better less
-alias vf="vifmrun"		# Vifm with Überzug file previews
+# Aliases - Commands and shortcuts
+alias ls='exa -l --color=always --group-directories-first' # default listing
+alias la='exa -al --color=always --group-directories-first'  # all files and dirs
+alias lh='exa -al | egrep "^\."' # hidden files
+
+alias cp="cp -i -v" 	# verbose cp with confirmation
+alias mv='mv -i -v'		# verbose mv with confirmation
+alias rm="rm -v"		# verbose rm
+
+alias v='nvim' 		# faster neovim
+alias _='sudo'		# faster sudo
+alias q='exit'		# quick exit
+alias cat='bat'		# a better cat
+alias less='bat'	# a better less
+alias vf="vifmrun"	# vifm with Überzug file previews
+
+alias yta-aac="youtube-dl --extract-audio --audio-format aac "		# youtube-dl audio
+alias yta-best="youtube-dl --extract-audio --audio-format best "
+alias yta-flac="youtube-dl --extract-audio --audio-format flac "
+alias yta-m4a="youtube-dl --extract-audio --audio-format m4a "
+alias yta-mp3="youtube-dl --extract-audio --audio-format mp3 "
+alias yta-opus="youtube-dl --extract-audio --audio-format opus "
+alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
+alias yta-wav="youtube-dl --extract-audio --audio-format wav "
+
+alias ytv-best="youtube-dl -f bestvideo+bestaudio "					# youtube-dl video
 
 ufetch
