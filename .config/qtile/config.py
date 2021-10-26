@@ -23,21 +23,23 @@
 # The above copyright notice and this permission notice shall be included in
 # all copies or substantial portions of the Software.
 
-### IMPORTS ###
+# Imports
 import os
-import re
-import socket
-import subprocess
-from libqtile import qtile
-from libqtile.config import Click, Drag, Group, Key, KeyChord, Match, Screen
-from libqtile.command import lazy
-from libqtile import layout, bar, widget, hook
-from typing import List  # noqa: F401
 
-### VARIABLES ###
-mod = "mod4"        # Set mod key to Super
-myTerm = "kitty"    # Set kitty as default terminal, no need to guess
-myHost = socket.gethostname()   # Check the hostname to set widgets accordingly
+from socket import gethostname
+from subprocess import call
+
+from libqtile import qtile, bar, hook, layout
+from libqtile.config import Click, Drag, Group, Key, Match, Screen
+from libqtile.lazy import lazy
+from libqtile.widget import (Battery, Backlight, CheckUpdates, Clock, Cmus, CurrentLayout,
+                            CurrentLayoutIcon, CurrentScreen, GroupBox, Image, 
+                            Net, Sep, Systray, Volume, WindowName)
+
+# Variables
+mod = "mod4"                    # Set mod key to Super
+myTerm = "kitty"                # Set kitty as default terminal, no need to guess
+myHost = gethostname()   # Check the hostname to set widgets accordingly
 
 # KEYS_START
 keys = [
@@ -142,74 +144,45 @@ extension_defaults = widget_defaults.copy()
 ### WIDGETS - DEFINE ###
 def init_widgets_list():
     widgets_list = [
-        # 0
-        widget.Sep(
-            linewidth = 0,
-            padding = 4
-        ),
-        # 1
-        widget.Image(
+        Sep(linewidth = 0, padding = 4),
+        Image(
             filename = "~/.config/qtile/icons/gato.png",
             margin = 3,
             scale = True,
-            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn([os.path.expanduser("~/.bin/random-wallpaper")])}
-            ),
-        # 2
-        widget.GroupBox(
+            mouse_callbacks = {'Button3': lambda: 
+                               qtile.cmd_spawn([os.path.expanduser("~/.bin/random-wallpaper")])}
+        ),
+        GroupBox(
             disable_drag = True,
             rounded = False,
             padding_x = 0,
             highlight_method = "text",
             this_current_screen_border = colors[2],
             other_current_screen_boder = colors [4],
-            ),
-        # 3
-        widget.Sep(
-            linewidth = 0,
-            padding = 6
-            ),
-        # 4
-        widget.WindowName(
-            ),
-        # 5
-        widget.Sep(
-            linewidth = 0,
-            padding = 6
-            ),
-        # 6
-        widget.Cmus(
+        ),
+        Sep(linewidth = 0, padding = 6),
+        WindowName(),
+        Sep(linewidth = 0, padding = 6),
+        Cmus(
             update_interval = 1,
             play_color = colors[7]
-            ),
-        # 7
-        widget.Systray(
-            ),
-        # 9
-        widget.CheckUpdates(
+        ),
+        Systray(),
+        CheckUpdates(
             update_interval = 1800,
             distro = "Arch_checkupdates",
             display_format = "  {updates}",
-            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
-                'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
-            ),
-        # 10
-        widget.Volume(
+            mouse_callbacks = {'Button1': lambda: 
+                               qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
+                               'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
+        ),
+        Volume(
             fmt = "  {}",
             mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
-            ),
-        # 13
-        widget.Sep(
-            linewidth = 0,
-            padding = 6
-            ),
-        # 14
-        widget.Sep(
-            linewidth = 0,
-            padding = 4,
-            background = colors[6]
-            ),
-        # 15
-        widget.CurrentScreen(
+        ),
+        Sep(linewidth = 0, padding = 6),
+        Sep(linewidth = 0, padding = 4, background = colors[6]),
+        CurrentScreen(
             active_color = colors[1],
             active_text = "",
             inactive_text = "",
@@ -217,44 +190,32 @@ def init_widgets_list():
             fontsize = 12,
             padding = 6,
             background = colors[6]
-            ),
-        # 16
-        widget.CurrentLayoutIcon(
+        ),
+        CurrentLayoutIcon(
             scale = 0.4,
             margin = 0,
             custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
             background = colors[6]
-            ),
-        # 17
-        widget.Sep(
-            linewidth = 0,
-            padding = 6
-            ),
-        # 18
-        widget.Clock(
-            format = "%a %d %H:%M"
-            ),
-        # 19
-        widget.Sep(
-            linewidth = 0,
-            padding = 2
-            ),
+        ),
+        Sep(linewidth = 0, padding = 6),
+        Clock(format = "%a %d %H:%M"),
+        Sep(linewidth = 0, padding = 2 ),
     ]
     if myHost == "foxes":
-        widgets_list.insert(-9, widget.Net(
+        widgets_list.insert(-9, Net(
                                     interface = "eno1",
                                     format = "  {down}  {up}"
                                 ),)
     elif myHost == "hekate":
-        widgets_list.insert(-9, widget.Net(
+        widgets_list.insert(-9, Net(
                                     interface = "wlp3s0",
                                     format = "  {down}  {up}"
                                 ),)
-        widgets_list.insert(-7, widget.Backlight(
+        widgets_list.insert(-7, Backlight(
                                     fmt = '  {}',
                                     backlight_name = 'amdgpu_bl0',
                                 ),)
-        widgets_list.insert(-7, widget.Battery(
+        widgets_list.insert(-7, Battery(
                                     charge_char = '',
                                     discharge_char = '',
                                     empty_char = '',
@@ -302,7 +263,7 @@ dgroups_app_rules = []
 @hook.subscribe.startup_once
 def start_once():
     home = os.path.expanduser('~')
-    subprocess.call([home + '/.config/qtile/scripts/autostart.sh'])
+    call([home + '/.config/qtile/scripts/autostart.sh'])
 
 ### SET FLOATING WINDOWS AUTOMATICALLY ###
 @hook.subscribe.client_new
