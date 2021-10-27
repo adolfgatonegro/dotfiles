@@ -49,7 +49,7 @@ precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# format vcs_info_msg_0_
  
 setopt PROMPT_SUBST		# setup prompt with git branch name
-PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
+PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}%f '
 
 # echo -e -n "\x1b[\x33 q" # Set blinking cursor. zsh-vi-mode already covers that.
 
