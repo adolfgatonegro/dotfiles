@@ -15,7 +15,7 @@
 xmodmap ~/.Xmodmap &				# set custom keymap
 xset r rate 300 50 &				# modify keyboard repeat rate to double-ish
 lxsession &							# polkit
-picom &								# compositor
+picom -b --experimental-backends &	# compositor
 nm-applet &							# network manager applet
 dunst &								# notification daemon
 numlockx on &						# set numlock to on
