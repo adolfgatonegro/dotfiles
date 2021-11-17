@@ -82,7 +82,7 @@ let g:vimwiki_list = [{'path': '~/Documents/wiki/',
 set laststatus=2
 
 let g:lightline = {
-		\ 'colorscheme': 'powerlineish',
+		\ 'colorscheme': 'NeonGatoLightline',
 		\ }
 
 
@@ -121,8 +121,9 @@ map <Leader>tk <C-w>t<C-w>K
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Fonts and colours
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"colorscheme darkfrost
-set guifont=UbuntuMono\ Nerd\ Font\ Mono:h11	" Set font for GUI
+set background=dark
+colorscheme NeonGato
+set guifont=UbuntuMono\ Nerd\ Font:h14	" Set font for GUI
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Mouse scrolling

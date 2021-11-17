@@ -113,7 +113,7 @@ alias paru-qi='paru -Qi'			# display information about local AUR package
 alias paru-rn='paru -Rn'			# remove package with paru
 alias paru-si='paru -Si'			# display info about package in AUR
 
-alias update='sudo pacman -Syyu'	# sync repos and update
+alias update='sudo pacman -Syu'	# sync repos and update
 alias aurupdate='paru -Sua'			# update AUR packages
 
 alias pac-cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# remove orphans and leftover packages
@@ -176,5 +176,9 @@ alias yta-vorbis="youtube-dl --extract-audio --audio-format vorbis "
 alias yta-wav="youtube-dl --extract-audio --audio-format wav "
 
 alias ytv-best="youtube-dl -f bestvideo+bestaudio "					# youtube-dl video
+
+cdl() {                 
+        cd "$@" && la; 
+}
 
 ufetch

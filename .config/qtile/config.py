@@ -174,7 +174,7 @@ def init_widgets_list():
             display_format = "  {updates}",
             mouse_callbacks = {'Button1': lambda: 
                                qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
-                               'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syyu')}
+                               'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
         ),
         Volume(
             fmt = "  {}",
