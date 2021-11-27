@@ -15,7 +15,7 @@
 
 export TERM="xterm-256color" # proper terminal colours
 export EDITOR='nvim' # neovim as editor
-export VISUAL='nvim' # neovim as visual editor
+export VISUAL='nvim-qt' # neovim-qt as visual editor
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager
 export LESSHISTFILE=- # less doesn't need a history file, seriously
 export HISTCONTROL=ignoreboth:erasedups # keep the zsh history clean
@@ -24,13 +24,7 @@ export SAVEHIST=$HISTSIZE # same value
 export HISTFILE=$HOME/.config/zsh/.zsh_history # keep the history file inside .config/zsh
 export HISTTIMEFORMAT="[%F %T]" # add timestamp to history
 
-if [ -d "$HOME/.bin" ] ;		# add .bin and .local/bin to PATH
-  then PATH="$HOME/.bin:$PATH"
-fi
-
-if [ -d "$HOME/.local/bin" ] ;
-  then PATH="$HOME/.local/bin:$PATH"
-fi
+export PATH=$HOME/.bin:/gatonegro/blog/.bin:$PATH
 
 setopt INC_APPEND_HISTORY # add stuff to history incrementally instead of waiting for exit
 setopt EXTENDED_HISTORY # save command, timestamp, and duration of execution
@@ -156,8 +150,8 @@ alias la='exa -al --color=always --group-directories-first'  # all files and dir
 alias lh='exa -al | egrep "^\."' # hidden files
 
 alias cp="cp -i -v" 	# verbose cp with confirmation
-alias mv='mv -i -v'		# verbose mv with confirmation
-alias rm="rm -v"		# verbose rm
+alias mv='mv -I -v'		# verbose mv with confirmation
+alias rm="rm -I -v"		# verbose rm
 
 alias v='nvim' 		# faster neovim
 alias _='sudo'		# faster sudo

@@ -12,7 +12,7 @@
 
 configuration {
 	modi: "drun,run,window,calc,emoji";
-	theme: "~/.config/rofi/themes/gatonegro-minimal.rasi";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 	run-shell-command: "kitty --hold {cmd}";
 }
+@theme "/home/gatonegro/.config/rofi/themes/gatonegro-minimal.rasi"

@@ -10,11 +10,6 @@
 
  -----------------------------------------------------------------------------*/
 
-configuration {
-    show-icons:   false;
-    sidebar-mode: false;
-}
-
 * {
     background-color: transparent;
     text-color:     white;

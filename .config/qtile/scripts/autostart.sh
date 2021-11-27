@@ -21,6 +21,7 @@ dunst &								# notification daemon
 numlockx on &						# set numlock to on
 sxhkd -c ~/.config/sxhkd/sxhkdrc &	# start sxhkd
 redshift &							# adjust display colour temperature
+canberra-gtk-play -f ~/Documents/startup.ogg & # Startup sound :)
 echo -n --head=0,--head=1 | \		# set random wallpaper 
 	xargs -n 1 -d , \
 	nitrogen --random --set-zoom-fill --save &
