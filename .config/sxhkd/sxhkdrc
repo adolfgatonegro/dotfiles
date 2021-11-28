@@ -28,9 +28,6 @@ alt + Tab
 super + period
     rofi -i -show emoji			# rofi-emoji
 
-super + F4
-	~/.bin/rofi-edit			# edit config files
-
 ctrl + alt + x
 	rofi -show power-menu -modi power-menu:~/.bin/rofi-power-menu	# power menu
 
