@@ -72,7 +72,7 @@ inoremap <silent><expr> <Tab>
       \ coc#refresh()
 
 " Write buffer, execute Python file in an interactive terminal in new split
-nnoremap <F5> :w <CR> :sp <CR> :term python % <CR>
+nnoremap <F5> :w<CR>:sp<CR>:terminal python %<CR>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
