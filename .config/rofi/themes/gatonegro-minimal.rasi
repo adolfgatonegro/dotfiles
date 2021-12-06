@@ -18,7 +18,7 @@
 }
 
 window {
-    font: "UbuntuMono Nerd Font Mono 11";
+    font: "FiraCode Nerd Font Medium 9";
     fullscreen: 		true;
     background-color: 	#000000aa;
     children: [ dummy1, hdum, dummy2 ];

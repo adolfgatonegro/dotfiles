@@ -133,8 +133,8 @@ colors = [["#0d0d0d", "#111111"], # 0 Panel background
 
 ### WIDGET DEFAULTS ###
 widget_defaults = dict(
-    font = "UbuntuMono Nerd Font",
-    fontsize = 12,
+    font = "FiraCode Nerd Font Medium",
+    fontsize = 10,
     padding = 4,
     background = colors[0],
     foreground = colors[5]

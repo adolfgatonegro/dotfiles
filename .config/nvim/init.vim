@@ -28,6 +28,7 @@ call vundle#begin()
 	Plugin 'vimwiki/vimwiki'			" VimWiki
 	Plugin 'neoclide/coc.nvim', {'branch': 'release'} " intellisense engine
 	Plugin 'jiangmiao/auto-pairs'		" auto-close braces and scopes
+	Plugin 'Chiel92/vim-autoformat'
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -46,13 +47,16 @@ syntax enable
 " Set leader to º
 let mapleader = "º"
 " Remap jk to ESC 
-inoremap <silent> jk <Esc>
+inoremap <silent> jj <Esc>
 " Shortcut for faster save and quit
 nnoremap <silent> <leader>w :update<CR>
 " Saves the file if modified and quit
 nnoremap <silent> <leader>q :x<CR>
 " Quit all opened buffers
 nnoremap <silent> <leader>Q :qa<CR>
+" Yank/put to/from system clipboard
+vnoremap <silent> <C-Y> "+y<CR>
+nnoremap <silent> <C-P> "+p<CR>
 " Toggle search highlight
 nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 " Jump to matching pairs easily in normal mode
@@ -70,10 +74,8 @@ inoremap <silent><expr> <Tab>
       \ pumvisible() ? "\<C-n>" :
       \ <SID>check_back_space() ? "\<Tab>" :
       \ coc#refresh()
-
-" Write buffer, execute Python file in an interactive terminal in new split
-nnoremap <F5> :w<CR>:sp<CR>:terminal python %<CR>
-
+" vim-autoformat
+noremap <F3> :Autoformat<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Vifm
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -113,6 +115,13 @@ set laststatus=2
 let g:lightline = {
 		\ 'colorscheme': 'NeonGatoLightline',
 		\ }
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Python
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+augroup do_python_setup
+	autocmd! filetype python set expandtab
+	autocmd! filetype python nnoremap <F5> :Autoformat<CR>:w<CR>:sp<CR>:term python %<CR>
+augroup END
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tabs, indentation
@@ -122,16 +131,13 @@ augroup text_file_width
     autocmd!
 	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt setlocal textwidth=100
 augroup END
-"set tw=100					" Set text width
+
 set fo+=t					" Set format options to include text width
 set tabstop=4				" Set tab size to 4 spaces
 set softtabstop=4
 set shiftwidth=4
 set autoindent
 set backspace=indent,eol,start
-
-" Enable expandtab when editing Python files
-au BufRead,BufNewFile *.py,*.pyw set expandtab 
 
 " Return to last edit position when opening a file
 augroup resume_edit_position
@@ -171,7 +177,7 @@ set background=dark
 colorscheme NeonGato
 
 " GUI settings for Neovim-Qt
-set guifont=UbuntuMono\ Nerd\ Font:h11:l	" Set font for GUI
+set guifont=FiraCode\ Nerd\ Font\ Mono:h10:b " Set font for GUI
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar
