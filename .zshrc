@@ -15,7 +15,7 @@
 
 export TERM="xterm-256color" # proper terminal colours
 export EDITOR='nvim' # neovim as editor
-export VISUAL='nvim-qt' # neovim-qt as visual editor
+export VISUAL='nvim' # neovim-qt as visual editor
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager
 export LESSHISTFILE=- # less doesn't need a history file, seriously
 export HISTCONTROL=ignoreboth:erasedups # keep the zsh history clean

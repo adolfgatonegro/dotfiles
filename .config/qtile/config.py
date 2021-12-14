@@ -306,7 +306,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='VirtualBox Manager'),
     Match(wm_class='transmission-gtk'),
     Match(wm_class='gimp-2.10'),
-    Match(wm_class='org.inkscape.Inkscape'),
+    # Match(wm_class='org.inkscape.Inkscape'),
     Match(wm_class='Yad'),
     Match(wm_class='nvidia-settings'),
     Match(wm_class='pulseaudio-equalizer-gtk'),

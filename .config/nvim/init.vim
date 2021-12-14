@@ -28,7 +28,11 @@ call vundle#begin()
 	Plugin 'vimwiki/vimwiki'			" VimWiki
 	Plugin 'neoclide/coc.nvim', {'branch': 'release'} " intellisense engine
 	Plugin 'jiangmiao/auto-pairs'		" auto-close braces and scopes
+	Plugin 'tpope/vim-commentary'
 	Plugin 'Chiel92/vim-autoformat'
+	Plugin 'tmhedberg/SimpylFold'
+	Plugin 'lervag/vimtex'
+	" Plugin 'junegunn/goyo.vim'	
 call vundle#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -63,6 +67,8 @@ nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls').
 nnoremap <Tab> %
 " Remap Emmet autocompletion to Ctrl+Z
 let g:user_emmet_leader_key='<C-Z>'
+" SimpylFold config
+let g:SimpylFold_docstring_preview = 1
 " coc shortcuts
 " use <tab> for trigger completion and navigate to the next complete item
 function! s:check_back_space() abort
@@ -123,13 +129,21 @@ augroup do_python_setup
 	autocmd! filetype python nnoremap <F5> :Autoformat<CR>:w<CR>:sp<CR>:term python %<CR>
 augroup END
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimtex
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:tex_flavor = 'latex'
+let g:vimtex_view_method = 'zathura'
+" let g:vimtex_view_general_viewer = 'zathura'
+" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
+" let g:vimtex_view_general_options_latexmk = '--unique'
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tabs, indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set textwidth for text file types
 augroup text_file_width
     autocmd!
-	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt setlocal textwidth=100
+	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*tex setlocal textwidth=100
 augroup END
 
 set fo+=t					" Set format options to include text width

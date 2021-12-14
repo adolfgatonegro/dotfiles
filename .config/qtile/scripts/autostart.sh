@@ -1,5 +1,4 @@
 #!/bin/bash
-#
 # ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
 #⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀autostart.sh
 #⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀------------
@@ -8,29 +7,27 @@
 #⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
 #⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
-#
 # -----------------------------------------------------------------------------
 
-# The basics
-xmodmap ~/.Xmodmap &				# set custom keymap
-xset r rate 300 50 &				# modify keyboard repeat rate to double-ish
-lxsession &							# polkit
-picom -b --experimental-backends &	# compositor
-nm-applet &							# network manager applet
-dunst &								# notification daemon
-numlockx on &						# set numlock to on
-sxhkd -c ~/.config/sxhkd/sxhkdrc &	# start sxhkd
-redshift &							# adjust display colour temperature
-canberra-gtk-play -f ~/Documents/startup.ogg & # Startup sound :)
-echo -n --head=0,--head=1 | \		# set random wallpaper 
+xmodmap ~/.Xmodmap &
+xset r rate 300 50 &
+lxsession &
+picom -b --experimental-backends &
+nm-applet &
+numlockx on &
+dunst &
+sxhkd -c ~/.config/sxhkd/sxhkdrc &
+redshift &
+canberra-gtk-play -f ~/Documents/startup.ogg &
+echo -n --head=0,--head=1 | \
 	xargs -n 1 -d , \
 	nitrogen --random --set-zoom-fill --save &
 
 # Foxes
 case $HOSTNAME in
 	foxes)
-		solaar -w hide &			# mouse management
-		mailspring -b &				# email client
+		solaar -w hide &
+		mailspring -b &
 		;;
 esac
 
