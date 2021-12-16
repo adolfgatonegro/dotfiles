@@ -33,19 +33,28 @@ from libqtile import qtile, bar, hook, layout
 from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.widget import (Battery, Backlight, CheckUpdates, Clock, Cmus, CurrentLayout,
-                            CurrentLayoutIcon, CurrentScreen, GroupBox, Image, 
+                            CurrentLayoutIcon, CurrentScreen, GmailChecker, GroupBox, Image, 
                             Net, PulseVolume, Sep, Systray, Volume, WindowName)
 
 # Variables
-mod = "mod4"                    # Set mod key to Super
-myTerm = "kitty"                # Set kitty as default terminal, no need to guess
-myHost = gethostname()   # Check the hostname to set widgets accordingly
+mod = "mod4"
+terminal = "kitty"
+host = gethostname()
+home_dir = os.path.expanduser('~/')
+gmail_creds = []
+
+f = open(home_dir + ".gmail-creds")
+lines = f.readlines()
+f.close()
+
+for line in lines:
+    gmail_creds.append(line.strip())
 
 # KEYS_START
 keys = [
     # KEYS_GROUP Qtile Basics #
-    Key([mod], "F1", lazy.spawn([os.path.expanduser("~/.config/qtile/scripts/show-keybindings.sh")]), desc = "Show Qtile keybindings"),
-    Key([mod], "Return", lazy.spawn(myTerm+" -e"), desc = "Launch terminal"),
+    Key([mod], "F1", lazy.spawn([home_dir + ".config/qtile/scripts/show-keybindings.sh"]), desc = "Show Qtile keybindings"),
+    Key([mod], "Return", lazy.spawn(terminal+" -e"), desc = "Launch terminal"),
     Key([mod], "r", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
     Key([mod, "shift"], "c", lazy.window.kill(), desc = "Close the focused window"),
     Key([mod], "Escape", lazy.spawn("xkill"), desc = "Launch xkill"),
@@ -61,7 +70,6 @@ keys = [
     Key([mod, "shift"], "h", lazy.layout.shrink(), lazy.layout.decrease_nmaster(), desc = "Shrink window (MonadTall), decrease number in master pane (Tile)"),
     Key([mod, "shift"], "l", lazy.layout.grow(), lazy.layout.increase_nmaster(), desc = "Expand window (MonadTall), increase number in master pane (Tile)"),
     Key([mod, "control"], "Tab", lazy.layout.rotate(), lazy.layout.flip(), desc = "Flip master pane side (MonadTall)"),
-    #Key([mod], "space", lazy.layout.next(), desc = "Switch focus to next pane in stack (Tile)"),
     Key([mod, "shift"], "space", lazy.layout.previous(), lazy.layout.toggle_split(), desc = "Switch focus to previous pane in stack (Tile) Toggle sides of stack"),
     Key([mod, "control"], "m", lazy.layout.maximize(), desc = "Toggle between minimum and maximum window sizes"),
     Key([mod, "control"], "n", lazy.layout.normalize(), desc = "Normalise window size ratios"),
@@ -72,8 +80,8 @@ keys = [
     Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to display 2"),
     Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next display"),
     Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous display"),
-    Key([mod, "control"], "p", lazy.spawn([os.path.expanduser("~/.bin/display-toggle")]), desc = "Toggle display 2 on/off"),
-    Key([mod, "control"], "o", lazy.spawn([os.path.expanduser("~/.bin/display-rotate")]), desc = "Rotate display 1"),
+    Key([mod, "control"], "p", lazy.spawn([home_dir + ".bin/display-toggle"]), desc = "Toggle display 2 on/off"),
+    Key([mod, "control"], "o", lazy.spawn([home_dir + ".bin/display-rotate"]), desc = "Rotate display 1"),
 ]
 # KEYS_END
 
@@ -150,7 +158,7 @@ def init_widgets_list():
             margin = 3,
             scale = True,
             mouse_callbacks = {'Button3': lambda: 
-                               qtile.cmd_spawn([os.path.expanduser("~/.bin/random-wallpaper")])}
+                               qtile.cmd_spawn([home_dir + ".bin/random-wallpaper"])}
         ),
         GroupBox(
             disable_drag = True,
@@ -171,10 +179,17 @@ def init_widgets_list():
         CheckUpdates(
             update_interval = 1800,
             distro = "Arch_checkupdates",
-            display_format = "  {updates}",
+            display_format = " {updates}",
             mouse_callbacks = {'Button1': lambda: 
-                               qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
-                               'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
+                               qtile.cmd_spawn([home_dir + ".bin/arch-update-notifier"]),
+                               'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
+        ),
+        GmailChecker(
+            username = gmail_creds[0],
+            password = gmail_creds[1],
+            status_only_unseen = True,
+            display_fmt = " {0}",
+            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("firefox -new-tab https://mail.google.com/mail/u/0/")}
         ),
         PulseVolume(
             fmt = "  {}",
@@ -195,19 +210,19 @@ def init_widgets_list():
         CurrentLayoutIcon(
             scale = 0.4,
             margin = 0,
-            custom_icon_paths = [os.path.expanduser("~/.config/qtile/icons")],
+            custom_icon_paths = [home_dir + ".config/qtile/icons"],
             background = colors[6]
         ),
         Sep(linewidth = 0, padding = 6),
         Clock(format = "%a %d %H:%M"),
         Sep(linewidth = 0, padding = 2 ),
     ]
-    if myHost == "foxes":
+    if host == "foxes":
         widgets_list.insert(-9, Net(
                                     interface = "eno1",
                                     format = "  {down}  {up}"
                                 ),)
-    elif myHost == "hekate":
+    elif host == "hekate":
         widgets_list.insert(-9, Net(
                                     interface = "wlp3s0",
                                     format = "  {down}  {up}"
@@ -263,8 +278,7 @@ dgroups_app_rules = []
 ### AUTOSTART SCRIPT ###
 @hook.subscribe.startup_once
 def start_once():
-    home = os.path.expanduser('~')
-    call([home + '/.config/qtile/scripts/autostart.sh'])
+    call([home_dir + '.config/qtile/scripts/autostart.sh'])
 
 ### SET FLOATING WINDOWS AUTOMATICALLY ###
 @hook.subscribe.client_new

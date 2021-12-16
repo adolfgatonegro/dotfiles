@@ -134,9 +134,6 @@ augroup END
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
-" let g:vimtex_view_general_viewer = 'zathura'
-" let g:vimtex_view_general_options = '--unique file:@pdf\#src:@line@tex'
-" let g:vimtex_view_general_options_latexmk = '--unique'
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Text, tabs, indentation
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -191,7 +188,7 @@ set background=dark
 colorscheme NeonGato
 
 " GUI settings for Neovim-Qt
-set guifont=FiraCode\ Nerd\ Font\ Mono:h10:b " Set font for GUI
+set guifont=FiraCode\ Nerd\ Font\ Mono:h9 " Set font for GUI
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar

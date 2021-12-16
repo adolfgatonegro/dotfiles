@@ -27,7 +27,7 @@ echo -n --head=0,--head=1 | \
 case $HOSTNAME in
 	foxes)
 		solaar -w hide &
-		mailspring -b &
+		# mailspring -b &
 		;;
 esac
 
