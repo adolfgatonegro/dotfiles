@@ -34,7 +34,7 @@ from libqtile.config import Click, Drag, Group, Key, Match, Screen
 from libqtile.lazy import lazy
 from libqtile.widget import (Battery, Backlight, CheckUpdates, Clock, Cmus, CurrentLayout,
                             CurrentLayoutIcon, CurrentScreen, GroupBox, Image, 
-                            Net, Sep, Systray, Volume, WindowName)
+                            Net, PulseVolume, Sep, Systray, Volume, WindowName)
 
 # Variables
 mod = "mod4"                    # Set mod key to Super
@@ -176,9 +176,10 @@ def init_widgets_list():
                                qtile.cmd_spawn([os.path.expanduser("~/.bin/arch-update-notifier")]),
                                'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e sudo pacman -Syu')}
         ),
-        Volume(
+        PulseVolume(
             fmt = "  {}",
-            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(myTerm + ' -e pulsemixer')}
+            update_interval = 0.1,
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
         ),
         Sep(linewidth = 0, padding = 6),
         Sep(linewidth = 0, padding = 4, background = colors[6]),

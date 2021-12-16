@@ -9,8 +9,8 @@
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 # -----------------------------------------------------------------------------
 
-xmodmap ~/.Xmodmap &
-xset r rate 300 50 &
+# xmodmap ~/.Xmodmap &
+# xset r rate 300 50 &
 lxsession &
 picom -b --experimental-backends &
 nm-applet &
@@ -18,7 +18,7 @@ numlockx on &
 dunst &
 sxhkd -c ~/.config/sxhkd/sxhkdrc &
 redshift &
-canberra-gtk-play -f ~/Documents/startup.ogg &
+canberra-gtk-play -f ~/documents/startup.ogg &
 echo -n --head=0,--head=1 | \
 	xargs -n 1 -d , \
 	nitrogen --random --set-zoom-fill --save &

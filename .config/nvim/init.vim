@@ -94,7 +94,7 @@ map <Leader>tv :TabVifm<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-let g:vimwiki_list = [{'path': '~/Documents/wiki/',
+let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""

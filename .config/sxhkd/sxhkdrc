@@ -73,13 +73,13 @@ ctrl + apostrophe
 # Multimedia keys
 
 XF86AudioRaiseVolume
-    ~/.bin/volume-ctrl 2%+		# volume up
+    ~/.bin/volume-ctrl -i 2		# volume up
 
 XF86AudioLowerVolume
-    ~/.bin/volume-ctrl 2%-		# volume down
+	~/.bin/volume-ctrl -d 2		# volume down
 
 XF86AudioMute
-    ~/.bin/volume-ctrl toggle		# volume mute
+    ~/.bin/volume-ctrl -t		# volume mute
 
 XF86AudioPlay
     playerctl play-pause		# play/pause

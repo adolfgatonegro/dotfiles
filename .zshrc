@@ -138,11 +138,11 @@ alias vbash="$EDITOR ~/.bashrc"
 alias vzsh="$EDITOR ~/.zshrc"
 
 # Aliases - Dotfiles repo
-alias dots="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME"
-alias dots-a="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME add"
-alias dots-s="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME status"
-alias dots-c="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME commit"
-alias dots-p="/usr/bin/git --git-dir=/gatonegro/Techno/dotfiles --work-tree=$HOME push"
+alias dots="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+alias dots-a="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME add"
+alias dots-s="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME status"
+alias dots-c="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME commit"
+alias dots-p="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME push"
 
 # Aliases - Commands and shortcuts
 alias ls='exa -l --color=always --group-directories-first' # default listing
