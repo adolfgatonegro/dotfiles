@@ -41,14 +41,34 @@ mod = "mod4"
 terminal = "kitty"
 host = gethostname()
 home_dir = os.path.expanduser('~/')
-gmail_creds = []
 
+gmail_creds = []
 f = open(home_dir + ".gmail-creds")
 lines = f.readlines()
 f.close()
 
 for line in lines:
     gmail_creds.append(line.strip())
+
+net_adapter = ""
+if host == "foxes":
+    net_adapter = "eno1"
+elif host == "hekate":
+    net_adapter = "wlp3s0"
+
+widgets_hekate = (Backlight(
+                    fmt = '  {}',
+                    backlight_name = 'amdgpu_bl0',
+                  ),
+                  Battery(
+                      charge_char = '',
+                      discharge_char = '',
+                      empty_char = '',
+                      full_char = '',
+                      unknown_char = '',
+                      format = '{char} {percent:2.0%}',
+                      show_short_text = False)
+                  )
 
 # KEYS_START
 keys = [
@@ -113,6 +133,17 @@ for i in groups:
             ),
     ])
 
+### Mouse
+mouse = [
+    Drag([mod], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([mod], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
+    Click([mod], "Button2", lazy.window.bring_to_front()),
+    Click([], "Button8", lazy.screen.prev_group()),
+    Click([], "Button9", lazy.screen.next_group()),
+]
+
 ### DEFAULT LAYOUT SETTINGS ###
 layout_theme = {"border_width" : 2,
                 "margin" : 8,
@@ -147,7 +178,6 @@ widget_defaults = dict(
     background = colors[0],
     foreground = colors[5]
 )
-extension_defaults = widget_defaults.copy()
 
 ### WIDGETS - DEFINE ###
 def init_widgets_list():
@@ -165,21 +195,24 @@ def init_widgets_list():
             rounded = False,
             padding_x = 0,
             highlight_method = "text",
+            urgent_border = colors[2],
             this_current_screen_border = colors[2],
             other_current_screen_boder = colors [4],
+            use_mouse_wheel = False
         ),
         Sep(linewidth = 0, padding = 6),
         WindowName(),
         Sep(linewidth = 0, padding = 6),
         Cmus(
             update_interval = 1,
-            play_color = colors[7]
+            play_color = colors[7],
+            max_chars = 50
         ),
         Systray(),
         CheckUpdates(
             update_interval = 1800,
             distro = "Arch_checkupdates",
-            display_format = " {updates}",
+            display_format = "  {updates}",
             mouse_callbacks = {'Button1': lambda: 
                                qtile.cmd_spawn([home_dir + ".bin/arch-update-notifier"]),
                                'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
@@ -190,6 +223,10 @@ def init_widgets_list():
             status_only_unseen = True,
             display_fmt = " {0}",
             mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("firefox -new-tab https://mail.google.com/mail/u/0/")}
+        ),
+        Net(
+           interface = net_adapter,
+           format = "  {down}  {up}"
         ),
         PulseVolume(
             fmt = "  {}",
@@ -217,29 +254,9 @@ def init_widgets_list():
         Clock(format = "%a %d %H:%M"),
         Sep(linewidth = 0, padding = 2 ),
     ]
-    if host == "foxes":
-        widgets_list.insert(-9, Net(
-                                    interface = "eno1",
-                                    format = "  {down}  {up}"
-                                ),)
-    elif host == "hekate":
-        widgets_list.insert(-9, Net(
-                                    interface = "wlp3s0",
-                                    format = "  {down}  {up}"
-                                ),)
-        widgets_list.insert(-7, Backlight(
-                                    fmt = '  {}',
-                                    backlight_name = 'amdgpu_bl0',
-                                ),)
-        widgets_list.insert(-7, Battery(
-                                    charge_char = '',
-                                    discharge_char = '',
-                                    empty_char = '',
-                                    full_char = '',
-                                    unknown_char = '',
-                                    format = '{char} {percent:2.0%}',
-                                    show_short_text = False,
-                                ))
+    if host == "hekate":
+        widgets_list.insert(-7, widgets_hekate)
+
     return widgets_list
 
 widgets_list = init_widgets_list()
@@ -263,18 +280,6 @@ def init_screens():
             Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=25, opacity=0.85))]
 screens = init_screens()
 
-### DRAG FLOATING WINDOWS ###
-mouse = [
-    Drag([mod], "Button1", lazy.window.set_position_floating(),
-         start=lazy.window.get_position()),
-    Drag([mod], "Button3", lazy.window.set_size_floating(),
-         start=lazy.window.get_size()),
-    Click([mod], "Button2", lazy.window.bring_to_front())
-]
-
-dgroups_key_binder = None
-dgroups_app_rules = []
-
 ### AUTOSTART SCRIPT ###
 @hook.subscribe.startup_once
 def start_once():
@@ -289,8 +294,12 @@ def floating_dialogs(window):
         window.floating = True
 
 follow_mouse_focus = True
-bring_front_click = False
 cursor_warp = False
+bring_front_click = False
+focus_on_window_activation = "smart"
+reconfigure_screens = True
+auto_fullscreen = True
+auto_minimize = True
 
 ### FLOATING LAYOUT RULES ###
 floating_layout = layout.Floating(float_rules=[
@@ -327,10 +336,4 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='pulseaudio-equalizer-gtk'),
 ], fullscreen_border_width = 0, border_width = 0)
 
-auto_fullscreen = True
-focus_on_window_activation = "smart"
-reconfigure_screens = True
-auto_minimize = True
-
 wmname = "LG3D"
-
