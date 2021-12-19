@@ -11,29 +11,28 @@
 " -----------------------------------------------------------------------------  
 
 set nocompatible			" be iMproved, required
+
+source $XDG_CONFIG_HOME/nvim/xdg.vim
+
 filetype off				" required
 filetype plugin on
-
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Call Vundle plugin manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" let Vundle manage Vundle, required
-	Plugin 'VundleVim/Vundle.vim'		" Vundle
-	Plugin 'itchyny/lightline.vim'		" Lightline
-	Plugin 'vifm/vifm.vim'				" Vifm
-	Plugin 'ap/vim-css-color'			" CSS colour previews
-	Plugin 'mattn/emmet-vim'			" Emmet
-	Plugin 'vimwiki/vimwiki'			" VimWiki
-	Plugin 'neoclide/coc.nvim', {'branch': 'release'} " intellisense engine
-	Plugin 'jiangmiao/auto-pairs'		" auto-close braces and scopes
-	Plugin 'tpope/vim-commentary'
-	Plugin 'Chiel92/vim-autoformat'
-	Plugin 'tmhedberg/SimpylFold'
-	Plugin 'lervag/vimtex'
-	" Plugin 'junegunn/goyo.vim'	
-call vundle#end()
+call plug#begin('$XDG_CONFIG_HOME/nvim/plugs')
+	Plug 'itchyny/lightline.vim'
+	Plug 'vifm/vifm.vim'
+	Plug 'ap/vim-css-color'
+	Plug 'mattn/emmet-vim'
+	Plug 'vimwiki/vimwiki'
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'tpope/vim-commentary'
+	Plug 'Chiel92/vim-autoformat'
+	Plug 'tmhedberg/SimpylFold'
+	Plug 'lervag/vimtex'
+	Plug 'junegunn/goyo.vim'	
+call plug#end()
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General settings
@@ -58,6 +57,8 @@ nnoremap <silent> <leader>w :update<CR>
 nnoremap <silent> <leader>q :x<CR>
 " Quit all opened buffers
 nnoremap <silent> <leader>Q :qa<CR>
+" Toggle Goyo
+nnoremap <silent> <leader>G :Goyo<CR>
 " Yank/put to/from system clipboard
 vnoremap <silent> <C-Y> "+y<CR>
 nnoremap <silent> <C-P> "+p<CR>
@@ -94,10 +95,13 @@ map <Leader>tv :TabVifm<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " VimWiki
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+let g:vimwiki_global_ext = 0
 let g:vimwiki_list = [{'path': '~/repos/vimwiki/',
                       \ 'syntax': 'markdown', 'ext': '.md'}]
+" Goyo
+let g:goyo_width = 84
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dynamic line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 augroup numbertoggle
@@ -140,7 +144,7 @@ let g:vimtex_view_method = 'zathura'
 " Set textwidth for text file types
 augroup text_file_width
     autocmd!
-	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*tex setlocal textwidth=100
+	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*tex setlocal textwidth=80
 augroup END
 
 set fo+=t					" Set format options to include text width

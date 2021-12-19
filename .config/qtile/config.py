@@ -42,13 +42,13 @@ terminal = "kitty"
 host = gethostname()
 home_dir = os.path.expanduser('~/')
 
-gmail_creds = []
-f = open(home_dir + ".gmail-creds")
-lines = f.readlines()
-f.close()
+# gmail_creds = []
+# f = open(home_dir + ".gmail-creds")
+# lines = f.readlines()
+# f.close()
 
-for line in lines:
-    gmail_creds.append(line.strip())
+# for line in lines:
+#     gmail_creds.append(line.strip())
 
 net_adapter = ""
 if host == "foxes":
@@ -100,8 +100,8 @@ keys = [
     Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to display 2"),
     Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next display"),
     Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous display"),
-    Key([mod, "control"], "p", lazy.spawn([home_dir + ".bin/display-toggle"]), desc = "Toggle display 2 on/off"),
-    Key([mod, "control"], "o", lazy.spawn([home_dir + ".bin/display-rotate"]), desc = "Rotate display 1"),
+    Key([mod, "control"], "p", lazy.spawn([home_dir + ".local/.bin/display-toggle"]), desc = "Toggle display 2 on/off"),
+    Key([mod, "control"], "o", lazy.spawn([home_dir + ".local/.bin/display-rotate"]), desc = "Rotate display 1"),
 ]
 # KEYS_END
 
@@ -172,7 +172,7 @@ colors = [["#0d0d0d", "#111111"], # 0 Panel background
 
 ### WIDGET DEFAULTS ###
 widget_defaults = dict(
-    font = "FiraCode Nerd Font Medium",
+    font = "JetBrainsMono Nerd Font Medium",
     fontsize = 10,
     padding = 4,
     background = colors[0],
@@ -188,7 +188,7 @@ def init_widgets_list():
             margin = 3,
             scale = True,
             mouse_callbacks = {'Button3': lambda: 
-                               qtile.cmd_spawn([home_dir + ".bin/random-wallpaper"])}
+                               qtile.cmd_spawn([home_dir + ".local/.bin/random-wallpaper"])}
         ),
         GroupBox(
             disable_drag = True,
@@ -214,16 +214,16 @@ def init_widgets_list():
             distro = "Arch_checkupdates",
             display_format = "  {updates}",
             mouse_callbacks = {'Button1': lambda: 
-                               qtile.cmd_spawn([home_dir + ".bin/arch-update-notifier"]),
+                               qtile.cmd_spawn([home_dir + ".local/.bin/arch-update-notifier"]),
                                'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
         ),
-        GmailChecker(
-            username = gmail_creds[0],
-            password = gmail_creds[1],
-            status_only_unseen = True,
-            display_fmt = " {0}",
-            mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("firefox -new-tab https://mail.google.com/mail/u/0/")}
-        ),
+        # GmailChecker(
+        #     username = gmail_creds[0],
+        #     password = gmail_creds[1],
+        #     status_only_unseen = True,
+        #     display_fmt = " {0}",
+        #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("firefox -new-tab https://mail.google.com/mail/u/0/")}
+        # ),
         Net(
            interface = net_adapter,
            format = "  {down}  {up}"

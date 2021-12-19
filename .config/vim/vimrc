@@ -1,6 +1,7 @@
 " Don't try to be vi compatible
 set nocompatible
 
+source $XDG_CONFIG_HOME/vim/xdg.vim
 " Turn on syntax highlighting
 syntax on
 

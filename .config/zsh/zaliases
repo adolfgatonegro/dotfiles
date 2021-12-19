@@ -1,0 +1,76 @@
+# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
+#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀zaliases
+#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀-------
+#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀Aliases for ZSH
+#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
+#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
+#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+
+alias grep='grep --color=auto'		# add colour to grep
+alias egrep='egrep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias df='df -h'					# human-readable output for df
+
+# Aliases - pacman
+alias ch='checkupdates'				# check for updates
+
+alias pac-s='sudo pacman -S'		# install package from repos
+alias pac-u='sudo pacman -U'		# install package from local file
+alias pac-qi='pacman -Qi'			# display information about local package
+alias pac-si='pacman -Si'			# display info about package in repo
+alias pac-rn='sudo pacman -Rn'		# remove package and dependencies
+alias pac-rns='sudo pacman -Rns'	# remove package and all dependencies
+alias pkgs='paru -Ss'				# search for AUR package
+alias paru-s='paru -S'				# install package from AUR
+alias paru-qi='paru -Qi'			# display information about local AUR package
+alias paru-rn='paru -Rn'			# remove package with paru
+alias paru-si='paru -Si'			# display info about package in AUR
+
+alias update='sudo pacman -Syu'	# sync repos and update
+alias aurupdate='paru -Sua'			# update AUR packages
+
+alias pac-cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# remove orphans and leftover packages
+alias pac-unlock="sudo rm /var/lib/pacman/db.lck" 		# unlock pacman database 
+
+alias mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
+
+# Aliases - System configuration
+alias grub-update="sudo grub-mkconfig -o /boot/grub/grub.cfg" # update grub configuration
+
+# Aliases - Edit system config files
+alias vpacman="sudoedit /etc/pacman.conf"
+alias vgrub="sudoedit /etc/default/grub"
+alias vgrubcfg="sudoedit /boot/grub/grub.cfg"
+alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
+alias vfstab="sudoedit /etc/fstab"
+
+# Aliases - Edit common config files
+alias vqtile="$EDITOR $XDG_CONFIG_HOME/qtile/config.py"
+alias vpicom="$EDITOR $XDG_CONFIG_HOME/picom/picom.conf"
+alias vautostart="$EDITOR $XDG_CONFIG_HOME/qtile/scripts/autostart.sh"
+alias vsxhkd="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+alias vkitty="$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf"
+alias vrofi="$EDITOR $XDG_CONFIG_HOME/rofi/config.rasi"
+alias vinitv="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
+alias vzsh="$EDITOR $ZDOTDIR/.zshrc"
+
+# Aliases - Dotfiles repo
+alias dots="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+
+# Aliases - Commands and shortcuts
+alias ls='exa -l --color=always --group-directories-first' # default listing
+alias la='exa -al --color=always --group-directories-first'  # all files and dirs
+alias lh='exa -al | egrep "^\."' # hidden files
+
+alias cp="cp -i -v" 	# verbose cp with confirmation
+alias mv='mv -i -v'		# verbose mv with confirmation
+alias rm="rm -I -v"		# verbose rm
+
+alias v='nvim' 		# faster neovim
+alias _='sudo'		# faster sudo
+alias q='exit'		# quick exit
+alias cat='bat'		# a better cat
+alias less='bat'	# a better less
+alias vf="vifmrun"	# vifm with Überzug file previews
+
