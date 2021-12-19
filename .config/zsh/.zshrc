@@ -30,8 +30,12 @@ setopt INC_APPEND_HISTORY # add stuff to history incrementally instead of waitin
 setopt EXTENDED_HISTORY # save command, timestamp, and duration of execution
 setopt HIST_IGNORE_ALL_DUPS # removes duplicate commands
 
-zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' cache-path $XDG_CACHE_HOME/zsh/zcompcache
-autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/zsh/zcompdump-$ZSH_VERSION # initialise autocompletion
+zstyle ':completion:*' group-name ''
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+zstyle ':completion:*' insert-unambiguous true
+# zstyle ':completion:*' list-prompt %SAt %p: Hit TAB for more, or the character to insert%s
+autoload -Uz compinit
+compinit
 
 # Prompt
 autoload -Uz promptinit
