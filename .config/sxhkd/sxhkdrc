@@ -29,7 +29,7 @@ super + period
     rofi -i -show emoji			# rofi-emoji
 
 ctrl + alt + x
-	rofi -show power-menu -modi power-menu:~/.bin/rofi-power-menu	# power menu
+	rofi -show power-menu -modi power-menu:~/.local/.bin/rofi-power-menu	# power menu
 
 
 # Programs
@@ -44,7 +44,7 @@ super + t
     kitty						# terminal
 
 super + f
-	kitty -e ~/.bin/vifmrun		# file manager
+	kitty -e ~/.local/.bin/vifmrun		# file manager
 
 super + shift + f
 	thunar						# gui file manager
@@ -73,13 +73,13 @@ ctrl + apostrophe
 # Multimedia keys
 
 XF86AudioRaiseVolume
-    ~/.bin/volume-ctrl -i 2		# volume up
+    ~/.local/.bin/volume-ctrl -i 2		# volume up
 
 XF86AudioLowerVolume
-	~/.bin/volume-ctrl -d 2		# volume down
+	~/.local/.bin/volume-ctrl -d 2		# volume down
 
 XF86AudioMute
-    ~/.bin/volume-ctrl -t		# volume mute
+    ~/.local/.bin/volume-ctrl -t		# volume mute
 
 XF86AudioPlay
     playerctl play-pause		# play/pause
