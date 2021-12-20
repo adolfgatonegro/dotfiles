@@ -56,6 +56,7 @@ alias vinitv="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
 alias vzsh="$EDITOR $ZDOTDIR/.zshrc"
 
 # Aliases - Dotfiles repo
+alias repos="git-summary $HOME/repos && echo '---' && git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME status"
 alias dots="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
 
 # Aliases - Commands and shortcuts
