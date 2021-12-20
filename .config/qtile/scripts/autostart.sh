@@ -9,8 +9,6 @@
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 # -----------------------------------------------------------------------------
 
-# xmodmap ~/.Xmodmap &
-# xset r rate 300 50 &
 lxsession &
 picom -b --experimental-backends &
 nm-applet &

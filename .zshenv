@@ -15,3 +15,4 @@ export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv

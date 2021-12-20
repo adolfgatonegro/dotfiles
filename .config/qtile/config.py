@@ -41,14 +41,7 @@ mod = "mod4"
 terminal = "kitty"
 host = gethostname()
 home_dir = os.path.expanduser('~/')
-
-# gmail_creds = []
-# f = open(home_dir + ".gmail-creds")
-# lines = f.readlines()
-# f.close()
-
-# for line in lines:
-#     gmail_creds.append(line.strip())
+bin_dir = os.path.expanduser('~/.local/bin/')
 
 net_adapter = ""
 if host == "foxes":
@@ -56,19 +49,52 @@ if host == "foxes":
 elif host == "hekate":
     net_adapter = "wlp3s0"
 
-widgets_hekate = (Backlight(
-                    fmt = '  {}',
-                    backlight_name = 'amdgpu_bl0',
-                  ),
-                  Battery(
-                      charge_char = '',
-                      discharge_char = '',
-                      empty_char = '',
-                      full_char = '',
-                      unknown_char = '',
-                      format = '{char} {percent:2.0%}',
-                      show_short_text = False)
-                  )
+widgets_hekate = (
+    Backlight(
+        fmt = '  {}',
+        backlight_name = 'amdgpu_bl0',
+        ),
+    Battery(
+        charge_char = '',
+        discharge_char = '',
+        empty_char = '',
+        full_char = '',
+        unknown_char = '',
+        format = '{char} {percent:2.0%}',
+        show_short_text = False
+        )
+    )
+
+colour_bg = "#0a0a15"
+colour_text = "#a1a1a1"
+colour_text_dark = "#35353d"
+colour_accent = "#ff00aa"
+colour_accent_dark = "#660044"
+colour_alt = "#00ffed"
+
+# colour #0a0a15
+# colour #202029
+# colour #35353d
+# colour #4b4b51
+# colour #767679
+# colour #ff00aa
+# colour #EC20A8
+# colour #660044
+# colour #ff74d2
+# colour #aaee00
+# colour #A8DF20
+# colour #ff8700
+# colour #EC8C20
+# colour #0077ff
+# colour #207FEC
+# colour #004687
+# colour #0a0047
+# colour #bb00ff
+# colour #B620EC
+# colour #00ffed
+# colour #20ECDE
+# colour #8b8b8d
+# colour #a1a1a1
 
 # KEYS_START
 keys = [
@@ -100,8 +126,8 @@ keys = [
     Key([mod, "shift"], "e", lazy.to_screen(2), desc = "Switch focus to display 2"),
     Key([mod, "shift"], "period", lazy.next_screen(), desc = "Switch focus to next display"),
     Key([mod, "shift"], "comma", lazy.prev_screen(),desc = "Switch focus to previous display"),
-    Key([mod, "control"], "p", lazy.spawn([home_dir + ".local/.bin/display-toggle"]), desc = "Toggle display 2 on/off"),
-    Key([mod, "control"], "o", lazy.spawn([home_dir + ".local/.bin/display-rotate"]), desc = "Rotate display 1"),
+    Key([mod, "control"], "p", lazy.spawn([bin_dir + "display-toggle"]), desc = "Toggle display 2 on/off"),
+    Key([mod, "control"], "o", lazy.spawn([bin_dir + "display-rotate"]), desc = "Rotate display 1"),
 ]
 # KEYS_END
 
@@ -147,8 +173,8 @@ mouse = [
 ### DEFAULT LAYOUT SETTINGS ###
 layout_theme = {"border_width" : 2,
                 "margin" : 8,
-                "border_focus" : "ff00aa",
-                "border_normal" : "666666",
+                "border_focus" : colour_accent,
+                "border_normal" : colour_bg,
                }
 
 ### LAYOUTS ###
@@ -159,24 +185,13 @@ layouts = [
     layout.Stack(num_stacks=2,**layout_theme),
 ]
 
-### COLOUR PALETTE ###
-colors = [["#0d0d0d", "#111111"], # 0 Panel background
-          ["#ffffff", "#ffffff"], # 1 Selected group foreground
-          ["#e60099", "#ff00aa"], # 2 Selected group background
-          ["#666666", "#666666"], # 3 Inactive group foreground
-          ["#4d0033", "#660044"], # 4 Other groups background
-          ["#cccccc", "#cccccc"], # 5 Generic text foreground
-          ["#4d0033", "#330022"], # 6 Coloured widget background
-          ["#00ffff", "#00ffff"], # 7 Coloured widget foreground
-]
-
 ### WIDGET DEFAULTS ###
 widget_defaults = dict(
     font = "JetBrainsMono Nerd Font Medium",
     fontsize = 10,
     padding = 4,
-    background = colors[0],
-    foreground = colors[5]
+    background = colour_bg,
+    foreground = colour_text
 )
 
 ### WIDGETS - DEFINE ###
@@ -188,24 +203,28 @@ def init_widgets_list():
             margin = 3,
             scale = True,
             mouse_callbacks = {'Button3': lambda: 
-                               qtile.cmd_spawn([home_dir + ".local/.bin/random-wallpaper"])}
+                               qtile.cmd_spawn([bin_dir + "random-wallpaper"])}
         ),
         GroupBox(
             disable_drag = True,
             rounded = False,
-            padding_x = 0,
-            highlight_method = "text",
-            urgent_border = colors[2],
-            this_current_screen_border = colors[2],
-            other_current_screen_boder = colors [4],
-            use_mouse_wheel = False
+            use_mouse_wheel = False,
+            padding_x = 4,
+            padding_y = 8,
+            fontsize = 9,
+            highlight_method = "block",
+            active = colour_text,
+            inactive = colour_text_dark,
+            block_highlight_text_color = colour_bg,
+            this_current_screen_border = colour_accent,
+            other_current_screen_boder = colour_alt,
         ),
         Sep(linewidth = 0, padding = 6),
         WindowName(),
         Sep(linewidth = 0, padding = 6),
         Cmus(
             update_interval = 1,
-            play_color = colors[7],
+            play_color = colour_alt,
             max_chars = 50
         ),
         Systray(),
@@ -213,17 +232,12 @@ def init_widgets_list():
             update_interval = 1800,
             distro = "Arch_checkupdates",
             display_format = "  {updates}",
+            colour_have_updates = colour_text,
+            colour_no_updates = colour_text,
             mouse_callbacks = {'Button1': lambda: 
-                               qtile.cmd_spawn([home_dir + ".local/.bin/arch-update-notifier"]),
+                               qtile.cmd_spawn([bin_dir + "arch-update-notifier"]),
                                'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
         ),
-        # GmailChecker(
-        #     username = gmail_creds[0],
-        #     password = gmail_creds[1],
-        #     status_only_unseen = True,
-        #     display_fmt = " {0}",
-        #     mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("firefox -new-tab https://mail.google.com/mail/u/0/")}
-        # ),
         Net(
            interface = net_adapter,
            format = "  {down}  {up}"
@@ -234,21 +248,22 @@ def init_widgets_list():
             mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
         ),
         Sep(linewidth = 0, padding = 6),
-        Sep(linewidth = 0, padding = 4, background = colors[6]),
+        Sep(linewidth = 0, padding = 4, background = colour_accent_dark),
         CurrentScreen(
-            active_color = colors[1],
+            active_color = colour_text,
             active_text = "",
             inactive_text = "",
-            inactive_color = colors[0],
-            fontsize = 12,
-            padding = 6,
-            background = colors[6]
+            inactive_color = colour_bg,
+            background = colour_accent_dark,
+            fontsize = 10,
+            padding_x = 6,
+            padding_y = 2
         ),
         CurrentLayoutIcon(
             scale = 0.4,
             margin = 0,
             custom_icon_paths = [home_dir + ".config/qtile/icons"],
-            background = colors[6]
+            background = colour_accent_dark
         ),
         Sep(linewidth = 0, padding = 6),
         Clock(format = "%a %d %H:%M"),
@@ -276,8 +291,8 @@ widgets_screen2 = init_widgets_screen2()
 
 ### INITIALISE SCREENS ###
 def init_screens():
-    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=25, opacity=0.85)),
-            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=25, opacity=0.85))]
+    return [Screen(top=bar.Bar(widgets=init_widgets_screen1(), size=25, opacity=0.8)),
+            Screen(top=bar.Bar(widgets=init_widgets_screen2(), size=25, opacity=0.8))]
 screens = init_screens()
 
 ### AUTOSTART SCRIPT ###

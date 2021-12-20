@@ -18,9 +18,9 @@
 }
 
 window {
-    font: "FiraCode Nerd Font Medium 9";
+    font: "JetBrainsMono Nerd Font Medium 9";
     fullscreen: 		true;
-    background-color: 	#000000aa;
+    background-color: 	#0a0a15aa;
     children: [ dummy1, hdum, dummy2 ];
 }
 
