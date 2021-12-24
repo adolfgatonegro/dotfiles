@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 readonly ID_PREVIEW="preview"
 
 #AUTO_REMOVE="yes"
