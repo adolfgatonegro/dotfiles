@@ -36,6 +36,7 @@ from libqtile.widget import (Battery, Backlight, CheckUpdates, Clock, Cmus, Curr
 # Variables
 mod = "mod4"
 terminal = "kitty"
+calendar = "gsimplecal"
 host = gethostname()
 home_dir = os.path.expanduser('~/')
 bin_dir = os.path.expanduser('~/.local/bin/')
@@ -264,7 +265,10 @@ def init_widgets_list():
             background = colour_accent_dark
         ),
         Sep(linewidth = 0, padding = 6),
-        Clock(format = "%a %d %H:%M"),
+        Clock(
+            format = "%a %d %H:%M",
+            mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn(calendar)}
+        ),
         Sep(linewidth = 0, padding = 2 ),
     ]
     if host == "hekate":

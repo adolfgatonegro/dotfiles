@@ -1,0 +1,4 @@
+show_calendar = 1
+close_on_unfocus = 1
+mainwindow_xoffset = 45
+mainwindow_yoffset = 30

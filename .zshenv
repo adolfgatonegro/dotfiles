@@ -2,6 +2,10 @@ export HOSTNAME=foxes
 export VDPAU_DRIVER=nvidia
 export QT_QPA_PLATFORMTHEME=qt5ct 
 
+# Setting XDG system directories
+export XDG_DATA_DIRS=/usr/local/share:/usr/share
+export XDG_CONFIG_DIRS=/etc/xdg
+
 # Setting XDG user directories
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
