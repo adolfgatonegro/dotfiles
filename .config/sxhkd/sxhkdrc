@@ -28,7 +28,7 @@ alt + Tab
 super + period
     rofi -i -show emoji			# rofi-emoji
 
-ctrl + alt + x
+super + x
 	rofi -show power-menu -modi power-menu:~/.local/bin/rofi-power-menu	# power menu
 
 
