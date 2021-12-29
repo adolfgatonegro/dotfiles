@@ -2,11 +2,11 @@ import subprocess
 from os.path import expanduser
 from libqtile import hook
 # from screens import screens
-home_dir = expanduser("~/")
+home_dir = expanduser('~/')
 
 @hook.subscribe.startup_once
-def autostart():
-    subprocess.call([home_dir + ".config/qtile/autostart.sh"])
+def start_once():
+    subprocess.call([home_dir + '.config/qtile/scripts/autostart.sh'])
 
 @hook.subscribe.client_new
 def floating_dialogs(window):

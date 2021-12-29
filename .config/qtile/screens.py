@@ -49,7 +49,7 @@ gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
     margin = 6,
     scale = True,
-    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn(expanduser("~/.local/bin/random-wallpaper"))},
+    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
 )
 
 groupbox_defaults = dict(
@@ -117,8 +117,7 @@ main_bar_widgets = [
         display_format = "  {updates}",
         colour_have_updates = colours["white"],
         colour_no_updates = colours["white"],
-        mouse_callbacks = {'Button1': lambda: 
-                           qtile.cmd_spawn([bin_dir + "arch-update-notifier"]),
+        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch-update-notifier"),
                            'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
     ),
     widget.Net(

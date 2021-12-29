@@ -5,7 +5,6 @@ from libqtile.lazy import lazy
 mod="mod4"
 terminal = "kitty"
 home_dir = expanduser("~/")
-bin_dir = expanduser("~/.local/bin/")
 
 # KEYS_START
 keys = [
@@ -37,8 +36,8 @@ keys = [
     Key("M-S-e", lazy.to_screen(2), desc = "Switch focus to display 2"),
     Key("M-S-<period>", lazy.next_screen(), desc = "Switch focus to next display"),
     Key("M-S-<comma>", lazy.prev_screen(),desc = "Switch focus to previous display"),
-    Key("M-C-p", lazy.spawn([bin_dir + "display-toggle"]), desc = "Toggle display 2 on/off"),
-    Key("M-C-o", lazy.spawn([bin_dir + "display-rotate"]), desc = "Rotate display 1"),
+    Key("M-C-p", lazy.spawn("display-toggle"), desc = "Toggle display 2 on/off"),
+    Key("M-C-o", lazy.spawn("display-rotate"), desc = "Rotate display 1"),
 ]
 # KEYS_END
 
