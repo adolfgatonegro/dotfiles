@@ -15,9 +15,12 @@ elif host == "hekate":
     net_adapter = "wlp3s0"
 
 colours = dict(
-    white = "#a1a1a1",
-    light_grey = "#4b4b51",
-    dark_grey = "#35353d",
+    # white = "#a1a1a1",
+    # light_grey = "#4b4b51",
+    # dark_grey = "#35353d",
+    white = "#c1c1d1",
+    light_grey = "#6c6c93",
+    dark_grey = "#363649",
     black = "#101010",
     dark_blue = "#0a0a20",
     hot_pink = "#ff00aa",
