@@ -77,6 +77,9 @@ tasklist_defaults = dict(
     urgent_border = colours["cyan"],
     margin = 5,
     icon_size = 18,
+    txt_floating = "缾 ",
+    txt_maximized = "类 ",
+    txt_minimized = "絛 ",
 )
 currentscreen_defaults = dict(
     active_color = colours["white"],
@@ -84,7 +87,7 @@ currentscreen_defaults = dict(
     inactive_text = "",
     inactive_color = colours["dark_blue"],
     padding_x = 6,
-    padding_y = 2
+    padding_y = 2,
 )
 currentlayouticon_defaults = dict(
     scale = 0.36,
