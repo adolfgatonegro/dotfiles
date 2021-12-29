@@ -129,13 +129,12 @@ main_bar_widgets = [
 ]
 
 if host == "hekate":
-    main_bar_widgets.append(
+    main_bar_widgets += [
     widget.Backlight(
         **widget_defaults,
         fmt = '  {}',
         backlight_name = 'amdgpu_bl0',
-        ))
-    main_bar_widgets.append(
+        ),
     widget.Battery(
         **widget_defaults,
         charge_char = '',
@@ -145,7 +144,8 @@ if host == "hekate":
         unknown_char = '',
         format = '{char} {percent:2.0%}',
         show_short_text = False
-        ))
+        ),
+    ]
 
 main_bar_widgets += [
     widget.PulseVolume(
