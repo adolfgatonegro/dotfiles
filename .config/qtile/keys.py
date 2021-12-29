@@ -7,7 +7,9 @@ terminal = "kitty"
 home_dir = expanduser("~/")
 bin_dir = expanduser("~/.local/bin/")
 
+# KEYS_START
 keys = [
+    # KEYS_GROUP Qtile Basics #
     Key("M-<F1>", lazy.spawn([home_dir + ".config/qtile/scripts/show-keybindings.sh"]), desc = "Show Qtile keybindings"),
     Key("M-<Return>", lazy.spawn(terminal+" -e"), desc = "Launch terminal"),
     Key("M-r", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
@@ -38,6 +40,7 @@ keys = [
     Key("M-C-p", lazy.spawn([bin_dir + "display-toggle"]), desc = "Toggle display 2 on/off"),
     Key("M-C-o", lazy.spawn([bin_dir + "display-rotate"]), desc = "Rotate display 1"),
 ]
+# KEYS_END
 
 mouse = [
     Drag("M-1", lazy.window.set_position_floating(),
@@ -45,6 +48,6 @@ mouse = [
     Drag("M-3", lazy.window.set_size_floating(),
          start=lazy.window.get_size()),
     Click("M-2", lazy.window.bring_to_front()),
-    # Click("Button8", lazy.screen.prev_group(skip_empty = True)),
-    # Click("Button9", lazy.screen.next_group(skip_empty = True)),
+    # Click("8", lazy.screen.prev_group(skip_empty = True)),
+    # Click("9", lazy.screen.next_group(skip_empty = True)),
 ]

@@ -86,6 +86,12 @@ currentscreen_defaults = dict(
     padding_x = 6,
     padding_y = 2
 )
+currentlayouticon_defaults = dict(
+    scale = 0.36,
+    margin_x = 0,
+    custom_icon_paths = [expanduser("~/.config/qtile/icons")],
+)
+
 spacer = widget.Spacer(length = 6)
 
 extension_defaults = widget_defaults.copy()
@@ -148,9 +154,7 @@ main_bar_widgets += [
     spacer,
     widget.CurrentLayoutIcon(
         **widget_defaults,
-        scale = 0.36,
-        margin_x = 0,
-        custom_icon_paths = [expanduser("~/.config/qtile/icons")],
+        **currentlayouticon_defaults,
     ),
     widget.Clock(
         **widget_defaults,
@@ -158,19 +162,6 @@ main_bar_widgets += [
         mouse_callbacks = {'Button3' :lambda: qtile.cmd_spawn(calendar)}
     ),
     spacer,
-]
-
-second_bar_widgets = [
-    widget.GroupBox(
-        **widget_defaults,
-        **groupbox_defaults,
-    ),
-    widget.TaskList(
-        **widget_defaults,
-        **tasklist_defaults,
-    ),
-    widget.CurrentScreen(**widget_defaults, **currentscreen_defaults),
-
 ]
 
 screens = [
@@ -205,13 +196,33 @@ def get_num_monitors():
     else:
         return num_monitors
 
-if get_num_monitors() > 1:
+monitor_num = get_num_monitors()
+
+if monitor_num > 1:
     main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
-    screens.append(
-            Screen(
-                 top=bar.Bar(
-                 second_bar_widgets,
-                 **bar_defaults,
-            ),
+    for monitor in range(monitor_num -1):
+        screens.append(
+                Screen(
+                    top=bar.Bar(
+                        [
+                            widget.GroupBox(
+                                **widget_defaults,
+                                **groupbox_defaults
+                            ),
+                            widget.TaskList(
+                                **widget_defaults,
+                                **tasklist_defaults
+                            ),
+                            widget.CurrentScreen(
+                                **widget_defaults,
+                                **currentscreen_defaults
+                            ),
+                            widget.CurrentLayoutIcon(
+                                **widget_defaults,
+                                **currentlayouticon_defaults
+                            ),
+                            spacer
+                        ],**bar_defaults,
+                ),
+            )
         )
-    )

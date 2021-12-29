@@ -18,7 +18,7 @@
 #
 # Requires Nerd Fonts' Ubuntu Mono to show the key symbols properly.
 
-keybindings=$(sed -n '/KEYS_START/,/KEYS_END/p' ~/.config/qtile/config.py | \
+keybindings=$(sed -n '/KEYS_START/,/KEYS_END/p' ~/.config/qtile/keys.py | \
 	grep -e 'Key(' \
 		-e 'KEYS_GROUP' | \
 	sed -e 's/^\s*[a-zA-Z]\w*(\[[a-z]\w*\]*,*\s*"*/	者  + /' \
