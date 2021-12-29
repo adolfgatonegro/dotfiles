@@ -45,7 +45,7 @@ widget_defaults = dict(
     padding = 4,
 )
 
-gato_logo = dict(
+gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
     margin = 6,
     scale = True,
@@ -100,7 +100,7 @@ spacer = widget.Spacer(length = 6)
 extension_defaults = widget_defaults.copy()
 
 main_bar_widgets = [
-    widget.Image(**gato_logo),
+    gato_logo,
     widget.GroupBox(
         **widget_defaults,
         **groupbox_defaults,
@@ -208,6 +208,7 @@ if monitor_num > 1:
                 Screen(
                     top=bar.Bar(
                         [
+                            gato_logo,
                             widget.GroupBox(
                                 **widget_defaults,
                                 **groupbox_defaults
