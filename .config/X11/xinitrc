@@ -25,6 +25,6 @@ setxkbmap -layout es
 [ -r $XDG_CONFIG_HOME/X11/Xresources ] && xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
 [ -r $XDG_CONFIG_HOME/X11/xprofile ] && $XDG_CONFIG_HOME/X11/xprofile
 
-xset r rate 300 50
+xset r rate 350 60
 
 exec qtile start
