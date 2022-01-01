@@ -67,7 +67,8 @@ nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls').
 " Jump to matching pairs easily in normal mode
 nnoremap <Tab> %
 " Remap Emmet autocompletion to Ctrl+Z
-let g:user_emmet_leader_key='<C-Z>'
+imap ,, <C-y>,
+" let g:user_emmet_leader_key='<C-Z>'
 " SimpylFold config
 let g:SimpylFold_docstring_preview = 1
 " coc shortcuts

@@ -13,7 +13,7 @@ for i in groups:
     ])
 
 groups[0].matches = [Match(wm_class = ["firefox"])]
-groups[1].matches = [Match(wm_class = ["thunar","transmission-qt"])]
+groups[1].matches = [Match(wm_class = ["Thunar","transmission-qt"])]
 # groups[2].matches = [Match(wm_class = [""])]
 groups[3].matches = [Match(wm_class = ["discord","mailspring"])]
 groups[4].matches = [Match(wm_class = ["DesktopEditors"])]

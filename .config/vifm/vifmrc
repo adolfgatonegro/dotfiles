@@ -118,8 +118,7 @@ set statusline="  Hint: %z%= %A %10u:%-7g %15s %20d  "
 
 " :mark mark /full/directory/path [filename]
 
-mark b ~/bin/
-mark h ~/
+mark b ~/.local/bin/
 
 " ------------------------------------------------------------------------------
 
@@ -466,6 +465,8 @@ nnoremap O :!gvim %f<cr>
 
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
+
+nnoremap ºq :wq<cr>
 
 " Interaction with system clipboard
 if has('win')
