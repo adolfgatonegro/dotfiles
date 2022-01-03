@@ -39,7 +39,7 @@ call plug#end()
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set t_Co=256				" Set 256 colour support
 set termguicolors			" Set termguicolors
-set number relativenumber	" Display line numbers
+set number					" Display line numbers
 set nobackup				" Don't make auto-backups
 set confirm					" Ask about saving changes instead of yelling at me
 syntax enable
@@ -52,7 +52,7 @@ let mapleader = "º"
 " Remap jk to ESC 
 inoremap <silent> jj <Esc>
 " Shortcut for faster save and quit
-nnoremap <silent> <leader>w :update<CR>
+nnoremap <silent> <C-w> :update<CR>
 " Saves the file if modified and quit
 nnoremap <silent> <leader>q :x<CR>
 " Quit all opened buffers
@@ -105,12 +105,6 @@ let g:goyo_width = 84
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Dynamic line numbers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-augroup numbertoggle
-	autocmd!
-	autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
-	autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
-augroup END
-
 augroup term_settings
 	autocmd!
     " Do not use number and relative number for terminal inside nvim

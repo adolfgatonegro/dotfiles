@@ -17,22 +17,19 @@ alias fgrep='fgrep --color=auto'
 alias df='df -h'					# human-readable output for df
 
 # Aliases - pacman
-alias ch='checkupdates'				# check for updates
-
-alias pac-s='sudo pacman -S'		# install package from repos
-alias pac-u='sudo pacman -U'		# install package from local file
-alias pac-qi='pacman -Qi'			# display information about local package
-alias pac-si='pacman -Si'			# display info about package in repo
-alias pac-rn='sudo pacman -Rn'		# remove package and dependencies
-alias pac-rns='sudo pacman -Rns'	# remove package and all dependencies
-alias pkgs='paru -Ss'				# search for AUR package
-alias paru-s='paru -S'				# install package from AUR
-alias paru-qi='paru -Qi'			# display information about local AUR package
-alias paru-rn='paru -Rn'			# remove package with paru
-alias paru-si='paru -Si'			# display info about package in AUR
-
-alias update='sudo pacman -Syu'	# sync repos and update
-alias aurupdate='paru -Sua'			# update AUR packages
+alias ch='checkupdates ; pikaur -Qua 2>/dev/null'
+alias pkgi="pikaur -S"
+alias pkgrn="pikaur -Rns"
+alias pkgq="pikaur -Qi"
+alias pkgsi="pikaur -Si"
+alias pkgs="pikaur -Ss"
+alias update="pikaur -Syu"
+# alias pac-s='sudo pacman -S'		# install package from repos
+# alias pac-u='sudo pacman -U'		# install package from local file
+# alias pac-qi='pacman -Qi'			# display information about local package
+# alias pac-si='pacman -Si'			# display info about package in repo
+# alias pac-rn='sudo pacman -Rn'		# remove package and dependencies
+# alias pac-rns='sudo pacman -Rns'	# remove package and all dependencies
 
 alias pac-cleanup='sudo pacman -Rns $(pacman -Qtdq)'	# remove orphans and leftover packages
 alias pac-unlock="sudo rm /var/lib/pacman/db.lck" 		# unlock pacman database 
