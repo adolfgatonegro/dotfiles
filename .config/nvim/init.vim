@@ -1,19 +1,14 @@
-"
 " ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-"⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀init.vim
-"⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀--------
-"⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for Neovim.
-"⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
-"⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Requires Vundle and Vifm.
+"⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
+"⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀
+"⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀init.vim
+"⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀--------
+"⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Configuration file for Neovim.
 "⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
 "⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
-"
-" -----------------------------------------------------------------------------  
 
 set nocompatible			" be iMproved, required
-
 source $XDG_CONFIG_HOME/nvim/xdg.vim
-
 filetype off				" required
 filetype plugin on
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -49,26 +44,22 @@ syntax enable
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Set leader to º
 let mapleader = "º"
-" Remap jk to ESC 
-inoremap <silent> jj <Esc>
-" Shortcut for faster save and quit
+
+inoremap <silent> ññ <Esc>
 nnoremap <silent> <C-w> :update<CR>
-" Saves the file if modified and quit
 nnoremap <silent> <leader>q :x<CR>
-" Quit all opened buffers
 nnoremap <silent> <leader>Q :qa<CR>
 " Toggle Goyo
 nnoremap <silent> <leader>G :Goyo<CR>
 " Yank/put to/from system clipboard
 vnoremap <silent> <C-Y> "+y<CR>
 nnoremap <silent> <C-P> "+p<CR>
-" Toggle search highlight
 nnoremap <silent><expr> <Leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 " Jump to matching pairs easily in normal mode
 nnoremap <Tab> %
-" Remap Emmet autocompletion to Ctrl+Z
+" Emmet autocomplete
 imap ,, <C-y>,
-" let g:user_emmet_leader_key='<C-Z>'
+
 " SimpylFold config
 let g:SimpylFold_docstring_preview = 1
 " coc shortcuts
@@ -117,9 +108,7 @@ augroup END
 " Status line
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set laststatus=2
-let g:lightline = {
-		\ 'colorscheme': 'NeonGatoLightline',
-		\ }
+let g:lightline = {'colorscheme': 'NeonGatoLightline'}
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Python
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""
