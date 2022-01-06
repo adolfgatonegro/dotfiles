@@ -11,7 +11,7 @@ keys = [
     # KEYS_GROUP Qtile Basics #
     Key("M-<F1>", lazy.spawn([home_dir + ".config/qtile/scripts/show-keybindings.sh"]), desc = "Show Qtile keybindings"),
     Key("M-<Return>", lazy.spawn(terminal+" -e"), desc = "Launch terminal"),
-    Key("M-r", lazy.spawn("rofi -show drun"), desc = "Run application launcher"),
+    Key("M-r", lazy.spawn("rofi-run"), desc = "Run application launcher"),
     Key("M-S-c", lazy.window.kill(), desc = "Close the focused window"),
     Key("M-<Escape>", lazy.spawn("xkill"), desc = "Launch xkill"),
     Key("M-C-r", lazy.restart(), desc = "Restart Qtile"),

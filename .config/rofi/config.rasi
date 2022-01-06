@@ -13,7 +13,7 @@ configuration {
     display-drun: "drun:";
 	display-emoji: "emoji:";
 	display-calc: "calc:";
-	modi: "drun,run,window";
+	modi: "drun,run,window,calc,emoji";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 	run-shell-command: "kitty --hold {cmd}";
 }

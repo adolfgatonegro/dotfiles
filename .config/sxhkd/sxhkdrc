@@ -17,22 +17,22 @@ super + ctrl + s
 # Rofi
 
 super + space
-	rofi -i -show drun			# alt rofi shortcut
+	rofi-run		# alt rofi shortcut
 
 super + c
-	rofi -i -show calc			# rofi-calc
+	rofi-run -c		# rofi-calc
 
 alt + Tab
-	rofi -i -show window		# window mode
+	rofi-run -w		# window mode
 
 super + period
-    rofi -i -show emoji			# rofi-emoji
+    rofi-run -e		# rofi-emoji
 
 super + x
-	rofi -show power-menu -modi power-menu:rofi-power-menu	# power menu
+	rofi-run -l		# power menu
 
 super + v
-	rofi-virtualbox
+	rofi-run -v		# virtualbox control
 
 # Programs
 
