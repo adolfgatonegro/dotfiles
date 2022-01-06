@@ -11,7 +11,8 @@ layout_defaults = dict(
 )
 
 floating_layout_defaults = layout_defaults.copy()
-floating_layout_defaults["border_width"] = 0
+floating_layout_defaults["border_focus"] = colours["cyan"]
+floating_layout_defaults["border_width"] = 1
 
 layouts = [
     layout.MonadTall(**layout_defaults),
