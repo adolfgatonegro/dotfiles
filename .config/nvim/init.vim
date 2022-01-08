@@ -176,7 +176,7 @@ set background=dark
 colorscheme NeonGato
 
 " GUI settings for Neovim-Qt
-set guifont=FiraCode\ Nerd\ Font\ Mono:h9 " Set font for GUI
+set guifont=JetBrainsMono\ Nerd\ Font\ Mono:h9 " Set font for GUI
 set guioptions-=m  "remove menu bar
 set guioptions-=T  "remove toolbar
 set guioptions-=r  "remove right-hand scroll bar

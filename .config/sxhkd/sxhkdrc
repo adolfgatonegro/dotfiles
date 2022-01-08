@@ -34,6 +34,9 @@ super + x
 super + v
 	rofi-run -v		# virtualbox control
 
+super + F2
+	rofi-conf
+
 # Programs
 
 super + b
