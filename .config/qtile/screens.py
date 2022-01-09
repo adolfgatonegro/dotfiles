@@ -8,13 +8,11 @@ host = gethostname()
 terminal = "kitty"
 calendar = "gsimplecal"
 
-net_adapter = ""
-if host == "foxes":
-    net_adapter = "eno1"
-elif host == "hekate":
-    net_adapter = "wlp3s0"
-elif host == "lucille":
-    net_adapter = ""
+net_adapter = {
+    "foxes" : "eno1",
+    "hekate" : "wlp3s0",
+    "lucille" : ""
+}
 
 colours = dict(
     # white = "#a1a1a1",
@@ -128,7 +126,7 @@ main_bar_widgets = [
     spacer,
     widget.Net(
         **widget_defaults,
-        interface = net_adapter,
+        interface = net_adapter[host],
         prefix = "M",
         # format = "  {down}  {up}",
         format = "{down}",
