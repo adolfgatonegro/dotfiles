@@ -128,8 +128,8 @@ main_bar_widgets = [
         **widget_defaults,
         interface = net_adapter[host],
         prefix = "M",
-        # format = "  {down}  {up}",
-        format = "{down}",
+        format = "  {down}  {up}",
+        # format = "{down}",
         mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('nm-connection-editor')}
     )
 ]
