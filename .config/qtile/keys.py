@@ -4,12 +4,11 @@ from libqtile.lazy import lazy
 
 mod="mod4"
 terminal = "kitty"
-home_dir = expanduser("~/")
 
 # KEYS_START
 keys = [
     # KEYS_GROUP Qtile Basics #
-    Key("M-<F1>", lazy.spawn([home_dir + ".config/qtile/scripts/show-keybindings.sh"]), desc = "Show Qtile keybindings"),
+    Key("M-<F1>", lazy.spawn(expanduser("~/.config/qtile/scripts/show-keybindings.sh")), desc = "Show Qtile keybindings"),
     Key("M-<Return>", lazy.spawn(terminal), desc = "Launch terminal"),
     Key("M-r", lazy.spawn("rofi-run"), desc = "Run application launcher"),
     Key("M-S-c", lazy.window.kill(), desc = "Close the focused window"),

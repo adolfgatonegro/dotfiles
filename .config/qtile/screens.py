@@ -13,6 +13,8 @@ if host == "foxes":
     net_adapter = "eno1"
 elif host == "hekate":
     net_adapter = "wlp3s0"
+elif host == "lucille":
+    net_adapter = ""
 
 colours = dict(
     # white = "#a1a1a1",
@@ -36,7 +38,7 @@ colours = dict(
 bar_defaults = dict(
     size = 30,
     background = colours["dark_blue"],
-    margin = [6,6,0,6],
+    # margin = [6,6,0,6],
     opacity = 0.8,
 )
 
@@ -52,7 +54,7 @@ gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
     margin = 6,
     scale = True,
-    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
+    # mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
 )
 
 groupbox_defaults = dict(
@@ -89,16 +91,17 @@ currentscreen_defaults = dict(
     active_text = "",
     inactive_text = "",
     inactive_color = colours["dark_blue"],
-    padding_x = 6,
+    padding_x = 0,
     padding_y = 2,
 )
 currentlayouticon_defaults = dict(
-    scale = 0.36,
-    margin_x = 0,
+    scale = 0.35,
+    margin = 0,
+    padding = 0,
     custom_icon_paths = [expanduser("~/.config/qtile/icons")],
 )
 
-spacer = widget.Spacer(length = 6)
+spacer = widget.Spacer(length =6)
 
 extension_defaults = widget_defaults.copy()
 
@@ -117,16 +120,19 @@ main_bar_widgets = [
         **widget_defaults,
         update_interval = 1800,
         distro = "Arch_checkupdates",
-        display_format = "  {updates}",
+        display_format = " {updates}",
         colour_have_updates = colours["white"],
         colour_no_updates = colours["white"],
-        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch-update-notifier"),
-                           'Button3': lambda: qtile.cmd_spawn(terminal + ' -e sudo pacman -Syu')}
+        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch-update-notifier")}
     ),
+    spacer,
     widget.Net(
         **widget_defaults,
         interface = net_adapter,
-        format = "  {down}  {up}",
+        prefix = "M",
+        # format = "  {down}  {up}",
+        format = "{down}",
+        mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('nm-connection-editor')}
     )
 ]
 
@@ -152,13 +158,20 @@ if host == "hekate":
 main_bar_widgets += [
     widget.PulseVolume(
         **widget_defaults,
-        fmt = "  {}",
+        fmt = " {}",
         update_interval = 0.1,
         mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
     ),
+    widget.Wallpaper(
+        **widget_defaults,
+        directory = expanduser("~/pictures/wallpapers/"),
+        option = "fill",
+        random_selection = True,
+        wallpaper_command = ["feh", "--bg-fill"],
+        label = "",
+    ),
     spacer,
     widget.CurrentLayoutIcon(
-        **widget_defaults,
         **currentlayouticon_defaults,
     ),
     widget.Clock(
@@ -224,7 +237,6 @@ if monitor_num > 1:
                                 **currentscreen_defaults
                             ),
                             widget.CurrentLayoutIcon(
-                                **widget_defaults,
                                 **currentlayouticon_defaults
                             ),
                             spacer

@@ -24,7 +24,7 @@ export SAVEHIST=$HISTSIZE # same value
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh_history # keep the history file inside .config/zsh
 export HISTTIMEFORMAT="[%F %T]" # add timestamp to history
 
-export PATH=$HOME/.local/bin:$HOME/blog/bin:$PATH
+# export PATH=$HOME/.local/bin:$HOME/blog/bin:$PATH
 
 setopt INC_APPEND_HISTORY # add stuff to history incrementally instead of waiting for exit
 setopt EXTENDED_HISTORY # save command, timestamp, and duration of execution

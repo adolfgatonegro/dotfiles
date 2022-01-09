@@ -262,7 +262,7 @@ filextype {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         "\ gpicview %c,
         "\ {View in shotwell}
         "\ shotwell,
-		 \ feh,
+		 \ feh --start-at %f,
 fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         \ vifmimg draw %px %py %pw %ph %c
 		\ %pc

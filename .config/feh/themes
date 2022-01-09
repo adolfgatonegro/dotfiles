@@ -1,4 +1,5 @@
 feh -B black \
 --geometry 1000x500 \
+--no-fehbg \
 --fullscreen \
 --scale-down
