@@ -78,13 +78,13 @@ ctrl + apostrophe
 # Multimedia keys
 
 XF86AudioRaiseVolume
-    volume-ctrl -i 2		# volume up
+    volume-ctl -i 2		# volume up
 
 XF86AudioLowerVolume
-	volume-ctrl -d 2		# volume down
+	volume-ctl -d 2		# volume down
 
 XF86AudioMute
-    volume-ctrl -t		# volume mute
+    volume-ctl -t		# volume mute
 
 XF86AudioPlay
     playerctl play-pause		# play/pause
@@ -102,10 +102,10 @@ XF86AudioStop
 # Display backlight
 
 XF86MonBrightnessUp
-    xbacklight -inc 10			# brightness up
+    backlight-ctl -inc 5%			# brightness up
 
 XF86MonBrightnessDown
-    xbacklight -dec 10			# brightness down
+    backlight-ctl -dec 5%			# brightness down
 
 
 # Screenshot

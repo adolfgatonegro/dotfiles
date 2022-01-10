@@ -52,7 +52,7 @@ gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
     margin = 6,
     scale = True,
-    # mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
+    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
 )
 
 groupbox_defaults = dict(
@@ -129,8 +129,6 @@ main_bar_widgets = [
         interface = net_adapter[host],
         prefix = "M",
         format = "  {down}  {up}",
-        # format = "{down}",
-        mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('nm-connection-editor')}
     )
 ]
 
@@ -159,14 +157,6 @@ main_bar_widgets += [
         fmt = " {}",
         update_interval = 0.1,
         mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
-    ),
-    widget.Wallpaper(
-        **widget_defaults,
-        directory = expanduser("~/pictures/wallpapers/"),
-        option = "fill",
-        random_selection = True,
-        wallpaper_command = ["feh", "--bg-fill"],
-        label = "",
     ),
     spacer,
     widget.CurrentLayoutIcon(

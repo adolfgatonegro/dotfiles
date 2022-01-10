@@ -87,8 +87,13 @@
     foreground = "#a1a1a1"
     frame_color = "#ff00aa"
     timeout = 0
-[volume-ctrl]
-	appname = "volume-ctrl"
+[volume-ctl]
+	appname = "volume-ctl"
+	history_ignore = yes
+	timeout = 2
+	highlight = "#ff00aa"
+[brightness-ctl]
+	appname = "brightness-ctl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"
