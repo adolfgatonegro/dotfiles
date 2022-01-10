@@ -26,7 +26,7 @@ export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.vim" | so $MYVIMRC'
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
