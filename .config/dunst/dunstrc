@@ -92,8 +92,8 @@
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"
-[brightness-ctl]
-	appname = "brightness-ctl"
+[backlight-ctl]
+	appname = "backlight-ctl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"

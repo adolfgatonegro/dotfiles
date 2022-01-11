@@ -10,11 +10,10 @@
 
 lxsession &
 picom -b --experimental-backends &
-numlockx on &
 dunst &
-sxhkd -c ~/.config/sxhkd/sxhkdrc &
+sxhkd -c &
 redshift &
-canberra-gtk-play -f ~/documents/startup.ogg &
+nm-applet &
 echo -n --head=0,--head=1 | \
 	xargs -n 1 -d , \
 	nitrogen --random --set-zoom-fill --save &
@@ -23,7 +22,8 @@ echo -n --head=0,--head=1 | \
 case $HOSTNAME in
 	foxes)
 		solaar -w hide &
-		# mailspring -b &
+		numlockx on &
+		canberra-gtk-play -f ~/documents/startup.ogg &
 		;;
 esac
 

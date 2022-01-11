@@ -11,7 +11,7 @@ calendar = "gsimplecal"
 net_adapter = {
     "foxes" : "eno1",
     "hekate" : "wlp3s0",
-    "lucille" : ""
+    "lucille" : "wlp2s0b1"
 }
 
 colours = dict(
@@ -132,13 +132,13 @@ main_bar_widgets = [
     )
 ]
 
-if host == "hekate":
+if host == "hekate" or host == "lucille":
     main_bar_widgets += [
-    widget.Backlight(
-        **widget_defaults,
-        fmt = '  {}',
-        backlight_name = 'amdgpu_bl0',
-        ),
+    # widget.Backlight(
+    #     **widget_defaults,
+    #     fmt = '  {}',
+    #     backlight_name = 'amdgpu_bl0',
+    #     ),
     widget.Battery(
         **widget_defaults,
         charge_char = '',
