@@ -89,7 +89,11 @@ ex ()
 }
 
 cdl() {                 
-        cd "$@" && la; 
+	cd "$@" && la; 
+}
+
+zshaddhistory() {
+	whence ${${(z)1}[1]} >| /dev/null || return 1
 }
 
 ufetch
