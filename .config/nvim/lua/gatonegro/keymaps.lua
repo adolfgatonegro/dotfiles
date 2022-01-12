@@ -77,3 +77,9 @@ keymap("n", "<leader>sp", ":SplitVifm<CR>", opts)
 keymap("n", "<leader>dv", ":DiffVifm<CR>", opts)
 keymap("n", "<leader>tv", ":TabVifm<CR>", opts)
 
+-- Execute Python script in terminal --
+vim.cmd [[
+	augroup do_python_setup
+		autocmd! filetype python nnoremap <F5> :w<CR>:sp<CR>:term python %<CR>
+	augroup end
+]]

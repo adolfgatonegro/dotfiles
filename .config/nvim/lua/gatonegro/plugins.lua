@@ -41,13 +41,14 @@ return packer.startup(function(use)
 	use "hrsh7th/cmp-cmdline"
 	use "saadparwaiz1/cmp_luasnip"
 	use "hrsh7th/cmp-nvim-lsp"
-	
+
 	use "L3MON4D3/LuaSnip"
 	use "rafamadriz/friendly-snippets"
 
 	use "neovim/nvim-lspconfig"
 	use "williamboman/nvim-lsp-installer"
 
+	use "jiangmiao/auto-pairs"
 	use "tpope/vim-commentary"
 	use "ap/vim-css-color"
 	use "vifm/vifm.vim"

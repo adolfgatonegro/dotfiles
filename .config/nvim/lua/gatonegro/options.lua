@@ -67,3 +67,10 @@ vim.cmd [[
 			\ | endif
 	augroup end
 ]]
+
+vim.cmd [[
+	augroup text_file_width
+		autocmd!
+		autocmd BufNewFile, BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=80
+	augroup end
+]]
