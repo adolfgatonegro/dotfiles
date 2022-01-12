@@ -113,6 +113,12 @@ main_bar_widgets = [
         **widget_defaults,
         **tasklist_defaults,
     ),
+    widget.Cmus(
+        **widget_defaults,
+        update_interval = 1,
+        play_color = colours["cyan"],
+        max_chars = 50,
+    ),
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
