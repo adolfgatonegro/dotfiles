@@ -3,6 +3,7 @@ from socket import gethostname
 from libqtile import qtile, widget, bar
 from libqtile.config import Screen
 from Xlib import display as xdisplay
+from pipevolume import PipeVolume
 
 host = gethostname()
 terminal = "kitty"
@@ -158,6 +159,12 @@ if host == "hekate" or host == "lucille":
     ]
 
 main_bar_widgets += [
+    PipeVolume(
+        **widget_defaults,
+        background = colours["burgundy"],
+        get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
+        # alsa_output.pci-0000_00_1b.0.analog-stereo
+    ),
     widget.PulseVolume(
         **widget_defaults,
         fmt = " {}",
