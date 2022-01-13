@@ -3,7 +3,7 @@ from socket import gethostname
 from libqtile import qtile, widget, bar
 from libqtile.config import Screen
 from Xlib import display as xdisplay
-from pipevolume import PipeVolume
+from widgets.volume import Volume
 
 host = gethostname()
 terminal = "kitty"
@@ -159,18 +159,21 @@ if host == "hekate" or host == "lucille":
     ]
 
 main_bar_widgets += [
-    PipeVolume(
+    Volume(
         **widget_defaults,
-        background = colours["burgundy"],
         get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
-        # alsa_output.pci-0000_00_1b.0.analog-stereo
+        check_mute_command = "pamixer --get-mute",
+        check_mute_string = "true",
+        volume_up_command = "pamixer -i 2",
+        volume_down_command = "pamixer -d 2",
+        mute_command = "pamixer -t",
     ),
-    widget.PulseVolume(
-        **widget_defaults,
-        fmt = " {}",
-        update_interval = 0.1,
-        mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
-    ),
+    # widget.PulseVolume(
+    #     **widget_defaults,
+    #     fmt = " {}",
+    #     update_interval = 0.1,
+    #     mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
+    # ),
     spacer,
     widget.CurrentLayoutIcon(
         **currentlayouticon_defaults,

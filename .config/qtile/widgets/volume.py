@@ -30,23 +30,21 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import re           # regular expression operations
-import subprocess   # subprocess management
+import re 
+import subprocess
 
 from libqtile import bar
 from libqtile.widget import base
 
-# list of strings, defines which symbols from the module will be exported
-# when `from <module> import *` is used.
 __all__ = [
-    "PipeVolume",
+    "Volume",
 ]
 
-re_vol = re.compile(r"(\d?\d?\d?)%") # compiles a regular expresion, returns a Pattern object
-# In this case, it looks for the pattern [ddd%], where `d` is a digit. Parses the output of the amixer sget Master
-# command and returns up to three digits, e.g., 100.
+# dropped the brackets from the pattern because not every program returns the volume inside brackets
+# and searching for ddd% still works with amixer.
+re_vol = re.compile(r"(\d?\d?\d?)%")
 
-class PipeVolume(base._TextBox):
+class Volume(base._TextBox):
     """Widget that display and change volume
 
     By default, this widget uses ``amixer`` to get and set the volume so users
@@ -72,20 +70,22 @@ class PipeVolume(base._TextBox):
         ),
         ("mute_command", None, "Mute command"),
         ("volume_app", None, "App to control volume"),
-        ("volume_up_command", None, "PipeVolume up command"),
-        ("volume_down_command", None, "PipeVolume down command"),
+        ("volume_up_command", None, "Volume up command"),
+        ("volume_down_command", None, "Volume down command"),
         ("get_volume_command", None, "Command to get the current volume"),
+        ("check_mute_command", None, "Command to check mute status"),
+        ("check_mute_string", "[off]", "String to look for when checking mute"),
         (
             "step",
             2,
-            "PipeVolume change for up an down commands in percentage."
+            "Volume change for up an down commands in percentage."
             "Only used if ``volume_up_command`` and ``volume_down_command`` are not set.",
         ),
     ]
 
     def __init__(self, **config):
         base._TextBox.__init__(self, "0", width=bar.CALCULATED, **config)
-        self.add_defaults(PipeVolume.defaults)
+        self.add_defaults(Volume.defaults)
         if self.theme_path:
             self.length_type = bar.STATIC
             self.length = 0
@@ -178,25 +178,40 @@ class PipeVolume(base._TextBox):
                 self.length = img.width + self.actual_padding * 2
             self.surfaces[name] = img.pattern
 
-    def get_volume(self): # func to get the current volume
+    def get_volume(self):
         try:
-            get_volume_cmd = self.create_amixer_command("sget", self.channel) # creates "amixer sget CHANNEL", defaults to Master
+            get_volume_cmd = self.create_amixer_command("sget", self.channel)
 
-            if self.get_volume_command: # If get_volume_command option is not None, set get_volume_cmd to it 
+            if self.get_volume_command:
                 get_volume_cmd = self.get_volume_command
 
-            mixer_out = subprocess.getoutput(get_volume_cmd) # is a str which contains the output of get_volume_cmd
-        except subprocess.CalledProcessError: # if the command fails, raise exception and return -1
+            # mixer_out = self.call_process(get_volume_cmd) works with amixer, but with pactl it caused
+            # "No such file or directory" errors. subprocess.getoutput() provides the proper command output
+            # for amixer *and* for pactl. Also works with pamixer, but using pamixer requires more changes
+            # since it just spits out digits, and re_vol() would have to be omitted for pamixer only.
+            mixer_out = subprocess.getoutput(get_volume_cmd)
+        except subprocess.CalledProcessError:
+            return -1
+        
+        # amixer includes mute status in the default sget output, so it can be checked directly from mixer_out,
+        # but the check will fail with pactl and pamixer, since those have dedicated get-mute commands.
+        # To avoid that, we perform the check on mixer_out *by default*, via check_mute, but if a custom
+        # check_mute_command exists we parse the output of that instead.
+        check_mute = mixer_out
+        if self.check_mute_command:
+            check_mute = subprocess.getoutput(self.check_mute_command)
+        
+        # amixer returns [off] for muted devices, but the hardcoded check breaks with any program that returns
+        # something different. Instead, we have check_mute_string, which defaults to amixer's "[off]", or can be 
+        # set to something else by the user. This means it can work with pactl's "Muted: yes" or pamixer's "true"
+        if self.check_mute_string in check_mute:
             return -1
 
-        if "[off]" in mixer_out: # `amixer sget Master` returns [on] or [off] together with the level
-            return -1            # if str "[off]" is found, return -1 and volume is treated as muted
-
-        volgroups = re_vol.search(mixer_out) # parse amixer output and look for [ddd%], store Match obj in var
-        if volgroups: # if RE var is not empty
-            return int(volgroups.groups()[0]) # return first item of volgroups tuple (a string), as an int 
+        volgroups = re_vol.search(mixer_out)
+        if volgroups:
+            return int(volgroups.groups()[0])
         else:
-            # this shouldn't happen, because there should ALWAYS be a volume returned, even if it's 0
+            # this shouldn't happen
             return -1
 
     def draw(self):
