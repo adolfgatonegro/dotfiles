@@ -161,6 +161,7 @@ if host == "hekate" or host == "lucille":
 main_bar_widgets += [
     Volume(
         **widget_defaults,
+        fmt = " {}",
         get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
         check_mute_command = "pamixer --get-mute",
         check_mute_string = "true",
@@ -168,12 +169,6 @@ main_bar_widgets += [
         volume_down_command = "pamixer -d 2",
         mute_command = "pamixer -t",
     ),
-    # widget.PulseVolume(
-    #     **widget_defaults,
-    #     fmt = " {}",
-    #     update_interval = 0.1,
-    #     mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn('easyeffects')}
-    # ),
     spacer,
     widget.CurrentLayoutIcon(
         **currentlayouticon_defaults,
