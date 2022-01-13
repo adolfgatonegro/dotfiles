@@ -162,7 +162,17 @@ main_bar_widgets += [
     Volume(
         **widget_defaults,
         fmt = " {}",
-        get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
+
+        # Control volume with pactl
+        # get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
+        # check_mute_command = "pactl get-sink-mute @DEFAULT_SINK@",
+        # check_mute_string = "yes",
+        # volume_up_command = "pactl set-sink-volume @DEFAULT_SINK@ +2%",
+        # volume_down_command = "pactl set-sink-volume @DEFAULT_SINK@ -2%",
+        # mute_command = "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+
+        # Control volume with pamixer
+        get_volume_command = "pamixer --get-volume",
         check_mute_command = "pamixer --get-mute",
         check_mute_string = "true",
         volume_up_command = "pamixer -i 2",

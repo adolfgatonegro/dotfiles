@@ -187,8 +187,7 @@ class Volume(base._TextBox):
 
             # mixer_out = self.call_process(get_volume_cmd) works with amixer, but with pactl it caused
             # "No such file or directory" errors. subprocess.getoutput() provides the proper command output
-            # for amixer *and* for pactl. Also works with pamixer, but using pamixer requires more changes
-            # since it just spits out digits, and re_vol() would have to be omitted for pamixer only.
+            # for amixer, pactl, and pamixer. Parsing pamixer volume output is handled below.
             mixer_out = subprocess.getoutput(get_volume_cmd)
         except subprocess.CalledProcessError:
             return -1
@@ -210,6 +209,10 @@ class Volume(base._TextBox):
         volgroups = re_vol.search(mixer_out)
         if volgroups:
             return int(volgroups.groups()[0])
+        # if get_volume_command is set to use pamixer, return the raw output, which is just numbers and doesn't need
+        # to be parsed with the regex
+        elif "pamixer" in self.get_volume_command:
+            return mixer_out
         else:
             # this shouldn't happen
             return -1
