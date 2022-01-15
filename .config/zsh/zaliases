@@ -17,7 +17,7 @@ alias df="df -h"
 # Aliases - pacman
 alias ch='checkupdates ; pikaur -Qua 2>/dev/null'
 alias pkgi="pikaur -S"
-alias pkgrn="pikaur -Rns"
+alias pkgr="pikaur -Rns"
 alias pkgq="pikaur -Qi"
 alias pkgsi="pikaur -Si"
 alias pkgs="pikaur -Ss"
