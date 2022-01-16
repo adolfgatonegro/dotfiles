@@ -121,6 +121,7 @@ main_bar_widgets = [
         max_chars = 50,
     ),
     widget.Systray(**widget_defaults),
+    spacer,
     widget.CheckUpdates(
         **widget_defaults,
         update_interval = 1800,
@@ -130,12 +131,11 @@ main_bar_widgets = [
         colour_no_updates = colours["white"],
         mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch-update-notifier")}
     ),
-    spacer,
     widget.Net(
         **widget_defaults,
         interface = net_adapter[host],
         prefix = "M",
-        format = "  {down}  {up}",
+        format = " {down}  {up}",
     )
 ]
 
