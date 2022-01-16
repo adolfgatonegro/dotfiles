@@ -13,7 +13,7 @@
 # Basic configuration
 [[ $- != *i* ]] && return		# If not running interactively, don't do anything
 
-export TERM="xterm-256color" # proper terminal colours
+export TERM="xterm-kitty" # proper terminal colours
 export EDITOR='nvim' # neovim as editor
 export VISUAL='nvim' # neovim-qt as visual editor
 export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager

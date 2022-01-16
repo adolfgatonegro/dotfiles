@@ -17,12 +17,9 @@ then
     export PATH="${PATH}:$HOME/.local/bin"
 fi
 
-# If using a display manager, comment this out and tell the DM to stop polluting $HOME.
-# Not doing this will likely break things since some programs won't be able to talk to the display.
-# For LightDM, set user-authority-in-system-dir=true in /etc/lightdm/lightdm.conf
 export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
-
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
