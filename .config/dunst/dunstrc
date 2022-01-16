@@ -2,36 +2,36 @@
     monitor = 0
     follow = mouse
 
-	width = 350
+	width = 300
     height = 300
     origin = top-right
-    offset = 6x42
+    offset = 6x36
     scale = 0
     
 	notification_limit = 0
     
 	progress_bar = true
-    progress_bar_height = 5
+    progress_bar_height = 8
     progress_bar_frame_width = 0
     progress_bar_min_width = 175
-    progress_bar_max_width = 350
+    progress_bar_max_width = 300
     
 	indicate_hidden = yes
     
-	transparency = 30
+	transparency = 50
     
-	separator_height = 2
-    padding = 8
+	separator_height = 5
+    padding = 10
     horizontal_padding = 20
     text_icon_padding = 20
-    frame_width = 1
+    frame_width = 0
     frame_color = "#1a1a30"
     separator_color = frame
     
 	sort = yes
 
     font = JetBrainsMono Nerd Font Medium 8
-    line_height = 9
+	line_height = 4
     markup = full
 
     format = "<b>%s</b>\n%b"
@@ -45,9 +45,9 @@
     show_indicators = yes
 
     icon_position = left
-    min_icon_size = 0
+    min_icon_size = 32
     max_icon_size = 32
-    icon_path = /usr/share/icons/Adwaita/16x16/status/:/usr/share/icons/Adwaita/16x16/devices/:/usr/share/icons/Adwaita/16x16/legacy/
+    icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/:/usr/share/icons/Adwaita/32x32/legacy/
 
     sticky_history = yes
     history_length = 20
@@ -73,13 +73,13 @@
     per_monitor_dpi = false
 
 [urgency_low]
-    background = "#0a0a20"
-    foreground = "#4b4b51"
+    background = "#363649"
+    foreground = "#f0f0f4"
     timeout = 5
 
 [urgency_normal]
-    background = "#0a0a20"
-    foreground = "#a1a1a1"
+    background = "#363649"
+    foreground = "#f0f0f4"
     timeout = 10
 
 [urgency_critical]
@@ -87,15 +87,17 @@
     foreground = "#a1a1a1"
     frame_color = "#ff00aa"
     timeout = 0
+
 [volume-ctl]
 	appname = "volume-ctl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"
+
 [backlight-ctl]
 	appname = "backlight-ctl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"
-#
+
 # vim: ft=cfg
