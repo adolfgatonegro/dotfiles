@@ -31,9 +31,6 @@ super + period
 super + x
 	rofi-run -l		# power menu
 
-super + v
-	rofi-run -v		# virtualbox control
-
 super + F2
 	rofi-conf
 

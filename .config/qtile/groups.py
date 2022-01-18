@@ -27,5 +27,5 @@ groups[4].matches = [Match(wm_class = ["DesktopEditors", "libreoffice", "libreof
 groups[5].matches = [Match(wm_class = ["Steam"])]
 groups[6].matches = [Match(wm_class = ["gimp-2.10","org.inkscape.Inkscape"])]
 # groups[7].matches = [Match(wm_class = [""])]
-groups[8].matches = [Match(wm_class = ["VirtualBox Manager","VirtualBox Machine"])]
+groups[8].matches = [Match(wm_class = ["virt-manager","VirtualBox Manager","VirtualBox Machine"])]
 
