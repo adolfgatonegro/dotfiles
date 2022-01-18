@@ -102,10 +102,10 @@ XF86AudioStop
 # Display backlight
 
 XF86MonBrightnessUp
-    backlight-ctl -inc 5%			# brightness up
+    backlight-ctl -inc 5			# brightness up
 
 XF86MonBrightnessDown
-    backlight-ctl -dec 5%			# brightness down
+    backlight-ctl -dec 5			# brightness down
 
 
 # Screenshot
