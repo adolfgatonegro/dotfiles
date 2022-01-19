@@ -54,7 +54,6 @@ source $ZDOTDIR/zaliases
 # Source plugins
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-you-should-use/you-should-use.plugin.zsh
 source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
 
 # zsh-vi-mode - configure cursor
