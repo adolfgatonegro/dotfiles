@@ -58,7 +58,7 @@ super + d
 	discord						# discord
 
 super + e
-	nvim-qt						# gui text editor
+	kitty -e nvim						# gui text editor
 
 
 # System
