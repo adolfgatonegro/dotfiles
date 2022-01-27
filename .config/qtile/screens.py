@@ -121,7 +121,6 @@ main_bar_widgets = [
         max_chars = 50,
     ),
     widget.Systray(**widget_defaults),
-    spacer,
     widget.CheckUpdates(
         **widget_defaults,
         update_interval = 1800,

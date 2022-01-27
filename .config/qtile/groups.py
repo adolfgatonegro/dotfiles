@@ -20,7 +20,7 @@ keys.extend([
     ])
 
 groups[0].matches = [Match(wm_class = ["firefox"])]
-groups[1].matches = [Match(wm_class = ["Thunar","transmission-qt"])]
+groups[1].matches = [Match(wm_class = ["Thunar","transmission-qt","transmission-gtk"])]
 # groups[2].matches = [Match(wm_class = [""])]
 groups[3].matches = [Match(wm_class = ["discord","mailspring"])]
 groups[4].matches = [Match(wm_class = ["DesktopEditors", "libreoffice", "libreoffice-writer"], title = ["LibreOffice"])]
