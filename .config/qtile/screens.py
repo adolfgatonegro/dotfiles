@@ -100,7 +100,7 @@ currentlayouticon_defaults = dict(
     custom_icon_paths = [expanduser("~/.config/qtile/icons")],
 )
 
-spacer = widget.Spacer(length =6)
+# spacer = widget.Spacer(length =6)
 
 extension_defaults = widget_defaults.copy()
 
@@ -178,7 +178,6 @@ main_bar_widgets += [
         volume_down_command = "pamixer -d 2",
         mute_command = "pamixer -t",
     ),
-    spacer,
     widget.CurrentLayoutIcon(
         **currentlayouticon_defaults,
     ),
@@ -187,7 +186,6 @@ main_bar_widgets += [
         format = "%a %d %H:%M",
         mouse_callbacks = {'Button3' :lambda: qtile.cmd_spawn(calendar)}
     ),
-    spacer,
 ]
 
 screens = [
@@ -247,7 +245,6 @@ if monitor_num > 1:
                             widget.CurrentLayoutIcon(
                                 **currentlayouticon_defaults
                             ),
-                            spacer
                         ],**bar_defaults,
                 ),
             )
