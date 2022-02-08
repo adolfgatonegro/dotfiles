@@ -23,7 +23,7 @@ alias pkgsi="pikaur -Si"
 alias pkgs="pikaur -Ss"
 alias update="pikaur -Syu"
 
-alias pac-cleanup="sudo pacman -Rns $(pacman -Qtdq)"
+alias pac-clean="sudo pacman -Rns $(pacman -Qtdq)"
 alias pac-unlock="sudo rm /var/lib/pacman/db.lck"
 alias pac-log="cat /var/log/pacman.log"
 alias mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"

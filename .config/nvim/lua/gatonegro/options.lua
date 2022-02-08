@@ -74,3 +74,4 @@ vim.cmd [[
 		autocmd BufNewFile, BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=80
 	augroup end
 ]]
+

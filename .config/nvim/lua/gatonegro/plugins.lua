@@ -66,6 +66,7 @@ return packer.startup(function(use)
 	use "ap/vim-css-color"
 	use "vifm/vifm.vim"
 	use {"itchyny/lightline.vim", config = function() vim.cmd[[let g:lightline = {'colorscheme': 'GatoNeon'}]] end}
+	use {"lervag/vimtex", config = function() vim.cmd[[let g:vimtex_view_method = 'zathura']] end}
 	use {
 	    "vimwiki/vimwiki",
 	    config = function()
@@ -79,7 +80,7 @@ return packer.startup(function(use)
 	        }
 	    end
 	}
-	
+
 
   -- Sync Packer after all plugins are loaded
   if PACKER_BOOTSTRAP then
