@@ -35,7 +35,7 @@ colours = dict(
 )
 
 bar_defaults = dict(
-    size = 30,
+    size = 23,
     background = colours["dark_blue"],
     # margin = [6,6,0,6],
     opacity = 0.8,
@@ -51,7 +51,7 @@ widget_defaults = dict(
 
 gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
-    margin = 6,
+    margin = 3,
     scale = True,
     mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
 )
@@ -63,8 +63,10 @@ groupbox_defaults = dict(
     borderwidth = 3,
     # highlight_color = ['#000000', '#282828'],
     highlight_method = "block",
+    hide_unused = True,
     inactive = colours["dark_grey"],
-    margin = 4,
+    margin_y = 4,
+    margin_x = 2,
     other_screen_border = colours["burgundy"],
     other_current_screen_border = colours["dark_grey"],
     active = colours["white"],
@@ -77,10 +79,13 @@ groupbox_defaults = dict(
 )
 tasklist_defaults = dict(
     highlight_method = "block",
-    border = colours["dark_grey"],
+    border = colours["dark_blue"],
     urgent_border = colours["cyan"],
-    margin = 5,
-    icon_size = 18,
+    unfocused_border = colours["dark_blue"],
+    rounded = False,
+    margin = 2,
+    spacing = 10,
+    icon_size = 12,
     txt_floating = "缾 ",
     txt_maximized = "类 ",
     txt_minimized = "絛 ",
@@ -94,7 +99,7 @@ currentscreen_defaults = dict(
     padding_y = 2,
 )
 currentlayouticon_defaults = dict(
-    scale = 0.35,
+    scale = 0.5,
     margin = 0,
     padding = 0,
     custom_icon_paths = [expanduser("~/.config/qtile/icons")],
@@ -140,11 +145,6 @@ main_bar_widgets = [
 
 if host == "hekate" or host == "lucille":
     main_bar_widgets += [
-    # widget.Backlight(
-    #     **widget_defaults,
-    #     fmt = '  {}',
-    #     backlight_name = 'amdgpu_bl0',
-    #     ),
     widget.Battery(
         **widget_defaults,
         charge_char = '',
@@ -161,22 +161,13 @@ main_bar_widgets += [
     Volume(
         **widget_defaults,
         fmt = " {}",
-
-        # Control volume with pactl
-        # get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
-        # check_mute_command = "pactl get-sink-mute @DEFAULT_SINK@",
-        # check_mute_string = "yes",
-        # volume_up_command = "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        # volume_down_command = "pactl set-sink-volume @DEFAULT_SINK@ -2%",
-        # mute_command = "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-
-        # Control volume with pamixer
         get_volume_command = "pamixer --get-volume",
         check_mute_command = "pamixer --get-mute",
         check_mute_string = "true",
         volume_up_command = "pamixer -i 2",
         volume_down_command = "pamixer -d 2",
         mute_command = "pamixer -t",
+        mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn("easyeffects")}
     ),
     widget.CurrentLayoutIcon(
         **currentlayouticon_defaults,
@@ -197,8 +188,7 @@ screens = [
     ),
 ]
 
-
-#https://github.com/qtile/qtile-examples/blob/master/g-wizzy/screens.py
+# https://github.com/qtile/qtile-examples/blob/master/g-wizzy/screens.py
 def get_num_monitors():
     num_monitors = 0
     try:
