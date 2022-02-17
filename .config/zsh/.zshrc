@@ -7,24 +7,22 @@
 #⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀bunch of aliases that I rarely remember.
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 
-[[ $- != *i* ]] && return		# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
 
-export TERM="xterm-kitty" # proper terminal colours
-export EDITOR='nvim' # neovim as editor
-export VISUAL='nvim' # neovim-qt as visual editor
-export MANPAGER="sh -c 'col -bx | bat -l man -p'" # use bat as manpager
-export LESSHISTFILE=- # less doesn't need a history file, seriously
-export HISTCONTROL=ignoreboth:erasedups # keep the zsh history clean
-export HISTSIZE=1000000 # save a *ton* of commands for some reason
-export SAVEHIST=$HISTSIZE # same value
-export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist # keep the history file inside .config/zsh
-export HISTTIMEFORMAT="[%F %T]" # add timestamp to history
+export TERM="xterm-kitty"
+export EDITOR='nvim'
+export VISUAL='nvim'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export LESSHISTFILE=-
+export HISTCONTROL=ignoreboth:erasedups
+export HISTSIZE=1000000
+export SAVEHIST=$HISTSIZE
+export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
+export HISTTIMEFORMAT="[%F %T]"
 
-# export PATH=$HOME/.local/bin:$HOME/blog/bin:$PATH
-
-setopt INC_APPEND_HISTORY # add stuff to history incrementally instead of waiting for exit
-setopt EXTENDED_HISTORY # save command, timestamp, and duration of execution
-setopt HIST_IGNORE_ALL_DUPS # removes duplicate commands
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+setopt HIST_IGNORE_ALL_DUPS
 setopt MENUCOMPLETE
 zle_highlight=('paste:none')
 
@@ -36,7 +34,7 @@ zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' menu select
 zstyle ':completion:*' menu select
 zmodload zsh/complist
-_comp_options+=(globdots)		# Include hidden files.
+_comp_options+=(globdots)
 compinit
 
 # Colours
@@ -45,15 +43,13 @@ autoload -Uz colors && colors
 autoload -Uz promptinit
 promptinit
 
-autoload -Uz vcs_info	# load vcs info
+autoload -Uz vcs_info
 precmd() { vcs_info }
 
-zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'	# format vcs_info_msg_0_
- 
-setopt PROMPT_SUBST		# setup prompt with git branch name
-PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}❯%f '
+zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'
 
-# source $ZDOTDIR/zaliases
+setopt PROMPT_SUBST
+PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}❯%f '
 
 function zsh_source_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
@@ -77,15 +73,6 @@ zsh_source_file "zsh-vim-mode"
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
-
-# source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-# source /usr/share/zsh/plugins/zsh-vi-mode/zsh-vi-mode.plugin.zsh
-
-# zsh-vi-mode - configure cursor
-ZVM_INSERT_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BEAM
-ZVM_NORMAL_MODE_CURSOR=$ZVM_CURSOR_BLOCK
-ZVM_VISUAL_MODE_CURSOR=$ZVM_CURSOR_BLINKING_BLOCK
 
 # ex - file extractor
 ex ()
