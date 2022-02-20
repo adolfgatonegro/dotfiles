@@ -1,5 +1,6 @@
 export HOSTNAME=foxes
 export VDPAU_DRIVER=nvidia
+export LIBVA_DRIVER_NAME=nvidia
 export QT_QPA_PLATFORMTHEME=qt5ct 
 
 # Setting XDG system directories
