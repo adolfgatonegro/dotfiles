@@ -8,8 +8,8 @@
 "⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
 "⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 
-" set milleroptions=lsize:1,csize:3,rsize:2,rpreview:all
-" set millerview
+set milleroptions=lsize:1,csize:3,rsize:2,rpreview:all
+set millerview
 "
 " Command used to edit files in various contexts.  The default is vim.
 " If you would like to use another vi clone such as Elvis or Vile
@@ -24,6 +24,7 @@ set vicmd=nvim
 
 set syscalls
 
+set previewoptions+=graphicsdelay:0
 " Trash Directory
 " The default is to move files that are deleted with dd or :d to
 " the trash directory.  If you change this you will not be able to move
