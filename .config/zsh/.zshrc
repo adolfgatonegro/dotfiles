@@ -66,6 +66,7 @@ function zsh_add_plugin() {
 }
 
 zsh_source_file "zsh-aliases"
+# zsh_source_file "zsh-normie-mode"
 zsh_source_file "zsh-vim-mode"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
