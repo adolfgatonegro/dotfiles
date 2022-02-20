@@ -13,7 +13,6 @@ export TERM="xterm-kitty"
 export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-export LESSHISTFILE=-
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
@@ -31,7 +30,6 @@ autoload -Uz compinit
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' insert-unambiguous true
-zstyle ':completion:*' menu select
 zstyle ':completion:*' menu select
 zmodload zsh/complist
 _comp_options+=(globdots)
