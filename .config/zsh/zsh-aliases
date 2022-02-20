@@ -11,7 +11,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 
-alias zsh-update-plugins="find "$ZDOTDIR/plugins" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias zsh-update-plugins="find \"$ZDOTDIR/plugins\" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
 
 alias grep="rg"
 alias df="df -h"
@@ -36,16 +36,6 @@ alias vpacman="sudoedit /etc/pacman.conf"
 alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
 alias vfstab="sudoedit /etc/fstab"
 
-# Aliases - Edit common config files
-# alias vqtile="$EDITOR $XDG_CONFIG_HOME/qtile/config.py"
-# alias vpicom="$EDITOR $XDG_CONFIG_HOME/picom/picom.conf"
-# alias vautostart="$EDITOR $XDG_CONFIG_HOME/qtile/scripts/autostart.sh"
-# alias vsxhkd="$EDITOR $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
-# alias vkitty="$EDITOR $XDG_CONFIG_HOME/kitty/kitty.conf"
-# alias vrofi="$EDITOR $XDG_CONFIG_HOME/rofi/config.rasi"
-# alias vinitv="$EDITOR $XDG_CONFIG_HOME/nvim/init.vim"
-# alias vzsh="$EDITOR $ZDOTDIR/.zshrc"
-
 # Aliases - Dotfiles repo
 alias repos="git-summary $HOME/repos && echo '---' && git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME status"
 alias dots="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
@@ -66,4 +56,4 @@ alias q="exit"		# quick exit
 alias cat="bat"		# a better cat
 alias less="bat"	# a better less
 alias vf="vifmrun"	# vifm with Überzug file previews
-
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist" # don't pollute my $HOME
