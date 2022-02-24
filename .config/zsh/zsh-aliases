@@ -18,7 +18,7 @@ alias df="df -h"
 alias free="free -m"
 
 # Aliases - pacman
-alias ch='checkupdates ; pikaur -Qua 2>/dev/null'
+alias ch="checkupdates ; pikaur -Qua 2>/dev/null"
 alias pkgi="pikaur -S"
 alias pkgr="pikaur -Rns"
 alias pkgq="pikaur -Qi"
@@ -38,7 +38,25 @@ alias vfstab="sudoedit /etc/fstab"
 
 # Aliases - Dotfiles repo
 alias repos="git-summary $HOME/repos && echo '---' && git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME status"
-alias dots="/usr/bin/git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+
+alias cf="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+alias cfa="cf add"
+alias cfst="cf status"
+alias cfd="cf diff | $EDITOR"
+alias cfc="cf commit"
+alias cfp="cf push"
+
+# Aliases - git
+alias gst="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gco="git checkout"
+alias gl="git pull"
+alias gp="git push"
+alias gd="git diff | $EDITOR"
+alias gb="git branch"
+alias gba="git branch -a"
+alias gdl="git branch -d"
 
 # Aliases - Commands and shortcuts
 alias ls="exa -l --color=always --group-directories-first"
@@ -47,7 +65,7 @@ alias lh="exa -al | rg '^\.'" # hidden files
 
 alias cp="cp -i -v" 	# verbose cp with confirmation
 alias mv="mv -i -v"		# verbose mv with confirmation
-alias rm="rm -i -v"		# verbose rm
+alias rm="rm -I -v"		# verbose rm
 
 alias v="nvim"		# faster neovim
 alias vim="nvim" 		# faster neovim
