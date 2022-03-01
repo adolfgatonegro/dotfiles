@@ -71,7 +71,7 @@ alias v="nvim"		# faster neovim
 alias vim="nvim" 		# faster neovim
 alias _="sudo"	# faster sudo
 alias q="exit"		# quick exit
-alias cat="bat"		# a better cat
+alias cat="bat -p"		# a better cat
 alias less="bat"	# a better less
 alias vf="vifmrun"	# vifm with Überzug file previews
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist" # don't pollute my $HOME
