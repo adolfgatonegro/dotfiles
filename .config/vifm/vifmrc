@@ -466,7 +466,7 @@ nnoremap O :!gvim %f<cr>
 " Open file in the background using its default program
 nnoremap gb :file &<cr>l
 
-nnoremap ºq :wq<cr>
+nnoremap ~q :wq<cr>
 nnoremap . :
 
 " Interaction with system clipboard
