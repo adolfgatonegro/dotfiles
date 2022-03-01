@@ -19,6 +19,11 @@ keys.extend([
     Key("<F12>", lazy.group['scratchpad'].dropdown_toggle('term')),
     ])
 
+
+# Default layouts
+groups[8].layout = "max"
+
+# Match rules
 groups[0].matches = [Match(wm_class = ["firefox"])]
 groups[1].matches = [Match(wm_class = ["Thunar","transmission-qt","transmission-gtk"])]
 # groups[2].matches = [Match(wm_class = [""])]
