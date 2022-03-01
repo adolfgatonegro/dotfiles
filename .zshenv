@@ -18,9 +18,13 @@ then
     export PATH="${PATH}:$HOME/.local/bin"
 fi
 
-export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority
+# Set Xauthority in $XDG_CONFIG_HOME if no display managers are present
+if [[ ! -f /usr/bin/lightdm ]] && [[ ! -f /usr/bin/sddm ]]; then
+	export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority 
+fi
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 
+# XDG compliance settings for various programs
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
@@ -29,3 +33,4 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export CARGO_HOME=$XDG_DATA_HOME/cargo
+export WGETRC=$XDG_CONFIG_HOME/wgetrc

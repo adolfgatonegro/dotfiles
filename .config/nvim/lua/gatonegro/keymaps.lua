@@ -86,3 +86,7 @@ vim.cmd [[
 	augroup do_python_setup
 		autocmd! filetype python nnoremap <F5> :w<CR>:sp<CR>:term python %<CR>
 ]]
+
+-- LuaSnip snippet choice navigation
+keymap("i", "<C-E>", "<Plug>luasnip-next-choice", {})
+keymap("s", "<C-E>", "<Plug>luasnip-next-choice", {})
