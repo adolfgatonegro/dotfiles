@@ -3,6 +3,8 @@ export VDPAU_DRIVER=nvidia
 export LIBVA_DRIVER_NAME=nvidia
 export QT_QPA_PLATFORMTHEME=qt5ct 
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 # Setting XDG system directories
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
