@@ -7,9 +7,9 @@ local expr_opts = { silent = true, expr = true }
 local keymap = vim.api.nvim_set_keymap
 
 --Remap space as leader key
-keymap("", "~", "<Nop>", opts)
-vim.g.mapleader = "~"
-vim.g.maplocalleader = "~"
+keymap("", "`", "<Nop>", opts)
+vim.g.mapleader = "`"
+vim.g.maplocalleader = "`"
 
 -- Modes
 --   normal_mode = "n",

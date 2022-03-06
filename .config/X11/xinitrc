@@ -17,7 +17,7 @@ fi
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
 setxkbmap -layout es
 
-[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
+[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap-Keychron
 [ -r $XDG_CONFIG_HOME/X11/Xresources ] && xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
 [ -r $XDG_CONFIG_HOME/X11/xprofile ] && $XDG_CONFIG_HOME/X11/xprofile
 

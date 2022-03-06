@@ -11,6 +11,4 @@
 # -----------------------------------------------------------------------------  
 
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-setxkbmap -layout es
 xset dpms 300 600 900
-xset r rate 350 60
