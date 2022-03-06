@@ -107,12 +107,12 @@ XF86MonBrightnessDown
 
 # Screenshot
 
-Print
+XF86LaunchB
 	flameshot gui				# screen area with gui
 
-ctrl + Print
+ctrl + XF86LaunchB
 	flameshot full -c			# full screen to clipboard
 
-ctrl + shift + Print
+ctrl + shift + XF86LaunchB
 	flameshot launcher			# capture mode gui
 
