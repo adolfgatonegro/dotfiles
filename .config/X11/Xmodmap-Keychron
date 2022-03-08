@@ -3,7 +3,7 @@ clear Control
 add Control = Control_L
 keycode   8 =
 keycode   9 = Escape NoSymbol Escape
-keycode  10 = 1 exclam 1 exclam onesuperior exclamdown bar exclamdown
+keycode  10 = 1 exclam 1 exclam exclamdown onesuperior exclamdown bar
 keycode  11 = 2 at 2 quotedbl twosuperior dead_doubleacute at oneeighth
 keycode  12 = 3 numbersign 3 periodcentered threesuperior dead_macron numbersign sterling
 keycode  13 = 4 dollar 4 dollar currency sterling asciitilde dollar
