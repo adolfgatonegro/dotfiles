@@ -61,17 +61,18 @@ alias gdl="git branch -d"
 # Aliases - Commands and shortcuts
 alias ls="exa -l --color=always --group-directories-first"
 alias la="exa -al --color=always --group-directories-first"
-alias lh="exa -al | rg '^\.'" # hidden files
+alias lh="exa -al | rg '^\.'"
 
-alias cp="cp -i -v" 	# verbose cp with confirmation
-alias mv="mv -i -v"		# verbose mv with confirmation
-alias rm="rm -I -v"		# verbose rm
+alias cp="cp -i -v"
+alias mv="mv -i -v"
+alias rm="rm -I -v"
 
-alias v="nvim"		# faster neovim
-alias vim="nvim" 		# faster neovim
-alias _="sudo"	# faster sudo
-alias q="exit"		# quick exit
-alias cat="bat -p"		# a better cat
-alias less="bat"	# a better less
-alias vf="vifmrun"	# vifm with Überzug file previews
-alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist" # don't pollute my $HOME
+alias v="nvim"
+alias vim="nvim"
+alias _="sudo"
+alias q="exit"
+alias cat="bat -p"
+alias less="bat"
+alias vf="vifmrun ."
+alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
+alias vtmp="nvim ~/documents/scratch.md"
