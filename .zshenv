@@ -36,3 +36,6 @@ export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
 export CARGO_HOME=$XDG_DATA_HOME/cargo
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
+
+# temp workaround for broken hw accel in firefox
+export MOZ_DISABLE_RDD_SANDBOX=1
