@@ -68,10 +68,27 @@ vim.cmd [[
 	augroup end
 ]]
 
+-- Set text width for markdown, wiki, and txt files --
 vim.cmd [[
 	augroup text_file_width
 		autocmd!
-		autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=80
+		autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex,*.wiki setlocal textwidth=80
 	augroup end
 ]]
 
+-- VimWiki diary --
+vim.cmd [[
+	command! Diary VimwikiDiaryIndex
+	augroup vimwikigroup
+		autocmd!
+		autocmd BufRead, BufNewFile diary.md VimwikiDiaryGenerateLinks
+	augroup end
+]]
+
+-- Open a scratch pad inside wiki folder --
+vim.cmd [[
+	function! s:DScratch()
+		exe 'edit ~/repos/wiki/scratch.md'
+	endfunction
+	command! Scratch call s:DScratch(<f-args>)
+]]

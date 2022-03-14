@@ -81,10 +81,13 @@ keymap("n", "<leader>tv", ":TabVifm<CR>", opts)
 -- Toggle search highlighting --
 keymap("n", "<leader>hl", "(&hls && v:hlsearch ? ':nohls' : ':set hls').\"\n\"", expr_opts)
 
--- Execute Python script in terminal --
+-- Toggle spellcheck for English and Spanish --
+keymap("n", "<F4>", ":setlocal spell! spelllang=es_mx<CR>", opts)
+keymap("n", "<F5>", ":setlocal spell! spelllang=en_gb<CR>", opts)
+
+-- Run Python file --
 vim.cmd [[
-	augroup do_python_setup
-		autocmd! filetype python nnoremap <F5> :w<CR>:sp<CR>:term python %<CR>
+	autocmd FileType python nmap <leader>b :terminal python %<CR>
 ]]
 
 -- LuaSnip snippet choice navigation

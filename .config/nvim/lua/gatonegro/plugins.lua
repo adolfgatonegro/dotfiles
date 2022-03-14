@@ -70,13 +70,19 @@ return packer.startup(function(use)
 	use {"lervag/vimtex", config = function() vim.cmd[[let g:vimtex_view_method = 'zathura']] end}
 	use {
 	    "vimwiki/vimwiki",
+		branch = "dev",
 	    config = function()
 			vim.g.vimwiki_global_ext = 0
+			vim.g.vimwiki_markdown_link_ext = 1
+			-- vim.g.vimwiki_listsyms = "✗○◐●✓"
 	        vim.g.vimwiki_list = {
 	            {
-	                path = "/home/gatonegro/repos/vimwiki",
+	                path = "~/repos/wiki",
 	                syntax = "markdown",
 	                ext = ".md",
+					auto_toc = 1,
+					auto_tags = 1,
+					automatic_nested_syntaxes = 1,
 	            }
 	        }
 	    end
