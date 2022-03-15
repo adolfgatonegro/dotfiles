@@ -27,15 +27,16 @@ fi
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 
 # XDG compliance settings for various programs
+export CARGO_HOME=$XDG_DATA_HOME/cargo
+export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
+export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
+export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
 export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
-export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export CARGO_HOME=$XDG_DATA_HOME/cargo
+export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # temp workaround for broken hw accel in firefox
 export MOZ_DISABLE_RDD_SANDBOX=1

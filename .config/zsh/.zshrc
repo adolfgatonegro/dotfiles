@@ -23,7 +23,8 @@ setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
 setopt MENUCOMPLETE
-zle_highlight=('paste:none')
+setopt EXTENDEDGLOB
+zle_highlight=("paste:none")
 
 # Completion 
 autoload -Uz compinit
@@ -32,6 +33,14 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' menu select
 zmodload zsh/complist
+
+autoload -U up-line-or-beginning-search
+autoload -U down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey "^k" up-line-or-beginning-search
+bindkey "^j" down-line-or-beginning-search
+
 _comp_options+=(globdots)
 compinit
 
@@ -66,12 +75,15 @@ function zsh_add_plugin() {
 }
 
 zsh_source_file "zsh-aliases"
-# zsh_source_file "zsh-normie-mode"
 zsh_source_file "zsh-vim-mode"
+# zsh_source_file "zsh-normie-mode"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
+
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|mv *|cp *|rm *"
 
 # ex - file extractor
 ex ()

@@ -6,7 +6,7 @@ local expr_opts = { silent = true, expr = true }
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
---Remap space as leader key
+--Remap leader
 keymap("", "`", "<Nop>", opts)
 vim.g.mapleader = "`"
 vim.g.maplocalleader = "`"
@@ -26,13 +26,16 @@ keymap("n", "<C-j>", "<C-w>j", opts)
 keymap("n", "<C-k>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
-keymap("n", "<leader>e", ":Lex 30<cr>", opts)
-
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
 keymap("n", "<C-Down>", ":resize -2<CR>", opts)
 keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
 keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+
+-- Navigate tabs
+keymap("n", "<C-l>", ":tabnext<CR>", opts)
+keymap("n", "<C-h>", ":tabprevious<CR>", opts)
+keymap("n", "<leader>t", ":tabnew<CR>", opts)
 
 -- Navigate buffers
 keymap("n", "<S-l>", ":bnext<CR>", opts)
@@ -44,8 +47,8 @@ keymap("n", "<leader>q", ":x<CR>", opts)
 keymap("n", "<leader>Q", ":qa<CR>", opts)
 
 -- Insert --
--- Press ññ fast to enter
-keymap("i", "ññ", "<ESC>", opts)
+-- Press jk fast to enter
+keymap("i", "jk", "<ESC>", opts)
 
 -- Visual --
 -- Stay in indent mode
@@ -53,16 +56,14 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Move text up and down
-keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "<A-k>", ":m .-2<CR>==", opts)
+keymap("v", "<A-j>", ":m .+1<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
 -- Visual Block --
 -- Move text up and down
 keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
-keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
-keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 
 -- Terminal --
 -- Better terminal navigation
@@ -91,5 +92,5 @@ vim.cmd [[
 ]]
 
 -- LuaSnip snippet choice navigation
-keymap("i", "<C-E>", "<Plug>luasnip-next-choice", {})
-keymap("s", "<C-E>", "<Plug>luasnip-next-choice", {})
+keymap("i", "<C-e>", "<Plug>luasnip-next-choice", {})
+keymap("s", "<C-e>", "<Plug>luasnip-next-choice", {})
