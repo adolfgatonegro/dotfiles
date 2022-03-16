@@ -9,6 +9,6 @@
 #⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
 
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-setxkbmap -layout us -variant altgr-intl -option caps:escape
-xset dpms 300 600 900
+setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape 
 xset r rate 250 100
+xset dpms 300 600 900
