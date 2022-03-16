@@ -1,26 +1,25 @@
-export HOSTNAME=foxes
-export VDPAU_DRIVER=nvidia
-export LIBVA_DRIVER_NAME=nvidia
-export QT_QPA_PLATFORMTHEME=qt5ct 
+export HOSTNAME=$(cat /etc/hostname)
 
+if [ ${HOSTNAME} = "foxes" ]; then
+	export VDPAU_DRIVER=nvidia
+	export LIBVA_DRIVER_NAME=nvidia
+fi
+
+export QT_QPA_PLATFORMTHEME=qt5ct 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-# Setting XDG system directories
+# xdg dirs
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
-
-# Setting XDG user directories
 export XDG_CONFIG_HOME=$HOME/.config
 export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
-if [[ -d $HOME/.local/bin && -z $(echo $PATH | grep -o $HOME/.local/bin) ]]
-then
-    export PATH="${PATH}:$HOME/.local/bin"
-fi
+typeset -U path
+path=(~/.local/bin $path)
 
-# Set Xauthority in $XDG_CONFIG_HOME if no display managers are present
+# set xauthority only if no display manager is found
 if [[ ! -f /usr/bin/lightdm ]] && [[ ! -f /usr/bin/sddm ]]; then
 	export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority 
 fi
