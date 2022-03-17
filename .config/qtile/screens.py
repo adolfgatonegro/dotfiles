@@ -10,7 +10,7 @@ terminal = "kitty"
 calendar = "gsimplecal"
 
 net_adapter = {
-    "foxes" : "eno1",
+    "foxes" : "enp42s0",
     "hekate" : "wlp3s0",
     "lucille" : "wlp2s0b1"
 }
