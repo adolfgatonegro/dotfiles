@@ -19,6 +19,7 @@ colours = dict(
     # white = "#a1a1a1",
     # light_grey = "#4b4b51",
     # dark_grey = "#35353d",
+    # medium_grey = "#414158"
     white = "#c1c1d1",
     light_grey = "#6c6c93",
     dark_grey = "#363649",
