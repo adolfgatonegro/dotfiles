@@ -1,6 +1,6 @@
 [user]
 	email = github@gatoneg.ro
-	name = AdolfGatonegro
+	name = adolfgatonegro
 [credential]
 	helper = store --file $XDG_CONFIG_HOME/git/credentials
 [init]
