@@ -38,9 +38,9 @@ alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
 alias vfstab="sudoedit /etc/fstab"
 
 # Aliases - Dotfiles repo
-alias repos="git-summary $HOME/repos && echo '---' && git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME status"
+alias repos="git-summary $HOME/git"
 
-alias cf="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME"
+alias cf="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME"
 alias cfa="cf add"
 alias cfst="cf status"
 alias cfd="cf diff | $EDITOR"
@@ -78,3 +78,6 @@ alias vim="nvim"
 alias vtmp="nvim ~/documents/scratch.md"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x"
+
+# Docker aliases 
+alias hugo='docker run --rm -it -v $PWD:/src -p 1313:1313 --user 1000 klakegg/hugo'

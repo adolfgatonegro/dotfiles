@@ -18,6 +18,8 @@ export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
+export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|mv *|cp *|rm * | docker rm * | docker rmi *"
 
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
@@ -46,77 +48,39 @@ compinit
 
 # Colours
 autoload -Uz colors && colors
+
+# Source functions
+source "$ZDOTDIR/zsh-functions"
+
 # Prompt
 autoload -Uz promptinit
 promptinit
 
-autoload -Uz vcs_info
-precmd() { vcs_info }
-
-zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'
-
 setopt PROMPT_SUBST
-PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}❯%f '
 
-function zsh_source_file() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
-}
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
 
-# Plugins
-function zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        echo "Cloning missing plugins..."
-		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
-}
+preexec_functions+='preexec_update_git_vars'
+precmd_functions+='precmd_update_git_vars'
+chpwd_functions+='chpwd_update_git_vars'
+
+PROMPT=$'%{${fg[cyan]}%}%B%1~%b$(prompt_git_info)%{${fg[default]}%} %F{001}❯%f '
+
+# Old, basic prompt
+# autoload -Uz vcs_info
+# precmd() { vcs_info }
+# zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'
+# PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}❯%f '
 
 zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-vim-mode"
+zsh_source_file "zsh-functions"
 # zsh_source_file "zsh-normie-mode"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
-export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|mv *|cp *|rm *"
-
-# ex - file extractor
-ex ()
-{
-  if [ -f $1 ] ; then
-    case $1 in
-      *.tar.bz2)   tar xjf $1   ;;
-      *.tar.gz)    tar xzf $1   ;;
-      *.bz2)       bunzip2 $1   ;;
-      *.rar)       unrar x $1   ;;
-      *.gz)        gunzip $1    ;;
-      *.tar)       tar xf $1    ;;
-      *.tbz2)      tar xjf $1   ;;
-      *.tgz)       tar xzf $1   ;;
-      *.zip)       unzip $1     ;;
-      *.Z)         uncompress $1;;
-      *.7z)        7z x $1      ;;
-      *.deb)       ar x $1      ;;
-      *.tar.xz)    tar xf $1    ;;
-      *.tar.zst)   tar xf $1    ;;
-      *)           echo "'$1' cannot be extracted via ex()" ;;
-    esac
-  else
-    echo "'$1' is not a valid file"
-  fi
-}
-
-cdl() {                 
-	cd "$@" && la; 
-}
-
-zshaddhistory() {
-	whence ${${(z)1}[1]} >| /dev/null || return 1
-}
-
-gatofetch
+fetch

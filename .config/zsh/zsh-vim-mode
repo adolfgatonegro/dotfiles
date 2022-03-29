@@ -9,10 +9,12 @@ bindkey -M menuselect '^l' vi-forward-char
 bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey -M menuselect '^[[Z' vi-up-line-or-history
 bindkey -v '^?' backward-delete-char
+bindkey '^a' beginning-of-line
+bindkey '^e' end-of-line
 
 # Search backwards and forwards with a pattern
-bindkey -M vicmd '/' history-incremental-pattern-search-backward
-bindkey -M viins '^R' history-incremental-pattern-search-backward
+bindkey -M vicmd '/' history-incremental-search-backward
+bindkey -M viins '^R' history-incremental-search-backward
 
 # Change cursor shape for different vi modes.
 function zle-keymap-select () {
