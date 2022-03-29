@@ -129,7 +129,7 @@ main_bar_widgets = [
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
-        update_interval = 1800,
+        update_interval = 7200,
         distro = "Arch_checkupdates",
         display_format = " {updates}",
         colour_have_updates = colours["white"],
