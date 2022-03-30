@@ -88,23 +88,23 @@ prompt_git_info(){
 		local b="$__CURRENT_GIT_BRANCH"
 		case "$__CURRENT_GIT_BRANCH_STATUS" in
 			ahead)
-			s+=""
+			s+=""
 			;;
 			diverged)
-			s+="𝌐"
+			s+="𝌎"
 			;;
 			uptodate)
 			s+="✔"
 			;;
 			behind)
-			s+=""
+			s+=""
 			;;
 		esac
 		if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-			local d=" ✕"
+			local d="✕"
 		fi
 	 
-		printf " %s%s" "%{${fg[white]}%}"$o" ""%{${fg[blue]}%}"$b" ""%{${fg[green]}%}"$s"%{${fg[red]}%}"$d
+		printf " %s%s" "%{${fg[white]}%}"$o" ""%{${fg[blue]}%}"$b" ""%{${fg[green]}%}"$s" ""%{${fg[red]}%}"$d
 	fi
 }
 

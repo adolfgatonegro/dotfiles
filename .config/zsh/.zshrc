@@ -67,7 +67,7 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 NEWLINE=$'\n'
-PROMPT=$'${NEWLINE}%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%}${NEWLINE}%F{001} %f%F{green} '
+PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%}${NEWLINE}%F{001} %f%F{green}%f '
 
 # Old, basic prompt
 # autoload -Uz vcs_info
