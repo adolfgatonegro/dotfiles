@@ -114,7 +114,7 @@ chpwd_update_git_vars(){
 
 preexec_update_git_vars(){
 	case "$1" in 
-		git*)
+		git* | g[saclpdb]*)
 		__EXECUTED_GIT_COMMAND=1
 		;;
 	esac
