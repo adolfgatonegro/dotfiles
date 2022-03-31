@@ -20,7 +20,6 @@ export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
 export ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|mv *|cp *|rm * | docker rm * | docker rmi *"
-
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
@@ -66,8 +65,8 @@ preexec_functions+='preexec_update_git_vars'
 precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
-NEWLINE=$'\n'
-PROMPT=$'%{${fg[cyan]}%}%B%~%b$(prompt_git_info)%{${fg[default]}%}${NEWLINE}%F{001} %f%F{green}%f '
+prompt_symbol=" "
+PROMPT=$'%F{green}┌───[%F{white}%B%~%b%F{green}]$(prompt_git_info)\n%F{green}%F{red}$prompt_symbol%f%F{cyan}%f '
 
 # Old, basic prompt
 # autoload -Uz vcs_info
@@ -84,4 +83,4 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
-fetch
+gato

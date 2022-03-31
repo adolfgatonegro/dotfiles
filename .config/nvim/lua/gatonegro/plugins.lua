@@ -34,8 +34,11 @@ return packer.startup(function(use)
 	--- Packer
 	use "wbthomason/packer.nvim"
 
+	-- Check nvim startup time
+	-- use "dstein64/vim-startuptime"
+
 	--- Colour scheme
-	use "AdolfGatonegro/gatoneon.nvim"
+	use "adolfgatonegro/gatoneon.nvim"
 
 	-- CMP plugins
 	use "hrsh7th/nvim-cmp"
@@ -55,8 +58,8 @@ return packer.startup(function(use)
 
 	--- TreeSitter
 	use {
-		"nvim-treesitter/nvim-treesitter",
-		run = ":TSUpdate",
+		"nvim-treesitter/nvim-treesitter"
+		-- run = ":TSUpdate",
 	}
 	use "p00f/nvim-ts-rainbow"
 
@@ -90,7 +93,7 @@ return packer.startup(function(use)
 
 
   -- Sync Packer after all plugins are loaded
-  if PACKER_BOOTSTRAP then
-    require("packer").sync()
-  end
+  -- if PACKER_BOOTSTRAP then
+  --   require("packer").sync()
+  -- end
 end)
