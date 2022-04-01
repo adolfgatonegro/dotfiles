@@ -11,105 +11,97 @@
 # -----------------------------------------------------------------------------  
 
 super + ctrl + s
-	pkill -USR1 -x sxhkd		# reload sxhkd
-
+	pkill -USR1 -x sxhkd
 
 # Rofi
-
 super + space
-	rofi-run		# alt rofi shortcut
+	rofi-run
 
 super + c
-	rofi-run -c		# rofi-calc
+	rofi-run -c
 
 alt + Tab
-	rofi-run -w		# window mode
+	rofi-run -w
 
 super + period
-    rofi-run -e		# rofi-emoji
+    rofi-run -e
 
 super + x
-	rofi-run -l		# power menu
+	rofi-run -l
 
 super + F2
 	rofi-conf
 
 # Programs
-
 super + b
-    firefox						# web browser
+    firefox
 
 super + shift + b
-    firefox --private-window	# web browser - private window
+    firefox --private-window
 
 super + t
-    kitty						# terminal
+    kitty
 
 super + f
-	kitty -e vifmrun		# file manager
+	kitty -e vifmrun
 
 super + shift + f
-	thunar						# gui file manager
+	thunar
 
 super + m
-	kitty -e cmus				# music player
+	kitty -e cmus
 
 super + d
-	discord						# discord
+	discord
 
 super + e
-	kitty -e nvim						# gui text editor
+	kitty -e nvim
 
-
-# System
-
-ctrl + alt + o
-	~/.config/qtile/scripts/picom-toggle.sh		# toggle picom
-
-ctrl + alt + l
-	betterlockscreen -l dim		# lock screen
-
-ctrl + apostrophe
-	dunstctl context			# dunst context
-
-# Multimedia keys
-
-XF86AudioRaiseVolume
-    volume-ctl -i 2		# volume up
-
-XF86AudioLowerVolume
-	volume-ctl -d 2		# volume down
-
-XF86AudioMute
-    volume-ctl -t		# volume mute
-
-XF86AudioPlay
-    playerctl play-pause		# play/pause
-
-XF86AudioNext
-    playerctl next				# next
-
-XF86AudioPrev
-    playerctl previous			# previous
-
-XF86AudioStop
-    playerctl stop				# stop
-
-
-# Display backlight
-
-XF86MonBrightnessUp
-    backlight-ctl -inc 5			# brightness up
-
-XF86MonBrightnessDown
-    backlight-ctl -dec 5			# brightness down
-
+super + ctrl + k
+    kitty --config /home/gatonegro/.config/kitty/kali.conf -e distrobox-enter kali
 
 # Screenshot
-
 super + F4
-	flameshot gui				# screen area with gui
+	flameshot gui
 
 super + shift + F4
-	flameshot launcher			# capture mode gui
+	flameshot launcher
+
+# System
+ctrl + alt + o
+	~/.config/qtile/scripts/picom-toggle.sh
+
+ctrl + alt + l
+	betterlockscreen -l dim
+
+ctrl + apostrophe
+	dunstctl context
+
+# Multimedia keys
+XF86AudioRaiseVolume
+    volume-ctl -i 2
+
+XF86AudioLowerVolume
+	volume-ctl -d 2
+
+XF86AudioMute
+    volume-ctl -t
+
+XF86AudioPlay
+    playerctl play-pause
+
+XF86AudioNext
+    playerctl next
+
+XF86AudioPrev
+    playerctl previous
+
+XF86AudioStop
+    playerctl stop
+
+XF86MonBrightnessUp
+    backlight-ctl -inc 5
+
+XF86MonBrightnessDown
+    backlight-ctl -dec 5
 
