@@ -83,5 +83,4 @@ alias yta="yt-dlp -x"
 alias hugo='docker run --rm -it -v $PWD:/src --user 1000 klakegg/hugo'
 alias hugosrv='docker run --rm -it -v $PWD:/src -p 1313:1313 --user 1000 klakegg/hugo server'
 alias dbox="distrobox"
-alias kali-up="dbox start kali"
 alias kali-down="dbox stop kali"
