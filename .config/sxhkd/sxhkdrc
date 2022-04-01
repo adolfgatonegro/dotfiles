@@ -57,8 +57,8 @@ super + d
 super + e
 	kitty -e nvim
 
-super + ctrl + k
-    kitty --config /home/gatonegro/.config/kitty/kali.conf -e distrobox-enter kali
+super + p
+    kitty --config /home/gatonegro/.config/kitty/parrot.conf
 
 # Screenshot
 super + F4
