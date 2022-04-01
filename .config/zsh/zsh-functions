@@ -84,7 +84,7 @@ update_current_git_vars(){
 
 prompt_git_info(){
 	if [ -n "$__CURRENT_GIT_BRANCH" ]; then
-		local o=""
+		local o="on "
 		local b="$__CURRENT_GIT_BRANCH"
 		case "$__CURRENT_GIT_BRANCH_STATUS" in
 			ahead)
