@@ -58,7 +58,7 @@ super + e
 	kitty -e nvim
 
 super + p
-    kitty --config /home/gatonegro/.config/kitty/parrot.conf
+    kitty --config /home/gatonegro/.config/kitty/parrot.conf -e /home/gatonegro/.local/bin/parrot
 
 # Screenshot
 super + F4

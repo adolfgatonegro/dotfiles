@@ -1,4 +1,0 @@
-# Change directory to Parrot folder
-cd ~/containers/parrot
-# Start the Parrot container
-launch /usr/bin/docker start -i parrot
