@@ -25,7 +25,7 @@ keys = [
     Key("M-S-<space>", lazy.layout.previous(), lazy.layout.toggle_split(), desc = "Switch focus to previous pane in stack (Tile) Toggle sides of stack"),
     Key("M-C-m", lazy.layout.maximize(), desc = "Toggle between minimum and maximum window sizes"),
     Key("M-C-n", lazy.layout.normalize(), desc = "Normalise window size ratios"),
-    Key("M-C-f", lazy.window.toggle_floating(), desc = "Toggle floating"),
+    Key("M-C-f", lazy.window.toggle_floating(), lazy.window.center(), desc = "Toggle floating"),
     Key("M-C-<F11>", lazy.window.toggle_fullscreen(), desc = "Toggle fullscreen"),
     Key("M-C-h", lazy.screen.prev_group(skip_empty = True), desc = "Move to previous group"),
     Key("M-C-l", lazy.screen.next_group(skip_empty = True), desc = "Move to next group"),

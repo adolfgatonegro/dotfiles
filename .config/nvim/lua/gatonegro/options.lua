@@ -92,3 +92,8 @@ vim.cmd [[
 	endfunction
 	command! Scratch call s:DScratch(<f-args>)
 ]]
+
+-- Highlight text selection on yank --
+vim.cmd [[
+	au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=500}
+]]

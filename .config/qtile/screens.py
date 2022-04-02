@@ -11,7 +11,6 @@ calendar = "gsimplecal"
 
 net_adapter = {
     "foxes" : "enp42s0",
-    "hekate" : "wlp3s0",
     "lucille" : "wlp2s0b1"
 }
 
@@ -106,8 +105,6 @@ currentlayouticon_defaults = dict(
     custom_icon_paths = [expanduser("~/.config/qtile/icons")],
 )
 
-# spacer = widget.Spacer(length =6)
-
 extension_defaults = widget_defaults.copy()
 
 main_bar_widgets = [
@@ -129,7 +126,7 @@ main_bar_widgets = [
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
-        update_interval = 7200,
+        update_interval = 21600,
         distro = "Arch_checkupdates",
         display_format = " {updates}",
         colour_have_updates = colours["white"],
@@ -140,11 +137,11 @@ main_bar_widgets = [
         **widget_defaults,
         interface = net_adapter[host],
         prefix = "M",
-        format = " {down}  {up}",
+        format = "{down} {up}",
     )
 ]
 
-if host == "hekate" or host == "lucille":
+if host == "lucille":
     main_bar_widgets += [
     widget.Battery(
         **widget_defaults,
@@ -197,7 +194,6 @@ screens = [
     ),
 ]
 
-# https://github.com/qtile/qtile-examples/blob/master/g-wizzy/screens.py
 def get_num_monitors():
     num_monitors = 0
     try:

@@ -19,6 +19,8 @@ layouts = [
     layout.Max(**layout_defaults),
     layout.Tile(ratio = 0.5, **layout_defaults),
     layout.Stack(num_stacks = 2, **layout_defaults),
+    # layout.Spiral(main_pane = "left", clockwise = True, new_client_position = "after_current", **layout_defaults),
+    # layout.MonadThreeCol(main_centered = False, **layout_defaults),
 ]
 
 floating_layout = layout.Floating(float_rules=[

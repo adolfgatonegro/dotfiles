@@ -80,7 +80,7 @@ return packer.startup(function(use)
 			-- vim.g.vimwiki_listsyms = "✗○◐●✓"
 	        vim.g.vimwiki_list = {
 	            {
-	                path = "~/repos/wiki",
+	                path = "~/git/wiki",
 	                syntax = "markdown",
 	                ext = ".md",
 					auto_toc = 1,
