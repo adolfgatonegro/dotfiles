@@ -28,7 +28,7 @@ setopt EXTENDEDGLOB
 zle_highlight=("paste:none")
 
 # Completion 
-autoload -Uz compinit && compinit -d ~/.cache/.zcompdump-$ZSH_VERSION
+autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/.zcompdump-$ZSH_VERSION
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' insert-unambiguous true
