@@ -12,11 +12,14 @@ for i in groups:
         Key(f"M-C-{i.name}", lazy.window.togroup(i.name), desc=f"Send focused window to group {i.name}")
     ])
 
-groups.extend([ScratchPad("scratchpad", [
-    DropDown("term", "kitty", x=0.25, opacity = 0.8, width=0.5, height=0.5),])])
+groups.extend([
+    ScratchPad("scratchpad", [DropDown("term", "kitty", x=0.25, opacity = 0.8, width=0.5, height=0.5),]),
+    ScratchPad("sysmon", [DropDown("term", "kitty -e btop", x=0.25, opacity = 0.8, width=0.5, height=0.5),]),
+])
 
 keys.extend([
     Key("<F12>", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key("<F10>", lazy.group['sysmon'].dropdown_toggle('term')),
     ])
 
 

@@ -34,9 +34,6 @@ return packer.startup(function(use)
 	--- Packer
 	use "wbthomason/packer.nvim"
 
-	-- Check nvim startup time
-	-- use "dstein64/vim-startuptime"
-
 	--- Colour scheme
 	use "adolfgatonegro/gatoneon.nvim"
 

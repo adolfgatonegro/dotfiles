@@ -41,6 +41,3 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 
 # temp workaround for broken hw accel in firefox
 export MOZ_DISABLE_RDD_SANDBOX=1
-
-# docker/distrobox variables
-export KALI_HOME=$HOME/containers/kali
