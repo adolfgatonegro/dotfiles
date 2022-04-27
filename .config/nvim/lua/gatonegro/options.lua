@@ -97,3 +97,9 @@ vim.cmd [[
 vim.cmd [[
 	au TextYankPost * silent! lua vim.highlight.on_yank {higroup="IncSearch", timeout=500}
 ]]
+
+-- Neovim 0.7 - use filetype.lua for ft matching.
+vim.g.do_filetype_lua = 1
+-- Turn off old filetype.vim ft matching method. Keeping this option 
+-- enabled will provide a fallback, but will increase startup time.
+vim.g.did_load_filetypes = 0

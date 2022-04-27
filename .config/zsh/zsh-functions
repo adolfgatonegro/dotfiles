@@ -127,9 +127,11 @@ precmd_update_git_vars(){
 	fi
 }
 
-function zsh_source_file() {
+zsh_source_file(){
 	[ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
+
+zsh_exit(){exit}
 
 precmd() {
 	if [ -z "$_NEW_LINE_BEFORE_PROMPT" ]; then

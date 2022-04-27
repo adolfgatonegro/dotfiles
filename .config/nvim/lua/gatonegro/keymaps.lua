@@ -94,3 +94,6 @@ vim.cmd [[
 -- LuaSnip snippet choice navigation
 keymap("i", "<C-e>", "<Plug>luasnip-next-choice", {})
 keymap("s", "<C-e>", "<Plug>luasnip-next-choice", {})
+
+-- Toggle word wrap
+keymap("n", "<C-x>", ":set wrap!<CR>", opts)

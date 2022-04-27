@@ -61,7 +61,7 @@ return packer.startup(function(use)
 	use "p00f/nvim-ts-rainbow"
 
 	--- Others
-	use {"junegunn/goyo.vim", config = function() vim.cmd[[let g:goyo_width = 84]] end}
+	-- use {"junegunn/goyo.vim", config = function() vim.cmd[[let g:goyo_width = 84]] end}
 	use "jiangmiao/auto-pairs"
 	use "tpope/vim-commentary"
 	use "ap/vim-css-color"

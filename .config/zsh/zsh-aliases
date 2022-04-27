@@ -16,7 +16,7 @@ alias zsh-update-plugins="find \"$ZDOTDIR/plugins\" -type d -exec test -e '{}/.g
 alias grep="rg"
 alias df="df -h"
 alias free="free -m"
-alias setkbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 350 100"
+alias setkbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100"
 
 # Aliases - pacman
 alias ch="checkupdates ; pikaur -Qua 2>/dev/null"
@@ -75,7 +75,6 @@ alias q="exit"
 alias v="nvim"
 alias vf="vifmrun ."
 alias vim="nvim"
-alias vtmp="nvim ~/documents/scratch.md"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x"
 
