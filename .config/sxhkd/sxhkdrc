@@ -48,9 +48,6 @@ super + f
 super + shift + f
 	thunar
 
-super + m
-	kitty -e cmus
-
 super + d
 	discord
 

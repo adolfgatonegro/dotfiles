@@ -13,14 +13,18 @@ for i in groups:
     ])
 
 groups.extend([
-    ScratchPad("scratchpad", [DropDown("term", "kitty", x=0.25, opacity = 0.8, width=0.5, height=0.5),]),
-    ScratchPad("sysmon", [DropDown("term", "kitty -e btop", x=0.25, opacity = 0.8, width=0.5, height=0.5),]),
+    ScratchPad("scratchpad", [
+        DropDown("term", "kitty", x=0.25, opacity = 0.8, width=0.5, height=0.5),
+        DropDown("sysmon", "kitty -e btop", x=0.25, opacity=0.8, width=0.5, height=0.5),
+        DropDown("cmus", "kitty -e cmus", x=0.25, opacity=0.8, width=0.5, height=0.5)
+    ]),
 ])
 
 keys.extend([
+    Key("M-m", lazy.group['scratchpad'].dropdown_toggle('cmus')),
+    Key("<F10>", lazy.group['scratchpad'].dropdown_toggle('sysmon')),
     Key("<F12>", lazy.group['scratchpad'].dropdown_toggle('term')),
-    Key("<F10>", lazy.group['sysmon'].dropdown_toggle('term')),
-    ])
+])
 
 
 # Default layouts
