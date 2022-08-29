@@ -42,7 +42,7 @@ bar_defaults = dict(
 )
 
 widget_defaults = dict(
-    font = "JetBrainsMonoMedium Nerd Font",
+    font = "JetBrainsMono Nerd Font",
     fontsize = 10,
     font_size = 10,
     foreground = colours["white"],
@@ -137,7 +137,7 @@ main_bar_widgets = [
         **widget_defaults,
         interface = net_adapter[host],
         prefix = "M",
-        format = "{down} {up}",
+        format = " {down} {up}",
     )
 ]
 
@@ -236,6 +236,17 @@ if monitor_num > 1:
                             widget.CurrentScreen(
                                 **widget_defaults,
                                 **currentscreen_defaults
+                            ),
+                            Volume(
+                                **widget_defaults,
+                                fmt = " {}",
+                                get_volume_command = "pamixer --get-volume-human",
+                                check_mute_command = "pamixer --get-mute",
+                                check_mute_string = "true",
+                                volume_up_command = "pamixer -i 2",
+                                volume_down_command = "pamixer -d 2",
+                                mute_command = "pamixer -t",
+                                mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn("easyeffects")}
                             ),
                             widget.CurrentLayoutIcon(
                                 **currentlayouticon_defaults

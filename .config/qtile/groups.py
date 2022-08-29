@@ -26,7 +26,6 @@ keys.extend([
     Key("<F12>", lazy.group['scratchpad'].dropdown_toggle('term')),
 ])
 
-
 # Default layouts
 groups[8].layout = "max"
 

@@ -40,12 +40,12 @@ alias vfstab="sudoedit /etc/fstab"
 # Aliases - Dotfiles repo
 alias repos="git-summary $HOME/git"
 
-alias cf="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME"
-alias cfa="cf add"
-alias cfst="cf status"
-alias cfd="cf diff | $EDITOR"
-alias cfc="cf commit"
-alias cfp="cf push"
+alias config="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME"
+# alias cfa="cf add"
+# alias cfst="cf status"
+# alias cfd="cf diff | $EDITOR"
+# alias cfc="cf commit"
+# alias cfp="cf push"
 
 # Aliases - git
 alias gst="git status"
@@ -73,8 +73,8 @@ alias cat="bat -p"
 alias less="bat"
 alias q="exit"
 alias v="nvim"
-alias vf="vifmrun ."
 alias vim="nvim"
+alias vf="vifmrun ."
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x"
 
