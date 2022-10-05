@@ -16,7 +16,7 @@ floating_layout_defaults["border_width"] = 1
 
 layouts = [
     layout.MonadTall(**layout_defaults),
-    layout.Max(**layout_defaults),
+    layout.Max(border_width = 0, margin = 0),
     layout.Tile(ratio = 0.5, **layout_defaults),
     layout.Stack(num_stacks = 2, **layout_defaults),
     # layout.Spiral(main_pane = "left", clockwise = True, new_client_position = "after_current", **layout_defaults),

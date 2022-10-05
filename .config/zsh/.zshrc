@@ -10,8 +10,8 @@
 [[ $- != *i* ]] && return
 
 export TERM="xterm-kitty"
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='helix'
+export VISUAL='helix'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=1000000

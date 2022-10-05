@@ -15,7 +15,7 @@ set millerview
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=nvim
+set vicmd=helix
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -135,12 +135,12 @@ mark b ~/.local/bin/
 " %m run the command in a menu window
 
 command! df df -h %m 2> /dev/null
-command! diff nvim -d %f %F
+command! diff helix -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
-command! vgrep nvim "+grep %a"
+command! vgrep helix "+grep %a"
 command! reload :write | restart full
 
 " Extract highlighted archive with scripts/extract
