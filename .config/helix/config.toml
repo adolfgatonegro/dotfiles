@@ -1,0 +1,20 @@
+# helix text editor
+# gatoneg.ro
+
+theme = "tokyonight"
+
+[editor]
+line-number = "relative"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+Z = { Q = ":q!", Z = ":wq" }
+d = { d = [ "goto_line_start", "select_mode", "goto_line_end_newline", "delete_selection", "normal_mode" ]}
+C-w = ":w"
+
+# [editor.file-picker]
+# max-depth = 2
