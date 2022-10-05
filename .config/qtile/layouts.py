@@ -55,4 +55,3 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Yad'),
     Match(wm_class='nvidia-settings'),
 ], **floating_layout_defaults)
-

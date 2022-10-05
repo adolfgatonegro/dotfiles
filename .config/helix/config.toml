@@ -1,9 +1,10 @@
 # helix text editor
 # gatoneg.ro
 
-theme = "tokyonight"
+theme = "gatonegro_neon"
 
 [editor]
+cursorline = true
 line-number = "relative"
 
 [editor.cursor-shape]
@@ -13,8 +14,5 @@ select = "underline"
 
 [keys.normal]
 Z = { Q = ":q!", Z = ":wq" }
-d = { d = [ "goto_line_start", "select_mode", "goto_line_end_newline", "delete_selection", "normal_mode" ]}
+D = [ "goto_line_start", "select_mode", "goto_line_end_newline", "delete_selection", "normal_mode" ]
 C-w = ":w"
-
-# [editor.file-picker]
-# max-depth = 2

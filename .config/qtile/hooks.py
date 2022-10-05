@@ -2,7 +2,6 @@ import subprocess
 import psutil
 from os.path import expanduser
 from libqtile import hook
-# from screens import screens
 
 @hook.subscribe.startup_once
 def start_once():
@@ -34,7 +33,3 @@ def _swallow(window):
 def _unswallow(window):
     if hasattr(window, 'parent'):
         window.parent.minimized = False
-# @hook.subscribe.screen_change
-# def restart_on_randr(qtile):
-#     qtile.cmd_restart()
-
