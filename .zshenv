@@ -35,7 +35,9 @@ export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/node/node_modules
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+export VIMINIT='source $MYVIMRC'
+export MYVIMRC=$XDG_CONFIG_HOME/vim/vimrc
+#export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 

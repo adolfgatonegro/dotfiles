@@ -1,12 +1,10 @@
 " vim: filetype=vifm :
-" ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-"⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
-"⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀vifmrc
-"⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀------
-"⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀Configuration file for Vifm, with file
-"⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀previews using ueberzug.
-"⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-"⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+
+" vifmrc
+" gatoneg.ro
+" last update: 2022-10-07
+" -----------------------
+" config file for vifm
 
 set milleroptions=lsize:1,csize:3,rsize:2,rpreview:all
 set millerview
@@ -15,7 +13,7 @@ set millerview
 " If you would like to use another vi clone such as Elvis or Vile
 " you will need to change this setting.
 
-set vicmd=helix
+set vicmd=vim
 
 " This makes vifm perform file operations on its own instead of relying on
 " standard utilities like `cp`.  While using `cp` and alike is a more universal
@@ -135,12 +133,12 @@ mark b ~/.local/bin/
 " %m run the command in a menu window
 
 command! df df -h %m 2> /dev/null
-command! diff helix -d %f %F
+command! diff vim -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
-command! vgrep helix "+grep %a"
+command! vgrep vim "+grep %a"
 command! reload :write | restart full
 
 " Extract highlighted archive with scripts/extract

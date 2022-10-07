@@ -52,7 +52,7 @@ super + d
 	discord
 
 super + e
-	kitty -e nvim
+	kitty -e vim
 
 #super + h
 #    kitty --config /home/gatonegro/.config/kitty/arch.conf -e /usr/bin/distrobox-enter arch

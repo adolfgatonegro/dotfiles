@@ -1,0 +1,102 @@
+" vimrc
+" gatoneg.ro
+" last update: 2022-10-07
+" -----------------------
+" turns out that a fully decked-out nvim is bloat
+
+" add ~/.config/vim to packpath
+" plugins used:
+" 	tpope/vim-sensible
+" 	vifm/vifm.vim
+" 	adolfgatonegro/tokyonight-vim
+
+set packpath=~/.config/vim/,~/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,~/.vim/after
+
+" colours --------------------------------------------------------------------
+set termguicolors
+
+let g:tokyonight_style = 'night'
+let g:tokyonight_enable_italic = 1
+let g:tokyonight_transparent_background = 1
+
+colorscheme tokyonight
+
+" options --------------------------------------------------------------------
+set number
+set numberwidth=4
+set cmdheight=1
+set list
+set tabstop=4
+set shiftwidth=4
+set softtabstop=0 noexpandtab
+set showtabline=2
+set hlsearch
+set ignorecase
+set confirm
+
+:autocmd InsertEnter,InsertLeave * set cul! "" cursorline for insert mode
+
+let mapleader="`"
+
+" cursors --------------------------------------------------------------------
+let &t_SI = "\e[6 q"
+let &t_SR = "\e[4 q"
+let &t_EI = "\e[2 q"
+
+" key mapping ----------------------------------------------------------------
+map Q <Nop>
+map q <Nop>
+
+nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <C-x> :set wrap!<CR>
+
+noremap j gj
+noremap k gk
+
+nnoremap B ^
+nnoremap E $
+
+" move/indent text blocks
+xnoremap J :move '>+1<CR>gv-gv
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap > >gv
+xnoremap < <gv
+
+" highlight last inserted text
+nnoremap gV `[v`]
+
+" spell check
+nnoremap <F4> ":setlocal spell! spelllang=es_mx<CR>
+nnoremap <F5> ":setlocal spell! spelllang=en_gb<CR>
+
+" tabs
+nnoremap <leader>p :tabprevious<CR>
+nnoremap <leader>n :tabnext<CR>
+nnoremap <leader>t :tabnew<CR>
+
+" splits
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+
+nnoremap <C-Up> :resize +2<CR>
+nnoremap <C-Down> :resize -2<CR>
+nnoremap <C-Left> :vertical resize -2<CR>
+nnoremap <C-Right> :vertical resize +2<CR>
+
+" buffers
+nnoremap <S-l> :bnext<CR>
+nnoremap <S-h> :bprevious<CR>
+
+" vifm.vim
+nnoremap <leader>vf :Vifm<CR>
+nnoremap <leader>vs :VsplitVifm<CR>
+nnoremap <leader>sp :SplitVifm<CR>
+nnoremap <leader>dv :DiffVifm<CR>
+nnoremap <leader>vt :TabVifm<CR>
+
+" write/exit
+nnoremap <leader>q :x<CR>
+nnoremap <leader>Q :qa<CR>
+nnoremap <C-s> :update<CR>
