@@ -59,6 +59,8 @@ set hlsearch
 set ignorecase
 set confirm
 set clipboard=unnamedplus
+set undofile
+set wildmode=longest:full,full
 
 set list
 set listchars=tab:>-
