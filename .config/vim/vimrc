@@ -45,7 +45,7 @@ let g:tokyonight_transparent_background = 1
 colorscheme tokyonight
 
 " lightline ------------------------------------------------------------------
-let g:lightline = {'colorscheme': 'rosepine'}
+let g:lightline = {'colorscheme': 'tokyonight'}
 
 " options --------------------------------------------------------------------
 set number
