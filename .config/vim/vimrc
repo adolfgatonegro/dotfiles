@@ -80,7 +80,7 @@ let &t_EI = "\e[2 q"
 map Q <Nop>
 map q <Nop>
 
-nnoremap <leader><space> :nohlsearch<CR>
+nnoremap <leader>hl :nohlsearch<CR>
 nnoremap <C-x> :set wrap!<CR>
 
 noremap j gj
@@ -108,10 +108,10 @@ nnoremap <leader>n :tabnext<CR>
 nnoremap <leader>t :tabnew<CR>
 
 " split navigation
-nnoremap <up> <C-w>k
-nnoremap <down> <C-w>j
-nnoremap <left> <C-w>h
-nnoremap <right> <C-w>l
+nnoremap <C-k> <C-w>k
+nnoremap <C-j> <C-w>j
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 " split resizing
 nnoremap <C-up> :resize +2<CR>
@@ -133,10 +133,14 @@ nnoremap <leader>vt :TabVifm<CR>
 
 " write/exit
 nnoremap <leader>q :x<CR>
+nnoremap <C-q> :x<CR>
 nnoremap <leader>Q :qa<CR>
 nnoremap <C-s> :update<CR>
 
-" functions ------------------------------------------------------------------
+" misc  ----------------------------------------------------------------------
+" autocmd InsertEnter * :set relativenumber
+" autocmd InsertLeave * :set norelativenumber
+
 " restore cursor position
 augroup resume_edit_position
 	autocmd!
@@ -146,6 +150,7 @@ augroup resume_edit_position
 		\ | endif
 augroup end
 
+" set line width for md, txt, tex
 augroup text_file_width
 	autocmd!
 	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=80
