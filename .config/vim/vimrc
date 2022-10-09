@@ -1,6 +1,6 @@
 " vimrc
 " gatoneg.ro
-" last update: 2022-10-07
+" last update: 2022-10-09
 " ----------------------------------------------------------------------------
 " turns out that a fully decked-out nvim is bloat
 
@@ -80,7 +80,7 @@ let &t_EI = "\e[2 q"
 map Q <Nop>
 map q <Nop>
 
-nnoremap <leader>hl :nohlsearch<CR>
+nnoremap <silent><expr> <leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
 nnoremap <C-x> :set wrap!<CR>
 
 noremap j gj
@@ -103,43 +103,47 @@ nnoremap <F4> ":setlocal spell! spelllang=es_mx<CR>
 nnoremap <F5> ":setlocal spell! spelllang=en_gb<CR>
 
 " tabs
-nnoremap <leader>p :tabprevious<CR>
-nnoremap <leader>n :tabnext<CR>
-nnoremap <leader>t :tabnew<CR>
+nnoremap <silent> <leader>p :tabprevious<CR>
+nnoremap <silent> <leader>n :tabnext<CR>
+nnoremap <silent> <leader>t :tabnew<CR>
 
 " split navigation
-nnoremap <C-k> <C-w>k
-nnoremap <C-j> <C-w>j
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+nnoremap <silent> <C-k> <C-w>k
+nnoremap <silent> <C-j> <C-w>j
+nnoremap <silent> <C-h> <C-w>h
+nnoremap <silent> <C-l> <C-w>l
 
 " split resizing
-nnoremap <C-up> :resize +2<CR>
-nnoremap <C-down> :resize -2<CR>
-nnoremap <C-left> :vertical resize -2<CR>
-nnoremap <C-right> :vertical resize +2<CR>
+nnoremap <silent> <C-up> :resize +2<CR>
+nnoremap <silent> <C-down> :resize -2<CR>
+nnoremap <silent> <C-left> :vertical resize -2<CR>
+nnoremap <silent> <C-right> :vertical resize +2<CR>
 
 " buffers
-nnoremap <S-l> :bnext<CR>
-nnoremap <S-h> :bprevious<CR>
-nnoremap <S-x> :bd<CR>
+nnoremap <silent> <S-l> :bnext<CR>
+nnoremap <silent> <S-h> :bprevious<CR>
+nnoremap <silent> <S-x> :bd<CR>
 
 " vifm.vim
-nnoremap <leader>vf :Vifm<CR>
-nnoremap <leader>vs :VsplitVifm<CR>
-nnoremap <leader>sp :SplitVifm<CR>
-nnoremap <leader>dv :DiffVifm<CR>
-nnoremap <leader>vt :TabVifm<CR>
+nnoremap <silent> <leader>vf :Vifm<CR>
+nnoremap <silent> <leader>vs :VsplitVifm<CR>
+nnoremap <silent> <leader>sp :SplitVifm<CR>
+nnoremap <silent> <leader>dv :DiffVifm<CR>
+nnoremap <silent> <leader>vt :TabVifm<CR>
 
 " write/exit
-nnoremap <leader>q :x<CR>
-nnoremap <C-q> :x<CR>
-nnoremap <leader>Q :qa<CR>
-nnoremap <C-s> :update<CR>
+nnoremap <silent> <leader>q :x<CR>
+nnoremap <silent> <C-q> :x<CR>
+nnoremap <silent> <leader>Q :qa<CR>
+nnoremap <silent><C-s> :update<CR>
 
 " misc  ----------------------------------------------------------------------
-" autocmd InsertEnter * :set relativenumber
-" autocmd InsertLeave * :set norelativenumber
+" toggle line numbers
+augroup number_toggle
+	autocmd!
+	autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+	autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup end
 
 " restore cursor position
 augroup resume_edit_position
