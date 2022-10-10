@@ -11,6 +11,7 @@ bindkey -M menuselect '^[[Z' vi-up-line-or-history
 bindkey -v '^?' backward-delete-char
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
+bindkey '^ ' autosuggest-accept
 
 # Search backwards and forwards with a pattern
 bindkey -M vicmd '/' history-incremental-search-backward
