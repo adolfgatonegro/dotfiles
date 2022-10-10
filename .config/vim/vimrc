@@ -86,9 +86,6 @@ nnoremap <C-x> :set wrap!<CR>
 noremap j gj
 noremap k gk
 
-nnoremap B ^
-nnoremap E $
-
 " move/indent text blocks
 xnoremap J :move '>+1<CR>gv-gv
 xnoremap K :move '<-2<CR>gv-gv
