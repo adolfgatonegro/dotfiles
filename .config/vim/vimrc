@@ -1,18 +1,6 @@
 " vimrc
 " gatoneg.ro
 " last update: 2022-10-09
-" ----------------------------------------------------------------------------
-" turns out that a fully decked-out nvim is bloat
-
-" plugins:
-"
-" 	adolfgatonegro/tokyonight-vim
-" 	ap/vim-css-color
-" 	itchyny/lightline.vim
-" 	jiangmiao/auto-pairs
-" 	tpope/vim-sensible
-" 	tpope/vim-commentary
-" 	vifm/vifm.vim
 
 " set xdg environment for vim ------------------------------------------------
 if empty("$XDG_CACHE_HOME")
@@ -31,9 +19,32 @@ set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
-" set runtimepath+=$XDG_CONFIG_HOME/vim
-set packpath+=$XDG_CONFIG_HOME/vim
+set runtimepath+=$XDG_CONFIG_HOME/vim
+" set packpath+=$XDG_CONFIG_HOME/vim
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
+
+" vim-plug -------------------------------------------------------------------
+" fetch plug.vim if needed
+if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
+  silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+endif
+
+" run PlugInstall if there are missing plugins
+autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \| PlugInstall --sync | source $MYVIMRC
+\| endif
+
+call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
+	Plug 'adolfgatonegro/tokyonight-vim'
+	Plug 'tpope/vim-sensible'
+	Plug 'tpope/vim-commentary'
+	Plug 'ap/vim-css-color'
+	Plug 'itchyny/lightline.vim'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'vifm/vifm.vim'
+	Plug 'lervag/vimtex', { 'for': 'tex' }
+call plug#end()
 
 " colours --------------------------------------------------------------------
 set termguicolors
