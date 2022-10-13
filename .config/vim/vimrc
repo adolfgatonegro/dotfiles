@@ -32,7 +32,7 @@ set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
 set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath+=$XDG_CONFIG_HOME/vim,$XDG_CONFIG_HOME/vim/after,$VIM,$VIMRUNTIME
-set packpath=~/.config/vim/,~/.vim,/usr/share/vim/vimfiles,/usr/share/vim/vim90,/usr/share/vim/vimfiles/after,~/.vim/after
+set packpath+=$XDG_CONFIG_HOME/vim/
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " colours --------------------------------------------------------------------
@@ -134,6 +134,10 @@ nnoremap <silent> <C-q> :x<CR>
 nnoremap <silent> <leader>Q :qa<CR>
 nnoremap <silent><C-s> :update<CR>
 
+" " vimtex ---------------------------------------------------------------------
+" let g:tex_flavor = 'latex'
+" let g:vimtex_view_method = 'zathura'
+
 " misc  ----------------------------------------------------------------------
 " toggle line numbers
 augroup number_toggle
@@ -154,5 +158,5 @@ augroup end
 " set line width for md, txt, tex
 augroup text_file_width
 	autocmd!
-	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=80
+	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=78
 augroup end
