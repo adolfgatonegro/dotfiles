@@ -1,11 +1,6 @@
-# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
-#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀zaliases
-#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀-------
-#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀Aliases for ZSH
-#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
-#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+# zsh-aliases
+# gatoneg.ro
+# last update: 2022-10-13
 
 alias ..="cd .."
 alias ...="cd ../.."
@@ -27,9 +22,9 @@ alias pkgsi="pikaur -Si"
 alias pkgs="pikaur -Ss"
 alias update="pikaur -Syu"
 
-alias pac-clean="sudo pacman -Rns $(pacman -Qtdq)"
-alias pac-unlock="sudo rm /var/lib/pacman/db.lck"
-alias pac-log="cat /var/log/pacman.log"
+alias pacclean="sudo pacman -Rns $(pacman -Qtdq)"
+alias pacunlock="sudo rm /var/lib/pacman/db.lck"
+alias paclog="cat /var/log/pacman.log"
 alias mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
 # Aliases - Edit system config files
@@ -41,11 +36,6 @@ alias vfstab="sudoedit /etc/fstab"
 alias repos="git-summary $HOME/git"
 
 alias config="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME"
-# alias cfa="cf add"
-# alias cfst="cf status"
-# alias cfd="cf diff | $EDITOR"
-# alias cfc="cf commit"
-# alias cfp="cf push"
 
 # Aliases - git
 alias gst="git status"
@@ -71,10 +61,6 @@ alias rm="rm -I -v"
 alias _="sudo"
 alias cat="bat -p"
 alias less="bat"
-alias q="exit"
-# alias v="nvim"
-# alias vim="nvim"
-alias hx="helix"
 alias vf="vifmrun ."
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x"
