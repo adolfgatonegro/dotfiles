@@ -1,6 +1,6 @@
 " vimrc
 " gatoneg.ro
-" last update: 2022-10-09
+" last update: 2022-10-13
 
 " set xdg environment for vim ------------------------------------------------
 if empty("$XDG_CACHE_HOME")
