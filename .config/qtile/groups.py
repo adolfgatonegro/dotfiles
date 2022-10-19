@@ -27,16 +27,16 @@ keys.extend([
 ])
 
 # Default layouts
-groups[8].layout = "max"
+max_groups = [0, 8]
+for i, value in enumerate(max_groups):
+    groups[i].layout = "max"
 
 # Match rules
 groups[0].matches = [Match(wm_class = ["firefox"])]
 groups[1].matches = [Match(wm_class = ["transmission-qt","transmission-gtk"])]
-# groups[2].matches = [Match(wm_class = [""])]
 groups[3].matches = [Match(wm_class = ["discord"])]
 groups[4].matches = [Match(wm_class = ["DesktopEditors", "libreoffice", "libreoffice-writer"])]
 groups[5].matches = [Match(wm_class = ["Steam"])]
 groups[6].matches = [Match(wm_class = ["gimp-2.10","org.inkscape.Inkscape","darktable"])]
-# groups[7].matches = [Match(wm_class = [""])]
 groups[8].matches = [Match(wm_class = ["vmplayer","Vmplayer","virt-manager","VirtualBox Manager","VirtualBox Machine"])]
 
