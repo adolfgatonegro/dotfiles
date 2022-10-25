@@ -27,9 +27,8 @@ keys.extend([
 ])
 
 # Default layouts
-max_groups = [0, 8]
-for i, value in enumerate(max_groups):
-    groups[i].layout = "max"
+groups[0].layout = "max"
+groups[8].layout = "max"
 
 # Match rules
 groups[0].matches = [Match(wm_class = ["firefox"])]
