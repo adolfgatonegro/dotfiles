@@ -18,8 +18,9 @@ export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|mv(| *)|cp(| *)|rm(| *)|..|...)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
-export ZSH_AUTOSUGGEST_HISTORY_IGNORE="cd *|ls *|mv *|cp *|rm * | docker rm * | docker rmi *"
+export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
 setopt EXTENDED_HISTORY
 setopt HIST_IGNORE_ALL_DUPS
