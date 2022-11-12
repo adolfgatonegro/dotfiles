@@ -53,7 +53,8 @@ gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
     margin = 3,
     scale = True,
-    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper")},
+    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper"),
+                       "Button1": lambda: qtile.cmd_spawn("rofi-run")},
 )
 
 groupbox_defaults = dict(
