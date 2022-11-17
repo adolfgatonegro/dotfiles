@@ -44,6 +44,7 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'vifm/vifm.vim'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " colours --------------------------------------------------------------------
@@ -81,6 +82,21 @@ set listchars+=trail:⋄
 :autocmd InsertEnter,InsertLeave * set cursorline! " cursorline for insert mode
 
 let mapleader="`"
+
+" coc extensions -------------------------------------------------------------
+let g:coc_global_extensions = ['coc-pyright', 'coc-sh']
+
+" use <tab> for trigger completion and navigate to the next complete item
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+inoremap <silent><expr> <Tab>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
 
 " cursors --------------------------------------------------------------------
 let &t_SI = "\e[6 q"
