@@ -44,6 +44,8 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'vifm/vifm.vim'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	Plug 'SirVer/ultisnips'
+	Plug 'ckunte/latex-snippets-vim'
 call plug#end()
 
 " colours --------------------------------------------------------------------
@@ -83,10 +85,10 @@ set splitbelow splitright
 :autocmd InsertEnter,InsertLeave * set cursorline! " cursorline for insert mode
 
 let mapleader="`"
-let maplocalleader=","
+let maplocalleader="\\"
 
 " coc extensions -------------------------------------------------------------
-let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-texlab']
+let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-vimtex']
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
@@ -94,11 +96,13 @@ function! CheckBackspace() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-inoremap <silent><expr> <Tab>
+inoremap <silent><expr> <C-j>
       \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
+      \ CheckBackspace() ? "\<C-j>" :
       \ coc#refresh()
-inoremap <expr> <S-Tab> coc#pum#visible() ? coc#pum#prev(1) : "\<S-Tab>"
+inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " cursors --------------------------------------------------------------------
 let &t_SI = "\e[6 q"
@@ -151,11 +155,11 @@ nnoremap <silent> <S-h> :bprevious<CR>
 nnoremap <silent> <S-x> :bd<CR>
 
 " vifm.vim
-nnoremap <silent> <leader>vf :Vifm<CR>
-nnoremap <silent> <leader>vs :VsplitVifm<CR>
-nnoremap <silent> <leader>sp :SplitVifm<CR>
-nnoremap <silent> <leader>dv :DiffVifm<CR>
-nnoremap <silent> <leader>vt :TabVifm<CR>
+nnoremap <leader>vf :Vifm<CR>
+nnoremap <leader>vs :VsplitVifm<CR>
+nnoremap <leader>sp :SplitVifm<CR>
+nnoremap <leader>dv :DiffVifm<CR>
+nnoremap <leader>vt :TabVifm<CR>
 
 " write/exit
 nnoremap <silent> <leader>q :x<CR>
@@ -163,11 +167,16 @@ nnoremap <silent> <C-q> :x<CR>
 nnoremap <silent> <leader>Q :qa<CR>
 nnoremap <silent> <C-s> :update<CR>
 
-" " vimtex ---------------------------------------------------------------------
+" vimtex ---------------------------------------------------------------------
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
 " set conceallevel=1
 " let g:tex_conceal='abdmg'
+
+" ultisnips ------------------------------------------------------------------
+let g:UltiSnipsExpandTrigger = '<Tab>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " misc  ----------------------------------------------------------------------
 
