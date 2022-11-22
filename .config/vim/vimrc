@@ -83,9 +83,10 @@ set splitbelow splitright
 :autocmd InsertEnter,InsertLeave * set cursorline! " cursorline for insert mode
 
 let mapleader="`"
+let maplocalleader=","
 
 " coc extensions -------------------------------------------------------------
-let g:coc_global_extensions = ['coc-pyright', 'coc-sh']
+let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-texlab']
 
 " use <tab> for trigger completion and navigate to the next complete item
 function! CheckBackspace() abort
@@ -165,6 +166,8 @@ nnoremap <silent> <C-s> :update<CR>
 " " vimtex ---------------------------------------------------------------------
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
+" set conceallevel=1
+" let g:tex_conceal='abdmg'
 
 " misc  ----------------------------------------------------------------------
 

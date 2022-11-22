@@ -48,10 +48,6 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='Steam'),
     Match(wm_class='VirtualBox Manager'),
     Match(wm_class='transmission-gtk'),
-    Match(wm_class='transmission-qt'),
     Match(wm_class='nm-connection-editor'),
-    # Match(wm_class='gimp-2.10'),
-    # Match(wm_class='org.inkscape.Inkscape'),
-    Match(wm_class='Yad'),
     Match(wm_class='nvidia-settings'),
 ], **floating_layout_defaults)

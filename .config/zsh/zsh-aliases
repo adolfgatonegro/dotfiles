@@ -53,6 +53,7 @@ alias gdl="git branch -d"
 alias ls="exa -l --color=always --group-directories-first"
 alias la="exa -al --color=always --group-directories-first"
 alias lh="exa -al | rg '^\.'"
+alias tree="exa --tree --icons --color=always"
 
 alias cp="cp -i -v"
 alias mv="mv -i -v"

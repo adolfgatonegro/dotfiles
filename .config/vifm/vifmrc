@@ -178,7 +178,7 @@ command! extract! extract -f %a %f %n
 " program.
 
 " Pdf
-filextype {*.pdf},<application/pdf>
+filextype {*.pdf,*.epub},<application/pdf>
 		 \ zathura %c %i &,
 		" \ apvlv %c, 
 		" \ xpdf %c,
