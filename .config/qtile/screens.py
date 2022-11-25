@@ -11,7 +11,7 @@ calendar = "gsimplecal"
 
 net_adapter = {
     "foxes" : "enp42s0",
-    "lucille" : "wlp2s0b1"
+    "lucille" : "wlp2s0"
 }
 
 colours = dict(
