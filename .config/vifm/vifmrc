@@ -384,9 +384,9 @@ filextype *.pro qtcreator %f &
 filextype */
         \ {View in thunar}
         \ Thunar %f &,
+
 " Use bat to preview files
-fileviewer * bat --color always --wrap never --pager never %c -p -A
-" fileviewer {*.js,*.json,*.py,*.sh,*.md,*.tex,*.txt} bat --color always --wrap never --pager never %c -p
+fileviewer {*.js,*.json,*.py,*.sh,*.md,*.tex,*.txt} bat --color always --wrap never --pager never %c -p
 
 " DISPLAYING ICONS IN VIFM
 " file types
