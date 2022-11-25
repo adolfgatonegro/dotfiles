@@ -271,7 +271,7 @@ fileviewer {*.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm},<image/*>
         " \ vifmimg draw %px %py %pw %ph %c
 		" \ %pc
 		" \ vifmimg clear
-		  \ kitty +icat --silent --transfer-mode=stream --place=%pwx%ph@%pxx%py %c %N
+		  \ kitty +icat --silent --transfer-mode=file --place=%pwx%ph@%pxx%py %c %N
 		  \ %pc
 		  \ kitty icat --clear --silent %pd
 
