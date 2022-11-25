@@ -1,5 +1,7 @@
-" vimrc
+" ----------------------------------------------------------------------------
+" vimrc - vim config file
 " gatoneg.ro
+" ----------------------------------------------------------------------------
 
 " set xdg environment for vim ------------------------------------------------
 if empty("$XDG_CACHE_HOME")
@@ -41,7 +43,9 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'ap/vim-css-color'
 	Plug 'itchyny/lightline.vim'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'vifm/vifm.vim'
+	" Plug 'vifm/vifm.vim'
+	Plug 'ptzz/lf.vim'
+	Plug 'voldikss/vim-floaterm'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'SirVer/ultisnips'
@@ -155,12 +159,20 @@ nnoremap <silent> <S-l> :bnext<CR>
 nnoremap <silent> <S-h> :bprevious<CR>
 nnoremap <silent> <S-x> :bd<CR>
 
+" lf.vim
+let g:lf_map_keys = 0
+let g:lf_replace_netrw = 1
+
+map <localleader>f :Lf<CR>
+map <localleader>sf :new<CR>:Lf<CR>
+map <localleader>vf :vnew<CR>:Lf<CR>
+
 " vifm.vim
-nnoremap <leader>vf :Vifm<CR>
-nnoremap <leader>vs :VsplitVifm<CR>
-nnoremap <leader>sp :SplitVifm<CR>
-nnoremap <leader>dv :DiffVifm<CR>
-nnoremap <leader>vt :TabVifm<CR>
+" nnoremap <leader>vf :Vifm<CR>
+" nnoremap <leader>vs :VsplitVifm<CR>
+" nnoremap <leader>sp :SplitVifm<CR>
+" nnoremap <leader>dv :DiffVifm<CR>
+" nnoremap <leader>vt :TabVifm<CR>
 
 " write/exit
 nnoremap <silent> <leader>q :x<CR>

@@ -1,0 +1,119 @@
+# vim:ft=conf
+# ----------------------------------------------------------------------------
+# lfrc - lf terminal file manager
+# requires trash-cli
+# gatoneg.ro
+# ----------------------------------------------------------------------------
+
+# set window name on cd
+cmd on-cd &{{ 
+	printf "\033]0; $(pwd) - lf\007" > /dev/tty 
+}}
+on-cd
+
+set shell zsh
+set shellopts '-euy'
+set ifs "\n"
+
+# basic settings
+set hidden true
+set icons true
+set ignorecase true
+set scrolloff 10
+set ratios 1:1
+
+# file previews
+set previewer ~/.config/lf/preview
+set cleaner ~/.config/lf/clear
+set preview true
+
+# custom commands
+cmd mkdir %mkdir "$@"
+cmd touch %touch "$@"
+cmd extract ${{
+  case "$f" in
+	*.tar.bz2)   tar xjf "$f"   ;;
+	*.tar.gz)    tar xzf "$f"   ;;
+	*.bz2)       bunzip2 "$f"   ;;
+	*.rar)       unrar x "$f"   ;;
+	*.gz)        gunzip "$f"    ;;
+	*.tar)       tar xf  "$f"    ;;
+	*.tbz2)      tar xjf "$f"   ;;
+	*.tgz)       tar xzf "$f"   ;;
+	*.zip)       unzip "$f"     ;;
+	*.Z)         uncompress "$f";;
+	*.7z)        7z x "$f"      ;;
+	*.deb)       ar x "$f"      ;;
+	*.tar.xz)    tar xf "$f"    ;;
+	*.tar.zst)   tar xf "$f"    ;;
+	*)           echo "'$f' cannot be extracted via ex()" ;;
+  esac
+}}
+
+cmd open ${{
+    case $(file --mime-type "$f" -bL) in
+        text/*|application/json) $EDITOR "$f";;
+        *) xdg-open "$f" ;;
+    esac
+}}
+
+cmd bulk-rename ${{
+    old="$(mktemp)"
+    new="$(mktemp)"
+    if [ -n "$fs" ]; then
+        fs="$(basename -a $fs)"
+    else
+        fs="$(ls)"
+    fi
+    printf '%s\n' "$fs" >"$old"
+    printf '%s\n' "$fs" >"$new"
+    $EDITOR "$new"
+    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+    paste "$old" "$new" | while IFS= read -r names; do
+        src="$(printf '%s' "$names" | cut -f1)"
+        dst="$(printf '%s' "$names" | cut -f2)"
+        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+            continue
+        fi
+        mv -- "$src" "$dst"
+    done
+    rm -- "$old" "$new"
+    lf -remote "send $id unselect"
+}}
+
+# clear default mappings
+map w
+map c
+map t
+map q
+
+# custom mappings
+map <enter> open
+map <c-q> quit
+map <space> toggle
+map <esc> :clear; unselect
+map cw bulk-rename
+map S $$SHELL
+
+map D trash
+map tr restore_trash
+map tc clear_trash
+map tv view_trash
+
+# trash-cli
+cmd trash ${{
+  files=$(printf "$fx" | tr '\n' ';')
+  while [ "$files" ]; do
+    file=${files%%;*}
+    trash-put "$(basename "$file")"
+    if [ "$files" = "$file" ]; then
+      files=''
+    else
+      files="${files#*;}"
+    fi
+  done
+}}
+
+cmd clear_trash %trash-empty
+cmd view_trash :cd ~/.local/share/Trash/files
+cmd restore_trash ${{ trash-restore }}

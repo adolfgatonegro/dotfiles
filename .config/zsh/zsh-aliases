@@ -62,7 +62,7 @@ alias rm="rm -I -v"
 alias _="sudo"
 alias cat="bat -p"
 alias less="bat"
-alias vf="vifmrun ."
+# alias vf="vifmrun ."
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x"
 
