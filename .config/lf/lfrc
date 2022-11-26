@@ -143,6 +143,7 @@ map p paste
 map Y cut
 map y copy
 map DD delete
+map E $$EDITOR "$f"
 map r rename
 map H top
 map L bottom
