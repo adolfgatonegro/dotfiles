@@ -1,6 +1,4 @@
 [Default Applications]
-text/plain=vim.desktop
-text/markdown=vim.desktop;
 application/vnd.openxmlformats-officedocument.wordprocessingml.document=onlyoffice-desktopeditors.desktop;
 application/vnd.openxmlformats-officedocument.spreadsheetml.sheet=onlyoffice-desktopeditors.desktop
 application/vnd.openxmlformats-officedocument.presentationml.presentation=onlyoffice-desktopeditors.desktop
@@ -9,6 +7,7 @@ x-scheme-handler/nxm-protocol=ModOrganizer-steamtinkerlaunch-dl.desktop
 x-scheme-handler/http=firefox.desktop
 x-scheme-handler/https=firefox.desktop
 x-scheme-handler/chrome=firefox.desktop
+text/*=vim.desktop
 text/html=firefox.desktop
 application/x-extension-htm=firefox.desktop
 application/x-extension-html=firefox.desktop
@@ -17,11 +16,6 @@ application/xhtml+xml=firefox.desktop
 application/x-extension-xhtml=firefox.desktop
 application/x-extension-xht=firefox.desktop
 application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
-audio/mp4=smplayer.desktop;
-video/mp4=smplayer.desktop;
-audio/mpeg=smplayer.desktop;
 image/jpeg=feh.desktop
 image/gif=feh.desktop
 image/png=feh.desktop
-image/x-nikon-nef=feh.desktop;
-image/x-dds=gimp.desktop;

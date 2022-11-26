@@ -52,10 +52,11 @@ cmd extract ${{
   esac
 }}
 
-cmd open ${{
-    case $(file --mime-type "$f" -bL) in
-        text/*|application/json) $EDITOR "$f";;
-        *) xdg-open "$f" ;;
+# open text files in $EDITOR and xdg-open for everything else
+cmd open &{{
+    case $(file --mime-type -Lb $f) in
+        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
     esac
 }}
 
@@ -139,7 +140,7 @@ map w
 # custom mappings
 map . set hidden!
 map p paste
-map x cut
+map Y cut
 map y copy
 map DD delete
 map r rename
