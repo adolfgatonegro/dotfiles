@@ -55,7 +55,7 @@ call plug#end()
 " colours --------------------------------------------------------------------
 set termguicolors
 
-let g:tokyonight_style = 'night'
+let g:tokyonight_style = 'gatonegro'
 let g:tokyonight_enable_italic = 1
 let g:tokyonight_transparent_background = 1
 
