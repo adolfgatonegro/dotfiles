@@ -7,7 +7,7 @@ layout_defaults = dict(
     margin = 6,
     border_width = 2,
     border_focus = colours["hot_pink"],
-    border_normal = colours["dark_grey"],
+    border_normal = colours["dark_blue"],
 )
 
 floating_layout_defaults = layout_defaults.copy()
