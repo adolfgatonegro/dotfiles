@@ -8,6 +8,12 @@ fi
 export QT_QPA_PLATFORMTHEME=qt5ct 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
+export TERM="xterm-kitty"
+export TERMINAL="kitty"
+export EDITOR='vim'
+export VISUAL='vim'
+export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+
 # xdg dirs
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
