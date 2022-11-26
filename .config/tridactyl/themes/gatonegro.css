@@ -4,7 +4,7 @@
 
 :root {
     --tridactyl-font-family: sans-serif;
-    --tridactyl-bg: rgba(10, 10, 32, 0.5); 
+    --tridactyl-bg: rgba(10, 10, 32, 0.75); 
     --tridactyl-fg: #c1c1d1;
 
     --tridactyl-status-font-size: 12px;
@@ -20,10 +20,10 @@
     --tridactyl-of-bg: #ff00aa;
 
     --tridactyl-hintspan-fg: #c1c1d1;
-    --tridactyl-hintspan-bg: #204e8a;
+    --tridactyl-hintspan-bg: #0077f0;
 
     --tridactyl-hint-active-fg: #363649;
-    --tridactyl-hint-active-bg: #006E51;
+    --tridactyl-hint-active-bg: #58aa99;
     --tridactyl-hint-active-outline: 1px solid #0a0a20;
 
     --tridactyl-hint-bg: rgba(10, 10, 32, 0.50);
@@ -33,6 +33,7 @@
     --tridactyl-cmplt-option-height: 1.9em;
     
     --tridactyl-border-radius: 4px;
+	--tridactyl-url-fg: #00ffe0;
 }
 
 :root.TridactylOwnNamespace {
@@ -50,6 +51,7 @@
 
 :root #command-line-holder {
     order: 1;
+	background-color: var(--tridactyl-bg);
 }
 
 :root #command-line-holder, :root #tridactyl-input {

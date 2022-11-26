@@ -1,5 +1,5 @@
 " General Settings
-set update.lastchecktime 1669399217778
+set update.lastchecktime 1669487807901
 set update.nag true
 set update.nagwait 7
 set update.lastnaggedversion 1.14.0
@@ -187,6 +187,8 @@ bind ` gobble 1 markjump
 autocmd DocStart youtube.com/watch mode ignore
 autocmd DocStart undefined mode ignore
 autocmd DocStart youtube.com mode ignore
+autocmd DocStart ^https://youtube.com/watch mode ignore
+autocmd DocStart ^https://youtube.com/ mode ignore
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 
