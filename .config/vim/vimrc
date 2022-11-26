@@ -159,14 +159,6 @@ nnoremap <silent> <S-l> :bnext<CR>
 nnoremap <silent> <S-h> :bprevious<CR>
 nnoremap <silent> <S-x> :bd<CR>
 
-" lf.vim
-let g:lf_map_keys = 0
-let g:lf_replace_netrw = 1
-
-map <localleader>f :Lf<CR>
-map <localleader>sf :new<CR>:Lf<CR>
-map <localleader>vf :vnew<CR>:Lf<CR>
-
 " vifm.vim
 " nnoremap <leader>vf :Vifm<CR>
 " nnoremap <leader>vs :VsplitVifm<CR>
@@ -190,6 +182,19 @@ let g:vimtex_view_method = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+" lf.vim ---------------------------------------------------------------------
+let g:lf_map_keys = 0
+let g:lf_replace_netrw = 1
+
+map <localleader>f :Lf<CR>
+map <localleader>sf :new<CR>:Lf<CR>
+map <localleader>vf :vnew<CR>:Lf<CR>
+
+" vim-floaterm ---------------------------------------------------------------
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_wintype = 'float'
 
 " misc  ----------------------------------------------------------------------
 
