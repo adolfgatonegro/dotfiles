@@ -21,6 +21,8 @@ set icons true
 set ignorecase true
 set scrolloff 10
 set ratios 1:1
+set info size
+set tabstop 4
 
 # file previews
 set previewer ~/.config/lf/preview
@@ -57,6 +59,7 @@ cmd open ${{
     esac
 }}
 
+# bulk rename
 cmd bulk-rename ${{
     old="$(mktemp)"
     new="$(mktemp)"
@@ -81,25 +84,6 @@ cmd bulk-rename ${{
     lf -remote "send $id unselect"
 }}
 
-# clear default mappings
-map w
-map c
-map t
-map q
-
-# custom mappings
-map <enter> open
-map <c-q> quit
-map <space> toggle
-map <esc> :clear; unselect
-map cw bulk-rename
-map S $$SHELL
-
-map D trash
-map tr restore_trash
-map tc clear_trash
-map tv view_trash
-
 # trash-cli
 cmd trash ${{
   files=$(printf "$fx" | tr '\n' ';')
@@ -114,6 +98,70 @@ cmd trash ${{
   done
 }}
 
-cmd clear_trash %trash-empty
-cmd view_trash :cd ~/.local/share/Trash/files
+cmd empty_trash %trash-empty
 cmd restore_trash ${{ trash-restore }}
+
+# symlinks
+cmd follow_link %{{
+  lf -remote "send ${id} select '$(readlink $f)'"
+}}
+
+cmd link %{{
+    set -- $(cat ~/.local/share/lf/files)
+    mode="$1"
+    shift
+    if [ "$#" -lt 1 ]; then
+        lf -remote "send $id echo no files to link"
+        exit 0
+    fi
+    case "$mode" in
+        # symbolically copy mode is indicating a soft link
+        copy) ln -sr -t . -- "$@";;
+        # while a move mode is indicating a hard link
+        move) ln -t . -- "$@";;
+    esac
+    rm ~/.local/share/lf/files
+    lf -remote "send clear"
+}}
+
+# key mappings ---------------------------------------------------------------
+
+# clear default mappings
+map c
+map d
+map e
+map f
+map n
+map q
+map t
+map w
+
+# custom mappings
+map . set hidden!
+map p paste
+map x cut
+map y copy
+map DD delete
+map r rename
+map H top
+map L bottom
+map <enter> open
+map <c-q> quit
+map <space> toggle
+map <esc> :clear; unselect
+map cw bulk-rename
+map S $$SHELL
+map ga calcdirsize
+
+# trash-cli mappings
+map dd trash
+map tr restore_trash
+map te empty_trash
+
+# symlinks mappings
+map al :link
+map gF follow_link
+
+# navigation
+map gc cd ~/.config
+map gtr cd ~/.local/share/Trash/files
