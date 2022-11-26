@@ -34,6 +34,8 @@
     
     --tridactyl-border-radius: 4px;
 	--tridactyl-url-fg: #00ffe0;
+
+	color-scheme: dark !important;
 }
 
 :root.TridactylOwnNamespace {
@@ -51,7 +53,7 @@
 
 :root #command-line-holder {
     order: 1;
-	background-color: var(--tridactyl-bg);
+	background-color: var(--tridactyl-bg) !important;
 }
 
 :root #command-line-holder, :root #tridactyl-input {
@@ -65,7 +67,7 @@
 :root #tridactyl-input {
     width: 96%;
     padding: 1rem;
-	background-color: var(--tridactyl-bg);
+	background-color: var(--tridactyl-bg) !important;
 	font-size: 1.5em;
 }
 
