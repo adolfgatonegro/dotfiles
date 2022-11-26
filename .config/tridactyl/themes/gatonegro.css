@@ -14,13 +14,13 @@
     --tridactyl-status-border: 2px solid #0a0a20;
     --tridactyl-status-border-radius: 4px;
 
-    --tridactyl-header-font-size: 16px;
+    --tridactyl-header-font-size: 14px;
     
-    --tridactyl-of-fg: #0a0a20;
-    --tridactyl-of-bg: #ff00aa;
+    --tridactyl-of-fg: #c1c1e1;
+    --tridactyl-of-bg: #262639;
 
     --tridactyl-hintspan-fg: #c1c1d1;
-    --tridactyl-hintspan-bg: #0077f0;
+    --tridactyl-hintspan-bg: #00ffe0;
 
     --tridactyl-hint-active-fg: #363649;
     --tridactyl-hint-active-bg: #58aa99;
@@ -43,7 +43,7 @@
 }
 
 :root.TridactylOwnNamespace a {
-    color: #3b84ef;
+    color: #ff00aa;
 }
 
 :root.TridactylOwnNamespace code {
