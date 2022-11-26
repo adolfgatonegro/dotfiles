@@ -1,19 +1,15 @@
-// ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
-// ⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀
-// ⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀box-minimal
-// ⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀ -----------
-// ⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Very simple, minimalistic fullscreen theme for rofi.
-// ⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+// box-minimal.rasi - rofi theme
+// gatoneg.ro
 
 * {
   bg: #0a0a2077;
   bg-alt: #363649;
-  hl: #ff00aa44;
+  hl: #ff00aaff;
+  hl-alt: #ff00aa99;
 
   fg: #c1c1d1;
   fg-alt: #6c6c93;
+  fg-dark: #0a0a20;
 
   background-color: transparent;
   
@@ -51,7 +47,7 @@ element-icon {
 }
 
 entry {
-  background-color: @hl;
+  background-color: @hl-alt;
   padding: 12;
   text-color: @fg;
 }
@@ -75,8 +71,9 @@ mainbox {
 prompt {
   background-color: @hl;
   enabled: true;
-  padding: 12 0 0 12;
-  text-color: @fg;
+  padding: 12 12 0 12;
+  text-color: @fg-dark;
+  text-transform: uppercase;
 }
 
 /* vim: ft=sass

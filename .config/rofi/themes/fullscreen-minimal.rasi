@@ -1,15 +1,9 @@
-// ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
-// ⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀
-// ⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀fullscreen-minimal
-// ⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀ ------------------
-// ⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Very simple, minimalistic fullscreen theme for rofi.
-// ⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+// fullscreen-minimal.rasi - rofi theme
+// gatoneg.ro
 
 * {
     background-color: transparent;
-    text-color:     white;
+    text-color:     #c1c1d1;
     spacing:        40;
 	columns:		2;
 }
@@ -17,7 +11,7 @@
 window {
     font: "JetBrainsMono Nerd Font Medium 9";
     fullscreen: 		true;
-    background-color: 	#0a0a15aa;
+    background-color: 	#0a0a1599;
     children: [ dummy1, hdum, dummy2 ];
 }
 
