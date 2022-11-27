@@ -159,7 +159,7 @@ main_bar_widgets = [
         **widget_defaults,
         interface = net_adapter[host],
         prefix = "M",
-        format = " {down} {up}",
+        format = "{down}  {up} ",
     )
 ]
 
@@ -225,7 +225,7 @@ def get_num_monitors():
 monitor_num = get_num_monitors()
 
 if monitor_num > 1:
-    main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
+    # main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
     for monitor in range(monitor_num -1):
         screens.append(
             Screen(
@@ -239,10 +239,10 @@ if monitor_num > 1:
                             **widget_defaults,
                             **tasklist_defaults,
                         ),
-                        widget.CurrentScreen(
-                            **widget_defaults,
-                            **currentscreen_defaults,
-                        ),
+                        # widget.CurrentScreen(
+                        #     **widget_defaults,
+                        #     **currentscreen_defaults,
+                        # ),
                         Volume(
                             **widget_defaults,
                             **volume_defaults,
