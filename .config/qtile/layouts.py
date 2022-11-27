@@ -6,12 +6,12 @@ from screens import colours
 layout_defaults = dict(
     margin = 6,
     border_width = 2,
-    border_focus = colours["hot_pink"],
-    border_normal = colours["dark_blue"],
+    border_focus = colours["pink0"],
+    border_normal = colours["bg"],
 )
 
 floating_layout_defaults = layout_defaults.copy()
-floating_layout_defaults["border_focus"] = colours["dark_grey"]
+floating_layout_defaults["border_focus"] = colours["grey1"]
 floating_layout_defaults["border_width"] = 1
 
 layouts = [
