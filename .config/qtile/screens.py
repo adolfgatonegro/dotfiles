@@ -46,9 +46,8 @@ colours = dict(
 )
 
 bar_defaults = dict(
-    size = 23,
+    size = 25,
     background = colours["bg"],
-    # margin = [6,6,0,6],
     opacity = 0.8,
 )
 
@@ -57,12 +56,12 @@ widget_defaults = dict(
     fontsize = 10,
     font_size = 10,
     foreground = colours["fg"],
-    padding = 4,
+    padding = 6,
 )
 
 gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
-    margin = 3,
+    margin = 2,
     scale = True,
     mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper"),
                        "Button1": lambda: qtile.cmd_spawn("rofi-run")},
@@ -73,7 +72,6 @@ groupbox_defaults = dict(
     rounded = False,
     use_mouse_wheel = False,
     borderwidth = 3,
-    # highlight_color = ['#000000', '#282828'],
     highlight_method = "block",
     hide_unused = True,
     inactive = colours["grey1"],
@@ -91,16 +89,18 @@ groupbox_defaults = dict(
 )
 tasklist_defaults = dict(
     highlight_method = "block",
-    border = colours["bg"],
+    urgent_alert_method = "text",
+    border = colours["grey1"],
     urgent_border = colours["cyan0"],
     unfocused_border = colours["bg"],
     rounded = False,
-    margin = 2,
+    margin = 0,
     spacing = 10,
-    icon_size = 12,
+    icon_size = 0,
     txt_floating = "缾 ",
     txt_maximized = "类 ",
     txt_minimized = "絛 ",
+    title_width_method = "uniform",
 )
 currentscreen_defaults = dict(
     active_color = colours["fg"],
@@ -171,14 +171,6 @@ main_bar_widgets += [
     Volume(
         **widget_defaults,
         fmt = " {}",
-        # Control volume with pactl
-        # get_volume_command = "pactl get-sink-volume @DEFAULT_SINK@",
-        # check_mute_command = "pactl get-sink-mute @DEFAULT_SINK@",
-        # check_mute_string = "yes",
-        # volume_up_command = "pactl set-sink-volume @DEFAULT_SINK@ +2%",
-        # volume_down_command = "pactl set-sink-volume @DEFAULT_SINK@ -2%",
-        # mute_command = "pactl set-sink-mute @DEFAULT_SINK@ toggle",
-        # Control volume with pamixer
         get_volume_command = "pamixer --get-volume-human",
         check_mute_command = "pamixer --get-mute",
         check_mute_string = "true",
