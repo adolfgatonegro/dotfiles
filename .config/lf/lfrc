@@ -146,6 +146,7 @@ map DD delete
 map E $$EDITOR "$f"
 map r rename
 map H top
+map R reload
 map L bottom
 map <enter> open
 map <c-q> quit
