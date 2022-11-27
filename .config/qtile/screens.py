@@ -95,7 +95,6 @@ tasklist_defaults = dict(
     unfocused_border = colours["bg"],
     rounded = False,
     margin = 0,
-    spacing = 10,
     icon_size = 0,
     txt_floating = "缾 ",
     txt_maximized = "类 ",
