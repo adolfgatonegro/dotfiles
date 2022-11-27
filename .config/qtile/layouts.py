@@ -4,7 +4,7 @@ from libqtile.config import Match
 from screens import colours
 
 layout_defaults = dict(
-    margin = 6,
+    margin = 4,
     border_width = 2,
     border_focus = colours["pink0"],
     border_normal = colours["bg"],
@@ -44,7 +44,6 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='notification'),
     Match(wm_class='splash'),
     Match(wm_class='toolbar'),
-    Match(wm_class='feh'),
     Match(wm_class='Steam'),
     Match(wm_class='VirtualBox Manager'),
     Match(wm_class='transmission-gtk'),
