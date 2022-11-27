@@ -102,12 +102,12 @@ function! CheckBackspace() abort
 endfunction
 
 inoremap <silent><expr> <C-j>
-      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ coc#pum#visible() ? coc#pum#next(1):
       \ CheckBackspace() ? "\<C-j>" :
       \ coc#refresh()
 inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-      \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <silent><expr> <cr> coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() :
+        \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 " cursors --------------------------------------------------------------------
 let &t_SI = "\e[6 q"
