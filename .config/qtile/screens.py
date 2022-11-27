@@ -91,7 +91,7 @@ tasklist_defaults = dict(
     highlight_method = "block",
     urgent_alert_method = "text",
     border = colours["grey1"],
-    urgent_border = colours["cyan0"],
+    urgent_border = colours["purple1"],
     unfocused_border = colours["bg"],
     rounded = False,
     margin = 0,
@@ -101,6 +101,16 @@ tasklist_defaults = dict(
     txt_maximized = "类 ",
     txt_minimized = "絛 ",
     title_width_method = "uniform",
+)
+volume_defaults = dict(
+    fmt = " {}",
+    get_volume_command = "pamixer --get-volume-human",
+    check_mute_command = "pamixer --get-mute",
+    check_mute_string = "true",
+    volume_up_command = "pamixer -i 2",
+    volume_down_command = "pamixer -d 2",
+    mute_command = "pamixer -t",
+    mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn("easyeffects")}
 )
 currentscreen_defaults = dict(
     active_color = colours["fg"],
@@ -170,14 +180,7 @@ if host == "lucille":
 main_bar_widgets += [
     Volume(
         **widget_defaults,
-        fmt = " {}",
-        get_volume_command = "pamixer --get-volume-human",
-        check_mute_command = "pamixer --get-mute",
-        check_mute_string = "true",
-        volume_up_command = "pamixer -i 2",
-        volume_down_command = "pamixer -d 2",
-        mute_command = "pamixer -t",
-        mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn("easyeffects")}
+        **volume_defaults,
     ),
     widget.CurrentLayoutIcon(
         **currentlayouticon_defaults,
@@ -225,37 +228,30 @@ if monitor_num > 1:
     main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
     for monitor in range(monitor_num -1):
         screens.append(
-                Screen(
-                    top=bar.Bar(
-                        [
-                            gato_logo,
-                            widget.GroupBox(
-                                **widget_defaults,
-                                **groupbox_defaults
-                            ),
-                            widget.TaskList(
-                                **widget_defaults,
-                                **tasklist_defaults
-                            ),
-                            widget.CurrentScreen(
-                                **widget_defaults,
-                                **currentscreen_defaults
-                            ),
-                            Volume(
-                                **widget_defaults,
-                                fmt = " {}",
-                                get_volume_command = "pamixer --get-volume-human",
-                                check_mute_command = "pamixer --get-mute",
-                                check_mute_string = "true",
-                                volume_up_command = "pamixer -i 2",
-                                volume_down_command = "pamixer -d 2",
-                                mute_command = "pamixer -t",
-                                mouse_callbacks = {'Button3': lambda: qtile.cmd_spawn("easyeffects")}
-                            ),
-                            widget.CurrentLayoutIcon(
-                                **currentlayouticon_defaults
-                            ),
-                        ],**bar_defaults,
+            Screen(
+                top=bar.Bar([
+                        gato_logo,
+                        widget.GroupBox(
+                            **widget_defaults,
+                            **groupbox_defaults,
+                        ),
+                        widget.TaskList(
+                            **widget_defaults,
+                            **tasklist_defaults,
+                        ),
+                        widget.CurrentScreen(
+                            **widget_defaults,
+                            **currentscreen_defaults,
+                        ),
+                        Volume(
+                            **widget_defaults,
+                            **volume_defaults,
+                        ),
+                        widget.CurrentLayoutIcon(
+                            **currentlayouticon_defaults,
+                        ),
+                    ],
+                    **bar_defaults,
                 ),
             )
         )
