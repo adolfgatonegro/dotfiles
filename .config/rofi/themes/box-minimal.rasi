@@ -20,7 +20,8 @@
 }
 
 window {
-  font: "JetBrainsMono Nerd Font Medium 9";
+  font: "CaskaydiaCove Nerd Font SemiBold 10";
+  // font: "JetBrainsMono Nerd Font Medium 9";
   width: 25%;
   background-color: @bg;
   border: 1px;

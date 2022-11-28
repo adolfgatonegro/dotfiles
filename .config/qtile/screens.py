@@ -53,7 +53,8 @@ bar_defaults = dict(
 )
 
 widget_defaults = dict(
-    font = "JetBrainsMonoMedium Nerd Font",
+    font = "CaskaydiaCove Nerd Font SemiBold",
+    # font = "JetBrainsMonoMedium Nerd Font",
     fontsize = 10,
     font_size = 10,
     foreground = colours["fg"],
