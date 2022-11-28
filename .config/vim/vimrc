@@ -43,8 +43,6 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'ap/vim-css-color'
 	Plug 'itchyny/lightline.vim'
 	Plug 'jiangmiao/auto-pairs'
-	" Plug 'vifm/vifm.vim'
-	Plug 'ptzz/lf.vim'
 	Plug 'voldikss/vim-floaterm'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
@@ -79,6 +77,7 @@ set clipboard=unnamedplus
 set undofile
 set wildmode=longest:full,full
 set scrolloff=10
+set hidden
 
 set list
 set listchars=tab:>-
@@ -89,7 +88,7 @@ set splitbelow splitright
 
 :autocmd InsertEnter,InsertLeave * set cursorline! " cursorline for insert mode
 
-let mapleader="`"
+let mapleader="\<Space>"
 let maplocalleader="\\"
 
 " coc extensions -------------------------------------------------------------
@@ -119,8 +118,10 @@ map Q <Nop>
 map q <Nop>
 
 nnoremap <silent><expr> <leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
-nnoremap <C-x> :set wrap!<CR>
+nnoremap <leader>wr :set wrap!<CR>
 
+noremap l <Space>
+noremap h <Backspace>
 noremap j gj
 noremap k gk
 
@@ -137,11 +138,6 @@ nnoremap gV `[v`]
 nnoremap <F4> ":setlocal spell! spelllang=es_mx<CR>
 nnoremap <F5> ":setlocal spell! spelllang=en_gb<CR>
 
-" tabs
-nnoremap <silent> <leader>p :tabprevious<CR>
-nnoremap <silent> <leader>n :tabnext<CR>
-nnoremap <silent> <leader>t :tabnew<CR>
-
 " split navigation
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-j> <C-w>j
@@ -155,28 +151,26 @@ nnoremap <silent> <C-left> :vertical resize -2<CR>
 nnoremap <silent> <C-right> :vertical resize +2<CR>
 
 " buffers
-nnoremap <silent> <S-l> :bnext<CR>
-nnoremap <silent> <S-h> :bprevious<CR>
-nnoremap <silent> <S-x> :bd<CR>
+nnoremap <silent> <leader>e :enew<CR>
+nnoremap <silent> <leader>bl :ls<CR>
+nnoremap <silent> <leader>l :bnext<CR>
+nnoremap <silent> <leader>h :bprevious<CR>
+nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
+nnoremap <silent> <leader>bs :new<CR>
+nnoremap <silent> <leader>bv :vnew<CR>
 
-" vifm.vim
-" nnoremap <leader>vf :Vifm<CR>
-" nnoremap <leader>vs :VsplitVifm<CR>
-" nnoremap <leader>sp :SplitVifm<CR>
-" nnoremap <leader>dv :DiffVifm<CR>
-" nnoremap <leader>vt :TabVifm<CR>
+" tabs
+nnoremap <silent> <leader>tp :tabprevious<CR>
+nnoremap <silent> <leader>tn :tabnext<CR>
+nnoremap <silent> <leader>tt :tabnew<CR>
 
 " write/exit
-nnoremap <silent> <leader>q :x<CR>
 nnoremap <silent> <C-q> :x<CR>
-nnoremap <silent> <leader>Q :qa<CR>
-nnoremap <silent> <C-s> :update<CR>
+nnoremap <silent> <C-s> :up<CR>
 
 " vimtex ---------------------------------------------------------------------
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
-" set conceallevel=1
-" let g:tex_conceal='abdmg'
 
 " ultisnips ------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger = '<Tab>'
@@ -184,22 +178,22 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " lf.vim ---------------------------------------------------------------------
-let g:lf_map_keys = 0
-let g:lf_replace_netrw = 1
-
-map <localleader>f :Lf<CR>
-map <localleader>sf :new<CR>:Lf<CR>
-map <localleader>vf :vnew<CR>:Lf<CR>
+" let g:lf_map_keys = 0
+" let g:lf_replace_netrw = 1
 
 " vim-floaterm ---------------------------------------------------------------
 let g:floaterm_width = 0.8
 let g:floaterm_height = 0.8
 let g:floaterm_wintype = 'float'
+let g:floaterm_opener = 'edit'
+
+map <leader>f :FloatermNew lf<CR>
+map <leader>sf :FloatermNew --wintype=split lf<CR>
+map <leader>vf :FloatermNew --wintype=vsplit --opener=vsplit lf<CR>
 
 " misc  ----------------------------------------------------------------------
-
-" run current python file in terminal
-autocmd filetype python nnoremap <silent> <F5> :w<CR>:term python %<CR>
+" run current python file in :Floaterm
+autocmd filetype python nnoremap <silent> <F5> :w<CR>:FloatermNew --wintype=split --autoclose=0 python %<CR>
 
 " toggle line numbers
 augroup number_toggle
@@ -222,3 +216,27 @@ augroup text_file_width
 	autocmd!
 	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=78
 augroup end
+
+" set up templates for some files
+augroup templates
+	autocmd!
+	autocmd BufNewFile *.sh 0r $XDG_CONFIG_HOME/vim/templates/skeleton.sh | execute "normal! G"
+	autocmd BufNewFile *.tex 0r $XDG_CONFIG_HOME/vim/templates/skeleton.tex | execute "normal! G"
+augroup end
+
+" replace netrw with lf - taken from lf.vim because I don't actually want the
+" rest of the functionality
+function! OpenLfIn(path, edit_cmd)
+  let currentPath = shellescape(isdirectory(a:path) ? fnamemodify(expand(a:path), ":p:h") : expand(a:path))
+  let s:edit_cmd = a:edit_cmd
+  if exists(":FloatermNew")
+    exec 'FloatermNew --autoinsert=true lf -- ' . currentPath
+  else
+    echoerr "Failed to open a floating terminal. Make sure `voldikss/vim-floaterm` is installed."
+  endif
+endfun
+
+augroup replace_netrw_lf
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd BufEnter * let s:buf_path = expand("%") | let s:default_edit_cmd = 'edit'| if isdirectory(s:buf_path) | bdelete! | call timer_start(100, {->OpenLfIn(s:buf_path, s:default_edit_cmd)}) | endif
+  augroup end
