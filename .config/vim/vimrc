@@ -87,7 +87,7 @@ set listchars+=trail:⋄
 
 set splitbelow splitright
 
-:autocmd InsertEnter,InsertLeave * set cursorline! " cursorline for insert mode
+:autocmd InsertEnter,InsertLeave * set cursorline!
 
 let mapleader="\<Space>"
 let maplocalleader=","
@@ -188,8 +188,8 @@ let g:floaterm_wintype = 'float'
 let g:floaterm_opener = 'edit'
 
 map <leader>f :FloatermNew lf<CR>
-map <leader>sf :FloatermNew --wintype=split lf<CR>
-map <leader>vf :FloatermNew --wintype=vsplit --opener=vsplit lf<CR>
+map <leader>sf :FloatermNew --wintype=split --height=0.5 lf<CR>
+map <leader>vf :FloatermNew --wintype=vsplit --width=0.5 --opener=vsplit lf<CR>
 
 " misc  ----------------------------------------------------------------------
 " run current python file in :Floaterm
