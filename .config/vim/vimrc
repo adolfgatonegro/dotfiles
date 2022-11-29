@@ -75,7 +75,8 @@ set ignorecase
 set confirm
 set clipboard=unnamedplus
 set undofile
-set wildmode=longest:full,full
+set wildmode=list:longest,full
+set wildignorecase
 set scrolloff=10
 set hidden
 
@@ -90,6 +91,9 @@ set splitbelow splitright
 
 let mapleader="\<Space>"
 let maplocalleader=","
+
+" abbreviations
+" iab hbs #! /usr/bin/env bash<CR>
 
 " coc extensions -------------------------------------------------------------
 let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-vimtex', 'coc-css']
@@ -117,13 +121,15 @@ let &t_EI = "\e[2 q"
 map Q <Nop>
 map q <Nop>
 
-nnoremap <silent><expr> <leader>hl (&hls && v:hlsearch ? ':nohls' : ':set hls')."\n"
+nnoremap <silent> <leader>hl :set hlsearch!<CR>
 nnoremap <leader>wr :set wrap!<CR>
 
 noremap l <Space>
 noremap h <Backspace>
 noremap j gj
 noremap k gk
+nnoremap H ^
+nnoremap L $
 
 " move/indent text blocks
 xnoremap J :move '>+1<CR>gv-gv
@@ -168,6 +174,12 @@ nnoremap <silent> <leader>tt :tabnew<CR>
 nnoremap <silent> <C-q> :x<CR>
 nnoremap <silent> <C-s> :up<CR>
 
+" search for selection
+vnoremap * "zy:let @/=@z<C-r>n<CR>
+
+" <S-Tab> in visual mode to number lines...
+xnoremap <S-Tab> :s/\%V/0<C-V><Tab>/<CR>gvg<C-A>gv:retab<Esc>gvI<C-G>u<Esc>gv/ <CR>:s/\%V /./<CR>
+
 " vimtex ---------------------------------------------------------------------
 let g:tex_flavor = 'latex'
 let g:vimtex_view_method = 'zathura'
@@ -176,10 +188,6 @@ let g:vimtex_view_method = 'zathura'
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-" lf.vim ---------------------------------------------------------------------
-" let g:lf_map_keys = 0
-" let g:lf_replace_netrw = 1
 
 " vim-floaterm ---------------------------------------------------------------
 let g:floaterm_width = 0.8
