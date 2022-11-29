@@ -95,22 +95,14 @@ let maplocalleader=","
 " abbreviations
 " iab hbs #! /usr/bin/env bash<CR>
 
-" coc extensions -------------------------------------------------------------
+" coc.nvim -------------------------------------------------------------------
 let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-vimtex', 'coc-css']
+let g:coc_config_home = "XDG_CONFIG_HOME/vim"
 
-" use <tab> for trigger completion and navigate to the next complete item
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-inoremap <silent><expr> <C-j>
-      \ coc#pum#visible() ? coc#pum#next(1):
-      \ CheckBackspace() ? "\<C-j>" :
-      \ coc#refresh()
-inoremap <expr> <C-k> coc#pum#visible() ? coc#pum#prev(1) : "\<C-k>"
-inoremap <silent><expr> <cr> coc#pum#visible() && coc#pum#info()['index'] != -1 ? coc#pum#confirm() :
-        \ "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
+inoremap <silent><expr> <C-j> coc#pum#visible() ? coc#pum#next(0) : "\<Down>"
+inoremap <silent><expr> <C-k> coc#pum#visible() ? coc#pum#prev(0) : "\<Up>"
+inoremap <silent><expr> <C-q> coc#pum#visible() ? coc#pum#stop() : "\<C-q>"
 
 " cursors --------------------------------------------------------------------
 let &t_SI = "\e[6 q"
