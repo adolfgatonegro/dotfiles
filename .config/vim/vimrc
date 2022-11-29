@@ -193,7 +193,7 @@ map <leader>vf :FloatermNew --wintype=vsplit --opener=vsplit lf<CR>
 
 " misc  ----------------------------------------------------------------------
 " run current python file in :Floaterm
-autocmd filetype python nnoremap <silent> <F5> :w<CR>:FloatermNew --wintype=split --autoclose=0 python %<CR>
+autocmd filetype python nnoremap <silent> <F5> :w<CR>:FloatermNew --wintype=split --height=0.5 --autoclose=0 python %<CR>
 
 " toggle line numbers
 augroup number_toggle
