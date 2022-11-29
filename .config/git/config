@@ -6,6 +6,11 @@
 [init]
 	defaultBranch = master
 
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+
 [url "https://github.com/"]
     insteadOf = gh:
 [url "git@github.com:"]
@@ -20,4 +25,3 @@
     insteadOf = aur:
 [url "aur@aur.archlinux.org:"]
 	pushInsteadOf = "aur:"
-
