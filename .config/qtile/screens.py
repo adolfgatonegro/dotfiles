@@ -2,8 +2,8 @@ from os.path import expanduser
 from socket import gethostname
 from libqtile import qtile, widget, bar
 from libqtile.config import Screen
-from Xlib import display as xdisplay
 from widgets.volume import Volume
+from detect_displays import *
 
 host = gethostname()
 terminal = "kitty"
@@ -21,9 +21,9 @@ colours = dict(
     # grey2   = "#262639",
     # grey3   = "#363649",
     # grey4   = "#414158",
-    # grey5   = "#6c6c93",
-    # grey6   = "#c1c1d1",
-    # white   = "#ffffff",
+    # grey5   = "#505069"
+    # grey6   = "#6c6c93",
+    # white   = "#c1c1d1",
 
     none    = "#00000000",
     fg      = "#c1c1d1",
@@ -63,10 +63,15 @@ widget_defaults = dict(
 
 gato_logo = widget.Image(
     filename = expanduser("~/.config/qtile/icons/gato.png"),
-    margin = 2,
+    margin_x = 4,
+    margin_y = 2,
     scale = True,
     mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper"),
                        "Button1": lambda: qtile.cmd_spawn("rofi-run")},
+)
+spacer= widget.Spacer(
+    background = colours["bg"],
+    length = 6,
 )
 
 groupbox_defaults = dict(
@@ -136,6 +141,7 @@ main_bar_widgets = [
         **widget_defaults,
         **groupbox_defaults,
     ),
+    spacer,
     widget.TaskList(
         **widget_defaults,
         **tasklist_defaults,
@@ -146,6 +152,7 @@ main_bar_widgets = [
         play_color = colours["cyan0"],
         max_chars = 50,
     ),
+    spacer,
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
@@ -178,6 +185,14 @@ if host == "lucille":
         ),
     ]
 
+# if active_monitors > 1:
+#     main_bar_widgets += [
+#     widget.CurrentScreen(
+#         **widget_defaults,
+#         **currentscreen_defaults,
+#     ),
+# ]
+
 main_bar_widgets += [
     Volume(
         **widget_defaults,
@@ -202,57 +217,35 @@ screens = [
     ),
 ]
 
-def get_num_monitors():
-    num_monitors = 0
-    try:
-        display = xdisplay.Display()
-        screen = display.screen()
-        resources = screen.root.xrandr_get_screen_resources()
-
-        for output in resources.outputs:
-            monitor = display.xrandr_get_output_info(output, resources.config_timestamp)
-            preferred = False
-            if hasattr(monitor, "preferred"):
-                preferred = monitor.preferred
-            elif hasattr(monitor, "num_preferred"):
-                preferred = monitor.num_preferred
-            if preferred:
-                num_monitors += 1
-    except Exception as e:
-        return 1
-    else:
-        return num_monitors
-
-monitor_num = get_num_monitors()
-
-if monitor_num > 1:
+if active_monitors > 1:
     # main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
-    for monitor in range(monitor_num -1):
+    for monitor in range(active_monitors):
         screens.append(
             Screen(
                 top=bar.Bar([
-                        gato_logo,
-                        widget.GroupBox(
-                            **widget_defaults,
-                            **groupbox_defaults,
-                        ),
-                        widget.TaskList(
-                            **widget_defaults,
-                            **tasklist_defaults,
-                        ),
-                        # widget.CurrentScreen(
-                        #     **widget_defaults,
-                        #     **currentscreen_defaults,
-                        # ),
-                        Volume(
-                            **widget_defaults,
-                            **volume_defaults,
-                        ),
-                        widget.CurrentLayoutIcon(
-                            **currentlayouticon_defaults,
-                        ),
-                    ],
-                    **bar_defaults,
-                ),
-            )
+                    gato_logo,
+                    widget.GroupBox(
+                        **widget_defaults,
+                        **groupbox_defaults,
+                    ),
+                    widget.TaskList(
+                        **widget_defaults,
+                        **tasklist_defaults,
+                    ),
+                    widget.CurrentScreen(
+                        **widget_defaults,
+                        **currentscreen_defaults,
+                    ),
+                    Volume(
+                        **widget_defaults,
+                        **volume_defaults,
+                    ),
+                    widget.CurrentLayoutIcon(
+                        **currentlayouticon_defaults,
+                    ),
+                ],
+                **bar_defaults,
+            ),
         )
+    )
+

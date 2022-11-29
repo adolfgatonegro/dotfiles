@@ -15,7 +15,7 @@ def floating_dialogs(window):
         window.floating = True
 
 @hook.subscribe.client_new
-def _swallow(window):
+def swallow(window):
     pid = window.window.get_net_wm_pid()
     ppid = psutil.Process(pid).ppid()
     cpids = {c.window.get_net_wm_pid(): wid for wid, c in window.qtile.windows_map.items()}
@@ -30,6 +30,10 @@ def _swallow(window):
         ppid = psutil.Process(ppid).ppid()
 
 @hook.subscribe.client_killed
-def _unswallow(window):
+def unswallow(window):
     if hasattr(window, 'parent'):
         window.parent.minimized = False
+
+# @hook.subscribe.screen_change
+# def restart_on_randr(qtile, ev):
+#     qtile.cmd_restart()
