@@ -122,7 +122,7 @@ currentscreen_defaults = dict(
     active_color = colours["fg"],
     active_text = "",
     inactive_text = "",
-    inactive_color = colours["bg"],
+    inactive_color = colours["grey1"],
     padding_x = 0,
     padding_y = 2,
 )
@@ -185,13 +185,13 @@ if host == "lucille":
         ),
     ]
 
-# if active_monitors > 1:
-#     main_bar_widgets += [
-#     widget.CurrentScreen(
-#         **widget_defaults,
-#         **currentscreen_defaults,
-#     ),
-# ]
+if active_monitors > 1:
+    main_bar_widgets += [
+    widget.CurrentScreen(
+        **widget_defaults,
+        **currentscreen_defaults,
+    ),
+]
 
 main_bar_widgets += [
     Volume(
@@ -218,7 +218,6 @@ screens = [
 ]
 
 if active_monitors > 1:
-    # main_bar_widgets.insert(-3,widget.CurrentScreen(**widget_defaults, **currentscreen_defaults))
     for monitor in range(active_monitors):
         screens.append(
             Screen(
