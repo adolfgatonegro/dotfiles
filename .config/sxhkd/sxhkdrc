@@ -95,3 +95,8 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
     backlight-ctl -dec 5
 
+XF86KbdBrightnessUp
+    xbacklight -ctrl smc::kbd_backlight -inc 10
+
+XF86KbdBrightnessDown
+    xbacklight -ctrl smc::kbd_backlight -dec 10
