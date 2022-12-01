@@ -47,7 +47,7 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'SirVer/ultisnips'
-	Plug 'ckunte/latex-snippets-vim'
+	Plug 'adolfgatonegro/latex-snippets-vim'
 call plug#end()
 
 " colours --------------------------------------------------------------------
@@ -75,7 +75,7 @@ set ignorecase
 set confirm
 set clipboard=unnamedplus
 set undofile
-set wildmode=list:longest,full
+set wildmode=longest:full,full
 set wildignorecase
 set scrolloff=10
 set hidden
@@ -113,7 +113,7 @@ let &t_EI = "\e[2 q"
 map Q <Nop>
 map q <Nop>
 
-nnoremap <silent> <leader>hl :set hlsearch!<CR>
+nnoremap <silent> <leader>* :set hlsearch!<CR>
 nnoremap <leader>wr :set wrap!<CR>
 
 noremap l <Space>
