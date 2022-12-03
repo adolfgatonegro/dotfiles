@@ -7,24 +7,24 @@ set update.checkintervalsecs 86400
 set configversion 2.0
 set theme gatonegro
 set newtab about:blank
-set searchurls.google https://www.google.com/search?q=
-set searchurls.scholar https://scholar.google.com/scholar?q=
-set searchurls.duckduckgo https://duckduckgo.com/?q=
-set searchurls.twitter https://twitter.com/search?q=
-set searchurls.wikipedia https://en.wikipedia.org/wiki/Special:Search/
-set searchurls.youtube https://www.youtube.com/results?search_query=
-set searchurls.amazon https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=
-set searchurls.startpage https://startpage.com/do/search?language=english&cat=web&query=
-set searchurls.github https://github.com/search?utf8=✓&q=
-set searchurls.searx https://searx.me/?category_general=on&q=
+set searchurls.goo https://www.google.com/search?q=
+set searchurls.ddg https://duckduckgo.com/?q=
+set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
+set searchurls.yt https://www.youtube.com/results?search_query=
+set searchurls.amz https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=
+set searchurls.sp https://startpage.com/do/search?language=english&cat=web&query=
+set searchurls.gh https://github.com/search?utf8=✓&q=
+set searchurls.sx https://searx.me/?category_general=on&q=
 set searchurls.osm https://www.openstreetmap.org/search?query=
 set searchurls.mdn https://developer.mozilla.org/en-US/search?q=
-set searchurls.gentoo_wiki https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
-set searchurls.amazonmx https://amazon.com.mx/s?k=%s
-set searchurls.archwiki https://wiki.archlinux.org/index.php?search=%s
+set searchurls.gentoo https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
+set searchurls.amzmx https://amazon.com.mx/s?k=%s
+set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
+set searchurls.archive https://archive.org/search.php?query=%s
 set modeindicator false
 set smoothscroll true
 set modeindicatorshowkeys false
+set editorcmd kitty-e vim %f
 
 " Binds
 bind / fillcmdline find
@@ -193,6 +193,8 @@ autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 
 " Removed settings
+setnull searchurls.scholar
+setnull searchurls.twitter
 setnull searchurls.yahoo
 setnull searchurls.qwant
 setnull searchurls.yahoo

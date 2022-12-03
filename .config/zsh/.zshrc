@@ -1,11 +1,6 @@
-# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀.zshrc
-#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀-------
-#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Configuration file for ZSH.
-#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
-#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀Nothing fancy, just some plugins, settings, and a
-#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀bunch of aliases that I rarely remember.
-#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+# .zshrc - main config file for Z shell
+# github.com/adolfgatonegro
+# gatoneg.ro
 
 [[ $- != *i* ]] && return
 
@@ -18,7 +13,7 @@ export HISTSIZE=1000000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|mv(| *)|cp(| *)|rm(| *)|..|...)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|..|...)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
@@ -74,21 +69,15 @@ zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"   # Color i
 zstyle ":plugin:history-search-multi-word" synhl "yes"                 # Whether to perform syntax highlighting (default true)
 zstyle ":plugin:history-search-multi-word" active "bold"          # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
 zstyle ":plugin:history-search-multi-word" check-paths "yes"           # Whether to check paths for existence and mark with magenta (default true)
-zstyle ":plugin:history-search-multi-word" clear-on-cancel "yes"        # Whether pressing Ctrl-C or ESC should clear entered query# Old, basic prompt
-# autoload -Uz vcs_info
-# precmd() { vcs_info }
-# zstyle ':vcs_info:git:*' formats ' %F{008}on %F{015} %B%F{004}%b'
-# PROMPT=' %F{006}%B%1~%b${vcs_info_msg_0_}%b %F{001}❯%f '
+zstyle ":plugin:history-search-multi-word" clear-on-cancel "yes"        # Whether pressing Ctrl-C or ESC should clear entered query
 
 zsh_source_file "zsh-aliases"
 zsh_source_file "zsh-vim-mode"
 zsh_source_file "zsh-functions"
-# zsh_source_file "zsh-normie-mode"
 
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "zdharma-continuum/history-search-multi-word"
-# zsh_add_plugin "zsh-users/zsh-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
 gato
