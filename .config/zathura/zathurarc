@@ -32,7 +32,7 @@ set statusbar-fg                "#c1c1e1" # Foreground
 set highlight-color             "#ff8700" # Orange
 set highlight-active-color      "#bb00ff" # Pink
 
-set default-bg                  "#1a1a26" # Background
+set default-bg                  rgba(10,10,21,0.85) # Background
 set default-fg                  "#c1c1e1" # Foreground
 
 set render-loading              true
@@ -40,7 +40,7 @@ set render-loading-fg           "#262639" # Background
 set render-loading-bg           "#c1c1e1" # Foreground
 
 # Recolor mode settings
-set recolor-lightcolor          "#262639" # Background
+set recolor-lightcolor          rgba(38,38,57,0) # Background
 set recolor-darkcolor           "#c1c1e1" # Foreground
 
 # Startup options
