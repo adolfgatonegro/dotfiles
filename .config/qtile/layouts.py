@@ -15,7 +15,7 @@ floating_layout_defaults["border_focus"] = colours["grey1"]
 floating_layout_defaults["border_width"] = 1
 
 layouts = [
-    layout.MonadTall(**layout_defaults),
+    layout.MonadTall(**layout_defaults, single_border_width = 0, single_margin = 0),
     layout.Max(border_width = 0, margin = 0),
     layout.Tile(ratio = 0.5, **layout_defaults),
     layout.Stack(num_stacks = 2, **layout_defaults),

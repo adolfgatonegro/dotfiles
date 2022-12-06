@@ -27,7 +27,6 @@ keys.extend([
 ])
 
 # Default layouts
-groups[0].layout = "max"
 groups[7].layout = "max"
 
 # Match rules
