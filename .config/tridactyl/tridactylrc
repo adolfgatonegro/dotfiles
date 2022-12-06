@@ -184,11 +184,7 @@ bind m gobble 1 markadd
 bind ` gobble 1 markjump
 
 " Autocmds
-autocmd DocStart youtube.com/watch mode ignore
 autocmd DocStart undefined mode ignore
-autocmd DocStart youtube.com mode ignore
-autocmd DocStart ^https://youtube.com/watch mode ignore
-autocmd DocStart ^https://youtube.com/ mode ignore
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 

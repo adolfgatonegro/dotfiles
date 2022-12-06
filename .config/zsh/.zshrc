@@ -9,11 +9,11 @@ export EDITOR='vim'
 export VISUAL='vim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export HISTCONTROL=ignoreboth:erasedups
-export HISTSIZE=1000000
+export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|..|...)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|..|...)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
