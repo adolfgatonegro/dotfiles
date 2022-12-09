@@ -16,6 +16,7 @@ keys = [
     Key("M-j", lazy.layout.down(), desc = "Switch focus down"),
     Key("M-k", lazy.layout.up(), desc = "Switch focus up"),
     Key("M-l", lazy.layout.next(), desc = "Switch focus up"),
+    Key("M-h", lazy.layout.previous(), desc = "Switch focus down"),
     Key("M-S-j", lazy.layout.shuffle_down(), lazy.layout.section_down(), desc = "Move window down in stack"),
     Key("M-S-k", lazy.layout.shuffle_up(), lazy.layout.section_up(), desc = "Move window up in stack"),
     Key("M-S-h", lazy.layout.shrink(), lazy.layout.decrease_nmaster(), desc = "Shrink window (MonadTall), decrease number in master pane (Tile)"),
