@@ -46,6 +46,7 @@ export MYVIMRC=$XDG_CONFIG_HOME/vim/vimrc
 #export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/pythonstartup.py"
 
 # temp workaround for broken hw accel in firefox
 export MOZ_DISABLE_RDD_SANDBOX=1
