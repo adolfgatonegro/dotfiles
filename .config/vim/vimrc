@@ -133,8 +133,8 @@ xnoremap < <gv
 nnoremap gV `[v`]
 
 " spell check
-nnoremap <F4> ":setlocal spell! spelllang=es_mx<CR>
-nnoremap <F5> ":setlocal spell! spelllang=en_gb<CR>
+nnoremap <leader>sps :setlocal spell! spelllang=es_es<CR>
+nnoremap <leader>spe :setlocal spell! spelllang=en_gb<CR>
 
 " split navigation
 nnoremap <silent> <C-k> <C-w>k
