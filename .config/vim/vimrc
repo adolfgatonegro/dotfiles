@@ -111,7 +111,6 @@ let &t_EI = "\e[2 q"
 
 " key mapping ----------------------------------------------------------------
 map Q <Nop>
-map q <Nop>
 
 nnoremap <silent> <leader>* :set hlsearch!<CR>
 nnoremap <leader>wr :set wrap!<CR>

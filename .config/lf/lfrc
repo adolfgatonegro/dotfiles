@@ -16,9 +16,9 @@ set shellopts '-euy'
 set ifs "\n"
 
 # basic settings
-set hidden true
-set icons true
-set ignorecase true
+set hidden
+set icons
+set ignorecase
 set scrolloff 10
 set ratios 1:1
 set info size
@@ -27,7 +27,7 @@ set tabstop 4
 # file previews
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/clear
-set preview true
+set preview
 
 # custom commands
 cmd mkdir %mkdir "$@"
@@ -129,7 +129,7 @@ cmd link %{{
 
 # clear default mappings
 map c
-map d
+# map d
 map e
 map f
 map n
@@ -140,13 +140,12 @@ map w
 # custom mappings
 map . set hidden!
 map p paste
-map Y cut
-map y copy
-map DD delete
-map E $$EDITOR "$f"
-map r rename
+# map Y cut
+# map y copy
+map D delete
+map e $$EDITOR "$f"
 map H top
-map R reload
+map <c-r> reload
 map L bottom
 map <enter> open
 map <c-q> quit
@@ -155,6 +154,13 @@ map <esc> :clear; unselect
 map cw bulk-rename
 map S $$SHELL
 map ga calcdirsize
+
+# rename
+map A rename # at the end
+map c push A<c-u> # new filename
+map I push A<c-a> # from the beginning
+map i push A<a-b><a-b><a-f> # before extension
+map a push A<a-b> # after extension
 
 # trash-cli mappings
 map dd trash
