@@ -1,1 +1,0 @@
-/home/gatonegro/.config/X11/xinitrc

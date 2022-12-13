@@ -27,7 +27,7 @@ path=(~/.local/bin $path)
 
 # set xauthority only if no display manager is found
 if [[ ! -f /usr/bin/lightdm ]] && [[ ! -f /usr/bin/sddm ]]; then
-	export XAUTHORITY=$XDG_CONFIG_HOME/X11/Xauthority 
+	export XAUTHORITY=$XDG_CACHE_HOME/X11/Xauthority 
 fi
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 
