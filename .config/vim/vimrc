@@ -69,7 +69,7 @@ set cmdheight=1
 set tabstop=4
 set shiftwidth=4
 set softtabstop=0 noexpandtab
-set showtabline=2
+set showtabline=1
 set hlsearch
 set ignorecase
 set confirm

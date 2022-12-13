@@ -231,6 +231,7 @@ if active_monitors > 1:
                         **widget_defaults,
                         **tasklist_defaults,
                     ),
+                    spacer,
                     widget.CurrentScreen(
                         **widget_defaults,
                         **currentscreen_defaults,
