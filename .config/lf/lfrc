@@ -129,7 +129,7 @@ cmd link %{{
 
 # clear default mappings
 map c
-# map d
+map d
 map e
 map f
 map n
@@ -140,8 +140,7 @@ map w
 # custom mappings
 map . set hidden!
 map p paste
-# map Y cut
-# map y copy
+map Y cut
 map D delete
 map e $$EDITOR "$f"
 map H top
