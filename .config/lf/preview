@@ -38,5 +38,5 @@ case "$1" in
 		CACHE=$(mktemp -u /tmp/thumbcache.XXXXXXXXX)
 		ffmpegthumbnailer -i "$file" -o "$CACHE.jpg" -s 0
 		kitty +icat --silent --transfer-mode file --place "${w}x${h}@${x}x${y}" "$CACHE.jpg"; exit 1;;
-	*) bat --color always --wrap never --pager never -p "$file";;
+	*) bat --color=always -p "$file";;
 esac
