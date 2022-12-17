@@ -61,8 +61,8 @@ super + shift + F4
 ctrl + alt + o
 	~/.config/qtile/scripts/picom-toggle.sh
 
-ctrl + alt + l
-	betterlockscreen -l dim
+# ctrl + alt + l
+# 	betterlockscreen -l dim
 
 ctrl + apostrophe
 	dunstctl context
