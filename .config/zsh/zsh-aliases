@@ -61,7 +61,7 @@ alias _="sudo"
 alias cat="bat -p"
 alias less="bat"
 alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
-alias yta="yt-dlp -x"
+alias yta="yt-dlp -x --audio-format mp3 --audio-quality 0"
 
 # docker aliases 
 alias hugo='docker run --rm -it -v $PWD:/src --user 1000 klakegg/hugo'

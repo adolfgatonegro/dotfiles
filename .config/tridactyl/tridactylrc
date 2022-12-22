@@ -7,6 +7,19 @@ set update.checkintervalsecs 86400
 set configversion 2.0
 set theme gatonegro
 set newtab about:blank
+set searchurls.google https://www.google.com/search?q=
+set searchurls.duckduckgo https://duckduckgo.com/?q=
+set searchurls.wikipedia https://en.wikipedia.org/wiki/Special:Search/
+set searchurls.youtube https://www.youtube.com/results?search_query=
+set searchurls.amazon https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=
+set searchurls.startpage https://startpage.com/do/search?language=english&cat=web&query=
+set searchurls.github https://github.com/search?utf8=✓&q=
+set searchurls.searx https://searx.me/?category_general=on&q=
+set searchurls.osm https://www.openstreetmap.org/search?query=
+set searchurls.mdn https://developer.mozilla.org/en-US/search?q=
+set searchurls.gentoo_wiki https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
+set searchurls.amazonmx https://amazon.com.mx/s?k=%s
+set searchurls.archwiki https://wiki.archlinux.org/index.php?search=%s
 set searchurls.goo https://www.google.com/search?q=
 set searchurls.ddg https://duckduckgo.com/?q=
 set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
@@ -15,8 +28,6 @@ set searchurls.amz https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Dap
 set searchurls.sp https://startpage.com/do/search?language=english&cat=web&query=
 set searchurls.gh https://github.com/search?utf8=✓&q=
 set searchurls.sx https://searx.me/?category_general=on&q=
-set searchurls.osm https://www.openstreetmap.org/search?query=
-set searchurls.mdn https://developer.mozilla.org/en-US/search?q=
 set searchurls.gentoo https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
 set searchurls.amzmx https://amazon.com.mx/s?k=%s
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
@@ -27,9 +38,9 @@ set modeindicatorshowkeys false
 set editorcmd kitty-e vim %f
 
 " Binds
-bind / fillcmdline find
-bind n findnext 1
-bind N findnext -1
+unbind /
+unbind n
+unbind N
 bind ,<Space> nohlsearch
 bind ;x hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool click 1")}
 bind ;X hint -F e => { const pos = tri.dom.getAbsoluteCentre(e); tri.excmds.exclaim_quiet("xdotool mousemove --sync " + window.devicePixelRatio * pos.x + " " + window.devicePixelRatio * pos.y + "; xdotool keydown ctrl+shift; xdotool click 1; xdotool keyup ctrl+shift")}
@@ -184,20 +195,23 @@ bind m gobble 1 markadd
 bind ` gobble 1 markjump
 
 " Autocmds
+autocmd DocStart youtube.com/watch mode ignore
 autocmd DocStart undefined mode ignore
+autocmd DocStart ^https://youtube.com/watch mode ignore
+autocmd DocStart ^https://youtube.com/ mode ignore
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 
 " Removed settings
-setnull searchurls.scholar
-setnull searchurls.twitter
 setnull searchurls.yahoo
 setnull searchurls.qwant
 setnull searchurls.yahoo
 setnull searchurls.qwant
 setnull searchurls.googlelucky
+setnull searchurls.scholar
 setnull searchurls.googleuk
 setnull searchurls.bing
+setnull searchurls.twitter
 setnull searchurls.amazonuk
 setnull searchurls.cnrtl
 
