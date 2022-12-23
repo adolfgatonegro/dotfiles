@@ -1,6 +1,6 @@
 #show-read-feeds no
 goto-next-feed no
-refresh-on-startup yes
+# refresh-on-startup yes
 reload-threads 10
 scrolloff 10
 text-width 78
@@ -16,7 +16,7 @@ bind-key g home
 bind-key d pagedown
 bind-key u pageup
 bind-key l open
-bind-key h quit
+bind-key h quit articlelist
 bind-key a toggle-article-read
 bind-key n next-unread
 bind-key N prev-unread
