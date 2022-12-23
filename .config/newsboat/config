@@ -4,6 +4,7 @@ goto-next-feed no
 reload-threads 10
 scrolloff 10
 text-width 78
+confirm-exit yes
 
 bind-key j down
 bind-key k up
