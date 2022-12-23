@@ -13,6 +13,7 @@ export TERMINAL="kitty"
 export EDITOR='vim'
 export VISUAL='vim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BROWSER="firefox"
 
 # xdg dirs
 export XDG_DATA_DIRS=/usr/local/share:/usr/share

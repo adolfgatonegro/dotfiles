@@ -1,0 +1,36 @@
+"- - - Aggregators - - -"
+https://hnrss.org/frontpage?link=comments "tech" "~Hacker News frontpage"
+
+"- - - Thoughts - - -"
+https://acoup.blog/rss "history"
+https://backtohumanity.substack.com/feed "philos"
+https://duncanreyburn.substack.com/feed "philos"
+https://experimentalhistory.substack.com/feed "history" "psych"
+https://fakenous.substack.com/feed "philos" "politics"
+https://freddiedeboer.substack.com/feed "media criticism"
+https://jessicawildfire.substack.com/feed "culture" "politics"
+https://lukesmith.xyz/index.xml "tech" "philos"
+https://superbowl.substack.com/feed "tech" "psych" "religion"
+https://garymarcus.substack.com/feed "ai"
+https://gurwinder.substack.com/feed "tech" "psych" "philos"
+https://unfashionable.substack.com/feed "tech" "culture"
+
+"- - - Technology - - -"
+https://www.archlinux.org/feeds/news/ "tech" "linux"
+https://github.com/qtile/qtile/commits/master.atom "tech" "qtile" "linux"
+
+"- - - YouTube - - -"
+https://www.youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "yt" "philos" #Carefree Wandering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCqos1tl0RntucGGtPXNxkkA "yt" "philos" #Eternalised
+https://www.youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "yt" "tech" #Gamers Nexus
+https://www.youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "yt" "tech" #Level1Techs
+https://www.youtube.com/feeds/videos.xml?channel_id=UCLx053rWZxCiYWsBETgdKrQ "yt" "tech" #LGR
+https://www.youtube.com/feeds/videos.xml?channel_id=UCw_Sxdt27ASqErScT4Rlj8A "yt" "tech" #LGR Blerbs
+https://www.youtube.com/feeds/videos.xml?channel_id=UCENqBB_xNax3mLX_WGLf2Lg "yt" "psych" #Living Well with Schizophrenia
+https://www.youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w "yt" "culture" "politics" "tech" #Louis Rossmann
+https://www.youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "yt" "tech" #Luke Smith
+https://www.youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "yt" "tech" #Mental Outlaw
+https://www.youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "yt" "philosophy" #Savannah Brown
+https://www.youtube.com/feeds/videos.xml?channel_id=UCl_dlV_7ofr4qeP1drJQ-qg "yt" "music" #Tantacrul
+https://www.youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "yt" "culture" "politics" #Think That Through
+https://www.youtube.com/feeds/videos.xml?channel_id=UCs8mbJ-M142ZskR5VR0gBig "yt" "culture" "politics" #YUGOPNIK
