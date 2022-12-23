@@ -44,7 +44,8 @@ highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
 
-browser "firefox --new-tab %u"
+browser "link-handler"
 macro , open-in-browser
 macro y set browser "mpv %u" ; open-in-browser ; set browser "firefox --new-tab %u"
+macro f set browser "firefox --new-tab %u" ; open-in-browser ; set browser "link-handler"
 macro i set pager "kitty-img-pager"; open; set pager internal
