@@ -22,6 +22,7 @@ set ignorecase
 set scrolloff 10
 set ratios 1:1
 set info size
+set dircounts
 set tabstop 4
 
 # file previews
@@ -61,8 +62,21 @@ cmd open &{{
     esac
 }}
 
+# cmd paste %{{
+#     load=$(cat ~/.local/share/lf/files)
+#     mode=$(echo "$load" | sed -n '1p')
+#     list=$(echo "$load" | sed '1d')
+#     if [ $mode = 'copy' ]; then
+#         cp -R $list .
+#     elif [ $mode = 'move' ]; then
+#         mv $list .
+#         rm ~/.local/share/lf/files
+#         lf -remote 'send clear'
+#     fi
+# }}
+
 # bulk rename
-cmd bulk-rename ${{
+cmd batch-rename ${{
     old="$(mktemp)"
     new="$(mktemp)"
     if [ -n "$fs" ]; then
@@ -151,7 +165,6 @@ map <enter> open
 map <c-q> quit
 map <space> toggle
 map <esc> :clear; unselect
-map cw bulk-rename
 map S $$SHELL
 map ga calcdirsize
 
@@ -161,6 +174,7 @@ map c push A<c-u> # new filename
 map I push A<c-a> # from the beginning
 map i push A<a-b><a-b><a-f> # before extension
 map a push A<a-b> # after extension
+map C batch-rename
 
 # trash-cli mappings
 map dd trash
