@@ -18,6 +18,7 @@ https://unfashionable.substack.com/feed "tech" "culture"
 "- - - Technology - - -"
 https://www.archlinux.org/feeds/news/ "tech" "linux"
 https://github.com/qtile/qtile/commits/master.atom "tech" "qtile" "linux"
+https://blog.qutebrowser.org/feeds/all.atom.xml "tech" "linux"
 
 "- - - YouTube - - -"
 https://www.youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "yt" "philos" #Carefree Wandering
