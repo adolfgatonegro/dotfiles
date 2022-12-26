@@ -1,12 +1,5 @@
-#!/bin/bash
-# ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-#⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀autostart.sh
-#⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀------------
-#⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀Autostart script for use with Qtile.
-#⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀
-#⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
-#⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-#⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+#!/bin/sh
+# start all the basics when logging in
 
 lxsession &
 picom -b --experimental-backends &
@@ -14,9 +7,7 @@ dunst &
 sxhkd -c &
 redshift &
 nm-applet &
-echo -n --head=0,--head=1 | \
-	xargs -n 1 -d , \
-	nitrogen --random --set-zoom-fill --save &
+random_wallpaper &
 
 # Foxes
 case $HOSTNAME in
