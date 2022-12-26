@@ -19,6 +19,7 @@ set searchurls.gentoo https://wiki.gentoo.org/index.php?title=Special%3ASearch&p
 set searchurls.amzmx https://amazon.com.mx/s?k=%s
 set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
 set searchurls.archive https://archive.org/search.php?query=%s
+set searchurls.sx https://northboot.xyz/search?q=%s
 set modeindicator false
 set smoothscroll true
 set modeindicatorshowkeys false

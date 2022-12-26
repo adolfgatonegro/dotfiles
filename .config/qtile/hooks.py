@@ -34,6 +34,10 @@ def unswallow(window):
     if hasattr(window, 'parent'):
         window.parent.minimized = False
 
+@hook.subscribe.screens_reconfigured
+def set_wallpaper():
+    subprocess.call(expanduser('~/.local/bin/random_wallpaper'))
+
 # @hook.subscribe.screen_change
 # def restart_on_randr(qtile, ev):
 #     qtile.cmd_restart()
