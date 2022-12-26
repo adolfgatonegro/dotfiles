@@ -17,6 +17,7 @@ https://unfashionable.substack.com/feed "tech" "culture"
 
 "- - - Technology - - -"
 https://www.archlinux.org/feeds/news/ "tech" "linux"
+https://status.proton.me/history.atom "tech"
 https://github.com/qtile/qtile/commits/master.atom "tech" "qtile" "linux"
 https://blog.qutebrowser.org/feeds/all.atom.xml "tech" "linux"
 
