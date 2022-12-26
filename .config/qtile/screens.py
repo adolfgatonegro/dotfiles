@@ -66,7 +66,7 @@ gato_logo = widget.Image(
     margin_x = 4,
     margin_y = 2,
     scale = True,
-    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random-wallpaper"),
+    mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random_wallpaper"),
                        "Button2": lambda: qtile.cmd_spawn("rofi-run")},
 )
 spacer= widget.Spacer(
