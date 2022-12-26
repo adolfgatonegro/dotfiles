@@ -1,0 +1,4 @@
+#!/bin/sh
+case "$1" in
+	"C-w")	while read file; do xwallpaper --zoom "$file" & done ;;
+esac
