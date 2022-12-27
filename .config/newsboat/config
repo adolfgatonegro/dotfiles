@@ -48,6 +48,7 @@ highlight article ":.*\\(embedded flash\\)$" magenta default
 
 browser "link_handler"
 macro , open-in-browser
-macro y set browser "mpv %u" ; open-in-browser ; set browser "firefox --new-tab %u"
-macro f set browser "firefox --new-tab %u" ; open-in-browser ; set browser "link_handler"
+macro b set browser "firefox -P Minimal --new-tab %u > /dev/null 2>&1" ; open-in-browser ; set browser "link_handler"
+# macro y set browser "mpv %u" ; open-in-browser ; set browser "firefox --new-tab %u"
+# macro f set browser "firefox --new-tab %u" ; open-in-browser ; set browser "link_handler"
 macro i set pager "kitty_image_pager"; open; set pager internal
