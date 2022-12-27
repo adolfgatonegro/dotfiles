@@ -5,6 +5,10 @@ if [ ${HOSTNAME} = "foxes" ]; then
 	export LIBVA_DRIVER_NAME=nvidia
 fi
 
+if [ ${HOSTNAME} = "lucille" ]; then
+	export MPV_PROFILE="--profile=720p"
+fi
+
 export QT_QPA_PLATFORMTHEME=qt5ct 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
