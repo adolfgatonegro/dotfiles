@@ -100,3 +100,6 @@ XF86KbdBrightnessUp
 
 XF86KbdBrightnessDown
     xbacklight -ctrl smc::kbd_backlight -dec 10
+
+super + shift + o
+	link_handler
