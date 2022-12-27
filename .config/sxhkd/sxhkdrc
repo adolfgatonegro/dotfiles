@@ -8,22 +8,22 @@ super + ctrl + s
 
 # Rofi
 super + space
-	rofi-run
+	rofi_run
 
 super + c
-	rofi-run -c
+	rofi_run -c
 
 alt + Tab
-	rofi-run -w
+	rofi_run -w
 
 super + period
-    rofi-run -e
+    rofi_run -e
 
 super + x
-	rofi-run -l
+	rofi_run -l
 
 super + F2
-	rofi-conf
+	rofi_conf
 
 # Programs
 super + b
