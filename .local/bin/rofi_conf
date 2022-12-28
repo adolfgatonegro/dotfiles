@@ -1,0 +1,41 @@
+#!/bin/sh
+# launch commonly-used config files in $EDITOR
+# gatoneg.ro
+
+declare -a options=(
+	"dunst - $XDG_CONFIG_HOME/dunst/dunstrc"
+	"git - $XDG_CONFIG_HOME/git/config"
+	"kitty - $XDG_CONFIG_HOME/kitty/kitty.conf"
+	"lf - $XDG_CONFIG_HOME/lf/lfrc"
+	"newsboat - $XDG_CONFIG_HOME/newsboat/config"
+	"newsboat urls - $XDG_CONFIG_HOME/newsboat/urls"
+	"picom - $XDG_CONFIG_HOME/picom/picom.conf"
+	"qtile autostart - $XDG_CONFIG_HOME/qtile/scripts/autostart.sh"
+	"qtile config - $XDG_CONFIG_HOME/qtile/config.py"
+	"qtile groups - $XDG_CONFIG_HOME/qtile/groups.py"
+	"qtile hooks - $XDG_CONFIG_HOME/qtile/hooks.py"
+	"qtile keys - $XDG_CONFIG_HOME/qtile/keys.py"
+	"qtile layouts - $XDG_CONFIG_HOME/qtile/layouts.py"
+	"qtile screens - $XDG_CONFIG_HOME/qtile/screens.py"
+	"rofi - $XDG_CONFIG_HOME/rofi/config.rasi"
+	"sxhkd - $XDG_CONFIG_HOME/sxhkd/sxhkdrc"
+	"vim - $XDG_CONFIG_HOME/vim/vimrc"
+	"x11 xinitrc - $XDG_CONFIG_HOME/X11/xinitrc"
+	"x11 xprofile - $XDG_CONFIG_HOME/X11/xprofile"
+	"zsh aliases - $ZDOTDIR/zsh-aliases"
+	"zsh config - $ZDOTDIR/.zshrc"
+	"zsh environment - $HOME/.zshenv"
+	"zsh functions - $ZDOTDIR/zsh-functions"
+	"zsh history - $ZDOTDIR/zsh-hist"
+	"zsh profile - $ZDOTDIR/.zprofile"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | rofi -i -dmenu -l 10 -p 'Edit config:')
+
+if [ "$choice" ]; then
+	cfg=$(printf '%s\n' "${choice}" | awk '{print $NF}')
+	$TERMINAL -e $EDITOR "$cfg"
+
+else
+	exit 1
+fi

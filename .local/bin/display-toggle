@@ -1,0 +1,38 @@
+#!/bin/sh
+# script to toggle the secondary display on Foxes
+# needs to be reworked to avoid hardcoding
+
+headline="Secondary display"
+icon="computer"
+messageoff="Switching off the secondary display."
+messageon="Extending desktop to secondary display."
+
+case $HOSTNAME in
+	foxes)
+		disp1="HDMI-2"
+		disp2="DP-1"
+		res1="1920x1200"
+		res2="1920x1080"
+		rate1="74.93"
+		rate2="60"
+		pos1="0x1080"
+		pos2="960x0"
+		;;
+esac
+
+xrandr --listactivemonitors | grep "$disp2"
+if [ $? -eq 0 ]; then
+	notify-send -i "$icon" "$headline" "$messageoff"
+	echo "$messageoff"
+	sleep 1s
+	xrandr --output $disp2 --off \
+		--output $disp1 --mode $res1 --rate $rate1 --pos 0x0
+	qtile cmd-obj -o cmd -f restart
+else
+	notify-send -i "$icon" "$headline" "$messageon"
+	echo "$messageon"
+	sleep 1s
+	xrandr --output $disp2 --mode $res2 --rate $rate2 --pos $pos2 \
+		--output $disp1 --mode $res1 --rate $rate1 --pos $pos1
+	qtile cmd-obj -o cmd -f restart
+fi
