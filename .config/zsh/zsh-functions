@@ -2,7 +2,6 @@
 zsh_source_file() {
     [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
 }
-
 # Add plugins
 zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
@@ -14,6 +13,9 @@ zsh_add_plugin() {
 		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
     fi
 }
+
+# cd up [1-9] times
+.{1..9} (){ local d=.; repeat ${0:1} d+=/..; cd $d;}
 
 # Extract archive files
 ex (){
