@@ -121,6 +121,7 @@ class Volume(base._TextBox):
             cmd.extend(["-D", str(self.device)])
 
         cmd.extend([x for x in args])
+        # return cmd
         return ' '.join(cmd)
 
     def button_press(self, x, y, button):
