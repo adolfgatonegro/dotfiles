@@ -153,6 +153,18 @@ main_bar_widgets = [
         play_color = colours["cyan0"],
         max_chars = 50,
     ),
+    # widget.Mpris2(
+    #     playing_text = " {track}",
+    #     paused_text  = " {track}",
+    #     scroll_delay = 5,
+    #     width = 250,
+    #     # max_chars = 50,
+    #     scroll_interval = 0.25,
+    #     scroll_step = 4,
+    #     foreground = colours["cyan0"],
+    #     display_metadata = ['xesam:title', 'xesam:artist'],
+    #     format = "{xesam:title} - ({xesam:artist})",
+    # ),
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
@@ -242,6 +254,10 @@ if active_monitors > 1:
                     ),
                     widget.CurrentLayoutIcon(
                         **currentlayouticon_defaults,
+                    ),
+                    widget.Clock(
+                        **widget_defaults,
+                        format = "%a %d %H:%M",
                     ),
                 ],
                 **bar_defaults,

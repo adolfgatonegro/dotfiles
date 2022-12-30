@@ -59,6 +59,7 @@ alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 alias yta="yt-dlp -x --audio-format mp3 --audio-quality 0"
 alias nb="newsboat"
 alias ksh="kitty +kitten ssh"
+alias bt="transmission-remote"
 
 # docker aliases 
 alias hugo='docker run --rm -it -v $PWD:/src --user 1000 klakegg/hugo'

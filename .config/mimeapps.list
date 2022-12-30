@@ -19,3 +19,4 @@ application/pdf=org.pwmt.zathura-pdf-mupdf.desktop
 image/jpeg=nsxiv.desktop
 image/gif=nsxiv.desktop
 image/png=nsxiv.desktop
+application/x-bittorrent=add_torrent.desktop

@@ -1,0 +1,11 @@
+#!/bin/sh
+# gatoneg.ro
+# Stolen from Luke Smith
+#
+# MIME app to add torrents to transmission-daemon. If daemon is not running,
+# it'll start it first.
+
+pidof transmission-daemon >/dev/null || \
+	( transmission-daemon && notify-send "🔴 transmission" "Starting daemon..." && sleep 2 )
+
+transmission-remote -a "$@" && notify-send "🔴 transmission" "Torrent added."

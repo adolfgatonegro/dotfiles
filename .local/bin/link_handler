@@ -14,7 +14,7 @@ else
 	url="$1"
 fi
 
-notify="notify-send -u normal -t 2500"
+notify="notify-send -t 2500"
 
 case "$url" in
 	# YouTube videos, playlists, and embeds
