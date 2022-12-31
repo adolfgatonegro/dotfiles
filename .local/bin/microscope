@@ -1,0 +1,11 @@
+#!/bin/sh
+# gatoneg.ro
+#
+# A one-liner to send my microscope video feed to mpv. It honestly could be an
+# alias instead of a script.
+
+mpv \
+	--demuxer-lavf-format=video4linux2 \
+	--demuxer-lavf-o-set=input-format=mjpeg \
+	av://v4l2:/dev/video2
+

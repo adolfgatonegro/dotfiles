@@ -35,8 +35,8 @@ keys = [
     Key("M-S-e", lazy.to_screen(2), desc = "Switch focus to display 2"),
     Key("M-S-<period>", lazy.next_screen(), desc = "Switch focus to next display"),
     Key("M-S-<comma>", lazy.prev_screen(),desc = "Switch focus to previous display"),
-    Key("M-C-p", lazy.spawn("display-toggle"), desc = "Toggle display 2 on/off"),
-    Key("M-C-o", lazy.spawn("display-rotate"), desc = "Rotate display 1"),
+    Key("M-C-p", lazy.spawn("display_toggle"), desc = "Toggle display 2 on/off"),
+    Key("M-C-o", lazy.spawn("display_rotate"), desc = "Rotate display 1"),
 ]
 
 mouse = [

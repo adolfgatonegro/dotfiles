@@ -59,7 +59,7 @@ super + shift + F4
 
 # System
 ctrl + alt + o
-	~/.config/qtile/scripts/picom-toggle.sh
+	picom_toggle
 
 # ctrl + alt + l
 # 	betterlockscreen -l dim
@@ -69,13 +69,13 @@ ctrl + apostrophe
 
 # Multimedia keys
 XF86AudioRaiseVolume
-    volume-ctl -i 2
+    volume_ctl -i 2
 
 XF86AudioLowerVolume
-	volume-ctl -d 2
+	volume_ctl -d 2
 
 XF86AudioMute
-    volume-ctl -t
+    volume_ctl -t
 
 XF86AudioPlay
     playerctl play-pause
@@ -90,10 +90,10 @@ XF86AudioStop
     playerctl stop
 
 XF86MonBrightnessUp
-    backlight-ctl -inc 5
+    backlight_ctl -inc 5
 
 XF86MonBrightnessDown
-    backlight-ctl -dec 5
+    backlight_ctl -dec 5
 
 XF86KbdBrightnessUp
     xbacklight -ctrl smc::kbd_backlight -inc 10

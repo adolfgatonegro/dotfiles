@@ -173,7 +173,7 @@ main_bar_widgets = [
         display_format = " {updates}",
         colour_have_updates = colours["fg"],
         colour_no_updates = colours["fg"],
-        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch-update-notifier")}
+        mouse_callbacks = {'Button1': lambda: qtile.cmd_spawn("arch_update_notifier")}
     ),
     widget.Net(
         **widget_defaults,
