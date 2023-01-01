@@ -29,6 +29,7 @@ set editorcmd kitty-e vim %f
 unbind /
 unbind n
 unbind N
+bind V hint -W mpvsafe
 
 " Autocmds
 autocmd DocStart youtube.com/watch mode ignore
