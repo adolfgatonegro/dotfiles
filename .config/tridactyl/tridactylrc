@@ -1,3 +1,5 @@
+sanitise tridactyllocal tridactylsync
+
 " General Settings
 set update.lastchecktime 1669487807901
 set update.nag true
@@ -5,37 +7,34 @@ set update.nagwait 7
 set update.lastnaggedversion 1.14.0
 set update.checkintervalsecs 86400
 set configversion 2.0
-set theme gatonegro
+set theme dark
 set newtab about:blank
+set modeindicator false
+set smoothscroll true
+set modeindicatorshowkeys false
+set editorcmd $TERMINAL -e $EDITOR %f
+
+" Search Engines
 set searchurls.goo https://www.google.com/search?q=
 set searchurls.ddg https://duckduckgo.com/?q=
-set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
+set searchurls.wk https://en.wikipedia.org/wiki/Special:Search/
 set searchurls.yt https://www.youtube.com/results?search_query=
 set searchurls.amz https://www.amazon.com/s/ref=nb_sb_noss?url=search-alias%3Daps&field-keywords=
 set searchurls.sp https://startpage.com/do/search?language=english&cat=web&query=
 set searchurls.gh https://github.com/search?utf8=✓&q=
 set searchurls.sx https://searx.me/?category_general=on&q=
-set searchurls.gentoo https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
-set searchurls.amzmx https://amazon.com.mx/s?k=%s
-set searchurls.arch https://wiki.archlinux.org/index.php?search=%s
-set searchurls.archive https://archive.org/search.php?query=%s
+set searchurls.gt https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
+set searchurls.amz https://amazon.com.mx/s?k=%s
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.sx https://northboot.xyz/search?q=%s
-set modeindicator false
-set smoothscroll true
-set modeindicatorshowkeys false
-set editorcmd kitty-e vim %f
+" set searchurls.archive https://archive.org/search.php?query=%s
 
 " Binds
-unbind /
-unbind n
-unbind N
-bind V hint -W mpvsafe
+bind gh hint -W exclaim_quiet link_handler
+bind ge editor
 
 " Autocmds
-autocmd DocStart youtube.com/watch mode ignore
 autocmd DocStart undefined mode ignore
-autocmd DocStart ^https://youtube.com/watch mode ignore
-autocmd DocStart ^https://youtube.com/ mode ignore
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 
