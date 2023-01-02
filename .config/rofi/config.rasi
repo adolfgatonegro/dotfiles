@@ -1,19 +1,12 @@
-//  ⠀⠀⠀⠀⠀⠀⠀⠀⢀⡀⠀⣠⣄⠀⠀⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⡠⠖⣿⣧⢻⣿⢿⣷⣤⡀⠄⠀⠀⠀
-// ⠀⠀⠀⠀⣠⠊⠀⠂⣿⡏⣾⣿⠈⢻⠟⠉⠀⠀⠀⠀config.rasi
-// ⠀⠀⠀⢸⣿⠀⠀⢰⣿⣷⢻⣿⠴⣿⣷⣦⡀⠀⠀⠀-----------
-// ⠀⠀⠀⣿⣿⡄⠀⡇⣿⣧⣿⣿⠀⠈⢿⣿⡇⠀⠀⠀Configuration file for Rofi.
-// ⠀⠀⠀⠈⢿⣿⣦⣱⠃⠀⣿⠟⠁⠀⠀⡿⠃⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠙⢿⣿⣿⣶⣧⣤⣤⡤⠚⠁⠀⠀⠀⠀
-// ⠀⠀⠀⠀⠀⠀⠀⠌⠉⠛⠛⠛⠉⠀⠀⠀⠀⠀⠀⠀
+// rofi configuration
+// gatoneg.ro
  
 configuration {
     display-window: "window:";
     display-run: "run:";
     display-drun: "drun:";
-	display-emoji: "emoji:";
 	display-calc: "calc:";
-	modi: "drun,run,window,calc,emoji";
+	modi: "drun,run,window,calc";
 	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
 	run-shell-command: "kitty --hold {cmd}";
 }
