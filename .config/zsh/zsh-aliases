@@ -1,69 +1,70 @@
-# zsh-aliases - a collection of aliases for Z shell
-# github.com/adolfgatonegro
+#!/bin/sh
+# convenient shell aliases
 # gatoneg.ro
 
 # pacman
-alias ch="checkupdates ; pikaur -Qua 2>/dev/null"
-alias pkgi="pikaur -S"
-alias pkgr="pikaur -Rns"
-alias pkgq="pikaur -Qi"
-alias pkgsi="pikaur -Si"
-alias pkgs="pikaur -Ss"
-alias update="pikaur -Syu"
-
-alias pacclean="sudo pacman -Rns $(pacman -Qtdq)"
-alias pacunlock="sudo rm /var/lib/pacman/db.lck"
-alias paclog="cat /var/log/pacman.log"
-alias mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
-
-# edit system config files
-alias vpacman="sudoedit /etc/pacman.conf"
-alias vmirrorlist="sudoedit /etc/pacman.d/mirrorlist"
-alias vfstab="sudoedit /etc/fstab"
+alias \
+	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
+	pkgi="pikaur -S" \
+	pkgr="pikaur -Rns" \
+	pkgq="pikaur -Qi" \
+	pkgsi="pikaur -Si" \
+	pkgs="pikaur -Ss" \
+	update="pikaur -Syu" \
+	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
+	pacunlock="sudo rm /var/lib/pacman/db.lck" \
+	paclog="cat /var/log/pacman.log" \
+	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
 # dotfiles
-alias repos="git-summary $HOME/git"
-alias config="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME"
+alias \
+	config="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME" \
+	repos="git-summary $HOME/git"
+
+# verbosity and options
+alias \
+	df="df -h" \
+	free="free -mt" \
+	cp="cp -iv" \
+	mv="mv -iv" \
+	rm="rm -vI" \
+	ip="ip -color=auto" \
+	mkd="mkdir -pv" \
+	wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
+
+# abbreviations
+alias \
+	_="sudo" \
+	yta="yt-dlp -x --audio-format mp3 --audio-quality 0" \
+	nb="newsboat" \
+	ksh="kitty +kitten ssh" \
+	trem="transmission-remote" \
+	trex="transmission-remote --exit" \
+	kbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100"
+
+# hipster coreutil replacements
+alias \
+	ls="exa -l --color=always --group-directories-first --icons" \
+	la="exa -al --color=always --group-directories-first --icons" \
+	lh="exa -al --color=always | rg '^\.'" \
+	tree="exa --tree --color=always --icons" \
+	grep="rg" \
+	cat="bat -p" \
+	less="bat"
 
 # git
-alias gst="git status"
-alias ga="git add"
-alias gc="git commit"
-alias gco="git checkout"
-alias gl="git pull"
-alias gp="git push"
-alias gd="git diff"
-alias gb="git branch"
-alias gba="git branch -a"
-alias gdl="git branch -d"
-
-# commands and shortcuts
-alias ls="exa -l --color=always --group-directories-first --icons"
-alias la="exa -al --color=always --group-directories-first --icons"
-alias lh="exa -al --color=always | rg '^\.'"
-alias tree="exa --tree --color=always --icons"
-
-alias grep="rg"
-alias df="df -h"
-alias free="free -mt"
-alias setkbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100"
-
-alias cp="cp -i -v"
-alias mv="mv -i -v"
-alias rm="rm -I -v"
-
-alias _="sudo"
-alias cat="bat -p"
-alias less="bat"
-alias wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
-alias yta="yt-dlp -x --audio-format mp3 --audio-quality 0"
-alias nb="newsboat"
-alias ksh="kitty +kitten ssh"
-alias bt="transmission-remote"
-
-# docker aliases 
-alias hugo='docker run --rm -it -v $PWD:/src --user 1000 klakegg/hugo'
-alias hugosrv='docker run --rm -it -v $PWD:/src -p 1313:1313 --user 1000 klakegg/hugo server'
+alias \
+	gst="git status" \
+	ga="git add" \
+	gc="git commit" \
+	gco="git checkout" \
+	gl="git pull" \
+	gp="git push" \
+	gd="git diff" \
+	gb="git branch" \
+	gba="git branch -a" \
+	gdl="git branch -d"
 
 # plugins
-alias zsh-update-plugins="find \"$ZDOTDIR/plugins\" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
+alias \
+	zshplugs="find \"$ZDOTDIR/plugins\" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"
