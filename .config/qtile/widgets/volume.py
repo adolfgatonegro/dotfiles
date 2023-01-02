@@ -122,7 +122,7 @@ class Volume(base._TextBox):
 
         cmd.extend([x for x in args])
         # return cmd
-        return ' '.join(cmd)
+        return subprocess.list2cmdline(cmd)
 
     def button_press(self, x, y, button):
         base._TextBox.button_press(self, x, y, button)
