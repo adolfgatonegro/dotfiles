@@ -1,0 +1,19 @@
+#!/bin/sh
+# gatoneg.ro
+#
+# Emoji selector using rofi
+
+# Get user selection from emoji file.
+choice=$(cut -d ';' -f1 ~/.local/share/chars/* | rofi -i -dmenu -l 10 -p 'Select a character:' | sed "s/ .*//")
+
+# Exit if none chosen.
+[ -z "$choice" ] && exit
+
+# If you run this command with an argument, it will automatically insert the
+# character. Otherwise, show a message that the emoji has been copied.
+if [ -n "$1" ]; then
+	xdotool type "$choice"
+else
+	printf "$choice" | xclip -selection clipboard
+	notify-send "$choice copied to clipboard." &
+fi

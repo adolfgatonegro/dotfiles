@@ -1,4 +1,5 @@
 #!/bin/sh
+# gatoneg.ro
 # rofi launcher script with calculator, power menu, and emoji support
 
 NAME="${0##*/}"
@@ -20,6 +21,8 @@ usage()
      -d,--drun          Desktop application launcher
 
      -w,--window        Switch between windows
+
+     -e,--emoji         Copy an emoji to the clipboard
 
      -b,--browser       Browser search by keyword (requires surfraw)
 
@@ -46,14 +49,9 @@ else
 			-w|--window)
 				rofi -i -show window ;;
 			-e|--emoji)
-				rofi -i -show emoji ;;
+				rofi_emoji ;;
 			-c|--calculator)
 				rofi -i -show calc -no-show-match -no-sort ;;
-			# -b|--browser)
-			# 	hash surfraw >/dev/null 2>&1 || { echo "Requires 'surfraw' installed"; exit 1; }
-			# 	surfraw -browser="$BROWSER" "$(sr -elvi | awk -F'-' '{print $1}' | sed '/:/d' | awk '{$1=$1};1' |
-			# 		rofi -hide-scrollbar -kb-row-select 'Tab' -kb-row-tab 'Control+space' \
-			# 			-dmenu -mesg 'Tab for Autocomplete' -i -p 'Web Search')"  	;;
 			-l|--logout)
 				case "$(rofi -sep "|" -dmenu -i -l 5 -p 'Power options:' <<< " Log out|鈴 Suspend|⥁ Reboot| Shutdown")" in
 					*Shutdown) systemctl poweroff ;;
