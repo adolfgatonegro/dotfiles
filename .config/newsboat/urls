@@ -22,13 +22,17 @@ https://status.proton.me/history.atom "tech"
 https://github.com/qtile/qtile/commits/master.atom "tech" "qtile" "linux"
 https://blog.qutebrowser.org/feeds/all.atom.xml "tech" "linux"
 
+"- - - Infosec - - -"
+https://krebsonsecurity.com/feed/ "infosec" "tech"
+https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=_JohnHammond&noretweet=on&nopinned=on&nopic=on&format=Atom "infosec" "tech"
+https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=SwiftOnSecurity&noretweet=on&nopinned=on&nopic=on&format=Atom "infosec" "tech"
+https://rss-bridge.org/bridge01/?action=display&bridge=MastodonBridge&canusername=%40SwiftOnSecurity%40infosec.exchange&noboost=on&signaturetype=noquery&format=Atom "infosec" "tech"
+https://feeds.feedburner.com/TroyHunt "infosec" "tech"
+
 "- - - Twitter - - -"
-https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=_JohnHammond&noretweet=on&nopinned=on&nopic=on&format=Atom
 https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=manyatruenerd&noretweet=on&nopinned=on&nopic=on&format=Atom
-https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=SwiftOnSecurity&noretweet=on&nopinned=on&nopic=on&format=Atom
 
 "- - - Mastodon - - -"
-https://rss-bridge.org/bridge01/?action=display&bridge=MastodonBridge&canusername=%40SwiftOnSecurity%40infosec.exchange&noboost=on&signaturetype=noquery&format=Atom
 
 "- - - YouTube - - -"
 https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "yt" "philos" #Carefree Wandering

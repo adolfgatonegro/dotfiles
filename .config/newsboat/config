@@ -1,7 +1,7 @@
 #show-read-feeds no
 goto-next-feed no
 # refresh-on-startup yes
-reload-threads 10
+reload-threads 20
 scrolloff 10
 text-width 78
 confirm-exit yes
