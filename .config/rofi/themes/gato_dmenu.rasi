@@ -1,0 +1,50 @@
+// dmenu rofi theme
+// adapted from the default them by Dave Davenport
+// gatoneg.ro
+
+* {
+    background-color:      #0a0a15;
+    border-color:          #ff00aa;
+    text-color:           #c1c1d1;
+    font:            "CaskaydiaCove Nerd Font Regular 8";
+}
+window {
+    anchor:     north;
+    location:   north;
+    width:      100%;
+    padding:    0px;
+    children:   [ horibox ];
+}
+prompt, entry {
+    padding:    6px 10px;
+}
+horibox {
+    orientation: horizontal;
+    children:   [ prompt, entry, listview ];
+}
+listview {
+    layout:     horizontal;
+    spacing:    5px;
+    lines:      100;
+}
+entry {
+    expand:     false;
+    width:      10em;
+}
+element {
+    padding: 6px 10px;
+}
+element selected {
+    background-color: #ff00aa;
+}
+
+element-text, element-icon {
+    background-color: inherit;
+    text-color: inherit;
+}
+
+element-text selected {
+    text-color: #0a0a20;
+}
+
+/* vim: ft=sass
