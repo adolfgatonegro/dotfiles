@@ -33,6 +33,9 @@ set searchurls.sx https://northboot.xyz/search?q=%s
 bind gh hint -W exclaim_quiet link_handler
 bind ge editor
 
+" Commands
+command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
+
 " Autocmds
 autocmd DocStart undefined mode ignore
 autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
