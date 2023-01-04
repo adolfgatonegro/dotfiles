@@ -18,7 +18,10 @@ alias \
 
 # dotfiles
 alias \
-	config="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME" \
+	cf="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME" \
+	cfs="cf status" \
+	cfd="cf diff" \
+	cfc="cf commit" \
 	repos="git-summary $HOME/git"
 
 # verbosity and options
