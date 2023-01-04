@@ -22,6 +22,7 @@ alias \
 	cfs="cf status" \
 	cfd="cf diff" \
 	cfc="cf commit" \
+	cfp="cf push" \
 	repos="git-summary $HOME/git"
 
 # verbosity and options
