@@ -10,7 +10,7 @@ alias \
 	pkgq="pikaur -Qi" \
 	pkgsi="pikaur -Si" \
 	pkgs="pikaur -Ss" \
-	update="pikaur -Syu" \
+	upd="pikaur -Syu" \
 	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
 	pacunlock="sudo rm /var/lib/pacman/db.lck" \
 	paclog="cat /var/log/pacman.log" \
