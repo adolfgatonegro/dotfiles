@@ -47,6 +47,12 @@ super + d
 super + e
 	kitty -e vim
 
+super + F8
+	rofi_mount
+
+super + shift +F8
+	rofi_umount
+
 #super + h
 #    kitty --config /home/gatonegro/.config/kitty/arch.conf -e /usr/bin/distrobox-enter arch
 
