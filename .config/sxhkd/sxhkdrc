@@ -38,8 +38,8 @@ super + t
 super + f
 	kitty -e lf
 
-super + shift + f
-	pcmanfm
+# super + shift + f
+# 	pcmanfm
 
 super + d
 	discord
