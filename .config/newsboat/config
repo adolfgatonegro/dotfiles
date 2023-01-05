@@ -1,8 +1,8 @@
 #show-read-feeds no
 goto-next-feed no
 # refresh-on-startup yes
-reload-threads 20
-scrolloff 10
+reload-threads 10
+scrolloff 20
 text-width 78
 confirm-exit yes
 max-items 100
@@ -26,15 +26,23 @@ bind-key D pb-download
 bind-key f show-urls
 bind-key x pb-delete
 
-color listnormal color15 default
-color listfocus black red standout bold
-color listnormal_unread cyan default
-color listfocus_unread red color0 bold
-color info color2 black bold
-color article color15 default bold
-
-highlight feedlist "- - -.*- - -" color245 default bold
+#Feedlist Stylings
+highlight feedlist ".* ═════════════════════════════════════════════════════" color245 default bold
 highlight feedlist ".*0/0.." color240 default
+highlight feedlist "\\+Updates" blue
+highlight feedlist "\\+Twitter" cyan
+highlight feedlist "\\+Mastodon" magenta
+highlight feedlist "\\+HN" color3
+highlight feedlist "\\+Blog" green
+highlight feedlist "\\+Reddit" color202
+highlight feedlist "\\+YouTube" red
+feedlist-format "%?T? %n %10u +%-9T %t &%-24t ═════════════════════════════════════════════════════?"
+
+#Articlelist Stylings
+datetime-format "%Y-%m-%d %R"
+articlelist-format "%f %4i %20D %?T? [%-17T] &? %t"
+
+#Article stylings
 highlight article "(^Feed:.*|^Title:.*|^Author:.*)" cyan default bold
 highlight article "(^Link:.*|^Date:.*)" default default
 highlight article "https?://[^ ]+" green default
@@ -45,6 +53,14 @@ highlight article "\\[embedded flash: [0-9][0-9]*\\]" green default bold
 highlight article ":.*\\(link\\)$" cyan default
 highlight article ":.*\\(image\\)$" blue default
 highlight article ":.*\\(embedded flash\\)$" magenta default
+highlight article ":.*\\(embedded flash\\)$" magenta default
+
+color listnormal color15 default
+color listfocus green default invis bold
+color listnormal_unread cyan default
+color listfocus_unread red default invis bold
+color info black green bold
+color article color15 default bold
 
 browser "link_handler"
 macro , open-in-browser
