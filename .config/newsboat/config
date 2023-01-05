@@ -27,7 +27,7 @@ bind-key f show-urls
 bind-key x pb-delete
 
 #Feedlist Stylings
-highlight feedlist ".* ═════════════════════════════════════════════════════" color245 default bold
+highlight feedlist ".* ⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼" color245 default bold
 highlight feedlist ".*0/0.." color240 default
 highlight feedlist "\\+Updates" blue
 highlight feedlist "\\+Twitter" cyan
@@ -36,7 +36,7 @@ highlight feedlist "\\+HN" color3
 highlight feedlist "\\+Blog" green
 highlight feedlist "\\+Reddit" color202
 highlight feedlist "\\+YouTube" red
-feedlist-format "%?T? %n %10u +%-9T %t &%-24t ═════════════════════════════════════════════════════?"
+feedlist-format "%?T? %n %10u +%-9T %t &%-24t ⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼?"
 
 #Articlelist Stylings
 datetime-format "%Y-%m-%d %R"
