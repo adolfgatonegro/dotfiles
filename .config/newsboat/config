@@ -1,7 +1,7 @@
 #show-read-feeds no
 goto-next-feed no
 # refresh-on-startup yes
-reload-threads 10
+reload-threads 20
 scrolloff 20
 text-width 78
 confirm-exit yes
@@ -35,6 +35,8 @@ highlight feedlist "\\+Mastodon" magenta
 highlight feedlist "\\+HN" color3
 highlight feedlist "\\+Blog" green
 highlight feedlist "\\+Reddit" color202
+highlight feedlist "\\+Thoughts" color75
+highlight feedlist "\\+News" color206
 highlight feedlist "\\+YouTube" red
 feedlist-format "%?T? %n %10u +%-9T %t &%-24t ⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼?"
 

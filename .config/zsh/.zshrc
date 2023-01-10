@@ -13,7 +13,7 @@ export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE=$XDG_CONFIG_HOME/zsh/zsh-hist
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|link_handler(| *)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|link_handler(| *)|trem(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(completion)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY

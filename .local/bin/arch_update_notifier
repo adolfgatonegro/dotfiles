@@ -1,6 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-updates=$(checkupdates | awk '{print $1 " (" $4 ")"}')
+updates=$(checkupdates | awk '{print $1}')
+updatesqty=$(echo "$updates" | wc -l)
 
 if [ -z "$updates" ]
 then 
@@ -8,7 +9,6 @@ then
 	"All packages are up to date." \
 	-i ~/.local/share/icons/arch-logo-240px.png
 else
-	notify-send -t 10000 -u normal "System updates available" \
-	"The following packages can be updated:\n$updates" \
-	-i ~/.local/share/icons/arch-logo-240px.png
+	notify-send -t 10000 -u normal "$updatesqty updates available" \
+		"$updates" -i ~/.local/share/icons/arch-logo-240px.png
 fi

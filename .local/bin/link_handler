@@ -19,7 +19,8 @@ notify="notify-send -t 2500"
 case "$url" in
 	# YouTube videos, playlists, and embeds
 	*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*)
-		setsid -f mpv $MPV_PROFILE -quiet "$url" >/dev/null 2>&1 &
+		setsid -f umpv $MPV_PROFILE "$url" >/dev/null 2>&1 &
+		# setsid -f mpv $MPV_PROFILE -quiet "$url" >/dev/null 2>&1 &
 		$notify "📺 mpv" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
 	# video files
 	*mkv|*webm|*mp4*(?))
