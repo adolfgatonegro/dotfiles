@@ -1,5 +1,6 @@
 "query:Aggregators:tags # \"aggregators\""
 https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
+https://www.reddit.com/r/BlackMetal/.rss "Reddit" "aggregators" "music" "~/r/blackmetal"
 https://www.reddit.com/r/technology.rss "Reddit" "aggregators" "tech" "~/r/technology"
 
 "query:Update Feeds:tags # \"Updates\""
@@ -34,9 +35,8 @@ https://nautil.us/feed/ "Thoughts" "science" "culture" "philosophy"
 https://unherd.com/feed/ "Thoughts" "science" "culture" "politics" "news"
 
 "query:Infosec:tags # \"infosec\""
+https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
 https://krebsonsecurity.com/feed/ "Blog" "infosec" "tech" "~Krebs on Security"
-https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=_JohnHammond&noretweet=on&nopinned=on&nopic=on&format=Atom "Twitter" "infosec" "tech" "~John Hammond"
-https://rss-bridge.org/bridge01/?action=display&bridge=TwitterBridge&context=By+username&u=SwiftOnSecurity&noretweet=on&nopinned=on&nopic=on&format=Atom "Twitter" "infosec" "tech" "~SwiftOnSecurity"
 
 "query:YouTube:tags # \"YouTube\""
 https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
