@@ -1,6 +1,4 @@
-#show-read-feeds no
 goto-next-feed no
-# refresh-on-startup yes
 reload-threads 20
 scrolloff 20
 text-width 78
@@ -24,18 +22,17 @@ bind-key n next-unread
 bind-key N prev-unread
 bind-key D pb-download
 bind-key f show-urls
-bind-key x pb-delete
+bind-key x delete-article
 
 #Feedlist Stylings
 highlight feedlist ".* ⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼" color245 default bold
 highlight feedlist ".*0/0.." color240 default
 highlight feedlist "\\+Updates" blue
-highlight feedlist "\\+Twitter" cyan
-highlight feedlist "\\+Mastodon" magenta
+highlight feedlist "\\+Social" cyan
 highlight feedlist "\\+HN" color3
 highlight feedlist "\\+Blog" green
 highlight feedlist "\\+Reddit" color202
-highlight feedlist "\\+Thoughts" color75
+highlight feedlist "\\+Magazine" color75
 highlight feedlist "\\+News" color206
 highlight feedlist "\\+YouTube" red
 feedlist-format "%?T? %n %10u +%-9T %t &%-24t ⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼⎼?"

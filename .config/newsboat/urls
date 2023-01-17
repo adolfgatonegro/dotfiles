@@ -1,16 +1,9 @@
-"query:Aggregators:tags # \"aggregators\""
-https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
-https://www.reddit.com/r/BlackMetal/.rss "Reddit" "aggregators" "music" "~/r/blackmetal"
-https://www.reddit.com/r/technology.rss "Reddit" "aggregators" "tech" "~/r/technology"
-
 "query:Update Feeds:tags # \"Updates\""
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
 https://github.com/qtile/qtile/commits/master.atom  "Updates" "tech" "qtile" "linux"
-https://blog.qutebrowser.org/feeds/all.atom.xml "Updates" "tech" "linux"
 
-"query:Blogs:tags # \"Blog\""
-https://acoup.blog/rss "Blog" "history"
+"query:Philosophy & Psychology:tags # \"philosophy\" or tags # \"psychology\""
 https://www.gleech.org/feed.xml "Blog" "psychology"
 https://backtohumanity.substack.com/feed "Blog" "philosophy"
 https://duncanreyburn.substack.com/feed "Blog" "philosophy"
@@ -18,29 +11,30 @@ https://experimentalhistory.substack.com/feed "Blog" "history" "psychology"
 https://fakenous.substack.com/feed "Blog" "philosophy" "politics"
 https://freddiedeboer.substack.com/feed "Blog" "media criticism"
 https://thelivingphilosophy.substack.com/feed "Blog" "philosophy"
-https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy"
-https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
-https://garymarcus.substack.com/feed "Blog" "ai"
 https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
-https://unfashionable.substack.com/feed "Blog" "tech" "culture"
-
-"query:News:tags # \"News\""
-https://lwn.net/headlines/rss "News" "tech" "linux" "~LWN Headlines"
-https://feeds.arstechnica.com/arstechnica/tech-policy "News" "society" "politics" "~Tech Policy - Ars Technica"
-https://feeds.arstechnica.com/arstechnica/science "News" "space" "science" "~Science & Exploration - Ars Technica"
-https://feeds.arstechnica.com/arstechnica/technology-lab "News" "tech" "~Technology - Ars Technica"
-
-"query:Thoughts:tags # \"Thoughts\""
-https://nautil.us/feed/ "Thoughts" "science" "culture" "philosophy"
-https://unherd.com/feed/ "Thoughts" "science" "culture" "politics" "news"
-
-"query:Infosec:tags # \"infosec\""
-https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
-https://krebsonsecurity.com/feed/ "Blog" "infosec" "tech" "~Krebs on Security"
-
-"query:YouTube:tags # \"YouTube\""
+https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
+https://nautil.us/feed/ "Magazine" "science" "culture" "philosophy"
+https://www.reddit.com/r/philosophy.rss "Reddit" "aggregators" "philosophy" "~r/philosophy"
+https://www.reddit.com/r/AcademicPsychology.rss "Reddit" "aggregators" "psychology" "~r/AcademicPsychology"
+https://www.reddit.com/r/psychology.rss "Reddit" "aggregators" "psychology" "~r/psychology"
 https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
 https://youtube.com/feeds/videos.xml?channel_id=UCqos1tl0RntucGGtPXNxkkA "YouTube" "philosophy" #Eternalised
+https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTube" "culture" "politics" #Think That Through
+
+"query:Science & Technology:tags # \"tech\""
+https://sneak.berlin/feed.xml "Blog" "tech"
+https://krebsonsecurity.com/feed/ "Blog" "infosec" "tech" "~Krebs on Security"
+https://garymarcus.substack.com/feed "Blog" "ai"
+https://blog.qutebrowser.org/feeds/all.atom.xml "Blog" "tech" "linux" "~Qutebrowser Dev Blog"
+https://unfashionable.substack.com/feed "Blog" "tech" "culture"
+https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
+https://feeds.arstechnica.com/arstechnica/tech-policy "News" "society" "politics" "~Ars Technica - Tech Policy"
+https://feeds.arstechnica.com/arstechnica/science "News" "space" "science" "~Ars Technica - Science & Exploration"
+https://feeds.arstechnica.com/arstechnica/technology-lab "News" "tech" "~Ars Technica - Technology"
+https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
+https://lwn.net/headlines/rss "News" "tech" "linux" "~LWN Headlines"
+https://www.phoronix.com/rss.php "News" "tech" "linux"
+https://www.reddit.com/r/technology.rss "Reddit" "aggregators" "tech" "~r/technology"
 https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
 https://youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "YouTube" "tech" #Level1Techs
 https://youtube.com/feeds/videos.xml?channel_id=UCLx053rWZxCiYWsBETgdKrQ "YouTube" "tech" #LGR
@@ -48,7 +42,17 @@ https://youtube.com/feeds/videos.xml?channel_id=UCw_Sxdt27ASqErScT4Rlj8A "YouTub
 https://youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w "YouTube" "culture" "politics" "tech" #Louis Rossmann
 https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTube" "tech" #Luke Smith
 https://youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "YouTube" "tech" #Mental Outlaw
-https://youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "YouTube" "philosophy" #Savannah Brown
+
+"query:Formula One:tags # \"F1\""
+https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
+https://www.reddit.com/r/formula1/.rss "Reddit" "F1" "~r/Formula1"
+
+"query:Miscellanea:tags # \"misc\""
+https://acoup.blog/rss "Blog" "history" "misc"
+https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "misc"
+https://3quarksdaily.com/feed "Magazine" "science" "philosophy" "politics" "literature"
+https://unherd.com/feed/ "Magazine" "science" "culture" "politics" "news"
+https://www.reddit.com/r/blackmetal/.rss "Reddit" "music" "~r/blackmetal"
+https://www.reddit.com/r/ObscureMedia.rss "Reddit" "aggregators" "tech" "~r/ObscureMedia"
+https://youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "YouTube" "literature" "philosophy" #Savannah Brown
 https://youtube.com/feeds/videos.xml?channel_id=UCl_dlV_7ofr4qeP1drJQ-qg "YouTube" "music" #Tantacrul
-https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTube" "culture" "politics" #Think That Through
-https://youtube.com/feeds/videos.xml?channel_id=UCs8mbJ-M142ZskR5VR0gBig "YouTube" "culture" "politics" #YUGOPNIK
