@@ -69,3 +69,5 @@ notify-format "Newsboat: %d new articles"
 macro , open-in-browser
 macro b set browser "firefox --new-tab %u > /dev/null 2>&1" ; open-in-browser ; set browser "link_handler"
 macro i set pager "kitty_image_pager"; open; set pager internal
+
+ignore-article "https://hnrss.org/frontpage?link=comments" "title =~ \"is hiring\""
