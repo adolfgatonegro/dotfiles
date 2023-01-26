@@ -8,6 +8,7 @@ from detect_displays import *
 host = gethostname()
 terminal = "kitty"
 calendar = "gsimplecal"
+wall_dir = expanduser("~/pictures/wallpapers")
 
 net_adapter = {
     "foxes" : "enp42s0",
@@ -48,7 +49,6 @@ colours = dict(
 
 bar_defaults = dict(
     size = 25,
-    background = colours["bg"],
     opacity = 0.9,
 )
 
@@ -67,7 +67,7 @@ gato_logo = widget.Image(
     margin_y = 2,
     scale = True,
     mouse_callbacks = {"Button3": lambda: qtile.cmd_spawn("random_wallpaper"),
-                       "Button2": lambda: qtile.cmd_spawn("rofi_run")},
+                       "Button2": lambda: qtile.cmd_spawn("nsxiv " + wall_dir)},
 )
 spacer= widget.Spacer(
     background = colours["bg"],
@@ -136,35 +136,27 @@ currentlayouticon_defaults = dict(
 extension_defaults = widget_defaults.copy()
 
 main_bar_widgets = [
+    widget.TaskList(
+        **widget_defaults,
+        **tasklist_defaults,
+    ),
+]
+
+bottom_bar_widgets = [
     gato_logo,
     widget.GroupBox(
         **widget_defaults,
         **groupbox_defaults,
     ),
-    spacer,
-    widget.TaskList(
-        **widget_defaults,
-        **tasklist_defaults,
+    widget.Spacer(
+        lengt = "bar.STRETCH",
     ),
-    spacer,
     widget.Cmus(
         **widget_defaults,
         update_interval = 1,
         play_color = colours["cyan0"],
         max_chars = 50,
     ),
-    # widget.Mpris2(
-    #     playing_text = " {track}",
-    #     paused_text  = " {track}",
-    #     scroll_delay = 5,
-    #     width = 250,
-    #     # max_chars = 50,
-    #     scroll_interval = 0.25,
-    #     scroll_step = 4,
-    #     foreground = colours["cyan0"],
-    #     display_metadata = ['xesam:title', 'xesam:artist'],
-    #     format = "{xesam:title} - ({xesam:artist})",
-    # ),
     widget.Systray(**widget_defaults),
     widget.CheckUpdates(
         **widget_defaults,
@@ -184,7 +176,7 @@ main_bar_widgets = [
 ]
 
 if host == "lucille":
-    main_bar_widgets += [
+    bottom_bar_widgets += [
     widget.Battery(
         **widget_defaults,
         charge_char = '',
@@ -205,7 +197,7 @@ if active_monitors > 1:
     ),
 ]
 
-main_bar_widgets += [
+bottom_bar_widgets += [
     Volume(
         **widget_defaults,
         **volume_defaults,
@@ -222,10 +214,8 @@ main_bar_widgets += [
 
 screens = [
     Screen(
-        top=bar.Bar(
-            main_bar_widgets,
-            **bar_defaults,
-        ),
+        top=bar.Bar( main_bar_widgets, background = colours["none"], **bar_defaults,),
+        bottom=bar.Bar(bottom_bar_widgets, background = colours["bg"], **bar_defaults),
     ),
 ]
 
@@ -260,6 +250,7 @@ if active_monitors > 1:
                         format = "%a %d %H:%M",
                     ),
                 ],
+                background = colours["bg"],
                 **bar_defaults,
             ),
         )

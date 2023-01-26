@@ -1,15 +1,17 @@
 "query:Update Feeds:tags # \"Updates\""
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
+https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
-https://github.com/qtile/qtile/commits/master.atom  "Updates" "tech" "qtile" "linux"
+https://github.com/qtile/qtile/commits/master.atom  "Updates" "tech" "qtile" "linux" "~Qtile Recent Commits"
 
 "query:Philosophy & Psychology:tags # \"philosophy\" or tags # \"psychology\""
 https://www.gleech.org/feed.xml "Blog" "psychology"
 https://backtohumanity.substack.com/feed "Blog" "philosophy"
 https://duncanreyburn.substack.com/feed "Blog" "philosophy"
-https://experimentalhistory.substack.com/feed "Blog" "history" "psychology"
+https://experimentalhistory.substack.com/feed "Blog" "psychology"
 https://fakenous.substack.com/feed "Blog" "philosophy" "politics"
 https://freddiedeboer.substack.com/feed "Blog" "media criticism"
+https://www.metaphysicalexile.com/feeds/posts/default "Blog" "philosophy"
 https://thelivingphilosophy.substack.com/feed "Blog" "philosophy"
 https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
@@ -37,6 +39,7 @@ https://www.phoronix.com/rss.php "News" "tech" "linux"
 https://www.reddit.com/r/technology.rss "Reddit" "aggregators" "tech" "~r/technology"
 https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
 https://youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "YouTube" "tech" #Level1Techs
+https://www.youtube.com/feeds/videos.xml?channel_id=UCOWcZ6Wicl-1N34H0zZe38w "YouTube" "tech" "linux" #Level1Linux
 https://youtube.com/feeds/videos.xml?channel_id=UCLx053rWZxCiYWsBETgdKrQ "YouTube" "tech" #LGR
 https://youtube.com/feeds/videos.xml?channel_id=UCw_Sxdt27ASqErScT4Rlj8A "YouTube" "tech" #LGR Blerbs
 https://youtube.com/feeds/videos.xml?channel_id=UCl2mFZoRqjw_ELax4Yisf6w "YouTube" "culture" "politics" "tech" #Louis Rossmann
@@ -49,9 +52,11 @@ https://www.reddit.com/r/formula1/.rss "Reddit" "F1" "~r/Formula1"
 
 "query:Miscellanea:tags # \"misc\""
 https://acoup.blog/rss "Blog" "history" "misc"
-https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "misc"
-https://3quarksdaily.com/feed "Magazine" "science" "philosophy" "politics" "literature"
+https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
 https://unherd.com/feed/ "Magazine" "science" "culture" "politics" "news"
+https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
+https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
+https://notrelated.xyz/rss "Podcast" "tech" "philosophy" "sociology" "misc"
 https://www.reddit.com/r/blackmetal/.rss "Reddit" "music" "~r/blackmetal"
 https://www.reddit.com/r/ObscureMedia.rss "Reddit" "aggregators" "tech" "~r/ObscureMedia"
 https://youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "YouTube" "literature" "philosophy" #Savannah Brown

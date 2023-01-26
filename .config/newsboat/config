@@ -31,6 +31,7 @@ highlight feedlist "\\+Updates" blue
 highlight feedlist "\\+Social" cyan
 highlight feedlist "\\+HN" color3
 highlight feedlist "\\+Blog" green
+highlight feedlist "\\+Podcast" color220
 highlight feedlist "\\+Reddit" color202
 highlight feedlist "\\+Magazine" color75
 highlight feedlist "\\+News" color206
@@ -62,6 +63,7 @@ color info black green bold
 color article color15 default bold
 
 browser "link_handler"
+bookmark-cmd "~/.local/bin/bmark"
 notify-program "notify-send"
 notify-format "Newsboat: %d new articles"
 macro , open-in-browser

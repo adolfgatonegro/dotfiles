@@ -21,29 +21,29 @@ case "$url" in
 	*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*)
 		setsid -f umpv $MPV_PROFILE "$url" >/dev/null 2>&1 &
 		# setsid -f mpv $MPV_PROFILE -quiet "$url" >/dev/null 2>&1 &
-		$notify "📺 mpv" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
+		$notify "📺 mpv - added to queue" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
 	# video files
-	*mkv|*webm|*mp4*(?))
-		setsid -f mpv $MPV_PROFILE -quiet "$url" >/dev/null 2>&1 &
-		$notify "📺 mpv - loading" "$url";;
+	*mkv|*webm|*mp4*(?)|*ogg)
+		setsid -f umpv $MPV_PROFILE "$url" >/dev/null 2>&1 &
+		$notify "📺 mpv - added to queue" "$url";;
 	# images
 	*png*(?)|*jpg*(?)|*jpe|*jpeg|*gif)
 		curl -sL "$url" > "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
 		nsxiv_rifle "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 &
-		$notify "📸 nsxiv - opening" "$url";;
+		$notify "📸 nsxiv" "$url";;
 	# pdfs and ebooks
 	*pdf|*cbz|*cbr)
 		curl -sL "$url" > "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
 		zathura "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 &
-		$notify "📖 zathura - opening" "$url";;
+		$notify "📖 zathura" "$url";;
 	# music files
 	*mp3*(?)|*flac|*opus)
-		curl -LO "$url"  >/dev/null 2>&1 &
-		$notify "🎵 curl - downloading" "$url";;
+		curl --output-dir "downloads" -LO "$url"  >/dev/null 2>&1 &
+		$notify "🎵 curl" "$url";;
 	# everything else
 	*)
 		# w3m "$url"
 		[ -f "$url" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$url" >/dev/null 2>&1 || \
 			setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$url" >/dev/null 2>&1 &
-		$notify "🌐 $BROWSER - opening" "$url";;
+		$notify "🌐 $BROWSER" "$url";;
 esac
