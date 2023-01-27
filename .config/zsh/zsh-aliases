@@ -47,7 +47,8 @@ alias \
 	kbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100" \
 	ns="nsxiv_rifle" \
 	cuetag="cuetag.sh" \
-	mpva="mpv --audio-display=no --no-video"
+	mpva="mpv --audio-display=no --no-video" \
+	z="zathura"
 
 # hipster coreutil replacements
 alias \
