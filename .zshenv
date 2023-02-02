@@ -54,6 +54,3 @@ export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/pythonstartup.py"
 
 export SUDO_ASKPASS="$HOME/.local/bin/rofi_pass"
-
-# temp workaround for broken hw accel in firefox
-export MOZ_DISABLE_RDD_SANDBOX=1
