@@ -5,7 +5,7 @@ from screens import colours
 
 layout_defaults = dict(
     margin = 4,
-    border_width = 2,
+    border_width = 1,
     border_focus = colours["pink0"],
     border_normal = colours["bg"],
 )

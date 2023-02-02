@@ -190,7 +190,7 @@ if host == "lucille":
     ]
 
 if active_monitors > 1:
-    main_bar_widgets += [
+    bottom_bar_widgets += [
     widget.CurrentScreen(
         **widget_defaults,
         **currentscreen_defaults,

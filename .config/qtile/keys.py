@@ -4,6 +4,11 @@ from libqtile.lazy import lazy
 mod="mod4"
 terminal = "kitty"
 
+@lazy.layout.function
+def change_layout_gap(layout, adjustment):
+    layout.margin = max(layout.margin + adjustment, 0)
+    layout.cmd_reset()
+
 keys = [
     Key("M-<Return>", lazy.spawn(terminal), desc = "Launch terminal"),
     Key("M-r", lazy.spawn("rofi_run"), desc = "Run application launcher"),
@@ -37,6 +42,8 @@ keys = [
     Key("M-S-<comma>", lazy.prev_screen(),desc = "Switch focus to previous display"),
     Key("M-C-p", lazy.spawn("display_toggle"), desc = "Toggle display 2 on/off"),
     Key("M-C-o", lazy.spawn("display_rotate"), desc = "Rotate display 1"),
+    Key("M-<minus>", change_layout_gap(adjustment=-2)),
+    Key("M-S-<equal>", change_layout_gap(adjustment=2)),
 ]
 
 mouse = [
