@@ -135,21 +135,28 @@ currentlayouticon_defaults = dict(
 
 extension_defaults = widget_defaults.copy()
 
-main_bar_widgets = [
-    widget.TaskList(
-        **widget_defaults,
-        **tasklist_defaults,
-    ),
-]
+# bottom_bar_widgets = [
+#     widget.TaskList(
+#         **widget_defaults,
+#         **tasklist_defaults,
+#     ),
+# ]
 
-bottom_bar_widgets = [
+main_bar_widgets = [
     gato_logo,
     widget.GroupBox(
         **widget_defaults,
         **groupbox_defaults,
     ),
     widget.Spacer(
-        lengt = "bar.STRETCH",
+        length = 6,
+    ),
+    widget.TaskList(
+        **widget_defaults,
+        **tasklist_defaults,
+    ),
+    widget.Spacer(
+        length = 6,
     ),
     widget.Cmus(
         **widget_defaults,
@@ -190,14 +197,14 @@ if host == "lucille":
     ]
 
 if active_monitors > 1:
-    bottom_bar_widgets += [
+    main_bar_widgets += [
     widget.CurrentScreen(
         **widget_defaults,
         **currentscreen_defaults,
     ),
 ]
 
-bottom_bar_widgets += [
+main_bar_widgets += [
     Volume(
         **widget_defaults,
         **volume_defaults,
@@ -214,8 +221,8 @@ bottom_bar_widgets += [
 
 screens = [
     Screen(
-        top=bar.Bar( main_bar_widgets, background = colours["none"], **bar_defaults,),
-        bottom=bar.Bar(bottom_bar_widgets, background = colours["bg"], **bar_defaults),
+        top=bar.Bar( main_bar_widgets, background = colours["bg"], **bar_defaults,),
+        # bottom=bar.Bar(bottom_bar_widgets, background = colours["none"], **bar_defaults),
     ),
 ]
 
