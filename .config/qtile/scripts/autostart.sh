@@ -14,7 +14,7 @@ case $HOSTNAME in
 	foxes)
 		solaar -w hide &
 		numlockx on &
-		canberra-gtk-play -f ~/documents/startup.ogg &
+		canberra-gtk-play -f $XDG_CONFIG_HOME/qtile/scripts/startup.ogg &
 		;;
 esac
 
