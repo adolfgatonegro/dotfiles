@@ -183,7 +183,7 @@ main_bar_widgets = [
 ]
 
 if host == "lucille":
-    bottom_bar_widgets += [
+    main_bar_widgets += [
     widget.Battery(
         **widget_defaults,
         charge_char = '',
