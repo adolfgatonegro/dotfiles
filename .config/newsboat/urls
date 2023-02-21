@@ -26,6 +26,7 @@ https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTub
 https://sneak.berlin/feed.xml "Blog" "tech"
 https://krebsonsecurity.com/feed/ "Blog" "infosec" "tech" "~Krebs on Security"
 https://garymarcus.substack.com/feed "Blog" "ai"
+https://www.piratewires.com/feed "Blog" "tech"
 https://blog.qutebrowser.org/feeds/all.atom.xml "Blog" "tech" "linux" "~Qutebrowser Dev Blog"
 https://unfashionable.substack.com/feed "Blog" "tech" "culture"
 #https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
@@ -35,7 +36,6 @@ https://feeds.arstechnica.com/arstechnica/technology-lab "News" "tech" "~Ars Tec
 https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
 https://lwn.net/headlines/rss "News" "tech" "linux" "~LWN Headlines"
 https://www.phoronix.com/rss.php "News" "tech" "linux"
-https://www.reddit.com/r/technology.rss "Reddit" "aggregators" "tech" "~r/technology"
 https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
 https://youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "YouTube" "tech" #Level1Techs
 https://www.youtube.com/feeds/videos.xml?channel_id=UCOWcZ6Wicl-1N34H0zZe38w "YouTube" "tech" "linux" #Level1Linux

@@ -12,7 +12,7 @@ def change_layout_gap(layout, adjustment):
 keys = [
     Key("M-<Return>", lazy.spawn(terminal), desc = "Launch terminal"),
     Key("M-r", lazy.spawn("rofi_run"), desc = "Run application launcher"),
-    Key("M-S-c", lazy.window.kill(), desc = "Close the focused window"),
+    Key("M-w", lazy.window.kill(), desc = "Close the focused window"),
     Key("M-<Escape>", lazy.spawn("xkill"), desc = "Launch xkill"),
     Key("M-C-r", lazy.restart(), desc = "Restart Qtile"),
     Key("M-C-q", lazy.shutdown(), desc = "Shutdown Qtile"),
