@@ -4,7 +4,6 @@
 
 [[ $- != *i* ]] && return
 
-export TERM="xterm-kitty"
 export EDITOR='vim'
 export VISUAL='vim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
