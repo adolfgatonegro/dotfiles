@@ -63,7 +63,7 @@ precmd_functions+='precmd_update_git_vars'
 chpwd_functions+='chpwd_update_git_vars'
 
 prompt_symbol=" "
-PROMPT=$'%F{green}╭───[%F{white}%B%~%b%F{green}]$(prompt_git_info)\n%F{red}$prompt_symbol%f%F{cyan}%f '
+PROMPT=$'%F{green}[%F{white}%B%~%b%F{green}]$(prompt_git_info)\n%F{red}$prompt_symbol%f%F{cyan}%f '
 
 zstyle ":history-search-multi-word" page-size "4"                      # Number of entries to show (default is $LINES/3)
 zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"   # Color in which to highlight matched, searched text (default bg=17 on 256-color terminals)

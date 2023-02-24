@@ -5,12 +5,13 @@
 # pacman
 alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
-	pkgi="pikaur -S" \
-	pkgr="pikaur -Rns" \
-	pkgq="pikaur -Qi" \
-	pkgsi="pikaur -Si" \
-	pkgs="pikaur -Ss" \
-	upd="pikaur -Syu" \
+	p="pikaur" \
+	# pkgi="pikaur -S" \
+	# pkgr="pikaur -Rns" \
+	# pkgq="pikaur -Qi" \
+	# pkgsi="pikaur -Si" \
+	# pkgs="pikaur -Ss" \
+	# upd="pikaur -Syu" \
 	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
 	pacunlock="sudo rm /var/lib/pacman/db.lck" \
 	paclog="cat /var/log/pacman.log" \
