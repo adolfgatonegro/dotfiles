@@ -3,6 +3,7 @@ from libqtile.lazy import lazy
 
 from keys import keys
 
+terminal = "st"
 groups = [Group(i) for i in "12345678"]
 
 for i in groups:
@@ -14,9 +15,9 @@ for i in groups:
 
 groups.extend([
     ScratchPad("scratchpad", [
-        DropDown("term", "kitty", x=0.25, opacity = 0.8, width=0.5, height=0.5),
-        DropDown("sysmon", "kitty -e btop", x=0.25, opacity=0.8, width=0.5, height=0.5),
-        DropDown("cmus", "kitty -e cmus", x=0.25, opacity=0.8, width=0.5, height=0.5)
+        DropDown("term", terminal, x=0.25, opacity = 1, width=0.5, height=0.5),
+        DropDown("sysmon", terminal + " -e btop", x=0.25, opacity=1, width=0.5, height=0.5),
+        DropDown("cmus", terminal + " -e cmus", x=0.25, opacity= 1, width=0.5, height=0.5)
     ]),
 ])
 

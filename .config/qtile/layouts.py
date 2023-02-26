@@ -44,7 +44,7 @@ floating_layout = layout.Floating(float_rules=[
     Match(wm_class='notification'),
     Match(wm_class='splash'),
     Match(wm_class='toolbar'),
-    Match(wm_class='Steam'),
+    Match(title='Steam'),
     Match(wm_class='VirtualBox Manager'),
     Match(wm_class='transmission-gtk'),
     Match(wm_class='nm-connection-editor'),

@@ -2,7 +2,7 @@ from libqtile.config import EzKey as Key, EzDrag as Drag, EzClick as Click
 from libqtile.lazy import lazy
 
 mod="mod4"
-terminal = "kitty"
+terminal = "st"
 
 @lazy.layout.function
 def change_layout_gap(layout, adjustment):

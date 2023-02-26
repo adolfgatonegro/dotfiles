@@ -33,28 +33,22 @@ super + shift + b
     firefox --private-window
 
 super + t
-    kitty
+    st
 
 super + f
-	kitty -e lf
-
-# super + shift + f
-# 	pcmanfm
+	st -e lf
 
 super + d
 	discord
 
 super + e
-	kitty -e vim
+	st -e vim
 
 super + F8
 	rofi_mount
 
 super + shift +F8
 	rofi_umount
-
-#super + h
-#    kitty --config /home/gatonegro/.config/kitty/arch.conf -e /usr/bin/distrobox-enter arch
 
 # Screenshot
 super + F4
@@ -66,9 +60,6 @@ super + shift + F4
 # System
 ctrl + alt + o
 	picom_toggle
-
-# ctrl + alt + l
-# 	betterlockscreen -l dim
 
 ctrl + apostrophe
 	dunstctl context
