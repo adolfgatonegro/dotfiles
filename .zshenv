@@ -12,8 +12,10 @@ fi
 export QT_QPA_PLATFORMTHEME=qt5ct 
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
-export TERM="xterm-kitty"
-export TERMINAL="kitty"
+# export TERM="xterm-kitty"
+# export TERMINAL="kitty"
+export TERM="st-256color"
+export TERMINAL="st"
 export EDITOR='vim'
 export VISUAL='vim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
