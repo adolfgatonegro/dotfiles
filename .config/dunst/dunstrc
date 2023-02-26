@@ -30,7 +30,7 @@
 	
 	sort = yes
 
-	font = CaskaydiaCove Nerd Font 8
+	font = monospace 9
 	line_height = 4
 	markup = full
 
@@ -88,14 +88,14 @@
 	frame_color = "#ff00aa"
 	timeout = 0
 
-[volume-ctl]
-	appname = "volume-ctl"
+[volumectl]
+	appname = "volumectl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"
 
-[backlight-ctl]
-	appname = "backlight-ctl"
+[backlightctl]
+	appname = "backlightctl"
 	history_ignore = yes
 	timeout = 2
 	highlight = "#ff00aa"

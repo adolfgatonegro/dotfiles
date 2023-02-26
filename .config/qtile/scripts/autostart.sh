@@ -8,8 +8,8 @@ dunst &
 sxhkd -c &
 redshift &
 nm-applet &
-random_wallpaper &
-canberra-gtk-play -f $XDG_CONFIG_HOME/qtile/scripts/startup.ogg &
+setwall &
+canberra-gtk-play -f $XDG_CONFIG_HOME/startup.ogg &
 
 # Foxes
 case $HOSTNAME in

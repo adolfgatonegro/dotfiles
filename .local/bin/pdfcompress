@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # gatoneg.ro
 #
 # Compress a PDF file using ghostscript.

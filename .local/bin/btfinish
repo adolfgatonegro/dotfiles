@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # gatoneg.ro
 #
 # Could do more, but right now just plays a sound and sends a notification when

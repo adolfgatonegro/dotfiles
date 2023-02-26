@@ -66,13 +66,13 @@ ctrl + apostrophe
 
 # Multimedia keys
 XF86AudioRaiseVolume
-    volume_ctl -i 2
+    volctl -i 2
 
 XF86AudioLowerVolume
-	volume_ctl -d 2
+	volctl -d 2
 
 XF86AudioMute
-    volume_ctl -t
+    volctl -t
 
 XF86AudioPlay
     playerctl play-pause
@@ -87,10 +87,10 @@ XF86AudioStop
     playerctl stop
 
 XF86MonBrightnessUp
-    backlight_ctl -inc 5
+    backlightctl -inc 5
 
 XF86MonBrightnessDown
-    backlight_ctl -dec 5
+    backlightctl -dec 5
 
 XF86KbdBrightnessUp
     xbacklight -ctrl smc::kbd_backlight -inc 10
@@ -99,4 +99,4 @@ XF86KbdBrightnessDown
     xbacklight -ctrl smc::kbd_backlight -dec 10
 
 super + shift + o
-	link_handler
+	linkhandler

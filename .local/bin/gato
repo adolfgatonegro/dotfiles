@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-#------------------------------------------------------------------------------
-# gatofetch
-# adolf@gatoneg.ro
-# https://github.com/adolfgatonegro
-#------------------------------------------------------------------------------
+# gatoneg.ro
 # Tiny fetch script thing, because anything else is overkill
-#------------------------------------------------------------------------------ 
 
 host="$(cat /etc/hostname)"
 user="$(whoami)"

@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# gatoneg.ro
+
+msgId="999666"
+
+xbacklight $@
+
+brightness="$(xbacklight -get | awk '{ printf "%d",$1 }')"
+
+dunstify -a "backlightctl" -u low -i video-display -r "$msgId" -h int:value:"$brightness" "Brightness" "Brightness is at ${brightness}%"

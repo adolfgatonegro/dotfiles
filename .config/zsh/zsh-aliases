@@ -14,12 +14,12 @@ alias \
 
 # dotfiles
 alias \
-	cf="git --git-dir=$HOME/git/dotfiles --work-tree=$HOME" \
-	cfs="cf status" \
-	cfd="cf diff" \
-	cfc="cf commit" \
-	cfp="cf push" \
-	repos="git-summary $HOME/git"
+	conf="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME" \
+	confs="conf status" \
+	confd="conf diff" \
+	confc="conf commit" \
+	confp="conf push" \
+	reps="git-summary $HOME/repos"
 
 # verbosity and options
 alias \
@@ -58,7 +58,8 @@ alias \
 
 # non-hipster replacements
 alias \
-	nsxiv="nsxiv_rifle"
+	nsxiv="nsxiv_rifle" \
+	lf="lfpv"
 
 # git
 alias \
