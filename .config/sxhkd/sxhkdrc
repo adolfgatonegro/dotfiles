@@ -8,7 +8,7 @@ super + ctrl + s
 
 # Rofi
 super + space
-	rofi_run
+	dmenu_run -p "run:"
 
 super + c
 	rofi_run -c
@@ -17,13 +17,13 @@ alt + Tab
 	rofi_run -w
 
 super + period
-    dmemoji
+    dmunicode
 
 super + x
 	rofi_run -l
 
 super + F2
-	rofi_conf
+	dmconf
 
 # Programs
 super + b
@@ -36,7 +36,7 @@ super + t
     st
 
 super + f
-	st -e lf
+	st -e lfpv
 
 super + d
 	discord

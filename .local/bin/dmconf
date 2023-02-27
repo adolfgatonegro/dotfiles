@@ -1,6 +1,5 @@
-#!/bin/sh
+#!/usr/bin/env bash
 # gatoneg.ro
-#
 # Select a config file from a menu, and open it with $EDITOR
 
 declare -a options=(
@@ -34,7 +33,7 @@ declare -a options=(
 # Show menu with the available options
 choice=$(printf '%s\n' "${options[@]}" | \
 	awk -F "; " '{print $1}' | \
-	rofi -i -dmenu -p 'Edit config:' -theme "gato_dmenu")
+	dmenu -i -p 'Edit config:')
 
 # Get the config file path for the selected option
 config=$(printf '%s\n' "${options[@]}" | \

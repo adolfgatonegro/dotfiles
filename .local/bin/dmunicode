@@ -1,10 +1,9 @@
 #!/usr/bin/env bash
 # gatoneg.ro
-#
-# Emoji selector using dmenu
+# Unicode character selector using dmenu
 
-# Get user selection from emoji file.
-choice=$(cut -d ';' -f1 ~/.local/share/chars/* | dmenu -l 10 -p 'Select a character:' | sed "s/ .*//")
+# Get user selection from character files.
+choice=$(cut -d ';' -f1 ~/.local/share/chars/* | dmenu -i -l 10 -p 'Select a character:' | sed "s/ .*//")
 
 # Exit if none chosen.
 [ -z "$choice" ] && exit
