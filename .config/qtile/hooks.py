@@ -36,7 +36,7 @@ def unswallow(window):
 
 @hook.subscribe.screens_reconfigured
 def set_wallpaper():
-    subprocess.call(expanduser('~/.local/bin/random_wallpaper'))
+    subprocess.call(expanduser('~/.local/bin/setwall'))
 
 # @hook.subscribe.screen_change
 # def restart_on_randr(qtile, ev):
