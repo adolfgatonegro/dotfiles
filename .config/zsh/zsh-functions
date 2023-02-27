@@ -96,14 +96,14 @@ prompt_git_info(){
 			s+="𝌎"
 			;;
 			uptodate)
-			s+="✔"
+			s+="🗸"
 			;;
 			behind)
 			s+=""
 			;;
 		esac
 		if [ -n "$__CURRENT_GIT_BRANCH_IS_DIRTY" ]; then
-			local d="✕"
+			local d="✗"
 		fi
 	 
 		printf "%s" " %F{white}$o" " %F{blue}$b" " %F{green}%}$s" " %F{red}$d"
