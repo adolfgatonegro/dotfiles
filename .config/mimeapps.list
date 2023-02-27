@@ -1,17 +1,18 @@
 [Default Applications]
 text/x-shellscript=text.desktop;
 text/plain=text.desktop;
-text/html=browser.desktop
-x-scheme-handler/http=browser.desktop
-x-scheme-handler/https=browser.desktop
-x-scheme-handler/chrome=browser.desktop
+text/*=text.desktop;
+text/html=browser.desktop;
+x-scheme-handler/http=browser.desktop;
+x-scheme-handler/https=browser.desktop;
+x-scheme-handler/chrome=browser.desktop;
 x-scheme-handler/magnet=torrent.desktop;
 application/x-bittorrent=torrent.desktop;
 application/postscript=pdf.desktop;
 application/pdf=pdf.desktop;
-application/rss+xml=rss.desktop
+application/rss+xml=rss.desktop;
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;
-video/x-matroska=video.desktop
-inode/directory=file.desktop
+video/x-matroska=video.desktop;
+inode/directory=file.desktop;
