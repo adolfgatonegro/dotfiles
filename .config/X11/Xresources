@@ -1,12 +1,18 @@
-!! Transparency (0-1):
+*.alpha: 0.85
+*.font: Monospace-9
+
+!! st options
 st.alpha: 0.85
 st.alphaOffset: 0
-
-!! Set a default font and font size as below:
 st.font: Monospace-9
-
 ! st.termname: st-256color
 ! st.borderpx: 1
+
+!! dmenu options
+! dmenu.font:
+! dmenu.color0:
+! dmenu.color1:
+! dmenu.color2:
 
 *.foreground:    #c1c1d1
 *.background:    #0a0a15
