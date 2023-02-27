@@ -17,7 +17,8 @@ groups.extend([
     ScratchPad("scratchpad", [
         DropDown("term", terminal, x=0.25, opacity = 1, width=0.5, height=0.5),
         DropDown("sysmon", terminal + " -e btop", x=0.25, opacity=1, width=0.5, height=0.5),
-        DropDown("cmus", terminal + " -e cmus", x=0.25, opacity= 1, width=0.5, height=0.5)
+        DropDown("cmus", terminal + " -e cmus", x=0.25, opacity= 1, width=0.5, height=0.5),
+        DropDown("calc", terminal + " -e bc -lq", x=0.375, y=0.375, opacity= 1, width=0.25, height=0.25),
     ]),
 ])
 
@@ -25,6 +26,7 @@ keys.extend([
     Key("M-m", lazy.group['scratchpad'].dropdown_toggle('cmus')),
     Key("<F10>", lazy.group['scratchpad'].dropdown_toggle('sysmon')),
     Key("<F12>", lazy.group['scratchpad'].dropdown_toggle('term')),
+    Key("M-c", lazy.group['scratchpad'].dropdown_toggle('calc')),
 ])
 
 # Default layouts

@@ -1,9 +1,0 @@
-#!/bin/sh
-# gatoneg.ro
-
-# This script is the SUDO_ASKPASS variable, meaning that it will be used as a
-# password prompt if needed.
-
-# Adapted to rofi from Luke Smith's original.
-
-rofi -dmenu -password -l 0 -p "$1" -theme "gato_dmenu" <&- && echo

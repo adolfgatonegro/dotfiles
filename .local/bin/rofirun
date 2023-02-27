@@ -10,7 +10,7 @@ usage()
 
  Rofi launch script based off of rofi_run, included in ArchLabs.
 
- USAGE:  $NAME [OPTIONS]
+ USAGE: $NAME [OPTIONS]
 
  OPTIONS:
 
@@ -24,12 +24,9 @@ usage()
 
      -e,--emoji         Copy an emoji to the clipboard
 
-     -b,--browser       Browser search by keyword (requires surfraw)
-
      -c,--calculator    Persistant calculator dialog (requires libqalculate)
 
-
-  Without any options the run dialog will be opened.
+ Without any options the run dialog will be opened.
 
 EOF
 }

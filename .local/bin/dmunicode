@@ -3,7 +3,7 @@
 # Unicode character selector using dmenu
 
 # Get user selection from character files.
-choice=$(cut -d ';' -f1 ~/.local/share/chars/* | dmenu -i -l 10 -p 'Select a character:' | sed "s/ .*//")
+choice=$(cut -d ';' -f1 ~/.local/share/chars/* | dmenu -i -l 20 -p 'Select a character:' | sed "s/ .*//")
 
 # Exit if none chosen.
 [ -z "$choice" ] && exit
@@ -14,6 +14,6 @@ if [ -n "$1" ]; then
 	xdotool type "$choice"
 else
 	printf "$choice" | xclip -selection clipboard
-	notify-send -t 2000 "Copied $choice to clipboard." &
+	notify-send "Copied $choice to clipboard." &
 fi
 

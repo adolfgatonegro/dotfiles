@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# gatoneg.ro
+# dmenu script for system functions.
+
+case "$(printf " Lock\n Log out\n鈴 Suspend\n🗘 Reboot\n Shutdown" | dmenu -i -p 'Power options:')" in
+	*Shutdown) systemctl poweroff ;;
+	*Reboot) systemctl reboot ;;
+	*Suspend) systemctl suspend ;;
+	*Lock) slock ;;
+	*Log\ out) loginctl terminate-session $XDG_SESSION_ID ;;
+	*) exit 1 ;;
+esac

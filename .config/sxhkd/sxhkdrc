@@ -1,26 +1,22 @@
-# ----------------------------------------------------------------------------
-# sxhkdrc - simple x hotkey daemon config file
+# sxhk config
 # gatoneg.ro
-# ----------------------------------------------------------------------------
 
+# restart sxhk
 super + ctrl + s
 	pkill -USR1 -x sxhkd
 
-# Rofi
+# launcher
 super + space
 	dmenu_run -p "run:"
 
-super + c
-	rofi_run -c
-
 alt + Tab
-	rofi_run -w
+	dmwin
 
-super + period
+super + grave
     dmunicode
 
-super + x
-	rofi_run -l
+super + BackSpace
+	dmsys
 
 super + F2
 	dmconf
@@ -35,6 +31,9 @@ super + shift + b
 super + t
     st
 
+super + n
+	dmnotes
+
 super + f
 	st -e lfpv
 
@@ -45,10 +44,10 @@ super + e
 	st -e vim
 
 super + F8
-	rofi_mount
+	dmmount
 
 super + shift +F8
-	rofi_umount
+	dmunmount
 
 # Screenshot
 super + F4
@@ -57,14 +56,14 @@ super + F4
 super + shift + F4
 	flameshot launcher
 
+super + shift + o
+	linkhandler
+
 # System
 ctrl + alt + o
 	picom_toggle
 
-ctrl + apostrophe
-	dunstctl context
-
-# Multimedia keys
+# media keys
 XF86AudioRaiseVolume
     volctl -i 2
 
@@ -97,6 +96,3 @@ XF86KbdBrightnessUp
 
 XF86KbdBrightnessDown
     xbacklight -ctrl smc::kbd_backlight -dec 10
-
-super + shift + o
-	linkhandler
