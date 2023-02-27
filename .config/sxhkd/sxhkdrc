@@ -17,7 +17,7 @@ alt + Tab
 	rofi_run -w
 
 super + period
-    rofi_run -e
+    dmemoji
 
 super + x
 	rofi_run -l
