@@ -5,7 +5,7 @@ from libqtile import hook
 
 @hook.subscribe.startup_once
 def start_once():
-    subprocess.call(expanduser('~/.config/qtile/scripts/autostart.sh'))
+    subprocess.call(expanduser('~/.config/autostart.sh'))
 
 @hook.subscribe.client_new
 def floating_dialogs(window):

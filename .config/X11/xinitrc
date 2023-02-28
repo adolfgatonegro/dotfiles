@@ -19,3 +19,4 @@ fi
 [ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
 
 exec qtile start
+# exec dwm
