@@ -38,6 +38,6 @@ groups[1].matches = [Match(wm_class = ["transmission-qt","transmission-gtk"])]
 groups[3].matches = [Match(wm_class = ["discord"])]
 groups[4].matches = [Match(wm_class = ["DesktopEditors", "libreoffice", "libreoffice-writer"])]
 groups[5].matches = [Match(wm_class = ["Steam"])]
-groups[6].matches = [Match(wm_class = ["gimp-2.10","org.inkscape.Inkscape","darktable"])]
+groups[6].matches = [Match(wm_class = ["gimp", "gimp-2.10","org.inkscape.Inkscape","darktable"])]
 groups[7].matches = [Match(wm_class = ["vmplayer","Vmplayer","virt-manager","VirtualBox Manager","VirtualBox Machine"])]
 

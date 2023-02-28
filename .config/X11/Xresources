@@ -14,6 +14,14 @@ st.font: Monospace-9
 ! dmenu.color1:
 ! dmenu.color2:
 
+!! dwm options
+! dwm.normbordercolor:
+! dwm.normbgcolor:
+! dwm.normfgcolor:
+! dwm.selbordercolor:
+! dwm.selbgcolor:
+! dwm.selfgcolor:
+
 *.foreground:    #c1c1d1
 *.background:    #0a0a15
 *.cursorColor:   #c1c1d1

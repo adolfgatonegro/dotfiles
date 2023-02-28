@@ -37,7 +37,7 @@ alias \
 	_="sudo" \
 	yta="yt-dlp -x --audio-format mp3 --audio-quality 0" \
 	nb="newsboat" \
-	ksh="kitty +kitten ssh" \
+	# ksh="kitty +kitten ssh" \
 	trem="transmission-remote" \
 	trex="transmission-remote --exit" \
 	kbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100" \

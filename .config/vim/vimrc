@@ -73,6 +73,7 @@ set showtabline=1
 set hlsearch
 set ignorecase
 set confirm
+set mouse=a
 set clipboard=unnamedplus
 set undofile
 set wildmode=longest:full,full
