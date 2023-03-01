@@ -6,7 +6,7 @@ from widgets.volume import Volume
 from detect_displays import *
 
 host = gethostname()
-terminal = "kitty"
+terminal = "st"
 calendar = "gsimplecal"
 wall_dir = expanduser("~/pictures/wallpapers")
 
