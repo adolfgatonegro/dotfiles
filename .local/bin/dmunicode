@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # Unicode character selector using dmenu
 

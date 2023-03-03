@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # create and edit markdown notes from dmenu
 

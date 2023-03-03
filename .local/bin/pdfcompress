@@ -1,9 +1,9 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 #
 # Compress a PDF file using ghostscript.
 
-mkdir pdf-compress
+mkdir pdfcompress
 echo "Files will be compressed using the" $1 "profile and a resolution of" $2 "DPI."
 for i in *pdf; \
 	do echo "Processing:" $i;\

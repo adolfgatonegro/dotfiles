@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # Select a config file from a menu, and open it with $EDITOR
 

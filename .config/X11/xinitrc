@@ -12,8 +12,8 @@ fi
 [ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
 
 # qtile
-# exec qtile start
+exec qtile start
 
 # dwm
-source $XDG_CONFIG_HOME/autostart.sh &
-exec dwm
+# source $XDG_CONFIG_HOME/autostart.sh &
+# exec dwm

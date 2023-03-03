@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 case $BLOCK_BUTTON in
 	1) playerctl play-pause; kill -47 $(pidof dwmblocks) ;;
 	4) playerctl next; kill -47 $(pidof dwmblocks) ;;

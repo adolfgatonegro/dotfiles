@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 case $BLOCK_BUTTON in
 	1) gsimplecal ;;
 	2) nsxiv_rifle ~/pictures/wallpapers ;;

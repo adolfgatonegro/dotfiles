@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 case $BLOCK_BUTTON in
 	1) volctl -t ;;
 	4) volctl -i 2 ;;

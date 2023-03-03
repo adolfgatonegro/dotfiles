@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # Switch between open windows using dmenu.
 # Originally from github.com/NikitaIvanovV/dmenu-win

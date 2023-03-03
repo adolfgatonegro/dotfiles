@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 case $BLOCK_BUTTON in
 	1) arch_update_notifier ;;
 esac

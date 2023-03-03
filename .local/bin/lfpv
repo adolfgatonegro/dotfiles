@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # wrapper script forr lf with ueberzug previews
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/sh
 # gatoneg.ro
 # Set a random wallpaper for each connected monitor using xwallpaper
 
