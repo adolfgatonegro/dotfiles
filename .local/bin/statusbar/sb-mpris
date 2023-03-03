@@ -23,7 +23,7 @@ if $(playerctl status > /dev/null 2>&1); then
 	if [[ $title != "" ]]; then
 		# truncate "$title - $artist" to 48 characters to leave room
 		# for the colour codes at the end
-		printf "%s %.50s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^"
+		printf "%s  %.50s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^"
 	fi
 else
 	exit 0
