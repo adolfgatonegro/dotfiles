@@ -1,6 +1,7 @@
 #!/bin/sh
 case $BLOCK_BUTTON in
 	1) playerctl play-pause; kill -47 $(pidof dwmblocks) ;;
+	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
 	4) playerctl next; kill -47 $(pidof dwmblocks) ;;
 	5) playerctl previous; kill -47 $(pidof dwmblocks) ;;
 esac
@@ -10,15 +11,17 @@ if $(playerctl status > /dev/null 2>&1); then
 	title="$(playerctl metadata xesam:title)"
 	case $(playerctl status) in
 		Stopped)
-			# colour=$(tput setaf 8)
+			colour=15
 			icon="" ;;
 		Paused)
+			colour=10
 			icon="" ;;
 		Playing)
+			colour=6
 			icon="" ;;
 	esac
 	if [[ $title != "" ]]; then
-		printf "%s %s \\n" "$icon $artist - $title"
+		printf "%s %s \\n" "^C$colour^$icon $artist - $title^C7^"
 	fi
 else
 	exit 0

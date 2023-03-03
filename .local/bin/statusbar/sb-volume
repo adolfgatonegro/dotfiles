@@ -1,15 +1,17 @@
 #!/bin/sh
 case $BLOCK_BUTTON in
 	1) volctl -t ;;
+	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
+	3) easyeffects ;;
 	4) volctl -i 2 ;;
 	5) volctl -d 2 ;;
-	3) easyeffects ;;
 esac
 
-vol="$(pamixer --get-volume-human)"
-icon=""
-if [[ $vol == "muted" ]]; then
-	vol="M"
-	icon=""
+if [ "$(pamixer --get-mute)" = true ]; then
+    printf "%s %s \nn" "🗙"
+    exit
 fi
-printf "%s %s \\n" "$icon" "$vol"
+
+icon=""
+vol="$(pamixer --get-volume-human)"
+printf "%s %s \\n" "$icon $vol"
