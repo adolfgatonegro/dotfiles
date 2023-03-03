@@ -30,7 +30,7 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
 typeset -U path
-path=(~/.local/bin $path)
+path=(~/.local/bin ~/.local/bin/statusbar $path)
 
 # set xauthority only if no display manager is found
 if [[ ! -f /usr/bin/lightdm ]] && [[ ! -f /usr/bin/sddm ]]; then

@@ -5,7 +5,7 @@
 # pacman
 alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
-	p="pikaur" \
+	pacman="pikaur" \
 	upd="pikaur -Syu" \
 	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
 	pacunlock="sudo rm /var/lib/pacman/db.lck" \
