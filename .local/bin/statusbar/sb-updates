@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+case $BLOCK_BUTTON in
+	1) arch_update_notifier ;;
+esac
+
+upd=$(($(checkupdates | wc -l) + $(pikaur -Qua 2>/dev/null | wc -l)))
+icon=""
+# printf "%s %s \\n" "$icon" "$upd"
+if [[ $upd == 0 ]]; then
+	exit 0
+else
+	printf "%s %s \\n" "$icon" "$upd"
+fi

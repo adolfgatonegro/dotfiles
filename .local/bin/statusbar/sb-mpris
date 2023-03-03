@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+case $BLOCK_BUTTON in
+	1) playerctl play-pause; kill -47 $(pidof dwmblocks) ;;
+	4) playerctl next; kill -47 $(pidof dwmblocks) ;;
+	5) playerctl previous; kill -47 $(pidof dwmblocks) ;;
+esac
+
+if $(playerctl status > /dev/null 2>&1); then
+	artist="$(playerctl metadata xesam:artist)"
+	title="$(playerctl metadata xesam:title)"
+	case $(playerctl status) in
+		Stopped)
+			# colour=$(tput setaf 8)
+			icon="" ;;
+		Paused)
+			icon="" ;;
+		Playing)
+			icon="" ;;
+	esac
+	if [[ $title != "" ]]; then
+		printf "%s %s \\n" "$icon $artist - $title"
+	fi
+else
+	exit 0
+fi

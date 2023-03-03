@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+case $BLOCK_BUTTON in
+	1) volctl -t ;;
+	4) volctl -i 2 ;;
+	5) volctl -d 2 ;;
+	3) easyeffects ;;
+esac
+
+vol="$(pamixer --get-volume-human)"
+icon=""
+if [[ $vol == "muted" ]]; then
+	vol="M"
+	icon=""
+fi
+printf "%s %s \\n" "$icon" "$vol"

@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+case $BLOCK_BUTTON in
+	1) gsimplecal ;;
+	2) nsxiv_rifle ~/pictures/wallpapers ;;
+	3) setwall ;;
+esac
+
+date '+%a %d %H:%M'
