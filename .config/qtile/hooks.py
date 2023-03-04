@@ -6,6 +6,7 @@ from libqtile import hook
 @hook.subscribe.startup_once
 def start_once():
     subprocess.call(expanduser('~/.config/autostart.sh'))
+    subprocess.call("sxhkd -c")
 
 @hook.subscribe.client_new
 def floating_dialogs(window):
