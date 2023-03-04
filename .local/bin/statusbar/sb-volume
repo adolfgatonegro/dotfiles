@@ -2,7 +2,7 @@
 case $BLOCK_BUTTON in
 	1) volctl -t ;;
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	3) easyeffects ;;
+	3) jamesdsp ;;
 	4) volctl -i 2 ;;
 	5) volctl -d 2 ;;
 esac
