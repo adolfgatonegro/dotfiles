@@ -2,6 +2,7 @@
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
 https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
+https://suckless.org/atom.xml "Updates" "tech" "linux"
 https://github.com/qtile/qtile/commits/master.atom  "Updates" "tech" "qtile" "linux" "~Qtile Recent Commits"
 
 "query:Philosophy & Psychology:tags # \"philosophy\" or tags # \"psychology\""
@@ -50,7 +51,6 @@ https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
 https://www.reddit.com/r/formula1/.rss "Reddit" "F1" "~r/Formula1"
 
 "query:Miscellanea:tags # \"misc\""
-https://acoup.blog/rss "Blog" "history" "misc"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
 https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
