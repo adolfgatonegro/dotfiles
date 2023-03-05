@@ -20,11 +20,14 @@ if $(playerctl status > /dev/null 2>&1); then
 			colour=6
 			icon="" ;;
 	esac
-	if [[ $title != "" ]]; then
-		# truncate "$title - $artist" to 48 characters to leave room
-		# for the colour codes at the end
-		printf "%s  %.48s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^"
-	fi
+	case $title in
+		"") exit 0 ;;
+		"Firefox is playing media")
+			printf "%s  %s%s\\n" "^C$colour^$icon" "$title" "^C7^" ;;
+		*)	# truncate "$title - $artist" to 48 characters to leave room
+			# for the colour codes at the end
+			printf "%s  %.48s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^" ;;
+		esac
 else
 	exit 0
 fi
