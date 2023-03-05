@@ -6,7 +6,7 @@
 alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
 	pacman="pikaur" \
-	upd="pikaur -Syu" \
+	upd="pikaur -Syu && kill -46 $(pidof dwmblocks)" \
 	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
 	pacunlock="sudo rm /var/lib/pacman/db.lck" \
 	paclog="cat /var/log/pacman.log" \
