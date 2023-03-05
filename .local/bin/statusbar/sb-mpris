@@ -6,9 +6,10 @@ case $BLOCK_BUTTON in
 	5) playerctl previous; kill -47 $(pidof dwmblocks) ;;
 esac
 
+# check exit status of playerctl
+# if no players are available it will be 1 and we exit
 if $(playerctl status > /dev/null 2>&1); then
-	artist="$(playerctl metadata xesam:artist)"
-	title="$(playerctl metadata xesam:title)"
+	# get player status and set the icon accordingly
 	case $(playerctl status) in
 		Stopped)
 			colour=15
@@ -20,7 +21,15 @@ if $(playerctl status > /dev/null 2>&1); then
 			colour=6
 			icon="" ;;
 	esac
+	# get artist and title from playerctl
+	artist="$(playerctl metadata xesam:artist)"
+	title="$(playerctl metadata xesam:title)"
+	# if a player is available but not playing, we'll get an error
+	# from playerctl, so we check if title is not empty
 	if [[ $title != "" ]]; then
+		# some players won't return an artist for certain streams, only a title
+		# e.g. "firefox is playing media". in this case, printo only the title,
+		# otherwise print "title - artist"
 		case $artist in
 			"") printf "%s  %s%s\\n" "^C$colour^$icon" "$title" "^C7^" ;;
 			*) printf "%s  %.48s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^" ;;
