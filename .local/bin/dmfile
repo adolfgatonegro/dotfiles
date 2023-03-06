@@ -25,7 +25,7 @@ main() {
 	while true; do
 		p="$prompt"
 		[ -z "$p" ] && p="$target"
-		items="$(ls -1a "$target" |grep -v '^\.$' | dmenu -i -p "$p" -l 25)"
+		items="$(ls -1a "$target" |grep -v '^\.$' | dmenu -i -p "$p" -l 20)"
 		ec=$?
 		[ "$ec" -ne 0 ] && exit $ec
 
