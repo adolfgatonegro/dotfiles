@@ -1,9 +1,10 @@
 #!/bin/sh
+
 case $BLOCK_BUTTON in
-	1) playerctl play-pause; kill -47 $(pidof dwmblocks) ;;
-	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	4) playerctl next; kill -47 $(pidof dwmblocks) ;;
-	5) playerctl previous; kill -47 $(pidof dwmblocks) ;;
+	1) playerctl play-pause; pkill -RTMIN+13 dwmblocks;;
+	2) "$TERMINAL" -e "$EDITOR" "$0";;
+	4) playerctl next; pkill -RTMIN+13 dwmblocks;;
+	5) playerctl previous; pkill -RTMIN+13 dwmblocks;;
 esac
 
 # check exit status of playerctl
