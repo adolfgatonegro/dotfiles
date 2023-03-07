@@ -77,6 +77,8 @@ alias \
 # shortcuts
 alias \
 	md="cd ~/documents/notes && ls" \
+	bme="vim $XDG_DATA_HOME/bmks/urls" \
+	bmd="bmks del" \
 	cf="cd ~/.config && ls" \
 	lb="cd ~/.local/bin && ls" \
 	lsr="cd ~/.local/src && ls" \
