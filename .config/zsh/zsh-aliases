@@ -47,10 +47,11 @@ alias \
 
 # hipster coreutil replacements
 alias \
-	ls="exa -l --color=always --group-directories-first --icons" \
-	la="exa -al --color=always --group-directories-first --icons" \
-	lh="exa -al --color=always | rg '^\.'" \
-	tree="exa --tree --color=always --icons" \
+	ls="exa --color=always --group-directories-first --icons" \
+	ll="ls -l" \
+	la="ls -al" \
+	lh="ls -d .*" \
+	tree="ls --tree" \
 	grep="rg" \
 	cat="bat -p" \
 	less="bat"
@@ -72,6 +73,14 @@ alias \
 	gb="git branch" \
 	gba="git branch -a" \
 	gdl="git branch -d"
+
+# shortcuts
+alias \
+	md="cd ~/documents/notes && ls" \
+	cf="cd ~/.config && ls" \
+	lb="cd ~/.local/bin && ls" \
+	lsr="cd ~/.local/src && ls" \
+	rp="cd ~/repos && ls"
 
 # plugins
 alias \
