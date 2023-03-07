@@ -2,9 +2,10 @@
 
 # Usage:
 # `$0`: Ask for recording type via dmenu
-# `$0 screencast`: Record both audio and screen
-# `$0 video`: Record only screen
 # `$0 audio`: Record only audio
+# `$0 desktop`: Record only screen
+# `$0 slice`: Record only selected window or screen area
+# `$0 screencast`: Record both audio and screen
 # `$0 kill`: Kill existing recording
 #
 # If there is already a running instance, user will be prompted to end it.
@@ -13,7 +14,7 @@ getdim() { xrandr | sed -n "s/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p" ;}
 
 updateicon() { \
 	echo "$1" > /tmp/recordingicon
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	pkill -RTMIN+18 dwmblocks
 	}
 
 killrecording() {
@@ -21,7 +22,7 @@ killrecording() {
 	kill -15 "$recpid"
 	rm -f /tmp/recordingpid
 	updateicon ""
-	pkill -RTMIN+9 "${STATUSBAR:-dwmblocks}"
+	pkill -RTMIN+18 dwmblocks
 	}
 
 screencast() { \
@@ -37,18 +38,18 @@ screencast() { \
 	-crf 0 -preset ultrafast -c:a aac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
-	updateicon "⏺️🎙️"
+	updateicon "^C1^󰹑  ^C7^"
        	}
 
-video() { ffmpeg \
+desktop() { ffmpeg \
 	-f x11grab \
 	-framerate 30 \
 	-s "$(getdim)" \
 	-i "$DISPLAY" \
  	-c:v libx264 -qp 0 -r 30 \
-	"$HOME/video-$(date '+%y%m%d-%H%M-%S').mkv" &
+	"$HOME/desktop-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "⏺️"
+	updateicon "^C1^󰹑 ^C7^"
 	}
 
 webcamhidef() { ffmpeg \
@@ -57,7 +58,7 @@ webcamhidef() { ffmpeg \
 	-video_size 1920x1080 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎥"
+	updateicon "^C1^󰖠 󰟏 ^C7^"
 	}
 
 webcam() { ffmpeg \
@@ -66,9 +67,8 @@ webcam() { ffmpeg \
 	-video_size 640x480 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎥"
+	updateicon "^C1^󰖠 ^C7^"
 	}
-
 
 audio() { \
 	ffmpeg \
@@ -76,16 +76,16 @@ audio() { \
 	-c:a flac \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
-	updateicon "🎙️"
+	updateicon "^C1^ ^C7^"
 	}
 
 askrecording() { \
-	choice=$(printf "screencast\\nvideo\\nvideo selected\\naudio\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "Select recording style:")
+	choice=$(printf "audio\\ndesktop\\nslice\\nscreencast\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "Select recording style:")
 	case "$choice" in
-		screencast) screencast;;
 		audio) audio;;
-		video) video;;
-		*selected) videoselected;;
+		desktop) desktop;;
+		slice) slice;;
+		screencast) screencast;;
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
 	esac
@@ -96,7 +96,7 @@ asktoend() { \
 	[ "$response" = "Yes" ] &&  killrecording
 	}
 
-videoselected()
+slice()
 {
 	slop -f "%x %y %w %h" > /tmp/slop
 	read -r X Y W H < /tmp/slop
@@ -108,16 +108,16 @@ videoselected()
 	-video_size "$W"x"$H" \
 	-i :0.0+"$X,$Y" \
 	-c:v libx264 -qp 0 -r 30 \
-	"$HOME/box-$(date '+%y%m%d-%H%M-%S').mkv" &
+	"$HOME/slice-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "⏺️"
+	updateicon "^C1^󰹑 ^C7^"
 }
 
 case "$1" in
-	screencast) screencast;;
 	audio) audio;;
-	video) video;;
-	*selected) videoselected;;
+	desktop) desktop;;
+	slice) slice;;
+	screencast) screencast;;
 	kill) killrecording;;
 	*) ([ -f /tmp/recordingpid ] && asktoend && exit) || askrecording;;
 esac
