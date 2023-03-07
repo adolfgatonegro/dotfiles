@@ -48,7 +48,6 @@ https://youtube.com/feeds/videos.xml?channel_id=UC7YOGHUfC1Tb6E4pudI9STA "YouTub
 
 "query:Formula One:tags # \"F1\""
 https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
-https://www.reddit.com/r/formula1/.rss "Reddit" "F1" "~r/Formula1"
 
 "query:Miscellanea:tags # \"misc\""
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
