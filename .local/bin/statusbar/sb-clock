@@ -2,7 +2,7 @@
 case $BLOCK_BUTTON in
 	1) gsimplecal ;;
 	# 2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	2) nsxiv_rifle ~/pictures/wallpapers ;;
+	2) imgview ~/pictures/wallpapers ;;
 	3) setwall ;;
 esac
 
