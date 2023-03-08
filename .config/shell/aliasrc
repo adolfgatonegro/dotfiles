@@ -15,7 +15,7 @@ alias \
 
 # dotfiles
 alias \
-	conf="git --git-dir=$HOME/repos/dotfiles --work-tree=$HOME" \
+	conf="git --git-dir=$HOME/repos/dotfiles.git --work-tree=$HOME" \
 	confs="conf status" \
 	confd="conf diff" \
 	confc="conf commit" \
