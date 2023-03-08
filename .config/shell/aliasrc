@@ -41,7 +41,7 @@ alias \
 	trem="transmission-remote" \
 	trex="transmission-remote --exit" \
 	kbd="setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap && xset r rate 250 100" \
-	iv="nsxiv_rifle" \
+	iv="imgview" \
 	cuetag="cuetag.sh" \
 	mpva="mpv --audio-display=no --no-video" \
 	z="zathura"
