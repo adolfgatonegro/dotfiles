@@ -41,42 +41,13 @@ bindkey "^D" zsh_exit
 # Colours
 autoload -Uz colors && colors
 
-# Prompt
-autoload -Uz promptinit
-promptinit
-
-setopt PROMPT_SUBST
-
-typeset -ga preexec_functions
-typeset -ga precmd_functions
-typeset -ga chpwd_functions
-
-preexec_functions+='preexec_update_git_vars'
-precmd_functions+='precmd_update_git_vars'
-chpwd_functions+='chpwd_update_git_vars'
-
-prompt_symbol=" "
-PROMPT=$'%F{green}[%F{white}%B%~%b%F{green}]$(prompt_git_info)\n%F{red}$prompt_symbol%f%F{cyan}%f '
-
-zstyle ":history-search-multi-word" page-size "4"                      # Number of entries to show (default is $LINES/3)
-zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"   # Color in which to highlight matched, searched text (default bg=17 on 256-color terminals)
-zstyle ":plugin:history-search-multi-word" synhl "yes"                 # Whether to perform syntax highlighting (default true)
-zstyle ":plugin:history-search-multi-word" active "bold"          # Effect on active history entry. Try: standout, bold, bg=blue (default underline)
-zstyle ":plugin:history-search-multi-word" check-paths "yes"           # Whether to check paths for existence and mark with magenta (default true)
-zstyle ":plugin:history-search-multi-word" clear-on-cancel "yes"        # Whether pressing Ctrl-C or ESC should clear entered query
-
 # Functions
-# Source zsh files
-zsh_source_file() {
-    [ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
-}
-
-# Add plugins
+# Install and source plugins
 zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
     if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        zsh_source_file "plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
         echo "Cloning missing plugins..."
 		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
@@ -196,10 +167,6 @@ precmd_update_git_vars(){
 	fi
 }
 
-zsh_source_file(){
-	[ -f "$ZDOTDIR/$1" ] && source "$ZDOTDIR/$1"
-}
-
 zsh_exit(){exit}
 
 precmd() {
@@ -210,10 +177,22 @@ precmd() {
 	fi
 }
 
-zsh_add_plugin "zsh-users/zsh-autosuggestions"
-zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
-zsh_add_plugin "zdharma-continuum/history-search-multi-word"
-zsh_add_plugin "hlissner/zsh-autopair"
+# Prompt
+autoload -Uz promptinit
+promptinit
+
+setopt PROMPT_SUBST
+
+typeset -ga preexec_functions
+typeset -ga precmd_functions
+typeset -ga chpwd_functions
+
+preexec_functions+='preexec_update_git_vars'
+precmd_functions+='precmd_update_git_vars'
+chpwd_functions+='chpwd_update_git_vars'
+
+prompt_symbol=" "
+PROMPT=$'%F{green}[%F{white}%B%~%b%F{green}]$(prompt_git_info)\n%F{red}$prompt_symbol%f%F{cyan}%f '
 
 # set vim mode
 bindkey -v
@@ -253,5 +232,18 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
+# Add plugins
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+zsh_add_plugin "zdharma-continuum/history-search-multi-word"
+zsh_add_plugin "hlissner/zsh-autopair"
+
+# Set up multi-word search history
+zstyle ":history-search-multi-word" page-size "4"
+zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"
+zstyle ":plugin:history-search-multi-word" synhl "yes"
+zstyle ":plugin:history-search-multi-word" active "bold"
+zstyle ":plugin:history-search-multi-word" check-paths "yes"
+zstyle ":plugin:history-search-multi-word" clear-on-cancel "yes"
 
 gato
