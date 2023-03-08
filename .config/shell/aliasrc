@@ -1,6 +1,7 @@
 #!/bin/sh
-# convenient shell aliases
-# gatoneg.ro
+
+# Use $XINITRC variable if file exists.
+[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
 
 # pacman
 alias \
