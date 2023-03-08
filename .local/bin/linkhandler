@@ -14,36 +14,28 @@ else
 	url="$1"
 fi
 
-notify="notify-send -t 2500"
-
 case "$url" in
-	# YouTube videos, playlists, and embeds
-	*youtube.com/watch*|*youtube.com/playlist*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*)
+	# Video files and YouTube links
+	*mkv|*webm|*mp4*(?)|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*)
 		setsid -f umpv $MPV_PROFILE "$url" >/dev/null 2>&1 &
-		# setsid -f mpv $MPV_PROFILE -quiet "$url" >/dev/null 2>&1 &
-		$notify "📺 mpv - added to queue" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
-	# video files
-	*mkv|*webm|*mp4*(?)|*ogg)
-		setsid -f umpv $MPV_PROFILE "$url" >/dev/null 2>&1 &
-		$notify "📺 mpv - added to queue" "$url";;
+		notify-send "📺 Adding to mpv queue" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
 	# images
 	*png*(?)|*jpg*(?)|*jpe|*jpeg|*gif)
 		curl -sL "$url" > "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
-		nsxiv_rifle "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 &
-		$notify "📸 nsxiv" "$url";;
+		imgview "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
+		notify-send "📸 Opening image" "$url";;
 	# pdfs and ebooks
 	*pdf|*cbz|*cbr)
 		curl -sL "$url" > "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
-		zathura "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")"  >/dev/null 2>&1 &
-		$notify "📖 zathura" "$url";;
-	# music files
+		zathura "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
+		notify-send "📖 Opening document" "$url";;
+	# audio files
 	*mp3*(?)|*flac|*opus)
-		curl --output-dir "downloads" -LO "$url"  >/dev/null 2>&1 &
-		$notify "🎵 curl" "$url";;
-	# everything else
+		curl -sL "$url" > "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
+		umpv "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
+		notify-send "🎵 Downloading audio file" "$url" ;;
 	*)
-		# w3m "$url"
 		[ -f "$url" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$url" >/dev/null 2>&1 || \
 			setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$url" >/dev/null 2>&1 &
-		$notify "🌐 $BROWSER" "$url";;
+		notify-send "🌐 $BROWSER" "$url";;
 esac

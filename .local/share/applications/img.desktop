@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=Image viewer
-Exec=nsxiv_rifle %f
+Exec=imgview %f
