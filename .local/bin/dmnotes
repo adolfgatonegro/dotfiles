@@ -2,7 +2,7 @@
 # gatoneg.ro
 # create and edit markdown notes from dmenu
 
-notes_path="$HOME/documents/notes"
+notes_path="$HOME/docs/notes"
 list="$(find -L $notes_path -type f | sed 's|^'$notes_path/'||' | sort )"
 
 select="$(echo -e "$list" | dmenu -i -l 20 -p "Select or create note:")"
