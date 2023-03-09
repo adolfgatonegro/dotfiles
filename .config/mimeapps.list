@@ -14,5 +14,5 @@ application/rss+xml=rss.desktop;
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;
-video/x-matroska=video.desktop;
+video/*=video.desktop;
 inode/directory=file.desktop;
