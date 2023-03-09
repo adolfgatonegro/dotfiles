@@ -229,6 +229,13 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
+function gitall(){
+	if [ -d "$HOME/.local/src" ]; then
+		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
+	else
+		gitsum $HOME/repos
+	fi
+}
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 

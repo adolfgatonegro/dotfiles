@@ -20,7 +20,6 @@ alias \
 	confd="conf diff" \
 	confc="conf commit" \
 	confp="conf push" \
-	gitsum="gitsum $HOME/repos"
 
 # verbosity and options
 alias \
