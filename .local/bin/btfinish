@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # gatoneg.ro
-#
-# Could do more, but right now just plays a sound and sends a notification when
-# the download is finished..
 
 canberra-gtk-play -i complete-download & notify-send  "🔴 transmission" "$TR_TORRENT_NAME finished."
+
+pkill -RTMIN+17 dwmblocks

@@ -1,12 +1,12 @@
 #!/bin/sh
 transmission-remote -l | grep % |
 	sed " # The letters are for sorting and will not appear.
-	s/.*Stopped.*/A ^C1^ /;
+	s/.*Stopped.*/A ^C1^ /;
 	s/.*Seeding.*/Z ^C2^󰹢 /;
-	s/.*100%.*/N ^C2^/;
+	s/.*100%.*/N ^C2^/;
 	s/.*Idle.*/B ^C7^ /;
-	s/.*Uploading.*/L ^C2^󰕒 /;
-	s/.*%.*/M ^C2^󰇚 /" |
+	s/.*Uploading.*/L ^C2^ /;
+	s/.*%.*/M ^C2^ /" |
 		sort -h | uniq -c | awk '{print $3 " ^C7^" $1}' | paste -sd ' ' -
 
 case $BLOCK_BUTTON in
