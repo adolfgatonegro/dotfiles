@@ -9,7 +9,7 @@ export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$ZDOTDIR/history"
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|link_handler(| *)|trem(|*)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
@@ -82,11 +82,6 @@ ex (){
 	fi
 }
 
-# Don't add failed commands to history
-zshaddhistory() {
-	whence ${${(z)1}[1]} >| /dev/null || return 1
-}
-
 # Prompt
 autoload -Uz promptinit
 promptinit
@@ -131,13 +126,28 @@ zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 
-function gitall(){
+# functions
+
+zshaddhistory() {
+	whence ${${(z)1}[1]} >| /dev/null || return 1
+}
+
+gitall(){
 	if [ -d "$HOME/.local/src" ]; then
 		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
 	else
 		gitsum $HOME/repos
 	fi
 }
+
+mcd () {
+    if [ $# = 0 ]; then
+        echo "Usage: mcd <directory>"
+        return
+    fi
+    mkdir -p "$1" && cd "$1"
+}
+
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
 
