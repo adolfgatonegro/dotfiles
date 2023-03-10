@@ -9,7 +9,7 @@ error_symbol = '[ ](bold red)'
 vimcmd_symbol = "[](bold green)"
 
 [directory]
-format='[\[ ](green)[$path]($style)[ \]](green)[$read_only]($read_only_style) '
+format='[\[](green)[$path]($style)[\]](green)[$read_only]($read_only_style) '
 style = 'white'
 truncation_length = 3
 truncate_to_repo = true
