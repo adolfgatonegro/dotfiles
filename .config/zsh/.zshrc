@@ -82,6 +82,34 @@ ex (){
 	fi
 }
 
+zshaddhistory() {
+	whence ${${(z)1}[1]} >| /dev/null || return 1
+}
+
+gitall(){
+	if [ -d "$HOME/.local/src" ]; then
+		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
+	else
+		gitsum $HOME/repos
+	fi
+}
+
+mcd () {
+    if [ $# = 0 ]; then
+        echo "Usage: mcd <directory>"
+        return
+    fi
+    mkdir -p "$1" && cd "$1"
+}
+
+sw () {
+	now=$(date +%s)sec
+	while true; do
+		printf "%s\r" $(TZ=UTC date --date now-$now +%H:%M:%S.%N)
+		sleep 0.025
+	done
+}
+
 # Prompt
 autoload -Uz promptinit
 promptinit
@@ -111,7 +139,7 @@ bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M viins '^R' history-incremental-search-backward
 
 # Change cursor shape for different vi modes.
-function zle-keymap-select () {
+zle-keymap-select () {
     case $KEYMAP in
         vicmd) echo -ne '\e[1 q';;      # block
         viins|main) echo -ne '\e[5 q';; # beam
@@ -125,28 +153,6 @@ zle-line-init() {
 zle -N zle-line-init
 echo -ne '\e[5 q' # Use beam shape cursor on startup.
 preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
-
-# functions
-
-zshaddhistory() {
-	whence ${${(z)1}[1]} >| /dev/null || return 1
-}
-
-gitall(){
-	if [ -d "$HOME/.local/src" ]; then
-		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
-	else
-		gitsum $HOME/repos
-	fi
-}
-
-mcd () {
-    if [ $# = 0 ]; then
-        echo "Usage: mcd <directory>"
-        return
-    fi
-    mkdir -p "$1" && cd "$1"
-}
 
 # Load aliases
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/aliasrc"
