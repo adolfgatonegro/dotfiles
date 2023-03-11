@@ -1,9 +1,0 @@
-#!/bin/sh
-# gatoneg.ro
-
-printf "Starting system upgrade.\\n"
-
-pikaur -Syu
-
-printf "\\nPress <Enter> to close this window.\\n\\n"
-read -r _

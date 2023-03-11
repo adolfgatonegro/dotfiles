@@ -1,7 +1,6 @@
 #!/bin/sh
 case $BLOCK_BUTTON in
 	1) arch_update_notifier ;;
-	3) setsid -f "$TERMINAL" -e sysupd ;;
 esac
 
 upd=$(checkupdates | wc -l)
