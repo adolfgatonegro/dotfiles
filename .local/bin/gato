@@ -29,6 +29,7 @@ ic="${reset}"                      # info
 
 ## OUTPUT
 cat <<EOF
+
           /\\_/\\     ${lc}  ${ic}${host}
      ____/ o o \\    ${lc}  ${ic}${kernel}
    /~____  =ø= /    ${lc}  ${ic}${packages} 
