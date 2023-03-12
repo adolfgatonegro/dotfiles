@@ -42,17 +42,6 @@ bindkey "^D" zsh_exit
 autoload -Uz colors && colors
 
 # Functions
-# Install and source plugins
-zsh_add_plugin() {
-    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
-        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
-        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
-    else
-        echo "Cloning missing plugins..."
-		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
-    fi
-}
 
 # cd up [1-9] times
 .{1..9} (){ local d=.; repeat ${0:1} d+=/..; cd $d;}
@@ -82,10 +71,7 @@ ex (){
 	fi
 }
 
-zshaddhistory() {
-	whence ${${(z)1}[1]} >| /dev/null || return 1
-}
-
+# run gitsum on $HOME/repos, and $HOMe/.local/src if it exists
 gitall(){
 	if [ -d "$HOME/.local/src" ]; then
 		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
@@ -94,6 +80,7 @@ gitall(){
 	fi
 }
 
+# mkdir and cd into it
 mcd () {
     if [ $# = 0 ]; then
         echo "Usage: mcd <directory>"
@@ -102,12 +89,43 @@ mcd () {
     mkdir -p "$1" && cd "$1"
 }
 
+# Simple stopwatch function, press [RETURN] for lap times
 sw () {
 	now=$(date +%s)sec
 	while true; do
 		printf "%s\r" $(TZ=UTC date --date now-$now +%H:%M:%S.%N)
 		sleep 0.025
 	done
+}
+
+# Generate a password and copy it to the clipboard
+passgen() {
+    local size=${1:-24}
+    cat /dev/random | tr -dc '[:graph:]' | head -c$size | xclip -selection clipboard
+}
+
+# Set xkeyboard options, remap caps-lock, and repeat rate
+kbd() {
+	setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
+	[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
+	xset r rate 250 100
+}
+
+# Install and source zsh plugins
+zsh_add_plugin() {
+    PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
+        source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
+    else
+        echo "Cloning missing plugins..."
+		git clone "https://github.com/$1.git" "$ZDOTDIR/plugins/$PLUGIN_NAME"
+    fi
+}
+
+# Don't add failed commands to history file
+zshaddhistory() {
+	whence ${${(z)1}[1]} >| /dev/null || return 1
 }
 
 # Prompt
