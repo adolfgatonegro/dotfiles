@@ -71,6 +71,28 @@ ex (){
 	fi
 }
 
+flacsplit(){
+	[ $# != 2 ] && echo "Usage: flacsplit /path/to/cue /path/to/flac" && return ||
+	if [ -e "$1" -a -e "$2" ] && expr "$1" : '.*\.cue$' > /dev/null && expr "$2" : '.*\.flac$' > /dev/null; then
+		tmpdir=$(mktemp -d /tmp/flacsplit.XXXXXX.d)
+		echo "Splitting FLAC file into tracks..."
+		shnsplit -t "%n %t" -d "$tmpdir" -o "cust ext=mp3 ffmpeg -i - -ab 320k %f" -f "$1" "$2"
+		echo "Tagging tracks..."
+		cuetag.sh "$1" "$tmpdir"/*
+		echo -n "Done! Import to the music library using beet? [Y/N] "
+		read -k1
+		case $REPLY in
+			[Yy]) echo "\nImporting to music library..."
+				beet import "$tmpdir"
+				echo "Cleaning up..."
+				rm -r "$tmpdir";;
+			[Nn]) return;;
+		esac
+	else
+	  echo "Invalid arguments. Use .cue and .flac files as arguments, and make sure the path is correct."
+	fi
+}
+
 # run gitsum on $HOME/repos, and $HOMe/.local/src if it exists
 gitall(){
 	if [ -d "$HOME/.local/src" ]; then
@@ -127,6 +149,8 @@ zsh_add_plugin() {
 zshaddhistory() {
 	whence ${${(z)1}[1]} >| /dev/null || return 1
 }
+
+zsh_exit(){exit}
 
 # Prompt
 autoload -Uz promptinit
