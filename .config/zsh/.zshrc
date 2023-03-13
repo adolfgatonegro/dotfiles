@@ -72,7 +72,7 @@ ex (){
 }
 
 flacsplit(){
-	[ $# != 2 ] && echo "Usage: flacsplit /path/to/cue /path/to/flac" && return ||
+	[ $# != 2 ] && echo "flacsplit: convert single-file flac albums into tagged 320kpbs mp3 tracks\nUsage: flacsplit /path/to/cue /path/to/flac" && return ||
 	if [ -e "$1" -a -e "$2" ] && expr "$1" : '.*\.cue$' > /dev/null && expr "$2" : '.*\.flac$' > /dev/null; then
 		tmpdir=$(mktemp -d /tmp/flacsplit.XXXXXX.d)
 		echo "Splitting FLAC file into tracks..."
@@ -82,10 +82,13 @@ flacsplit(){
 		echo -n "Done! Import to the music library using beet? [Y/N] "
 		read -k1
 		case $REPLY in
-			[Yy]) echo "\nImporting to music library..."
-				beet import "$tmpdir"
-				echo "Cleaning up..."
-				rm -r "$tmpdir";;
+			[Yy]) echo "\nImporting to music library..." && beet import "$tmpdir";;
+			[Nn]) return;;
+		esac
+		echo -n "\nDelete temporary files? [Y/N] "
+		read -k1
+		case $REPLY in
+			[Yy]) echo "\nCleaning up..." && rm -r "$tmpdir";;
 			[Nn]) return;;
 		esac
 	else
@@ -102,6 +105,13 @@ gitall(){
 	fi
 }
 
+# Set xkeyboard options, remap caps-lock, and repeat rate
+kbd() {
+	setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
+	[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
+	xset r rate 250 100
+}
+
 # mkdir and cd into it
 mcd () {
     if [ $# = 0 ]; then
@@ -109,6 +119,12 @@ mcd () {
         return
     fi
     mkdir -p "$1" && cd "$1"
+}
+
+# Generate a password and copy it to the clipboard
+passgen() {
+    local size=${1:-24}
+    cat /dev/random | tr -dc '[:graph:]' | head -c$size | xclip -selection clipboard
 }
 
 # Simple stopwatch function, press [RETURN] for lap times
@@ -120,17 +136,23 @@ sw () {
 	done
 }
 
-# Generate a password and copy it to the clipboard
-passgen() {
-    local size=${1:-24}
-    cat /dev/random | tr -dc '[:graph:]' | head -c$size | xclip -selection clipboard
-}
-
-# Set xkeyboard options, remap caps-lock, and repeat rate
-kbd() {
-	setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
-	[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
-	xset r rate 250 100
+# convert the specified files to mp3 320kbps
+mp3conv(){
+	[ $# != 1 ] && echo "mp3conv: find files in a directory and covert them to 320kbps mp3\nUsage: tomp3 [extension], e.g. flac, wav, etc." && return ||
+	tmpdir=$(mktemp -d /tmp/mp3conv.XXXXXX.d)
+	find -name "*.flac" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.flac}.mp3"' {} \;
+	echo -n "Done! Import to the music library using beet? [Y/N] "
+	read -k1
+	case $REPLY in
+		[Yy]) echo "\nImporting to music library..." && beet import "$tmpdir";;
+		# [Nn]) return;;
+	esac
+	echo -n "\nDelete temporary files? [Y/N] "
+	read -k1
+	case $REPLY in
+		[Yy]) echo "\nCleaning up..." && rm -r "$tmpdir";;
+		[Nn]) return;;
+	esac
 }
 
 # Install and source zsh plugins
