@@ -10,7 +10,7 @@ transmission-remote -l | grep % |
 		sort -h | uniq -c | awk '{print $3 " ^C7^" $1}' | paste -sd ' ' -
 
 case $BLOCK_BUTTON in
-	# 1) setsid -f "$TERMINAL" -e tremc ;;
+	1) setsid -f "$BROWSER" -new-tab "http://localhost:9091/transmission/web/" ;;
 	# 2) td-toggle ;;
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
