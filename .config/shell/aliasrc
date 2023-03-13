@@ -8,7 +8,7 @@ alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
 	pacman="pikaur" \
 	upd="pikaur -Syu" \
-	pacclean="sudo pacman -Rns $(pacman -Qtdq)" \
+	pco="pacman -Qtdq | sudo pacman -Rns -" \
 	pacunlock="sudo rm /var/lib/pacman/db.lck" \
 	paclog="cat /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
