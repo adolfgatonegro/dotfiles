@@ -23,7 +23,7 @@ canberra-gtk-play -f $XDG_CONFIG_HOME/startup.ogg &
 # Foxes
 case $HOSTNAME in
 	foxes)
-		solaar -w hide &
+		# solaar -w hide &
 		numlockx on &
 		;;
 esac
