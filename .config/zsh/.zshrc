@@ -140,7 +140,7 @@ sw () {
 mp3conv(){
 	[ $# != 1 ] && echo "mp3conv: find files in a directory and covert them to 320kbps mp3\nUsage: tomp3 [extension], e.g. flac, wav, etc." && return ||
 	tmpdir=$(mktemp -d /tmp/mp3conv.XXXXXX.d)
-	find -name "*.flac" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.flac}.mp3"' {} \;
+	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.'$1'}.mp3"' {} \;
 	echo -n "Done! Import to the music library using beet? [Y/N] "
 	read -k1
 	case $REPLY in
