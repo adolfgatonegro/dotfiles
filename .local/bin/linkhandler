@@ -37,5 +37,5 @@ case "$url" in
 	*)
 		[ -f "$url" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$url" >/dev/null 2>&1 || \
 			setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$url" >/dev/null 2>&1 &
-		notify-send "🌐 $BROWSER" "$url";;
+		notify-send "🌐 Opening URL" "$url";;
 esac
