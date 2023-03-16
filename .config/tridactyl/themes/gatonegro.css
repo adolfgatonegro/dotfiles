@@ -22,7 +22,7 @@
     --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
 
     --tridactyl-of-fg: #c1c1d1;
-    --tridactyl-of-bg: #6c6c93;
+    --tridactyl-of-bg: #414158;
 
     --tridactyl-hintspan-fg: var(--tridactyl-bg);
     --tridactyl-hintspan-bg: #ff00aa;
@@ -45,6 +45,7 @@
 :root.TridactylOwnNamespace {
     scrollbar-color: var(--tridactyl-scrollbar-color);
     scrollbar-width: thin;
+	background-color: var(--tridactyl-firefox-2021-redesign-background);
 }
 
 :root.TridactylOwnNamespace a { color: #00ffe0; }
