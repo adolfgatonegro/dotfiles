@@ -36,10 +36,7 @@ export XDG_STATE_HOME=$HOME/.local/state
 typeset -U path
 path=(~/.local/bin ~/.local/bin/statusbar $path)
 
-# set xauthority only if no display manager is found
-if [[ ! -f /usr/bin/lightdm ]] && [[ ! -f /usr/bin/sddm ]]; then
-	export XAUTHORITY=$XDG_CACHE_HOME/X11/Xauthority 
-fi
+export XAUTHORITY=$XDG_CACHE_HOME/X11/Xauthority 
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
 
 # XDG compliance settings for various programs
@@ -61,4 +58,4 @@ export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/pythonstartup.py"
 
 export SUDO_ASKPASS="$HOME/.local/bin/dmpass"
 
-[ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx ~/.config/X11/xinitrc
+[ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
