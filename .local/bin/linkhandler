@@ -36,6 +36,6 @@ case "$url" in
 		notify-send "🎵 Downloading audio file" "$url" ;;
 	*)
 		[ -f "$url" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$url" >/dev/null 2>&1 || \
-			setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$url" >/dev/null 2>&1 &
+			setsid -f "$BROWSER" --class="minimal" -private "$url" >/dev/null 2>&1 &
 		notify-send "🌐 Opening URL" "$url";;
 esac
