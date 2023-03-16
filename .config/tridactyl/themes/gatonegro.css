@@ -1,143 +1,50 @@
 /* gatonegro.css - colourscheme for tridactyl */
-/* based on the default midnight.css */
+/* based on the default dark.css */
 /* gatoneg.ro */
 
 :root {
-    --tridactyl-font-family: sans-serif;
-    --tridactyl-bg: #0a0a20bb; 
+    --tridactyl-firefox-2021-redesign-background: #262639;
     --tridactyl-fg: #c1c1d1;
+    --tridactyl-bg: var(--tridactyl-firefox-2021-redesign-background);
 
-    --tridactyl-status-font-size: 12px;
-    --tridactyl-status-font-family: sans-serif;
-    /* --tridactyl-status-font-bg: var(--tridactyl-cmdl-bg); */
-    --tridactyl-status-font-bg: #0a0a20 !important;
-    --tridactyl-status-border: 2px solid #0a0a20;
-    --tridactyl-status-border-radius: 4px;
+    --tridactyl-scrollbar-color: var(--tridactyl-fg);
 
-    --tridactyl-header-font-size: 14px;
-    
-    --tridactyl-of-fg: #c1c1e1;
-    --tridactyl-of-bg: #262639;
+    --tridactyl-cmdl-fg: var(--tridactyl-fg);
+    --tridactyl-cmdl-bg: var(--tridactyl-firefox-2021-redesign-background);
 
-    --tridactyl-hintspan-fg: #c1c1d1;
-    --tridactyl-hintspan-bg: #ff00aa80;
+    --tridactyl-header-first-bg: #1a1a26;
+    --tridactyl-header-second-bg: var(--tridactyl-header-first-bg);
+    --tridactyl-header-third-bg: var(--tridactyl-header-first-bg);
 
-    --tridactyl-hint-active-fg: #363649;
-    --tridactyl-hint-active-bg: #58aa99;
-    --tridactyl-hint-active-outline: 1px solid #0a0a20;
+    --tridactyl-cmplt-border-top: 1px solid var(--tridactyl-firefox-2021-redesign-background);
 
-    --tridactyl-hint-bg: #0a0a2080;
+    --tridactyl-url-fg: #6c6c93;
+    --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
+
+    --tridactyl-of-fg: #c1c1d1;
+    --tridactyl-of-bg: #6c6c93;
+
+    --tridactyl-hintspan-fg: var(--tridactyl-bg);
+    --tridactyl-hintspan-bg: #ff00aa;
+
+    --tridactyl-hint-active-fg: #262639;
+    --tridactyl-hint-active-bg: #aaee00;
+    --tridactyl-hint-active-outline: 1px solid #1a1a26;
+
+    --tridactyl-hint-bg: rgba(25, 25, 60, 0.25);
     --tridactyl-hint-outline: 1px solid var(--tridactyl-hintspan-bg);
 
-    --tridactyl-cmdl-font-size: 1.25rem;
-    --tridactyl-cmplt-option-height: 1.9em;
-    
-    --tridactyl-border-radius: 4px;
-	--tridactyl-url-fg: #00ffe0;
+    --tridactyl-highlight-box-bg: var( --tridactyl-photon-colours-in-content-box-background);
+    --tridactyl-highlight-box-fg: var( --tridactyl-photon-colours-in-content-text-color);
+}
 
-	color-scheme: dark !important;
+:root.TridactylOwnNamespace input[id^="spoiler"] ~ .spoiler {
+    border-color: var(--tridactyl-photon-colours-in-content-box-border-color);
 }
 
 :root.TridactylOwnNamespace {
+    scrollbar-color: var(--tridactyl-scrollbar-color);
     scrollbar-width: thin;
 }
 
-:root.TridactylOwnNamespace a {
-    color: #ff00aa;
-}
-
-:root.TridactylOwnNamespace code {
-    background-color: #363649;
-    padding: 3px 7px;
-}
-
-:root #command-line-holder {
-    order: 1;
-	background-color: var(--tridactyl-bg) !important;
-}
-
-:root #command-line-holder, :root #tridactyl-input {
-    border-radius: var(--tridactyl-border-radius) !important;
-}
-
-:root #tridactyl-colon::before {
-    content: "";
-}
-
-:root #tridactyl-input {
-    width: 96%;
-    padding: 1rem;
-	background-color: var(--tridactyl-bg) !important;
-	font-size: 1.5em;
-}
-
-:root #completions table {
-    font-weight: 400;
-    table-layout: fixed;
-    padding: 1rem;
-    padding-top: 0;
-}
-
-:root #completions > div {
-    max-height: calc(20 * var(--tridactyl-cmplt-option-height));
-    min-height: calc(10 * var(--tridactyl-cmplt-option-height));
-}
-
-:root #completions {
-    border: none !important;
-    font-family: var(--tridactyl-font-family);
-    order: 2;
-    margin-top: 10px;
-    border-radius: var(--tridactyl-border-radius);
-}
-
-:root #completions .HistoryCompletionSource table {
-    width: 100%;
-    border-spacing: 0;
-    table-layout: fixed;
-}
-
-
-:root #completions .BufferCompletionSource table {
-    width: unset;
-    font-size: unset;
-    border-spacing: unset;
-    table-layout: unset;
-}
-
-:root #completions table tr .title {
-    width: 50%;
-}
-
-:root #completions tr .documentation {
-    white-space: nowrap;
-    overflow: auto;
-    text-overflow: ellipsis;
-}
-
-:root #completions .sectionHeader {
-    background: transparent;
-    padding: 1rem 1rem 0.4rem !important;
-}
-
-:root #cmdline_iframe {
-    position: fixed !important;
-    bottom: unset;
-    top: 25% !important;
-    left: 10% !important;
-    z-index: 2147483647 !important;
-    width: 80% !important;
-    filter: drop-shadow(0px 0px 5px #000000) !important;
-}
-
-:root .TridactylStatusIndicator {
-    position: fixed !important;
-    bottom: 10px !important;
-    right: 10px !important;
-    font-weight: 200 !important;
-    padding: 5px !important;
-}
-
-:root .option:not(.focused) .url{
-	background: none !important;
-}
+:root.TridactylOwnNamespace a { color: #00ffe0; }
