@@ -12,6 +12,7 @@ set modeindicator false
 set smoothscroll true
 set modeindicatorshowkeys false
 set editorcmd $TERMINAL -e $EDITOR %f
+colourscheme gatonegro
 
 " Search Engines
 set searchurls.goo https://www.google.com/search?q=
