@@ -24,7 +24,7 @@
     --tridactyl-of-fg: #c1c1d1;
     --tridactyl-of-bg: #414158;
 
-    --tridactyl-hintspan-fg: var(--tridactyl-bg);
+    --tridactyl-hintspan-fg: var(--tridactyl-fg);
     --tridactyl-hintspan-bg: #ff00aa;
 
     --tridactyl-hint-active-fg: #262639;
