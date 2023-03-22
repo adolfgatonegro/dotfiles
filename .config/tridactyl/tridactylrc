@@ -10,7 +10,6 @@ set configversion 2.0
 set newtab about:blank
 set modeindicator false
 set smoothscroll true
-set modeindicatorshowkeys false
 set editorcmd $TERMINAL -e $EDITOR %f
 colourscheme gatonegro
 
