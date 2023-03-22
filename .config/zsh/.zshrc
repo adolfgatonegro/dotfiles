@@ -235,7 +235,7 @@ _fzf_compgen_dir() { fd --type d . "$1" }
 
 se() { fd . ~/.local/bin | fzf --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
 ce() { fd -H -d 2 . ~/.config | fzf --bind 'enter:become(vim {})' ;} # edit a config file
-xo() { xdg-open "$(fd -t f | fzf)" ;} # xdg-open a file
+xo() { xdg-open "$(fd -t f . ~ | fzf)" > /dev/null 2>&1 ;} # xdg-open a file
 
 eval "$(starship init zsh)"
 gato
