@@ -9,7 +9,7 @@ export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$ZDOTDIR/history"
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|builtin cd(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
@@ -226,12 +226,13 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 
-# Source fzf
+# fzf
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
 [ -f "/usr/share/fzf/completion.zsh" ] && source "/usr/share/fzf/completion.zsh"
 
 _fzf_compgen_path() { fd --type f . "$1" } # set default path for completion
 _fzf_compgen_dir() { fd --type d . "$1" }
+bindkey "^[g" fzf-cd-widget
 
 se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
 ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a config file
