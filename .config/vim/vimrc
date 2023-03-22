@@ -41,9 +41,11 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-commentary'
 	Plug 'ap/vim-css-color'
+	Plug 'junegunn/fzf'
+	Plug 'junegunn/fzf.vim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'voldikss/vim-floaterm'
+	" Plug 'voldikss/vim-floaterm'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'SirVer/ultisnips'
@@ -92,9 +94,6 @@ set splitbelow splitright
 
 let mapleader="\<Space>"
 let maplocalleader=","
-
-" abbreviations
-" iab hbs #! /usr/bin/env bash<CR>
 
 " coc.nvim -------------------------------------------------------------------
 let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-vimtex', 'coc-css']
@@ -181,20 +180,11 @@ let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-" vim-floaterm ---------------------------------------------------------------
-let g:floaterm_width = 0.8
-let g:floaterm_height = 0.8
-let g:floaterm_wintype = 'float'
-let g:floaterm_opener = 'edit'
-
-map <leader>f :FloatermNew lf<CR>
-map <leader>sf :FloatermNew --wintype=split --height=0.5 --opener=split lf<CR>
-map <leader>vf :FloatermNew --wintype=vsplit --width=0.5 --opener=vsplit lf<CR>
+" fzf -------------------------------------------------------------------------
+map <leader>f :Files<CR>
+map <leader>o :Buffers<CR>
 
 " misc  ----------------------------------------------------------------------
-" run current python file in :Floaterm
-autocmd filetype python nnoremap <silent> <leader>bb :w<CR>:FloatermNew --wintype=split --height=0.5 --autoclose=0 python %<CR>
-
 " toggle line numbers
 augroup number_toggle
 	autocmd!
@@ -223,20 +213,3 @@ augroup templates
 	autocmd BufNewFile *.sh 0r $XDG_CONFIG_HOME/vim/templates/skeleton.sh | execute "normal! G"
 	autocmd BufNewFile *.tex 0r $XDG_CONFIG_HOME/vim/templates/skeleton.tex | execute "normal! G"
 augroup end
-
-" replace netrw with lf - taken from lf.vim because I don't actually want the
-" rest of the functionality
-function! OpenLfIn(path, edit_cmd)
-  let currentPath = shellescape(isdirectory(a:path) ? fnamemodify(expand(a:path), ":p:h") : expand(a:path))
-  let s:edit_cmd = a:edit_cmd
-  if exists(":FloatermNew")
-    exec 'FloatermNew --autoinsert=true lf -- ' . currentPath
-  else
-    echoerr "Failed to open a floating terminal. Make sure `voldikss/vim-floaterm` is installed."
-  endif
-endfun
-
-augroup replace_netrw_lf
-    autocmd VimEnter * silent! autocmd! FileExplorer
-    autocmd BufEnter * let s:buf_path = expand("%") | let s:default_edit_cmd = 'edit'| if isdirectory(s:buf_path) | bdelete! | call timer_start(100, {->OpenLfIn(s:buf_path, s:default_edit_cmd)}) | endif
-  augroup end

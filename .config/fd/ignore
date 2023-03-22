@@ -1,0 +1,4 @@
+dumpster/
+games/
+!.config/
+!.local/

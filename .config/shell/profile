@@ -55,7 +55,12 @@ export MYVIMRC=$XDG_CONFIG_HOME/vim/vimrc
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/pythonstartup.py"
-
 export SUDO_ASKPASS="$HOME/.local/bin/dmpass"
+export FZF_CTRL_T_COMMAND="fd --type f --strip-cwd-prefix"
+export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --color header:italic"
+export FZF_DEFAULT_OPTS="--reverse"
 
 [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
