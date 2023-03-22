@@ -224,16 +224,7 @@ preexec() { echo -ne '\e[5 q' ;} # Use beam shape cursor for each new prompt.
 # Add plugins
 zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
-# zsh_add_plugin "zdharma-continuum/history-search-multi-word"
 zsh_add_plugin "hlissner/zsh-autopair"
-
-# Set up multi-word search history
-# zstyle ":history-search-multi-word" page-size "4"
-# zstyle ":history-search-multi-word" highlight-color "fg=yellow,bold"
-# zstyle ":plugin:history-search-multi-word" synhl "yes"
-# zstyle ":plugin:history-search-multi-word" active "bold"
-# zstyle ":plugin:history-search-multi-word" check-paths "yes"
-# zstyle ":plugin:history-search-multi-word" clear-on-cancel "yes"
 
 # Source fzf
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"
@@ -244,6 +235,7 @@ _fzf_compgen_dir() { fd --type d . "$1" }
 
 se() { fd . ~/.local/bin | fzf --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
 ce() { fd -H -d 2 . ~/.config | fzf --bind 'enter:become(vim {})' ;} # edit a config file
+xo() { xdg-open "$(fd -t f | fzf)" ;} # xdg-open a file
 
 eval "$(starship init zsh)"
 gato
