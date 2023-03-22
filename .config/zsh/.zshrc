@@ -233,9 +233,10 @@ zsh_add_plugin "hlissner/zsh-autopair"
 _fzf_compgen_path() { fd --type f . "$1" } # set default path for completion
 _fzf_compgen_dir() { fd --type d . "$1" }
 
-se() { fd . ~/.local/bin | fzf --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
-ce() { fd -H -d 2 . ~/.config | fzf --bind 'enter:become(vim {})' ;} # edit a config file
-xo() { xdg-open "$(fd -t f . ~ | fzf)" > /dev/null 2>&1 ;} # xdg-open a file
+se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
+ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a config file
+xo() { xdg-open "$(fd -tf . ~ | fzf)" > /dev/null 2>&1 ;} # xdg-open a file
+ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # xdg-open a file
 
 eval "$(starship init zsh)"
 gato
