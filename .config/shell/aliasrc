@@ -29,8 +29,8 @@ alias \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	ip="ip -color=auto" \
-	mkd="mkdir -pv" \
-	wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
+	mkd="mkdir -pv"
+	# wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 
 # abbreviations
 alias \
@@ -51,7 +51,6 @@ alias \
 	la="ls -al" \
 	lh="ls -d .*" \
 	tree="ls --tree" \
-	grep="rg" \
 	cat="bat -p" \
 	less="bat"
 
