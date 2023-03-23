@@ -236,7 +236,7 @@ bindkey "^[g" fzf-cd-widget
 
 se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
 ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a config file
-xo() { xdg-open "$(fd -tf . ~ | fzf)" > /dev/null 2>&1 ;} # xdg-open a file
+xo() { file=$(fd -tf . ~ | fzf) && xdg-open "$file" ;} # xdg-open a file
 ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # xdg-open a file
 
 eval "$(starship init zsh)"
