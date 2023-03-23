@@ -79,7 +79,7 @@ else:
     # Let mpv recreate socket if it doesn't already exist.
 
     opts = (os.getenv("MPV") or "mpv").split()
-    opts.extend(os.getenv("MPV_PROFILE") or "")
+    opts.extend((os.getenv("MPV_PROFILE") or "").split())
     opts.extend(["--no-terminal", "--force-window", "--input-ipc-server=" + SOCK,
                  "--"])
     opts.extend(files)
