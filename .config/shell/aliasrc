@@ -64,6 +64,7 @@ alias \
 alias \
 	gst="git status" \
 	ga="git add" \
+	gfa="git ls-files -m -o --exclude-standard | fzf -m --print0 | xargs -0 git add" \
 	gc="git commit" \
 	gco="git checkout" \
 	gl="git pull" \
