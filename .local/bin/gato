@@ -1,37 +1,23 @@
 #!/bin/sh
 # gatoneg.ro
-# Tiny fetch script thing, because anything else is overkill
+# Tiny fetch script with random cat facts taken from catfact.ninja
 
-host="$(cat /etc/hostname)"
-user="$(whoami)"
-kernel="$(uname -r)"
-uptime="$(uptime -p | sed 's/up //')"
-packages="$(pacman -Q | wc -l)"
-# shell="$(basename "${SHELL}")"
+factsfile="$XDG_DATA_HOME/catfacts"
+random_line=$((1 + $RANDOM % 332))
 
-if [ -x "$(command -v tput)" ]; then
-	bold="$(tput bold)"
-	black="$(tput setaf 0)"
-	red="$(tput setaf 1)"
-	green="$(tput setaf 2)"
-	yellow="$(tput setaf 3)"
-	blue="$(tput setaf 4)"
-	magenta="$(tput setaf 5)"
-	cyan="$(tput setaf 6)"
-	white="$(tput setaf 7)"
-	reset="$(tput sgr0)"
-fi
+host=$(printf "\033[31m%s\033[0m  %s\n" "" "$(cat /etc/hostname)")
+kernel=$(printf "\033[31m%s\033[0m  %s\n" "" "$(uname -r)")
+packages=$(printf "\033[31m%s\033[0m  %s\n" "" "$(pacman -Q | wc -l)")
+uptime=$(printf "\033[31m%s\033[0m  %s\n" "" "$(uptime -p | sed 's/up //')")
 
-# you can change these
-lc="${reset}${bold}${red}"         # labels
-ic="${reset}"                      # info
-# c0="${reset}${cyan}"               # first color
+fact=$(printf "\033[0;%dm%s\033[0m\n" $((RANDOM%7+31)) "$(awk "NR==$random_line" $factsfile)" | fold -sw 70)
 
-## OUTPUT
 cat <<EOF
 
-          /\\_/\\     ${lc}  ${ic}${host}
-     ____/ o o \\    ${lc}  ${ic}${kernel}
-   /~____  =ø= /    ${lc}  ${ic}${packages} 
-  (______)__m_m)    ${lc}  ${ic}${uptime} 
+          /\\_/\\     ${host}
+     ____/ o o \\    ${kernel}
+   /~____  =ø= /    ${packages}
+  (______)__m_m)    ${uptime}
+
+${fact}
 EOF
