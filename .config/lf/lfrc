@@ -1,7 +1,6 @@
 # vim:ft=conf
 # ----------------------------------------------------------------------------
 # lfrc - lf terminal file manager
-# requires trash-cli
 # gatoneg.ro
 # ----------------------------------------------------------------------------
 
@@ -55,28 +54,16 @@ cmd extract ${{
 
 # open text files in $EDITOR and xdg-open for everything else
 cmd open &{{
-    case $(file --mime-type -Lb $f) in
-        text/*) lf -remote "send $id \$$EDITOR \$fx";;
+	case $(file --mime-type -Lb $f) in
+		text/*) lf -remote "send $id \$$EDITOR \$fx";;
 		image/*) imgview $fx;;
-        *) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
-    esac
+		*) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+	esac
 }}
 
-# cmd paste %{{
-#     load=$(cat ~/.local/share/lf/files)
-#     mode=$(echo "$load" | sed -n '1p')
-#     list=$(echo "$load" | sed '1d')
-#     if [ $mode = 'copy' ]; then
-#         cp -R $list .
-#     elif [ $mode = 'move' ]; then
-#         mv $list .
-#         rm ~/.local/share/lf/files
-#         lf -remote 'send clear'
-#     fi
-# }}
 
 # bulk rename
-cmd batch-rename ${{
+cmd bulkrename ${{
     old="$(mktemp)"
     new="$(mktemp)"
     if [ -n "$fs" ]; then
@@ -100,22 +87,15 @@ cmd batch-rename ${{
     lf -remote "send $id unselect"
 }}
 
-# trash-cli
-cmd trash ${{
-  files=$(printf "$fx" | tr '\n' ';')
-  while [ "$files" ]; do
-    file=${files%%;*}
-    trash-put "$(basename "$file")"
-    if [ "$files" = "$file" ]; then
-      files=''
-    else
-      files="${files#*;}"
-    fi
-  done
+cmd delete ${{
+	clear; tput cup $(($(tput lines)/3)); tput bold
+	set -f
+	printf "%s\n\t" "$fx"
+	printf "delete? [y/N]"
+	read ans
+	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
-cmd empty_trash %trash-empty
-cmd restore_trash ${{ trash-restore }}
 
 # symlinks
 cmd follow_link %{{
@@ -176,15 +156,9 @@ map i push A<a-b><a-b><a-f> # before extension
 map a push A<a-b> # after extension
 map C batch-rename
 
-# trash-cli mappings
-map dd trash
-map tr restore_trash
-map te empty_trash
-
 # symlinks mappings
 map al :link
 map gF follow_link
 
 # navigation
 map gc cd ~/.config
-map gtr cd ~/.local/share/Trash/files
