@@ -3,7 +3,6 @@ https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
 https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
 https://suckless.org/atom.xml "Updates" "tech" "linux"
-https://github.com/qtile/qtile/commits/master.atom  "Updates" "tech" "qtile" "linux" "~Qtile Recent Commits"
 
 "query:Philosophy & Psychology:tags # \"philosophy\" or tags # \"psychology\""
 https://www.gleech.org/feed.xml "Blog" "psychology"
@@ -52,6 +51,7 @@ https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
 https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
+https://audioboom.com/channels/5097784.rss "Podcast" "misc" # Lateral with Tom Scott
 https://notrelated.xyz/rss "Podcast" "tech" "philosophy" "sociology" "misc"
 https://youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "YouTube" "literature" "philosophy" #Savannah Brown
 https://youtube.com/feeds/videos.xml?channel_id=UCl_dlV_7ofr4qeP1drJQ-qg "YouTube" "music" #Tantacrul
