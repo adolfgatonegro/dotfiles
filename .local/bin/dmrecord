@@ -12,10 +12,10 @@
 
 getdim() { xrandr | sed -n "s/\s*\([0-9]\+x[0-9]\+\).*\*.*/\1/p" ;}
 
-updateicon() { \
+updateicon() {
 	echo "$1" > /tmp/recordingicon
 	pkill -RTMIN+18 dwmblocks
-	}
+}
 
 killrecording() {
 	recpid="$(cat /tmp/recordingpid)"
@@ -23,9 +23,9 @@ killrecording() {
 	rm -f /tmp/recordingpid
 	updateicon ""
 	pkill -RTMIN+18 dwmblocks
-	}
+}
 
-screencast() { \
+screencast() {
 	ffmpeg -y \
 	-f x11grab \
 	-framerate 30 \
@@ -34,52 +34,54 @@ screencast() { \
 	-r 24 \
 	-use_wallclock_as_timestamps 1 \
 	-f pulse -thread_queue_size 1024 -i default \
- 	-c:v h264 \
+	-c:v h264 \
 	-crf 0 -preset ultrafast -c:a aac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^[ SCR/MIC]^C7^"
-       	}
+}
 
-desktop() { ffmpeg \
+desktop() { ffmpeg
 	-f x11grab \
 	-framerate 30 \
 	-s "$(getdim)" \
 	-i "$DISPLAY" \
- 	-c:v libx264 -qp 0 -r 30 \
+	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/desktop-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^[ SCR]^C7^"
-	}
+}
 
-webcamhidef() { ffmpeg \
+webcamhidef() {
+	ffmpeg
 	-f v4l2 \
 	-i /dev/video0 \
 	-video_size 1920x1080 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^[ CAM HD]^C7^"
-	}
+}
 
-webcam() { ffmpeg \
+webcam() {
+	ffmpeg \
 	-f v4l2 \
 	-i /dev/video0 \
 	-video_size 640x480 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^[ CAM]^C7^"
-	}
+}
 
-audio() { \
+audio() {
 	ffmpeg \
 	-f alsa -i default \
 	-c:a flac \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^[ MIC]^C7^"
-	}
+}
 
-askrecording() { \
+askrecording() {
 	choice=$(printf "audio\\ndesktop\\nslice\\nscreencast\\nwebcam\\nwebcam (hi-def)" | dmenu -i -p "Select recording style:")
 	case "$choice" in
 		audio) audio;;
@@ -89,15 +91,14 @@ askrecording() { \
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
 	esac
-	}
+}
 
-asktoend() { \
+asktoend() {
 	response=$(printf "No\\nYes" | dmenu -i -p "Recording still active. End recording?") &&
 	[ "$response" = "Yes" ] &&  killrecording
-	}
+}
 
-slice()
-{
+slice() {
 	slop -f "%x %y %w %h" > /tmp/slop
 	read -r X Y W H < /tmp/slop
 	rm /tmp/slop
