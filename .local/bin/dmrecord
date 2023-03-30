@@ -26,6 +26,8 @@ killrecording() {
 }
 
 screencast() {
+	askaudiosource
+
 	ffmpeg -y \
 	-f x11grab \
 	-framerate 30 \
@@ -33,15 +35,16 @@ screencast() {
 	-i "$DISPLAY" \
 	-r 24 \
 	-use_wallclock_as_timestamps 1 \
-	-f pulse -thread_queue_size 1024 -i default \
+	-f pulse -thread_queue_size 1024 -i $audiosource \
 	-c:v h264 \
 	-crf 0 -preset ultrafast -c:a aac \
 	"$HOME/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ SCR/MIC]^C7^"
+	updateicon "^C1^雷   ^C7^"
 }
 
-desktop() { ffmpeg
+desktop() {
+	ffmpeg \
 	-f x11grab \
 	-framerate 30 \
 	-s "$(getdim)" \
@@ -49,17 +52,17 @@ desktop() { ffmpeg
 	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/desktop-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ SCR]^C7^"
+	updateicon "^C1^雷  ^C7^"
 }
 
 webcamhidef() {
-	ffmpeg
+	ffmpeg \
 	-f v4l2 \
 	-i /dev/video0 \
 	-video_size 1920x1080 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ CAM HD]^C7^"
+	updateicon "^C1^雷   HD^C7^"
 }
 
 webcam() {
@@ -69,16 +72,18 @@ webcam() {
 	-video_size 640x480 \
 	"$HOME/webcam-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ CAM]^C7^"
+	updateicon "^C1^雷   SD^C7^"
 }
 
 audio() {
+	askaudiosource
+
 	ffmpeg \
-	-f alsa -i default \
+	-f pulse -i $audiosource \
 	-c:a flac \
 	"$HOME/audio-$(date '+%y%m%d-%H%M-%S').flac" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ MIC]^C7^"
+	updateicon "^C1^雷  ^C7^"
 }
 
 askrecording() {
@@ -91,6 +96,11 @@ askrecording() {
 		webcam) webcam;;
 		"webcam (hi-def)") webcamhidef;;
 	esac
+}
+
+askaudiosource() {
+	choice=$(pactl list short sources | awk '{ print $2; }' | dmenu -i -l 10 -p "Select audio source:")
+	audiosource="$choice"
 }
 
 asktoend() {
@@ -111,7 +121,7 @@ slice() {
 	-c:v libx264 -qp 0 -r 30 \
 	"$HOME/slice-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
-	updateicon "^C1^[ SLC]^C7^"
+	updateicon "^C1^雷 类 ^C7^"
 }
 
 case "$1" in
