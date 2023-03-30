@@ -88,14 +88,14 @@ cmd bulkrename ${{
 }}
 
 cmd delete ${{
-	clear; tput cup $(($(tput lines)/3)); tput bold
 	set -f
-	printf "%s\n\t" "$fx"
-	printf "delete? [y/N]"
+	prompt="Delete? [y/N] "
+	clear; tput cup $((($(tput lines)-2)/2)) 0; tput bold
+	printf "%*s\n" $((($(tput cols)+${#fx})/2)) "$fx"
+	printf "%*s" $((($(tput cols)+${#prompt})/2)) "$prompt"
 	read ans
 	[ $ans = "y" ] && rm -rf -- $fx
 }}
-
 
 # symlinks
 cmd follow_link %{{
