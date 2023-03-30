@@ -1,0 +1,58 @@
+#!/bin/sh
+# gatoneg.ro
+# search from dmenu, open regular or private tabs, a class="minimal" session or
+# create a temporary vanilla firefox profile
+
+browserCmd="$BROWSER -new-tab"
+browserPrivateCmd="$BROWSER -private-window"
+browserMinimalCmd="$BROWSER -new-instance -P Minimal --class=\"minimal\""
+
+tmp_session() {
+	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
+	$BROWSER -profile "$PROFILEDIR" -no-remote -new-instance
+	rm -rf $PROFILEDIR
+}
+
+declare -a options=(
+	# "Search..."
+	"New tab"
+	"New private tab"
+	"Minimal session"
+	"Temp session"
+	"Exit"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "${BROWSER}:")
+
+case $choice in
+	# We can have a list of search engines, but I kind of prefer it to default
+	# to searching with my preferred engine if the input doesn't match any
+	# options, instead of needing to select Search > Search with X > Enter
+	# search query, etc. But the option is there.
+
+	# "Search...")
+	# 	declare -a search_options=(
+	# 		"Search with searX at northboot.xyz"
+	# 		"Search with DuckDuckGo"
+	# 		"Search with Qwant"
+	# 	)
+	# 	choice=$(printf '%s\n' "${search_options[@]}" | dmenu -i -l 20 -p 'Search Engine:')
+	# 	[ "$choice" == "Search with searX at northboot.xyz" ] && searchURL="https://northboot.xyz/search?q="
+	# 	[ "$choice" == "Search with DuckDuckGo" ] && searchURL="https://duckduckgo.com/html/?q="
+	# 	[ "$choice" == "Search with Qwant" ] && searchURL="https://www.qwant.com/?q="
+	# 	searchString=$(:| dmenu -p 'Search for:')
+	# 	[ -n "$searchString" ] && ${browserPrivateCmd} "${searchURL}${searchString}" & disown
+	# 	;;
+	"New tab")
+		${browserCmd} about:blank & disown ;;
+	"New private tab")
+		${browserPrivateCmd} & disown ;;
+	"Minimal session")
+		${browserMinimalCmd} & disown ;;
+	"Temp session")
+		tmp_session;;
+	"Exit")
+		exit 0 ;;
+	*)	[ -n "$choice" ] && ${browserMinimalCmd} "https://northboot.xyz/search?q=${choice}" & disown
+		;;
+esac
