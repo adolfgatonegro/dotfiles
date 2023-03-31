@@ -19,21 +19,22 @@ endif
 set directory=$XDG_CACHE_HOME/vim/swap,~/,/tmp
 set backupdir=$XDG_CACHE_HOME/vim/backup,~/,/tmp
 set undodir=$XDG_CACHE_HOME/vim/undo,~/,/tmp
-set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
 set runtimepath+=$XDG_CONFIG_HOME/vim
-" set packpath+=$XDG_CONFIG_HOME/vim
+if !has('nvim')
+	set viminfo+=n$XDG_CACHE_HOME/vim/viminfo
+endif
 let $MYVIMRC="$XDG_CONFIG_HOME/vim/vimrc"
 
 " vim-plug -------------------------------------------------------------------
 " fetch plug.vim if needed
 if empty(glob('$XDG_CONFIG_HOME/vim/autoload/plug.vim'))
-  silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+	silent !curl -fLo $XDG_CONFIG_HOME/vim/autoload/plug.vim --create-dirs 
+		\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
 
 " run PlugInstall if there are missing plugins
 autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
-  \| PlugInstall --sync | source $MYVIMRC
+	\| PlugInstall --sync | source $MYVIMRC
 \| endif
 
 call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
@@ -46,7 +47,6 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'itchyny/lightline.vim'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'preservim/nerdtree'
-	" Plug 'voldikss/vim-floaterm'
 	Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'SirVer/ultisnips'
@@ -188,7 +188,8 @@ let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " fzf -------------------------------------------------------------------------
-map <leader>f :Files<CR>
+map <leader>f :Files ~<CR>
+map <leader>F :Files %:h<CR>
 map <leader>o :Buffers<CR>
 
 " misc  ----------------------------------------------------------------------
