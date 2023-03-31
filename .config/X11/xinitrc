@@ -16,10 +16,10 @@ lxsession &
 picom -b --experimental-backends &
 numlockx on &
 dunst &
-# sxhkd -c &
 jamesdsp --tray &
 redshift &
 setwall &
+xss-lock -- slock &
 canberra-gtk-play -f $XDG_CONFIG_HOME/startup.ogg &
 
 # qtile
