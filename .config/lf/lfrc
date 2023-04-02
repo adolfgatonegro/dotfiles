@@ -57,7 +57,8 @@ cmd open &{{
 	case $(file --mime-type -Lb $f) in
 		text/*) lf -remote "send $id \$$EDITOR \$fx";;
 		image/*) imgview $fx;;
-		*) for f in $fx; do $OPENER $f > /dev/null 2> /dev/null & done;;
+		video/*) umpv $fx;;
+		*) xdg-open $fx;;
 	esac
 }}
 
