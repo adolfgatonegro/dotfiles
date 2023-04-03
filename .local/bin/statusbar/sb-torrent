@@ -1,7 +1,7 @@
 #!/bin/sh
 transmission-remote -l | grep % |
 	sed " # The letters are for sorting and will not appear.
-	s/.*Stopped.*/A ^C1^ /;
+	s/.*Stopped.*/A ^C1^栗 /;
 	s/.*Seeding.*/Z ^C2^󰹢 /;
 	s/.*100%.*/N ^C2^/;
 	s/.*Idle.*/B ^C7^ /;
