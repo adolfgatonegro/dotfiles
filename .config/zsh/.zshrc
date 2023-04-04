@@ -9,7 +9,7 @@ export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$ZDOTDIR/history"
 export HISTTIMEFORMAT="[%F %T]"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|builtin cd(|*)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|umpv(|*)|builtin cd(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
