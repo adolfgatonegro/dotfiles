@@ -32,6 +32,8 @@ set preview
 # custom commands
 cmd mkdir %mkdir "$@"
 cmd touch %touch "$@"
+
+# extract contents of archive
 cmd extract ${{
   case "$f" in
 	*.tar.bz2)   tar xjf "$f"   ;;
@@ -62,32 +64,39 @@ cmd open &{{
 	esac
 }}
 
-
 # bulk rename
 cmd bulkrename ${{
-    old="$(mktemp)"
-    new="$(mktemp)"
-    if [ -n "$fs" ]; then
-        fs="$(basename -a $fs)"
-    else
-        fs="$(ls)"
-    fi
-    printf '%s\n' "$fs" >"$old"
-    printf '%s\n' "$fs" >"$new"
-    $EDITOR "$new"
-    [ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
-    paste "$old" "$new" | while IFS= read -r names; do
-        src="$(printf '%s' "$names" | cut -f1)"
-        dst="$(printf '%s' "$names" | cut -f2)"
-        if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
-            continue
-        fi
-        mv -- "$src" "$dst"
-    done
-    rm -- "$old" "$new"
-    lf -remote "send $id unselect"
+	old="$(mktemp)"
+	new="$(mktemp)"
+	if [ -n "$fs" ]; then
+		fs="$(basename -a $fs)"
+	else
+		fs="$(ls)"
+	fi
+	printf '%s\n' "$fs" >"$old"
+	printf '%s\n' "$fs" >"$new"
+	$EDITOR "$new"
+	[ "$(wc -l < "$new")" -ne "$(wc -l < "$old")" ] && exit
+	paste "$old" "$new" | while IFS= read -r names; do
+		src="$(printf '%s' "$names" | cut -f1)"
+		dst="$(printf '%s' "$names" | cut -f2)"
+		if [ "$src" = "$dst" ] || [ -e "$dst" ]; then
+			continue
+		fi
+		mv -- "$src" "$dst"
+	done
+	rm -- "$old" "$new"
+	lf -remote "send $id unselect"
 }}
 
+# make sure trash folder exists
+%mkdir -p ~/.local/share/Trash/files
+# go to trash
+map gt cd ~/.local/share/Trash/files
+# move current file or selected files to trash folder
+cmd trash %set -f; mv --backup=numbered $fx ~/.local/share/Trash/files
+
+# delete files with prompt
 cmd delete ${{
 	set -f
 	prompt="Delete? [y/N] "
@@ -98,27 +107,54 @@ cmd delete ${{
 	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
+# shell but with output shown
+cmd shellcmd ${{
+	printf "Shell command: \n"
+	read ans
+	$ans
+	printf "\n"
+	printf "press <enter> key to continue\n"
+	read ans
+}}
+
 # symlinks
 cmd follow_link %{{
   lf -remote "send ${id} select '$(readlink $f)'"
 }}
 
 cmd link %{{
-    set -- $(cat ~/.local/share/lf/files)
-    mode="$1"
-    shift
-    if [ "$#" -lt 1 ]; then
-        lf -remote "send $id echo no files to link"
-        exit 0
-    fi
-    case "$mode" in
-        # symbolically copy mode is indicating a soft link
-        copy) ln -sr -t . -- "$@";;
-        # while a move mode is indicating a hard link
-        move) ln -t . -- "$@";;
-    esac
-    rm ~/.local/share/lf/files
-    lf -remote "send clear"
+	set -- $(cat ~/.local/share/lf/files)
+	mode="$1"
+	shift
+	if [ "$#" -lt 1 ]; then
+		lf -remote "send $id echo no files to link"
+		exit 0
+	fi
+	case "$mode" in
+		# symbolically copy mode is indicating a soft link
+		copy) ln -sr -t . -- "$@";;
+		# while a move mode is indicating a hard link
+		move) ln -t . -- "$@";;
+	esac
+	rm ~/.local/share/lf/files
+	lf -remote "send clear"
+}}
+
+cmd pdfcat %{{
+	printf "File name: "
+	read name
+	pdftk $fx cat output "$name".pdf
+}}
+
+# find files with fzf
+cmd fzf_jump ${{
+	dirs="$(fzf --header='Jump to:')"
+	if [ -f "$dirs" ]; then
+		cmd="select"
+	elif [ -d "$dirs" ]; then
+		cmd="cd"
+	fi
+	lf -remote "send $id $cmd \"$dirs\""
 }}
 
 # key mappings ---------------------------------------------------------------
@@ -137,17 +173,22 @@ map w
 map . set hidden!
 map p paste
 map Y cut
+map dd trash
 map D delete
 map e $$EDITOR "$f"
-map H top
 map <c-r> reload
+map H top
 map L bottom
-map <enter> open
-map <c-q> quit
+map x $$f
+map <enter> shell
+map S shellcmd
+map q quit
+map Q quit
 map <space> toggle
 map <esc> :clear; unselect
-map S $$SHELL
 map ga calcdirsize
+map ff :fzf_jump
+map P :pdfcat
 
 # rename
 map A rename # at the end
@@ -155,11 +196,8 @@ map c push A<c-u> # new filename
 map I push A<c-a> # from the beginning
 map i push A<a-b><a-b><a-f> # before extension
 map a push A<a-b> # after extension
-map C batch-rename
+map C :bulkrename
 
 # symlinks mappings
 map al :link
 map gF follow_link
-
-# navigation
-map gc cd ~/.config
