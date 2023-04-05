@@ -13,7 +13,7 @@ fi
 
 # autostart
 lxsession &
-picom -b &
+picom -b --experimental-backends &
 numlockx on &
 dunst &
 jamesdsp --tray &
