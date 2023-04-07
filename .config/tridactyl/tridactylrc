@@ -30,6 +30,7 @@ set searchurls.sx https://northboot.xyz/search?q=%s
 
 " Binds
 bind gh hint -W exclaim_quiet linkhandler
+bind gm hint -W exclaim_quiet $BROWSER -P Minimal --class="minimal"
 bind ge editor
 
 " Commands
