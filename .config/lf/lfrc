@@ -15,7 +15,7 @@ set shellopts '-euy'
 set ifs "\n"
 
 # basic settings
-set hidden
+# set hidden
 set icons
 set ignorecase
 set scrolloff 10
