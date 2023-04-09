@@ -8,7 +8,7 @@
 # Browser commands
 browserCmd="$BROWSER -new-tab"
 browserMinCmd="$BROWSER -P Minimal --class=\"minimal\""
-urlregex="^((https?|ftps?)://)?[^\s/$.?#]+\.[^\s/$.?#]+[^\s]*$"
+urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]]*$"
 
 # Search engines
 defaultSearch="https://northboot.xyz/search?q="
