@@ -1,14 +1,20 @@
 #!/bin/sh
 # gatoneg.ro
-# search from dmenu, open regular or private tabs, a minimal session,
-# create a temporary vanilla firefox profile, or perform searches
+#
+# Use dmenu as a system-wide browser menu and URL bar. Open a new default tab,
+# a new minimal session, create a disposable vanilla profile, or perform
+# searches directly from dmenu.
 
+# Browser commands
 browserCmd="$BROWSER -new-tab"
-browserPrivateCmd="$BROWSER -private-window"
-browserMinimalCmd="$BROWSER -P Minimal --class=\"minimal\""
-urlregex="^([a-zA-Z0-9][a-zA-Z0-9-]{0,61}[a-zA-Z0-9]\.)+[a-zA-Z]{2,}$"
+browserMinCmd="$BROWSER -P Minimal --class=\"minimal\""
+urlregex="^((https?|ftps?)://)?[^\s/$.?#]+\.[^\s/$.?#]+[^\s]*$"
+
+# Search engines
 defaultSearch="https://northboot.xyz/search?q="
-youtubeSearch="https://www.youtube.com/results?search_query="
+googleSearch="https://google.com/search?q="
+wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
+youtubeSearch="https://youtube.com/results?search_query="
 
 tmp_session() {
 	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
@@ -17,34 +23,35 @@ tmp_session() {
 }
 
 declare -a options=(
-	"New tab"
-	"New private tab"
-	"Minimal session"
-	"Temporary session"
-	"YouTube search"
-	"Exit"
+	" New tab"
+	"﫸 Minimal session"
+	"屢 Temporary session"
+	" Bookmarks"
+	" Google"
+	" Wikipedia"
+	" YouTube"
+	"ﴚ Exit"
 )
 
 choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "${BROWSER}:")
 
+search(){
+	searchString=$(:| dmenu -p "${choice}:")
+	[ -n "$searchString" ] && ${browserMinCmd} "$1${searchString}" & disown
+}
+
 case $choice in
-	"New tab")
-		${browserCmd} "about:blank" & disown ;;
-	"New private tab")
-		${browserPrivateCmd} & disown ;;
-	"Minimal session")
-		${browserMinimalCmd} & disown ;;
-	"Temporary session")
-		tmp_session;;
-	"YouTube search")
-		searchString=$(:| dmenu -p "${choice}:")
-		[ -n "$searchString" ] && ${browserMinimalCmd} "${youtubeSearch}${searchString}" & disown
-		;;
-	"Exit")
-		exit 0 ;;
-	# When $choice doesn't match any options, check if it's a valid URL.
-	# If it matches the regex, open the URL. Otherwise, pass it to the search engine.
+	" New tab") ${browserCmd} "about:blank" & disown ;;
+	"﫸 Minimal session") ${browserMinCmd} & disown ;;
+	"屢 Temporary session") tmp_session;;
+	" Bookmarks") bmks & exit 0;;
+	" Google") search $googleSearch;;
+	" Wikipedia") search $wikipediaSearch;;
+	" YouTube") search $youtubeSearch;;
+	"ﴚ Exit") exit 0 ;;
+	# When user input doesn't match any choice, check if it's a valid URL. If
+	# it is, open it in the browser, otherwise treat it as a search string.
 	*)	[[ -z "$choice" ]] && exit 0 ||
-		if [[ $choice =~ $urlregex ]]; then ${browserMinimalCmd} "$choice" & disown;
-		else ${browserMinimalCmd} "${defaultSearch}${choice}" & disown; fi;;
+		if [[ $choice =~ $urlregex ]]; then ${browserMinCmd} "$choice" & disown;
+		else ${browserMinCmd} "${defaultSearch}${choice}" & disown; fi;;
 esac
