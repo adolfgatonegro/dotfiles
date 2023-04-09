@@ -12,7 +12,7 @@ urlregex="^((https?|ftps?)://)?[^\s/$.?#]+\.[^\s/$.?#]+[^\s]*$"
 
 # Search engines
 defaultSearch="https://northboot.xyz/search?q="
-googleSearch="https://google.com/search?q="
+googleSearch="https://google.com/search?hl=en&q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?search_query="
 
