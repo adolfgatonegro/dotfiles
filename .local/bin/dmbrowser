@@ -27,9 +27,9 @@ declare -a options=(
 	"﫸 Minimal session"
 	"屢 Temporary session"
 	" Bookmarks"
-	" Google"
-	" Wikipedia"
-	" YouTube"
+	" Google"
+	"磌 Wikipedia"
+	"輸 YouTube"
 	"ﴚ Exit"
 )
 
@@ -45,9 +45,9 @@ case $choice in
 	"﫸 Minimal session") ${browserMinCmd} & disown ;;
 	"屢 Temporary session") tmp_session;;
 	" Bookmarks") bmks & exit 0;;
-	" Google") search $googleSearch;;
-	" Wikipedia") search $wikipediaSearch;;
-	" YouTube") search $youtubeSearch;;
+	" Google") search $googleSearch;;
+	"磌 Wikipedia") search $wikipediaSearch;;
+	"輸 YouTube") search $youtubeSearch;;
 	"ﴚ Exit") exit 0 ;;
 	# When user input doesn't match any choice, check if it's a valid URL. If
 	# it is, open it in the browser, otherwise treat it as a search string.

@@ -47,7 +47,7 @@ bmks_add() {
 	else
 		notify-send "Adding to bookmarks" "$url"
 		description=$(dmenu -p "Bookmark description:" <&- && echo)
-		[ -z "$description" ] && echo "$url" >> $URL_FILE_PATH/$URL_FILE_NAME
+		[ -z "$description" ] && notify-send "bmks" "No description provided." & exit 0
 		[ -n "$description" ] && echo "$description - $url" >> $URL_FILE_PATH/$URL_FILE_NAME
 	fi
 }
