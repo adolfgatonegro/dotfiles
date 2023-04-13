@@ -14,7 +14,7 @@ urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]
 defaultSearch="https://northboot.xyz/search?q="
 googleSearch="https://google.com/search?hl=en&q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
-youtubeSearch="https://youtube.com/results?search_query="
+youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="
 
 tmp_session() {
 	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
