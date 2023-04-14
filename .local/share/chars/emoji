@@ -1454,26 +1454,17 @@
 ⭕ hollow red circle
 ✅ check mark button
 ☑️ check box with check
-☑ check box with check
-✔️ check mark
 ✔ check mark
 ❌ cross mark
 ❎ cross mark button
 ➰ curly loop
 ➿ double curly loop
 〽️ part alternation mark
-〽 part alternation mark
 ✳️ eight-spoked asterisk
-✳ eight-spoked asterisk
-✴️ eight-pointed star
 ✴ eight-pointed star
-❇️ sparkle
 ❇ sparkle
-©️ copyright
 © copyright
 ®️ registered
-® registered
-™️ trade mark
 ™ trade mark
 🔟 keycap: 10
 🔠 input latin uppercase
@@ -1482,33 +1473,25 @@
 🔣 input symbols
 🔤 input latin letters
 🅰️ A button (blood type)
-🅰 A button (blood type)
 🆎 AB button (blood type)
 🅱️ B button (blood type)
-🅱 B button (blood type)
 🆑 CL button
 🆒 COOL button
 🆓 FREE button
 ℹ️ information
-ℹ information
 🆔 ID button
 Ⓜ️ circled M
-Ⓜ circled M
 🆕 NEW button
 🆖 NG button
 🅾️ O button (blood type)
-🅾 O button (blood type)
 🆗 OK button
 🅿️ P button
-🅿 P button
 🆘 SOS button
 🆙 UP! button
 🆚 VS button
 🈁 Japanese “here” button
 🈂️ Japanese “service charge” button
-🈂 Japanese “service charge” button
 🈷️ Japanese “monthly amount” button
-🈷 Japanese “monthly amount” button
 🈶 Japanese “not free of charge” button
 🈯 Japanese “reserved” button
 🉐 Japanese “bargain” button
@@ -1520,8 +1503,6 @@
 🈴 Japanese “passing grade” button
 🈳 Japanese “vacancy” button
 ㊗️ Japanese “congratulations” button
-㊗ Japanese “congratulations” button
-㊙️ Japanese “secret” button
 ㊙ Japanese “secret” button
 🈺 Japanese “open for business” button
 🈵 Japanese “no vacancy” button
