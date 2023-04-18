@@ -180,7 +180,7 @@ map <c-r> reload
 map H top
 map L bottom
 map x $$f
-map <enter> shell
+map <enter> $$SHELL
 map S shellcmd
 map q quit
 map Q quit
