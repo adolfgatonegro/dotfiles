@@ -1,10 +1,12 @@
 "query:Update Feeds:tags # \"Updates\""
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
 https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
+https://nobaraproject.org/category/changelog/feed/ "Updates" "tech" "linux" "~Nobara Project Changelog"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
 https://suckless.org/atom.xml "Updates" "tech" "linux"
 
 "query:Philosophy & Psychology:tags # \"philosophy\" or tags # \"psychology\""
+https://jonathanhaidt.substack.com/feed "Blog" "psychology" "~After Babel | Jonathan Haidt"
 https://www.gleech.org/feed.xml "Blog" "psychology"
 https://backtohumanity.substack.com/feed "Blog" "philosophy"
 https://duncanreyburn.substack.com/feed "Blog" "philosophy"
