@@ -19,7 +19,7 @@ for i in *pdf; \
 		-dGrayImageResolution=$2 \
 		-dMonoImageDownsampleType=/Bicubic \
 		-dMonoImageResolution=$2 \
-		-sOutputFile=./pdf-compress/"$i" ./"$i"; \
+		-sOutputFile=./pdfcompress/"$i" ./"$i"; \
 	done
 
 # for i in *.pdf; do gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -dPDFSETTINGS=/$1 -dNOPAUSE -dBATCH -sOutputFile=./pdf-compress/"$i" ./"$i"; done
