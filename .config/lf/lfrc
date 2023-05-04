@@ -184,7 +184,7 @@ map <enter> $$SHELL
 map S shellcmd
 map q quit
 map Q quit
-map <space> toggle
+map <space> :toggle; down
 map <esc> :clear; unselect
 map ga calcdirsize
 map ff :fzf_jump
