@@ -155,6 +155,12 @@ mp3conv(){
 	esac
 }
 
+dnxconv(){
+	[ $# != 1 ] && echo "dnxconv: covert video to DNxHD video\nUsage: dnxconv [extension], e.g. avi, mp4, etc." && return ||
+	mkdir dnxconv
+	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -c:v dnxhd -vf "scale=1920:1080,fps=24000/1001,format=yuv422p10le" -profile:v dnxhr_hqx -c:a pcm_s16le -ar 48000 -hide_banner "dnxconv/${0/.'$1'}.mxf"' {} \;
+}
+
 # Install and source zsh plugins
 zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
