@@ -1,0 +1,38 @@
+directory: /home/gatonegro/music
+
+import:
+    copy: yes
+    write: yes
+art_filename: albumart
+ui:
+    color: yes
+
+original_date: yes
+match:
+    preferred:
+        media: ['CD', 'Digital Media|File']
+        original_year: yes
+
+paths:
+    default: $albumartist/$album/$track $title
+    comp: $album/$track $title
+
+plugins: scrub edit zero fetchart
+
+fetchart:
+    minwidth: 500
+    maxwidth: 750
+    store_source: yes
+    cover_format: JPEG
+
+embedart:
+    auto: yes
+
+scrub:
+  auto: yes
+
+zero:
+  auto: yes
+  fields: >-
+    albumartist_sort artist_sort arranger images
+  update_database: true
