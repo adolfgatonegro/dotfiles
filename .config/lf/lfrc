@@ -189,6 +189,7 @@ map <esc> :clear; unselect
 map ga calcdirsize
 map ff :fzf_jump
 map P :pdfcat
+map gp cd ~/psych/courses
 
 # rename
 map A rename # at the end
