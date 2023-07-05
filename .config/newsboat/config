@@ -3,7 +3,7 @@ reload-threads 20
 scrolloff 20
 text-width 78
 confirm-exit yes
-max-items 100
+max-items 200
 
 bind-key j down
 bind-key k up

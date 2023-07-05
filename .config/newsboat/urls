@@ -18,6 +18,9 @@ https://schopenhaueronmars.com/feed/ "Blog" "philosophy"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
 https://nautil.us/feed/ "Magazine" "science" "culture" "philosophy"
 https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology"
+https://feeds.fireside.fm/psych/rss "Podcast" "psychology" #Psych - Paul Bloom & David Pizarro
+https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
+https://feeds.libsyn.com/474285/rss "Podcast" "psychology" #Very Bad Wizards
 https://www.youtube.com/feeds/videos.xml?channel_id=UCK-kLrW3koHSlaD2CP9V27w "Podcast" "psychology" #Talking Therapy
 https://www.reddit.com/r/AcademicPsychology.rss "Reddit" "aggregators" "psychology" "~r/AcademicPsychology"
 https://www.reddit.com/r/psychology.rss "Reddit" "aggregators" "psychology" "~r/psychology"
@@ -31,9 +34,6 @@ https://garymarcus.substack.com/feed "Blog" "ai" "~Gary Marcus"
 https://www.piratewires.com/feed "Blog" "tech"
 https://unfashionable.substack.com/feed "Blog" "tech" "culture"
 #https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
-https://feeds.arstechnica.com/arstechnica/tech-policy "News" "society" "politics" "~Ars Technica - Tech Policy"
-https://feeds.arstechnica.com/arstechnica/science "News" "space" "science" "~Ars Technica - Science & Exploration"
-https://feeds.arstechnica.com/arstechnica/technology-lab "News" "tech" "~Ars Technica - Technology"
 https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
 https://feeds.buzzsprout.com/1004689.rss "Podcast" "tech" #Tech Won't Save Us
 https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
@@ -49,6 +49,7 @@ https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
 
 "query:Miscellanea:tags # \"misc\""
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
+https://feeds.megaphone.fm/VMP7924981569 "Podcast" "history" #Criminal
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
 https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
 https://notrelated.xyz/rss "Podcast" "tech" "philosophy" "sociology" "misc"
