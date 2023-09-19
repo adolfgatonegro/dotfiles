@@ -30,20 +30,24 @@ killrecording() {
 
 screencast() {
 	askaudiosource
-
+	sleep 1
 	ffmpeg \
+		-hide_banner \
 		-framerate 60 \
 		-f x11grab  \
+		-threads 4 \
 		-thread_queue_size 1024 \
 		-i :0.0 \
 		-f pulse \
 		-ac 2 \
 		-i $audiosource \
-		-c:v libx264 \
-		-acodec libmp3lame \
-		-crf 0 \
-		-preset ultrafast \
-		-b:a 64k \
+		-c:v h264 \
+		-gpu:v 0 \
+		-b:v 24M \
+		-pix_fmt yuv420p \
+		-preset fast \
+		-c:a ac3 \
+		-b:a 160k \
 		"$recordingsdir/screencast-$(date '+%y%m%d-%H%M-%S').mkv" &
 	echo $! > /tmp/recordingpid
 	updateicon "^C1^雷   ^C7^"
@@ -52,7 +56,6 @@ screencast() {
 desktop() {
 	ffmpeg \
 	-f x11grab \
-	-framerate 30 \
 	-s "$(getdim)" \
 	-i "$DISPLAY" \
 	-c:v libx264 -qp 0 -r 30 \

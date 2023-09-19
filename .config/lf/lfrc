@@ -157,6 +157,25 @@ cmd fzf_jump ${{
 	lf -remote "send $id $cmd \"$dirs\""
 }}
 
+cmd paste-overwrite &{{
+	set -f
+	mode=$(head -1 ~/.local/share/lf/files)
+	list=$(sed 1d ~/.local/share/lf/files)
+	set -- _ $list; shift
+	[ $# -gt 0 ] || exit
+	case $mode in
+		copy)
+			rsync -r "$@" ./
+			;;
+		move)
+			rsync -r --remove-source-files "$@" ./
+			;;
+	esac
+	lf -remote 'save\nmove\n'
+	lf -remote "send $id load"
+	lf -remote "send $id echo \"\033[0;32mpasted $# file(s)\033[0m\""
+}}
+
 # key mappings ---------------------------------------------------------------
 
 # clear default mappings
@@ -171,7 +190,9 @@ map w
 
 # custom mappings
 map . set hidden!
-map p paste
+map p
+map pp paste
+map po paste-overwrite
 map Y cut
 map dd trash
 map D delete

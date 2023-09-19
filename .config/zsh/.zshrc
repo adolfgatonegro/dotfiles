@@ -8,7 +8,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$ZDOTDIR/history"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|umpv(|*)|builtin cd(|*)|ex(|*)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
@@ -78,18 +78,9 @@ flacsplit(){
 		shnsplit -t "%n %t" -d "$tmpdir" -o "cust ext=mp3 ffmpeg -i - -ab 320k %f" -f "$1" "$2"
 		echo "Tagging tracks..."
 		cuetag.sh "$1" "$tmpdir"/*
-		echo -n "Done! Import to the music library using beet? [Y/N] "
-		read -k1
-		case $REPLY in
-			[Yy]) echo "\nImporting to music library..." && beet import "$tmpdir";;
-			[Nn]) return;;
-		esac
-		echo -n "\nDelete temporary files? [Y/N] "
-		read -k1
-		case $REPLY in
-			[Yy]) echo "\nCleaning up..." && rm -r "$tmpdir";;
-			[Nn]) return;;
-		esac
+		echo -n "\nDone! Importing to beets music library..." && \
+		beet import "$tmpdir" && \
+		echo "\nCleaning up..." && rm -r "$tmpdir"
 	else
 	  echo "Invalid arguments. Use .cue and .flac files as arguments, and make sure the path is correct."
 	fi
@@ -139,19 +130,16 @@ sw () {
 mp3conv(){
 	[ $# != 1 ] && echo "mp3conv: find files in a directory and covert them to 320kbps mp3\nUsage: tomp3 [extension], e.g. flac, wav, etc." && return ||
 	tmpdir=$(mktemp -d /tmp/mp3conv.XXXXXX.d)
-	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.'$1'}.mp3"' {} \;
-	echo -n "Done! Import to the music library using beet? [Y/N] "
-	read -k1
-	case $REPLY in
-		[Yy]) echo "\nImporting to music library..." && beet import "$tmpdir";;
-		# [Nn]) return;;
-	esac
-	echo -n "\nDelete temporary files? [Y/N] "
-	read -k1
-	case $REPLY in
-		[Yy]) echo "\nCleaning up..." && rm -r "$tmpdir";;
-		[Nn]) return;;
-	esac
+	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.'$1'}.mp3"' {} \; || \
+	echo -n "\nDone! Importing to beets music library..." && \
+	beet import "$tmpdir" && \
+	echo "\nCleaning up..." && rm -r "$tmpdir"
+	# echo -n "\nDelete temporary files? [Y/N] "
+	# read -k1
+	# case $REPLY in
+	# 	[Yy]) echo "\nCleaning up..." && rm -r "$tmpdir";;
+	# 	[Nn]) return;;
+	# esac
 }
 
 dnxconv(){
@@ -243,6 +231,7 @@ se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind '
 ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a config file
 xo() { file=$(fd -tf . ~ | fzf) && xdg-open "$file" ;} # xdg-open a file
 ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # xdg-open a file
+ff() { fd --max-depth=8 -td . ~ | fzf --bind 'enter:become(lfpv {})' ;} # navigate to folder and open lf
 
 eval "$(starship init zsh)"
 gato

@@ -17,6 +17,8 @@ https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
 https://schopenhaueronmars.com/feed/ "Blog" "philosophy"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
 https://nautil.us/feed/ "Magazine" "science" "culture" "philosophy"
+https://www.parapraxismagazine.com/articles?format=rss "Magazine" "psychology" "~Parapraxis"
+https://access.acast.com/rss/60e8deaefb090f0013116d69/ "Podcast" "psychology"
 https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology"
 https://feeds.fireside.fm/psych/rss "Podcast" "psychology" #Psych - Paul Bloom & David Pizarro
 https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
@@ -48,6 +50,7 @@ https://youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfew "YouTub
 https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
 
 "query:Miscellanea:tags # \"misc\""
+https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
 https://feeds.megaphone.fm/VMP7924981569 "Podcast" "history" #Criminal
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
