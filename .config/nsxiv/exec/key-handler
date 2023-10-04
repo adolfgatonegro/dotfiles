@@ -1,4 +1,5 @@
 #!/bin/sh
 case "$1" in
-	"C-w")	while read file; do xwallpaper --zoom "$file" & done ;;
+	"C-w") while read file; do xwallpaper --zoom "$file" & done ;;
+	"C-d") while read file; do mv -vf "$file" "$HOME/.local/share/Trash/files/" & done ;;
 esac
