@@ -183,7 +183,6 @@ map c
 map d
 map e
 map f
-map n
 map q
 map t
 map w
@@ -201,8 +200,8 @@ map <c-r> reload
 map H top
 map L bottom
 map x $$f
-map <enter> $$SHELL
-map S shellcmd
+map <enter> open
+map S $$SHELL
 map q quit
 map Q quit
 map <space> :toggle; down
