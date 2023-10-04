@@ -8,35 +8,32 @@ https://suckless.org/atom.xml "Updates" "tech" "linux"
 https://jonathanhaidt.substack.com/feed "Blog" "psychology" "~After Babel | Jonathan Haidt"
 https://www.gleech.org/feed.xml "Blog" "psychology"
 https://backtohumanity.substack.com/feed "Blog" "philosophy"
-https://duncanreyburn.substack.com/feed "Blog" "philosophy"
+https://duncanreyburn.substack.com/feed "Blog" "philosophy" "psychology" "science"
+https://www.experimental-history.com/feed "Blog" "philosophy"
 https://fakenous.substack.com/feed "Blog" "philosophy" "politics"
 https://magnusvinding.com/feed/ "Blog" "philosophy"
 https://www.metaphysicalexile.com/feeds/posts/default "Blog" "philosophy"
-https://thelivingphilosophy.substack.com/feed "Blog" "philosophy"
-https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
 https://schopenhaueronmars.com/feed/ "Blog" "philosophy"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
-https://nautil.us/feed/ "Magazine" "science" "culture" "philosophy"
-https://www.parapraxismagazine.com/articles?format=rss "Magazine" "psychology" "~Parapraxis"
+https://thelivingphilosophy.substack.com/feed "Blog" "philosophy"
+https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
 https://access.acast.com/rss/60e8deaefb090f0013116d69/ "Podcast" "psychology"
 https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology"
 https://feeds.fireside.fm/psych/rss "Podcast" "psychology" #Psych - Paul Bloom & David Pizarro
 https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
 https://feeds.libsyn.com/474285/rss "Podcast" "psychology" #Very Bad Wizards
-https://www.youtube.com/feeds/videos.xml?channel_id=UCK-kLrW3koHSlaD2CP9V27w "Podcast" "psychology" #Talking Therapy
-https://www.reddit.com/r/AcademicPsychology.rss "Reddit" "aggregators" "psychology" "~r/AcademicPsychology"
-https://www.reddit.com/r/psychology.rss "Reddit" "aggregators" "psychology" "~r/psychology"
+https://reddit.com/r/AcademicPsychology.rss "Reddit" "aggregators" "psychology" "~r/AcademicPsychology"
+https://reddit.com/r/psychology.rss "Reddit" "aggregators" "psychology" "~r/psychology"
 https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
 https://youtube.com/feeds/videos.xml?channel_id=UCqos1tl0RntucGGtPXNxkkA "YouTube" "philosophy" #Eternalised
-https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTube" "culture" "politics" #Think That Through
+https://youtube.com/feeds/videos.xml?channel_id=UCqX3KQWXJll7_6orfHFuqBQ "YouTube" "psychology" #Heidi Priebe
+https://youtube.com/feeds/videos.xml?channel_id=UCK-kLrW3koHSlaD2CP9V27w "YouTube" "psychology" #Talking Therapy
+https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTube" "philosophy" #Think That Through
 
 "query:Science & Technology:tags # \"tech\""
-https://sneak.berlin/feed.xml "Blog" "tech"
 https://garymarcus.substack.com/feed "Blog" "ai" "~Gary Marcus"
+https://sneak.berlin/feed.xml "Blog" "tech"
 https://www.piratewires.com/feed "Blog" "tech"
-https://unfashionable.substack.com/feed "Blog" "tech" "culture"
-#https://hnrss.org/frontpage?link=comments "HN" "aggregators" "tech" "~Hacker News frontpage"
-https://www.bleepingcomputer.com/feed/ "News" "infosec" "tech"
 https://feeds.buzzsprout.com/1004689.rss "Podcast" "tech" #Tech Won't Save Us
 https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
 https://youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "YouTube" "tech" #Level1Techs
@@ -45,9 +42,6 @@ https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTub
 https://youtube.com/feeds/videos.xml?channel_id=UCMLtBahI5DMrt0NPvDSoIRQ "YouTube" "tech" "ai" #Machine Learning Street Talk
 https://youtube.com/feeds/videos.xml?channel_id=UCLB7AzTwc6VFZrBsO2ucBMg "YouTube" "tech" "ai" #Robert Miles
 https://youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfew "YouTube" "tech" "ai" #Yannic Kilcher
-
-"query:Formula One:tags # \"F1\""
-https://feeds.bbci.co.uk/sport/formula1/rss.xml "News" "F1"
 
 "query:Miscellanea:tags # \"misc\""
 https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"
