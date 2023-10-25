@@ -42,15 +42,18 @@ call plug#begin('$XDG_CONFIG_HOME/vim/plugged')
 	Plug 'tpope/vim-sensible'
 	Plug 'tpope/vim-commentary'
 	Plug 'ap/vim-css-color'
-	Plug 'junegunn/fzf'
-	Plug 'junegunn/fzf.vim'
+	" Plug 'junegunn/fzf'
+	" Plug 'junegunn/fzf.vim'
 	Plug 'itchyny/lightline.vim'
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'preservim/nerdtree'
-	Plug 'lervag/vimtex', { 'for': 'tex' }
+	Plug 'voldikss/vim-floaterm'
+	" Plug 'preservim/nerdtree'
+	" Plug 'lervag/vimtex', { 'for': 'tex' }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
 	Plug 'SirVer/ultisnips'
-	Plug 'adolfgatonegro/latex-snippets-vim'
+	Plug 'junegunn/goyo.vim'
+	Plug 'junegunn/limelight.vim'
+	" Plug 'adolfgatonegro/latex-snippets-vim'
 call plug#end()
 
 " colours --------------------------------------------------------------------
@@ -73,6 +76,7 @@ set tabstop=4
 set shiftwidth=4
 set softtabstop=0 noexpandtab
 set showtabline=1
+set noshowmode
 set hlsearch
 set ignorecase
 set confirm
@@ -83,6 +87,11 @@ set wildmode=longest:full,full
 set wildignorecase
 set scrolloff=10
 set hidden
+set spelllang=en_gb,es,fr,it
+set textwidth=0
+set wrapmargin=0
+set wrap
+set linebreak
 
 set list
 set listchars=tab:>-
@@ -133,14 +142,14 @@ xnoremap < <gv
 nnoremap gV `[v`]
 
 " spell check
-nnoremap <leader>sps :setlocal spell! spelllang=es_es<CR>
-nnoremap <leader>spe :setlocal spell! spelllang=en_gb<CR>
+nnoremap <leader>sp :setlocal spell!<CR>
 
 " nerdtree
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+" nnoremap <leader>n :NERDTreeToggle<CR>
+" nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-n> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " split navigation
 nnoremap <silent> <C-k> <C-w>k
@@ -179,18 +188,31 @@ vnoremap * "zy:let @/=@z<C-r>n<CR>
 xnoremap <S-Tab> :s/\%V/0<C-V><Tab>/<CR>gvg<C-A>gv:retab<Esc>gvI<C-G>u<Esc>gv/ <CR>:s/\%V /./<CR>
 
 " vimtex ---------------------------------------------------------------------
-let g:tex_flavor = 'latex'
-let g:vimtex_view_method = 'zathura'
+" let g:tex_flavor = 'latex'
+" let g:vimtex_view_method = 'zathura'
 
 " ultisnips ------------------------------------------------------------------
 let g:UltiSnipsExpandTrigger = '<Tab>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
 let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-" fzf -------------------------------------------------------------------------
-map <leader>f :Files ~<CR>
-map <leader>F :Files %:h<CR>
-map <leader>o :Buffers<CR>
+" vim-floaterm ---------------------------------------------------------------
+let g:floaterm_width = 0.8
+let g:floaterm_height = 0.8
+let g:floaterm_wintype = 'float'
+let g:floaterm_opener = 'edit'
+
+map <leader>f :FloatermNew lf<CR>
+map <leader>sf :FloatermNew --wintype=split --height=0.5 --opener=split lf<CR>
+map <leader>vf :FloatermNew --wintype=vsplit --width=0.5 --opener=vsplit lf<CR>
+
+" goyo and limelight ---------------------------------------------------------
+let g:limelight_conceal_ctermfg = 237
+let g:limelight_conceal_guifg = '#414158'
+
+nnoremap <silent> <leader>g :Goyo<CR>
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
 " misc  ----------------------------------------------------------------------
 " toggle line numbers
@@ -212,12 +234,21 @@ augroup end
 " set line width for md, txt, tex
 augroup text_file_width
 	autocmd!
-	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex setlocal textwidth=78
+	autocmd BufNewFile,BufRead *.md,*.MD,*.markdown,*.txt,*.tex set spell
 augroup end
 
-" set up templates for some files
-augroup templates
-	autocmd!
-	autocmd BufNewFile *.sh 0r $XDG_CONFIG_HOME/vim/templates/skeleton.sh | execute "normal! G"
-	autocmd BufNewFile *.tex 0r $XDG_CONFIG_HOME/vim/templates/skeleton.tex | execute "normal! G"
-augroup end
+" replace netrw with lf - taken from lf.vim because I don't actually want the rest of the functionality
+function! OpenLfIn(path, edit_cmd)
+  let currentPath = shellescape(isdirectory(a:path) ? fnamemodify(expand(a:path), ":p:h") : expand(a:path))
+  let s:edit_cmd = a:edit_cmd
+  if exists(":FloatermNew")
+    exec 'FloatermNew --autoinsert=true lf -- ' . currentPath
+  else
+    echoerr "Failed to open a floating terminal. Make sure `voldikss/vim-floaterm` is installed."
+  endif
+endfun
+
+augroup replace_netrw_lf
+    autocmd VimEnter * silent! autocmd! FileExplorer
+    autocmd BufEnter * let s:buf_path = expand("%") | let s:default_edit_cmd = 'edit'| if isdirectory(s:buf_path) | bdelete! | call timer_start(100, {->OpenLfIn(s:buf_path, s:default_edit_cmd)}) | endif
+  augroup end
