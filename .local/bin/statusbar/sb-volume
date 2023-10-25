@@ -7,11 +7,11 @@ case $BLOCK_BUTTON in
 	5) volctl -d 2 ;;
 esac
 
-if [ "$(pamixer --sink 40 --get-mute)" = true ]; then
+if [ "$(pamixer --get-mute)" = true ]; then
     printf "%s %s \nn" "🗙"
     exit
 fi
 
 icon=""
-vol="$(pamixer --sink 40 --get-volume-human)"
+vol="$(pamixer --get-volume-human)"
 printf "%s %s \\n" "$icon $vol"

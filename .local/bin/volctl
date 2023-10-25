@@ -7,11 +7,15 @@
 msgId="666999"
 
 # Change the volume using pamixer
-pamixer --sink 40 $@
+# defaultSink=$(pamixer --get-default-sink | awk 'FNR==2{print $1}')
+# pamixer --sink $defaultSink $@
+pamixer $@
 
 # Query amixer for the current volume and whether or not the speaker is muted
-volume="$(pamixer --sink 40 --get-volume)"
-mute="$(pamixer --sink 40 --get-mute)"
+# volume="$(pamixer --sink $defaultSink --get-volume)"
+# mute="$(pamixer --sink $defaultSink --get-mute)"
+volume="$(pamixer --get-volume)"
+mute="$(pamixer --get-mute)"
 if [[ $volume == 0 || "$mute" == "true" ]]; then
     # Show the sound muted notification
     dunstify -a "volumectl" -u low -i audio-volume-muted -r "$msgId" "Volume" "Volume is muted" 
