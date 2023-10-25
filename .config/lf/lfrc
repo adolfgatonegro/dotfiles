@@ -107,6 +107,15 @@ cmd delete ${{
 	[ $ans = "y" ] && rm -rf -- $fx
 }}
 
+cmd empty ${{
+	set -f
+	prompt="Empty trash? [y/N] "
+	clear; tput cup $((($(tput lines)-2)/2)) 0; tput bold
+	printf "%*s" $((($(tput cols)+${#prompt})/2)) "$prompt"
+	read ans
+	[ $ans = "y" ] && rm -rf ~/.local/share/Trash/files/*
+}}
+
 # shell but with output shown
 cmd shellcmd ${{
 	printf "Shell command: \n"
@@ -194,7 +203,7 @@ map pp paste
 map po paste-overwrite
 map Y cut
 map dd trash
-map D delete
+# map D delete
 map e $$EDITOR "$f"
 map <c-r> reload
 map H top
@@ -202,7 +211,7 @@ map L bottom
 map x $$f
 map <enter> open
 map S $$SHELL
-map q quit
+map <c-q> quit
 map Q quit
 map <space> :toggle; down
 map <esc> :clear; unselect

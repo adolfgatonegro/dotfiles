@@ -37,6 +37,7 @@ case "$(file --dereference --brief --mime-type -- "$1")" in
 		image "$CACHE.jpg" "$2" "$3" "$4" "$5" "$1" ;;
 	image/svg+xml) bat --terminal-width "$(($4-2))" -p -f "$1" ;;
 	image/x-xcf) bat --terminal-width "$(($4-2))" -p -f "$1" ;;
+	image/vnd.adobe.photoshop) bat --terminal-width "$(($4-2))" -p -f "$1" ;;
 	image/*) image "$1" "$2" "$3" "$4" "$5" "$1" ;;
 	text/html) bat --terminal-width "$(($4-2))" -p -f "$1" ;;
 	text/troff) man ./ "$1" | col -b ;;
