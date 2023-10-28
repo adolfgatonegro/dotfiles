@@ -92,18 +92,18 @@ set textwidth=0
 set wrapmargin=0
 set wrap
 set linebreak
+set autochdir
 
-set list
-set listchars=tab:>-
-set listchars+=space:•
-set listchars+=trail:⋄
+" set list
+" set listchars=tab:>-
+" set listchars+=space:•
+" set listchars+=trail:⋄
 
 set splitbelow splitright
 
 :autocmd InsertEnter,InsertLeave * set cursorline!
 
 let mapleader="\<Space>"
-let maplocalleader=","
 
 " coc.nvim -------------------------------------------------------------------
 let g:coc_global_extensions = ['coc-pyright', 'coc-sh', 'coc-vimtex', 'coc-css']
@@ -144,13 +144,6 @@ nnoremap gV `[v`]
 " spell check
 nnoremap <leader>sp :setlocal spell!<CR>
 
-" nerdtree
-" nnoremap <leader>n :NERDTreeToggle<CR>
-" nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-n> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
-
 " split navigation
 nnoremap <silent> <C-k> <C-w>k
 nnoremap <silent> <C-j> <C-w>j
@@ -165,10 +158,10 @@ nnoremap <silent> <C-right> :vertical resize +2<CR>
 
 " buffers
 nnoremap <silent> <leader>e :enew<CR>
-nnoremap <silent> <leader>bl :ls<CR>
-nnoremap <silent> <leader>l :bnext<CR>
-nnoremap <silent> <leader>h :bprevious<CR>
-nnoremap <silent> <leader>q :bp <BAR> bd #<CR>
+nnoremap <silent> <leader>bb :ls<CR>
+nnoremap <silent> <leader>bn :bnext<CR>
+nnoremap <silent> <leader>bp :bprevious<CR>
+nnoremap <silent> <leader>bk :bd<CR>
 nnoremap <silent> <leader>bs :new<CR>
 nnoremap <silent> <leader>bv :vnew<CR>
 
@@ -180,6 +173,9 @@ nnoremap <silent> <leader>tt :tabnew<CR>
 " write/exit
 nnoremap <silent> <C-q> :x<CR>
 nnoremap <silent> <C-s> :up<CR>
+
+" find file
+nnoremap <leader>. :find 
 
 " search for selection
 vnoremap * "zy:let @/=@z<C-r>n<CR>

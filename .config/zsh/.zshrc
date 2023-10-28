@@ -8,7 +8,7 @@ export HISTCONTROL=ignoreboth:erasedups
 export HISTSIZE=10000
 export SAVEHIST=$HISTSIZE
 export HISTFILE="$ZDOTDIR/history"
-export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
+export HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|nvim(| *)|.*)|linkhandler(| *)|trem(|*)|mcd(|*)|mpv(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
 export ZSH_AUTOSUGGEST_STRATEGY=(match_prev_cmd completion history)
 export ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt INC_APPEND_HISTORY
@@ -17,6 +17,7 @@ setopt HIST_IGNORE_ALL_DUPS
 setopt MENUCOMPLETE
 setopt EXTENDEDGLOB
 setopt AUTOCD
+
 zle_highlight=("paste:none")
 
 # Completion 
@@ -227,10 +228,10 @@ _fzf_compgen_path() { fd --type f . "$1" } # set default path for completion
 _fzf_compgen_dir() { fd --type d . "$1" }
 bindkey "^[g" fzf-cd-widget
 
-se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a script from .local/bin
-ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # edit a config file
+se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a script from .local/bin
+ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a config file
 xo() { file=$(fd -tf . ~ | fzf) && xdg-open "$file" ;} # xdg-open a file
-ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become(vim {})' ;} # xdg-open a file
+ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # xdg-open a file
 ff() { fd --max-depth=8 -td . ~ | fzf --bind 'enter:become(lfpv {})' ;} # navigate to folder and open lf
 
 eval "$(starship init zsh)"

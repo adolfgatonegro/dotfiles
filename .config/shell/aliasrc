@@ -57,7 +57,8 @@ alias \
 # non-hipster replacements
 alias \
 	nsxiv="nsxiv_rifle" \
-	lf="lfpv"
+	lf="lfpv" \
+	vim="nvim"
 
 # git
 alias \
@@ -75,8 +76,8 @@ alias \
 
 # shortcuts
 alias \
-	md="cd $HOME/docs/notes && ls" \
-	bme="vim $HOME/docs/bmks/urls" \
+	md="cd $HOME/documents/notes && ls" \
+	bme="$EDITOR $HOME/documents/bmks/urls" \
 	bmd="bmks del" \
 	cf="cd ~/.config && ls" \
 	lb="cd ~/.local/bin && ls" \
