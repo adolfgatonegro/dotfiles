@@ -1,12 +1,17 @@
 -- neovim config
 -- gatoneg.ro
 
+local call = vim.call
+local cmd = vim.cmd
+local g = vim.g
+local opt = vim.opt
+
 -------------
 -- PLUGINS --
 -------------
 
 -- Clone vim-plug if it doesn't exist already
-vim.cmd([[
+cmd([[
 let data_dir = has('nvim') ? stdpath('data') . '/site' : '$XDG_CONFIG_HOME/vim'
 if empty(glob(data_dir . '/autoload/plug.vim'))
 	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -16,14 +21,13 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | 
 ]])
 
 -- Set things up to make calling plugins easier
-local call = vim.call
-local cmd = vim.cmd
 local Plug = vim.fn['plug#']
 local PATH = "$XDG_CONFIG_HOME/nvim/plugged"
 
 -- Call plugins
 call('plug#begin', PATH)
 	Plug 'ap/vim-css-color'
+	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
 	Plug 'folke/which-key.nvim'
 	Plug 'jiangmiao/auto-pairs'
@@ -37,7 +41,32 @@ call'plug#end'
 
 -- Plugin configuration
 
--- tokyonight colourscheme setup
+-- mini.starter
+local header_art =
+[[
+         /\_/\
+    ____/ o o \    ┏┓┏┓╋┏┓┏┓┏┓┏┓┏┓┏┓
+  /~____  =ø= /    ┗┫┗┻┗┗┛┛┗┗ ┗┫┛ ┗┛
+ (______)__m_m)     ┛          ┛
+]]
+
+local starter = require('mini.starter')
+starter.setup({
+	items = {
+		starter.sections.recent_files(5, false),
+		starter.sections.builtin_actions(),
+	},
+	content_hooks = {
+		starter.gen_hook.adding_bullet("» "),
+		starter.gen_hook.indexing('all', { 'Builtin actions' }),
+		starter.gen_hook.padding(3, 2),
+		starter.gen_hook.aligning('center', 'center'),
+	},
+	header = header_art,
+	footer = '',
+})
+
+-- Tokyo Night colourscheme
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
@@ -55,23 +84,23 @@ require("tokyonight").setup({
 	end
 })
 
--- Set neovim colourscheme
-vim.cmd[[colorscheme tokyonight]]
+-- Neovim colourscheme
+cmd[[colorscheme tokyonight]]
 
--- Set lualine colourscheme
-require('lualine').setup {
+-- lualine colourscheme
+require('lualine').setup({
 	options = {
 		theme = 'tokyonight',
 		component_separators = {},
 		section_separators = {},
-	}
-}
+	},
+})
 
 -- Set conceal colour for limelight
-vim.g.limelight_conceal_ctermfg = 237
-vim.g.limelight_conceal_guifg = "#414158"
+g.limelight_conceal_ctermfg = 237
+g.limelight_conceal_guifg = "#414158"
 
--- Configure Goyo + Limelight
+-- Goyo + limelight
 local goyo_group = vim.api.nvim_create_augroup("GoyoGroup", { clear = true })
 vim.api.nvim_create_autocmd("User", {
     desc = "Hide lualine on goyo enter",
@@ -79,9 +108,9 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "GoyoEnter",
     callback = function()
         require("lualine").hide()
-		vim.cmd("Limelight")
+		cmd("Limelight")
 		-- Hide weird line at the bottom in focus mode
-		vim.cmd("highlight StatusLineNC ctermfg=white")
+		cmd("highlight StatusLineNC ctermfg=white")
     end,
 })
 
@@ -91,13 +120,13 @@ vim.api.nvim_create_autocmd("User", {
     pattern = "GoyoLeave",
     callback = function()
         require("lualine").hide({ unhide = true })
-		vim.cmd("Limelight!")
+		cmd("Limelight!")
     end,
 })
 
--- nvim-tree config
-vim.g.loaded_netrw = 1 -- Disable netrw
-vim.g.loaded_netrwPlugin = 1
+-- nvim-tree
+g.loaded_netrw = 1
+g.loaded_netrwPlugin = 1
 
 require("nvim-tree").setup({
 	sync_root_with_cwd = true,
@@ -105,12 +134,6 @@ require("nvim-tree").setup({
 	actions = {
 		open_file = { quit_on_open = true },
 	},
-})
-
--- which-key
-require("which-key").setup({
-	window = { padding = { 1, 1, 1, 1 } },
-	layout = { height = { min = 4, max = 10 } }
 })
 
 -- Quit nvim if nvim-tree is the last window
@@ -129,6 +152,12 @@ vim.api.nvim_create_autocmd("QuitPre", {
       for _, w in ipairs(invalid_win) do vim.api.nvim_win_close(w, true) end
     end
   end
+})
+
+-- which-key
+require("which-key").setup({
+	window = { padding = { 1, 1, 1, 1 } },
+	layout = { height = { min = 4, max = 10 } }
 })
 
 -------------------------
@@ -155,7 +184,7 @@ local options = {
 	numberwidth = 4,
 	scrolloff = 10,
 	shiftwidth = 4,
-	showtabline = 1,
+	showtabline = 0,
 	showmode = false,
 	softtabstop = 0,
 	spelllang = "en_gb,es,fr,it",
@@ -173,12 +202,12 @@ local options = {
 	wrapmargin = 0,
 }
 
-vim.opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
-vim.opt.fillchars:append({ eob = " " }) -- remove the ~ from end of buffer
-vim.opt.shortmess:append("c")
+opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
+opt.fillchars:append({ eob = " " }) -- remove the ~ from end of buffer
+opt.shortmess:append("c")
 
 for k, v in pairs(options) do
-	vim.opt[k] = v
+	opt[k] = v
 end
 
 ------------------
@@ -198,8 +227,8 @@ local k = map
 
 -- Space as leader
 k("", "<Space>", "<Nop>")
-vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+g.mapleader = " "
+g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -295,7 +324,7 @@ local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
 -- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
 autocmd('VimResized', {
   callback = function()
-    vim.cmd('tabdo wincmd =')
+    cmd('tabdo wincmd =')
   end,
   desc = "Auto resize windows when size changes",
 })
@@ -340,7 +369,7 @@ autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }
   group = 'GainFocus',
   callback = function()
     if vim.o.nu and vim.api.nvim_get_mode().mode ~= 'i' then
-      vim.opt.relativenumber = true
+      opt.relativenumber = true
     end
   end,
 })
@@ -350,8 +379,8 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
   group = 'GainFocus',
   callback = function()
     if vim.o.nu then
-      vim.opt.relativenumber = false
-      vim.cmd('redraw')
+      opt.relativenumber = false
+      cmd('redraw')
     end
   end,
 })
