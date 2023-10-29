@@ -217,12 +217,13 @@ end
 -- Custom key mapping
 -- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
 map = function(mode, lhs, rhs, opts)
-  local options = { noremap = true, silent = true }
-  if opts then
-    options = vim.tbl_extend("force", options, opts)
-  end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
 end
+
 local k = map
 
 -- Space as leader
