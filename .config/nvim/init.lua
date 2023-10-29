@@ -248,7 +248,7 @@ k("n", "<leader>bd", ":bd<CR>", { desc = "Delete buffer" } )
 k("n", "<leader>bl", ":bnext<CR>", { desc = "Next buffer" } )
 k("n", "<leader>bh", ":bprevious<CR>", { desc = "Previous buffer" } )
 k("n", "<leader>bs", ":new<CR>", { desc = "New horizontal split" } )
-k("n", "<leader>bv", ":vnew<CR>", { desc = "New vertical buffer" } )
+k("n", "<leader>bv", ":vnew<CR>", { desc = "New vertical split" } )
 
 -- Edit/reload config
 k("n", "<leader>ce", ":e $MYVIMRC<CR>", { desc = "Edit nvim config" } )
