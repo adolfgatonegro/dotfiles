@@ -25,10 +25,13 @@ local PATH = "$XDG_CONFIG_HOME/nvim/plugged"
 call('plug#begin', PATH)
 	Plug 'ap/vim-css-color'
 	Plug 'folke/tokyonight.nvim'
+	Plug 'folke/which-key.nvim'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'junegunn/goyo.vim'
 	Plug 'junegunn/limelight.vim'
 	Plug 'nvim-lualine/lualine.nvim'
+	Plug 'nvim-tree/nvim-tree.lua'
+	Plug 'nvim-tree/nvim-web-devicons'
 	Plug 'tpope/vim-commentary'
 call'plug#end'
 
@@ -52,9 +55,16 @@ require("tokyonight").setup({
 	end
 })
 
+-- Set neovim colourscheme
+vim.cmd[[colorscheme tokyonight]]
+
 -- Set lualine colourscheme
 require('lualine').setup {
-  options = { theme = 'tokyonight' }
+	options = {
+		theme = 'tokyonight',
+		component_separators = {},
+		section_separators = {},
+	}
 }
 
 -- Set conceal colour for limelight
@@ -85,14 +95,48 @@ vim.api.nvim_create_autocmd("User", {
     end,
 })
 
--- Set neovim colourscheme
-vim.cmd[[colorscheme tokyonight]]
+-- nvim-tree config
+vim.g.loaded_netrw = 1 -- Disable netrw
+vim.g.loaded_netrwPlugin = 1
+
+require("nvim-tree").setup({
+	sync_root_with_cwd = true,
+	respect_buf_cwd = true,
+	actions = {
+		open_file = { quit_on_open = true },
+	},
+})
+
+-- which-key
+require("which-key").setup({
+	window = { padding = { 1, 1, 1, 1 } },
+	layout = { height = { min = 4, max = 10 } }
+})
+
+-- Quit nvim if nvim-tree is the last window
+vim.api.nvim_create_autocmd("QuitPre", {
+  callback = function()
+    local invalid_win = {}
+    local wins = vim.api.nvim_list_wins()
+    for _, w in ipairs(wins) do
+      local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
+      if bufname:match("NvimTree_") ~= nil then
+        table.insert(invalid_win, w)
+      end
+    end
+    if #invalid_win == #wins - 1 then
+      -- Should quit, so we close all invalid windows.
+      for _, w in ipairs(invalid_win) do vim.api.nvim_win_close(w, true) end
+    end
+  end
+})
 
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
 local options = {
 	autochdir = true,
+	background = "dark",
 	backup = true,
 	clipboard = "unnamedplus",
 	cmdheight = 1,
@@ -100,8 +144,9 @@ local options = {
 	confirm = true,
 	expandtab = false,
 	hidden = true,
-	hlsearch = false,
+	hlsearch = true,
 	ignorecase = true,
+	incsearch = true,
 	linebreak = true,
 	-- list = true,
 	-- listchars = { tab = ">-", trail = "⋄", nbsp = "•", eol = "↴" },
@@ -119,6 +164,8 @@ local options = {
 	tabstop = 4,
 	termguicolors = true,
 	textwidth = 0,
+	timeout = true,
+	timeoutlen = 500,
 	undofile = true,
 	wildignorecase = true,
 	wildmode = "longest:full,full",
@@ -137,12 +184,20 @@ end
 ------------------
 -- KEY BINDINGS --
 ------------------
-local opts = { noremap = true, silent = true }
-local term_opts = { silent = true }
-local k = vim.api.nvim_set_keymap
+
+-- Custom key mapping
+-- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+map = function(mode, lhs, rhs, opts)
+  local options = { noremap = true, silent = true }
+  if opts then
+    options = vim.tbl_extend("force", options, opts)
+  end
+  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+local k = map
 
 -- Space as leader
-k("", "<Space>", "<Nop>", opts)
+k("", "<Space>", "<Nop>")
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
@@ -156,69 +211,77 @@ vim.g.maplocalleader = " "
 
 -- ########## Normal ##########
 
-k("n", "Q", "<nop>", opts)
+k("n", "Q", "<Nop>") -- Bye-bye, Ex mode
 
 -- Buffers
-k("n", "<leader>bd", ":bd<CR>", opts )
-k("n", "<leader>bl", ":bnext<CR>", opts )
-k("n", "<leader>bh", ":bprevious<CR>", opts )
-k("n", "<leader>bs", ":new<CR>", opts )
-k("n", "<leader>bv", ":vnew<CR>", opts )
+k("n", "<leader>bd", ":bd<CR>", { desc = "Delete buffer" } )
+k("n", "<leader>bl", ":bnext<CR>", { desc = "Next buffer" } )
+k("n", "<leader>bh", ":bprevious<CR>", { desc = "Previous buffer" } )
+k("n", "<leader>bs", ":new<CR>", { desc = "New horizontal split" } )
+k("n", "<leader>bv", ":vnew<CR>", { desc = "New vertical buffer" } )
 
 -- Edit/reload config
-k("n", "<leader>ce", ":e $MYVIMRC<CR>", opts)
-k("n", "<leader>cr", ":so $MYVIMRC<CR>", opts)
+k("n", "<leader>ce", ":e $MYVIMRC<CR>", { desc = "Edit nvim config" } )
+k("n", "<leader>cr", ":so $MYVIMRC<CR>", { desc = "Source nvim config" } )
 
 -- Find file
-k("n", "<leader>.", ":find ", { noremap = true } )
+k("n", "<leader>.", ":find ", { silent = false, desc = "Find file" } )
+
+-- Go to last change in current buffer
+k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
 
 -- Line navigation
-k("n", "l", "<Space>", opts)
-k("n", "h", "<Backspace>", opts)
-k("n", "j", "gj", opts)
-k("n", "k", "gk", opts)
-k("n", "H", "^", opts)
-k("n", "L", "$", opts)
+k("n", "l", "<Space>")
+k("n", "h", "<Backspace>")
+k("n", "j", "gj")
+k("n", "k", "gk")
+k("n", "H", "^")
+k("n", "L", "$")
 
--- Toggle search highlighting
-k("n", "<leader>*", ":set hlsearch!<CR>", opts)
+-- Go to URL under cursor
+k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
 -- Spell check
-k("n", "<leader>sp", ":setlocal spell!<CR>", opts)
+k("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spell checking" } )
 
--- Split navigation
-k("n", "<C-h>", "<C-w>h", opts)
-k("n", "<C-j>", "<C-w>j", opts)
-k("n", "<C-k>", "<C-w>k", opts)
-k("n", "<C-l>", "<C-w>l", opts)
+-- Splits - better navigation
+k("n", "<C-h>", "<C-w>h")
+k("n", "<C-j>", "<C-w>j")
+k("n", "<C-k>", "<C-w>k")
+k("n", "<C-l>", "<C-w>l")
 
--- Split resizing
-k("n", "<C-Up>", ":res +2<CR>", opts)
-k("n", "<C-Down>", ":res -2<CR>", opts)
-k("n", "<C-Left>", ":vert res +2<CR>", opts)
-k("n", "<C-Right>", ":vert res -2<CR>", opts)
+-- Splits - resize with arrow keys
+k("n", "<C-Up>", ":res +2<CR>")
+k("n", "<C-Down>", ":res -2<CR>")
+k("n", "<C-Left>", ":vert res +2<CR>")
+k("n", "<C-Right>", ":vert res -2<CR>")
+
+-- Toggle key bindings
+k("n", "<leader>tg", ":Goyo<CR>", { desc = "Toggle focus mode" })
+k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
+k("n", "<leader>tt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" } )
 
 -- Write and exit
-k("n", "<C-q>", ":x<CR>", opts)
-k("n", "<C-s>", ":up<CR>", opts)
-
--- Goyo and Limelight
-k("n", "<leader>g", ":Goyo<CR>", opts)
+k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
+k("n", "<C-s>", ":up<CR>", { desc = "Write file" } )
 
 -- ########## Visual ##########
 
+-- Paste replace visual selection without copying it
+k("v", "p", '"_dP')
+
 -- Search for selection
-k("v", "*", "\"zy:let @/=@z<C-r>n<CR>", opts)
+k("v", "*", "\"zy:let @/=@z<C-r>n<CR>", { desc = "Search for selection" } )
 
 -- ########## Visual Block ##########
 
 -- Move selected block up/down
-k("x", "J", ":m '>+1<CR>gv-gv", opts)
-k("x", "K", ":m '<-2<CR>gv-gv", opts)
+k("x", "J", ":m '>+1<CR>gv-gv")
+k("x", "K", ":m '<-2<CR>gv-gv")
 
 -- Indent selected block
-k("x", ">", ">gv", opts)
-k("x", "<", "<gv", opts)
+k("x", ">", ">gv")
+k("x", "<", "<gv")
 
 ------------------
 -- AUTOCOMMANDS --
@@ -227,6 +290,15 @@ k("x", "<", "<gv", opts)
 -- Define autocommands with Lua APIs
 local augroup = vim.api.nvim_create_augroup   -- Create/get autocommand group
 local autocmd = vim.api.nvim_create_autocmd   -- Create autocommand
+
+-- Automatically rebalance windows on vim resize
+-- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+autocmd('VimResized', {
+  callback = function()
+    vim.cmd('tabdo wincmd =')
+  end,
+  desc = "Auto resize windows when size changes",
+})
 
 -- Enable spell checker for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
@@ -239,7 +311,7 @@ augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
   group = 'YankHighlight',
   callback = function()
-    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '1000' })
+    vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '500' })
   end
 })
 
@@ -260,11 +332,26 @@ autocmd({ "InsertEnter", "InsertLeave"}, {
 	command = [[set cursorline!]]
 })
 
--- Toggle relative line numbers when changing modes
-autocmd({ "BufEnter", "InsertLeave", "FocusGained", "WinEnter" }, {
-	command = [[if &nu && mode() != "i" | set rnu | endif]]
-})
-autocmd({ "BufLeave", "InsertEnter", "FocusLost", "WinLeave" }, {
-	command = [[if &nu | set nornu | endif]]
+-- Toggle relative numbers based on certain events
+-- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+augroup('GainFocus', { clear = true })
+autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }, {
+  pattern = '*',
+  group = 'GainFocus',
+  callback = function()
+    if vim.o.nu and vim.api.nvim_get_mode().mode ~= 'i' then
+      vim.opt.relativenumber = true
+    end
+  end,
 })
 
+autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, {
+  pattern = '*',
+  group = 'GainFocus',
+  callback = function()
+    if vim.o.nu then
+      vim.opt.relativenumber = false
+      vim.cmd('redraw')
+    end
+  end,
+})
