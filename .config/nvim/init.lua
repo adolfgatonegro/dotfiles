@@ -16,7 +16,6 @@ local opt = vim.opt
 -- Clone vim-plug if it doesn't exist already
 cmd([[
 let data_dir = stdpath('data') . '/site'
-
 if empty(glob(data_dir . '/autoload/plug.vim'))
 	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -95,8 +94,14 @@ cmd.colorscheme("tokyonight")
 require('lualine').setup({
 	options = {
 		theme = 'tokyonight',
-		component_separators = {},
-		section_separators = {},
+		component_separators = '',
+		section_separators = '',
+	},
+	sections = {
+		lualine_c = {'buffers'},
+	},
+	inactive_sections = {
+		lualine_c = {'buffers'},
 	},
 })
 
