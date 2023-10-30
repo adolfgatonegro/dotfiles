@@ -67,6 +67,7 @@ starter.setup({
 })
 
 -- Tokyo Night colourscheme
+-- TODO Spell checking highlight groups not working for some reason. Fix.
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
@@ -85,7 +86,7 @@ require("tokyonight").setup({
 })
 
 -- Neovim colourscheme
-cmd[[colorscheme tokyonight]]
+cmd.colorscheme("tokyonight")
 
 -- lualine colourscheme
 require('lualine').setup({
@@ -221,7 +222,7 @@ map = function(mode, lhs, rhs, opts)
 	if opts then
 		options = vim.tbl_extend("force", options, opts)
 	end
-	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+	vim.keymap.set(mode, lhs, rhs, options)
 end
 
 local k = map
@@ -333,7 +334,7 @@ autocmd('VimResized', {
 -- Enable spell checker for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.txt", "*.md", "*.tex" },
-	command = "setlocal spell"
+	command = "set spell"
 })
 
 -- Highlight on yank
