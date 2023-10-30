@@ -29,6 +29,7 @@ local Plug = vim.fn['plug#']
 -- Call plugins
 call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'ap/vim-css-color'
+	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
 	Plug 'folke/which-key.nvim'
@@ -68,8 +69,9 @@ starter.setup({
 	footer = '',
 })
 
--- Tokyo Night colourscheme
--- TODO Spell checking highlight groups not working for some reason. Fix.
+-- TokyoNight colourscheme
+-- FIXME Spellcheck doesn't work for some reason.
+-- Reverting https://github.com/folke/tokyonight.nvim/commit/fc7301 fixes it
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
@@ -163,6 +165,10 @@ vim.api.nvim_create_autocmd("QuitPre", {
   end
 })
 
+-- CtrlP
+g.ctrlp_user_command = "fd . -tf '%s'"
+g.ctrlp_match_window = 'max:20,results:20'
+
 -- which-key
 require("which-key").setup({
 	window = { padding = { 1, 1, 1, 1 } },
@@ -254,8 +260,8 @@ k("n", "Q", "<Nop>") -- Bye-bye, Ex mode
 
 -- Buffers
 k("n", "<leader>bd", ":bd<CR>", { desc = "Delete buffer" } )
-k("n", "<leader>bl", ":bnext<CR>", { desc = "Next buffer" } )
-k("n", "<leader>bh", ":bprevious<CR>", { desc = "Previous buffer" } )
+k("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" } )
+k("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" } )
 k("n", "<leader>bs", ":new<CR>", { desc = "New horizontal split" } )
 k("n", "<leader>bv", ":vnew<CR>", { desc = "New vertical split" } )
 
@@ -264,7 +270,12 @@ k("n", "<leader>ce", ":e $MYVIMRC<CR>", { desc = "Edit nvim config" } )
 k("n", "<leader>cr", ":so $MYVIMRC<CR>", { desc = "Source nvim config" } )
 
 -- Find file
-k("n", "<leader>.", ":find ", { silent = false, desc = "Find file" } )
+k("n", "<leader>.", ":find<Space>", { silent = false, desc = "Find file" } )
+
+-- CtrlP
+k("n", "<leader>pf", ":CtrlPCurW<CR>", { desc = "CtrlP in CWD" } )
+k("n", "<leader>pr", ":CtrlPMRU<CR>", { desc = "CtrlP recent files" } )
+k("n", "<leader>pb", ":CtrlPBuffer<CR>", { desc = "CtrlP buffers" } )
 
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
