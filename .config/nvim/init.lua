@@ -10,9 +10,13 @@ local opt = vim.opt
 -- PLUGINS --
 -------------
 
+-- Using vim-plug with a lua config:
+-- https://dev.to/vonheikemen/neovim-using-vim-plug-in-lua-3oom
+
 -- Clone vim-plug if it doesn't exist already
 cmd([[
-let data_dir = has('nvim') ? stdpath('data') . '/site' : '$XDG_CONFIG_HOME/vim'
+let data_dir = stdpath('data') . '/site'
+
 if empty(glob(data_dir . '/autoload/plug.vim'))
 	silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 endif
@@ -22,10 +26,9 @@ autocmd VimEnter * if len(filter(values(g:plugs), '!isdirectory(v:val.dir)')) | 
 
 -- Set things up to make calling plugins easier
 local Plug = vim.fn['plug#']
-local PATH = "$XDG_CONFIG_HOME/nvim/plugged"
 
 -- Call plugins
-call('plug#begin', PATH)
+call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'ap/vim-css-color'
 	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
