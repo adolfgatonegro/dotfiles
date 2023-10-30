@@ -276,6 +276,7 @@ k("n", "<leader>.", ":find<Space>", { silent = false, desc = "Find file" } )
 k("n", "<leader>pf", ":CtrlPCurW<CR>", { desc = "CtrlP in CWD" } )
 k("n", "<leader>pr", ":CtrlPMRU<CR>", { desc = "CtrlP recent files" } )
 k("n", "<leader>pb", ":CtrlPBuffer<CR>", { desc = "CtrlP buffers" } )
+k("n", "<leader>pm", ":CtrlPBookmarkDir<CR>", { desc = "CtrlP bookmarked directories" } )
 
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
