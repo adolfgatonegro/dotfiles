@@ -33,9 +33,10 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
 	Plug 'folke/which-key.nvim'
+	Plug ('gelguy/wilder.nvim', { ['do'] = cmd['UpdateRemotePlugins'] })
 	Plug 'jiangmiao/auto-pairs'
-	Plug 'junegunn/goyo.vim'
-	Plug 'junegunn/limelight.vim'
+	Plug ('junegunn/goyo.vim', { ['for'] = {'markdown', 'text', 'tex'} })
+	Plug ('junegunn/limelight.vim', { ['for'] = {'markdown', 'text', 'tex'} })
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'nvim-tree/nvim-tree.lua'
 	Plug 'nvim-tree/nvim-web-devicons'
@@ -167,13 +168,31 @@ vim.api.nvim_create_autocmd("QuitPre", {
 
 -- CtrlP
 g.ctrlp_user_command = "fd . -tf '%s'"
-g.ctrlp_match_window = 'max:20,results:20'
+g.ctrlp_match_window = 'order:ttb,max:10,results:20'
+g.ctrlp_line_prefix = ' '
 
 -- which-key
 require("which-key").setup({
 	window = { padding = { 1, 1, 1, 1 } },
 	layout = { height = { min = 4, max = 10 } }
 })
+
+-- wilder.nvim
+local wilder = require('wilder')
+wilder.setup({modes = {':', '/', '?'}})
+wilder.set_option('renderer', wilder.popupmenu_renderer(
+	wilder.popupmenu_border_theme({
+		border = 'none', --- added custom option in wilder/renderer/popupmenu_border_theme.vim
+		left = {' ', wilder.popupmenu_devicons()},
+		right = {' ', wilder.popupmenu_scrollbar()},
+		max_height = '25%',
+		min_width = '100%',
+		highlighter = wilder.basic_highlighter(),
+		highlights = {
+			accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#ff00aa'}}),
+		},
+	})
+))
 
 -------------------------
 -- BASIC CONFIGURATION --
@@ -311,6 +330,7 @@ k("n", "<C-Right>", ":vert res -2<CR>")
 k("n", "<leader>tg", ":Goyo<CR>", { desc = "Toggle focus mode" })
 k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
 k("n", "<leader>tt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" } )
+k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
 -- Write and exit
 k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
