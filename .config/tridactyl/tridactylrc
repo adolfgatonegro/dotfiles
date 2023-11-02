@@ -11,6 +11,10 @@ set newtab about:blank
 set modeindicator false
 set smoothscroll true
 set editorcmd $TERMINAL -e $EDITOR %f
+set hintfiltermode vimperator
+set hintchars 1234567890
+set allowautofocus false
+set completions.Bmark.autoselect false
 colourscheme gatonegro
 
 " Search Engines
@@ -30,6 +34,8 @@ set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
 bind go hint -W exclaim_quiet linkhandler
 bind gm hint -W exclaim_quiet $BROWSER -P Minimal --class="minimal"
 bind ge editor
+bind m fillcmdline bmarks
+bind M fillcmdline bmarks -t
 
 " Commands
 command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
