@@ -42,6 +42,7 @@ alias \
 	iv="imgview" \
 	cuetag="cuetag.sh" \
 	mpva="mpv --audio-display=no --no-video" \
+	o="xdg-open" \
 	z="zathura"
 
 # hipster coreutil replacements

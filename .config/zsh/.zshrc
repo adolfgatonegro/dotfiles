@@ -20,7 +20,7 @@ setopt AUTOCD
 
 zle_highlight=("paste:none")
 
-# Completion 
+# Completion
 autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/.zcompdump-$ZSH_VERSION
 zstyle ':completion:*' group-name ''
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -152,7 +152,7 @@ dnxconv(){
 # Install and source zsh plugins
 zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
-    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then 
+    if [ -d "$ZDOTDIR/plugins/$PLUGIN_NAME" ]; then
         source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.plugin.zsh" || \
         source "$ZDOTDIR/plugins/$PLUGIN_NAME/$PLUGIN_NAME.zsh"
     else
@@ -230,7 +230,7 @@ bindkey "^[g" fzf-cd-widget
 
 se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a script from .local/bin
 ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a config file
-xo() { file=$(fd -tf . ~ | fzf) && xdg-open "$file" ;} # xdg-open a file
+fo() { file=$(fd -tf . | fzf) && xdg-open "$file" ;} # xdg-open a file
 ed() { fd -tf . ~ |  fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # xdg-open a file
 ff() { fd --max-depth=8 -td . ~ | fzf --bind 'enter:become(lfpv {})' ;} # navigate to folder and open lf
 
