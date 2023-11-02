@@ -377,6 +377,12 @@ autocmd({ "BufRead", "BufNewFile" }, {
 	command = "set spell"
 })
 
+-- Set conceal for markdown
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.md" },
+	command = "set conceallevel=2"
+})
+
 -- Highlight on yank
 augroup('YankHighlight', { clear = true })
 autocmd('TextYankPost', {
