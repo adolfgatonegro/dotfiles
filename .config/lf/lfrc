@@ -155,15 +155,15 @@ cmd pdfcat %{{
 	pdftk $fx cat output "$name".pdf
 }}
 
-# find files with fzf
+# jump to dir using fzf
 cmd fzf_jump ${{
-	dirs="$(fzf --header='Jump to:')"
-	if [ -f "$dirs" ]; then
-		cmd="select"
-	elif [ -d "$dirs" ]; then
-		cmd="cd"
-	fi
-	lf -remote "send $id $cmd \"$dirs\""
+   res="$(fd -t d|fzf --reverse --header='Jump to location')"
+   if [ -f "$res" ]; then
+     cmd="select"
+   elif [ -d "$res" ]; then
+     cmd="cd"
+   fi
+lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd paste-overwrite &{{
