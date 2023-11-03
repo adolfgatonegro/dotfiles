@@ -392,12 +392,6 @@ autocmd('TextYankPost', {
   end
 })
 
--- Remove whitespace on save
-autocmd('BufWritePre', {
-  pattern = "",
-  command = ":%s/\\s\\+$//e"
-})
-
 -- Restore cursor position in buffer
 autocmd("BufReadPost", {
 	pattern = "",
