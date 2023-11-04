@@ -3,9 +3,10 @@
 # create and edit markdown notes from dmenu
 
 notes_path="$HOME/documents/notes"
-list="$(find -L $notes_path -type f | sed 's|^'$notes_path/'||' | sort )"
+list="$(fd -e md . $notes_path | sed 's|^'$notes_path/'||' | sort )"
 
 select="$(echo -e "$list" | dmenu -i -l 20 -p "Select or create note:")"
+
 
 slugger () {
 echo $@ | tr -d '[:punct:]' \
@@ -19,11 +20,12 @@ echo $@ | tr -d '[:punct:]' \
 }
 
 create_note () {
+	timestamp="$(date +%Y%m%d)_"
 	filename="$(slugger "${1,,}")"
-	note="$notes_path/$filename.md"
+	note="$notes_path/$timestamp$filename.md"
 	title="${1,,}"
 	echo -e "# ${title^}\n\n" > "$note"
-	notify-send -i "notes" "Note created" "<b>$filename.md</b> created in '$notes_path'"
+	notify-send -i "notes" "Note created" "<b>$filename</b> created in '$notes_path'"
 }
 
 open_note () {
