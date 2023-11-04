@@ -28,7 +28,6 @@ local Plug = vim.fn['plug#']
 
 -- Call plugins
 call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
-	Plug 'ap/vim-css-color'
 	Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
@@ -37,6 +36,7 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'jiangmiao/auto-pairs'
 	Plug ('junegunn/goyo.vim', { ['for'] = {'markdown', 'text', 'tex'} })
 	Plug ('junegunn/limelight.vim', { ['for'] = {'markdown', 'text', 'tex'} })
+	Plug 'NvChad/nvim-colorizer.lua'
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'nvim-tree/nvim-tree.lua'
 	Plug 'nvim-tree/nvim-web-devicons'
@@ -182,6 +182,9 @@ vim.api.nvim_create_autocmd("QuitPre", {
 g.ctrlp_user_command = "fd . -tf '%s'"
 g.ctrlp_match_window = 'order:ttb,max:10,results:20'
 g.ctrlp_line_prefix = ' '
+
+-- nvim-colorizer
+require("colorizer").setup()
 
 -- which-key
 require("which-key").setup({
