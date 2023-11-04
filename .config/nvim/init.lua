@@ -208,6 +208,7 @@ wilder.set_option('renderer', wilder.popupmenu_renderer(
 		min_width = '100%',
 		highlighter = wilder.basic_highlighter(),
 		highlights = {
+			default = wilder.make_hl('WilderPmenu', {{a = 1}, {a = 1}, {background = 'NONE'}}),
 			accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#ff00aa'}}),
 		},
 	})
@@ -298,6 +299,7 @@ k("n", "Q", "<Nop>") -- Bye-bye, Ex mode
 
 -- Buffers
 k("n", "<leader>bd", ":bd<CR>", { desc = "Delete buffer" } )
+k("n", "<leader>bb", ":b<Space>", { desc = "Switch buffer" } )
 k("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" } )
 k("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" } )
 k("n", "<leader>bs", ":new<CR>", { desc = "New horizontal split" } )
@@ -313,7 +315,7 @@ k("n", "<leader>.", ":find<Space>", { silent = false, desc = "Find file" } )
 -- CtrlP
 k("n", "<leader>pf", ":CtrlPCurW<CR>", { desc = "CtrlP in CWD" } )
 k("n", "<leader>pr", ":CtrlPMRU<CR>", { desc = "CtrlP recent files" } )
-k("n", "<leader>pb", ":CtrlPBuffer<CR>", { desc = "CtrlP buffers" } )
+-- k("n", "<leader>pb", ":CtrlPBuffer<CR>", { desc = "CtrlP buffers" } )
 k("n", "<leader>pm", ":CtrlPBookmarkDir<CR>", { desc = "CtrlP bookmarked directories" } )
 
 -- Go to last change in current buffer
