@@ -22,6 +22,7 @@ https://access.acast.com/rss/60e8deaefb090f0013116d69/ "Podcast" "psychology"
 https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology"
 https://feeds.fireside.fm/psych/rss "Podcast" "psychology" #Psych - Paul Bloom & David Pizarro
 https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
+https://thisjungianlife.com/feed/ "Podcast" "psychology" #This Jungian Life
 https://feeds.libsyn.com/474285/rss "Podcast" "psychology" #Very Bad Wizards
 https://reddit.com/r/AcademicPsychology.rss "Reddit" "aggregators" "psychology" "~r/AcademicPsychology"
 https://reddit.com/r/psychology.rss "Reddit" "aggregators" "psychology" "~r/psychology"
@@ -35,14 +36,8 @@ https://youtube.com/feeds/videos.xml?channel_id=UC57gLBfdhN1zWMLmiW2Ya6Q "YouTub
 https://garymarcus.substack.com/feed "Blog" "ai" "~Gary Marcus"
 https://sneak.berlin/feed.xml "Blog" "tech"
 https://www.piratewires.com/feed "Blog" "tech"
-https://feeds.buzzsprout.com/1004689.rss "Podcast" "tech" #Tech Won't Save Us
-https://youtube.com/feeds/videos.xml?channel_id=UChIs72whgZI9w6d6FhwGGHA "YouTube" "tech" #Gamers Nexus
-https://youtube.com/feeds/videos.xml?channel_id=UC4w1YQAJMWOz4qtxinq55LQ "YouTube" "tech" #Level1Techs
-https://youtube.com/feeds/videos.xml?channel_id=UCOWcZ6Wicl-1N34H0zZe38w "YouTube" "tech" "linux" #Level1Linux
 https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTube" "tech" #Luke Smith
-https://youtube.com/feeds/videos.xml?channel_id=UCMLtBahI5DMrt0NPvDSoIRQ "YouTube" "tech" "ai" #Machine Learning Street Talk
 https://youtube.com/feeds/videos.xml?channel_id=UCLB7AzTwc6VFZrBsO2ucBMg "YouTube" "tech" "ai" #Robert Miles
-https://youtube.com/feeds/videos.xml?channel_id=UCZHmQk67mSJgfCCTn7xBfew "YouTube" "tech" "ai" #Yannic Kilcher
 
 "query:Miscellanea:tags # \"misc\""
 https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"

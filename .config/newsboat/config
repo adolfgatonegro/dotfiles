@@ -66,7 +66,4 @@ browser "linkhandler"
 bookmark-cmd "~/.local/bin/bmark"
 notify-program "notify-send"
 notify-format "Newsboat: %d new articles"
-macro , open-in-browser
 macro b set browser "firefox --new-tab %u > /dev/null 2>&1" ; open-in-browser ; set browser "linkhandler"
-
-ignore-article "https://hnrss.org/frontpage?link=comments" "title =~ \"is hiring\""
