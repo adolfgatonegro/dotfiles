@@ -2,7 +2,7 @@
 case $BLOCK_BUTTON in
 	1) volctl -t ;;
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	3) setsid -f "$TERMINAL" -e pulsemixer ;;
+	3) setsid -w -f "$TERMINAL" -e pulsemixer ; pkill -RTMIN+10 dwmblocks ;;
 	4) volctl -i 2 ;;
 	5) volctl -d 2 ;;
 esac
