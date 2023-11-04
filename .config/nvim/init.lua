@@ -43,6 +43,15 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'tpope/vim-commentary'
 call'plug#end'
 
+-- vim-plug in floating window just for a laugh
+local w = [[width = math.ceil(vim.api.nvim_get_option("columns") * 0.8), ]]
+local h = [[height = math.ceil(vim.api.nvim_get_option("lines") * 0.8), ]]
+local r = [[col = math.ceil(vim.api.nvim_get_option("columns") * 0.1 - 1), ]]
+local c = [[row = math.ceil(vim.api.nvim_get_option("lines") * 0.1 - 1), ]]
+local floating_opts = [[relative = 'editor', style='minimal', border = "single"]]
+vim.g.plug_window = [[lua vim.api.nvim_open_win(vim.api.nvim_create_buf(true, false), true, {]] ..
+	w .. h .. r .. c .. floating_opts .. "})"
+
 -- Plugin configuration
 
 -- mini.starter
@@ -71,11 +80,14 @@ starter.setup({
 })
 
 -- TokyoNight colourscheme
--- FIXME Spellcheck doesn't work for some reason.
--- Reverting https://github.com/folke/tokyonight.nvim/commit/fc7301 fixes it
 require("tokyonight").setup({
 	style = "night",
 	transparent = true,
+	transparent_sidebar = true,
+	styles = {
+		sidebars = "transparent", 
+		floats = "transparent",
+	},
 	on_colors = function(colors)
 		colors.fg = "#c1c1d1"
 		colors.bg = "#1a1a26"
@@ -173,7 +185,14 @@ g.ctrlp_line_prefix = ' '
 
 -- which-key
 require("which-key").setup({
-	window = { padding = { 1, 1, 1, 1 } },
+	popup_mappings = {
+		scroll_down = "<Tab>",
+		scroll_up = "<S-Tab>",
+	},
+	window = {
+		padding = { 1, 1, 1, 1 },
+		border = "single"
+	},
 	layout = { height = { min = 4, max = 10 } }
 })
 
@@ -182,7 +201,7 @@ local wilder = require('wilder')
 wilder.setup({modes = {':', '/', '?'}})
 wilder.set_option('renderer', wilder.popupmenu_renderer(
 	wilder.popupmenu_border_theme({
-		border = 'none', --- added custom option in wilder/renderer/popupmenu_border_theme.vim
+		border = 'single',
 		left = {' ', wilder.popupmenu_devicons()},
 		right = {' ', wilder.popupmenu_scrollbar()},
 		max_height = '25%',
@@ -305,8 +324,8 @@ k("n", "l", "<Space>")
 k("n", "h", "<Backspace>")
 k("n", "j", "gj")
 k("n", "k", "gk")
-k("n", "H", "^")
-k("n", "L", "$")
+k({"n", "v"}, "H", "^")
+k({"n", "v"}, "L", "$")
 
 -- Go to URL under cursor
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
