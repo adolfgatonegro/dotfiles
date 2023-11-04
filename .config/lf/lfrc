@@ -155,15 +155,16 @@ cmd pdfcat %{{
 	pdftk $fx cat output "$name".pdf
 }}
 
+
 # jump to dir using fzf
 cmd fzf_jump ${{
-   res="$(fd -t d|fzf --reverse --header='Jump to location')"
-   if [ -f "$res" ]; then
-     cmd="select"
-   elif [ -d "$res" ]; then
-     cmd="cd"
-   fi
-lf -remote "send $id $cmd \"$res\""
+	res="$(fd -t d|fzf --reverse --header='Jump to location')"
+	if [ -d "$res" ]; then
+		cmd="cd"
+	else
+		cmd="select"
+	fi
+	lf -remote "send $id $cmd \"$res\""
 }}
 
 cmd paste-overwrite &{{
@@ -185,6 +186,10 @@ cmd paste-overwrite &{{
 	lf -remote "send $id echo \"\033[0;32mpasted $# file(s)\033[0m\""
 }}
 
+# set wallpaper
+cmd setwall ${{
+	xwallpaper --zoom "$f"
+}}
 # key mappings ---------------------------------------------------------------
 
 # clear default mappings
@@ -204,9 +209,12 @@ map po paste-overwrite
 map Y cut
 map dd trash
 # map D delete
+map E $$EDITOR .
 map e $$EDITOR "$f"
 map <c-r> reload
 map H top
+map J :updir; down; open
+map K :updir; up; open
 map L bottom
 map x $$f
 map <enter> open
@@ -218,16 +226,18 @@ map <esc> :clear; unselect
 map ga calcdirsize
 map ff :fzf_jump
 map P :pdfcat
-map gp cd ~/psych/courses
+map bg setwall
 
 # rename
 map A rename # at the end
 map c push A<c-u> # new filename
 map I push A<c-a> # from the beginning
-map i push A<a-b><a-b><a-f> # before extension
-map a push A<a-b> # after extension
 map C :bulkrename
 
 # symlinks mappings
 map al :link
 map gF follow_link
+
+# marks
+map m mark-load
+map M mark-save
