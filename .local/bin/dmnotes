@@ -10,7 +10,7 @@ select="$(echo -e "$list" | dmenu -i -l 20 -p "Select or create note:")"
 
 slugger () {
 echo $@ | tr -d '[:punct:]' \
-	| sed -e "s/ /-/g"      \
+	| sed -e "s/ /_/g"      \
 		-e "s/[áàãâ]/a/g"   \
 		-e "s/[éê]/e/g"     \
 		-e "s/[íÍ]/i/g"     \
