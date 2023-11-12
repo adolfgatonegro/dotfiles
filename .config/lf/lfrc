@@ -14,20 +14,26 @@ set shell zsh
 set shellopts '-euy'
 set ifs "\n"
 
-# basic settings
-# set hidden
-set icons
-set ignorecase
-set scrolloff 10
-set ratios 1:1
-set info size
-set dircounts
-set tabstop 4
-
 # file previews
 set previewer ~/.config/lf/preview
 set cleaner ~/.config/lf/clear
+
+# basic settings
+# set dircounts
+# set dirpreviews
+# set hidden
+set icons
+set ignorecase
+set info size
 set preview
+set ratios 1:1
+set scrolloff 10
+set tabstop 4
+
+# dir status bar with exa
+cmd on-select &{{
+    lf -remote "send $id set statfmt \"$(exa -ld --color=always --time-style=iso "$f")\""
+}}
 
 # custom commands
 cmd mkdir %mkdir "$@"
@@ -97,15 +103,15 @@ map gt cd ~/.local/share/Trash/files
 cmd trash %set -f; mv --backup=numbered $fx ~/.local/share/Trash/files
 
 # delete files with prompt
-cmd delete ${{
-	set -f
-	prompt="Delete? [y/N] "
-	clear; tput cup $((($(tput lines)-2)/2)) 0; tput bold
-	printf "%*s\n" $((($(tput cols)+${#fx})/2)) "$fx"
-	printf "%*s" $((($(tput cols)+${#prompt})/2)) "$prompt"
-	read ans
-	[ $ans = "y" ] && rm -rf -- $fx
-}}
+# cmd delete ${{
+# 	set -f
+# 	prompt="Delete? [y/N] "
+# 	clear; tput cup $((($(tput lines)-2)/2)) 0; tput bold
+# 	printf "%*s\n" $((($(tput cols)+${#fx})/2)) "$fx"
+# 	printf "%*s" $((($(tput cols)+${#prompt})/2)) "$prompt"
+# 	read ans
+# 	[ $ans = "y" ] && rm -rf -- $fx
+# }}
 
 cmd empty ${{
 	set -f
@@ -117,14 +123,14 @@ cmd empty ${{
 }}
 
 # shell but with output shown
-cmd shellcmd ${{
-	printf "Shell command: \n"
-	read ans
-	$ans
-	printf "\n"
-	printf "press <enter> key to continue\n"
-	read ans
-}}
+# cmd shellcmd ${{
+# 	printf "Shell command: \n"
+# 	read ans
+# 	$ans
+# 	printf "\n"
+# 	printf "press <enter> key to continue\n"
+# 	read ans
+# }}
 
 # symlinks
 cmd follow_link %{{
@@ -175,10 +181,10 @@ cmd paste-overwrite &{{
 	[ $# -gt 0 ] || exit
 	case $mode in
 		copy)
-			rsync -r "$@" ./
+			rsync -rvP "$@" ./
 			;;
 		move)
-			rsync -r --remove-source-files "$@" ./
+			rsync -rvP --remove-source-files "$@" ./
 			;;
 	esac
 	lf -remote 'save\nmove\n'
@@ -190,43 +196,45 @@ cmd paste-overwrite &{{
 cmd setwall ${{
 	xwallpaper --zoom "$f"
 }}
+
 # key mappings ---------------------------------------------------------------
 
 # clear default mappings
-map c
 map d
-map e
 map f
 map q
 map t
 map w
 
 # custom mappings
-map . set hidden!
-map p
-map pp paste
-map po paste-overwrite
-map Y cut
-map dd trash
 # map D delete
-map E $$EDITOR .
-map e $$EDITOR "$f"
+map . set hidden!
+map <c-q> quit
 map <c-r> reload
+map <enter> open
+map <esc> :clear; unselect
+map <space> :toggle; down
+map bg setwall
+map c :pdfcat
+map dd trash
+map e $$EDITOR "$f"
+map E $$EDITOR .
+map ff :fzf_jump
+map ga calcdirsize
 map H top
 map J :updir; down; open
 map K :updir; up; open
+# map lc :link
+map gl follow_link
 map L bottom
-map x $$f
-map <enter> open
-map S $$SHELL
-map <c-q> quit
+map m mark-load
+map M mark-save
+map p paste
+map P paste-overwrite
 map Q quit
-map <space> :toggle; down
-map <esc> :clear; unselect
-map ga calcdirsize
-map ff :fzf_jump
-map P :pdfcat
-map bg setwall
+map S $$SHELL
+map Y cut
+# map x $$f
 
 # rename
 map A rename # at the end
@@ -235,9 +243,4 @@ map I push A<c-a> # from the beginning
 map C :bulkrename
 
 # symlinks mappings
-map al :link
-map gF follow_link
 
-# marks
-map m mark-load
-map M mark-save

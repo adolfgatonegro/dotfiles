@@ -22,6 +22,7 @@ ifub() {
 }
 
 case "$(file --dereference --brief --mime-type -- "$1")" in
+	inode/directory) exa -ll --color=always --group-directories-first --time-style=iso --icons=always --no-user "$1";;
 	*/tgz|*/tar*) tar tzf "$1";;
 	*/tar.bz2|*/tbz2) tar tjf "$1";;
 	*/tar.txz|*/txz) xz --list "$1";;
