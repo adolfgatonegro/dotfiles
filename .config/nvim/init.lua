@@ -65,10 +65,18 @@ local header_art =
 
 local starter = require('mini.starter')
 starter.setup({
-	items = {
-		starter.sections.recent_files(5, false),
-		starter.sections.builtin_actions(),
-	},
+    items = {
+        starter.sections.recent_files(5, true, function(path)
+            local fields = {}
+
+            local pattern = string.format("([^%s]+)", "/")
+            path.gsub(path, pattern, function(c)
+                fields[#fields + 1] = c
+            end)
+            return " (" .. fields[#fields - 1] .. "/" .. fields[#fields] .. ")"
+        end),
+        starter.sections.builtin_actions(),
+    },
 	content_hooks = {
 		starter.gen_hook.adding_bullet("» "),
 		starter.gen_hook.indexing('all', { 'Builtin actions' }),
