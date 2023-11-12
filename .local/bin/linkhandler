@@ -16,7 +16,7 @@ fi
 
 case "$url" in
 	# Video files and YouTube links
-	*mkv|*webm|*mp4*(?)|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtube.com/clip*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*|*streamable.com/*|*dailymotion.com/video/*)
+	*mkv|*webm|*mp4*(?)|*youtube.com/watch*|*youtube.com/playlist*|*youtube.com/shorts*|*youtube.com/clip*|*youtu.be*|*youtube-nocookie.com/embed*|*youtube.com/embed*|*streamable.com/*|*dailymotion.com/video/*|*motorsport.tv/motorsporttv/video/*)
 		setsid -f umpv "$url" >/dev/null 2>&1 &
 		notify-send "📺 Adding to mpv queue" "$(curl $url -so - | grep -iPo '(?<=<title>)(.*)(?=</title>)')";;
 	# images

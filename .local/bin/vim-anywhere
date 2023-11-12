@@ -10,5 +10,5 @@ $TERMINAL -e $EDITOR $vimtmp
 xclip -sel clip < $vimtmp
 xdotool key ctrl+v
 
-rm $vimtmp
+# rm $vimtmp
 exit 0
