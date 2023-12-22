@@ -161,7 +161,6 @@ cmd pdfcat %{{
 	pdftk $fx cat output "$name".pdf
 }}
 
-
 # jump to dir using fzf
 cmd fzf_jump ${{
 	res="$(fd -t d|fzf --reverse --header='Jump to location')"
@@ -215,7 +214,6 @@ map <enter> open
 map <esc> :clear; unselect
 map <space> :toggle; down
 map bg setwall
-map c :pdfcat
 map dd trash
 map e $$EDITOR "$f"
 map E $$EDITOR .

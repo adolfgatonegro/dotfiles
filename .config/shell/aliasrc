@@ -29,13 +29,15 @@ alias \
 	mv="mv -iv" \
 	rm="rm -vI" \
 	ip="ip -color=auto" \
-	mkd="mkdir -pv"
+	mkd="mkdir -pv" \
+	rcp="rsync -avP"
 	# wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 
 # abbreviations
 alias \
 	_="sudo" \
 	yta="yt-dlp -x --audio-format mp3 --audio-quality 0" \
+	ytw="yt-dlp --output '%(title).200B%(title.201B&…|)s.%(ext)s'" \
 	nb="newsboat" \
 	trem="transmission-remote" \
 	trex="transmission-remote --exit" \

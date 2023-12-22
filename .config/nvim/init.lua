@@ -40,6 +40,7 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'nvim-tree/nvim-tree.lua'
 	Plug 'nvim-tree/nvim-web-devicons'
+	Plug 'stevearc/oil.nvim'
 	Plug 'tpope/vim-commentary'
 call'plug#end'
 
@@ -194,6 +195,11 @@ g.ctrlp_line_prefix = ' '
 -- nvim-colorizer
 require("colorizer").setup()
 
+-- oil.nvim
+require("oil").setup({
+	delete_to_trash = true,
+})
+
 -- which-key
 require("which-key").setup({
 	popup_mappings = {
@@ -343,6 +349,9 @@ k({"n", "v"}, "L", "$")
 -- Go to URL under cursor
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
+-- oil.nvim
+k("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
+
 -- Spell check
 k("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spell checking" } )
 
@@ -406,7 +415,7 @@ autocmd('VimResized', {
 -- Enable spell checker for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.txt", "*.md", "*.tex" },
-	command = "set spell"
+	command = "setlocal spell"
 })
 
 -- Set conceal for markdown
