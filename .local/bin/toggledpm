@@ -1,0 +1,13 @@
+#!/bin/sh
+
+xset q | grep "DPMS is Enabled"
+
+if [ $? -eq 0 ]; then
+	notify-send -i ~/.local/share/icons/power_management_256px.png "Power Management" "Disabling DPMS and screen blanking."
+	sleep 1
+	xset s off -dpms
+else
+	notify-send -i ~/.local/share/icons/power_management_256px.png "Power Management" "Enabling DPMS and screen blanking."
+	sleep 1
+	xset s on +dpms
+fi
