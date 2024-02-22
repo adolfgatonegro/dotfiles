@@ -29,6 +29,7 @@ set searchurls.amus https://amazon.com/s?k=%s
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.sx https://northboot.xyz/search?q=%s
 set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
+set searchurls.sch https://scholar.google.com/scholar?hl=en&q=%s
 
 " Binds
 bind go hint -W exclaim_quiet linkhandler

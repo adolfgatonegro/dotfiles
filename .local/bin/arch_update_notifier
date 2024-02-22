@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # gatoneg.ro
 
-updates=$(checkupdates | awk '{print $1}')
+updates=$(checkupdates --nocolor | awk '{print $1}')
 updatesqty=$(echo "$updates" | wc -l)
 
 if [ -z "$updates" ]

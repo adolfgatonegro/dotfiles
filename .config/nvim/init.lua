@@ -28,14 +28,14 @@ local Plug = vim.fn['plug#']
 
 -- Call plugins
 call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
-	Plug 'ctrlpvim/ctrlp.vim'
+	-- Plug 'ctrlpvim/ctrlp.vim'
 	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
 	Plug 'folke/which-key.nvim'
 	Plug ('gelguy/wilder.nvim', { ['do'] = cmd['UpdateRemotePlugins'] })
 	Plug 'jiangmiao/auto-pairs'
-	Plug ('junegunn/goyo.vim', { ['for'] = {'markdown', 'text', 'tex'} })
-	Plug ('junegunn/limelight.vim', { ['for'] = {'markdown', 'text', 'tex'} })
+	Plug ('junegunn/goyo.vim', { ['for'] = {'markdown', 'text', 'tex', 'pandoc'} })
+	Plug ('junegunn/limelight.vim', { ['for'] = {'markdown', 'text', 'tex', 'pandoc'} })
 	Plug 'NvChad/nvim-colorizer.lua'
 	Plug 'nvim-lualine/lualine.nvim'
 	Plug 'nvim-tree/nvim-tree.lua'
@@ -188,9 +188,9 @@ vim.api.nvim_create_autocmd("QuitPre", {
 })
 
 -- CtrlP
-g.ctrlp_user_command = "fd . -tf '%s'"
-g.ctrlp_match_window = 'order:ttb,max:10,results:20'
-g.ctrlp_line_prefix = ' '
+-- g.ctrlp_user_command = "fd . -tf '%s'"
+-- g.ctrlp_match_window = 'order:ttb,max:10,results:20'
+-- g.ctrlp_line_prefix = ' '
 
 -- nvim-colorizer
 require("colorizer").setup()
@@ -330,10 +330,10 @@ k("n", "<leader>cr", ":so $MYVIMRC<CR>", { desc = "Source nvim config" } )
 k("n", "<leader>.", ":find<Space>", { silent = false, desc = "Find file" } )
 
 -- CtrlP
-k("n", "<leader>pf", ":CtrlPCurW<CR>", { desc = "CtrlP in CWD" } )
-k("n", "<leader>pr", ":CtrlPMRU<CR>", { desc = "CtrlP recent files" } )
+-- k("n", "<leader>pf", ":CtrlPCurW<CR>", { desc = "CtrlP in CWD" } )
+-- k("n", "<leader>pr", ":CtrlPMRU<CR>", { desc = "CtrlP recent files" } )
 -- k("n", "<leader>pb", ":CtrlPBuffer<CR>", { desc = "CtrlP buffers" } )
-k("n", "<leader>pm", ":CtrlPBookmarkDir<CR>", { desc = "CtrlP bookmarked directories" } )
+-- k("n", "<leader>pm", ":CtrlPBookmarkDir<CR>", { desc = "CtrlP bookmarked directories" } )
 
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
@@ -372,6 +372,11 @@ k("n", "<leader>tg", ":Goyo<CR>", { desc = "Toggle focus mode" })
 k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
 k("n", "<leader>tt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" } )
 k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
+
+-- compile md/pandoc
+k("n", "<leader>mc", ":w<CR>:silent! !pandoc % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile with Pandoc" })
+k("n", "<leader>mv", ":w<CR>:!pandoc % -o %:t:r.pdf<CR>", { desc = "Markdown - Verbose compile with Pandoc" })
+k("n", "<leader>mo", ":silent! !setsid -f zathura %:t:r.pdf<CR>", { desc = "Markdown - Open compiled PDF" })
 
 -- Write and exit
 k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
@@ -421,7 +426,7 @@ autocmd({ "BufRead", "BufNewFile" }, {
 -- Set conceal for markdown
 autocmd({ "BufRead", "BufNewFile" }, {
 	pattern = { "*.md" },
-	command = "set conceallevel=2"
+	command = "set conceallevel=2 textwidth=80"
 })
 
 -- Highlight on yank

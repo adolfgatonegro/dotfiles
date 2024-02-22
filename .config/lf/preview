@@ -42,7 +42,7 @@ case "$(file --dereference --brief --mime-type -- "$1")" in
 	image/*) image "$1" "$2" "$3" "$4" "$5" "$1" ;;
 	text/html) bat --terminal-width "$(($4-2))" -p -f "$1" ;;
 	text/troff) man ./ "$1" | col -b ;;
-	text/* | */xml | application/json) bat --terminal-width "$(($4-2))" -f -p "$1" ;;
+	text/* | */xml | application/json | application/x-wine-extension-ini) bat --terminal-width "$(($4-2))" -f -p "$1" ;;
 	audio/* | application/octet-stream) exiftool "$1" || exit 1 ;;
 	video/* )
 		CACHE="$CACHE_DIR/thumb.$(stat --printf '%n\0%i\0%F\0%s\0%W\0%Y' -- "$(readlink -f "$1")" | sha256sum | cut -d' ' -f1)"

@@ -26,7 +26,7 @@ set icons
 set ignorecase
 set info size
 set preview
-set ratios 1:1
+set ratios 3:2
 set scrolloff 10
 set tabstop 4
 

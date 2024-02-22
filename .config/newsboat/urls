@@ -40,9 +40,9 @@ https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTub
 https://youtube.com/feeds/videos.xml?channel_id=UCLB7AzTwc6VFZrBsO2ucBMg "YouTube" "tech" "ai" #Robert Miles
 
 "query:Miscellanea:tags # \"misc\""
+https://ehrmanblog.org/feed/ "Blog" "misc"
 https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc"
-https://feeds.megaphone.fm/VMP7924981569 "Podcast" "history" #Criminal
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
 https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
 https://notrelated.xyz/rss "Podcast" "tech" "philosophy" "sociology" "misc"

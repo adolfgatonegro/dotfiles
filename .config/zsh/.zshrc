@@ -73,15 +73,15 @@ ex (){
 
 flacsplit(){
 	[ $# != 2 ] && echo "flacsplit: convert single-file flac albums into tagged 320kpbs mp3 tracks\nUsage: flacsplit /path/to/cue /path/to/flac" && return ||
-	if [ -e "$1" -a -e "$2" ] && expr "$1" : '.*\.cue$' > /dev/null && expr "$2" : '.*\.flac$' > /dev/null; then
+	if [ -e "$1" -a -e "$2" ] && expr "$1" : '.*\.cue$' > /dev/null && expr "$2" : '.*\.flac$' > /dev/null || expr "$2" : '.*\.ape$' > /dev/null; then
 		tmpdir=$(mktemp -d /tmp/flacsplit.XXXXXX.d)
 		echo "Splitting FLAC file into tracks..."
 		shnsplit -t "%n %t" -d "$tmpdir" -o "cust ext=mp3 ffmpeg -i - -ab 320k %f" -f "$1" "$2"
 		echo "Tagging tracks..."
 		cuetag.sh "$1" "$tmpdir"/*
 		echo -n "\nDone! Importing to beets music library..." && \
-		beet import "$tmpdir" && \
-		echo "\nCleaning up..." && rm -r "$tmpdir"
+		beet import "$tmpdir"
+		# echo "\nCleaning up..." && rm -r "$tmpdir"
 	else
 	  echo "Invalid arguments. Use .cue and .flac files as arguments, and make sure the path is correct."
 	fi
