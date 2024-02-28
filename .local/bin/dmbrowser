@@ -11,13 +11,14 @@ browserMinCmd="$BROWSER -P Minimal --class=\"minimal\""
 urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]]*$"
 
 # Search engines
+archwikiSearch="https://wiki.archlinux.org/index.php?search="
 bingSearch="https://bing.com/search?q="
 googleSearch="https://google.com/search?hl=en&q="
 searxSearch="https://northboot.xyz/search?q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="
 
-defaultSearch=$bingSearch
+defaultSearch=$googleSearch
 
 tmp_session() {
 	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
@@ -30,6 +31,7 @@ declare -a options=(
 	"﫸 Minimal session"
 	"屢 Temporary session"
 	" Bookmarks"
+	" Arch Wiki"
 	" Bing"
 	" Google"
 	" SearX"
@@ -50,6 +52,7 @@ case $choice in
 	"﫸 Minimal session") ${browserMinCmd} & disown ;;
 	"屢 Temporary session") tmp_session;;
 	" Bookmarks") bmks & exit 0;;
+	" Arch Wiki") search $archwikiSearch;;
 	" Bing") search $bingSearch;;
 	" Google") search $googleSearch;;
 	" SearX") search $searxSearch;;

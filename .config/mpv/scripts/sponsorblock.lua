@@ -61,7 +61,7 @@ local options = {
     audio_fade_cap = 0,
 
     -- Fast forward through sponsors instead of skipping
-    fast_forward = false,
+    fast_forward = true,
 
     -- Playback speed modifier when fast forwarding, applied once every second until cap is reached
     fast_forward_increase = .2,
@@ -392,6 +392,7 @@ function file_loaded()
     mp.msg.debug("Referer: " .. video_referer)
 
     local urls = {
+		"ytdl://([%w-_]+).*",
         "https?://youtu%.be/([%w-_]+).*",
         "https?://w?w?w?%.?youtube%.com/v/([%w-_]+).*",
         "/watch.*[?&]v=([%w-_]+).*",
