@@ -61,7 +61,7 @@
 	title = Dunst
 	class = Dunst
 
-	corner_radius = 0
+	corner_radius = 10
 
 	ignore_dbusclose = false
 	force_xwayland = false
