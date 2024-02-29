@@ -18,9 +18,9 @@ volume="$(pamixer --get-volume)"
 mute="$(pamixer --get-mute)"
 if [[ $volume == 0 || "$mute" == "true" ]]; then
     # Show the sound muted notification
-    dunstify -a "volumectl" -u low -i audio-volume-muted -r "$msgId" "Volume" "Volume is muted" 
+    dunstify -a "volumectl" -u low -r "$msgId" "🔇 Volume" "Volume is muted" 
 else
     # Show the volume notification
     dunstify -a "volumectl" -u low -i audio-volume-high -r "$msgId" \
-    -h int:value:"$volume" "Volume" "Volume is at ${volume}%"
+    -h int:value:"$volume" "🔊 Volume" "Volume is at ${volume}%"
 fi
