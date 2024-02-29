@@ -5,7 +5,7 @@
 	width = 300
 	height = 300
 	origin = top-right
-	offset = 4x29
+	offset = 9x33
 	scale = 0
 	
 	notification_limit = 0
@@ -13,19 +13,20 @@
 	progress_bar = true
 	progress_bar_height = 8
 	progress_bar_frame_width = 0
+	progress_bar_corner_radius = 5
 	progress_bar_min_width = 175
 	progress_bar_max_width = 300
 	
 	indicate_hidden = yes
 	
-	transparency = 25
+	transparency = 0
 	
 	separator_height = 5
 	padding = 10
 	horizontal_padding = 20
 	text_icon_padding = 20
 	frame_width = 1
-	frame_color = "#363649"
+	frame_color = "#1a1a26"
 	separator_color = frame
 	
 	sort = yes
@@ -34,7 +35,8 @@
 	line_height = 4
 	markup = full
 
-	format = "<b>%s</b>\n%b"
+	# format = "%b"
+	format = "%s\n%b"
 	alignment = left
 	vertical_alignment = top
 	show_age_threshold = 60
@@ -47,12 +49,12 @@
 	icon_position = left
 	min_icon_size = 32
 	max_icon_size = 32
-	icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/:/usr/share/icons/Adwaita/32x32/legacy/
+	# icon_path = /usr/share/icons/Adwaita/32x32/status/:/usr/share/icons/Adwaita/32x32/devices/:/usr/share/icons/Adwaita/32x32/legacy/
 
 	sticky_history = yes
 	history_length = 20
 
-	dmenu = /usr/bin/rofi -dmenu -p dunst:
+	# dmenu = /usr/bin/rofi -dmenu -p dunst:
 	browser = /usr/bin/firefox --new-tab
 	always_run_script = true
 
@@ -73,17 +75,17 @@
 	per_monitor_dpi = false
 
 [urgency_low]
-	background = "#0a0a2099"
+	background = "#1a1a26aa"
 	foreground = "#c1c1d1"
 	timeout = 4
 
 [urgency_normal]
-	background = "#0a0a2099"
+	background = "#1a1a26aa"
 	foreground = "#c1c1d1"
 	timeout = 4
 
 [urgency_critical]
-	background = "#66004499"
+	background = "#660044aa"
 	foreground = "#c1c1d1"
 	frame_color = "#ff00aa"
 	timeout = 0
