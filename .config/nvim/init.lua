@@ -375,8 +375,9 @@ k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
 -- compile md/pandoc
 k("n", "<leader>mc", ":w<CR>:silent! !pandoc % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile with Pandoc" })
-k("n", "<leader>ms", ":w<CR>:silent! !pandoc -t beamer % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile Slide Show with Pandoc" })
-k("n", "<leader>mv", ":w<CR>:!pandoc % -o %:t:r.pdf<CR>", { desc = "Markdown - Verbose compile with Pandoc" })
+k("n", "<leader>ms", ":w<CR>:silent! !pandoc -t beamer --pdf-engine=xelatex % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile Slide Show with Pandoc" })
+k("n", "<leader>mS", ":w<CR>:!pandoc -t beamer --pdf-engine=xelatex % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile Slide Show with Pandoc (Verbose)" })
+k("n", "<leader>mC", ":w<CR>:!pandoc % -o %:t:r.pdf<CR>", { desc = "Markdown - Compile with Pandoc (Verbose)" })
 k("n", "<leader>mo", ":silent! !setsid -f zathura %:t:r.pdf<CR>", { desc = "Markdown - Open compiled PDF" })
 
 -- Write and exit
