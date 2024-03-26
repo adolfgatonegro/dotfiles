@@ -34,11 +34,8 @@ case "$url" in
 		curl -sL "$url" > "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
 		umpv "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
 		notify-send "🎶 Downloading audio file" "$url" ;;
-	# reddit links
-	*reddit.com/*)
-		redditurl=$(echo "$url" | sed "s/\(www\.\)\{0,1\}reddit.com/libreddit.northboot.xyz/g")
-		setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$redditurl" >/dev/null 2>&1 & \
-		notify-send "🌐 Opening URL" "$redditurl";;
+	magnet*)
+		btadd "$url" ;;
 	*)
 		[ -f "$url" ] && setsid -f "$TERMINAL" -e "$EDITOR" "$url" >/dev/null 2>&1 || \
 		setsid -f "$BROWSER" -P Minimal --class="minimal" --new-tab "$url" >/dev/null 2>&1 &
