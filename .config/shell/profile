@@ -65,5 +65,8 @@ export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --color header:italic"
 export FZF_DEFAULT_OPTS="--reverse"
+export TEXMFHOME=$XDG_DATA_HOME/texmf
+export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
+export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
 
 [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
