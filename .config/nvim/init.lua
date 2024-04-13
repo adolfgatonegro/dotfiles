@@ -198,6 +198,7 @@ require("colorizer").setup()
 -- oil.nvim
 require("oil").setup({
 	delete_to_trash = true,
+	skip_confirm_for_simple_edits = true
 })
 
 -- which-key
