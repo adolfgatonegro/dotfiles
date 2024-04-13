@@ -162,12 +162,22 @@ cmd pdfcat %{{
 }}
 
 # jump to dir using fzf
+# cmd fzf_jump ${{
+# 	res="$(fd -t d|fzf --reverse --header='Jump to location')"
+# 	if [ -d "$res" ]; then
+# 		cmd="cd"
+# 	else
+# 		cmd="select"
+# 	fi
+# 	lf -remote "send $id $cmd \"$res\""
+# }}
+
 cmd fzf_jump ${{
-	res="$(fd -t d|fzf --reverse --header='Jump to location')"
-	if [ -d "$res" ]; then
-		cmd="cd"
-	else
+	res="$(fd -t f | fzf)"
+	if [ "$res" ]; then
 		cmd="select"
+	else
+		exit 0
 	fi
 	lf -remote "send $id $cmd \"$res\""
 }}
@@ -209,6 +219,7 @@ map w
 # map D delete
 map . set hidden!
 map <c-q> quit
+map q quit
 map <c-r> reload
 map <enter> open
 map <esc> :clear; unselect
@@ -217,7 +228,7 @@ map bg setwall
 map dd trash
 map e $$EDITOR "$f"
 map E $$EDITOR .
-map ff :fzf_jump
+map Z :fzf_jump
 map ga calcdirsize
 map H top
 map J :updir; down; open

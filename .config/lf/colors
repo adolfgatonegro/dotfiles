@@ -30,7 +30,7 @@
 # tw      01;34   # STICKY_OTHER_WRITABLE
 # ow      01;34   # OTHER_WRITABLE
 # st      01;34   # STICKY
-# di      01;34   # DIR
+ di      00;34   # DIR
 # pi      33      # FIFO
 # so      01;35   # SOCK
 # bd      33;01   # BLK
@@ -41,7 +41,7 @@
 # fi      00      # FILE
 
 # file types (with matching order)
-ln      01;36   # LINK
+ln      00;36   # LINK
 # or      31;01   # ORPHAN
 # tw      34      # STICKY_OTHER_WRITABLE
 # ow      34      # OTHER_WRITABLE
