@@ -98,9 +98,9 @@ cmd bulkrename ${{
 # make sure trash folder exists
 %mkdir -p ~/.local/share/Trash/files
 # go to trash
-map gt cd ~/.local/share/Trash/files
+# map gt cd ~/.local/share/Trash/files
 # move current file or selected files to trash folder
-cmd trash %set -f; mv --backup=numbered $fx ~/.local/share/Trash/files
+# cmd trash %set -f; mv --backup=numbered $fx ~/.local/share/Trash/files
 
 # delete files with prompt
 # cmd delete ${{
@@ -121,16 +121,6 @@ cmd empty ${{
 	read ans
 	[ $ans = "y" ] && rm -rf ~/.local/share/Trash/files/*
 }}
-
-# shell but with output shown
-# cmd shellcmd ${{
-# 	printf "Shell command: \n"
-# 	read ans
-# 	$ans
-# 	printf "\n"
-# 	printf "press <enter> key to continue\n"
-# 	read ans
-# }}
 
 # symlinks
 cmd follow_link %{{
@@ -161,21 +151,20 @@ cmd pdfcat %{{
 	pdftk $fx cat output "$name".pdf
 }}
 
-# jump to dir using fzf
-# cmd fzf_jump ${{
-# 	res="$(fd -t d|fzf --reverse --header='Jump to location')"
-# 	if [ -d "$res" ]; then
-# 		cmd="cd"
-# 	else
-# 		cmd="select"
-# 	fi
-# 	lf -remote "send $id $cmd \"$res\""
-# }}
-
-cmd fzf_jump ${{
-	res="$(fd -t f | fzf)"
+cmd fzf_select ${{
+	res="$(fd -t f | sort | fzf -e)"
 	if [ "$res" ]; then
 		cmd="select"
+	else
+		exit 0
+	fi
+	lf -remote "send $id $cmd \"$res\""
+}}
+
+cmd fzf_cd ${{
+	res="$(fd -t d | sort | fzf -e)"
+	if [ -d "$res" ]; then
+		cmd="cd"
 	else
 		exit 0
 	fi
@@ -225,10 +214,10 @@ map <enter> open
 map <esc> :clear; unselect
 map <space> :toggle; down
 map bg setwall
-map dd trash
 map e $$EDITOR "$f"
 map E $$EDITOR .
-map Z :fzf_jump
+map X :fzf_cd
+map Z :fzf_select
 map ga calcdirsize
 map H top
 map J :updir; down; open
@@ -243,6 +232,11 @@ map P paste-overwrite
 map Q quit
 map S $$SHELL
 map Y cut
+# trash-cli
+map dd $trash-put $fx
+map tl !clear && trash-list
+map te !clear && trash-empty
+map tr !clear && trash-restore
 # map x $$f
 
 # rename
