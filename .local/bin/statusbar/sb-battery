@@ -20,9 +20,8 @@ for battery in /sys/class/power_supply/BAT?*; do
 		*) exit 1 ;;
 	esac
 	capacity="$(cat "$battery/capacity" 2>&1)"
-	timeleft=$(upower -i $(upower -e | grep 'BAT') | grep -E 'time to empty' | awk '{print $4" "$5}')
 	# Set a warning status if capacity is low and discharging
 	[ "$status" = "^C3^󰁹 ^C7^" ] && [ "$capacity" -le 25 ] && status="^C1^󰁻 ^C7^"
 	# Prints the info
-	printf "%s%d%% - %s" "$status" "$capacity" "$timeleft"
+	printf "%s%s%d%%" "$status" "$warn" "$capacity"
 done && printf "\\n"
