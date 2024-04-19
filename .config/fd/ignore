@@ -1,3 +1,4 @@
+.cache/
 dumpster/
 music/
 !.config/

@@ -233,10 +233,10 @@ map Q quit
 map S $$SHELL
 map Y cut
 # trash-cli
-map dd $trash-put $fx
+map dd %trash-put $fx
 map tl !clear && trash-list
-map te !clear && trash-empty
-map tr !clear && trash-restore
+map te $clear && trash-empty
+map tr $clear && trash-restore
 # map x $$f
 
 # rename
