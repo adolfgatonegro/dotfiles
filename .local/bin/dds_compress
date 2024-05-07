@@ -1,0 +1,45 @@
+#!/bin/sh
+# compress dds textures using imagemagick
+# mainly for assetto corsa skins, because no one needs
+# 8k 400mb textures for a car
+
+set -e
+res=""
+
+echo -e "DDS TEXTURE COMPRESSION\n========================================="
+
+echo "Select target resolution (default 2K): [1] 2K, [2] 3K, [3] 4K" ; read choice
+
+case $choice in
+	1) res="2048" ;;
+	2) res="3072" ;;
+	3) res="4096" ;;
+	*) res="2048" ;;
+esac
+
+# # create files list
+echo -e "\nLooking for DDS files to process..."
+fd -e dds > dds_list.log
+echo -e "\nFound $(wc -l < dds_list.log) DDS files.\nTextures larger than $res pixels will be downscaled.\nAll original textures will be OVERWRITTEN, so make sure you have backups."
+
+echo "Getting ready"
+while true;do echo -n .;sleep 1;done &
+sleep 5
+kill $!; trap 'kill $!' SIGTERM
+
+# # rename files
+echo -e "\nTemporarily renaming original DDS files..."
+while IFS= read -r file; do cp "$file" "$file"_orig; done < dds_list.log
+
+# # compress files
+echo "Compressing DDS files..."
+find -name "*.dds_orig" -exec sh -c \
+	'convert \
+	   -monitor \
+	   -define dds:mipmaps=1 \
+	   -define dds:compression=dtx5 \
+	   "{}" -resize "'$res'>" "${0/.dds_orig}.dds"' {} \; && echo -e "\nDone! $(wc -l < dds_list.log) textures processed."
+
+echo "Cleaning up..."
+fd -e dds_orig -x rm {}
+rm dds_list.log
