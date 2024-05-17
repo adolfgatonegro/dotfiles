@@ -65,6 +65,11 @@ export FZF_CTRL_R_OPTS="
   --preview 'echo {}' --preview-window up:3:hidden:wrap
   --color header:italic"
 export FZF_DEFAULT_OPTS="--reverse"
+export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
+--color=fg:#c1c1d1,bg:#0a0a15,hl:#ff00aa \
+--color=fg+:#c1c1d1,bg+:#0a0a15,hl+:#ff00aa \
+--color=info:#aaee00,prompt:#00ffe0,pointer:#00ffe0 \
+--color=marker:#ff9700,spinner:#ff9700,header:#ff9700"
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
