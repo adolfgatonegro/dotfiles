@@ -13,7 +13,7 @@ urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]
 # Search engines
 archwikiSearch="https://wiki.archlinux.org/index.php?search="
 bingSearch="https://bing.com/search?q="
-googleSearch="https://google.com/search?hl=en&q="
+googleSearch="https://google.com/search?hl=en&client=firefox-b-d&udm=14&q="
 searxSearch="https://northboot.xyz/search?q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="

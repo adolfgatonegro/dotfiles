@@ -18,7 +18,7 @@ set completions.Bmark.autoselect false
 colourscheme gatonegro
 
 " Search Engines
-set searchurls.goo https://www.google.com/search?q=
+set searchurls.goo https://google.com/search?hl=en&client=firefox-b-d&udm=14&q= 
 set searchurls.ddg https://duckduckgo.com/?q=
 set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
 set searchurls.yt https://www.youtube.com/results?search_query=
