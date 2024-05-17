@@ -8,12 +8,13 @@ res=""
 
 echo -e "DDS TEXTURE COMPRESSION\n========================================="
 
-echo "Select target resolution (default 2K): [1] 2K, [2] 3K, [3] 4K" ; read choice
+echo "Select target resolution (default 2K): [1]K, [2]K, [3]K, [4]K" ; read choice
 
 case $choice in
-	1) res="2048" ;;
-	2) res="3072" ;;
-	3) res="4096" ;;
+	1) res="1024" ;;
+	2) res="2048" ;;
+	3) res="3072" ;;
+	4) res="4096" ;;
 	*) res="2048" ;;
 esac
 
