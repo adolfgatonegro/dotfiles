@@ -1,5 +1,13 @@
 #!/bin/sh
 case "$1" in
 	"C-w") while read file; do xwallpaper --zoom "$file" & done ;;
-	"C-d") while read file; do mv -vf "$file" "$HOME/.local/share/Trash/files/" & done ;;
+	"C-d") while read file; do trash-put "$file" & done ;;
+	"C-b") while read file; do \
+		if [ -e "${file%jpg}"epub ]; then \
+			zathura "${file%jpg}"epub & \
+		elif [ -e "${file%jpg}"pdf ]; then \
+			zathura "${file%jpg}"pdf & \
+		fi
+		killall nsxiv & \
+		done ;;
 esac

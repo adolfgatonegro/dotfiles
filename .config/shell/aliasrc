@@ -59,7 +59,6 @@ alias \
 
 # non-hipster replacements
 alias \
-	nsxiv="nsxiv_rifle" \
 	lf="lfpv"
 	# vim="nvim"
 

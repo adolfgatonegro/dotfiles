@@ -18,18 +18,19 @@ set completions.Bmark.autoselect false
 colourscheme gatonegro
 
 " Search Engines
-set searchurls.goo https://google.com/search?hl=en&client=firefox-b-d&udm=14&q= 
-set searchurls.ddg https://duckduckgo.com/?q=
+set searchurls.amus https://amazon.com/s?k=%s
+set searchurls.amz https://amazon.com.mx/s?k=%s
+set searchurls.anna https://annas-archive.org/search?q=%s
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+set searchurls.bks https://google.com/search?tbm=bks&q=%s
+set searchurls.ddg https://duckduckgo.com/?q=%s
+set searchurls.git https://github.com/search?utf8=✓&q=%s
+set searchurls.goo https://google.com/search?hl=en&client=firefox-b-d&udm=14&q=%s
+set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
+set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
+set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
 set searchurls.yt https://www.youtube.com/results?search_query=
-set searchurls.git https://github.com/search?utf8=✓&q=
-set searchurls.gt https://wiki.gentoo.org/index.php?title=Special%3ASearch&profile=default&fulltext=Search&search=
-set searchurls.amz https://amazon.com.mx/s?k=%s
-set searchurls.amus https://amazon.com/s?k=%s
-set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
-set searchurls.sx https://northboot.xyz/search?q=%s
-set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
-set searchurls.sch https://scholar.google.com/scholar?hl=en&q=%s
 
 " Binds
 bind go hint -W exclaim_quiet linkhandler
@@ -48,18 +49,17 @@ autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
 autocmd TriStart .* source_quiet
 
 " Removed settings
-setnull searchurls.yahoo
-setnull searchurls.qwant
-setnull searchurls.yahoo
-setnull searchurls.qwant
-setnull searchurls.googlelucky
-setnull searchurls.scholar
-setnull searchurls.googleuk
-setnull searchurls.bing
-setnull searchurls.twitter
 setnull searchurls.amazon
 setnull searchurls.amazonuk
+setnull searchurls.bing
 setnull searchurls.cnrtl
+setnull searchurls.google
+setnull searchurls.googlelucky
+setnull searchurls.googleuk
+setnull searchurls.qwant
+setnull searchurls.scholar
+setnull searchurls.twitter
+setnull searchurls.yahoo
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
