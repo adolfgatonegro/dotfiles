@@ -16,3 +16,4 @@ image/jpeg=img.desktop;
 image/gif=img.desktop;
 video/*=video.desktop;
 inode/directory=file.desktop;
+x-scheme-handler/mailto=vivaldi-stable.desktop

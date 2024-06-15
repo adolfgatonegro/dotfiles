@@ -7,7 +7,7 @@
 
 # Browser commands
 browserCmd="$BROWSER -new-tab"
-browserMinCmd="$BROWSER -P Minimal --class=\"minimal\""
+browserMinCmd="$BROWSER --incognito"
 urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]]*$"
 
 # Search engines
