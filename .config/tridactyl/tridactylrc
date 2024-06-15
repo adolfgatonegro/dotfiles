@@ -20,12 +20,12 @@ colourscheme gatonegro
 " Search Engines
 set searchurls.amus https://amazon.com/s?k=%s
 set searchurls.amz https://amazon.com.mx/s?k=%s
-set searchurls.anna https://annas-archive.org/search?q=%s
+set searchurls.anna https://annas-archive.org/search?q=%s&ext=epub
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.bks https://google.com/search?tbm=bks&q=%s
 set searchurls.ddg https://duckduckgo.com/?q=%s
 set searchurls.git https://github.com/search?utf8=✓&q=%s
-set searchurls.goo https://google.com/search?hl=en&client=firefox-b-d&udm=14&q=%s
+set searchurls.goo https://google.com/search?hl=en&&udm=14&q=%s
 set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
