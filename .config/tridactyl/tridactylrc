@@ -15,29 +15,33 @@ set hintfiltermode vimperator
 set hintchars 1234567890
 set allowautofocus false
 set completions.Bmark.autoselect false
+set completions.Tab.statusstylepretty true
+set externalclipboardcmd xclip
 colourscheme gatonegro
 
 " Search Engines
-set searchurls.amus https://amazon.com/s?k=%s
-set searchurls.amz https://amazon.com.mx/s?k=%s
-set searchurls.anna https://annas-archive.org/search?q=%s&ext=epub
+"set searchurls.amus https://amazon.com/s?k=%s
+set searchurls.aa https://annas-archive.org/search?q=%s&ext=epub
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
-set searchurls.bks https://google.com/search?tbm=bks&q=%s
-set searchurls.ddg https://duckduckgo.com/?q=%s
-set searchurls.git https://github.com/search?utf8=✓&q=%s
-set searchurls.goo https://google.com/search?hl=en&&udm=14&q=%s
+set searchurls.az https://amazon.com.mx/s?k=%s
+set searchurls.d https://duckduckgo.com/?q=%s
+set searchurls.g https://google.com/search?hl=en&&udm=14&q=%s
+set searchurls.gb https://google.com/search?tbm=bks&q=%s
+set searchurls.gh https://github.com/search?utf8=✓&q=%s
 set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
-set searchurls.rut https://rutracker.org/forum/tracker.php?nm=%s
+set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
-set searchurls.wiki https://en.wikipedia.org/wiki/Special:Search/
+set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://www.youtube.com/results?search_query=
 
 " Binds
 bind go hint -W exclaim_quiet linkhandler
-bind gm hint -W exclaim_quiet $BROWSER -P Minimal --class="minimal"
-bind ge editor
-bind m fillcmdline bmarks
-bind M fillcmdline bmarks -t
+bind gp hint -wp
+bind m exclaim_quiet bmks
+bind A composite get_current_url | exclaim_quiet bmks add
+bind gs fillcmdline tgroupswitch
+bind gm fillcmdline tgroupmove
+bind gc fillcmdline tgroupclose
 
 " Commands
 command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
@@ -53,13 +57,22 @@ setnull searchurls.amazon
 setnull searchurls.amazonuk
 setnull searchurls.bing
 setnull searchurls.cnrtl
+setnull searchurls.duckduckgo
+setnull searchurls.gentoo_wiki
+setnull searchurls.github
 setnull searchurls.google
 setnull searchurls.googlelucky
 setnull searchurls.googleuk
+setnull searchurls.mdn
+setnull searchurls.osm
 setnull searchurls.qwant
 setnull searchurls.scholar
+setnull searchurls.searx
+setnull searchurls.startpage
 setnull searchurls.twitter
+setnull searchurls.wikipedia
 setnull searchurls.yahoo
+setnull searchurls.youtube
 
 " For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
 " vim: set filetype=tridactyl
