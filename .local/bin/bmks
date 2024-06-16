@@ -35,7 +35,7 @@ If you would prefer to have your bookmarks stored in alternate location there ar
 }
 
 bmks_validate() {
-	clipboard=$(xclip -o)
+	clipboard=$(xclip -o -selection clipboard)
 	[ -z "${url}" ] && { echo "$clipboard" | grep "^http" > /dev/null 2>&1; } && url=$clipboard
 	[ -z "${url}" ] && notify-send "bmks error" "No valid URL provided." && exit 0
 }
