@@ -24,7 +24,8 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-export BROWSER="vivaldi"
+export BROWSER="firefox"
+# export BROWSER="vivaldi"
 
 # xdg dirs
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
