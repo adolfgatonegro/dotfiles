@@ -22,13 +22,13 @@ defaultSearch=$googleSearch
 
 tmp_session() {
 	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
-	$BROWSER -profile "$PROFILEDIR" -no-remote -new-instance
+	firefox -profile "$PROFILEDIR" -no-remote -new-instance
 	rm -rf $PROFILEDIR
 }
 
 declare -a options=(
 	" New tab"
-	"﫸 Minimal session"
+	# "﫸 Minimal session"
 	"屢 Temporary session"
 	" Bookmarks"
 	" Arch Wiki"
@@ -49,7 +49,7 @@ search(){
 
 case $choice in
 	" New tab") ${browserCmd} "about:blank" & disown ;;
-	"﫸 Minimal session") ${browserMinCmd} & disown ;;
+	# "﫸 Minimal session") ${browserMinCmd} & disown ;;
 	"屢 Temporary session") tmp_session;;
 	" Bookmarks") bmks & exit 0;;
 	" Arch Wiki") search $archwikiSearch;;
