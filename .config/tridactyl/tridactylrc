@@ -1,58 +1,37 @@
+" vim: filetype=vim
+
+" Wipe out all existing settings, ensures that these settings are applied
+" correctly, and everything else remains as default. If a setting is removed
+" from here, it will return to its default state.
 sanitise tridactyllocal tridactylsync
 
-" General Settings
-set update.lastchecktime 1669487807901
-set update.nag true
-set update.nagwait 7
-set update.lastnaggedversion 1.14.0
-set update.checkintervalsecs 86400
-set configversion 2.0
+" Use a blank page for new tab.
 set newtab about:blank
+
+" Disable the mode indicator.
 set modeindicator false
+
+" Enable smooth(er?) scrolling.
 set smoothscroll true
-set editorcmd $TERMINAL -e $EDITOR %f
-set hintfiltermode vimperator
+
+" Better (numeric) hinting.
+set hintfiltermode vimperator-reflow
 set hintchars 1234567890
+set hintnames numeric
+
+" Stop pages from stealing focus.
 set allowautofocus false
-set completions.Bmark.autoselect false
+
+" Allow nice emoji to be used in :tab and similar places.
 set completions.Tab.statusstylepretty true
+
+" Explicitly set xclip because the auto setting sometimes fails to do it.
 set externalclipboardcmd xclip
+
+" Set the colour scheme.
 colourscheme gatonegro
 
-" Search Engines
-"set searchurls.amus https://amazon.com/s?k=%s
-set searchurls.aa https://annas-archive.org/search?q=%s&ext=epub
-set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
-set searchurls.az https://amazon.com.mx/s?k=%s
-set searchurls.d https://duckduckgo.com/?q=%s
-set searchurls.g https://google.com/search?hl=en&&udm=14&q=%s
-set searchurls.gb https://google.com/search?tbm=bks&q=%s
-set searchurls.gh https://github.com/search?utf8=✓&q=%s
-set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
-set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
-set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
-set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
-set searchurls.yt https://www.youtube.com/results?search_query=
-
-" Binds
-bind go hint -W exclaim_quiet linkhandler
-bind gp hint -wp
-bind m exclaim_quiet bmks
-bind A composite get_current_url | exclaim_quiet bmks add
-bind gs fillcmdline tgroupswitch
-bind gm fillcmdline tgroupmove
-bind gc fillcmdline tgroupclose
-
-" Commands
-command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
-command protondb js javascript:void(window.location.href = 'https://protondb.com/app/' + window.location.pathname.split('/')[2])
-
-" Autocmds
-autocmd DocStart undefined mode ignore
-autocmd DocLoad ^https://github.com/tridactyl/tridactyl/issues/new$ issue
-autocmd TriStart .* source_quiet
-
-" Removed settings
+" Remove default search engines.
 setnull searchurls.amazon
 setnull searchurls.amazonuk
 setnull searchurls.bing
@@ -74,5 +53,64 @@ setnull searchurls.wikipedia
 setnull searchurls.yahoo
 setnull searchurls.youtube
 
-" For syntax highlighting see https://github.com/tridactyl/vim-tridactyl
-" vim: set filetype=tridactyl
+" Define search engines.
+set searchurls.aa https://annas-archive.org/search?q=%s&ext=epub
+set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
+set searchurls.az https://amazon.com.mx/s?k=%s
+set searchurls.d https://duckduckgo.com/?q=%s
+set searchurls.g https://google.com/search?hl=en&&udm=14&q=%s
+set searchurls.gb https://google.com/search?tbm=bks&q=%s
+set searchurls.gh https://github.com/search?utf8=✓&q=%s
+set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
+set searchurls.r https://old.reddit.com/r/%s
+set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
+set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
+set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
+set searchurls.yt https://www.youtube.com/results?search_query=
+
+" Hint and open with linkhandler.
+bind go hint -W exclaim_quiet linkhandler
+
+" Hint and open in private window.
+bind gp hint -wp
+
+" Interact with bmks script.
+bind m exclaim_quiet bmks
+bind A composite get_current_url | exclaim_quiet bmks add
+
+" Control tab groups.
+bind gs fillcmdline tgroupswitch
+bind gm fillcmdline tgroupmove
+bind gc fillcmdline tgroupclose
+
+" d closes tab and moves left instead of right.
+bind d composite tabprev; tabclose #
+bind D tabclose
+
+" These just feel... backwards to me?
+bind K tabprev
+bind J tabnext
+
+" Reader mode in same tab and new.
+bind gr reader
+bind gR reader --tab
+
+" Ctrl+F uses the browser's native 'find' tool.
+unbind <C-f>
+
+" Support Tridactyl's :find mode, too.
+bind / fillcmdline find
+bind ? fillcmdline find -?
+bind n findnext 1
+bind N findnext -1
+" No highlighting for search results.
+bind ,<Space> nohlsearch
+
+" Open archived version of current URL.
+command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
+
+" Open the ProtonDB page for the current Steam game.
+command protondb js javascript:void(window.location.href = 'https://protondb.com/app/' + window.location.pathname.split('/')[2])
+
+" Force the use of old.reddit
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
