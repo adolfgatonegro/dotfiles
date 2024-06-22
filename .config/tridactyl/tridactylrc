@@ -61,12 +61,16 @@ set searchurls.d https://duckduckgo.com/?q=%s
 set searchurls.g https://google.com/search?hl=en&&udm=14&q=%s
 set searchurls.gb https://google.com/search?tbm=bks&q=%s
 set searchurls.gh https://github.com/search?utf8=✓&q=%s
+set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.r https://old.reddit.com/r/%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
-set searchurls.sc https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://www.youtube.com/results?search_query=
+
+" Support FR and ES for `followpage`
+set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
+set followpagepatterns.prev ^(prev(ious)?|older|précédent|anterior)\b|«|<<
 
 " Hint and open with linkhandler.
 bind go hint -W exclaim_quiet linkhandler
@@ -86,10 +90,6 @@ bind gc fillcmdline tgroupclose
 " d closes tab and moves left instead of right.
 bind d composite tabprev; tabclose #
 bind D tabclose
-
-" These just feel... backwards to me?
-bind K tabprev
-bind J tabnext
 
 " Reader mode in same tab and new.
 bind gr reader

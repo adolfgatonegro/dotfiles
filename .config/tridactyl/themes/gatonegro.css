@@ -26,17 +26,7 @@
     --tridactyl-scrollbar-color: var(--tridactyl-fg);
     --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-url-fg: #6c6c93;
-    /*--tridactyl-hint-active-outline: 1px solid #1a1a26;*/
 }
 
-:root.TridactylThemGatonegro input[id^="spoiler"] ~ .spoiler {
-    border-color: var(--tridactyl-photon-colours-in-content-box-border-color);
-}
+:root.TridactylThemeGatonegro #tridactyl-reader { font-family: serif; }
 
-:root.TridactylThemGatonegro {
-    scrollbar-color: var(--tridactyl-scrollbar-color);
-    scrollbar-width: thin;
-	background-color: var(--tridactyl-firefox-2021-redesign-background);
-}
-
-:root.TridactylThemGatonegro a { color: #00ffe0; }
