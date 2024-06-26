@@ -55,6 +55,8 @@ setnull searchurls.youtube
 
 " Define search engines.
 set searchurls.aa https://annas-archive.org/search?q=%s&ext=epub
+set searchurls.ap https://archlinux.org/packages/?sort=&q=%s
+set searchurls.aur https://aur.archlinux.org/packages?K=%s
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
 set searchurls.az https://amazon.com.mx/s?k=%s
 set searchurls.d https://duckduckgo.com/?q=%s
@@ -64,9 +66,10 @@ set searchurls.gh https://github.com/search?utf8=✓&q=%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.r https://old.reddit.com/r/%s
+set searchurls.sp https://startpage.com/do/search?language=english&cat=web&query=%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
-set searchurls.yt https://www.youtube.com/results?search_query=
+set searchurls.yt https://www.youtube.com/results?search_query=%s
 
 " Support FR and ES for `followpage`
 set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
