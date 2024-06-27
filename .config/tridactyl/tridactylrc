@@ -29,7 +29,7 @@ set completions.Tab.statusstylepretty true
 set externalclipboardcmd xclip
 
 " Set the colour scheme.
-colourscheme gatonegro
+colourscheme ultima
 
 " Remove default search engines.
 setnull searchurls.amazon
