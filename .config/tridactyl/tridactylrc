@@ -93,6 +93,10 @@ bind gc fillcmdline tgroupclose
 " d closes tab and moves left instead of right.
 bind d composite tabprev; tabclose #
 bind D tabclose
+"
+" These just feel... backwards to me?
+bind K tabprev
+bind J tabnext
 
 " Reader mode in same tab and new.
 bind gr reader
