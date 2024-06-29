@@ -4,9 +4,9 @@ case "$1" in
 	"C-d") while read file; do trash-put "$file" & done ;;
 	"C-b") while read file; do \
 		if [ -e "${file%jpg}"epub ]; then \
-			zathura "${file%jpg}"epub & \
+			xdg-open "${file%jpg}"epub & \
 		elif [ -e "${file%jpg}"pdf ]; then \
-			zathura "${file%jpg}"pdf & \
+			xdg-open "${file%jpg}"pdf & \
 		fi
 		killall nsxiv & \
 		done ;;
