@@ -1,0 +1,9 @@
+#! /bin/sh
+
+nsxiv -t ~/books/*
+
+# booksdir="$HOME/books"
+# booktitle=$(ls $booksdir | dmenu -F -i -p "Select a book:" -l 20)
+# bookfile=$booksdir/$booktitle/$booktitle.pdf
+#
+# echo "$bookfile"
