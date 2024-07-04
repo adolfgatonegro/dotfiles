@@ -365,8 +365,8 @@ k("n", "<leader>tt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" } )
 k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
 -- Compiler
-k("n", "<leader>c", ":w! | !compiler \"%:p\"<CR>", { desc = "Compile document" })
-k("n", "<leader>p", ":!opout \"%:p\"<CR>", { desc = "Open compiled document" })
+k("n", "<leader>c", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
+k("n", "<leader>p", ":silent! !opout \"%:p\"<CR>", { desc = "Open compiled document" })
 
 -- Write and exit
 k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
