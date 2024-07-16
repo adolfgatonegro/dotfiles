@@ -41,6 +41,7 @@ case "${ext}" in
     # sass) sassc -a "${file}" "${base}.css" ;;
     # scad) openscad -o "${base}.stl" "${file}" ;;
     # sent) setsid -f sent "${file}" 2> "/dev/null" ;;
+    typ) typst compile "${file}" ;;
     tex)
 		textarget="$(getcomproot "${file}" || echo "${file}")"
 		command="pdflatex"

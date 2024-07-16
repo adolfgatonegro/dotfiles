@@ -1,6 +1,6 @@
 #! /bin/sh
 
-nsxiv -t ~/books/*
+nsxiv -t ~/documents/books/*
 
 # booksdir="$HOME/books"
 # booktitle=$(ls $booksdir | dmenu -F -i -p "Select a book:" -l 20)

@@ -15,7 +15,6 @@ urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]
 archwikiSearch="https://wiki.archlinux.org/index.php?search="
 bingSearch="https://bing.com/search?q="
 googleSearch="https://google.com/search?hl=en&client=firefox-b-d&udm=14&q="
-searxSearch="https://northboot.xyz/search?q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="
 
@@ -28,17 +27,16 @@ tmp_session() {
 }
 
 declare -a options=(
-	" New tab"
-	"﫸 Minimal session"
-	"屢 Temporary session"
+	"󰈹 New tab"
+	"󰗹 Minimal session"
+	"󰑌 Temporary session"
 	" Bookmarks"
 	" Arch Wiki"
 	" Bing"
-	" Google"
-	" SearX"
-	"磌 Wikipedia"
-	"輸 YouTube"
-	"ﴚ Exit"
+	"󰊭 Google"
+	"󰖬 Wikipedia"
+	"󰗃 YouTube"
+	"󰩈 Exit"
 )
 
 choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "${BROWSER}:")
@@ -49,17 +47,16 @@ search(){
 }
 
 case $choice in
-	" New tab") ${browserCmd} "about:blank" & disown ;;
-	"﫸 Minimal session") ${browserMinCmd} & disown ;;
-	"屢 Temporary session") tmp_session;;
+	"󰈹 New tab") ${browserCmd} "about:blank" & disown ;;
+	"󰗹 Minimal session") ${browserMinCmd} & disown ;;
+	"󰑌 Temporary session") tmp_session;;
 	" Bookmarks") bmks & exit 0;;
 	" Arch Wiki") search $archwikiSearch;;
 	" Bing") search $bingSearch;;
-	" Google") search $googleSearch;;
-	" SearX") search $searxSearch;;
-	"磌 Wikipedia") search $wikipediaSearch;;
-	"輸 YouTube") search $youtubeSearch;;
-	"ﴚ Exit") exit 0 ;;
+	"󰊭 Google") search $googleSearch;;
+	"󰖬 Wikipedia") search $wikipediaSearch;;
+	"󰗃 YouTube") search $youtubeSearch;;
+	"󰩈 Exit") exit 0 ;;
 	# When user input doesn't match any choice, check if it's a valid URL. If
 	# it is, open it in the browser, otherwise treat it as a search string.
 	*)	[[ -z "$choice" ]] && exit 0 ||
