@@ -42,6 +42,8 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'nvim-tree/nvim-web-devicons'
 	Plug 'stevearc/oil.nvim'
 	Plug 'tpope/vim-commentary'
+	-- Typst
+	Plug ('kaarmu/typst.vim', { ['for'] = {'typst'} })
 call'plug#end'
 
 -- vim-plug in floating window just for a laugh
@@ -132,6 +134,9 @@ require('lualine').setup({
 -- Set conceal colour for limelight
 g.limelight_conceal_ctermfg = 237
 g.limelight_conceal_guifg = "#414158"
+
+-- typst.nvim opts
+g.typst_conceal = 1
 
 -- Goyo + limelight
 local goyo_group = vim.api.nvim_create_augroup("GoyoGroup", { clear = true })
@@ -409,13 +414,13 @@ autocmd('VimResized', {
 
 -- Enable spell checker for certain file types
 autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.txt", "*.md", "*.tex" },
+	pattern = { "*.txt", "*.md", "*.tex", "*.typ" },
 	command = "setlocal spell"
 })
 
 -- Set conceal for markdown
 autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.md" },
+	pattern = { "*.md", "*.typ" },
 	command = "set conceallevel=2 textwidth=80"
 })
 
