@@ -2,7 +2,7 @@
 # gatoneg.ro
 # dmenu script for system functions.
 
-case "$(printf " Lock\n Log out\n鈴 Suspend\n🗘 Reboot\n Shutdown" | dmenu -i -p 'Power options:')" in
+case "$(printf " Lock\n Log out\n󰤄 Suspend\n🗘 Reboot\n Shutdown" | dmenu -i -p 'Power options:')" in
 	*Shutdown) systemctl poweroff ;;
 	*Reboot) systemctl reboot ;;
 	*Suspend) systemctl suspend ;;
