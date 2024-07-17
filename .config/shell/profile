@@ -57,7 +57,7 @@ export TEXMFHOME=$XDG_DATA_HOME/texmf
 # export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
-export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/pythonstartup.py"
+export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonstartup.py"
 export SUDO_ASKPASS="$HOME/.local/bin/dmpass"
 export FZF_CTRL_T_COMMAND="fd --type f --strip-cwd-prefix"
 export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
