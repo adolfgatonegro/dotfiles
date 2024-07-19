@@ -30,7 +30,7 @@ case "$url" in
 		zathura "/tmp/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
 		notify-send "📖 Opening document" "$url";;
 	# audio files
-	*mp3*(?)|*ogg|*flac|*opus)
+	*mp3*(?)|*m4a|*ogg|*flac|*opus)
 		curl -sL "$url" > "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" &&
 		umpv "$HOME/downloads/$(echo "$url" | sed "s/.*\///;s/%20/ /g")" >/dev/null 2>&1 &
 		notify-send "🎶 Downloading audio file" "$url" ;;
