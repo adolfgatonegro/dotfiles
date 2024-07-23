@@ -174,7 +174,7 @@ promptinit
 
 setopt PROMPT_SUBST
 
-prompt_symbol=" "
+prompt_symbol="󰄛 "
 PROMPT=$'%F{green}[%F{white}%B%~%b%F{green}]\n%F{red}$prompt_symbol%f%F{cyan}%f '
 
 # set vim mode
