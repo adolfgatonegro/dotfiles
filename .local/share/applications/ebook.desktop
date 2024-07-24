@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=ebook Reader
-Exec=koreader %u
+Exec=/usr/bin/sioyek %u
