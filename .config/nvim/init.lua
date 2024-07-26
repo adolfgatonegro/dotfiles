@@ -28,21 +28,15 @@ local Plug = vim.fn['plug#']
 
 -- Call plugins
 call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
-	-- Plug 'ctrlpvim/ctrlp.vim'
-	Plug 'echasnovski/mini.starter'
 	Plug 'folke/tokyonight.nvim'
 	Plug 'folke/which-key.nvim'
 	Plug ('gelguy/wilder.nvim', { ['do'] = cmd['UpdateRemotePlugins'] })
 	Plug 'jiangmiao/auto-pairs'
-	Plug ('junegunn/goyo.vim', { ['for'] = {'markdown', 'text', 'tex', 'pandoc'} })
-	Plug ('junegunn/limelight.vim', { ['for'] = {'markdown', 'text', 'tex', 'pandoc'} })
 	Plug 'NvChad/nvim-colorizer.lua'
 	Plug 'nvim-lualine/lualine.nvim'
-	Plug 'nvim-tree/nvim-tree.lua'
 	Plug 'nvim-tree/nvim-web-devicons'
 	Plug 'stevearc/oil.nvim'
 	Plug 'tpope/vim-commentary'
-	-- Typst
 	Plug ('kaarmu/typst.vim', { ['for'] = {'typst'} })
 call'plug#end'
 
@@ -56,39 +50,6 @@ vim.g.plug_window = [[lua vim.api.nvim_open_win(vim.api.nvim_create_buf(true, fa
 	w .. h .. r .. c .. floating_opts .. "})"
 
 -- Plugin configuration
-
--- mini.starter
-local header_art =
-[[
-         /\_/\
-    ____/ o o \    ┏┓┏┓╋┏┓┏┓┏┓┏┓┏┓┏┓
-  /~____  =ø= /    ┗┫┗┻┗┗┛┛┗┗ ┗┫┛ ┗┛
- (______)__m_m)     ┛          ┛
-]]
-
-local starter = require('mini.starter')
-starter.setup({
-    items = {
-        starter.sections.recent_files(5, true, function(path)
-            local fields = {}
-
-            local pattern = string.format("([^%s]+)", "/")
-            path.gsub(path, pattern, function(c)
-                fields[#fields + 1] = c
-            end)
-            return " (" .. fields[#fields - 1] .. "/" .. fields[#fields] .. ")"
-        end),
-        starter.sections.builtin_actions(),
-    },
-	content_hooks = {
-		starter.gen_hook.adding_bullet("» "),
-		starter.gen_hook.indexing('all', { 'Builtin actions' }),
-		starter.gen_hook.padding(3, 2),
-		starter.gen_hook.aligning('center', 'center'),
-	},
-	header = header_art,
-	footer = '',
-})
 
 -- TokyoNight colourscheme
 require("tokyonight").setup({
@@ -138,65 +99,6 @@ g.limelight_conceal_guifg = "#414158"
 -- typst.nvim opts
 g.typst_conceal = 1
 
--- Goyo + limelight
-local goyo_group = vim.api.nvim_create_augroup("GoyoGroup", { clear = true })
-vim.api.nvim_create_autocmd("User", {
-    desc = "Hide lualine on goyo enter",
-    group = goyo_group,
-    pattern = "GoyoEnter",
-    callback = function()
-        require("lualine").hide()
-		cmd("Limelight")
-		-- Hide weird line at the bottom in focus mode
-		cmd("highlight StatusLineNC ctermfg=white")
-    end,
-})
-
-vim.api.nvim_create_autocmd("User", {
-    desc = "Show lualine after goyo exit",
-    group = goyo_group,
-    pattern = "GoyoLeave",
-    callback = function()
-        require("lualine").hide({ unhide = true })
-		cmd("Limelight!")
-    end,
-})
-
--- nvim-tree
-g.loaded_netrw = 1
-g.loaded_netrwPlugin = 1
-
-require("nvim-tree").setup({
-	sync_root_with_cwd = true,
-	respect_buf_cwd = true,
-	actions = {
-		open_file = { quit_on_open = true },
-	},
-})
-
--- Quit nvim if nvim-tree is the last window
-vim.api.nvim_create_autocmd("QuitPre", {
-  callback = function()
-    local invalid_win = {}
-    local wins = vim.api.nvim_list_wins()
-    for _, w in ipairs(wins) do
-      local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_win_get_buf(w))
-      if bufname:match("NvimTree_") ~= nil then
-        table.insert(invalid_win, w)
-      end
-    end
-    if #invalid_win == #wins - 1 then
-      -- Should quit, so we close all invalid windows.
-      for _, w in ipairs(invalid_win) do vim.api.nvim_win_close(w, true) end
-    end
-  end
-})
-
--- CtrlP
--- g.ctrlp_user_command = "fd . -tf '%s'"
--- g.ctrlp_match_window = 'order:ttb,max:10,results:20'
--- g.ctrlp_line_prefix = ' '
-
 -- nvim-colorizer
 require("colorizer").setup()
 
@@ -208,11 +110,11 @@ require("oil").setup({
 
 -- which-key
 require("which-key").setup({
-	popup_mappings = {
+	keys = {
 		scroll_down = "<Tab>",
 		scroll_up = "<S-Tab>",
 	},
-	window = {
+	win = {
 		padding = { 1, 1, 1, 1 },
 		border = "single"
 	},
@@ -366,7 +268,6 @@ k("n", "<C-Right>", ":vert res -2<CR>")
 -- Toggle key bindings
 k("n", "<leader>tg", ":Goyo<CR>", { desc = "Toggle focus mode" })
 k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
-k("n", "<leader>tt", ":NvimTreeToggle<CR>", { desc = "Toggle nvim-tree" } )
 k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
 -- Compiler
