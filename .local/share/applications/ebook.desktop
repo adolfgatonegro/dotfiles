@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=ebook Reader
-Exec=/usr/bin/zathura %u
+Exec=koreader %u
