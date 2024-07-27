@@ -11,7 +11,7 @@ fi
 [ -r $XDG_CONFIG_HOME/X11/Xresources ] && xrdb -merge $XDG_CONFIG_HOME/X11/Xresources
 [ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
 
-if [ ${HOSTNAME} = "psykhe" ]; then
+if [ ${HOSTNAME} = "psyche" ]; then
 	[ -r $XDG_CONFIG_HOME/X11/HiDPI ] && xrdb -merge $XDG_CONFIG_HOME/X11/HiDPI
 fi
 
