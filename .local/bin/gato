@@ -4,7 +4,7 @@
 
 host=$(printf "\033[31m%s\033[0m%s" "$(cat /etc/hostname)")
 kernel=$(printf "\033[32m%s\033[0m%s" "$(uname -r)")
-packages=$(printf "\033[36m%s pkgs\033[0m%s" "$(pacman -Q | wc -l)")
+packages=$(printf "\033[36m%s packages\033[0m%s" "$(pacman -Q | wc -l)")
 uptime=$(printf "\033[33m%s\033[0m%s" "$(uptime -p | sed 's/up //')")
 
 factsfile="$XDG_DATA_HOME/catfacts"
