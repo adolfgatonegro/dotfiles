@@ -2,47 +2,73 @@
 
 library="$HOME/documents/books"
 
-# Select a book from library
-title=$(ls $library | dmenu -F -i -p "Select a book:" -l 20)
-
-# If no book was selected, exit.
-if [ -z "$title" ]; then
-	echo "No book selected. Exiting."
+# Check if library directory exists
+if ! [ -d "$library" ]; then
+	echo "Error: $library does not exist."
+	notify-send "Error" "$library does not exist." && exit 0
 	exit 1
 fi
 
-# Otherwise, we get the full path to the book directory:
-book_dir=$library/$title
+# Function to select a book so we can return to it if needed
+select_book(){
+	title=$(ls $library | dmenu -F -i -p "Select a book:" -l 20)
+}
 
-# Look for valid ebook formats and bibliographic entries in directory
-file=$(find "$book_dir" -type f -name "*.epub" -o -name "*.mobi" -o -name "*.pdf")
-bib=$(find "$book_dir" -type f -name "*.bib")
+main(){
+	while true; do
+		# Select a book
+		select_book
 
-# Check if a valid ebook was found, otherwise exit
-if [ -z "$file" ]; then
-	echo "No valid ebook formats found in directory."
-	exit 0
-fi
+		# If no book was selected, exit.
+		if [ -z "$title" ]; then
+			# If no book selected, exit. 
+			# Don't send notification since this is likely the user simply
+			# exiting from the script instead of an actual error
+			echo "Error: No book selected."
+			exit 1
+		else
+			# Otherwise, we get the full path to the book directory:
+			book_dir=$library/$title
+		fi
 
-# Did we find a bibliographic entry for the book?
-if [ -z "$bib" ]; then
-	has_bib="No bibliogaphic reference found."
-else
-	has_bib="Open bibliographic reference."
-fi
+		# Check if book_dir points to a valid directory.
+		if ! [ -d "$book_dir" ]; then
+			echo "Error: $book_dir does not exist."
+			notify-send "Error" "$book_dir does not exist." && exit 0
+			exit 1
+		fi
 
-# Declare our dmenu options
-declare -a options=(
-	"Open book."
-	"$has_bib"
-)
+		# Look for valid ebook formats and bibliographic entries in directory
+		file=$(find "$book_dir" -type f -name "*.epub" -o -name "*.mobi" -o -name "*.pdf")
+		bib=$(find "$book_dir" -type f -name "*.bib")
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Select an action:")
+		# Check if a valid ebook was found, otherwise exit
+		if [ -z "$file" ]; then
+			echo "Error: No valid ebook files found in $book_dir."
+			notify-send "Error" "No valid ebook files found in $book_dir." && exit 0
+			exit 1
+		fi
 
-case $choice in
-	"Open book.") xdg-open "$file" ;;
-	"No bibliography entry found.") exit 1 ;;
-	"Open bibliographic reference.") $TERMINAL -e $EDITOR "$bib" ;;
-	*) exit 0 ;;
-esac
+		# Declare our options
+		declare -a options=(
+			"[Open] ${title#*- }"
+			# Check if a bib file was found, show options accordingly.
+			"$([[ -z "$bib" ]] && echo "[No bibliography entry found]" || \\
+				echo -e "[Copy] bibliographic entry to clipboard\n[Edit] bibliographic entry")"
+			"[Exit]"
+		)
 
+		choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Select an action:")
+
+		case $choice in
+			"[Open]"*) xdg-open "$file" & exit 0 ;;
+			"[No bibliography entry found]") exit 1 ;;
+			"[Edit] bibliographic entry") $TERMINAL -e $EDITOR "$bib" & exit 0 ;;
+			"[Copy] bibliographic entry to clipboard") cat "$bib" | xclip -selection clipboard & exit 0 ;;
+			"[Exit]") exit 0 ;;
+			*) echo "Error: Invalid choice." ;;
+		esac
+	done
+}
+
+main
