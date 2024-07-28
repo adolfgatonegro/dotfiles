@@ -1,9 +1,48 @@
 #! /bin/sh
 
-nsxiv -t ~/documents/books/*
+library="$HOME/documents/books"
 
-# booksdir="$HOME/books"
-# booktitle=$(ls $booksdir | dmenu -F -i -p "Select a book:" -l 20)
-# bookfile=$booksdir/$booktitle/$booktitle.pdf
-#
-# echo "$bookfile"
+# Select a book from library
+title=$(ls $library | dmenu -F -i -p "Select a book:" -l 20)
+
+# If no book was selected, exit.
+if [ -z "$title" ]; then
+	echo "No book selected. Exiting."
+	exit 1
+fi
+
+# Otherwise, we get the full path to the book directory:
+book_dir=$library/$title
+
+# Look for valid ebook formats and bibliographic entries in directory
+file=$(find "$book_dir" -type f -name "*.epub" -o -name "*.mobi" -o -name "*.pdf")
+bib=$(find "$book_dir" -type f -name "*.bib")
+
+# Check if a valid ebook was found, otherwise exit
+if [ -z "$file" ]; then
+	echo "No valid ebook formats found in directory."
+	exit 0
+fi
+
+# Did we find a bibliographic entry for the book?
+if [ -z "$bib" ]; then
+	has_bib="No bibliogaphic reference found."
+else
+	has_bib="Open bibliographic reference."
+fi
+
+# Declare our dmenu options
+declare -a options=(
+	"Open book."
+	"$has_bib"
+)
+
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Select an action:")
+
+case $choice in
+	"Open book.") xdg-open "$file" ;;
+	"No bibliography entry found.") exit 1 ;;
+	"Open bibliographic reference.") $TERMINAL -e $EDITOR "$bib" ;;
+	*) exit 0 ;;
+esac
+
