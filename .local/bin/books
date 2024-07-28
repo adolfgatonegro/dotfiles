@@ -53,7 +53,7 @@ main(){
 		declare -a options=(
 			"[Open] ${title#*- }"
 			# Check if a bib file was found, show options accordingly.
-			"$([[ -z "$bib" ]] && echo "[No bibliography entry found]" || \\
+			"$([[ -z "$bib" ]] && echo "[No bibliographic entry found]" || \\
 				echo -e "[Copy] bibliographic entry to clipboard\n[Edit] bibliographic entry")"
 			"[Exit]"
 		)
@@ -62,7 +62,7 @@ main(){
 
 		case $choice in
 			"[Open]"*) xdg-open "$file" & exit 0 ;;
-			"[No bibliography entry found]") exit 1 ;;
+			"[No bibliographic entry found]") exit 1 ;;
 			"[Edit] bibliographic entry") $TERMINAL -e $EDITOR "$bib" & exit 0 ;;
 			"[Copy] bibliographic entry to clipboard") cat "$bib" | xclip -selection clipboard & exit 0 ;;
 			"[Exit]") exit 0 ;;
