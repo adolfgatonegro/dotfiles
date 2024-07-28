@@ -11,7 +11,7 @@ if [ ${HOSTNAME} = "foxes" ]; then
 	export LIBVA_DRIVER_NAME=nvidia
 fi
 
-if [ ${HOSTNAME} = "lucille" ] || [ ${HOSTNAME} = "psykhe" ]; then
+if [ ${HOSTNAME} = "lucille" ]; then
 	export MPV_PROFILE="--profile=720p"
 fi
 
