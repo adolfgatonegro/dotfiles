@@ -5,7 +5,7 @@ library="$HOME/documents/books"
 # Check if library directory exists
 if ! [ -d "$library" ]; then
 	echo "Error: $library does not exist."
-	notify-send "Error" "$library does not exist." && exit 0
+	notify-send "Error" "$library does not exist."
 	exit 1
 fi
 
@@ -34,7 +34,7 @@ main(){
 		# Check if book_dir points to a valid directory.
 		if ! [ -d "$book_dir" ]; then
 			echo "Error: $book_dir does not exist."
-			notify-send "Error" "$book_dir does not exist." && exit 0
+			notify-send "Error" "$book_dir does not exist."
 			exit 1
 		fi
 
@@ -45,7 +45,7 @@ main(){
 		# Check if a valid ebook was found, otherwise exit
 		if [ -z "$file" ]; then
 			echo "Error: No valid ebook files found in $book_dir."
-			notify-send "Error" "No valid ebook files found in $book_dir." && exit 0
+			notify-send "Error" "No valid ebook files found in $book_dir."
 			exit 1
 		fi
 
