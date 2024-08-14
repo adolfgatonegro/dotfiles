@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=ebook Reader
-Exec=/usr/local/bin/st -e epy %u
+Exec=koreader %u

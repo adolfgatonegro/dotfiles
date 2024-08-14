@@ -66,7 +66,7 @@ set searchurls.gh https://github.com/search?utf8=✓&q=%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.lg https://libgen.rs/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.r https://old.reddit.com/r/%s
-set searchurls.sp https://startpage.com/do/search?language=english&cat=web&query=%s
+set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://www.youtube.com/results?search_query=%s
