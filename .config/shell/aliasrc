@@ -27,7 +27,6 @@ alias \
 	free="free -mt" \
 	cp="cp -iv" \
 	mv="mv -iv" \
-	rm="rm -vI" \
 	ip="ip -color=auto" \
 	mkd="mkdir -pv" \
 	rcp="rsync -avP"
@@ -59,7 +58,8 @@ alias \
 
 # non-hipster replacements
 alias \
-	lf="lfpv"
+	lf="lfpv" \
+	yz="yazi"
 	# vim="nvim"
 
 # git
