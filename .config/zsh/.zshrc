@@ -149,6 +149,15 @@ dnxconv(){
 	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -c:v dnxhd -vf "scale=1920:1080,fps=24000/1001,format=yuv422p10le" -profile:v dnxhr_hqx -c:a pcm_s16le -ar 48000 -hide_banner "dnxconv/${0/.'$1'}.mxf"' {} \;
 }
 
+yy() {
+	local tmp="$(mktemp -t "yazi-cwd.XXXXXX")"
+	yazi "$@" --cwd-file="$tmp"
+	if cwd="$(cat -- "$tmp")" && [ -n "$cwd" ] && [ "$cwd" != "$PWD" ]; then
+		builtin cd -- "$cwd"
+	fi
+	rm -f -- "$tmp"
+}
+
 # Install and source zsh plugins
 zsh_add_plugin() {
     PLUGIN_NAME=$(echo $1 | cut -d "/" -f 2)
@@ -220,7 +229,6 @@ zsh_add_plugin "zsh-users/zsh-autosuggestions"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
 zsh_add_plugin "hlissner/zsh-autopair"
 zsh_add_plugin "Aloxaf/fzf-tab"
-
 
 # fzf
 [ -f "/usr/share/fzf/key-bindings.zsh" ] && source "/usr/share/fzf/key-bindings.zsh"

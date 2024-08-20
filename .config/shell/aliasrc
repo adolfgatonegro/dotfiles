@@ -59,7 +59,7 @@ alias \
 # non-hipster replacements
 alias \
 	lf="lfpv" \
-	yz="yazi"
+	# yy="yazi"
 	# vim="nvim"
 
 # git
