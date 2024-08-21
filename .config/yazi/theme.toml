@@ -1,0 +1,39 @@
+[manager]
+border_style    = { fg = "#0a0a15" }
+preview_hovered = { underline = false }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#16161e", bg = "#16161e" }
+
+[filetype]
+
+rules = [
+	{ mime = "image/*", fg = "white" },
+	{ mime = "{audio,video}/*", fg = "white" },
+	{ mime = "application/{,g}zip", fg = "white" },
+	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "white" },
+	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "white" },
+	{ name = "*", is = "orphan", bg = "red" },
+	{ name = "*", is = "exec"  , fg = "green" },
+	{ name = "*", is = "dummy", bg = "red" },
+	{ name = "*/", is = "dummy", bg = "red" },
+	{ name = "*/", is = "link", fg = "cyan" },
+	{ name = "*/", fg = "blue" }
+]
+
+[icon]
+prepend_dirs  = [
+	{ name = ".config", text = "" },
+	{ name = ".git", text = "" },
+	{ name = "documents", text = "" },
+	{ name = "downloads", text = "" },
+	{ name = "music", text = "" },
+	{ name = "pictures", text = "" },
+	{ name = "psychology", text = "" },
+	{ name = "repos", text = "" },
+	{ name = "shared", text = "" },
+	{ name = "videos", text = "" },
+]
+
