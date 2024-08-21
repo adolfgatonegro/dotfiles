@@ -13,6 +13,8 @@ fi
 
 if [ ${HOSTNAME} = "psyche" ]; then
 	[ -r $XDG_CONFIG_HOME/X11/HiDPI ] && xrdb -merge $XDG_CONFIG_HOME/X11/HiDPI
+	# workaround for muted sound on boot
+	pamixer -t && pamixer -t
 fi
 
 # autostart
