@@ -8,18 +8,16 @@ alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
 	pacman="pikaur" \
 	up="pikaur -Syu" \
-	pco="pacman -Qtdq | sudo pacman -Rns -" \
-	pacunlock="sudo rm /var/lib/pacman/db.lck" \
 	paclog="cat /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
 # dotfiles
 alias \
-	conf="git --git-dir=$HOME/repos/dotfiles.git --work-tree=$HOME" \
-	confs="conf status -s" \
-	confd="conf diff" \
-	confc="conf commit" \
-	confp="conf push" \
+	cf="git --git-dir=$HOME/repos/dotfiles.git --work-tree=$HOME" \
+	cfs="cf status -s" \
+	cfd="cf diff" \
+	cfc="cf commit" \
+	cfp="cf push" \
 
 # verbosity and options
 alias \
@@ -28,21 +26,17 @@ alias \
 	cp="cp -iv" \
 	mv="mv -iv" \
 	ip="ip -color=auto" \
-	mkd="mkdir -pv" \
-	rcp="rsync -avP"
 	# wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
 
 # abbreviations
 alias \
-	_="sudo" \
 	yta="yt-dlp -x --audio-format mp3 --audio-quality 0" \
 	ytw="yt-dlp --output '%(title).200B%(title.201B&…|)s.%(ext)s'" \
-	nb="newsboat" \
 	trem="transmission-remote" \
 	trex="transmission-remote --exit" \
-	iv="imgview" \
+	v="imgview" \
 	cuetag="cuetag.sh" \
-	mpva="mpv --audio-display=no --no-video" \
+	mpa="mpv --audio-display=no --no-video" \
 	o="xdg-open" \
 	z="zathura"
 
@@ -59,8 +53,6 @@ alias \
 # non-hipster replacements
 alias \
 	lf="lfpv" \
-	# yy="yazi"
-	# vim="nvim"
 
 # git
 alias \
@@ -75,16 +67,6 @@ alias \
 	gb="git branch" \
 	gba="git branch -a" \
 	gdl="git branch -d"
-
-# shortcuts
-alias \
-	md="cd $HOME/documents/notes && ls" \
-	bme="$EDITOR $HOME/documents/bmks/urls" \
-	bmd="bmks del" \
-	cf="cd ~/.config && ls" \
-	lb="cd ~/.local/bin && ls" \
-	lsr="cd ~/.local/src && ls" \
-	rp="cd ~/repos && ls"
 
 # plugins
 alias \

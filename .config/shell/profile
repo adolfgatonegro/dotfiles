@@ -77,5 +77,6 @@ export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
 export TEXMFHOME=$XDG_DATA_HOME/texmf
 export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
 export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
+export NBRC_PATH="$XDG_CONFIG_HOME/nb/nbrc"
 
 [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC

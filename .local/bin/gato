@@ -9,7 +9,7 @@ uptime=$(printf "\033[33m%s\033[0m%s" "$(uptime -p | sed 's/up //')")
 
 factsfile="$XDG_DATA_HOME/catfacts"
 random_line=$((1 + $RANDOM % 332))
-fact=$(printf "\033[37m%s\033[0m\n" "$(awk "NR==$random_line" $factsfile)" | fold -sw 80)
+fact=$(printf "\033[37m%s\033[0m\n" "$(awk "NR==$random_line" $factsfile)")
 
 # cat <<EOF
 #           /\\_/\\     ${host}
