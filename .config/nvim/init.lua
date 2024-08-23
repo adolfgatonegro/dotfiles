@@ -38,6 +38,7 @@ call('plug#begin', '$XDG_CONFIG_HOME/nvim/plugged')
 	Plug 'stevearc/oil.nvim'
 	Plug 'tpope/vim-commentary'
 	Plug ('kaarmu/typst.vim', { ['for'] = {'typst'} })
+	Plug 'Aasim-A/scrollEOF.nvim'
 call'plug#end'
 
 -- vim-plug in floating window just for a laugh
@@ -139,6 +140,11 @@ wilder.set_option('renderer', wilder.popupmenu_renderer(
 	})
 ))
 
+-- scrollEOF.nvim
+require('scrollEOF').setup({
+  insert_mode = true,
+})
+
 -------------------------
 -- BASIC CONFIGURATION --
 -------------------------
@@ -161,7 +167,7 @@ local options = {
 	mouse = "a",
 	number = true,
 	numberwidth = 4,
-	scrolloff = 10,
+	scrolloff = 20,
 	shiftwidth = 4,
 	showtabline = 0,
 	showmode = false,
