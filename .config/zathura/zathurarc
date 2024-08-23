@@ -29,8 +29,8 @@ set inputbar-fg                 "#c1c1e1" # Foreground
 set statusbar-bg                "rgba(10,10,21,0.5)" # Background
 set statusbar-fg                "#c1c1e1" # Foreground
 
-set highlight-color             "#ff8700" # Orange
-set highlight-active-color      "#bb00ff" # Pink
+set highlight-color             "rgba(0,255,224,0.4)" # Orange
+set highlight-active-color      "rgba(255,135,0,0.4)" # Pink
 
 set default-bg                  "rgba(10,10,21,0.85)" # Background
 set default-fg                  "#c1c1e1" # Foreground
