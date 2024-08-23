@@ -25,6 +25,7 @@ export VISUAL='nvim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export BROWSER="firefox"
+export FILEMANAGER="yazi"
 # export BROWSER="vivaldi"
 
 # xdg dirs

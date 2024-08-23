@@ -67,7 +67,7 @@ main(){
 			"[No bibliographic entry found]") exit 1 ;;
 			"[Edit] bibliographic entry") $TERMINAL -e $EDITOR "$bib" & exit 0 ;;
 			"[Copy] bibliographic entry to clipboard") cat "$bib" | xclip -selection clipboard & exit 0 ;;
-			"[View] in file manager") $TERMINAL -e lfpv "$book_dir" & exit 0 ;;
+			"[View] in file manager") $TERMINAL -e $FILEMANAGER "$book_dir" & exit 0 ;;
 			"[Exit]") exit 0 ;;
 			*) echo "Error: Invalid choice." ;;
 		esac
