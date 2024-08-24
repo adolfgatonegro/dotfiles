@@ -1,14 +1,12 @@
 "query:Update Feeds:tags # \"Updates\""
+https://annas-archive.org/blog/rss.xml "Updates" "tech"
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
 https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
 https://suckless.org/atom.xml "Updates" "tech" "linux"
 
 "query:Psychology & Philosophy:tags # \"philosophy\" or tags # \"psychology\""
-https://jonathanhaidt.substack.com/feed "Blog" "psychology" "~After Babel | Jonathan Haidt"
 https://www.gleech.org/feed.xml "Blog" "psychology"
-https://backtohumanity.substack.com/feed "Blog" "philosophy"
-https://duncanreyburn.substack.com/feed "Blog" "philosophy" "psychology" "science"
 https://www.experimental-history.com/feed "Blog" "philosophy"
 https://fakenous.substack.com/feed "Blog" "philosophy" "politics"
 https://magnusvinding.com/feed/ "Blog" "philosophy"
@@ -17,27 +15,20 @@ https://schopenhaueronmars.com/feed/ "Blog" "philosophy"
 https://smallpotatoes.paulbloom.net/feed "Blog" "psychology" "~Small Potatoes | Paul Bloom"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
 https://americanpsychoanalyst.substack.com/feed "Blog" "psychoanalysis"
-https://thelivingphilosophy.substack.com/feed "Blog" "philosophy"
 https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
-https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology"
-https://feeds.fireside.fm/psych/rss "Podcast" "psychology" #Psych - Paul Bloom & David Pizarro
+https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology" #Ordinary Unhappiness
 https://anchor.fm/s/2c675710/podcast/rss "Podcast" "philosophy" #Eternalised
 https://anchor.fm/s/471f49a0/podcast/rss "Podcast" "philosophy" #The Nietzsche Podcast
 https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
 https://thisjungianlife.com/feed/ "Podcast" "psychology" #This Jungian Life
 https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
-https://youtube.com/feeds/videos.xml?channel_id=UCqX3KQWXJll7_6orfHFuqBQ "YouTube" "psychology" #Heidi Priebe
-https://youtube.com/feeds/videos.xml?channel_id=UCK-kLrW3koHSlaD2CP9V27w "YouTube" "psychology" #Talking Therapy
 
 "query:Science & Technology:tags # \"tech\""
-https://garymarcus.substack.com/feed "Blog" "ai" "~Gary Marcus"
 https://sneak.berlin/feed.xml "Blog" "tech"
-https://www.piratewires.com/feed "Blog" "tech"
 https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTube" "tech" #Luke Smith
 https://youtube.com/feeds/videos.xml?channel_id=UCLB7AzTwc6VFZrBsO2ucBMg "YouTube" "tech" "ai" #Robert Miles
 
 "query:Miscellanea:tags # \"misc\""
-https://ehrmanblog.org/feed/ "Blog" "misc"
 https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc" "~Luke Smith"
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
