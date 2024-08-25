@@ -1,4 +1,5 @@
-# [manager]
-# prepend_keymap = [
-# 	{ on = [ ":" ], run = "plugin zsh" }
-# ]
+[manager]
+prepend_keymap = [
+	{ on = [ "g", "d" ], run = "cd ~/downloads",              desc = "Go to the downloads directory" },
+	{ on = "z",          run = "shell --block --confirm zsh", desc = "Start a new shell" },
+]
