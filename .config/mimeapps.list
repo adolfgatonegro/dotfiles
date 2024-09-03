@@ -13,6 +13,7 @@ application/pdf=pdf.desktop;
 application/rss+xml=rss.desktop;
 application/epub+zip=ebook.desktop
 application/x-mobipocket-ebook=ebook.desktop
+application/x-wine-extension-ini=text.desktop
 image/png=img.desktop;
 image/jpeg=img.desktop;
 image/gif=img.desktop;

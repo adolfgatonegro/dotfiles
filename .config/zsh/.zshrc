@@ -46,6 +46,12 @@ autoload -Uz colors && colors
 # cd up [1-9] times
 .{1..9} (){ local d=.; repeat ${0:1} d+=/..; cd $d;}
 
+# base64 decode wihout trailing garbage
+b64 (){
+	[ $# != 1 ] && echo "b64: decode a base64 string\nUsage: b64 <base64 string>" && return ||
+		echo $(echo "$1" | base64 -w 0 -d)
+}
+
 # Extract archive files
 ex (){
 	if [ -f $1 ] ; then

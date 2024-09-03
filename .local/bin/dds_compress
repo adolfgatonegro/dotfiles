@@ -35,7 +35,7 @@ while IFS= read -r file; do cp "$file" "$file"_orig; done < dds_list.log
 # # compress files
 echo "Compressing DDS files..."
 find -name "*.dds_orig" -exec sh -c \
-	'convert \
+	'magick \
 	   -monitor \
 	   -define dds:mipmaps=1 \
 	   -define dds:compression=dtx5 \
