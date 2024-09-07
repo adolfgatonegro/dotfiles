@@ -33,16 +33,14 @@ screencast() {
 	sleep 1
 	ffmpeg \
 		-hide_banner \
+		-y \
 		-f x11grab \
-		-framerate 30 \
+		-framerate 60 \
 		-i $DISPLAY \
 		-f pulse \
 		-i $audiosource \
-		-af acompressor=threshold=0.089:ratio=9:attack=200:release=1000 \
-		-c:v h264_nvenc \
-		-g 24 \
-		-b:v 2M \
-		-preset slow \
+		-c:v libx264 \
+		-preset ultrafast \
 		-c:a aac \
 		-vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
 		-pix_fmt yuv420p \
