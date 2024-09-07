@@ -61,7 +61,7 @@ local options = {
     audio_fade_cap = 0,
 
     -- Fast forward through sponsors instead of skipping
-    fast_forward = true,
+    fast_forward = false,
 
     -- Playback speed modifier when fast forwarding, applied once every second until cap is reached
     fast_forward_increase = .2,
