@@ -78,6 +78,15 @@ require("tokyonight").setup({
 -- Neovim colourscheme
 cmd.colorscheme("tokyonight")
 
+-- get word count for display in lualine
+local function getWords()
+  if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" or vim.bo.filetype == "typst" then
+      return tostring(vim.fn.wordcount().words) .. " words"
+  else
+    return ""
+  end
+end
+
 -- lualine colourscheme
 require('lualine').setup({
 	options = {
@@ -87,6 +96,7 @@ require('lualine').setup({
 	},
 	sections = {
 		lualine_c = {'buffers'},
+		lualine_x = { 'encoding', 'fileformat', 'filetype', { getWords } },
 	},
 	inactive_sections = {
 		lualine_c = {'buffers'},
