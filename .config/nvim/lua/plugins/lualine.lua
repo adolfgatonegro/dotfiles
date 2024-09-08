@@ -17,7 +17,7 @@ return {
 				section_separators = '',
 			},
 			sections = {
-				lualine_c = {""},
+				lualine_c = {"%{PencilMode()}"},
 				lualine_x = { "encoding", "fileformat", "filetype", { getWords } },
 			},
 			inactive_sections = {

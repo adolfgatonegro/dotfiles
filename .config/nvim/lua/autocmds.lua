@@ -17,17 +17,18 @@ autocmd('VimResized', {
 	desc = "Auto resize windows when size changes",
 })
 
--- Enable spell checker for certain file types
-autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.txt", "*.md", "*.tex", "*.typ" },
-	command = "setlocal spell"
+-- Set conceal, vim-pencil for markdown and typst
+autocmd({ "FileType" }, {
+	pattern = { "markdown", "typst", "text" },
+	command = "set conceallevel=2 | call pencil#init({'wrap': 'soft'})"
+})
+--
+-- Set vim-pencil plain text
+autocmd({ "FileType" }, {
+	pattern = { "text" },
+	command = "call pencil#init({'wrap': 'hard'})"
 })
 
--- Set conceal for markdown
-autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.md", "*.typ" },
-	command = "set conceallevel=2 textwidth=80"
-})
 
 -- Highlight on yank
 augroup('YankHighlight', { clear = true })
@@ -73,3 +74,8 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
 	end,
 })
 
+-- Fix dimmed area transparency for zen-mode
+autocmd("VimEnter", {
+	pattern = "*",
+	command = [[hi ZenBg ctermbg=NONE guibg=NONE]]
+})

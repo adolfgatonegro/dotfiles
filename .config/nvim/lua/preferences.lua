@@ -2,7 +2,6 @@
 -- No need to re-type the same thing over and over
 -------------------------------------------------------------------------------
 local opt = vim.opt
-local g = vim.g
 
 -------------------------------------------------------------------------------
 -- Set basic options
@@ -13,7 +12,6 @@ local options = {
 	backup = true,
 	clipboard = "unnamedplus",
 	cmdheight = 1,
-	conceallevel = 2,
 	completeopt = "menuone,longest,preview",
 	confirm = true,
 	expandtab = false,
@@ -52,8 +50,3 @@ opt.shortmess:append("c")
 for k, v in pairs(options) do
 	opt[k] = v
 end
-
--------------------------------------------------------------------------------
--- typst.nvim
--------------------------------------------------------------------------------
-g.typst_conceal = 1 -- This is broken for some reason

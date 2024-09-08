@@ -50,14 +50,19 @@ k("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Telescope: Find file
 k("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Telescope: Live grep" } )
 k("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Telescope: Buffers" } )
 
+-- zen-mode.nvim
+k("n", "<leader>z", ":ZenMode<CR>", { desc = "Zen Mode: Toggle" } )
+
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
+
+-- Formatting paragraphs
+k("n", "f", 'gqap', { desc = "Format current paragraph" })
+k("n", "F", 'vipJ', { desc = "Join all lines in current paragraph" })
 
 -- Line navigation
 k("n", "l", "<Space>")
 k("n", "h", "<Backspace>")
--- k("n", "j", "gj")
--- k("n", "k", "gk")
 k({"n", "v"}, "H", "^")
 k({"n", "v"}, "L", "$")
 
@@ -66,9 +71,6 @@ k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:tr
 
 -- oil.nvim
 k("n", "-", "<cmd>Oil<CR>", { desc = "Open parent directory" })
-
--- Spell check
--- k("n", "<leader>s", ":setlocal spell!<CR>", { desc = "Toggle spell checking" } )
 
 -- Splits - better navigation
 k("n", "<C-h>", "<C-w>h")
@@ -83,7 +85,6 @@ k("n", "<C-Left>", ":vert res +2<CR>")
 k("n", "<C-Right>", ":vert res -2<CR>")
 
 -- Toggle key bindings
--- k("n", "<leader>tg", ":Goyo<CR>", { desc = "Toggle focus mode" })
 k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
 k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
@@ -108,6 +109,9 @@ k("v", "*", "\"zy:let @/=@z<C-r>n<CR>", { desc = "Search for selection" } )
 -------------------------------------------------------------------------------
 -- Visual Block mappings
 -------------------------------------------------------------------------------
+
+-- Formatting paragraphs
+k("x", "f", 'gq', { desc = "Format current paragraph" })
 
 -- Move selected block up/down
 k("x", "J", ":m '>+1<CR>gv-gv")
