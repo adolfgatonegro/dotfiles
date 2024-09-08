@@ -14,3 +14,5 @@
 ###############################################################################
 
 export NB_DIR="${NB_DIR:-/home/gatonegro/documents/nb}" # Set by `nb` • Tue 20 Aug 16:26:58 CST 2024
+
+export NB_COLOR_THEME="${NB_COLOR_THEME:-electro}" # Set by `nb` • Sun  8 Sep 09:48:59 CST 2024
