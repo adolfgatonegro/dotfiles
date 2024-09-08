@@ -17,18 +17,11 @@ autocmd('VimResized', {
 	desc = "Auto resize windows when size changes",
 })
 
--- Set conceal, vim-pencil for markdown and typst
+-- Set conceal, markdown and typst
 autocmd({ "FileType" }, {
 	pattern = { "markdown", "typst", "text" },
-	command = "set conceallevel=2 | call pencil#init({'wrap': 'soft'})"
+	command = "set conceallevel=2)"
 })
---
--- Set vim-pencil plain text
-autocmd({ "FileType" }, {
-	pattern = { "text" },
-	command = "call pencil#init({'wrap': 'hard'})"
-})
-
 
 -- Highlight on yank
 augroup('YankHighlight', { clear = true })
