@@ -17,6 +17,13 @@ autocmd('VimResized', {
 	desc = "Auto resize windows when size changes",
 })
 
+-- Set spell for typst
+-- TODO: Workaround because ltex doesn't support it yet
+autocmd({ "BufRead", "BufNewFile" }, {
+	pattern = { "*.typ" },
+	command = "setlocal spell"
+})
+
 -- Set conceal, markdown and typst
 autocmd({ "FileType" }, {
 	pattern = { "markdown", "typst", "text" },

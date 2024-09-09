@@ -32,8 +32,11 @@ return {
 				capabilities = capabilities,
 				filetypes = {
 					"latex",
-					"typst",
-					"typ",
+					--
+					-- TODO: ltex gets horribly confused by typst, disable for now
+					--
+					-- "typst",
+					-- "typ",
 					"bib",
 					"markdown",
 					"plaintex",
@@ -44,8 +47,11 @@ return {
 						language = "en-GB",
 						enabled = {
 							"latex",
-							"typst",
-							"typ",
+							--
+							-- TODO: ltex gets horribly confused by typst, disable for now
+							--
+							-- "typst",
+							-- "typ",
 							"bib",
 							"markdown",
 							"plaintex",
