@@ -20,7 +20,7 @@ autocmd('VimResized', {
 -- Set conceal, markdown and typst
 autocmd({ "FileType" }, {
 	pattern = { "markdown", "typst", "text" },
-	command = "set conceallevel=2)"
+	command = "set conceallevel=2"
 })
 
 -- Highlight on yank
