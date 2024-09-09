@@ -3,7 +3,7 @@ return {
 
 	config = function ()
 		vim.g["pencil#wrapModeDefault"] = "soft"
-		vim.g["pencil#conceallevel"] = 0
+		vim.g["pencil#conceallevel"] = 2
 		vim.g["pencil#concealcursor"] = "c"
 
 		vim.cmd([[
