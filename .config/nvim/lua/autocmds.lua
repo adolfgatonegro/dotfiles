@@ -17,17 +17,10 @@ autocmd('VimResized', {
 	desc = "Auto resize windows when size changes",
 })
 
--- Set spell for typst
--- TODO: Workaround because ltex doesn't support it yet
-autocmd({ "BufRead", "BufNewFile" }, {
-	pattern = { "*.typ" },
-	command = "setlocal spell"
-})
-
--- Set conceal, markdown and typst
+-- Set conceallevel and spellchecking for markdown, typst, and text files
 autocmd({ "FileType" }, {
 	pattern = { "markdown", "typst", "text" },
-	command = "set conceallevel=2"
+	command = "set conceallevel=2 | setlocal spell"
 })
 
 -- Highlight on yank

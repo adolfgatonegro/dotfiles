@@ -28,38 +28,34 @@ return {
 				},
 			}
 
-			lspconfig.ltex.setup{
-				capabilities = capabilities,
-				filetypes = {
-					"latex",
-					--
-					-- TODO: ltex gets horribly confused by typst, disable for now
-					--
-					-- "typst",
-					-- "typ",
-					"bib",
-					"markdown",
-					"plaintex",
-					"tex"
-				},
-				settings = {
-					ltex = {
-						language = "en-GB",
-						enabled = {
-							"latex",
-							--
-							-- TODO: ltex gets horribly confused by typst, disable for now
-							--
-							-- "typst",
-							-- "typ",
-							"bib",
-							"markdown",
-							"plaintex",
-							"tex"
-						},
-					}
-				}
-			}
+			-- lspconfig.ltex.setup{
+			-- 	capabilities = capabilities,
+			-- 	filetypes = {
+			-- 		"latex",
+			-- 		-- ltex gets horribly confused by typst, disable for now
+			-- 		-- "typst",
+			-- 		-- "typ",
+			-- 		"bib",
+			-- 		"markdown",
+			-- 		"plaintex",
+			-- 		"tex"
+			-- 	},
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			language = "en-GB",
+			-- 			enabled = {
+			-- 				"latex",
+			-- 				-- ltex gets horribly confused by typst, disable for now
+			-- 				-- "typst",
+			-- 				-- "typ",
+			-- 				"bib",
+			-- 				"markdown",
+			-- 				"plaintex",
+			-- 				"tex"
+			-- 			},
+			-- 		}
+			-- 	}
+			-- }
 		end
 	}
 }
