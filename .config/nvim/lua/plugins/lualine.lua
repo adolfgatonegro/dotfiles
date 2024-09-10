@@ -17,11 +17,11 @@ return {
 				section_separators = '',
 			},
 			sections = {
-				lualine_c = {"%{PencilMode()}"},
+				lualine_c = { "%{PencilMode()}", "filename" },
 				lualine_x = { "encoding", "fileformat", "filetype", { getWords } },
 			},
 			inactive_sections = {
-				lualine_c = {""},
+				lualine_c = { "filename" },
 			},
 		})
 	end,
