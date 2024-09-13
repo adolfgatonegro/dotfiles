@@ -1,0 +1,29 @@
+#!/bin/sh
+
+# Check if an argument was passed
+if [[ $# -ne 1 ]]; then
+    echo "Usage: $0 <filename.pdf>"
+    exit 1
+fi
+
+# Darkening the pdf at $1
+echo "Darkening the PDF at $1"
+
+# Converting PDF to JPGs
+echo "Converting PDF to JPGs..."
+magick -density 100 "$1" pdf_contrast_preprocess_%04d.jpg
+
+# Darkening JPGs
+echo "Darkening JPGs..."
+magick pdf_contrast_preprocess_*.jpg -level 30%,70%,0.3 pdf_contrast_postprocess_%04d.jpg
+
+# Converting JPGs to PDF
+echo "Converting JPGs to PDF..."
+magick pdf_contrast_postprocess*.jpg darkened.pdf
+
+# Deleting JPGs
+echo "Deleting JPGs..."
+rm pdf_contrast*.jpg
+
+echo "Done!"
+read -p "Press Enter to continue..."
