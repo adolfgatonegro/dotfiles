@@ -28,6 +28,10 @@ return {
 				},
 			}
 
+			lspconfig.clangd.setup{
+				capabilities = capabilities,
+			}
+
 			-- lspconfig.ltex.setup{
 			-- 	capabilities = capabilities,
 			-- 	filetypes = {
