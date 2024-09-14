@@ -42,7 +42,7 @@ alias \
 
 # hipster coreutil replacements
 alias \
-	ls="exa --color=always --group-directories-first --icons" \
+	ls="eza --color=always --group-directories-first --icons" \
 	ll="ls -l" \
 	la="ls -al" \
 	lh="ls -d .*" \
