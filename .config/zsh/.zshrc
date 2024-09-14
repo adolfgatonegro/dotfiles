@@ -42,6 +42,7 @@ zinit light Aloxaf/fzf-tab
 zinit light zdharma-continuum/fast-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
+zinit light hlissner/zsh-autopair
 
 # Completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
