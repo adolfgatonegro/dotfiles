@@ -77,7 +77,7 @@ set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
 set followpagepatterns.prev ^(prev(ious)?|older|précédent|anterior)\b|«|<<
 
 " Hint and open with linkhandler.
-bind go hint -W exclaim_quiet linkhandler
+bind M hint -W exclaim_quiet linkhandler
 
 " Hint and open in private window.
 bind gp hint -wp
