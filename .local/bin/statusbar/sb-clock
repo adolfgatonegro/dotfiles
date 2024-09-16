@@ -2,8 +2,8 @@
 case $BLOCK_BUTTON in
 	1) gsimplecal ;;
 	# 2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	2) imgview ~/pictures/wallpapers ;;
-	3) setwall ;;
+	2) setwall ;;
+	3) unischedule ;;
 esac
 
 date '+%a %d %H:%M'
