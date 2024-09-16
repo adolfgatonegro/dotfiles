@@ -31,6 +31,9 @@ setopt menucomplete
 setopt extendedglob
 setopt autocd
 
+# Disable paste highlighting
+zle_highlight=("paste:none")
+
 # Zinit
 # Set zinit config directory
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
@@ -59,7 +62,8 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' menu no
-zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --color=always --group-directories-first --icons $realpath'
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
+zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Load completions
 autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/.zcompdump-$ZSH_VERSION
@@ -111,8 +115,6 @@ zshaddhistory() {
 
 # Shell integrations
 eval "$(fzf --zsh)"
-
-# eval "$(oh-my-posh init zsh --config $XDG_CONFIG_HOME/ohmyposh/config.toml)"
-# eval "$(starship init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 gato
