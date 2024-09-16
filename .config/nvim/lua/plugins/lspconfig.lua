@@ -14,7 +14,7 @@ return {
 			local lspconfig = require("lspconfig")
 			lspconfig.typst_lsp.setup{
 				capabilities = capabilities,
-				exportPdf = "onSave"
+				-- exportPdf = "onSave"
 			}
 
 			lspconfig.lua_ls.setup{
