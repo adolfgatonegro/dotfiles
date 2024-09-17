@@ -1,4 +1,4 @@
-snippet page Set page properties
+snippet page Set: Page properties
 	#set page(
 	  paper: "${1:us-letter}",
 	  margin: ${2:3.5cm},
@@ -7,14 +7,14 @@ snippet page Set page properties
 	)
 	${0}
 
-snippet text Set text language
+snippet text Set: Size and language
 	#set text(
 	  lang: "${1:es}", 
 	  size: ${2:11pt}
 	)
 	${0}
 
-snippet par Set paragraph
+snippet par Set: Paragraph
 	#set par(
 	  justify: ${1:true},
 	  leading: ${2:1.0em},
@@ -22,7 +22,7 @@ snippet par Set paragraph
 	)
 	${0}
 
-snippet quote Set blockquote
+snippet bquote Set: Blockquote
 	#set quote(
 		block: ${1:true}, 
 		quotes: ${2:true},
@@ -31,3 +31,38 @@ snippet quote Set blockquote
 		x: ${3:4em},
 	)
 	${0}
+
+snippet iquote Quote
+	#quote(block:${1:false})[${0}]
+
+snippet cit Citation
+	#cite(<${1:Key}>, form:"${2:prose}", supplement: "${3}")${0}
+
+snippet bib Bibliography
+	#pagebreak()
+	#set par(
+		leading: 0.65em, 
+		first-line-indent: 0em)
+	#bibliography("${0}", style: "${1:apa}")
+
+snippet est Uni: Essay title
+	#align(center)[
+	  #set par(leading: 1em)
+	  #block(
+		width: 100%,
+		spacing: 2em,
+		[#text(${1:18pt})[#smallcaps("${2:Title}")]\
+		 #text(${3:14})[#emph("${4:Subtitle}")]
+		])
+	  #set par(leading: 0.65em)
+	  #block(
+		width: 100%,
+		spacing: 2em,
+		[${5:Name}\
+		#smallcaps("${6:Course}")\
+		${7:Professor}\
+		${8:Degree}\
+		${9:Institution}]) 
+	]
+	${0}
+
