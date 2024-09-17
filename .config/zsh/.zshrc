@@ -13,7 +13,7 @@ HISTSIZE=5000
 HISTFILE="$ZDOTDIR/history"
 SAVEHIST=$HISTSIZE
 HISTDUP=erase
-HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|nvim(| *)|.*)|linkhandler(| *)|trem(|*)|conf(|*)|mpv(|*)|nb(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
+HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|nvim(| *)|.*)|linkhandler(| *)|trem(|*)|mpv(|*)|nb(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
 ZSH_AUTOSUGGEST_HISTORY_IGNORE="(cd *|ls *|mv *|cp *|rm *)"
 setopt appendhistory
 setopt sharehistory
@@ -111,7 +111,18 @@ bindkey "^D" zsh_exit
 
 # Don't add failed commands to history file
 zshaddhistory() {
-	whence ${${(z)1}[1]} >| /dev/null || return 1
+  emulate -L zsh
+  _HISTLINE=${1%%$'\n'}
+  return 1
+}
+
+precmd() {
+  local -i rc=$?
+  emulate -L zsh
+  if (( $rc == 0 && $+_HISTLINE && $#_HISTLINE )); then
+    builtin print -rs -- $_HISTLINE
+    unset _HISTLINE
+  fi
 }
 
 # Shell integrations
