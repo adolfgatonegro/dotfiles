@@ -60,12 +60,13 @@ snippet nb Uni: Name block
 	#align(${1:center})[
 	  #set par(leading: 0.65em)
 	  #block(
-		width: 100%,
-		spacing: 2em,
-		[${2:Name}\
-		#smallcaps("${3:Course}")\
-		${4:Professor}\
-		${5:Degree}\
-		${6:Institution}]) 
-	]
+	    width: 100%,
+        above: 2em,
+        below: 2em,
+        [${2:Name}\
+        #smallcaps("${3:Course}")\
+        ${4:Professor}\
+        ${5:Degree}\
+        ${6:Institution}]) 
+    ]
 	${0}
