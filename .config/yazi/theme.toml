@@ -36,4 +36,6 @@ prepend_dirs  = [
 	{ name = "shared", text = "" },
 	{ name = "videos", text = "" },
 ]
-
+prepend_exts = [
+	{ name = "tif", text = "", fg_dark = "#a074c4", fg_light = "#6b4d83" },
+]
