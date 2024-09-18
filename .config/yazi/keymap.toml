@@ -1,5 +1,7 @@
 [manager]
 prepend_keymap = [
 	{ on = [ "g", "d" ], run = "cd ~/downloads",              desc = "Go to the downloads directory" },
-	{ on = "z",          run = "shell --block --confirm zsh", desc = "Start a new shell" },
+	{ on = "S",          run = "shell --block --confirm zsh", desc = "Start a new shell" },
+	{ on = [ "s", "f" ], run = "search fd",                   desc = "Search files (fd)" },
+	{ on = [ "s", "r" ], run = "search rg",                   desc = "Search contents (ripgrep)" },
 ]
