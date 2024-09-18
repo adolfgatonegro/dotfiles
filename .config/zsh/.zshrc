@@ -114,22 +114,6 @@ bindkey "^D" zsh_exit
 # Source functions
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
 
-# Don't add failed commands to history file
-zshaddhistory() {
-  emulate -L zsh
-  _HISTLINE=${1%%$'\n'}
-  return 1
-}
-
-precmd() {
-  local -i rc=$?
-  emulate -L zsh
-  if (( $rc == 0 && $+_HISTLINE && $#_HISTLINE )); then
-    builtin print -rs -- $_HISTLINE
-    unset _HISTLINE
-  fi
-}
-
 # Shell integrations
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
