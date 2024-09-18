@@ -45,24 +45,27 @@ snippet bib Bibliography
 		first-line-indent: 0em)
 	#bibliography("${0}", style: "${1:apa}")
 
-snippet est Uni: Essay title
-	#align(center)[
+snippet eh Uni: Essay heading
+	#align(${1:center})[
 	  #set par(leading: 1em)
 	  #block(
 		width: 100%,
 		spacing: 2em,
-		[#text(${1:18pt})[#smallcaps("${2:Title}")]\
-		 #text(${3:14})[#emph("${4:Subtitle}")]
+		[#text(${2:18pt})[#smallcaps("${3:Title}")]\
+		 #text(${4:14})[#emph("${5:Subtitle}")]
 		])
+	${0}
+
+snippet nb Uni: Name block
+	#align(${1:center})[
 	  #set par(leading: 0.65em)
 	  #block(
 		width: 100%,
 		spacing: 2em,
-		[${5:Name}\
-		#smallcaps("${6:Course}")\
-		${7:Professor}\
-		${8:Degree}\
-		${9:Institution}]) 
+		[${2:Name}\
+		#smallcaps("${3:Course}")\
+		${4:Professor}\
+		${5:Degree}\
+		${6:Institution}]) 
 	]
 	${0}
-
