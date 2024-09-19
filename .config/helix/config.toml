@@ -1,0 +1,35 @@
+# helix editor config
+# gatoneg.ro
+
+# Set colour theme
+theme = "gatonegro"
+
+# Editor settings
+[editor]
+bufferline = "always"             # Always show bufferline
+color-modes = true                # Show different colours for each mode
+insert-final-newline = false      # Do not insert newline at end of file
+line-number = "relative"          # Use relative line numbers
+scrolloff = 10                    # Increment scrolloff
+
+[editor.cursor-shape]             # Cursor shapes
+insert = "bar"                    # Bar for insert mode
+normal = "block"                  # Block for normal mode
+select = "underline"              # Underline for selection mode
+
+[editor.soft-wrap]
+enable = true                     # Enable line wrapping
+wrap-at-text-width = true         # Wrap at text-width instead of viewport size
+
+[editor.whitespace]
+# render = "all"                  # Render whitespace with visible characters
+ 
+# Keymappings
+[keys.normal]
+C-s = ":w"                        # Write
+C-q = ":wqa"                      # Write and quit all
+X = "extend_line_above"           # Select line above cursor
+
+[keys.normal.space]
+w = ":toggle soft-wrap.enable"    # Toggle line wrapping
+F = "file_picker_in_current_buffer_directory" # File picker opens current buffer directory

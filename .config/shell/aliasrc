@@ -34,7 +34,8 @@ alias \
 	cuetag="cuetag.sh" \
 	mpa="mpv --audio-display=no --no-video" \
 	o="xdg-open" \
-	z="zathura"
+	z="zathura" \
+	hx="helix"
 
 # hipster coreutil replacements
 alias \
