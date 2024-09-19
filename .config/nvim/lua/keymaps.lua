@@ -34,21 +34,20 @@ g.maplocalleader = " "
 k("n", "Q", "<Nop>") -- Bye-bye, Ex mode
 
 -- Buffers
-k("n", "<leader>bd", ":bd<CR>", { desc = "Delete buffer" } )
-k("n", "<leader>bb", ":b<Space>", { desc = "Switch buffer" } )
-k("n", "<leader>bp", ":bprevious<CR>", { desc = "Previous buffer" } )
-k("n", "<leader>bn", ":bnext<CR>", { desc = "Next buffer" } )
-k("n", "<leader>bs", ":new<CR>", { desc = "New horizontal split" } )
-k("n", "<leader>bv", ":vnew<CR>", { desc = "New vertical split" } )
+k("n", "gn", ":bnext<CR>", { desc = "Go to next buffer" } )
+k("n", "gp", ":bprevious<CR>", { desc = "Go to previous buffer" } )
+k("n", "<leader>d", ":bd<CR>", { desc = "Delete current buffer" } )
+k("n", "<leader>s", ":new<CR>", { desc = "New horizontal split" } )
+k("n", "<leader>v", ":vnew<CR>", { desc = "New vertical split" } )
 
 -- bufferline.nvim
 k("n", "<tab>", ":BufferLineCycleNext<CR>", { desc = "Bufferine: Next buffer" } )
 k("n", "<S-tab>", ":BufferLineCyclePrev<CR>", { desc = "Bufferine: Previous buffer" } )
 
 -- Telescope.nvim
-k("n", "<leader>ff", ":Telescope find_files<CR>", { desc = "Telescope: Find files" } )
-k("n", "<leader>fg", ":Telescope live_grep<CR>", { desc = "Telescope: Live grep" } )
-k("n", "<leader>fb", ":Telescope buffers<CR>", { desc = "Telescope: Buffers" } )
+k("n", "<leader>f", ":Telescope find_files<CR>", { desc = "Telescope: Find files" } )
+k("n", "<leader>g", ":Telescope live_grep<CR>", { desc = "Telescope: Live grep" } )
+k("n", "<leader>b", ":Telescope buffers<CR>", { desc = "Telescope: Buffers" } )
 
 -- zen-mode.nvim
 k("n", "<leader>z", ":ZenMode<CR>", { desc = "Zen Mode: Toggle" } )
@@ -63,8 +62,8 @@ k("n", "F", 'vipJ', { desc = "Join all lines in current paragraph" })
 -- Line navigation
 k("n", "l", "<Space>")
 k("n", "h", "<Backspace>")
-k({"n", "v"}, "H", "^")
-k({"n", "v"}, "L", "$")
+k({"n", "v"}, "gh", "^", { desc = "Go to line start" } )
+k({"n", "v"}, "gl", "$", { desc = "Go to line end" } )
 
 -- Go to URL under cursor
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
