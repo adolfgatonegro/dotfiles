@@ -11,7 +11,7 @@ KEYTIMEOUT=1
 HISTFILE="${ZDOTDIR:-$HOME/.config/zsh}/zsh_history" # The path to the history file.
 HISTSIZE=5000                        # The maximum number of events to save in the internal history.
 SAVEHIST=$HISTSIZE                   # The maximum number of events to save in the history file.
-HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|nvim(| *)|.*)|linkhandler(| *)|trem(|*)|mpv(|*)|nb(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
+HISTORY_IGNORE="(cd(| *)|ls(| *)|la(| *)|lh(| *)|ll(| *)|lf(| *)|mv(| *)|cp(| *)|rm(| *)|vim(| *)|nvim(| *)|helix(| *)|hx(| *)|.*)|linkhandler(| *)|trem(|*)|mpv(|*)|nb(|*)|umpv(|*)|builtin cd(|*)|ex(|*)|ff(|*)"
 
 setopt BANG_HIST                     # Treat the '!' character specially during expansion.
 setopt EXTENDED_HISTORY              # Write the history file in the ':start:elapsed;command' format.
