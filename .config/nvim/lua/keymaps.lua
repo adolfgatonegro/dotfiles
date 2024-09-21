@@ -92,8 +92,8 @@ k("n", "<C-Left>", ":vert res +2<CR>")
 k("n", "<C-Right>", ":vert res -2<CR>")
 
 -- Toggle key bindings
-k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
-k("n", "<leader>tw", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
+k("n", "<leader>h", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
+k("n", "<leader>w", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
 
 -- Compiler
 k("n", "<leader>c", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
