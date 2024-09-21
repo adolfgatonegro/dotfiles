@@ -4,8 +4,6 @@ inherits = "tokyonight"
 "ui.background" = { bg = "", fg = "fg" }
 "ui.cursorline.primary" = { bg = "" }
 "ui.help" = { bg = "", fg = "fg" }
-"ui.menu" = { bg = "", fg = "fg" }
-"ui.popup" = { bg = "", fg = "border-highlight" }
 "ui.text" = { bg = "", fg = "fg" }
 "ui.text.focus" = { bg = "bg-focus" }
 "ui.text.info" = { bg = "", fg = "fg" }
