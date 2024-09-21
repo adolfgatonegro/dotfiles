@@ -7,14 +7,14 @@ return {
 		vim.g["pencil#concealcursor"] = "c"
 
 		vim.cmd([[
-			let g:pencil#mode_indicators = {'hard': 'H', 'auto': 'A', 'soft': 'S', 'off': '',}
+			let g:pencil#mode_indicators = {"hard": "", "auto": "󰯭", "soft": "󰖶", "off": "",}
 		]])
 
 		vim.cmd([[
 			augroup pencil
 				autocmd!
-				autocmd FileType markdown,md,typst call pencil#init({'wrap': 'soft'})
-				autocmd FileType text call pencil#init({'wrap': 'hard'})
+				autocmd FileType markdown,md,typst call pencil#init({"wrap": "soft"})
+				autocmd FileType text call pencil#init({"wrap": "hard"})
 			augroup END
 		]])
 	end
