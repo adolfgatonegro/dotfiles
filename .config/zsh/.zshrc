@@ -39,28 +39,16 @@ setopt autocd
 # Disable paste highlighting
 zle_highlight=("paste:none")
 
-# Zinit
-# Set zinit config directory
-ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
-
-# Download zinit if not present already
-if [ ! -d "$ZINIT_HOME" ]; then
-	mkdir -p "$(dirname $ZINIT_HOME)"
-	git clone https://github.com/zdharma-continuum/zinit.git "$ZINIT_HOME"
-fi
-
-# Source zinit
-source "${ZINIT_HOME}/zinit.zsh"
-
-# Add Powerlevel10K
-zinit ice depth=1; zinit light romkatv/powerlevel10k
+# PLugin manager
+source "${ZDOTDIR:-$HOME/.config/zsh}/zsh-plugins.zsh"
 
 # Plugins
-zinit light Aloxaf/fzf-tab
-zinit light zdharma-continuum/fast-syntax-highlighting
-zinit light zsh-users/zsh-completions
-zinit light zsh-users/zsh-autosuggestions
-zinit light hlissner/zsh-autopair
+zsh_add_plugin "romkatv/powerlevel10k"
+zsh_add_plugin "Aloxaf/fzf-tab"
+zsh_add_plugin "zsh-users/zsh-autosuggestions"
+zsh_add_plugin "zsh-users/zsh-completions"
+zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"
 
 # Completion
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -72,7 +60,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 # Load completions
 autoload -Uz compinit && compinit -d $XDG_CACHE_HOME/.zcompdump-$ZSH_VERSION
-zinit cdreplay -q
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/zsh/.p10k.zsh"
