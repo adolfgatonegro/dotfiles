@@ -1,6 +1,6 @@
 local function getWords()
   if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" or vim.bo.filetype == "typst" or vim.bo.filetype == "tex" or vim.bo.filetype == "plaintex" then
-      return " " .. tostring(vim.fn.wordcount().words)
+      return "󰙏 " .. tostring(vim.fn.wordcount().words) .. " |  " .. tostring(vim.fn.wordcount().chars)
   else
     return ""
   end
@@ -16,8 +16,8 @@ return {
 		require('lualine').setup({
 			options = {
 				icons_enabled = true,
-				theme = "tokyonight",
-				component_separators = '',
+				theme = "ayu_dark",
+				component_separators = { left = '|', right = '|' },
 				section_separators = '',
 			},
 			always_divide_middle = true,
@@ -29,7 +29,7 @@ return {
 					"diff",
 					{ "diagnostics", sources = { "nvim_diagnostic" } },
 				},
-				lualine_c = { "%{PencilMode()}", "filename" },
+				lualine_c = { "filename" },
 				lualine_x = {
 					{ lazy_status.updates, cond = lazy_status.has_updates },
 					"encoding",
@@ -37,8 +37,9 @@ return {
 					"filetype",
 				},
 				lualine_y = {
-					{ getWords },
+					"%{PencilMode()}",
 					'(vim.bo.expandtab and "󱁐" or "󰌒 ") .. " " .. vim.bo.shiftwidth',
+					{ getWords },
 				},
 				lualine_z = {
 					"location",
