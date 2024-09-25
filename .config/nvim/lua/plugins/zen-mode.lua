@@ -13,5 +13,13 @@ return {
 				-- list = false, -- disable whitespace characters
 			},
 		},
+		on_open = function(_)
+			vim.o.cmdheight = 1
+			require("lualine").hide()
+		end,
+		on_close = function()
+			vim.o.cmdheight = 0
+			require("lualine").hide { unhide = true }
+		end,
 	}
 }
