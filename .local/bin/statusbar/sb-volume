@@ -8,10 +8,11 @@ case $BLOCK_BUTTON in
 esac
 
 if [ "$(pamixer --get-mute)" = true ]; then
-    printf "%s %s \nn" "🗙"
+    printf "%s %s \nn" " "
     exit
 fi
 
-icon=""
+icon=" "
 vol="$(pamixer --get-volume-human)"
+
 printf "%s %s \\n" "$icon $vol"
