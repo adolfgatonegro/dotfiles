@@ -13,8 +13,8 @@ return {
 		vim.cmd([[
 			augroup pencil
 				autocmd!
-				autocmd FileType markdown,md,typst call pencil#init({"wrap": "soft"})
-				autocmd FileType text call pencil#init({"wrap": "hard"})
+				autocmd FileType typst call pencil#init({"wrap": "soft"})
+				autocmd FileType markdown,md,text call pencil#init({"wrap": "hard"})
 			augroup END
 		]])
 	end
