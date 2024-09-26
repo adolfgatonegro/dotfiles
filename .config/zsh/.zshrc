@@ -69,6 +69,7 @@ bindkey -v
 bindkey '^a' beginning-of-line
 bindkey '^e' end-of-line
 bindkey '^ ' autosuggest-accept
+bindkey "^?" backward-delete-char
 bindkey -M vicmd '/' history-incremental-search-backward
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M viins '^p' history-search-backward
