@@ -62,8 +62,8 @@ k("n", "F", 'vipJ', { desc = "Join all lines in current paragraph" })
 -- Line navigation
 k("n", "l", "<Space>")
 k("n", "h", "<Backspace>")
-k({"n", "v"}, "gh", "^", { desc = "Go to line start" } )
-k({"n", "v"}, "gl", "$", { desc = "Go to line end" } )
+-- k({"n", "v"}, "gh", "^", { desc = "Go to line start" } )
+-- k({"n", "v"}, "gl", "$", { desc = "Go to line end" } )
 
 -- Go to URL under cursor
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
@@ -94,6 +94,10 @@ k("n", "<C-Right>", ":vert res -2<CR>")
 -- Toggle key bindings
 k("n", "<leader>h", ":set hlsearch!<CR>", { desc = "Toggle highlight for last search term" } )
 k("n", "<leader>w", ":set wrap!<CR>", { desc = "Toggle line wrapping" } )
+k({"n", "v"}, "<leader>t", function()
+	local stay = require("stay-centered")
+	stay.toggle()
+end, { desc = 'Toggle centred cursor' })
 
 -- Compiler
 k("n", "<leader>c", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
