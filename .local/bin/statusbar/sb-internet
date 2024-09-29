@@ -5,6 +5,57 @@ case $BLOCK_BUTTON in
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
+# TODO
+# Finish wireless stuff
+
+for adapter in /sys/class/net/w?* /sys/class/net/e?*; do
+
+    # Check if the adapter exists to avoid errors
+    if [ -e "$adapter" ]; then
+        # Extract adapter name from path
+        adapter_name=$(basename "$adapter")
+
+		# Which type of adapter is it?
+		case "$adapter_name" in
+			e*) adapter_type="ethernet"
+				adapter_icon="󰈀" ;;
+			w*) adapter_type="wireless"
+				adapter_icon="󰖩" ;;
+			 *) adapter_type="unknown"
+				adapter_icon="?" ;;
+		esac
+
+        # Check if the adapter is up or down
+		adapter_state="$(cat "$adapter/operstate")"
+
+        if [ "$adapter_state" = "up" ]; then
+			# Check connectivity
+			connectivity="$(nmcli networking connectivity check)"
+
+			# If wireless, check signal strength
+			if [ "$adapter_type" = "wireless" ]; then
+				signal="$(awk '/^\s*w/ { print " ", int($3 * 100 / 70) "%" }' /proc/net/wireless)"
+			fi
+
+			case "$connectivity" in
+				none)    net_status="^C1^$adapter_icon ^C7^$signal ^C1^[X]^C7^" ;;
+				portal)  net_status="^C3^$adapter_icon ^C7^$signal ^C3^[Limited]^C7^" ;;
+				limited) net_status="^C3^$adapter_icon ^C7^$signal ^C3^[Limited]^C7^" ;;
+				unknown) net_status="^C3^$adapter_icon ^C7^$signal ^C3^[?]^C7^" ;;
+				full)    net_status="^C2^$adapter_icon ^C7^$signal ^C2^[OK]^C7^" ;;
+				*)       net_status="$adapter_icon [Invalid]" ;;
+			esac
+
+			# Adapter is up, print status
+			printf "%s\n" "$net_status"
+        else
+			# Adapter is down, 
+			printf "%s\n" "^C8^$adapter_icon ^C7^"
+        fi
+    fi
+done
+
+
 # Check for Internet access
 # wiredstatus=""
 #
@@ -19,11 +70,11 @@ esac
 #
 # printf "%s%s%s\n" "$wifiicon" "$(sed "s/down/^C1^󰲛 ^C7^/;s/up/$wiredstatus/" /sys/class/net/e*/operstate 2>/dev/null)" "$(sed "s/.*//" /sys/class/net/tun*/operstate 2>/dev/null)"
 
-if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
-	wifiicon="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print "^C2^󰖩 ^C7^"$8 "% " $3 " "}}')"
-elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
-	grep -xq '0x1003' /sys/class/net/w*/flags && wifiicon="󱚵 " || wifiicon="^C1^󰖪 ^C7^ "
-fi
+# if grep -xq 'up' /sys/class/net/w*/operstate 2>/dev/null ; then
+# 	wifiicon="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print "^C2^󰖩 ^C7^"$8 "% " $3 " "}}')"
+# elif grep -xq 'down' /sys/class/net/w*/operstate 2>/dev/null ; then
+# 	grep -xq '0x1003' /sys/class/net/w*/flags && wifiicon="󱚵 " || wifiicon="^C1^󰖪 ^C7^ "
+# fi
 
 # if grep -xq 'up' /sys/class/net/e*/operstate 2>/dev/null ; then
 # 	wiredicon="$(nmcli connection show --active | grep "ethernet" | awk -F '  ' '{ print "^C2^󰈀 ^C7^" $1 }')"
@@ -31,7 +82,5 @@ fi
 # 	grep -xq '0x1003' /sys/class/net/e*/flags && wiredicon="󰈀 " || wiredicon="^C1^󰈀 ^C7^"
 # fi
 
-printf "%s%s%s\n" "$wifiicon" "$(sed "s/down/^C1^󰲛 ^C7^/;s/up/^C2^󰛳 ^C7^/" /sys/class/net/e*/operstate 2>/dev/null)$(nmcli networking connectivity check)" "$(sed "s/.*//" /sys/class/net/tun*/operstate 2>/dev/null)"
+# printf "%s%s%s\n" "$wifiicon" "$(sed "s/down/^C1^󰲛 ^C7^/;s/up/^C2^󰛳 ^C7^/" /sys/class/net/e*/operstate 2>/dev/null)$(nmcli networking connectivity check)" "$(sed "s/.*//" /sys/class/net/tun*/operstate 2>/dev/null)"
 
-
-	
