@@ -15,9 +15,9 @@ for adapter in /sys/class/net/w?* /sys/class/net/e?*; do
 		# Which type of adapter is it?
 		case "$adapter_name" in
 			e*) adapter_type="ethernet"
-				adapter_icon="󰈀" ;;
+				adapter_icon="󰈀 " ;;
 			w*) adapter_type="wireless"
-				adapter_icon="󰖩" ;;
+				adapter_icon="󰖩 " ;;
 			 *) adapter_type="unknown"
 				adapter_icon="?" ;;
 		esac
@@ -31,15 +31,16 @@ for adapter in /sys/class/net/w?* /sys/class/net/e?*; do
 
 			# If wireless, check signal strength
 			if [ "$adapter_type" = "wireless" ]; then
-				signal="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $8 "% " $3}}')"
+				signal="$(awk '/^\s*w/ { print int($3 * 100 / 70) "% " }' /proc/net/wireless)"
+				# signal="$(nmcli dev wifi list | awk '/\*/{if (NR!=1) {print $8 "% " $3}}')"
 			fi
 
 			case "$connectivity" in
-				none)    net_status="^C1^$adapter_icon ^C7^$signal ^C1^[X]^C7^" ;;
-				portal)  net_status="^C3^$adapter_icon ^C7^$signal ^C3^[Limited]^C7^" ;;
-				limited) net_status="^C3^$adapter_icon ^C7^$signal ^C3^[Limited]^C7^" ;;
-				unknown) net_status="^C3^$adapter_icon ^C7^$signal ^C3^[?]^C7^" ;;
-				full)    net_status="^C2^$adapter_icon ^C7^$signal ^C2^[OK]^C7^" ;;
+				none)    net_status="^C1^$adapter_icon^C7^$signal^C1^[X]^C7^" ;;
+				portal)  net_status="^C3^$adapter_icon^C7^$signal^C3^[P]^C7^" ;;
+				limited) net_status="^C3^$adapter_icon^C7^$signal^C3^[!]^C7^" ;;
+				unknown) net_status="^C3^$adapter_icon^C7^$signal^C3^[?]^C7^" ;;
+				full)    net_status="^C2^$adapter_icon^C7^$signal^C2^[OK]^C7^" ;;
 				*)       net_status="$adapter_icon [Invalid]" ;;
 			esac
 
@@ -47,7 +48,7 @@ for adapter in /sys/class/net/w?* /sys/class/net/e?*; do
 			printf "%s" "$net_status "
         else
 			# Adapter is down, 
-			printf "%s" "^C8^$adapter_icon ^C7^"
+			printf "%s" "^C8^$adapter_icon^C7^"
         fi
     fi
 done && printf "\\n"
