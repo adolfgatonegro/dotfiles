@@ -6,28 +6,32 @@ case $BLOCK_BUTTON in
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-# Loop through all attached batteries and format the info
-for battery in /sys/class/power_supply/BAT?*; do
-	# Get battery status and capacity
-	status=$(cat "$battery/status" 2>&1)
-	capacity=$(cat "$battery/capacity" 2>&1)
-	# If non-first battery, print a space separator.
-	[ -n "${capacity+x}" ] && printf " "
-	# Sets up the icon based on status/capacity.
-	case $status in
-		"Full"|"Charging") icon="^C2^󰂅 ^C7^";;
-		"Discharging")
-			case $capacity in
-				100|9[0-9])    icon="^C2^󰁹 ^C7^" ;;
-				8[0-9]|7[0-9]) icon="^C2^󰂀 ^C7^" ;;
-				6[0-9]|5[0-9]) icon="^C3^󰁾 ^C7^" ;;
-				4[0-9]|3[0-9]) icon="^C3^󰁼 ^C7^" ;;
-				*)             icon="^C1^󰁻 ^C7^" ;;
-			esac ;;
-		"Not charging") icon="^C1^󱉞 ^C7^" ;;
-		"Unknown") icon="^C1^󰂎 ^C7^" ;;
-		*) exit 1 ;;
-	esac
-	# Print the icon and current capacity.
-	printf "%s%d%%" "$icon" "$capacity"
-done && printf "\\n"
+if [ -e /sys/class/power_supply/BAT?* ]; then
+	# Loop through all attached batteries and format the info
+	for battery in /sys/class/power_supply/BAT?*; do
+		# Get battery status and capacity
+		status=$(cat "$battery/status" 2>&1)
+		capacity=$(cat "$battery/capacity" 2>&1)
+		# If non-first battery, print a space separator.
+		[ -n "${capacity+x}" ] && printf " "
+		# Sets up the icon based on status/capacity.
+		case $status in
+			"Full"|"Charging") icon="^C2^󰂅 ^C7^";;
+			"Discharging")
+				case $capacity in
+					100|9[0-9])    icon="^C2^󰁹 ^C7^" ;;
+					8[0-9]|7[0-9]) icon="^C2^󰂀 ^C7^" ;;
+					6[0-9]|5[0-9]) icon="^C3^󰁾 ^C7^" ;;
+					4[0-9]|3[0-9]) icon="^C3^󰁼 ^C7^" ;;
+					*)             icon="^C1^󰁻 ^C7^" ;;
+				esac ;;
+			"Not charging") icon="^C1^󱉞 ^C7^" ;;
+			"Unknown") icon="^C1^󰂎 ^C7^" ;;
+			*) exit 1 ;;
+		esac
+		# Print the icon and current capacity.
+		printf "%s%d%%" "$icon" "$capacity"
+	done && printf "\\n"
+else
+	exit 1
+fi
