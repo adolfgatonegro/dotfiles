@@ -1,0 +1,20 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) "$TERMINAL" -e bluetuith; pkill -RTMIN+19 dwmblocks;;
+	# 1) "$TERMINAL" -e bluetoothctl; pkill -RTMIN+19 dwmblocks;;
+	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
+esac
+
+
+if dmesg | grep -i bluetooth > /dev/null 2>&1; then
+	if bluetoothctl show | grep "Powered: yes" > /dev/null 2>&1; then
+		bticon="^C4^󰂯^C7^"
+	else
+		bticon="^C8^󰂲^C7^"
+	fi
+
+	printf "%s" "$bticon"
+else
+	exit 1
+fi
