@@ -6,8 +6,7 @@ case $BLOCK_BUTTON in
 	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
 esac
 
-
-if dmesg | grep -i bluetooth > /dev/null 2>&1; then
+if [ -e /sys/class/bluetooth ] ; then
 	if bluetoothctl show | grep "Powered: yes" > /dev/null 2>&1; then
 		bticon="^C4^󰂯^C7^"
 	else
