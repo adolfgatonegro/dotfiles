@@ -13,6 +13,7 @@ return {
 
 	config = function ()
 		local lazy_status = require("lazy.status")
+		local wrap = require("wrapping")
 		require('lualine').setup({
 			options = {
 				icons_enabled = true,
@@ -37,6 +38,7 @@ return {
 					"filetype",
 				},
 				lualine_y = {
+					{ wrap.get_current_mode },
 					'(vim.bo.expandtab and "󱁐" or "󰌒 ") .. " " .. vim.bo.shiftwidth',
 					{ getWords },
 				},
