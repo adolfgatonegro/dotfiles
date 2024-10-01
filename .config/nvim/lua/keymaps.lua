@@ -58,10 +58,6 @@ k("n", "<leader>.", ":find ", { desc = "Find files"})
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
 
--- Formatting paragraphs
-k("n", "f", 'gqap', { desc = "Format current paragraph" })
-k("n", "F", 'vipJ', { desc = "Join all lines in current paragraph" })
-
 -- Line navigation
 k("n", "h", "<Backspace>")
 k("n", "j", "<Down>", { remap = true })
@@ -116,12 +112,9 @@ k("v", "*", "\"zy:let @/=@z<C-r>n<CR>", { desc = "Search for selection" } )
 -- Visual Block mappings
 -------------------------------------------------------------------------------
 
--- Formatting paragraphs
-k("x", "f", 'gq', { desc = "Format current paragraph" })
-
 -- Move selected block up/down
-k("x", "J", ":m '>+1<CR>gv-gv")
-k("x", "K", ":m '<-2<CR>gv-gv")
+k("x", "<C-j>", ":m '>+1<CR>gv-gv")
+k("x", "<C-k>", ":m '<-2<CR>gv-gv")
 
 -- Indent selected block
 k("x", ">", ">gv")
