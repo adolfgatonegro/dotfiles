@@ -58,6 +58,9 @@ k("n", "<leader>.", ":find ", { desc = "Find files"})
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
 
+-- Duplicate line and keep cursor in same colum
+k("n", "<leader>,", "yymmp`mj", { desc = "Duplicate current line, keep cursor column" })
+
 -- Line navigation
 k("n", "h", "<Backspace>")
 k("n", "j", "<Down>", { remap = true })
