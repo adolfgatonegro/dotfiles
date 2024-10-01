@@ -63,24 +63,16 @@ k("n", "f", 'gqap', { desc = "Format current paragraph" })
 k("n", "F", 'vipJ', { desc = "Join all lines in current paragraph" })
 
 -- Line navigation
-k("n", "l", "<Space>")
 k("n", "h", "<Backspace>")
--- k({"n", "v"}, "gh", "^", { desc = "Go to line start" } )
--- k({"n", "v"}, "gl", "$", { desc = "Go to line end" } )
+k("n", "j", "<Down>", { remap = true })
+k("n", "k", "<Up>", { remap = true })
+k("n", "l", "<Space>")
 
 -- Go to URL under cursor
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
 -- oil.nvim
-k("n", "-", function()
-	local oil = require("oil")
-	-- local util = require("oil.util")
-
-	oil.open_float()
-	-- util.run_after_load(0, function()
-	-- 	oil.open_preview()
-	-- end)
-end, { desc = "Open Oil" })
+k("n", "-", "<cmd>split | Oil<CR>", { desc = "Open Oil" })
 
 -- Splits - better navigation
 k("n", "<C-h>", "<C-w>h")

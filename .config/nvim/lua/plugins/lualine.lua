@@ -37,7 +37,6 @@ return {
 					"filetype",
 				},
 				lualine_y = {
-					"%{PencilMode()}",
 					'(vim.bo.expandtab and "󱁐" or "󰌒 ") .. " " .. vim.bo.shiftwidth',
 					{ getWords },
 				},
