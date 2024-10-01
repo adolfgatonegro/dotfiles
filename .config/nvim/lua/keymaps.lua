@@ -68,10 +68,7 @@ k("n", "l", "<Space>")
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
 -- oil.nvim
-k("n", "-", function()
-	local oil = require("oil")
-	oil.open_float()
-end, { desc = "Open Oil" })
+k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
 k("n", "_", "<cmd>split | Oil<CR>", { desc = "Open Oil in a split" })
 
 -- Splits - better navigation
