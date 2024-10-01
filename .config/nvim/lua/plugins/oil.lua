@@ -1,7 +1,10 @@
 return {
-  'stevearc/oil.nvim',
-  ---@module 'oil'
-  ---@type oil.SetupOpts
+	'stevearc/oil.nvim',
+	---@module 'oil'
+	---@type oil.SetupOpts
+
+	enabled = false,
+
 
 	opts = {
 		delete_to_trash = true,

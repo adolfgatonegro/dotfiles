@@ -44,11 +44,6 @@ k("n", "<leader>v", ":vnew<CR>", { desc = "New vertical split" } )
 k("n", "<tab>", ":BufferLineCycleNext<CR>", { desc = "Bufferine: Next buffer" } )
 k("n", "<S-tab>", ":BufferLineCyclePrev<CR>", { desc = "Bufferine: Previous buffer" } )
 
--- Telescope.nvim
-k("n", "<leader>f", ":Telescope find_files<CR>", { desc = "Telescope: Find files" } )
-k("n", "<leader>g", ":Telescope live_grep<CR>", { desc = "Telescope: Live grep" } )
-k("n", "<leader>b", ":Telescope buffers<CR>", { desc = "Telescope: Buffers" } )
-
 -- zen-mode.nvim
 k("n", "<leader>z", ":ZenMode<CR>", { desc = "Zen Mode: Toggle" } )
 
@@ -71,8 +66,8 @@ k("n", "l", "<Space>")
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
 -- oil.nvim
-k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
-k("n", "_", "<cmd>split | Oil<CR>", { desc = "Open Oil in a split" })
+-- k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
+-- k("n", "_", "<cmd>split | Oil<CR>", { desc = "Open Oil in a split" })
 
 -- Splits - better navigation
 k("n", "<C-h>", "<C-w>h")
@@ -100,7 +95,7 @@ k("n", "<leader>p", ":silent! !opout \"%:p\"<CR>", { desc = "Open compiled docum
 
 -- Write and exit
 k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
-k("n", "<C-k>", ":xa<CR>", { desc = "Write and exit" } )
+k("n", "<C-x>", ":xa<CR>", { desc = "Write and exit" } )
 k("n", "<C-s>", ":up<CR>", { desc = "Write file" } )
 
 -------------------------------------------------------------------------------
