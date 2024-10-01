@@ -68,7 +68,11 @@ k("n", "l", "<Space>")
 k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" })
 
 -- oil.nvim
-k("n", "-", "<cmd>split | Oil<CR>", { desc = "Open Oil" })
+k("n", "-", function()
+	local oil = require("oil")
+	oil.open_float()
+end, { desc = "Open Oil" })
+k("n", "_", "<cmd>split | Oil<CR>", { desc = "Open Oil in a split" })
 
 -- Splits - better navigation
 k("n", "<C-h>", "<C-w>h")
@@ -95,7 +99,8 @@ k("n", "<leader>c", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile do
 k("n", "<leader>p", ":silent! !opout \"%:p\"<CR>", { desc = "Open compiled document" })
 
 -- Write and exit
-k("n", "<C-q>", ":xa<CR>", { desc = "Write and exit" } )
+k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
+k("n", "<C-k>", ":xa<CR>", { desc = "Write and exit" } )
 k("n", "<C-s>", ":up<CR>", { desc = "Write file" } )
 
 -------------------------------------------------------------------------------
