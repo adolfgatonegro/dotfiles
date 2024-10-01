@@ -52,6 +52,9 @@ k("n", "<leader>b", ":Telescope buffers<CR>", { desc = "Telescope: Buffers" } )
 -- zen-mode.nvim
 k("n", "<leader>z", ":ZenMode<CR>", { desc = "Zen Mode: Toggle" } )
 
+-- Find files
+k("n", "<leader>.", ":find ", { desc = "Find files"})
+
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" })
 
@@ -71,12 +74,12 @@ k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:tr
 -- oil.nvim
 k("n", "-", function()
 	local oil = require("oil")
-	local util = require("oil.util")
+	-- local util = require("oil.util")
 
 	oil.open_float()
-	util.run_after_load(0, function()
-		oil.open_preview()
-	end)
+	-- util.run_after_load(0, function()
+	-- 	oil.open_preview()
+	-- end)
 end, { desc = "Open Oil" })
 
 -- Splits - better navigation
