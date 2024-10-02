@@ -40,11 +40,10 @@ local options = {
 	timeoutlen = 500,
 	undofile = true,
 	wildignorecase = true,
-	-- wildmode = "longest:full,full",
-	wildmode = "",
+	wildmode = "longest:full,full",
+	wildchar = vim.fn.char2nr('^J'),
 	wrap = true,
 }
-
 opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
 opt.fillchars:append({ eob = " " }) -- remove the ~ from end of buffer
 opt.shortmess:append("c")
