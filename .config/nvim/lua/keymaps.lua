@@ -95,7 +95,6 @@ k("n", "<leader>p", ":silent! !opout \"%:p\"<CR>", { desc = "Open compiled docum
 
 -- Write and exit
 k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
-k("n", "<C-x>", ":xa<CR>", { desc = "Write and exit" } )
 k("n", "<C-s>", ":up<CR>", { desc = "Write file" } )
 
 -------------------------------------------------------------------------------

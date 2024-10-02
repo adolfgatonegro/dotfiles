@@ -1,4 +1,4 @@
-snippet page Set: Page properties
+snippet spage Set: Page properties
 	#set page(
 	  paper: "${1:us-letter}",
 	  margin: ${2:3.5cm},
@@ -7,14 +7,14 @@ snippet page Set: Page properties
 	)
 	${0}
 
-snippet text Set: Size and language
+snippet stext Set: Size and language
 	#set text(
 	  lang: "${1:es}", 
 	  size: ${2:11pt}
 	)
 	${0}
 
-snippet par Set: Paragraph
+snippet spar Set: Paragraph
 	#set par(
 	  justify: ${1:true},
 	  leading: ${2:1.0em},
@@ -22,7 +22,7 @@ snippet par Set: Paragraph
 	)
 	${0}
 
-snippet bquote Set: Blockquote
+snippet squote Set: Blockquote
 	#set quote(
 		block: ${1:true}, 
 		quotes: ${2:true},
@@ -32,7 +32,7 @@ snippet bquote Set: Blockquote
 	)
 	${0}
 
-snippet iquote Quote
+snippet quot Quote
 	#quote(block:${1:false})[${0}]
 
 snippet cit Citation
@@ -45,7 +45,7 @@ snippet bib Bibliography
 		first-line-indent: 0em)
 	#bibliography("${0}", style: "${1:apa}")
 
-snippet eh Uni: Essay heading
+snippet head Uni: Essay heading
 	#align(${1:center})[
 	  #set par(leading: 1em)
 	  #block(
@@ -54,9 +54,10 @@ snippet eh Uni: Essay heading
 		[#text(${2:18pt})[#smallcaps("${3:Title}")]\
 		 #text(${4:14})[#emph("${5:Subtitle}")]
 		])
+	]
 	${0}
 
-snippet nb Uni: Name block
+snippet name Uni: Name block
 	#align(${1:center})[
 	  #set par(leading: 0.65em)
 	  #block(
