@@ -1,4 +1,4 @@
 [Desktop Entry]
 Type=Application
 Name=File Manager
-Exec=lfpv %u
+Exec=/usr/local/bin/st -e yazi %u

@@ -6,8 +6,7 @@ return {
 		"nvim-tree/nvim-web-devicons",
 	},
 
-	lazy = false,
-	priority = 1000,
+	event = "VeryLazy",
 
 	config = function()
 		require("telescope").setup({
@@ -48,7 +47,7 @@ return {
 			extensions = {
 				file_browser = {
 					theme = "ivy",
-					hijack_netrw = true,
+					hijack_netrw = false,
 					initial_mode = "normal",
 				},
 
