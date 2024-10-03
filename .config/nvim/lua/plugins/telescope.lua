@@ -2,7 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim", tag = "0.1.8",
 	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
+		-- "nvim-telescope/telescope-file-browser.nvim",
 		"nvim-tree/nvim-web-devicons",
 	},
 
@@ -44,16 +44,15 @@ return {
 					theme = "ivy",
 				},
 			},
-			extensions = {
-				file_browser = {
-					theme = "ivy",
-					hijack_netrw = false,
-					initial_mode = "normal",
-				},
-
-			},
+			-- extensions = {
+			-- 	file_browser = {
+			-- 		theme = "ivy",
+			-- 		hijack_netrw = false,
+			-- 		initial_mode = "normal",
+			-- 	},
+			-- },
 		})
-		require("telescope").load_extension("file_browser")
+		-- require("telescope").load_extension("file_browser")
 	end,
 	keys = {
 		{ "<leader>f", "<cmd>Telescope find_files<CR>", desc = "Telescope: Find files" },
