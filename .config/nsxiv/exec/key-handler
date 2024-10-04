@@ -1,6 +1,6 @@
 #!/bin/sh
 case "$1" in
-	"C-w") while read file; do xwallpaper --zoom "$file" & done ;;
+	"C-w") while read file; do setwall "$file" & done ;;
 	"C-d") while read file; do trash-put "$file" & done ;;
 	"C-b") while read file; do \
 		if [ -e "${file%jpg}"epub ]; then \
