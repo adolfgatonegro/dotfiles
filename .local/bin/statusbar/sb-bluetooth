@@ -8,9 +8,9 @@ esac
 
 if [ -e /sys/class/bluetooth ] ; then
 	if bluetoothctl show | grep "Powered: yes" > /dev/null 2>&1; then
-		bticon="^C4^󰂯^C7^"
+		bticon="^C4^ ^C7^"
 	else
-		bticon="^C8^󰂲^C7^"
+		bticon="^C8^ ^C7^"
 	fi
 
 	printf "%s" "$bticon"
