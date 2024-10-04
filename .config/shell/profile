@@ -24,7 +24,7 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
-export BROWSER="firefox"
+export BROWSER="librewolf"
 export FILEMANAGER="yazi"
 # export BROWSER="vivaldi"
 
