@@ -23,7 +23,7 @@ picom -b &
 numlockx on &
 dunst &
 jamesdsp --tray &
-redshift -l $(cat ~/XDG_CONFIG_HOME/latlong) &
+redshift -l $(cat $XDG_CONFIG_HOME/latlong) &
 setwall &
 xss-lock -- slock &
 canberra-gtk-play -f $XDG_CONFIG_HOME/startup.ogg &

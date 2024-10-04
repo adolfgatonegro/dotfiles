@@ -1,10 +1,10 @@
 *.alpha: 0.85
-*.font: Monospace-9
+*.font: Monospace-8
 
 !! st options
 st.alpha: 0.85
 st.alphaOffset: 0
-st.font: Monospace-9
+st.font: Monospace-8
 ! st.termname: st-256color
 ! st.borderpx: 1
 
