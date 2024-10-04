@@ -1,15 +1,15 @@
-*.alpha: 0.85
-*.font: Cozette-8
+*.alpha: 0.95
+*.font: Monospace-9
 
 !! st options
-st.alpha: 0.85
+st.alpha: 0.95
 st.alphaOffset: 0
 st.font: Monospace-9
 ! st.termname: st-256color
 ! st.borderpx: 1
 
 !! dmenu options
-! dmenu.font:
+dmenu.font: Cozette-8
 ! dmenu.color0:
 ! dmenu.color1:
 ! dmenu.color2:
