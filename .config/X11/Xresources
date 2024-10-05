@@ -1,8 +1,8 @@
-*.alpha: 0.95
+*.alpha: 0.90
 *.font: Monospace-10
 
 !! st options
-st.alpha: 0.95
+st.alpha: 0.90
 st.alphaOffset: 0
 st.font: Monospace-10
 ! st.termname: st-256color
