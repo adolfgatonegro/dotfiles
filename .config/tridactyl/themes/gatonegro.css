@@ -1,5 +1,5 @@
-/* gatonegro.css - colourscheme for tridactyl */
-/* based on the default dark.css */
+/* ultima.css - colourscheme for tridactyl */
+/* for FF-ULTIMA userChrome and Tokyo Night theme */
 /* gatoneg.ro */
 
 :root.TridactylThemeGatonegro {
@@ -7,28 +7,26 @@
     --tridactyl-cmdl-bg: var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-cmdl-fg: var(--tridactyl-fg);
     --tridactyl-cmplt-border-top: 1px solid var(--tridactyl-firefox-2021-redesign-background);
-    --tridactyl-fg: #c1c1d1;
-    --tridactyl-firefox-2021-redesign-background: #262639;
-    --tridactyl-header-first-bg: #1a1a26;
+    --tridactyl-fg: #a1b1d1;
+    --tridactyl-firefox-2021-redesign-background: #111117;
+    --tridactyl-header-first-bg: #16161e;
     --tridactyl-header-second-bg: var(--tridactyl-header-first-bg);
     --tridactyl-header-third-bg: var(--tridactyl-header-first-bg);
     --tridactyl-highlight-box-bg: var( --tridactyl-photon-colours-in-content-box-background);
     --tridactyl-highlight-box-fg: var( --tridactyl-photon-colours-in-content-text-color);
     --tridactyl-hint-active-bg: rgba(66,135,245,0.25);
-    --tridactyl-hint-active-fg: #262639;
+    --tridactyl-hint-active-fg: #111117;
     --tridactyl-hint-active-outline: 0px solid rgba(0,0,0,0);
     --tridactyl-hint-bg: rgba(0,0,0,0);
     --tridactyl-hint-outline: 0px solid rgba(0,0,0,0);
     --tridactyl-hintspan-bg: #ff00aa;
     --tridactyl-hintspan-fg: var(--tridactyl-fg);
-    --tridactyl-of-bg: #414158;
-    --tridactyl-of-fg: #c1c1d1;
+    --tridactyl-of-bg: #343749;
+    --tridactyl-of-fg: #a1b1d1;
     --tridactyl-scrollbar-color: var(--tridactyl-fg);
     --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
-    --tridactyl-url-fg: #6c6c93;
+    --tridactyl-url-fg: #a9b1d6;
 }
-
-:root.TridactylThemeGatonegro a { color:#c1c1d1 }
 
 :root.TridactylThemeGatonegro #tridactyl-reader { font-family: serif; }
 
