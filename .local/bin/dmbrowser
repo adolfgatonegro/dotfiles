@@ -1,24 +1,24 @@
 #!/bin/sh
 # gatoneg.ro
-#
+
 # Use dmenu as a system-wide browser menu and URL bar. Open a new default tab,
-# a new minimal session, create a disposable vanilla profile, or perform
+# a new private window, create a disposable vanilla profile, or perform
 # searches directly from dmenu.
 
 # Browser commands
 browserCmd="$BROWSER -new-tab"
-# browserMinCmd="$BROWSER --private-window"
-browserMinCmd="$BROWSER -P Minimal --class=\"minimal\""
+browserPrivateCmd="$BROWSER --private-window"
+altBrowserCmd="chromium"
 urlregex="^((https?|ftps?)://)?[^[:space:]/$.?#]+\.[^[:space:]/$.?#]+[^[:space:]]*$"
 
 # Search engines
-archwikiSearch="https://wiki.archlinux.org/index.php?search="
-bingSearch="https://bing.com/search?q="
+braveSearch="https://search.brave.com/search?q="
+ddgSearch="https://duckduckgo.com/?q="
 googleSearch="https://google.com/search?hl=en&client=firefox-b-d&udm=14&q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="
 
-defaultSearch=$googleSearch
+defaultSearch=$ddgSearch
 
 tmp_session() {
 	PROFILEDIR=$(mktemp -p /tmp -d tmpsession.XXXXXX.d)
@@ -27,39 +27,41 @@ tmp_session() {
 }
 
 declare -a options=(
-	"󰈹 New tab"
-	"󰗹 Minimal session"
-	"󰑌 Temporary session"
+	"󰖟 $BROWSER"
+	"󰗹 $BROWSER - Private window"
+	"󰑌 $BROWSER - Temp session"
+	" $altBrowserCmd"
 	" Bookmarks"
-	" Arch Wiki"
-	" Bing"
-	"󰊭 Google"
-	"󰖬 Wikipedia"
-	"󰗃 YouTube"
-	"󰩈 Exit"
+	" Search - Brave"
+	"󰇥 Search - DuckDuckGo"
+	"󰊭 Search - Google"
+	" Search - Wikipedia"
+	"󰗃 Search - YouTube"
+	"󰈆 Exit"
 )
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "${BROWSER}:")
+choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Browser menu:")
 
 search(){
 	searchString=$(:| dmenu -p "${choice}:")
-	[ -n "$searchString" ] && ${browserMinCmd} "$1${searchString}" & disown
+	[ -n "$searchString" ] && ${browserPrivateCmd} "$1${searchString}" & disown
 }
 
 case $choice in
-	"󰈹 New tab") ${browserCmd} "about:blank" & disown ;;
-	"󰗹 Minimal session") ${browserMinCmd} & disown ;;
-	"󰑌 Temporary session") tmp_session;;
+	"󰖟 $BROWSER") ${browserCmd} "about:blank" & disown ;;
+	"󰗹 $BROWSER - Private window") ${browserPrivateCmd} & disown ;;
+	"󰑌 $BROWSER - Temp session") tmp_session;;
+	" $altBrowserCmd") ${altBrowserCmd} ;;
 	" Bookmarks") bmks & exit 0;;
-	" Arch Wiki") search $archwikiSearch;;
-	" Bing") search $bingSearch;;
-	"󰊭 Google") search $googleSearch;;
-	"󰖬 Wikipedia") search $wikipediaSearch;;
-	"󰗃 YouTube") search $youtubeSearch;;
-	"󰩈 Exit") exit 0 ;;
+	" Search - Brave") search $braveSearch;;
+	"󰇥 Search - DuckDuckGo") search $ddgSearch;;
+	"󰊭 Search - Google") search $googleSearch;;
+	" Search - Wikipedia") search $wikipediaSearch;;
+	"󰗃 Search - YouTube") search $youtubeSearch;;
+	"󰈆 Exit") exit 0 ;;
 	# When user input doesn't match any choice, check if it's a valid URL. If
 	# it is, open it in the browser, otherwise treat it as a search string.
 	*)	[[ -z "$choice" ]] && exit 0 ||
-		if [[ $choice =~ $urlregex ]]; then ${browserMinCmd} "$choice" & disown;
-		else ${browserMinCmd} "${defaultSearch}${choice}" & disown; fi;;
+		if [[ $choice =~ $urlregex ]]; then ${browserPrivateCmd} "$choice" & disown;
+		else ${browserPrivateCmd} "${defaultSearch}${choice}" & disown; fi;;
 esac
