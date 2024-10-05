@@ -5,6 +5,9 @@
 " from here, it will return to its default state.
 sanitise tridactyllocal tridactylsync
 
+"
+set browser librewolf
+
 " Use a blank page for new tab.
 set newtab about:blank
 
