@@ -14,14 +14,58 @@ dmenu.font: Cozette-8
 ! dmenu.color1:
 ! dmenu.color2:
 
-!! dwm options
-! dwm.normbordercolor:
-! dwm.normbgcolor:
-! dwm.normfgcolor:
-! dwm.selbordercolor:
-! dwm.selbgcolor:
-! dwm.selfgcolor:
+!! dwm colours
+dwm.normfgcolor:            #c1c1d1
+dwm.normbgcolor:            #0a0a15
+dwm.normbordercolor:        #0a0a15
+dwm.normfloatcolor:         #0a0a15
+            
+dwm.selfgcolor:             #c1c1d1
+dwm.selbgcolor:             #0a0a15
+dwm.selbordercolor:         #ff00aa
+dwm.selfloatcolor:          #ff00aa
+            
+dwm.titlenormfgcolor:       #c1c1d1
+dwm.titlenormbgcolor:       #0a0a15
+dwm.titlenormbordercolor:   #0a0a15
+dwm.titlenormfloatcolor:    #0a0a15
+            
+dwm.titleselfgcolor:        #c1c1d1
+dwm.titleselbgcolor:        #0a0a15
+dwm.titleselbordercolor:    #0a0a15
+dwm.titleselfloatcolor:     #0a0a15
+            
+dwm.tagsnormfgcolor:        #c1c1d1
+dwm.tagsnormbgcolor:        #0a0a15
+dwm.tagsnormbordercolor:    #0a0a15
+dwm.tagsnormfloatcolor:     #0a0a15
+            
+dwm.tagsselfgcolor:         #ff00aa
+dwm.tagsselbgcolor:         #0a0a15
+dwm.tagsselbordercolor:     #0a0a15
+dwm.tagsselfloatcolor:      #0a0a15
+            
+dwm.hidnormfgcolor:         #00ffe0
+dwm.hidnormbgcolor:         #207fec
+dwm.hidselfgcolor:          #262639
+dwm.hidselbgcolor:          #262639
+            
+dwm.urgfgcolor:             #00ffe0
+dwm.urgbgcolor:             #0a0a15
+dwm.urgbordercolor:         #ff0055
+dwm.urgfloatcolor:          #ff0055
+            
+dwm.scratchselfgcolor:      #d1d1f1
+dwm.scratchselbgcolor:      #77547E
+dwm.scratchselbordercolor:  #aaee00
+dwm.scratchselfloatcolor:   #aaee00
+            
+dwm.scratchnormfgcolor:     #d1d1f1
+dwm.scratchnormbgcolor:     #664C67
+dwm.scratchnormbordercolor: #648c00
+dwm.scratchnormfloatcolor:  #648c00
 
+! Generic
 *.foreground:    #c1c1d1
 *.background:    #0a0a15
 *.cursorColor:   #c1c1d1
