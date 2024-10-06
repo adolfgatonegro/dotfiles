@@ -10,6 +10,10 @@ super + ctrl + s
 super + space
 	dmrun -p "run:"
 
+# books
+super + k
+    books
+
 # unicode selector
 super + grave
     dmunicode
@@ -21,6 +25,10 @@ super + x
 # browser menu
 super + shift + b
     dmbrowser
+
+# bookmarks
+super + shift + m ; {m,a}
+    bmks {dmenu,add}
 
 # usb mounter
 super + F8
