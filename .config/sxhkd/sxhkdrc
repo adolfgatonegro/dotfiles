@@ -68,7 +68,13 @@ super + n
 super + F4
 	flameshot gui
 
+Print
+	flameshot gui
+
 super + shift + F4
+	flameshot launcher
+
+shift + Print
 	flameshot launcher
 
 super + o
@@ -96,13 +102,12 @@ XF86MonBrightness{Up,Down}
 XF86KbdBrightness{Up,Down}
 	brightnessctl --device=smc::kbd_backlight set {+,-}10%
 
-XF86KbdDisplay
+XF86Display
 	dmdisplay
 
-XF86KbdSleep
+XF86Sleep
 	dmsys
 
-XF86KbdPowerOff
+XF86PowerOff
 	dmsys
-
 # }}
