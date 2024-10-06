@@ -11,7 +11,7 @@ local options = {
 	background = "dark",
 	backup = true,
 	clipboard = "unnamedplus",
-	cmdheight = 0,
+	-- cmdheight = 0,
 	completeopt = "menuone,longest,preview",
 	confirm = true,
 	cursorline = true,
@@ -20,7 +20,7 @@ local options = {
 	hlsearch = true,
 	ignorecase = true,
 	incsearch = true,
-	laststatus= 3,
+	-- laststatus= 3,
 	linebreak = true,
 	mouse = "a",
 	number = true,
@@ -41,7 +41,7 @@ local options = {
 	undofile = true,
 	wildignorecase = true,
 	wildmode = "longest:full,full",
-	wildchar = vim.fn.char2nr('^J'),
+	-- wildchar = vim.fn.char2nr('^J'),
 	wrap = true,
 }
 opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
