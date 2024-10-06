@@ -1,0 +1,108 @@
+# vim: set foldmarker={{,}} foldlevel=0 foldmethod=marker nospell:
+# sxhk config
+# gatoneg.ro
+
+# restart sxhk
+super + ctrl + s
+	pkill -USR1 -x sxhkd
+
+# dmenu {{
+super + space
+	dmrun -p "run:"
+
+# unicode selector
+super + grave
+    dmunicode
+
+# power menu
+super + x
+	dmsys
+
+# browser menu
+super + shift + b
+    dmbrowser
+
+# usb mounter
+super + F8
+	mounter
+
+# usb unmounter
+super + shift +F8
+	unmounter
+
+# multi-monitor
+super + ctrl + p
+	dmdisplay
+
+# }}
+
+# applications {{
+# terminal
+super + {Return,t}
+    st
+
+# browser
+super + b
+    librewolf
+
+# discord
+super + d
+	discord
+
+# text editor
+super + e
+	st -e nvim
+
+# file manager
+super + f
+	st -e yazi
+
+# notes
+super + n
+	obsidian
+
+# }}
+
+# Screenshots {{
+
+super + F4
+	flameshot gui
+
+super + shift + F4
+	flameshot launcher
+
+super + o
+	linkhandler
+
+# }}
+
+# Media keys {{
+
+XF86Audio{Raise,Lower}Volume
+    volctl -{i,d} 2; pkill -RTMIN+10 dwmblocks
+
+XF86AudioMute
+    volctl -t; pkill -RTMIN+10 dwmblocks
+
+XF86Audio{Play,Next,Prev,Stop}
+    playerctl {play-pause,next,previous,stop}; pkill -RTMIN+13 dwmblocks
+
+shift + XF86Audio{Next,Prev}
+    playerctl position 10{+,-}
+
+XF86MonBrightness{Up,Down}
+    backlightctl -{inc,dec} 5
+
+XF86KbdBrightness{Up,Down}
+	brightnessctl --device=smc::kbd_backlight set {+,-}10%
+
+XF86KbdDisplay
+	dmdisplay
+
+XF86KbdSleep
+	dmsys
+
+XF86KbdPowerOff
+	dmsys
+
+# }}
