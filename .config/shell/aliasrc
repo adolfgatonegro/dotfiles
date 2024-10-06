@@ -11,10 +11,6 @@ alias \
 	paclog="cat /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
-# dotfiles
-alias \
-	config="git -C $HOME --git-dir=$HOME/repos/dotfiles.git --work-tree=$HOME"
-
 # verbosity and options
 alias \
 	df="df -h" \
