@@ -21,6 +21,7 @@ fi
 lxsession &
 picom -b &
 numlockx on &
+sxhkd &
 dunst &
 jamesdsp --tray &
 redshift -l $(cat $XDG_CONFIG_HOME/latlong) &
