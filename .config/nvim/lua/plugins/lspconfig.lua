@@ -12,9 +12,14 @@ return {
 		config = function()
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
-			lspconfig.typst_lsp.setup{
-				capabilities = capabilities,
-				-- exportPdf = "onSave"
+			-- lspconfig.typst_lsp.setup{
+			-- 	capabilities = capabilities,
+			-- 	-- exportPdf = "onSave"
+			-- }
+			lspconfig.tinymist.setup {
+				settings = {
+					exportPdf = "onType",
+				},
 			}
 
 			lspconfig.lua_ls.setup{
