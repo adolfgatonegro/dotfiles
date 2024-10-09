@@ -76,6 +76,7 @@
 ;; PACKAGE: counsel
 ;; Ivy-enhanced versions of common Emacs commands
 (use-package counsel
+  :defer 1
   :diminish
   :bind (("C-s" . swiper)
 	 ("C-x C-f" . counsel-find-file)
@@ -94,14 +95,16 @@
          ("C-k" . ivy-previous-line)
          ("C-d" . ivy-reverse-i-search-kill))
   :config
-  :init (ivy-mode 1)
-        (counsel-mode))
+  :hook(
+	(after-init . ivy-mode)
+        (after-init . counsel-mode)))
 
 ;; PACKAGE: ivy-rich
 ;; A friendlier interface for Ivy
 (use-package ivy-rich
-  :init
-  (ivy-rich-mode 1))
+  :defer t
+  :hook
+  (ivy-mode . ivy-rich-mode))
 
 ;; PACKAGE: doom-themes
 ;; Theme megapack for Emacs
@@ -119,6 +122,7 @@
 ;; PACKAGE: doom-modeline
 ;; Fancy, fast, minimalist modeline for Emacs
 (use-package doom-modeline
+  :defer t
   :init (setq doom-modeline-height 25
               doom-modeline-bar-width 2)
   :hook (after-init . doom-modeline-mode))
@@ -133,18 +137,24 @@
 ;; PACKAGE: rainbow-delimiters
 ;; A rainbow parentheses-like mode for delimiters
 (use-package rainbow-delimiters
+  :defer t
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; PACKAGE: which-key
 ;; Minor mode that displays available keybindings in a popup
 (use-package which-key
+  :defer t
   :config
   (setq which-key-idle-delay 0.25)
-  (which-key-mode))
+  :hook
+  (after-init . which-key-mode))
 
 ;; PACKAGE: helpful
 ;; A better Emacs *help* buffer 
 (use-package helpful
+  :defer t
+  :hook
+  (help-mode)
   :custom
   (counsel-describe-function-function #'helpful-callable)
   (counsel-describe-variable-function #'helpful-variable)
@@ -157,13 +167,15 @@
 ;; PACKAGE: evil
 ;; The extensible vi layer for Emacs.
 (use-package evil
+  :defer t
+  :hook
+  (after-init . evil-mode)
   :init
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-d-scroll t)
   :config
-  (evil-mode 1)
   (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
   (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
   (define-key evil-visual-state-map (kbd "g c") 'comment-or-uncomment-region)
@@ -176,6 +188,8 @@
   (evil-set-initial-state 'dashboard-mode 'normal))
 
 (use-package evil-collection
+  :defer t
   :after evil
   :config
-  (evil-collection-init))
+  :hook
+  (evil-mode . evil-collection-init))
