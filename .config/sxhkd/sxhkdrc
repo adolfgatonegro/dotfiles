@@ -58,8 +58,8 @@ super + d
 	discord
 
 # text editor
-super + e
-	st -e nvim
+super + {e,shift + e}
+	{st -e nvim,emacs}
 
 # file manager
 super + f
