@@ -229,7 +229,6 @@
 ;; Emacs and improve your workflow. It helps users remember key combinations 
 ;; and reduces the cognitive load of memorizing every command.
 (use-package which-key
-  :ensure t       ;; This is built-in, no need to fetch it.
   :defer t        ;; Defer loading Which-Key until after init.
   :hook
   (after-init . which-key-mode)) ;; Enable which-key mode after initialization.
@@ -251,7 +250,6 @@
 ;; Vertico helps by showing a dynamic list of potential completions, making 
 ;; it easier to choose the correct one without typing out the entire string.
 (use-package vertico
-  :ensure t
   :hook
   (after-init . vertico-mode)           ;; Enable vertico after Emacs has initialized.
   :custom
@@ -280,7 +278,6 @@
 ;; regular expressions to find files, buffers, and commands more efficiently. 
 ;; This combination provides a powerful and customizable completion experience.
 (use-package orderless
-  :ensure t
   :defer t                                    ;; Load Orderless on demand.
   :after vertico                              ;; Ensure Vertico is loaded before Orderless.
   :init
@@ -295,7 +292,6 @@
 ;; helpful annotations such as documentation and other relevant 
 ;; information, making it easier to choose the right option.
 (use-package marginalia
-  :ensure t
   :hook
   (after-init . marginalia-mode))
 
@@ -306,7 +302,6 @@
 ;; features like previews and enhanced register management. It's useful for 
 ;; navigating buffers, files, and xrefs with ease.
 (use-package consult
-  :ensure t
   :defer t
   :init
   ;; Enhance register preview with thin lines and no mode line.
@@ -324,7 +319,6 @@
 ;; actions on the candidates.
 ;; Just `<leader> .' over any text, explore it :)
 (use-package embark
-  :ensure t
   :defer t)
 
 
@@ -332,7 +326,6 @@
 ;; Embark-Consult provides a bridge between Embark and Consult, ensuring 
 ;; that Consult commands, like previews, are available when using Embark.
 (use-package embark-consult
-  :ensure t
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)) ;; Enable preview in Embark collect mode.
 
@@ -344,7 +337,6 @@
 ;; code parsing capabilities, making it easier to work with modern 
 ;; programming languages.
 (use-package treesit-auto
-  :ensure t
   :after emacs
   :custom
   (treesit-auto-install 'prompt)
@@ -360,7 +352,6 @@
 ;; to use GitHub Flavored Markdown for enhanced compatibility.
 (use-package markdown-mode
   :defer t 
-  :ensure t
   :mode ("README\\.md\\'" . gfm-mode)            ;; Use gfm-mode for README.md files.
   :init (setq markdown-command "multimarkdown")) ;; Set the Markdown processing command.
 
@@ -373,7 +364,6 @@
 ;; various modes and languages.
 (use-package company
   :defer t 
-  :ensure t
   :custom
   (company-tooltip-align-annotations t)      ;; Align annotations with completions.
   (company-minimum-prefix-length 1)          ;; Trigger completion after typing 1 character
@@ -403,7 +393,6 @@
 ;; `lsp-mode' is included as a third-party package, providing advanced IDE-like features 
 ;; and better support for multiple language servers and configurations.
 (use-package lsp-mode
-  :ensure t
   :defer t
   :hook (;; Replace XXX-mode with concrete major mode (e.g. python-mode)
          (bash-ts-mode . lsp)                           ;; Enable LSP for Bash
@@ -464,7 +453,6 @@
 ;; a comparable experience in Emacs with its own set of customizations.
 (use-package diff-hl
   :defer t
-  :ensure t
   :hook
   (find-file . (lambda ()
                  (global-diff-hl-mode)           ;; Enable Diff-HL mode for all files.
@@ -488,7 +476,6 @@
 ;; changes efficiently.
 
 (use-package magit
-  :ensure t
   :defer t)
 
 
@@ -499,7 +486,6 @@
 ;; in Emacs can be pasted in other applications, and vice versa, providing a 
 ;; smooth workflow when working across multiple environments.
 (use-package xclip
-  :ensure t
   :defer t
   :hook
   (after-init . xclip-mode))     ;; Enable xclip mode after initialization.
@@ -513,7 +499,6 @@
 ;; the code.
 (use-package indent-guide
   :defer t
-  :ensure t
   :hook
   (prog-mode . indent-guide-mode)  ;; Activate indent-guide in programming modes.
   :config
@@ -521,7 +506,6 @@
 
 
 (use-package evil
-  :ensure t
   :defer t
   :hook
   (after-init . evil-mode)
@@ -650,7 +634,6 @@
 (use-package evil-collection
   :after evil
   :defer t
-  :ensure t
   ;; Hook to initialize `evil-collection' when `evil-mode' is activated.
   :hook
   (evil-mode . evil-collection-init)
@@ -665,7 +648,6 @@
 ;; changes in your buffers.
 (use-package undo-tree
   :defer t
-  :ensure t
   :hook
   (after-init . global-undo-tree-mode)
   :init
@@ -690,7 +672,6 @@
 ;; a different color, making it easier to match pairs visually.
 (use-package rainbow-delimiters
   :defer t
-  :ensure t
   :hook
   (prog-mode . rainbow-delimiters-mode))
 
@@ -715,7 +696,6 @@
 ;; and functional. It integrates well with various Emacs features, enhancing the overall user
 ;; experience by displaying relevant information in a compact format.
 (use-package doom-modeline
-  :ensure t
   :defer t
   :custom
   (doom-modeline-buffer-file-name-style 'buffer-name)  ;; Set the buffer file name style to just the buffer name (without path).
@@ -733,7 +713,6 @@
 ;; enhance the visual appearance of various modes and packages, making it easier to 
 ;; distinguish between different file types and functionalities.
 (use-package nerd-icons
-  :ensure t                               ;; Ensure the package is installed.
   :defer t)                               ;; Load the package only when needed to improve startup time.
 
 
@@ -742,7 +721,6 @@
 ;; providing visual icons for files and directories. This enhances the Dired 
 ;; interface by making it easier to identify file types at a glance.
 (use-package nerd-icons-dired
-  :ensure t                               ;; Ensure the package is installed.
   :defer t                                ;; Load the package only when needed to improve startup time.
   :hook
   (dired-mode . nerd-icons-dired-mode))
@@ -754,7 +732,6 @@
 ;; `marginalia'. This provides visual cues for the completion candidates, 
 ;; making it easier to distinguish between different types of items.
 (use-package nerd-icons-completion
-  :ensure t                               ;; Ensure the package is installed.
   :after (:all nerd-icons marginalia)     ;; Load after `nerd-icons' and `marginalia' to ensure proper integration.
   :config
   (nerd-icons-completion-mode)            ;; Activate nerd icons for completion interfaces.
