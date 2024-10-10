@@ -1,6 +1,10 @@
-;; init.el
-;; Based on Emacs-Kick: https://github.com/LionyxML/emacs-kick
-;; gatoneg.ro
+;; init.el --- gatonegro's emacs config
+
+;;; Commentary:
+;; Emacs config based on Emacs-Kick
+;; https://github.com/LionyxML/emacs-kick
+
+;;; Code:
 
 ;; Set frame and background alpha for GUI Emacs
 (set-frame-parameter (selected-frame) 'alpha '(100 . 95))
