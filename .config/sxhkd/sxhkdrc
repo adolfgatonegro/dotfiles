@@ -59,7 +59,7 @@ super + d
 
 # text editor
 super + {e,shift + e}
-	{st -e nvim,emacs}
+	{st -e nvim,emacsclient -c -a emacs}
 
 # file manager
 super + f
