@@ -31,7 +31,7 @@
 	
 	sort = yes
 
-	font = monospace 10
+	font = monospace 9
 	line_height = 4
 	markup = full
 
