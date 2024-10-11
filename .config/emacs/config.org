@@ -1,0 +1,719 @@
+#+TITLE: Emacs configuration
+#+AUTHOR: Gatonegro
+#+STARTUP: showeverything
+#+OPTIONS: toc:3
+
+* Table of Contents :toc:
+- [[#early-init-file][Early init file]]
+- [[#package-management][Package management]]
+  - [[#configel-header][~config.el~ header]]
+- [[#package-management-1][Package management]]
+  -  [[#elpaca][~Elpaca~]]
+- [[#emacs][Emacs]]
+  - [[#defaults][Defaults]]
+  - [[#electric][Electric]]
+- [[#keybindings][Keybindings]]
+  - [[#evil][Evil]]
+  - [[#evil-collection][Evil Collection]]
+  - [[#general][General]]
+  - [[#which-key][Which-Key]]
+- [[#org-mode][Org mode]]
+- [[#tools][Tools]]
+  - [[#sudo-edit][Sudo Edit]]
+  - [[#buffer-moveel][buffer-move.el]]
+- [[#appearance][Appearance]]
+  - [[#fonts][Fonts]]
+  - [[#icons][Icons]]
+- [[#ivy-and-counsel][Ivy and Counsel]]
+  - [[#ivy-rich][Ivy-Rich]]
+- [[#shells-and-terminals][Shells and terminals]]
+  - [[#eshell][Eshell]]
+  - [[#vterm][Vterm]]
+  - [[#vterm-toggle][Vterm-Toggle]]
+- [[#resources][Resources]]
+
+* Early init file
+:PROPERTIES:
+:header-args: :tangle early-init.el
+:END:
+
+We will use ~elpaca~ as our package manager, so we need to add the following bit to ~early-init.el~ to prevent ~package.el~ from starting up, before the init file itself loads.
+
+#+begin_src emacs-lisp
+;;; early-init.el --- Early Init File -*- lexical-binding: t; no-byte-compile: t -*-
+
+(setq package-enable-at-startup nil)
+#+end_src
+
+Set GUI transparency here, otherwise the Emacs client is almost invisible.
+
+#+begin_src emacs-lisp
+;; Set transparency
+(set-frame-parameter (selected-frame) 'alpha '(100 . 95))
+(add-to-list 'default-frame-alist '(alpha . (100 . 95)))
+(set-frame-parameter nil 'alpha-background 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
+#+end_src
+
+Disable GUI elements before the window even shows up.
+
+#+begin_src emacs-lisp
+;; Minimal UI
+(menu-bar-mode -1) ;; disable menu bar
+(tool-bar-mode -1) ;; disable toolbar
+(tooltip-mode -1) ;; disable tooltips
+(scroll-bar-mode -1) ;; disable scrollbar
+(pixel-scroll-precision-mode 1) ;; enable smooth scrolling
+
+(setq inhibit-splash-screen t ;; disable splash screen
+use-file-dialog nil ;; don't use system file dialog
+tab-bar-new-button-show nil ;; don't show new tab button
+tab-bar-close-button-show nil ;; don't show tab close button
+tab-line-close-button-show nil) ;; don't show tab close button
+;;; early-init.el ends here
+#+end_src
+
+* Package management
+:PROPERTIES:
+:header-args: :tangle config.el
+:END:
+
+** ~config.el~ header
+
+#+begin_src emacs-lisp
+;;; config.el --- Personal configuration file -*- lexical-binding: t; no-byte-compile: t; -*-
+;; NOTE: config.el is now generated from config.org.
+#+end_src
+
+* Package management
+
+**  ~Elpaca~
+
+[[https://github.com/progfolio/elpaca][GitHub - progfolio/elpaca: An Elisp package manager.]]
+
+*** Bootstrap ~Elpaca~
+
+[[https://github.com/progfolio/elpaca?tab=readme-ov-file][Bootstrap instructions.]]
+
+#+begin_src emacs-lisp
+(defvar elpaca-installer-version 0.7)
+(defvar elpaca-directory (expand-file-name "elpaca/" user-emacs-directory))
+(defvar elpaca-builds-directory (expand-file-name "builds/" elpaca-directory))
+(defvar elpaca-repos-directory (expand-file-name "repos/" elpaca-directory))
+(defvar elpaca-order '(elpaca :repo "https://github.com/progfolio/elpaca.git"
+        :ref nil :depth 1
+        :files (:defaults "elpaca-test.el" (:exclude "extensions"))
+        :build (:not elpaca--activate-package)))
+(let* ((repo  (expand-file-name "elpaca/" elpaca-repos-directory))
+      (build (expand-file-name "elpaca/" elpaca-builds-directory))
+      (order (cdr elpaca-order))
+      (default-directory repo))
+  (add-to-list 'load-path (if (file-exists-p build) build repo))
+  (unless (file-exists-p repo)
+    (make-directory repo t)
+    (when (< emacs-major-version 28) (require 'subr-x))
+    (condition-case-unless-debug err
+       (if-let ((buffer (pop-to-buffer-same-window "*elpaca-bootstrap*"))
+	           ((zerop (apply #'call-process `("git" nil ,buffer t "clone"
+					   ,@(when-let ((depth (plist-get order :depth)))
+					       (list (format "--depth=%d" depth) "--no-single-branch"))
+					   ,(plist-get order :repo) ,repo))))
+	   ((zerop (call-process "git" nil buffer t "checkout"
+				 (or (plist-get order :ref) "--"))))
+	   (emacs (concat invocation-directory invocation-name))
+	   ((zerop (call-process emacs nil buffer nil "-Q" "-L" "." "--batch"
+				 "--eval" "(byte-recompile-directory \".\" 0 'force)")))
+	   ((require 'elpaca))
+	   ((elpaca-generate-autoloads "elpaca" repo)))
+      (progn (message "%s" (buffer-string)) (kill-buffer buffer))
+    (error "%s" (with-current-buffer buffer (buffer-string))))
+((error) (warn "%s" err) (delete-directory repo 'recursive))))
+  (unless (require 'elpaca-autoloads nil t)
+    (require 'elpaca)
+    (elpaca-generate-autoloads "elpaca" repo)
+    (load "./elpaca-autoloads")))
+(add-hook 'after-init-hook #'elpaca-process-queues)
+(elpaca `(,@elpaca-order))
+#+end_src
+
+Enable ~use-package~ support for ~elpaca~, and ~:ensure~ packages by default.
+
+#+begin_src emacs-lisp
+(elpaca elpaca-use-package
+  (elpaca-use-package-mode))
+(setq use-package-always-ensure t)
+#+end_src
+
+* Emacs
+
+** Defaults
+
+[[https://idiomdrottning.org/bad-emacs-defaults][Bad Emacs defaults.]]
+
+#+begin_src emacs-lisp
+(use-package emacs
+:ensure nil
+
+:custom
+(use-short-answers t) ;; Use short answers in prompts
+(use-dialog-box nil) ;; Disable dialog boxes in favor of minibuffer prompts.
+(delete-selection-mode 1) ;; Enable replacing selected text with typed text.
+(display-line-numbers-type 'relative) ;; Use relative line numbering in programming modes.
+(global-auto-revert-non-file-buffers t) ;; Automatically refresh non-file buffers.
+(split-width-threshold 300) ;; Prevent window splitting if the window width exceeds 300 pixels.
+(ispell-dictionary "en_GB") ;; Set the default dictionary for spell checking.
+(column-number-mode t) ;; Display the column number in the mode line.
+(tab-always-indent 'complete) ;; Make the TAB key complete text instead of just indenting.
+(tab-width 4) ;; Set the tab width to 4 spaces.
+
+;:hook
+;(prog-mode . display-line-numbers-mode) ;; Enable line numbers in programming modes.
+
+:config
+;; Make sure ] b and [ b will always load a file buffer.
+(defun skip-these-buffers (_window buffer _bury-or-kill)
+"Function for `switch-to-prev-buffer-skip'."
+(string-match "\\*[^*]+\\*" (buffer-name buffer)))
+(setq switch-to-prev-buffer-skip 'skip-these-buffers)
+
+;; Custom file
+(setq custom-file (locate-user-emacs-file "custom-vars.el")) ;; Specify the custom file path.
+(load custom-file 'noerror 'nomessage) ;; Load the custom file quietly, ignoring errors.
+
+:init
+(setq enable-recursive-minibuffers t)
+(setq backup-by-copying t)
+(setq sentence-end-double-space nil)
+(setq frame-inhibit-implied-resize t) ;; useless for a tiling window manager
+(setq show-trailing-whitespace t) ;; self-explanatory
+
+(setq indent-tabs-mode nil) ;; no tabs
+
+;; keep backup and save files in a dedicated directory
+(setq backup-directory-alist
+  `((".*" . ,(concat user-emacs-directory "backups")))
+  auto-save-file-name-transforms
+  `((".*" ,(concat user-emacs-directory "backups") t)))
+
+(setq create-lockfiles nil) ;; no need to create lockfiles
+
+(set-charset-priority 'unicode) ;; utf8 everywhere
+(setq locale-coding-system 'utf-8
+      coding-system-for-read 'utf-8
+      coding-system-for-write 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(set-selection-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit) ;; escape quits everything
+
+;; less noise when compiling elisp
+(setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
+(setq native-comp-async-report-warnings-errors nil)
+(setq load-prefer-newer t)
+
+(show-paren-mode t)
+
+;; Hide commands in M-x which don't work in the current mode
+(setq read-extended-command-predicate #'command-completion-default-include-p))
+
+(global-hl-line-mode 0)              ;; Enable highlight of the current line
+(global-display-line-numbers-mode 1) ;; Display line-numbers mode globally.
+(global-visual-line-mode t)          ;; Visual-Line mode in all buffers.
+(global-auto-revert-mode 1)          ;; Enable global auto-revert mode.
+(recentf-mode 1)                     ;; Enable tracking of recently opened files.
+(savehist-mode 1)                    ;; Enable saving of command history.
+(save-place-mode 1)                  ;; Enable saving the place in files for easier return.
+(winner-mode)                        ;; Enable winner mode to easily undo window config changes.
+(xterm-mouse-mode 1)                 ;; Enable mouse support in terminal mode.
+(file-name-shadow-mode 1)            ;; Enable shadowing of filenames for clarity.
+#+end_src
+
+** Electric
+
+#+begin_src emacs-lisp
+(use-package electric
+  :ensure nil
+  :init
+  (electric-pair-mode +1) ;; automatically insert closing parens
+  (setq electric-pair-preserve-balance nil)) ;; more annoying than useful
+  (electric-indent-mode -1) ;; weird and inconsistent as hell, go away
+#+end_src
+
+* Keybindings
+
+** Evil
+
+[[https://github.com/emacs-evil/evil][GitHub - emacs-evil/evil: The extensible vi layer for Emacs.]]
+
+#+begin_src emacs-lisp
+(use-package evil
+  :init
+  (setq evil-want-integration t
+    evil-want-keybinding nil
+    evil-vsplit-window-right t
+    evil-split-window-below t)
+  (evil-mode))
+#+end_src
+
+** Evil Collection
+
+[[https://github.com/emacs-evil/evil-collection][A set of keybindings for evil-mode.]]
+
+#+begin_src emacs-lisp
+(use-package evil-collection
+  :after evil
+  :init
+  (setq evil-collection-mode-list nil)
+  (add-to-list 'evil-collection-mode-list 'dashboard)
+  (add-to-list 'evil-collection-mode-list 'dired)
+  (add-to-list 'evil-collection-mode-list 'ibuffer)
+  (add-to-list 'evil-collection-mode-list 'magit)
+  (add-to-list 'evil-collection-mode-list '(pdf pdf-view))
+  :config
+  (evil-collection-init))
+#+end_src
+
+** General
+
+[[https://github.com/noctuid/general.el][GitHub - noctuid/general.el: More convenient key definitions in emacs]]
+
+#+begin_src emacs-lisp
+(use-package general
+  :config
+  (general-evil-setup) ;; integrate general with evil
+
+  ;; set up 'SPC' as the global leader key
+  (general-create-definer gato/leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC" ;; set leader
+    :global-prefix "M-SPC") ;; access leader in insert mode
+
+  ;; set up ',' as the local leader key
+  (general-create-definer gato/local-leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "," ;; set local leader
+    :global-prefix "M-,") ;; access local leader in insert mode
+
+  ;; Buffers
+  (gato/leader-keys
+    "b" '(:ignore t :wk "Buffer")
+    "b b" '(switch-to-buffer :wk "Switch buffer")
+    "b i" '(ibuffer :wk "Ibuffer")
+    "b k" '(kill-this-buffer :wk "Kill current buffer")
+    "b n" '(next-buffer :wk "Next buffer")
+    "b p" '(previous-buffer :wk "Previous buffer")
+    "b r" '(revert-buffer :wk "Revert buffer"))
+
+  ;; Eshell / Evaluate Elisp
+  (gato/leader-keys
+    "e" '(:ignore t :wk "Eshell / Evaluate")
+    ;; Evaluate
+    "e b" '(eval-buffer :wk "Evaluate Elisp in buffer")
+    "e d" '(eval-defun :wk "Evaluate defun containing or after point")
+    "e e" '(eval-expression :wk "Evaluate Elisp expression")
+    "e l" '(eval-last-sexp :wk "Evaluate Elisp expression before point")
+    "e r" '(eval-region :wk "Evaluate Elisp in region")
+    ;; Eshell
+    "e s" '(eshell :wk "Eshell")
+    "e h" '(counsel-esh-history :wk "Evaluate Elisp in region")
+  )
+
+  ;; Find files
+  (gato/leader-keys
+    "." '(find-file :wk "Find file")
+    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit Emacs config")
+    "f r" '(counsel-recentf :wk "Find recent files")
+  )
+
+  ;; Help functions
+  (gato/leader-keys
+   "h" '(:ignore t :wk "Help")
+   "h f" '(describe-function :wk "Describe function")
+   "h v" '(describe-variable :wk "Describe variable")
+   "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config")
+  )
+
+  ;; Toggle
+  (gato/leader-keys
+    "t" '(:ignore t :wk "Toggle")
+    "t h" '(hl-line-mode :wk "Toggle line numbers")
+    "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+    "t t" '(visual-line-mode :wk "Toggle truncated lines")
+    "t v" '(vterm-toggle :wk "Toggle vterm"))
+  )
+
+  ;; Toggle comments in normal and visual mode.
+  (general-define-key
+    :states '(normal)
+    "g c c" '((lambda () (interactive)
+        (comment-or-uncomment-region
+          (line-beginning-position) (line-end-position)))
+          :wk "Toggle comment"))
+
+  (general-define-key
+    :states '(visual)
+    "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
+
+  ;; Windows
+  (gato/leader-keys
+    "w" '(:ignore t :wk "Windows")
+    ;; Window splits
+    "w c" '(evil-window-delete :wk "Close window")
+    "w n" '(evil-window-new :wk "New window")
+    "w s" '(evil-window-split :wk "Horizontal split")
+    "w v" '(evil-window-vsplit :wk "Vertical split")
+    ;; Window motions
+    "w h" '(evil-window-left :wk "Window left")
+    "w j" '(evil-window-down :wk "Window down")
+    "w k" '(evil-window-up :wk "Window up")
+    "w l" '(evil-window-right :wk "Window right")
+    "w w" '(evil-window-next :wk "Goto next window")
+    ;; Move windows
+    "w H" '(buf-move-left :wk "Buffer move left")
+    "w J" '(buf-move-down :wk "Buffer move down")
+    "w K" '(buf-move-up :wk "Buffer move up")
+    "w L" '(buf-move-right :wk "Buffer move right"))
+
+  ;; Zoom in/out
+  (general-define-key
+    "M-+" '(text-scale-increase :wk "Increase text scale")
+    "M-_" '(text-scale-decrease :wk "Decrease text scale"))
+)
+#+end_src
+
+** Which-Key
+
+[[https://github.com/justbur/emacs-which-key][GitHub - justbur/emacs-which-key: Emacs package that displays available keybindings in popup]]
+
+*ARCHIVE NOTE:* ~which-key~ is now in the master branch of Emacs and will likely be released with Emacs v30. At that point, the configuration here will need to be adjusted. For now, we load it as an external package.
+
+#+begin_src emacs-lisp
+(use-package which-key
+:after evil
+:init
+  (which-key-mode 1)
+:config
+(setq which-key-side-window-location 'bottom
+      which-key-sort-order #'which-key-key-order-alpha
+      which-key-sort-uppercase-first nil
+      which-key-add-column-padding 1
+      which-key-max-display-columns nil
+      which-key-min-display-lines 8
+      which-key-side-window-slot -10
+      which-key-side-window-max-height 0.25
+      which-key-idle-delay 0.5
+      which-key-max-description-length nil
+      which-key-allow-imprecise-window-fit t
+      which-key-separator "  ")
+)
+#+end_src
+
+* Org mode
+
+#+begin_src emacs-lisp
+(use-package org
+  :ensure nil
+  :init
+  ;; edit settings (recommended by org-modern)
+  (setq org-auto-align-tags nil
+	      org-tags-column 0
+	      org-catch-invisible-edits 'show-and-error
+	      org-special-ctrl-a/e t ;; special navigation behaviour in headlines
+	      org-insert-heading-respect-content t)
+
+  ;; styling, hide markup, etc. (recommended by org-modern)
+  (setq org-hide-emphasis-markers t
+	      org-src-fontify-natively t ;; fontify source blocks natively
+	      org-highlight-latex-and-related '(native) ;; fontify latex blocks natively
+	      org-pretty-entities t)
+
+  ;; agenda styling (recommended by org-modern)
+  (setq org-agenda-tags-column 0
+	      org-agenda-block-separator ?─
+	      org-agenda-time-grid
+	      '((daily today require-timed)
+	        (800 1000 1200 1400 1600 1800 2000)
+	        " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+	      org-agenda-current-time-string
+	      "⭠ now ─────────────────────────────────────────────────")
+
+  (setq org-ellipsis "..."))
+#+end_src
+
+Enable the ~org-tempo~ module.
+
+#+begin_src emacs-lisp
+(require 'org-tempo)
+#+end_src
+
+Enable table of contents.
+
+#+begin_src emacs-lisp
+(use-package toc-org
+  :after org
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+Enable bullets.
+
+#+begin_src emacs-lisp
+(add-hook 'org-mode-hook 'org-indent-mode)
+(use-package org-bullets
+  :after org)
+(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+* Tools
+
+** Sudo Edit
+
+[[https://github.com/nflath/sudo-edit][GitHub - nflath/sudo-edit: Utilities for opening files with sudo.]]
+
+# #+begin_src emacs-lisp
+# (use-package sudo-edit
+#   :config
+#     (gato/leader-keys
+#       "fu" '(sudo-edit-find-file :wk "Sudo find file")
+#       "fU" '(sudo-edit :wk "Sudo edit this file")))
+# #+end_src
+
+** buffer-move.el
+
+[[https://emacswiki.org/emacs/buffer-move.el][buffer-move.el]] provides functions for swapping buffer positions.
+
+#+begin_src emacs-lisp
+(require 'windmove)
+
+;;;###autoload
+(defun buf-move-up ()
+"Swap the current buffer and the buffer above the split.
+If there is no split, ie now window above the current one, an
+error is signaled."
+;;  "Switches between the current buffer, and the buffer above the
+;;  split, if possible."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'up))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No window above this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-down ()
+"Swap the current buffer and the buffer under the split.
+If there is no split, ie now window under the current one, an
+error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'down))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (or (null other-win)
+            (string-match "^ \\*Minibuf" (buffer-name (window-buffer other-win))))
+        (error "No window under this one")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-left ()
+"Swap the current buffer and the buffer on the left of the split.
+If there is no split, ie now window on the left of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'left))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No left split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+
+;;;###autoload
+(defun buf-move-right ()
+"Swap the current buffer and the buffer on the right of the split.
+If there is no split, ie now window on the right of the current
+one, an error is signaled."
+  (interactive)
+  (let* ((other-win (windmove-find-other-window 'right))
+	 (buf-this-buf (window-buffer (selected-window))))
+    (if (null other-win)
+        (error "No right split")
+      ;; swap top with this one
+      (set-window-buffer (selected-window) (window-buffer other-win))
+      ;; move this one to top
+      (set-window-buffer other-win buf-this-buf)
+      (select-window other-win))))
+#+end_src
+
+* Appearance
+
+** Fonts
+
+#+begin_src emacs-lisp
+; Define default, variable pitch, and fixed pitch fonts.
+(set-face-attribute 'default nil
+  :font "monospace"
+  :height 100)
+(set-face-attribute 'variable-pitch nil
+  :font "sans-serif"
+  :height 100
+  :weight 'medium)
+(set-face-attribute 'fixed-pitch nil
+  :font "monospace"
+  :height 100)
+
+;; Display commented text and keywords in italics.
+;; Requires a font with italics support.
+(set-face-attribute 'font-lock-comment-face nil
+  :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil
+  :slant 'italic)
+
+;; Adjust line spacing.
+(setq-default line-spacing 0.15)
+#+end_src
+
+** Icons
+
+[[https://github.com/domtronn/all-the-icons.el][GitHub - domtronn/all-the-icons.el: Utility package to use various icon fonts within Emacs.]]
+
+#+begin_src emacs-lisp
+(use-package all-the-icons
+  :if (display-graphic-p))
+#+end_src
+
+[[https://github.com/jtbm37/all-the-icons-dired][GitHub - jtbm37/all-the-icons-dired: Adds dired support to all-the-icons]]
+
+#+begin_src emacs-lisp
+(use-package all-the-icons-dired
+  :hook (dired-mode . (lambda () (all-the-icons-dired-mode t))))
+#+end_src
+
+* Ivy and Counsel
+
+[[https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqblQyNTVDVHJ6NXIwLWVEYXVXdG45cF9FZUJTZ3xBQ3Jtc0tsdGRGSzl4T25DLWczZU5hQWVyeEVVTDdaWTJvcU0xX01zbVhybmZkaTdZcUl1ZTBnX2QtbDlLVXhWV3lPdzBuSThQVmF4cGJUSW5TQXVCMF90NTdwWF9CcGE1czlMeXlqMzJRUFRhT1drdHZ6RHVOQQ&q=https%3A%2F%2Fgithub.com%2Fabo-abo%2Fswiper&v=A4UothfExBM][GitHub - abo-abo/swiper: Ivy - a generic completion frontend for Emacs.]]
+
+#+begin_src emacs-lisp
+(use-package counsel
+  :bind (("C-s" . swiper)
+         ("C-x C-f" . counsel-find-file)
+         ("C-x b" . counsel-ibuffer)
+         ("C-r" . counsel-minibuffer-history)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :custom
+  (setq ivy-use-virtual-buffers t
+        ivy-count-format "(%d/%d) "
+        enable-recursive-minibuffers t)
+  :config
+    (ivy-mode)
+    (counsel-mode))
+#+end_src
+
+** Ivy-Rich
+
+[[https://github.com/seagle0128/all-the-icons-ivy-rich][GitHub - seagle0128/all-the-icons-ivy-rich: Better experience with icons for ivy.]]
+
+#+begin_src emacs-lisp
+(use-package all-the-icons-ivy-rich
+  :init (all-the-icons-ivy-rich-mode 1))
+#+end_src
+
+[[https://github.com/Yevgnen/ivy-rich][GitHub - Yevgnen/ivy-rich: More friendly interface for ivy.]]
+
+#+begin_src emacs-lisp
+(use-package ivy-rich
+  :after ivy
+  :init (ivy-rich-mode 1)
+  :custom
+  (ivy-virtual-abbreviate 'full
+   ivy-rich-switch-buffer-align-virtual-buffer t
+   ivy-rich-path-style 'abbrev)
+  :config
+  (ivy-set-display-transformer 'ivy-switch-buffer
+                               'ivy-rich-switch-buffer-transformer)
+)
+#+end_src
+
+* Shells and terminals
+
+** Eshell
+
+Eshell is an Emacs 'shell' writtein in Elisp.
+
+#+begin_src emacs-lisp
+(use-package eshell-syntax-highlighting
+  :after esh-mode
+  :config
+  (eshell-syntax-highlighting-global-mode +1))
+
+(setq eshell-rc-script (concat user-emacs-directory "eshell/profile")
+      eshell-aliases-file (concat user-emacs-directory "eshell/aliases")
+      eshell-history-size 5000
+      eshell-buffer-maximum-lines 5000
+      eshell-hist-ignoredups t
+      eshell-scroll-to-bottom-on-input t
+      eshell-destroy-buffer-when-process-dies t
+      eshell-visual-commands '("bash" "btop" "ssh" "zsh"))
+#+end_src
+
+** Vterm
+
+A terminal emulator within Emacs.
+
+#+begin_src emacs-lisp
+(use-package vterm
+  :config
+  (setq shell-file-name "/bin/zsh"
+        vterm-max-scrollback 5000))
+#+end_src
+
+** Vterm-Toggle
+
+Toggle between the Vterm buffer and the previous active buffer.
+
+#+begin_src emacs-lisp
+(use-package vterm-toggle
+  :after vterm
+  :config
+  (setq vterm-toggle-fullscreen-p nil)
+  (setq vterm-toggle-scope 'project)
+  (add-to-list 'display-buffer-alist
+               '((lambda (buffer-or-name _)
+                     (let ((buffer (get-buffer buffer-or-name)))
+                       (with-current-buffer buffer
+                         (or (equal major-mode 'vterm-mode)
+                             (string-prefix-p vterm-buffer-name (buffer-name buffer))))))
+                  (display-buffer-reuse-window display-buffer-at-bottom)
+                  (reusable-frames . visible)
+                  (window-height . 0.3))))
+#+end_src
+
+* Resources
+
+- [[https://www.youtube.com/playlist?list=PL5--8gKSku15e8lXf7aLICFmAHQVo0KXX][DistroTube - Configuring Emacs]] - The main source of this config.
+- [[https://github.com/patrl/emacs.d/blob/main/readme.org][GitHub - patrl/emacs.d]] - More advanced example of a literate config.
+- [[https://github.com/LionyxML/emacs-kick][GitHub - LionyxML/emacs-kick]] - Inspiration for some of the settings.
