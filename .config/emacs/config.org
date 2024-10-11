@@ -345,7 +345,6 @@ Enable ~use-package~ support for ~elpaca~, and ~:ensure~ packages by default.
     "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
     "t t" '(visual-line-mode :wk "Toggle truncated lines")
     "t v" '(vterm-toggle :wk "Toggle vterm"))
-  )
 
   ;; Toggle comments in normal and visual mode.
   (general-define-key
