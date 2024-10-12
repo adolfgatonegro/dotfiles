@@ -32,6 +32,7 @@
   - [[#icons][Icons]]
   - [[#theme][Theme]]
   - [[#modeline][Modeline]]
+  - [[#visual-fill-column][Visual fill column]]
 - [[#version-control][Version Control]]
   - [[#diff-hl][Diff-hl]]
 - [[#ivy-and-counsel][Ivy and Counsel]]
@@ -67,8 +68,8 @@ Set GUI transparency here, otherwise the Emacs client is almost invisible.
 ;; Set transparency
 (set-frame-parameter (selected-frame) 'alpha '(100 . 90))
 (add-to-list 'default-frame-alist '(alpha . (100 . 90)))
-(set-frame-parameter nil 'alpha-background 95)
-(add-to-list 'default-frame-alist '(alpha-background . 95))
+(set-frame-parameter nil 'alpha-background 90)
+(add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
 
 Disable GUI elements before the window even shows up.
@@ -319,7 +320,8 @@ Improved buffer/window management.
   (setq evil-want-integration t
     evil-want-keybinding nil
     evil-vsplit-window-right t
-    evil-split-window-below t)
+    evil-split-window-below t
+    evil-respect-visual-line-mode t)
   (evil-mode))
 #+end_src
 
@@ -345,11 +347,17 @@ Improved buffer/window management.
 
 [[https://github.com/noctuid/general.el][noctuid/general.el: More convenient key definitions in emacs]]
 
+*** General setup
+
 #+begin_src emacs-lisp
 (use-package general
   :config
   (general-evil-setup) ;; integrate general with evil
+#+end_src
 
+*** Leader keys
+
+#+begin_src emacs-lisp
   ;; set up 'SPC' as the global leader key
   (general-create-definer gato/leader-keys
     :states '(normal insert visual emacs)
@@ -363,7 +371,11 @@ Improved buffer/window management.
     :keymaps 'override
     :prefix "," ;; set local leader
     :global-prefix "M-,") ;; access local leader in insert mode
+#+end_src
 
+*** Buffers
+
+#+begin_src emacs-lisp
   ;; Buffers
   (gato/leader-keys
     "b" '(:ignore t :wk "Buffer")
@@ -373,17 +385,29 @@ Improved buffer/window management.
     "b n" '(next-buffer :wk "Next buffer")
     "b p" '(previous-buffer :wk "Previous buffer")
     "b r" '(revert-buffer :wk "Revert buffer"))
+#+end_src
 
+*** Counsel
+
+#+begin_src emacs-lisp
   ;; Counsel
   (gato/leader-keys
     "SPC" '(counsel-M-x :wk "Counsel M-x"))
+#+end_src
 
+*** Diff-hl
+
+#+begin_src emacs-lisp
   ;; Diff-hl
   (general-define-key
     :states '(normal)
     "] c" '(diff-hl-next-hunk :wk "Next diff hunk")
     "[ c" '(diff-hl-previous-hunk :wk "Previous diff hunk"))
+#+end_src
 
+*** Eshell / Evaluate Elisp
+
+#+begin_src emacs-lisp
   ;; Eshell / Evaluate Elisp
   (gato/leader-keys
     "e" '(:ignore t :wk "Eshell / Evaluate")
@@ -395,16 +419,22 @@ Improved buffer/window management.
     "e r" '(eval-region :wk "Evaluate Elisp in region")
     ;; Eshell
     "e s" '(eshell :wk "Eshell")
-    "e h" '(counsel-esh-history :wk "Evaluate Elisp in region")
-  )
+    "e h" '(counsel-esh-history :wk "Evaluate Elisp in region"))
+#+end_src
 
+*** Find files
+
+#+begin_src emacs-lisp
   ;; Find files
   (gato/leader-keys
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit Emacs config")
-    "f r" '(counsel-recentf :wk "Find recent files")
-  )
+    "f r" '(counsel-recentf :wk "Find recent files"))
+#+end_src
 
+*** Help
+
+#+begin_src emacs-lisp
   ;; Help functions
   (gato/leader-keys
    "h" '(:ignore t :wk "Help")
@@ -412,7 +442,11 @@ Improved buffer/window management.
    "h v" '(describe-variable :wk "Describe variable")
    "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config")
   )
+#+end_src
 
+*** Org mode
+
+#+begin_src emacs-lisp
   ;; Org mode
   (gato/leader-keys
     "m" '(:ignore t :wk "Org")
@@ -430,11 +464,16 @@ Improved buffer/window management.
   (gato/leader-keys
     "m d" '(:ignore t :wk "Date/deadline")
     "m d t" '(org-time-stamp :wk "Org time stamp"))
+#+end_src
 
+*** Toggle
+
+#+begin_src emacs-lisp
   ;; Toggle
   (gato/leader-keys
     "t" '(:ignore t :wk "Toggle")
-    "t h" '(hl-line-mode :wk "Toggle line numbers")
+    "t c" '(visual-line-fill-column-mode :wk "Toggle fill column")
+    "t h" '(hl-line-mode :wk "Toggle line highlight")
     "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
     "t t" '(visual-line-mode :wk "Toggle truncated lines")
     "t v" '(vterm-toggle :wk "Toggle vterm"))
@@ -450,11 +489,19 @@ Improved buffer/window management.
   (general-define-key
     :states '(visual)
     "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
+#+end_src
 
+*** Projectile
+
+#+begin_src emacs-lisp
   ;; Projectile
   (gato/leader-keys
     "j" '(projectile-command-map :wk "Projectile"))
+#+end_src
 
+*** Typst
+
+#+begin_src emacs-lisp
   ;; Typst
   (gato/leader-keys
     :keymaps 'typst-ts-mode-map
@@ -463,7 +510,11 @@ Improved buffer/window management.
     "p w" '(typst-ts-watch-mode :wk "Watch")
     "p o" '(typst-ts-mode-preview :wk "Open compiled document")
     "p p" '(typst-ts-compile-and-preview :wk "Compile and preview"))
+#+end_src
 
+*** Window manipulation
+
+#+begin_src emacs-lisp
   ;; Windows
   (gato/leader-keys
     "w" '(:ignore t :wk "Windows")
@@ -483,11 +534,21 @@ Improved buffer/window management.
     "w J" '(buf-move-down :wk "Buffer move down")
     "w K" '(buf-move-up :wk "Buffer move up")
     "w L" '(buf-move-right :wk "Buffer move right"))
+#+end_src
 
+*** Zoom text
+
+#+begin_src emacs-lisp
   ;; Zoom in/out
   (general-define-key
     "M-+" '(text-scale-increase :wk "Increase text scale")
     "M-_" '(text-scale-decrease :wk "Decrease text scale"))
+#+end_src
+
+*** End General config
+
+#+begin_src emacs-lisp
+;; end General keybindings
 )
 #+end_src
 
@@ -764,6 +825,7 @@ one, an error is signaled."
 [[https://github.com/doomemacs/themes][doomemacs/themes: A megapack of themes for GNU Emacs.]]
 
 #+begin_src emacs-lisp
+(add-to-list 'custom-theme-load-path (concat user-emacs-directory "themes"))
 (use-package doom-themes
   :custom
   (doom-themes-enable-bold t)
@@ -801,6 +863,19 @@ For a custom theme, use this instead:
   :config
   (setq doom-modeline-icon t) ;; Enable icons.
   (doom-modeline-mode))
+#+end_src
+
+** Visual fill column
+
+[[https://codeberg.org/joostkremers/visual-fill-column][joostkremers/visual-fill-column: Emacs mode for wrapping visual-line-mode buffers at fill-column.]]
+
+#+begin_src emacs-lisp
+(use-package visual-fill-column
+  :custom
+  (visual-fill-column-width 80)
+  (visual-fill-column-adjust-for-text-scale t)
+  :config
+  (setq-default visual-fill-column-center-text t))
 #+end_src
 
 * Version Control
