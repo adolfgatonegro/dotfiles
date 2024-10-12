@@ -11,6 +11,7 @@
   -  [[#elpaca][~Elpaca~]]
 - [[#emacs][Emacs]]
   - [[#defaults][Defaults]]
+  - [[#dired][Dired]]
   - [[#electric][Electric]]
   - [[#isearch][Isearch]]
   - [[#window-management][Window management]]
@@ -35,7 +36,8 @@
   - [[#visual-fill-column][Visual fill column]]
 - [[#version-control][Version Control]]
   - [[#diff-hl][Diff-hl]]
-- [[#ivy-and-counsel][Ivy and Counsel]]
+- [[#completion-frameworks][Completion frameworks]]
+  - [[#ivy--counsel][Ivy / Counsel]]
   - [[#ivy-rich][Ivy-Rich]]
 - [[#shells-and-terminals][Shells and terminals]]
   - [[#eshell][Eshell]]
@@ -258,6 +260,20 @@ Disable line numbers in certain modes.
 		eshell-mode-hook
         typst-ts-mode-hook))
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+#+end_src
+
+** Dired
+
+#+begin_src emacs-lisp
+(use-package dired
+  :ensure nil
+  :custom
+  (dired-listing-switches "-lah --group-directories-first")  ;; Display files in a human-readable format and group directories first.
+  (dired-dwim-target t)                                      ;; Enable "do what I mean" for target directories.
+  (dired-guess-shell-alist-user
+   '((".*" "open" "xdg-open")))                              ;; Open files with default application.
+  (dired-kill-when-opening-new-dired-buffer t)               ;; Close the previous buffer when opening a new `dired' instance.
+)
 #+end_src
 
 ** Electric
@@ -911,9 +927,11 @@ For a custom theme, use this instead:
                                   (ignored . "i"))))
 #+end_src
 
-* Ivy and Counsel
+* Completion frameworks
 
-[[https://www.youtube.com/redirect?event=video_description&redir_token=QUFFLUhqblQyNTVDVHJ6NXIwLWVEYXVXdG45cF9FZUJTZ3xBQ3Jtc0tsdGRGSzl4T25DLWczZU5hQWVyeEVVTDdaWTJvcU0xX01zbVhybmZkaTdZcUl1ZTBnX2QtbDlLVXhWV3lPdzBuSThQVmF4cGJUSW5TQXVCMF90NTdwWF9CcGE1czlMeXlqMzJRUFRhT1drdHZ6RHVOQQ&q=https%3A%2F%2Fgithub.com%2Fabo-abo%2Fswiper&v=A4UothfExBM][abo-abo/swiper: Ivy - a generic completion frontend for Emacs.]]
+** Ivy / Counsel
+
+[[https://github.com/abo-abo/swiper][abo-abo/swiper: Ivy - a generic completion frontend for Emacs.]]
 
 #+begin_src emacs-lisp
 (use-package ivy
