@@ -885,7 +885,7 @@ For a custom theme, use this instead:
 (use-package visual-fill-column
   :custom
   (visual-fill-column-width 80)
-  (visual-fill-column-adjust-for-text-scale t)
+  (visual-fill-column-adjust-for-text-scale nil)
   :config
   (setq-default visual-fill-column-center-text t))
 #+end_src
