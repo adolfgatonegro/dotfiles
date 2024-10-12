@@ -4,7 +4,7 @@
 #+OPTIONS: toc:2
 
 * Table of Contents :toc:
-- [[#early-init-file][Early init file]]
+- [[#early-init-file][~early-init~ file]]
 - [[#begin-configel-file][Begin ~config.el~ file]]
   - [[#configel-header][~config.el~ header]]
 - [[#package-management][Package management]]
@@ -49,7 +49,7 @@
   - [[#typst][Typst]]
 - [[#resources][Resources]]
 
-* Early init file
+* ~early-init~ file
 :PROPERTIES:
 :header-args: :tangle early-init.el
 :END:
@@ -66,8 +66,8 @@ Set GUI transparency here, otherwise the Emacs client is almost invisible.
 
 #+begin_src emacs-lisp
 ;; Set transparency
-(set-frame-parameter (selected-frame) 'alpha '(100 . 90))
-(add-to-list 'default-frame-alist '(alpha . (100 . 90)))
+(set-frame-parameter (selected-frame) 'alpha '(100 . 100))
+(add-to-list 'default-frame-alist '(alpha . (100 . 100)))
 (set-frame-parameter nil 'alpha-background 90)
 (add-to-list 'default-frame-alist '(alpha-background . 90))
 #+end_src
@@ -247,6 +247,17 @@ Enable ~use-package~ support for ~elpaca~, and ~:ensure~ packages by default.
 (winner-mode)                        ;; Enable winner mode to easily undo window config changes.
 (xterm-mouse-mode 1)                 ;; Enable mouse support in terminal mode.
 (file-name-shadow-mode 1)            ;; Enable shadowing of filenames for clarity.
+#+end_src
+
+Disable line numbers in certain modes.
+
+#+begin_src emacs-lisp
+(dolist (mode '(org-mode-hook
+		term-mode-hook
+		shell-mode-hook
+		eshell-mode-hook
+        typst-ts-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 #+end_src
 
 ** Electric
@@ -765,7 +776,8 @@ one, an error is signaled."
         dashboard-banner-logo-title "«Objects such as corpses, painful to view in themselves, can become delightful to contemplate.»"
   ;;      dashboard-startup-banner 'logo ;; use standard emacs logo as banner
         dashboard-startup-banner (concat user-emacs-directory "themes/gatonegro.png")
-        dashboard-center-content nil ;; set to 't' for centered content
+        dashboard-projects-backend 'projectile
+        dashboard-center-content t ;; set to 't' for centered content
         dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
@@ -831,15 +843,15 @@ one, an error is signaled."
   (doom-themes-enable-bold t)
   (doom-themes-enable-italic t)
   :config
-  (load-theme 'doom-tokyo-night t)
+  (load-theme 'doom-gatonegro t)
   ;; Enable flashing mode-line on errors
   (doom-themes-visual-bell-config)
   ;; Corrects (and improves) org-mode's native fontification.
-  (doom-themes-org-config)
+  (doom-themes-org-config))
   ;; Must be used *after* the theme is loaded
-  (custom-set-faces '(default ((t (:background "#1a1a26")))))
-  (setq doom-tokyo-night-brighter-comments t
-        doom-tokyo-night-brighter-modeline t))
+  ;; (custom-set-faces '(default ((t (:background "#0a0a15")))))
+  ;; (setq doom-tokyo-night-brighter-comments t
+  ;;       doom-tokyo-night-brighter-modeline t))
 #+end_src
 
 For a custom theme, use this instead:
@@ -1053,7 +1065,11 @@ Company box
 ** Languages
 
 #+begin_src emacs-lisp
+;; Lua
 (use-package lua-mode)
+;; Markdown
+(use-package markdown-mode
+  :init (setq markdown-command "multimarkdown"))
 #+end_src
 
 ** LSP Mode
