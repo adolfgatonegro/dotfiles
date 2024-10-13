@@ -34,9 +34,44 @@
 
   ;; Diff-hl
   (general-define-key
-    :states '(normal)
+    :states 'normal
     "] c" '(diff-hl-next-hunk :wk "Next diff hunk")
     "[ c" '(diff-hl-previous-hunk :wk "Previous diff hunk"))
+
+  ;; Dired
+  (gato/leader-keys
+    "d" '(:ignore t :wk "dired")
+    "d d" '(dired :wk "Open dired")
+    "d j" '(dired-jump :wk "Dired jumo to current"))
+
+  (general-define-key
+    :states 'normal
+    :keymaps 'dired-mode-map
+    "M-RET" 'dired-display-file
+    "h" 'dired-up-directory
+    "l" 'dired-find-file
+    "m" 'dired-mark
+    "t" 'dired-toggle-marks
+    "u" 'dired-unmark
+    "v" 'dired-view-file
+    "C" 'dired-do-copy
+    "D" 'dired-do-delete
+    "J" 'dired-goto-file
+    "M" 'dired-do-chmod
+    "O" 'dired-do-chown
+    "P" 'dired-do-print
+    "R" 'dired-do-rename
+    "T" 'dired-do-touch
+    "Z" 'dired-do-compress
+    "+" 'dired-create-directory
+    "-" 'dired-up-directory
+    "% l" 'dired-downcase
+    "% m" 'dired-mark-files-regexp
+    "% u" 'dired-upcase
+    "* %" 'dired-mark-files-regexp
+    "* ." 'dired-mark-extension
+    "* /" 'dired-mark-directories
+  )
 
   ;; Eshell / Evaluate Elisp
   (gato/leader-keys

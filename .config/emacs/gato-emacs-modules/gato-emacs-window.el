@@ -27,7 +27,7 @@
      
      ;; Configuration for displaying various diagnostic buffers on
      ;; bottom 25%:
-     ("\\*\\(Flymake diagnostics\\|xref\\|ivy\\|Swiper\\|Completions\\)"
+     ("\\*\\(Flycheck error messages\\|xref\\|ivy\\|Swiper\\|Completions\\)"
       (display-buffer-in-side-window)
       (window-height . 0.25)
       (side . bottom)

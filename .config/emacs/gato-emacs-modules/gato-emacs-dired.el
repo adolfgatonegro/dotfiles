@@ -16,5 +16,10 @@
       (when gls
         (setq insert-directory-program gls)))))
 
+;; * dired-+
+(use-package dired-x
+  :ensure nil
+  :after dired)
+
 ;; * provide module
 (provide 'gato-emacs-dired)
