@@ -11,11 +11,7 @@
 
 ;; ** sudo-edit
 (use-package sudo-edit
-  :defer t
-  :config
-    (gato/leader-keys
-      "fu" '(sudo-edit-find-file :wk "Sudo find file")
-      "fU" '(sudo-edit :wk "Sudo edit this file")))
+  :defer t)
 
 ;; ** undo-tree
 (use-package undo-tree

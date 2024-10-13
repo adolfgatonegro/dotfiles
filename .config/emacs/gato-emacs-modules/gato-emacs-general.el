@@ -54,7 +54,9 @@
   (gato/leader-keys
     "." '(find-file :wk "Find file")
     "f c" '((lambda () (interactive) (find-file "~/.config/emacs/init.el")) :wk "Edit Emacs config")
-    "f r" '(recentf :wk "Find recent files"))
+    "f r" '(recentf :wk "Find recent files")
+    "f u" '(sudo-edit-find-file :wk "Sudo find file")
+    "f U" '(sudo-edit :wk "Sudo edit this file"))
 
   ;; Help functions
   (gato/leader-keys
