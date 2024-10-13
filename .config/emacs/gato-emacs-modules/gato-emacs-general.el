@@ -118,6 +118,11 @@
     "p o" '(typst-ts-mode-preview :wk "Open compiled document")
     "p p" '(typst-ts-compile-and-preview :wk "Compile and preview"))
 
+  ;; undo-tree
+  (gato/leader-keys
+    :states '(normal)
+    "u" '(undo-tree-visualize :wk "Undo-tree visualise"))
+
   ;; Windows
   (gato/leader-keys
     "w" '(:ignore t :wk "Windows")

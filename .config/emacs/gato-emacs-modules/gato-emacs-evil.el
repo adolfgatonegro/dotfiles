@@ -2,16 +2,20 @@
 
 (use-package evil
   :defer t
-
-  :hook
-  (elpaca-after-init . evil-mode)
+  :config
+  (evil-set-undo-system 'undo-tree)   ;; Uses the undo-tree package as the default undo system
+  (setq evil-leader/in-all-states t)  ;; Make the leader key available in all states.
+  (setq evil-want-fine-undo t)        ;; Evil uses finer grain undoing steps
 
   :init
   (setq evil-want-integration t
     evil-want-keybinding nil
     evil-vsplit-window-right t
     evil-split-window-below t
-    evil-respect-visual-line-mode t))
+    evil-respect-visual-line-mode t)
+
+  :hook
+  (elpaca-after-init . evil-mode))
 
 ;; ** evil collection
 
