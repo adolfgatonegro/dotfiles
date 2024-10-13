@@ -58,14 +58,15 @@
 
 ;; * modeline
 (use-package doom-modeline
-  :custom
-  (doom-modeline-buffer-file-name-style 'buffer-name) ;; Set buffer style filename only.
-  (doom-modeline-project-detection 'project) ;; Enable project detection.
-  (doom-modeline-buffer-name t) ;; Show the buffer name in the mode line.
-  (doom-modeline-vcs-max-length 25) ;; Limit the VCS branch name 25 characters.
+  :defer t
   :config
-  (setq doom-modeline-icon t) ;; Enable icons.
-  (doom-modeline-mode))
+  (setq doom-modeline-icon t        ; enable icons
+        doom-modeline-bar-width 5   ; set the bar width
+        doom-modeline-height 35     ; set modeline height
+        doom-modeline-persp-icon t  ; add perspective name to modeline
+        doom-modeline-persp-name t) ; add folder icon next to persp name
+  :hook
+  (elpaca-after-init . doom-modeline-mode))
 
 ;; * visual-fill-column
 (use-package visual-fill-column
