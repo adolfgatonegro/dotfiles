@@ -3,6 +3,13 @@
 ;; ** diminish
 (use-package diminish)
 
+;; ** rainbow delimiters
+(use-package rainbow-delimiters
+  :defer t
+  :ensure t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
 ;; ** rainbow mode
 (use-package rainbow-mode
   :defer t

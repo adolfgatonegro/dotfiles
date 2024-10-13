@@ -57,9 +57,11 @@
 				(interactive)
 				(company-show-doc-buffer)))
   (define-key company-active-map [tab] 'company-complete-selection)
-  (define-key company-active-map (kbd "TAB") 'company-complete-selection)
   (define-key company-active-map [ret] 'company-complete-selection)
+  (define-key company-active-map [escape] 'company-abort)
   (define-key company-active-map (kbd "RET") 'company-complete-selection)
+  (define-key company-active-map (kbd "C-j") 'company-select-next)
+  (define-key company-active-map (kbd "C-k") 'company-select-previous)
   :hook
   (elpaca-after-init . global-company-mode)) ;; Enable Company Mode globally after initialization.
 
