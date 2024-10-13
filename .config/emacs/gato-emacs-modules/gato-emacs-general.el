@@ -45,6 +45,7 @@
     "d j" '(dired-jump :wk "Dired jump to current")
     "d w" '(:ignore t :wk "Writable dired")
     "d w w" '(wdired-change-to-wdired-mode :wk "Enable writable dired")
+    "d w a" '(wdired-abort-changes :wk "Abort writable dired changes")
     "d w f" '(wdired-finish-edit :wk "Finish writable dired edit"))
 
   (general-define-key
