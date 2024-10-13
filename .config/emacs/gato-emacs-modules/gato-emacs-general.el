@@ -49,7 +49,7 @@
     :keymaps 'dired-mode-map
     "M-RET" 'dired-display-file
     "h" 'dired-up-directory
-    "l" 'dired-find-file
+    "l" 'dired-open-file
     "m" 'dired-mark
     "t" 'dired-toggle-marks
     "u" 'dired-unmark

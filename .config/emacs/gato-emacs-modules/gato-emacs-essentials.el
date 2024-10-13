@@ -7,6 +7,7 @@
   (auto-save-default nil) ;; Disable automatic saving of buffers.
   (use-short-answers t) ;; Use short answers in prompts
   (use-dialog-box nil) ;; Disable dialog boxes in favor of minibuffer prompts.
+  (delete-by-moving-to-trash t) ;; Move deleted files to the trash instead of permanently deleting them.
   (delete-selection-mode 1) ;; Enable replacing selected text with typed text.
   (display-line-numbers-type 'relative) ;; Use relative line numbering in programming modes.
   (global-auto-revert-non-file-buffers t) ;; Automatically refresh non-file buffers.
