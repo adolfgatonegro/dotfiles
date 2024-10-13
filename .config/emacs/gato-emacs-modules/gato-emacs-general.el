@@ -48,14 +48,13 @@
     "e l" '(eval-last-sexp :wk "Evaluate Elisp expression before point")
     "e r" '(eval-region :wk "Evaluate Elisp in region")
     ;; Eshell
-    "e s" '(eshell :wk "Eshell")
-    "e h" '(counsel-esh-history :wk "Evaluate Elisp in region"))
+    "e s" '(eshell :wk "Eshell"))
 
   ;; Find files
   (gato/leader-keys
     "." '(find-file :wk "Find file")
-    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/config.org")) :wk "Edit Emacs config")
-    "f r" '(counsel-recentf :wk "Find recent files"))
+    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/init.el")) :wk "Edit Emacs config")
+    "f r" '(recentf :wk "Find recent files"))
 
   ;; Help functions
   (gato/leader-keys
