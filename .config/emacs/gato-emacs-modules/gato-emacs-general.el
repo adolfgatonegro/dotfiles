@@ -146,8 +146,8 @@
 
   ;; Zoom in/out
   (general-define-key
-    "M-+" '(text-scale-increase :wk "Increase text scale")
-    "M-_" '(text-scale-decrease :wk "Decrease text scale"))
+    "C-M-=" '(text-scale-increase :wk "Increase text scale")
+    "C-M--" '(text-scale-decrease :wk "Decrease text scale"))
 ;; end General keybindings
 )
 
