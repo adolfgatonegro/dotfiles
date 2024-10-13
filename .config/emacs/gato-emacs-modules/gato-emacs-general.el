@@ -42,7 +42,10 @@
   (gato/leader-keys
     "d" '(:ignore t :wk "dired")
     "d d" '(dired :wk "Open dired")
-    "d j" '(dired-jump :wk "Dired jumo to current"))
+    "d j" '(dired-jump :wk "Dired jump to current")
+    "d w" '(:ignore t :wk "Writable dired")
+    "d w w" '(wdired-change-to-wdired-mode :wk "Enable writable dired")
+    "d w f" '(wdired-finish-edit :wk "Finish writable dired edit"))
 
   (general-define-key
     :states 'normal
