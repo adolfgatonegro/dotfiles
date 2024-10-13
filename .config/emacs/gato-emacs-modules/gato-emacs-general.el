@@ -146,9 +146,10 @@
   (general-define-key
     "M-+" '(text-scale-increase :wk "Increase text scale")
     "M-_" '(text-scale-decrease :wk "Decrease text scale"))
-
 ;; end General keybindings
 )
+
+(global-set-key [escape] 'keyboard-escape-quit)
 
 ;; * provide module
 (provide 'gato-emacs-general)
