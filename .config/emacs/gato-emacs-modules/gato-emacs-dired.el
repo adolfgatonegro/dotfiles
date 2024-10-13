@@ -26,5 +26,24 @@
                                 ("m4v" . "xdg-open")
                                 ("mp4" . "xdg-open"))))
 
+;; * dired-preview
+(use-package dired-preview
+  :after dired
+  :config
+     (setq dired-preview-delay 0.7)
+     (setq dired-preview-max-size (expt 2 20))
+     (setq dired-preview-ignored-extensions-regexp
+             (concat "\\."
+                     "\\(gz\\|"
+                     "zst\\|"
+                     "tar\\|"
+                     "xz\\|"
+                     "rar\\|"
+                     "zip\\|"
+                     "iso\\|"
+                     "epub"
+                     "\\)"))
+)
+
 ;; * provide module
 (provide 'gato-emacs-dired)

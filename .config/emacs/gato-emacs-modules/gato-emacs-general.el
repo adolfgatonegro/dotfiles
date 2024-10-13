@@ -53,6 +53,7 @@
     "m" 'dired-mark
     "t" 'dired-toggle-marks
     "u" 'dired-unmark
+    "p" 'dired-preview-mode
     "v" 'dired-view-file
     "C" 'dired-do-copy
     "D" 'dired-do-delete
