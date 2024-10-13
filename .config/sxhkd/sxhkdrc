@@ -65,6 +65,9 @@ super + {e,shift + e}
 super + f
 	st -e yazi
 
+super + shift + f
+	emacsclient -c -a emacs --eval "(dired nil)"
+
 # notes
 super + n
 	obsidian
