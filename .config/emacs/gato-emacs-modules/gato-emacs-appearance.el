@@ -2,14 +2,14 @@
 
 ;; define default, variable pitch, and fixed pitch fonts
 (set-face-attribute 'default nil
-  :font "CaskaydiaCove Nerd Font"
+  :font "monospace"
   :height 100)
 (set-face-attribute 'variable-pitch nil
   :font "sans-serif"
   :height 100
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-  :font "CaskaydiaCove Nerd Font"
+  :font "monospace"
   :height 100)
 
 ;; display commented text and keywords in italics
