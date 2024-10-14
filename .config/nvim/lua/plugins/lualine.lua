@@ -1,3 +1,4 @@
+-- Get a word count of the current buffer
 local function getWords()
   if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" or vim.bo.filetype == "typst" or vim.bo.filetype == "tex" or vim.bo.filetype == "plaintex" then
       return "󰙏 " .. tostring(vim.fn.wordcount().words) .. " |  " .. tostring(vim.fn.wordcount().chars)
@@ -38,6 +39,7 @@ return {
 					"filetype",
 				},
 				lualine_y = {
+                    -- display wrapping mode from wrapping.nvim
 					{ wrap.get_current_mode },
 					'(vim.bo.expandtab and "󱁐" or "󰌒 ") .. " " .. vim.bo.shiftwidth',
 					{ getWords },

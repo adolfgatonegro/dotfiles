@@ -1,0 +1,1401 @@
+#+title: Neovim configuration
+#+author: Gatonegro
+#+language: en
+#+STARTUP: showeverything
+#+OPTIONS: toc:2
+
+This is my literate Neovim configuration file. While a "structured" or "modular" setup has many advantages, it can sometimes make modifications more difficult than they should be, since one must remember, or, at least have a good idea of which file contains the configuration option that we want to change. On the other hand, keeping a monolithic single-file configuration becomes unweildy rather quickly, as there can be hundreds or thousands of lines of code to parse, just to find whatever it is that we are looking for.
+
+What we're doing here is a mix of both, inspired by [[https://protesilaos.com/emacs/dotemacs][Protesilaos Stavrou's GNU Emacs configuration]], which he describes as:
+
+#+begin_quote
+An advanced literate configuration that produces modular code.
+#+end_quote
+
+The idea is rather simple: the entire configuration exists as a single Org document, which then creates all the modules that the software, in this case Neovim, deals with. When we want to modify this Neovim setup, we can simply come to this file, make the changes we need, and then update the actual Lua configuration files, either by evaluating the following code block, or with =SPC-m B= in Emacs.
+
+#+begin_src emacs-lisp :tangle no :results none
+(org-babel-tangle)
+#+end_src
+
+However, we are not locked into Emacs and Org — since the actual configuration modules are just Lua files, they can be edited directly with any other text editor if necessary. This Org document is the preferred way to edit this configuration, but it is by no means the only one.
+
+
+* Table of contents :toc:
+- [[#the-structure-of-this-neovim-configuration][The structure of this Neovim configuration]]
+- [[#the-init-file-initlua][The init file (=init.lua=)]]
+  - [[#load-the-main-modules][Load the main modules]]
+  - [[#set-the-colourscheme-early][Set the =colourscheme= early]]
+- [[#the-lazynvim-plugin-manager][The =lazy.nvim= plugin manager]]
+  - [[#moduleslazy---bootstrapping-the-plugin-manager][=modules.lazy= - Bootstrapping the plugin manager]]
+  - [[#moduleslazy---early-mapping-of-leader-and-localleader][=modules.lazy= - Early mapping of =<leader>= and =<localleader>=]]
+  - [[#moduleslazy---loading-and-configuration][=modules.lazy= - Loading and configuration]]
+- [[#neovim-configuration-modules][Neovim configuration modules]]
+  - [[#modulespreferences---neovim-configuration-settings][=modules.preferences= - Neovim configuration settings]]
+  - [[#moduleskeymaps---keymappings-for-neovim-and-its-plugins][=modules.keymaps= - Keymappings for Neovim and its plugins]]
+  - [[#modulesautocommands---neovim-automation][=modules.autocommands= - Neovim automation]]
+- [[#neovim-plugins][Neovim =plugins=]]
+  - [[#the-plugins-module][The =plugins= module]]
+  - [[#colourschemes-and-ui][Colourschemes and UI]]
+  - [[#editor-improvements][Editor improvements]]
+  - [[#filebuffer-browsing-and-management][File/buffer browsing and management]]
+  - [[#completions][Completions]]
+  - [[#pluginsnvim-treesitter---treesitter-configurations-and-abstraction-layer][=plugins.nvim-treesitter= - Treesitter configurations and abstraction layer]]
+  - [[#language-server-protocol][Language Server Protocol]]
+  - [[#language-features-and-support][Language features and support]]
+- [[#snippets][Snippets]]
+
+* The structure of this Neovim configuration
+
+Neovim supports using either =init.vim= or =init.lua= as its configuration file. We will be using the second one, because the vast majority of the Neovim ecosystem utilises Lua, and we may as well go with the standard and make our lives easier. The init file usually lives in =~/.config/nvim=, although different locations can be given to Neovim at runtime by setting the ~NVIM_APPNAME~ environment variable. For example, the following will set Neovim's configuration path to =~/.config/nvim-test=:
+
+#+begin_example
+~ ❯ NVIM_APPNAME=nvim-test nvim
+#+end_example
+
+Other Lua files can be loaded on demand by placing them in the =lua/= directory in Neovim's ~runtimepath~, and calling them with =require=. This is the modular method we will be using here. In practice, it looks something like this:
+
+#+begin_example
+~/.config/nvim ❯ tree 
+ . 
+├──  lua 
+│  ├──  modules 
+│  │  ├──  somemodule.lua 
+│  │  ├──  anothermodule.lua 
+│  └──  plugins 
+│     ├──  someplugin.lua 
+│     └──  anotherplugin.lua 
+└──  init.lua
+#+end_example
+
+Only the =init.lua= file exists in the root of the configuration directory, everything else is treated as a module, loaded from =init.lua= using =require=. The name of each module consists simply of the subdirectory and file name, excluding the ~.lua~ extension, so =modules/somemodule.lua= becomes:
+
+#+begin_src lua :tagle no :results none
+require("modules.somemodule")
+#+end_src>
+
+In this way, the main function of the =init.lua= file is to tell Neovim which Lua modules and submodules it must load; it is in these modules that the actual configuration takes place. Plugins will be loaded in the same way, but we will only provide the submodules, and leave the actual loading to =lazy.nvim=, the package manager.
+
+See also:
+
+- [[https://neovim.io/doc/user/lua-guide.html#_using-lua-files-on-startup][Using Lua files on startup | Neovim docs]]
+
+* The init file (=init.lua=)
+
+Our =init.lua= file does only two things: it loads the Lua modules where the actual configuration takes place, and it sets the colourscheme for Neovim during the init phase.
+
+** Load the main modules
+
+Here, we load the =lazy.nvim= package manager first, then the modules containing our preferences, keymappings, and autocommands. =lazy.nvim= will take care of loading the plugins for us.
+
+#+begin_src lua :tangle "init.lua"
+require("modules.lazy")
+require("modules.preferences")
+require("modules.keymaps")
+require("modules.autocommands")
+#+end_src
+
+** Set the =colourscheme= early
+
+This is not strictly necessary, but we want Neovim to apply our chosen colourscheme as early as possible, to avoid the unsightly jump between colourschemes that would otherwise happen as things are being loaded.
+
+#+begin_src lua :tangle "init.lua"
+vim.cmd("colorscheme tokyonight")
+#+end_src
+
+
+* The =lazy.nvim= plugin manager
+
+=lazy.nvim= is a modern plugin manager for Neovim, and one of the most popular ones. I used =vim-plug= before, with both ~vim~ and ~nvim~, and it served my needs well — though my needs are, admittedly, quite simple — but the majority of plugins these days assume either =lazy.nvim= or =packer.nvim= are being used, and tailor installation and customisation instructions for those. To avoid complications, again we shall go with the "default" plugin manager.
+
+** =modules.lazy= - Bootstrapping the plugin manager
+
+The [[https://lazy.folke.io/installation][installation process]] is quite simple. The following code block will bootstrap =lazy.nvim= from the GitHub repository:
+
+#+begin_src lua :tangle "lua/modules/lazy.lua" :mkdirp yes
+-- Bootstrap lazy.nvim
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
+end
+vim.opt.rtp:prepend(lazypath)
+#+end_src
+
+** =modules.lazy= - Early mapping of =<leader>= and =<localleader>=
+
+Next, we set up both the =<leader>= and =<localleader>= keys before =lazy.nvim= is loaded, to ensure that subsequent mappings will be applied correctly.
+
+#+begin_src lua :tangle "lua/modules/lazy.lua"
+-- Make sure to setup `mapleader` and `maplocalleader` before
+-- loading lazy.nvim so that mappings are correct.
+-- This is also a good place to setup other settings (vim.opt)
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+#+end_src
+
+** =modules.lazy= - Loading and configuration
+
+Finally, we set up and load =lazy.nvim= itself, with two parameters: 
+
+- ~spec - import~: imports the =plugins= subdirectory and merges any submodules it finds into the final plugin spec that will be used.
+
+- ~install - colorscheme~: defines the colourscheme that =lazy.nvim= should use for its UI.
+
+#+begin_src lua :tangle "lua/modules/lazy.lua"
+-- Setup lazy.nvim
+require("lazy").setup({
+  spec = {
+    -- import your plugins
+    { import = "plugins" },
+  },
+  -- Configure any other settings here. See the documentation for more details.
+  -- colorscheme that will be used when installing plugins.
+  install = { colorscheme = { "tokyonight" } },
+})
+#+end_src
+
+Anything else about =lazy.nvim= that needs to be configured, would be configured here. For our purposes, though, this simple setup is enough.
+
+
+* Neovim configuration modules
+
+This is where the configuration of Neovim itself takes place. Every change we want to make can be put into one of three categories: application settings, keymappings, or autocommands. This very convenient categorisation is reflected in the configuration modules we will use:
+
+** =modules.preferences= - Neovim configuration settings
+
+Here, we take care of the usual editor settings: line numbers, tab width, text width, etc.
+
+*** Set the =opt= local variable to save some typing
+
+Using the Lua API to change things in Neovim can result in a lot of repetitive typing. To avoid this, we can declare local variables at the start of the module, and call those instead of the full Lua interfaces. Here, we set ~opt~ to call the ~vim.opt~ interface:
+
+#+begin_src lua :tangle "lua/modules/preferences.lua" :mkdirp yes
+local opt = vim.opt
+#+end_src
+
+With the local varible defined, we proceed to set the editor options we want in a table:
+
+#+begin_src lua :tangle "lua/modules/preferences.lua"
+local options = {
+	autochdir = true,
+	background = "dark",
+	backup = true,
+	clipboard = "unnamedplus",
+	completeopt = "menuone,longest,preview",
+	confirm = true,
+	cursorline = true,
+	expandtab = false,
+	hidden = true,
+	hlsearch = true,
+	ignorecase = true,
+	incsearch = true,
+	linebreak = true,
+	mouse = "a",
+	number = true,
+	numberwidth = 4,
+	scrolloff = 10,
+	shiftwidth = 4,
+	showtabline = 0,
+	showmode = false,
+	softtabstop = 0,
+	spelllang = "en_gb,es,fr,it",
+	splitbelow = true,
+	splitright = true,
+	tabstop = 4,
+	termguicolors = true,
+	textwidth = 80,
+	timeout = true,
+	timeoutlen = 500,
+	undofile = true,
+	wildignorecase = true,
+	wildmode = "longest:full,full",
+	wrap = true,
+}
+#+end_src
+
+House-keeping options regarding backup files, strange characters being added to the end of boffers, and so on:
+
+#+begin_src lua :tangle "lua/modules/preferences.lua"
+opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
+opt.fillchars:append({ eob = " " }) -- remove the ~ from end of buffer
+opt.shortmess:append("c")
+#+end_src
+
+Finally, we iterate through the options table and apply each setting:
+
+#+begin_src lua :tangle "lua/modules/preferences.lua"
+for k, v in pairs(options) do
+	opt[k] = v
+end
+#+end_src
+
+In truth, we could have skipped this last bit by declaring each option directly above, instead of using a table. Where did I pick up this specific method? I have no idea, but it works fine, so we're sticking with it.
+
+** =modules.keymaps= - Keymappings for Neovim and its plugins
+
+Based on <https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o>
+
+Declare the necessary local variables:
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+local g = vim.g
+
+local map = function(mode, lhs, rhs, opts)
+	local options = { noremap = true, silent = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.keymap.set(mode, lhs, rhs, options)
+end
+
+local k = map
+#+end_src
+
+This allows us to declare the mappings using:
+
+#+begin_src lua :tangle no :results none
+k("$MODE", "$KEYS", "$COMMAND", { desc = "$WHICH_KEY_DESCRIPTION" } )
+#+end_src
+
+The values for each mode are:
+
+| MODE         | VALUE |
+|--------------+-------|
+| Normal       | "n"   |
+| Insert       | "i"   |
+| Visual       | "v"   |
+| Visual Block | "x"   |
+| Term         | "t"   |
+| Command      | "c"   |
+
+*** ~<space>~ as =<leader>= and ~\~ as =<localleader>=:
+
+These are the same mappings that were defined in the =lazy.nvim= setup section, and are likely unnecessary.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Unbind <space> before defining it as leader
+k("", "<Space>", "<Nop>")
+-- Define leader and localleader (<space> and \)
+g.mapleader = " "
+g.maplocalleader = "\\"
+#+end_src
+
+*** ~NORMAL~ mode mappings
+
+**** Disable Ex mode
+
+I'm sure ~Ex~ mode is super useful for something, I just don't know what that something might be.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- NORMAL mode mappings
+k("n", "Q", "<Nop>") -- Disable Ex mode
+#+end_src
+
+**** Buffers
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Buffers
+k("n", "<leader>b",  "<Nop>",          { desc = "Buffers" } )
+k("n", "<leader>bd", ":bd<CR>",        { desc = "Delete current buffer" } )
+k("n", "<leader>bn", ":bnext<CR>",     { desc = "Goto next buffer" } )
+k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
+#+end_src
+
+**** Compiler
+
+Mappings for the ~compiler~ and ~opout~ scripts.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Compiler
+k("n", "<leader>c",  "<Nop>",                                { desc = "Compiler" } )
+k("n", "<leader>cc", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
+k("n", "<leader>cp", ":silent! !opout \"%:p\"<CR>",          { desc = "Open compiled document" })
+#+end_src
+
+**** Find files
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Find files
+k("n", "<leader>.", ":find ", { desc = "Find files"})
+k("n", "<leader>f", ":find ", { desc = "Find files"})
+#+end_src
+
+**** Line navigation
+
+We use these to have visual line navigation with [[*=plugins.wrapping= - Manage line wrappings][plugins.wrapping]] enabled. ~<Up>~ and ~<Down>~ are mapped recursively so that the modifications made by the plugin to these keys transfer to ~j~ and ~k~ correctly.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Line navigation
+k("n", "h", "<Backspace>")
+k("n", "j", "<Down>", { remap = true })
+k("n", "k", "<Up>", { remap = true })
+k("n", "l", "<Space>")
+#+end_src
+
+**** Oil
+
+- *Plugins*
+  - [[*=plugins.oil= - The file system is a buffer][plugins.oil]] 
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- oil.nvim
+k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
+#+end_src
+
+**** Splits
+
+Use ~<leader>w~ to navigate between splits, matching my Emacs configuration. Additionally, splits can be resized with ~<C>~ plus the direction arrows.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Splits - better navigation
+k("n", "<leader>w",  "<Nop>",     { desc = "Windows" } )
+k("n", "<leader>wh", "<C-w>h",    { desc = "Window left" } )
+k("n", "<leader>wj", "<C-w>j",    { desc = "Window down" } )
+k("n", "<leader>wk", "<C-w>k",    { desc = "Window up" } )
+k("n", "<leader>wl", "<C-w>l",    { desc = "Window right" } )
+k("n", "<leader>wc", "<C-w>c",    { desc = "Window close" } )
+k("n", "<leader>ws", ":new<CR>",  { desc = "New horizontal split" } )
+k("n", "<leader>wv", ":vnew<CR>", { desc = "New vertical split" } )
+
+-- Splits - resize with arrow keys
+k("n", "<C-Up>", ":res +2<CR>")
+k("n", "<C-Down>", ":res -2<CR>")
+k("n", "<C-Left>", ":vert res +2<CR>")
+k("n", "<C-Right>", ":vert res -2<CR>")
+#+end_src
+
+**** Telescope
+
+- *Plugins* 
+  - [[*=plugins.telescope= - Fuzzy finder, picker, sorter, and more][plugins.telescope]]
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Telescope
+k("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: Buffers"})
+k("n", "<leader>bf", "<cmd>Telescope find_files<CR>", { desc = "Telescope: Find files"})
+k("n", "<leader>bg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Live grep"})
+#+end_src
+
+**** Toggles
+
+Toggle various modes and settings.
+
+- *Plugins*
+  - [[*=plugins.stay-centered= - Keep the cursor centred][plugins.stay-centered]] (disabled)
+  - [[*=plugins.zen-mode= - Distraction-free writing environment][plugins.zen-mode]]
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Toggle key bindings
+k("n", "<leader>t",  "<Nop>",              { desc = "Toggle" } )
+k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Highlight for last search term" } )
+k("n", "<leader>tw", ":set wrap!<CR>",     { desc = "Line wrapping" } )
+
+-- Toggle Stay-Centered (disabled)
+-- k({"n", "v"}, "<leader>tc", function()
+-- 	local stay = require("stay-centered")
+-- 	stay.toggle()
+-- end, { desc = 'Toggle centred cursor' })
+
+-- Toggle Zen-Mode
+k("n", "<leader>tz", ":ZenMode<CR>", { desc = "Zen-Mode" } )
+#+end_src
+
+**** Various useful motions
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Go to last change in current buffer
+k("n", "gl", '`.', { desc = "Go to last change in current buffer" } )
+-- Go to URL under cursor
+k("", "gx", '<Cmd>call jobstart(["xdg-open", expand("<cfile>")], {"detach": v:true})<CR>', { desc = "Go to URL under cursor" } )
+-- Duplicate line and keep cursor in same colum
+k("n", "<leader>,", "yymmp`mj", { desc = "Duplicate current line, keep cursor column" } )
+#+end_src
+
+**** Quick write and exit
+
+These are just for convenience. Then again, aren't all customisations done for convenience?
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Write and exit
+k("n", "<C-q>", ":x<CR>", { desc = "Write and exit" } )
+k("n", "<C-s>", ":up<CR>", { desc = "Write file" } )
+#+end_src
+
+*** ~VISUAL~ mode mappings
+
+**** Paste replace without yanking
+
+When pasting, ~neovim~ usually replaces the contents of the clipboard with the replaced text. This is quite annoying if one wants to paste the same text in various places. To avoid having to yank the text again after every replacement, we remap the ~paste~ binding.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Visual mappings
+-- Paste replace visual selection without copying it
+k("v", "p", '"_dP', { desc = "Paste replace without yanking" } )
+#+end_src
+
+**** Search for selection
+
+Quickly search for some text.
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Search for selection
+k("v", "*", "\"zy:let @/=@z<C-r>n<CR>", { desc = "Search for selection" } )
+#+end_src
+
+*** ~VISUAL BLOCK~ mode mappings
+
+**** Move selected block up or down
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Visual Block mappings
+-- Move selected block up/down
+k("x", "<C-j>", ":m '>+1<CR>gv-gv")
+k("x", "<C-k>", ":m '<-2<CR>gv-gv")
+#+end_src
+
+**** Indent selected block
+
+#+begin_src lua :tangle "lua/modules/keymaps.lua"
+-- Indent selected block
+k("x", ">", ">gv")
+k("x", "<", "<gv")
+#+end_src
+
+** =modules.autocommands= - Neovim automation
+
+Autocommands perform certain tasks when editing a buffer, running a command, loading a certain file type, etc.
+
+*** Set local variables
+
+As we did in =modules.preferences=, we set some local variables to interface wit the Lua API.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+local cmd = vim.cmd
+local opt = vim.opt
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+#+end_src
+
+*** Automatically balance splits on window resize
+
+Source: <https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o>
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Automatically rebalance windows on vim resize
+-- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+autocmd('VimResized', {
+	callback = function()
+		cmd('tabdo wincmd =')
+	end,
+	desc = "Auto resize windows when size changes",
+})
+#+end_src
+
+*** Set =conceallevel= and =spell= checking for ~markdown~, ~typst~, ~tex~, and ~plaintext~ buffers
+
+Enables spellchecking and markup concealling for our most used text filetypes.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Set conceallevel and spellchecking for markdown, typst, and text files
+autocmd({ "FileType" }, {
+	pattern = { "markdown", "typst", "tex", "plaintext" },
+	command = "set conceallevel=2 | setlocal spell"
+})
+#+end_src
+
+*** Highlight area on yank
+
+When yanking a line or text region, highlight it briefly as a visual aid.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Highlight on yank
+augroup('YankHighlight', { clear = true })
+autocmd('TextYankPost', {
+	group = 'YankHighlight',
+	callback = function()
+		vim.highlight.on_yank({ higroup = 'IncSearch', timeout = '500' })
+	end
+})
+#+end_src
+
+*** Restore cursor postion in buffer
+
+Remember the cursor position in any given buffer, and return there automatically whenever we open the same file again.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Restore cursor position in buffer
+autocmd("BufReadPost", {
+	pattern = "",
+	command = [[if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'| execute "normal! g`\"zvzz" | endif]]
+})
+#+end_src
+
+*** Toggle the cursorline
+
+Sometimes it's useful, most times it is not. Toggles the cursor line when entering and exiting Insert mode.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Toggle cursorline
+autocmd({ "InsertEnter", "InsertLeave"}, {
+	command = [[set cursorline!]]
+})
+#+end_src
+
+*** Toggle relative line numbers
+
+When entering text, the line numbers will be static. When moving around the buffer, relative numbers are turned on instead.
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Toggle relative numbers based on certain events
+-- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+augroup('GainFocus', { clear = true })
+autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, {
+	pattern = '*',
+	group = 'GainFocus',
+	callback = function()
+		if vim.o.nu then
+			opt.relativenumber = false
+			cmd('redraw')
+		end
+	end,
+})
+#+end_src
+
+*** Fix =plugin.zen-mode= background transparency
+
+A workaround for [[https://github.com/folke/zen-mode.nvim/issues/70][Issue: Dimmed area isn't transparent #70]].
+
+#+begin_src lua :tangle "lua/modules/autocommands.lua"
+-- Fix dimmed area transparency for zen-mode
+autocmd("VimEnter", {
+	pattern = "*",
+	command = [[hi ZenBg ctermbg=NONE guibg=NONE]]
+})
+#+end_src
+
+
+* Neovim =plugins=
+
+With all the Neovim configuration options in place, we can move on to installing our plugins. The method here is the same as above, except we do not need to require plugins manually. Every module in this section is exported to ~lua/plugins/~, where =lazy.nvim= will pick it up and load it when needed.
+
+** The =plugins= module
+
+According to the [[https://lazy.folke.io/usage/structuring][Structuring Your Plugins]] section of the =lazy.nvim= documentation, having a ~lua/plugins.lua~ or ~lua/plugins/init.lua~ file is optional, since any Lua file in the spec path defined previously will be automatically merged into the main plugin spec. I cannot think of a reason why we would need such a file here, so we will skip it.
+
+** Colourschemes and UI
+
+*** =plugins.tokyonight= - A nice, dark colourscheme
+
+A clean, dark Neovim theme written in Lua, with support for lsp, treesitter and lots of plugins.
+
+- Source: [[https://github.com/folke/tokyonight.nvim][folke/tokyonight.nvim]]
+  
+We override the default colours here to match with the rest of our system.
+  
+#+begin_src lua :tangle "lua/plugins/tokyonight.lua" :mkdirp yes
+return {
+	"folke/tokyonight.nvim",
+	lazy = false,
+	priority = 1000,
+	opts = {
+		style = "night",
+		transparent = true,
+		transparent_sidebar = true,
+		styles = {
+			sidebars = "transparent",
+			floats = "transparent",
+		},
+		on_colors = function(colors)
+			colors.fg = "#c1c1d1"
+			colors.bg = "#1a1a26"
+			colors.blue = "#0077ff"
+			colors.cyan = "#00ffe0"
+			colors.green = "#aaee00"
+			colors.magenta = "#ff00aa"
+			colors.orange = "#ff9700"
+			colors.purple = "#cf4dff"
+			colors.red = "#ff003c"
+			colors.yellow = "#ffd000"
+		end
+	},
+}
+#+end_src
+
+*** =plugins.lualine= - A better, customisable statusline
+
+A blazing fast and easy to configure neovim statusline plugin written in pure lua. 
+  
+- Source: [[https://github.com/nvim-lualine/lualine.nvim][nvim-lualine/lualine.nvim]]
+  
+**** The =getWords()= function
+
+We will use Neovim mainly for writing prose, not code, and having a word count available somewhere is quite useful. The following function returns a word count in ~markdown~, ~typst~, ~tex~, or ~plaintext~ buffers, which we can display in our statusline.
+
+#+begin_src lua :tangle "lua/plugins/lualine.lua"
+-- Get a word count of the current buffer
+local function getWords()
+  if vim.bo.filetype == "md" or vim.bo.filetype == "txt" or vim.bo.filetype == "markdown" or vim.bo.filetype == "typst" or vim.bo.filetype == "tex" or vim.bo.filetype == "plaintex" then
+      return "󰙏 " .. tostring(vim.fn.wordcount().words) .. " |  " .. tostring(vim.fn.wordcount().chars)
+  else
+    return ""
+  end
+end
+#+end_src
+
+**** Displaying the current wrapping mode
+
+In addition to the word count, we want to know the wrapping mode of the current buffer. We get this from ~warp.get_current_mode~, which requires =plugins.wrapping=.
+
+**** Customise =plugins.lualine=
+
+#+begin_src lua :tangle "lua/plugins/lualine.lua"
+return {
+	"nvim-lualine/lualine.nvim",
+	dependencies = { 'nvim-tree/nvim-web-devicons' },
+	event = "VeryLazy",
+
+	config = function ()
+		local lazy_status = require("lazy.status")
+		local wrap = require("wrapping")
+		require('lualine').setup({
+			options = {
+				icons_enabled = true,
+				theme = "ayu_dark",
+				component_separators = { left = '|', right = '|' },
+				section_separators = '',
+			},
+			always_divide_middle = true,
+			globalstatus = true,
+			sections = {
+				lualine_a = { "mode" },
+				lualine_b = {
+					"branch",
+					"diff",
+					{ "diagnostics", sources = { "nvim_diagnostic" } },
+				},
+				lualine_c = { "filename" },
+				lualine_x = {
+					{ lazy_status.updates, cond = lazy_status.has_updates },
+					"encoding",
+					"fileformat",
+					"filetype",
+				},
+				lualine_y = {
+                    -- display wrapping mode from wrapping.nvim
+					{ wrap.get_current_mode },
+					'(vim.bo.expandtab and "󱁐" or "󰌒 ") .. " " .. vim.bo.shiftwidth',
+					{ getWords },
+				},
+				lualine_z = {
+					"location",
+					"progress",
+				},
+			},
+			inactive_sections = {
+				lualine_c = { "filename" },
+			},
+		})
+	end,
+}
+#+end_src
+
+*** =plugins.which-key= - Show available key bindings in a pop-up
+
+Show available keybindings in a popup as you type, works in normal, insert, visual, operator pending, terminal and command mode. Every mode can be enabled/disabled.
+
+- [[https://github.com/folke/which-key.nvim][folke/which-key.nvim]]
+  
+#+begin_src lua :tangle "lua/plugins/which-key.lua"
+return {
+	"folke/which-key.nvim",
+	event = "VeryLazy",
+	opts = {
+		win = {
+			padding = { 1, 1, 1, 1 },
+			border = "single"
+		},
+		layout = { height = { min = 4, max = 10 } }
+	},
+	keys = {
+		{
+			"<leader>?",
+			function()
+				require("which-key").show({ global = false })
+			end,
+			desc = "Buffer Local Keymaps (which-key)",
+		},
+	},
+}
+#+end_src
+
+*** =plugins.wilder= - Improve the wildmenu
+
+Adds new features and capabilities to wildmenu.
+
+- [[https://github.com/gelguy/wilder.nvim][gelguy/wilder.vim]]
+
+#+begin_src lua :tangle "lua/plugins/wilder.lua"
+return {
+	"gelguy/wilder.nvim",
+
+	config = function()
+		local wilder = require("wilder")
+
+		wilder.setup({
+			modes = {':', '/', '?'},
+			--next_key = '<C-j>',
+			--previous_key = '<C-k>',
+			accept_key = '<C-l>',
+			reject_key = '<C-h>',
+		})
+
+		wilder.set_option('renderer', wilder.popupmenu_renderer(
+			wilder.popupmenu_border_theme({
+				border = 'single',
+				left = {' ', wilder.popupmenu_devicons()},
+				right = {' ', wilder.popupmenu_scrollbar()},
+				max_height = '25%',
+				min_width = '100%',
+				highlighter = wilder.basic_highlighter(),
+				highlights = {
+					default = wilder.make_hl('WilderPmenu', {{a = 1}, {a = 1}, {background = 'NONE'}}),
+					accent = wilder.make_hl('WilderAccent', 'Pmenu', {{a = 1}, {a = 1}, {foreground = '#ff00aa'}}),
+				},
+			})
+		))
+
+	end
+}
+#+end_src
+
+** Editor improvements
+
+*** =plugins.mini-pairs= - Minimal and fast autopairs
+
+Neovim Lua plugin to automatically manage character pairs. Part of 'mini.nvim' library.
+
+- [[https://github.com/echasnovski/mini.pairs][echasnovski/mini.pairs]]
+
+#+begin_src lua :tangle "lua/plugins/mini-pairs.lua"
+return {
+	"echasnovski/mini.pairs",
+	version = false,
+}
+#+end_src
+
+*** =plugins.nvim-colorizer= - Colour highlighter
+
+Maintained fork of the fastest Neovim colorizer.
+
+- [[https://github.com/NvChad/nvim-colorizer.lua][NvChad/nvim-colorizer.lua]]
+  
+#+begin_src lua :tangle "lua/plugins/nvim-colorizer.lua"
+return {
+	'NvChad/nvim-colorizer.lua',
+
+	config = function ()
+		require('colorizer').setup({
+			filetypes = {
+				"*",
+				"!markdown",
+				"!md",
+				"!text",
+				"!typst",
+			}
+		})
+	end,
+}
+#+end_src
+
+*** =plugins.stay-centered= - Keep the cursor centred
+
+*Currently disabled.*
+
+A neovim plugin to keep your cursor at the center of the screen. This is generally useful when writing prose, but it doesn't work particularly well with soft line wrapping, since it does not take visual lines into account.
+
+- *Keymappings:* [[*Toggles][modules.keymaps - Toggles]]
+
+- [[https://github.com/arnamak/stay-centered.nvim][stay-centered.nvim]]
+
+#+begin_src lua :tangle no :results none
+return {
+	'arnamak/stay-centered.nvim',
+	event = "VeryLazy",
+	opts = {
+		enabled = false,
+		-- skip_filetypes = { 'lua', 'typescript' },
+	}
+}
+#+end_src
+
+*** =plugins.wrapping= - Manage line wrappings
+
+Plugin to make it easier to switch between 'soft' and 'hard' line wrapping in NeoVim 
+
+- [[https://github.com/andrewferrier/wrapping.nvim][andrewferrier/wrapping.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/wrapping.lua"
+return {
+	"andrewferrier/wrapping.nvim",
+
+	config = function()
+		require("wrapping").setup({
+			softener = { typst = 1.5 },
+		})
+	end
+}
+#+end_src
+
+*** =plugins.zen-mode= - Distraction-free writing environment
+
+Opens the current buffer in a new full-screen floating window, respects existing layouts/splits, hides the statusline, and more, to provide a clean, distraction-free environment for writing or coding.
+
+- *Keymappings:* [[*Toggles][modules.keymaps - Toggles]]
+
+- [[https://github.com/folke/zen-mode.nvim][folke/zen-mode.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/zen-mode.lua"
+return {
+	"folke/zen-mode.nvim",
+	opts = {
+		window = {
+			width = 85,
+			options = {
+				-- signcolumn = "no", -- disable signcolumn
+				number = false, -- disable number column
+				relativenumber = false, -- disable relative numbers
+				cursorline = false, -- disable cursorline
+				-- cursorcolumn = false, -- disable cursor column
+				-- foldcolumn = "0", -- disable fold column
+				-- list = false, -- disable whitespace characters
+			},
+		},
+	}
+}
+#+end_src
+
+** File/buffer browsing and management
+
+*** =plugins.oil= - The file system is a buffer
+
+A [[https://github.com/tpope/vim-vinegar][vim-vinegar]] like file explorer that lets you edit your filesystem like a normal Neovim buffer.
+
+- *Keymappings: [[*Oil][modules.keymaps - Oil]]* 
+
+- [[https://github.com/stevearc/oil.nvim][stevearc/oil.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/oil.lua"
+return {
+	'stevearc/oil.nvim',
+	---@module 'oil'
+	---@type oil.SetupOpts
+  dependencies = { "nvim-tree/nvim-web-devicons" },
+
+	opts = {
+		delete_to_trash = true,
+		skip_confirm_for_simple_edits = true,
+		columns = {
+			"icon",
+			"permissions",
+			"size",
+			"mtime",
+		},
+		float = {
+			padding = 4,
+		},
+		 keymaps = {
+			["q"] = "actions.close",
+		},
+	},
+}
+
+#+end_src
+
+*** =plugins.telescope= - Fuzzy finder, picker, sorter, and more
+
+=telescope.nvim= is a highly extendable fuzzy finder over lists. Built on the latest awesome features from neovim core. Telescope is centered around modularity, allowing for easy customization.
+
+- *Keymappings: [[*Telescope][modules.keymaps - Telescope]]
+
+- [[https://github.com/nvim-telescope/telescope.nvim][nvim-telescope/telescope.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/telescope.lua"
+return {
+	"nvim-telescope/telescope.nvim", tag = "0.1.8",
+	dependencies = {
+		"nvim-lua/plenary.nvim",
+		"nvim-tree/nvim-web-devicons",
+	},
+
+	event = "VeryLazy",
+
+	config = function()
+		require("telescope").setup({
+			defaults = {
+				-- path_display = { "truncate" },
+				prompt_prefix = " 	",
+				selection_caret = "⮞ ",
+				mappings = {
+					i = {
+						["<C-n>"] = "cycle_history_next",
+						["<C-p>"] = "cycle_history_prev",
+						["<C-j>"] = "move_selection_next",
+						["<C-k>"] = "move_selection_previous",
+						["<C-u>"] = "preview_scrolling_up",
+						["<C-d>"] = "preview_scrolling_down",
+					},
+					n = {
+						["q"] = "close",
+						["j"] = "move_selection_next",
+						["k"] = "move_selection_previous",
+						["<C-u>"] = "preview_scrolling_up",
+						["<C-d>"] = "preview_scrolling_down",
+					},
+				},
+				file_ignore_patterns = { ".git/" },
+			},
+			pickers = {
+				find_files = {
+					theme = "ivy",
+				},
+				live_grep = {
+					theme = "ivy",
+				},
+				buffers = {
+					theme = "ivy",
+				},
+			},
+		})
+	end,
+}
+#+end_src
+
+** Completions
+
+Here we set up completions using Neovim's built-in LSP client, together with a snippets engine. Honestly, all of this is a bit too esoteric for me, and I have no real interest to look into it because I'm not a developer. This configuration seems to work fine, and we're sticking with it.
+
+Everything goes into a single module, =plugins.completions=, because it is all interdependent anyway — and I tend not to touch it once it is set up — so there is no point in keeping it separate. Because of this, it is important not to break the ~return~ table with missing brackets or stuff like that.
+
+*** =cmp-nvim-lsp= - Source completion
+
+nvim-cmp source for neovim's built-in language server client.
+
+- [[https://github.com/hrsh7th/cmp-nvim-lsp][hrsh7th/cmp-nvim-lsp]]
+
+#+begin_src lua :tangle "lua/plugins/completions.lua"
+return {
+	{
+		"hrsh7th/cmp-nvim-lsp",
+	},
+#+end_src
+  
+*** =nvim-cmp= - Completion plugin
+
+A completion plugin for Neovim. It depends on =LuaSnip=, =cmp_luasnip=, and =friendly-snippets=.
+
+- [[https://github.com/hrsh7th/nvim-cmp][hrsh7th/nvim-cmp]]
+- [[https://github.com/saadparwaiz1/cmp_luasnip][saadparwaiz1/cmp_luasnip]]
+- [[https://github.com/hrsh7th/nvim-cmp][hrsh7th/nvim-cmp]]
+- [[https://github.com/rafamadriz/friendly-snippets][rafamadriz/friendly-snippets]]
+  
+#+begin_src lua :tangle "lua/plugins/completions.lua"
+	{
+		"hrsh7th/nvim-cmp",
+
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+			"saadparwaiz1/cmp_luasnip",
+			"rafamadriz/friendly-snippets",
+		},
+
+		config = function()
+			require("luasnip.loaders.from_snipmate").lazy_load()
+			local cmp = require("cmp")
+			local lspkind = require("lspkind")
+			local luasnip = require("luasnip")
+
+			cmp.setup({
+				snippet = {
+					-- Specify a snippet engine
+					expand = function(args)
+						require('luasnip').lsp_expand(args.body)
+					end,
+				},
+				window = {
+					completion = cmp.config.window.bordered(),
+					documentation = cmp.config.window.bordered(),
+				},
+				mapping = cmp.mapping.preset.insert({
+					['<C-b>'] = cmp.mapping.scroll_docs(-4),
+					['<C-f>'] = cmp.mapping.scroll_docs(4),
+					['<C-e>'] = cmp.mapping.abort(),
+					-- LuaSnip mappings
+					['<CR>'] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							if luasnip.expandable() then
+								luasnip.expand()
+							else
+								cmp.confirm({
+									select = true,
+								})
+							end
+						else
+							fallback()
+						end
+					end),
+
+					["<Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_next_item()
+						elseif luasnip.locally_jumpable(1) then
+							luasnip.jump(1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+					["<S-Tab>"] = cmp.mapping(function(fallback)
+						if cmp.visible() then
+							cmp.select_prev_item()
+						elseif luasnip.locally_jumpable(-1) then
+							luasnip.jump(-1)
+						else
+							fallback()
+						end
+					end, { "i", "s" }),
+				}),
+				sources = cmp.config.sources({
+					{ name = 'nvim_lsp' },
+					{ name = 'luasnip' },
+				}, {
+					{ name = 'buffer' },
+				}),
+				formatting = {
+					format = lspkind.cmp_format({
+						mode = 'symbol', -- show only symbol annotations
+						maxwidth = 50, -- prevent the popup from showing more than provided characters (e.g 50 will not show more than 50 characters)
+						-- can also be a function to dynamically calculate max width such as 
+						-- maxwidth = function() return math.floor(0.45 * vim.o.columns) end,
+						ellipsis_char = '...', -- when popup menu exceed maxwidth, the truncated part would show ellipsis_char instead (must define maxwidth first)
+						show_labelDetails = true, -- show labelDetails in menu. Disabled by default
+
+						-- The function below will be called before any actual modifications from lspkind
+						-- so that you can provide more controls on popup customization. (See [#30](https://github.com/onsails/lspkind-nvim/pull/30))
+						before = function (entry, vim_item)
+							return vim_item
+						end
+					})
+				}
+			})
+		end
+	},
+}
+#+end_src
+
+
+** =plugins.nvim-treesitter= - Treesitter configurations and abstraction layer
+
+The goal of =nvim-treesitter= is both to provide a simple and easy way to use the interface for tree-sitter in Neovim and to provide some basic functionality such as highlighting based on it.
+
+Here we enable treesitter highlighting for our most used languages.
+
+- [[https://github.com/nvim-treesitter/nvim-treesitter][nvim-treesitter/nvim-treesitter]]
+
+#+begin_src lua :tangle "lua/plugins/nvim-treesitter.lua"
+return {
+	"nvim-treesitter/nvim-treesitter",
+	build = ":TSUpdate",
+	config = function()
+		local configs = require("nvim-treesitter.configs")
+
+		configs.setup({
+			ensure_installed = {
+				"c",
+				"lua",
+				"vim",
+				"bash",
+				"css",
+				"html",
+				"typst",
+				"markdown",
+				"markdown_inline"
+			},
+			sync_install = false,
+			highlight = { enable = true },
+			indent = { enable = true },
+		})
+	end
+}
+#+end_src
+
+** Language Server Protocol
+
+As we did with [[*Completions][plugins.completions]], we keep all the LSP-related plugins and configurations in a single file, because most of it is interdependent, and because I rarely need to touch it once it is set up. Again, make sure not to break the ~return~ table.
+
+*** =mason.nvim= - Package manager for LSP servers, formatters, etc.
+
+Portable package manager for Neovim that runs everywhere Neovim runs.
+Easily install and manage LSP servers, DAP servers, linters, and formatters.
+
+- [[https://github.com/williamboman/mason.nvim][williamboman/mason.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/lsp.lua"
+return {
+	{
+		"williamboman/mason.nvim",
+
+		config = function()
+			require("mason").setup()
+		end
+	},
+#+end_src
+
+*** =nvim-lspconfig= - Quickstart configs for Neovim LSP
+
+nvim-lspconfig is a "data only" repo, providing basic, default Nvim LSP client configurations for various LSP servers.
+
+- [[https://github.com/neovim/nvim-lspconfig][neovim/nvim-lspconfig]]
+
+#+begin_src lua :tangle "lua/plugins/lsp.lua"
+
+	{
+		"neovim/nvim-lspconfig",
+
+		config = function()
+			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local lspconfig = require("lspconfig")
+
+			-- lspconfig.typst_lsp.setup{
+			-- 	capabilities = capabilities,
+			-- 	-- exportPdf = "onSave"
+			-- }
+
+			lspconfig.tinymist.setup {
+				settings = {
+					exportPdf = "onType",
+				},
+			}
+
+			lspconfig.lua_ls.setup{
+				capabilities = capabilities,
+				settings = {
+					Lua = {
+						diagnostics = {
+							globals = { "vim" },
+						},
+					},
+				},
+			}
+
+			lspconfig.clangd.setup{
+				capabilities = capabilities,
+			}
+
+			-- ltex gets horribly confused by typst, disable for now
+          --
+			-- lspconfig.ltex.setup{
+			-- 	capabilities = capabilities,
+			-- 	filetypes = {
+			-- 		"latex",
+			-- 		"typst",
+			-- 		"typ",
+			-- 		"bib",
+			-- 		"markdown",
+			-- 		"plaintex",
+			-- 		"tex"
+			-- 	},
+			-- 	settings = {
+			-- 		ltex = {
+			-- 			language = "en-GB",
+			-- 			enabled = {
+			-- 				"latex",
+			-- 				"typst",
+			-- 				"typ",
+			-- 				"bib",
+			-- 				"markdown",
+			-- 				"plaintex",
+			-- 				"tex"
+			-- 			},
+			-- 		}
+			-- 	}
+			-- }
+		end
+	},
+#+end_src
+
+*** =lspkind-nvim= - VsCode-like pictograms for completion Items
+
+This tiny plugin adds vscode-like pictograms to neovim built-in lsp.
+
+- [[https://github.com/onsails/lspkind.nvim][onsails/lspkind.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/lsp.lua"
+  {
+    "onsails/lspkind.nvim"
+  },
+}
+#+end_src
+
+** Language features and support
+
+Here, we add plugins to add or enhance support for specific languages, mainly [[https://typst.app][Typst]]. These are all quite minimal, so we can keep everything in a single =plugins.languages= module.
+
+*** =org.nvim=
+
+Org mode syntax highlighting and folding for Vim. This one has been archived, but it provides useful syntax highlighting for Org documents, compared to the native highlighting support — i.e., no support whatsoever.
+
+- [[https://github.com/axvr/org.vim][axvr/org.vim]]
+
+#+begin_src lua :tangle "lua/plugins/languages.lua"
+return {
+  {
+	  'axvr/org.vim',
+  },
+#+end_src
+
+*** =render-markdown=
+
+Plugin to improve viewing Markdown files in Neovim. It is essentially trying to emulate Org mode, but for Markdown.
+
+The ~win_options~ below have been commented out, but they're supposed to fix a rendering issue with callouts — using soft-wrapping, the callout highlighting is only visible on the beginning of the line. These settings force it to render on the whole callout block, but they add some unsightly spaces at the beginning of lines. It is just a hack, trying to get around a Neovim limitation that is likely never going to be addressed. We're keeping the options here for future reference, but we'll be using the default options and first-line-only highlighting.
+
+- [[https://github.com/MeanderingProgrammer/render-markdown.nvim][MeanderingProgrammer/render-markdown.nvim]]
+
+#+begin_src lua :tangle "lua/plugins/languages.lua"
+  {
+	  "MeanderingProgrammer/render-markdown.nvim",
+	  dependencies = {
+	  	"nvim-treesitter/nvim-treesitter",
+	  	"nvim-tree/nvim-web-devicons"
+	  },
+
+	  opts = {
+	  	render_modes = { 'n', 'v', 'i', 'c' },
+	  	code = {
+	  		sign = false,
+	  		width = 'block',
+	  		right_pad = 2,
+	  		left_pad = 2,
+	  	},
+	  	heading = {
+	  		position = 'inline',
+	  		-- icons = {},
+	  	},
+	  	quote = { repeat_linebreak = true },
+	  	-- win_options = {
+	  	-- 	showbreak = { default = '', rendered = '  ' },
+	  	-- 	breakindent = { default = false, rendered = true },
+	  	-- 	breakindentopt = { default = '', rendered = '' },
+	  	-- },
+	  },
+  },
+#+end_src
+
+*** =Typst=
+
+(Neo)vim plugin for Typst. Provides syntax highlighting, and is supposed to enable concealling of Typst markdown, but I have never been able to get it working. Still, it is very useful for the syntax highlighting alone.
+
+Completions and LSP capabilities for =Typst= are enabled above, in the [[*=nvim-lspconfig= - Quickstart configs for Neovim LSP][nvim-lspconfig]] section. The language server we are using is [[https://github.com/Myriad-Dreamin/tinymist][Myriad-Dreamin/tinymist]], so it should be installed in an the ~PATH~ for things to work. It is available in the AUR, as [[https://aur.archlinux.org/packages/tinymist-bin][tinymist-bin]].
+
+- [[https://github.com/kaarmu/typst.vim][kaarmu/typst.vim]]
+
+#+begin_src lua :tangle "lua/plugins/languages.lua"
+  {
+  	"kaarmu/typst.vim",
+  	ft = "typst",
+  	-- This sets the option correctly, but conceal is not working. Why?
+  	init = function()
+  		vim.g.typst_conceal = 1
+  	end,
+  },
+}
+#+end_src
+
+* Snippets
+
+The final piece of the configuration is a set of snippets for =Typst=, with some of the code blocks and functions I use most often while writing documents.
+
+#+begin_src plaintext :tangle "snippets/typst.snippets" :mkdirp yes
+snippet spage Set: Page properties
+	#set page(
+	  paper: "${1:us-letter}",
+	  margin: ${2:3.5cm},
+	  numbering: "${3:1}",
+	  number-align: ${4:center},
+	)
+	${0}
+
+snippet stext Set: Size and language
+	#set text(
+	  lang: "${1:es}", 
+	  size: ${2:11pt}
+	)
+	${0}
+
+snippet spar Set: Paragraph
+	#set par(
+	  justify: ${1:true},
+	  leading: ${2:1.0em},
+	  first-line-indent: ${3:1.2em},
+	)
+	${0}
+
+snippet squote Set: Blockquote
+	#set quote(
+		block: ${1:true}, 
+		quotes: ${2:true},
+	)
+	#show quote: set pad(
+		x: ${3:4em},
+	)
+	${0}
+
+snippet quot Quote
+	#quote(block:${1:false})[${0}]
+
+snippet cit Citation
+	#cite(<${1:Key}>, form:"${2:prose}", supplement: "${3}")${0}
+
+snippet bib Bibliography
+	#pagebreak()
+	#set par(
+		leading: 0.65em, 
+		first-line-indent: 0em)
+	#bibliography("${0}", style: "${1:apa}")
+
+snippet head Uni: Essay heading
+	#align(${1:center})[
+	  #set par(leading: 1em)
+	  #block(
+		width: 100%,
+		spacing: 2em,
+		[#text(${2:18pt})[#smallcaps("${3:Title}")]\
+		 #text(${4:14pt})[#emph("${5:Subtitle}")]
+		])
+	]
+	${0}
+
+snippet name Uni: Name block
+	#align(${1:center})[
+	  #set par(leading: 0.65em)
+	  #block(
+	    width: 100%,
+        above: 2em,
+        below: 2em,
+        [${2:Name}\
+        #smallcaps("${3:Course}")\
+        ${4:Professor}\
+        ${5:Degree}\
+        ${6:Institution}]) 
+    ]
+	${0}
+#+end_src

@@ -1,17 +1,10 @@
--------------------------------------------------------------------------------
--- No need to re-type the same thing over and over
--------------------------------------------------------------------------------
 local opt = vim.opt
 
--------------------------------------------------------------------------------
--- Set basic options
--------------------------------------------------------------------------------
 local options = {
 	autochdir = true,
 	background = "dark",
 	backup = true,
 	clipboard = "unnamedplus",
-	-- cmdheight = 0,
 	completeopt = "menuone,longest,preview",
 	confirm = true,
 	cursorline = true,
@@ -20,7 +13,6 @@ local options = {
 	hlsearch = true,
 	ignorecase = true,
 	incsearch = true,
-	-- laststatus= 3,
 	linebreak = true,
 	mouse = "a",
 	number = true,
@@ -41,9 +33,9 @@ local options = {
 	undofile = true,
 	wildignorecase = true,
 	wildmode = "longest:full,full",
-	-- wildchar = vim.fn.char2nr('^J'),
 	wrap = true,
 }
+
 opt.backupdir:remove(".") -- makes sure backups aren"t in the current directory
 opt.fillchars:append({ eob = " " }) -- remove the ~ from end of buffer
 opt.shortmess:append("c")

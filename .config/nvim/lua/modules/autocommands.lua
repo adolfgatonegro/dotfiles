@@ -1,12 +1,7 @@
--------------------------------------------------------------------------------
--- Autocommands
--------------------------------------------------------------------------------
 local cmd = vim.cmd
 local opt = vim.opt
-
--- Define autocommands with Lua APIs
-local augroup = vim.api.nvim_create_augroup	 -- Create/get autocommand group
-local autocmd = vim.api.nvim_create_autocmd	 -- Create autocommand
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
 
 -- Automatically rebalance windows on vim resize
 -- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
@@ -19,7 +14,7 @@ autocmd('VimResized', {
 
 -- Set conceallevel and spellchecking for markdown, typst, and text files
 autocmd({ "FileType" }, {
-	pattern = { "markdown", "typst", "text" },
+	pattern = { "markdown", "typst", "tex", "plaintext" },
 	command = "set conceallevel=2 | setlocal spell"
 })
 
@@ -46,16 +41,6 @@ autocmd({ "InsertEnter", "InsertLeave"}, {
 -- Toggle relative numbers based on certain events
 -- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
 augroup('GainFocus', { clear = true })
-autocmd({ 'BufEnter', 'FocusGained', 'InsertLeave', 'CmdlineLeave', 'WinEnter' }, {
-	pattern = '*',
-	group = 'GainFocus',
-	callback = function()
-		if vim.o.nu and vim.api.nvim_get_mode().mode ~= 'i' then
-			opt.relativenumber = true
-		end
-	end,
-})
-
 autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, {
 	pattern = '*',
 	group = 'GainFocus',
