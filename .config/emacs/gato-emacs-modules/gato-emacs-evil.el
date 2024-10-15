@@ -12,7 +12,13 @@
     evil-want-keybinding nil
     evil-vsplit-window-right t
     evil-split-window-below t
-    evil-respect-visual-line-mode t)
+    evil-respect-visual-line-mode t
+    evil-want-Y-yank-to-eol t)
+
+  ;; Unbind SPC and TAB
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map (kbd "TAB") nil))
 
   :hook
   (elpaca-after-init . evil-mode))
