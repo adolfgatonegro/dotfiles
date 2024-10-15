@@ -95,30 +95,30 @@ super + o
 
 # Media keys {{
 
-XF86Audio{Raise,Lower}Volume
-    volctl -{i,d} 2; pkill -RTMIN+10 dwmblocks
-
-XF86AudioMute
-    volctl -t; pkill -RTMIN+10 dwmblocks
-
-XF86Audio{Play,Next,Prev,Stop}
-    playerctl {play-pause,next,previous,stop}; pkill -RTMIN+13 dwmblocks
-
-shift + XF86Audio{Next,Prev}
-    playerctl position 10{+,-}
-
-XF86MonBrightness{Up,Down}
-    backlightctl -{inc,dec} 5
-
-XF86KbdBrightness{Up,Down}
-	brightnessctl --device=smc::kbd_backlight set {+,-}10%
-
-XF86Display
-	dmdisplay
-
-XF86Sleep
-	dmsys
-
-XF86PowerOff
-	dmsys
+# XF86Audio{Raise,Lower}Volume
+#     volctl -{i,d} 2; pkill -RTMIN+10 dwmblocks
+#
+# XF86AudioMute
+#     volctl -t; pkill -RTMIN+10 dwmblocks
+#
+# XF86Audio{Play,Next,Prev,Stop}
+#     playerctl {play-pause,next,previous,stop}; pkill -RTMIN+13 dwmblocks
+#
+# shift + XF86Audio{Next,Prev}
+#     playerctl position 10{+,-}
+#
+# XF86MonBrightness{Up,Down}
+#     backlightctl -{inc,dec} 5
+#
+# XF86KbdBrightness{Up,Down}
+# 	brightnessctl --device=smc::kbd_backlight set {+,-}10%
+#
+# XF86Display
+# 	dmdisplay
+#
+# XF86Sleep
+# 	dmsys
+#
+# XF86PowerOff
+# 	dmsys
 # }}
