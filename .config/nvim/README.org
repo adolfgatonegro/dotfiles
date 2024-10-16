@@ -1,7 +1,7 @@
 #+title: Neovim configuration
 #+author: Gatonegro
 #+language: en
-#+STARTUP: showeverything
+#+STARTUP: contents
 #+OPTIONS: toc:2
 
 This is my literate Neovim configuration file. While a "structured" or "modular" setup has many advantages, it can sometimes make modifications more difficult than they should be, since one must remember, or, at least have a good idea of which file contains the configuration option that we want to change. On the other hand, keeping a monolithic single-file configuration becomes unweildy rather quickly, as there can be hundreds or thousands of lines of code to parse, just to find whatever it is that we are looking for.
@@ -304,7 +304,7 @@ k("n", "Q", "<Nop>") -- Disable Ex mode
 #+begin_src lua :tangle "lua/modules/keymaps.lua"
 -- Buffers
 k("n", "<leader>b",  "<Nop>",          { desc = "Buffers" } )
-k("n", "<leader>bd", ":bd<CR>",        { desc = "Delete current buffer" } )
+k("n", "<leader>bk", ":bd<CR>",        { desc = "Delete current buffer" } )
 k("n", "<leader>bn", ":bnext<CR>",     { desc = "Goto next buffer" } )
 k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
 #+end_src
@@ -325,7 +325,7 @@ k("n", "<leader>cp", ":silent! !opout \"%:p\"<CR>",          { desc = "Open comp
 #+begin_src lua :tangle "lua/modules/keymaps.lua"
 -- Find files
 k("n", "<leader>.", ":find ", { desc = "Find files"})
-k("n", "<leader>f", ":find ", { desc = "Find files"})
+k("n", "<leader>f", "<Nop> ", { desc = "Find..."})
 #+end_src
 
 **** Line navigation
@@ -380,8 +380,9 @@ k("n", "<C-Right>", ":vert res -2<CR>")
 #+begin_src lua :tangle "lua/modules/keymaps.lua"
 -- Telescope
 k("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: Buffers"})
-k("n", "<leader>bf", "<cmd>Telescope find_files<CR>", { desc = "Telescope: Find files"})
-k("n", "<leader>bg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Live grep"})
+k("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope: Find files"})
+k("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Live grep"})
+k("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files"})
 #+end_src
 
 **** Toggles

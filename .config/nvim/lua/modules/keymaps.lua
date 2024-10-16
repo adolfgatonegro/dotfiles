@@ -21,7 +21,7 @@ k("n", "Q", "<Nop>") -- Disable Ex mode
 
 -- Buffers
 k("n", "<leader>b",  "<Nop>",          { desc = "Buffers" } )
-k("n", "<leader>bd", ":bd<CR>",        { desc = "Delete current buffer" } )
+k("n", "<leader>bk", ":bd<CR>",        { desc = "Delete current buffer" } )
 k("n", "<leader>bn", ":bnext<CR>",     { desc = "Goto next buffer" } )
 k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
 
@@ -32,7 +32,7 @@ k("n", "<leader>cp", ":silent! !opout \"%:p\"<CR>",          { desc = "Open comp
 
 -- Find files
 k("n", "<leader>.", ":find ", { desc = "Find files"})
-k("n", "<leader>f", ":find ", { desc = "Find files"})
+k("n", "<leader>f", "<Nop> ", { desc = "Find..."})
 
 -- Line navigation
 k("n", "h", "<Backspace>")
@@ -61,8 +61,9 @@ k("n", "<C-Right>", ":vert res -2<CR>")
 
 -- Telescope
 k("n", "<leader>bb", "<cmd>Telescope buffers<CR>", { desc = "Telescope: Buffers"})
-k("n", "<leader>bf", "<cmd>Telescope find_files<CR>", { desc = "Telescope: Find files"})
-k("n", "<leader>bg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Live grep"})
+k("n", "<leader>ff", "<cmd>Telescope find_files<CR>", { desc = "Telescope: Find files"})
+k("n", "<leader>fg", "<cmd>Telescope live_grep<CR>", { desc = "Telescope: Live grep"})
+k("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files"})
 
 -- Toggle key bindings
 k("n", "<leader>t",  "<Nop>",              { desc = "Toggle" } )
