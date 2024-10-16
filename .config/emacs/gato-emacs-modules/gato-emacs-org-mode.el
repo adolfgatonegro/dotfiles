@@ -12,6 +12,10 @@
 	      org-special-ctrl-a/e t ;; special navigation behaviour in headlines
 	      org-insert-heading-respect-content t)
 
+  ;;; Return or left-click with mouse follows link
+  (customize-set-variable 'org-return-follows-link t)
+  (customize-set-variable 'org-mouse-1-follows-link t)
+
   ;; styling, hide markup, etc. (recommended by org-modern)
   (setq org-hide-emphasis-markers t
 	      org-src-fontify-natively t ;; fontify source blocks natively

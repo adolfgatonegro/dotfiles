@@ -102,6 +102,7 @@
   (gato/leader-keys
    "h" '(:ignore t :wk "Help")
    "h f" '(describe-function :wk "Describe function")
+   "h k" '(describe-key :wk "Describe key")
    "h t" '(load-theme :wk "Load theme")
    "h v" '(describe-variable :wk "Describe variable")
    "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config")
