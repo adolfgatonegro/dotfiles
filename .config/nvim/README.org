@@ -103,7 +103,6 @@ This is not strictly necessary, but we want Neovim to apply our chosen coloursch
 vim.cmd("colorscheme tokyonight")
 #+end_src
 
-
 * The =lazy.nvim= plugin manager
 
 =lazy.nvim= is a modern plugin manager for Neovim, and one of the most popular ones. I used =vim-plug= before, with both ~vim~ and ~nvim~, and it served my needs well — though my needs are, admittedly, quite simple — but the majority of plugins these days assume either =lazy.nvim= or =packer.nvim= are being used, and tailor installation and customisation instructions for those. To avoid complications, again we shall go with the "default" plugin manager.
@@ -165,7 +164,6 @@ require("lazy").setup({
 #+end_src
 
 Anything else about =lazy.nvim= that needs to be configured, would be configured here. For our purposes, though, this simple setup is enough.
-
 
 * Neovim configuration modules
 
@@ -582,7 +580,6 @@ autocmd("VimEnter", {
 	command = [[hi ZenBg ctermbg=NONE guibg=NONE]]
 })
 #+end_src
-
 
 * Neovim =plugins=
 
