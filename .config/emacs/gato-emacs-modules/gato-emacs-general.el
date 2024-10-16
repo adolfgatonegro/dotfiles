@@ -126,6 +126,18 @@
     "m d" '(:ignore t :wk "Date/deadline")
     "m d t" '(org-time-stamp :wk "Org time stamp"))
 
+  ;; Org mode - Navigation
+  (general-define-key
+    :states 'normal
+    :keymaps 'org-mode-map
+    "g h" 'org-previous-visible-heading
+    "g j" 'org-forward-heading-same-level
+    "g k" 'org-backward-heading-same-level
+    "g l" 'org-next-visible-heading
+    "M-l" 'org-demote-subtree
+    "M-h" 'org-promote-subtree
+  )
+
   ;; Toggle
   (gato/leader-keys
     "t" '(:ignore t :wk "Toggle")

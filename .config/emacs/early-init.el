@@ -26,6 +26,8 @@ tab-line-close-button-show nil) ;; don't show tab close button
 ;; Default frame configuration: full screen, good-looking title bar on macOS
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist '((fullscreen . maximized)
+                            (vertical-scroll-bars . nil)
+                            (horizontal-scroll-bars . nil)
                             ;; Setting the face in here prevents flashes of
                             ;; color as the theme gets activated
                             (background-color . "#0a0a15")
