@@ -41,7 +41,7 @@ k("n", "k", "<Up>", { remap = true })
 k("n", "l", "<Space>")
 
 -- oil.nvim
-k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
+k("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
 
 -- Splits - better navigation
 k("n", "<leader>w",  "<Nop>",     { desc = "Windows" } )

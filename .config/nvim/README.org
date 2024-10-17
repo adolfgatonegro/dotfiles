@@ -347,7 +347,7 @@ k("n", "l", "<Space>")
 
 #+begin_src lua :tangle "lua/modules/keymaps.lua"
 -- oil.nvim
-k("n", "-", "<cmd>Oil --float<CR>", { desc = "Open Oil" })
+k("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
 #+end_src
 
 **** Splits
