@@ -34,7 +34,7 @@ case "${ext}" in
 		args="--citeproc"
 		head -n5 "${mdtarget}" | grep -qi "beamer_presentation" && args="-t beamer"
 		pandoc ${args} -s -o "${base}.pdf" "${file}" ;;
-    # org) emacs "${file}" --batch -u "${USER}" -f org-latex-export-to-pdf ;;
+    org) emacs --batch --eval "(require 'org)" --eval '(org-babel-tangle-file "'${file}'")' ;;
     # py) python "${file}" ;;
     # [rR]md) Rscript -e "rmarkdown::render('${file}', quiet=TRUE)" ;;
     # rs) cargo build ;;
