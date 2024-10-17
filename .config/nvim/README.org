@@ -898,6 +898,7 @@ Neovim Lua plugin to automatically manage character pairs. Part of 'mini.nvim' l
 return {
 	"echasnovski/mini.pairs",
 	version = false,
+	config = true,
 }
 #+end_src
 
