@@ -1,5 +1,5 @@
-*.alpha: 0.90
-*.font: Monospace-9
+!!*.alpha: 0.90
+!!*.font: Monospace-9
 
 !! st options
 st.alpha: 0.90
