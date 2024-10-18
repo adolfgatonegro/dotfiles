@@ -10,13 +10,10 @@ super + ctrl + s
 super + space
 	dmrun -p "run:"
 
-# books
-super + k
-    books
-
-# unicode selector
-super + grave
-    dmunicode
+# key chord dmenu scripts
+# books, unicode, multi-monitor
+super + s ; {k,u,p,l}
+    {books,dmunicode,dmdisplay,linkhandler}
 
 # power menu
 super + x
@@ -38,15 +35,18 @@ super + F8
 super + shift +F8
 	unmounter
 
-# multi-monitor
-super + ctrl + p
-	dmdisplay
+# }}
+
+# dwmc {{
+# setlayout
+super + ctrl {t,d,g,m}
+	dwmc setlayoutex {0,1,2,4}
 
 # }}
 
 # applications {{
 # terminal
-super + {Return,t}
+super + t
     st
 
 # browser
@@ -87,9 +87,6 @@ super + shift + F4
 
 shift + Print
 	flameshot launcher
-
-super + o
-	linkhandler
 
 # }}
 
