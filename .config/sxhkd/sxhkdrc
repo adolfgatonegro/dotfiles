@@ -39,9 +39,9 @@ super + shift +F8
 
 # dwmc {{
 # setlayout
-super + ctrl {t,d,g,m}
-	dwmc setlayoutex {0,1,2,4}
-
+# super + ctrl {t,d,g,m}
+# 	dwmc setlayoutex {0,1,2,4}
+#
 # }}
 
 # applications {{
