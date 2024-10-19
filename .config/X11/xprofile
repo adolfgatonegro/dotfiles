@@ -4,7 +4,7 @@
 export XDG_SESSION_TYPE=x11
 
 dbus-update-activation-environment --systemd DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY
-setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape 
+# setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
 xset r rate 250 100
 xset dpms 300 600 900
 # xinput set-prop "ARESON ProFit Ergo Vertical Wired Trackball" "libinput Accel Speed" 0.2
