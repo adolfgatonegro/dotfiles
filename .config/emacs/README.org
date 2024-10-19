@@ -495,7 +495,15 @@ disabled by default? Only RMS knows.
 
 #+begin_src emacs-lisp
 ;; org-tempo
-(require 'org-tempo)
+(use-package org-tempo
+  :ensure nil
+  :after org
+  :config
+   (dolist (item '(("sh" . "src sh")
+                   ("el" . "src emacs-lisp")
+                   ("lu" . "src lua")
+                   ("py" . "src python")))
+   (add-to-list 'org-structure-template-alist item)))
 #+end_src
 
 ** toc-org

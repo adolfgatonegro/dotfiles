@@ -324,7 +324,15 @@
   (setq org-ellipsis "..."))
 
 ;; org-tempo
-(require 'org-tempo)
+(use-package org-tempo
+  :ensure nil
+  :after org
+  :config
+   (dolist (item '(("sh" . "src sh")
+                   ("el" . "src emacs-lisp")
+                   ("lu" . "src lua")
+                   ("py" . "src python")))
+   (add-to-list 'org-structure-template-alist item)))
 
 ;; toc-org
 (use-package toc-org
