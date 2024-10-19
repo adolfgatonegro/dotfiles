@@ -1,3 +1,70 @@
+#+title: My GNU Emacs Configuration
+#+author: Gatonegro
+#+language: en
+#+STARTUP: contents
+#+OPTIONS: toc:2
+
+* An exercise in restraint
+
+Configuring Emacs is, essentially, an exercise in restraint. Because it is endlessly extensible by design, an entire lifetime can be spent moulding it into all sorts of different things, for any purpose one could possibly imagine. This is what I aim to avoid here.
+
+** What this configuration is
+
+1. *Minimal -* As a newcomer to Emacs, and because it is my personal preference in general, I want this to be a configuration that does what I need, and nothing else. And, yes, I do realise the irony of setting that goal for a kitchen-sink piece of software such as Emacs.
+
+2. *Transparent -* While I could go online and take snippets from other configs, and put them here to enable all manner of new functionality, I prefer to stick with a configuration I can understand at my current level of familiarity with Emacs and Elisp in general.
+
+3. *Experimental -* Though my main goal is for this setup to be useful for my daily work, I also want to use it to explore what Emacs can do and how it works. Over time, as my familiarity with it grows, I might revisit parts of it to add or remove things. Overall, it should be a bit of a playground in addition to an actual tool that I use to get things done.
+
+** What this configuration is not
+
+1. *An "everything" setup -* At this point, I don't believe it would make sense for me to try and emulate the setups of advanced users who do /everything/ in Emacs — web browsing, media playing, window management, etc. I do not understand the software nearly enough to do that, and my current workflow suits me quite well. As far as functionality goes, it should be similar to my Neovim configuration instead of its own operating system.
+
+2. *A clone of DOOM or Spacemacs -* I have not used those distributions, for the same reason I don't use Neovim distributions — they are an additional layer between the user and the software, give the user a somewhat misplaced confidence in their command of the software, and obscure fundamental aspects of it that I would prefer to get to know myself. They are useful for certain users, in certain cases, but I prefer the DIY approach.
+
+3. *Neovim -* My preferred tool, one I am significantly more familiar and comfortable with. Trying to turn Emacs into Neovim seems silly; I already have a Neovim configuration, and it does everything I need. My Emacs configuration should be its own thing, /an Emacs thing/, that works in Emacs ways. There is probably an exception to be made here regarding modal editing and Vim motions, because Vim brain is a thing.
+
+* Table of contents :toc:
+- [[#an-exercise-in-restraint][An exercise in restraint]]
+  - [[#what-this-configuration-is][What this configuration is]]
+  - [[#what-this-configuration-is-not][What this configuration is not]]
+- [[#the-early-initialisation-of-emacs---early-initel][The early initialisation of Emacs - =early-init.el=]]
+  - [[#early-initel-header][=early-init.el= header]]
+  - [[#disable-packageel][Disable =package.el=]]
+  - [[#garbage-collection][Garbage collection]]
+  - [[#performance-hacks]["Performance" hacks]]
+  - [[#improving-the-ui][Improving the UI]]
+  - [[#default-frame-configuration][Default frame configuration]]
+  - [[#early-initel-footer][=early-init.el= footer]]
+- [[#emacs-configuration][Emacs configuration]]
+  - [[#initel-header][=init.el= header]]
+  - [[#package-management---elpaca][Package management - Elpaca]]
+  - [[#emacs-itself][Emacs itself]]
+  - [[#dired][Dired]]
+  - [[#electric][Electric]]
+  - [[#window-management][Window management]]
+- [[#org-mode][Org mode]]
+  - [[#org-settings][Org settings]]
+  - [[#org-tempo][org-tempo]]
+  - [[#toc-org][toc-org]]
+  - [[#org-bullets][org-bullets]]
+- [[#third-party-packages][Third-party packages]]
+  - [[#appearance][Appearance]]
+  - [[#completions-framework][Completions framework]]
+  - [[#dired-enhancements][Dired enhancements]]
+  - [[#evil-mode][Evil mode]]
+  - [[#which-key][Which-Key]]
+  - [[#turn-me-off-later][Turn me off later!]]
+  - [[#initel-footer][=init.el= footer]]
+
+* The early initialisation of Emacs - =early-init.el=
+
+** =early-init.el= header
+#+PROPERTY: header-args :tangle "early-init.el"
+
+Because we are doing things the "Emacs way", we begin by following convention, and having a nice header in our =early-init.el= file. We will also have a footer once we're done.
+
+#+begin_src emacs-lisp
 ;;; early-init.el --- Early Init -*- no-byte-compile: t; lexical-binding: t; -*-
 
 ;; Author: Adolf Gatonegro
@@ -7,10 +74,22 @@
 ;; Early initialisation file for my GNU Emacs configuration.
 
 ;;; Code:
+#+end_src
 
+** Disable =package.el=
+
+We will use [[https://github.com/progfolio/elpaca][Elpaca]] to install and manage our packages, because it has some lovely async capabilities and a nice GUI. The built-in =package.el= is itself quite capable, and we could simply stick with it and =package-vc=, but I am not manually requiring Lua modules in my Neovim config, am I?
+
+#+begin_src emacs-lisp
 ;; Disable `package.el' here, required to use Elpaca later
 (setq package-enable-at-startup nil)
+#+end_src
 
+** Garbage collection
+
+This bit comes from [[https://github.com/jamescherti/minimal-emacs.d][minimal-emacs.d]], which includes all sorts of esoteric optimisations and "better defaults" that, quite frankly, I do not understand. This one makes sense, though, and so I am lifting it. Most configurations I have encountered make some changes to the garbage collection process on startup, but this is the only one I have seen that restores the default gc settings after startup, as recommended by the Emacs documentation.
+
+#+begin_src emacs-lisp
 ;;; Garbage collection
 ;; Garbage collection significantly affects startup times. This setting delays
 ;; garbage collection during startup but will be reset later.
@@ -22,14 +101,26 @@
 (add-hook 'elpaca-after-init-hook
           (lambda ()
             (setq gc-cons-threshold gato-gc-cons-threshold)))
+#+end_src
 
+** "Performance" hacks
+
+[[https://git.sr.ht/~ashton314/emacs-bedrock][emacs-bedrock]] is a much more approachable starting point for a noob like myself. The author includes these "performance hacks" in the =early-init.el=, and they seem fairly sensible to me. How much of a difference they make, I cannot say for sure.
+
+#+begin_src emacs-lisp
 (setq byte-compile-warnings '(not obsolete))
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq read-process-output-max (* 1024 1024 4))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 
 (setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
+#+end_src
 
+** Improving the UI
+
+We want a keyboard-driven environment, and for that we do not need any of these UI elements. Besides, the Emacs UI is kind of ugly. While we're here, we also get rid of the splash screen.
+
+#+begin_src emacs-lisp
 ;;; Minimal UI
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -46,7 +137,11 @@
       tab-bar-new-button-show nil
       tab-bar-close-button-show nil
       tab-line-close-button-show nil)
+#+end_src
 
+** Default frame configuration
+
+#+begin_src emacs-lisp
 ;; Default frame configuration
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist '((fullscreen . maximized)
@@ -55,11 +150,27 @@
                             (background-color . "#1a1a26")
                             (ns-appearance . dark)
                             (ns-transparent-titlebar . t)))
+#+end_src
 
+** =early-init.el= footer
+
+That's all for the early initialisation. Now we can finish with the footer:
+
+#+begin_src emacs-lisp
 (provide 'early-init)
 
 ;;; early-init.el ends here
+#+end_src
 
+* Emacs configuration
+#+PROPERTY: header-args :tangle "init.el"
+With the =early-init.el= taken care of, we can begin configuring Emacs itself.
+
+** =init.el= header
+
+Something, something, follow convention.
+
+#+begin_src emacs-lisp
 ;;; init.el --- Emacs Init -*- no-byte-compile: t; lexical-binding: t; -*-
 
 ;; Author: Adolf Gatonegro
@@ -69,7 +180,13 @@
 ;; The main configuration file for Emacs.
 
 ;;; Code:
+#+end_src
 
+** Package management - Elpaca
+
+Use this [[https://github.com/progfolio/elpaca?tab=readme-ov-file#installer][unsightly mess]] to bootstrap Elpaca.
+
+#+begin_src emacs-lisp
 ;;; Package management
 ;; Clone, build, and initialise Elpaca.
 (defvar elpaca-installer-version 0.7)
@@ -110,13 +227,26 @@
     (load "./elpaca-autoloads")))
 (add-hook 'after-init-hook #'elpaca-process-queues)
 (elpaca `(,@elpaca-order))
+#+end_src
 
+Next, we enable =use-package= support for Elpaca, and set =:ensure t=
+by default, to make sure we always have the packages we need.
+
+#+begin_src emacs-lisp
 ;; Enable `use-package` support for convenience.
 (elpaca elpaca-use-package
   (elpaca-use-package-mode))
 ;; Always ensure the packages we want are installed.
 (setq use-package-always-ensure t)
+#+end_src
 
+** Emacs itself
+
+For consistency, we configure Emacs via a =use-package= statement, in
+the same way we configure everything else. This is mostly about better
+defaults, because the... /default/ defaults are not exactly sane.
+
+#+begin_src emacs-lisp
 ;;; Configuring Emacs itself
 (use-package emacs
   :ensure nil ;; Important for built-in packages.
@@ -227,7 +357,14 @@
   ;; Highlight current line in certain modes
   ;(let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
   ;  (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
+#+end_src
 
+** Dired
+
+
+Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again.
+
+#+begin_src emacs-lisp
 ;;; Dired configuration
 (use-package dired
   :ensure nil
@@ -237,7 +374,15 @@
   (dired-guess-shell-alist-user
    '((".*" "open" "xdg-open"))) ;; Use xdg-open to open everything.
   (dired-kill-when-opening-new-dired-buffer t)) ;; Close the previous buffer when opening a new `dired' instance.
+#+end_src
 
+** Electric
+
+Enable and configure Electric to take care of parens matching.
+
+TODO: move org-src indent to its proper location.
+
+#+begin_src emacs-lisp
 ;;; Electric
 (use-package electric
   :ensure nil
@@ -252,7 +397,13 @@
              (setq-local electric-pair-inhibit-predicate
                      `(lambda (c)
                     (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
+#+end_src
 
+** Window management
+
+Some window management tweaks (no, not that kind), based on [[https://github.com/LionyxML/emacs-kick][emacs-kick]].
+
+#+begin_src emacs-lisp
 ;;; Emacs window management
 (use-package window
   :ensure nil
@@ -287,7 +438,20 @@
       (side . bottom)
       (slot . 1))
    )))
+#+end_src
 
+* Org mode
+
+Org seems to be /massive/. We're not going to be doing much with it at
+this point, because I don't quite understand what is going on there.
+Still, something tells me that having a separate top-level heading for
+everything Org-related is a wise idea.
+
+** Org settings
+
+First, Org mode itself.
+
+#+begin_src emacs-lisp
 ;;; Org mode
 ;;
 (use-package org
@@ -322,24 +486,59 @@
 	      "⭠ now ─────────────────────────────────────────────────")
 
   (setq org-ellipsis "..."))
+#+end_src
 
+** org-tempo
+
+=org-tempo= provides template expansion for Org documents. Why is it
+disabled by default? Only RMS knows.
+
+#+begin_src emacs-lisp
 ;; org-tempo
 (require 'org-tempo)
+#+end_src
 
+** toc-org
+
+Generate tables of contents inside Org documents.
+
+#+begin_src emacs-lisp
 ;; toc-org
 (use-package toc-org
   :after org
   :commands toc-org-enable
   :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
 
+** org-bullets
+
+Use UTF-8 characters to display bullets in Org, instead of the default asterisks.
+
+#+begin_src emacs-lisp
 ;; org-bullets
 (add-hook 'org-mode-hook 'org-indent-mode)
 (use-package org-bullets
   :after org)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
 
+* Third-party packages
+
+Don't overdo it, though.
+
+#+begin_src emacs-lisp
 ;;; Third-party packages
+#+end_src
 
+** Appearance
+
+We want a minimal Emacs, but we also want a nice-looking Emacs.
+
+*** Fonts
+
+Define the default fonts we want Emacs to use, as well as some more comfortable line spacing.
+
+#+begin_src emacs-lisp
 ;;; Fonts
 ;;
 ;; Define default, variable pitch, and fixed pitch fonts.
@@ -362,7 +561,13 @@
 
 ;; Adjust line spacing.
 (setq-default line-spacing 0.15)
+#+end_src
 
+*** Nerd Icons
+
+We cannot have a modern editor without Nerd Icons, can we? Yes, we can, but we won't.
+
+#+begin_src emacs-lisp
 ;;; Icons
 ;;
 ;; nerd-icons
@@ -381,7 +586,13 @@
   :config
   (nerd-icons-completion-mode)
   (add-hook 'marginalia-mode-hook #'nerd-icons-completion-marginalia-setup))
+#+end_src
 
+*** Theme and modeline
+
+It's Tokyo Night with custom colours, what else would it be?
+
+#+begin_src emacs-lisp
 ;;; Theme
 ;;
 ;; Add local themes to path
@@ -408,7 +619,13 @@
         doom-modeline-persp-name t) ; add folder icon next to persp name
   :hook
   (elpaca-after-init . doom-modeline-mode))
+#+end_src
 
+*** Dashboard
+
+Entirely unnecessary, but it looks good.
+
+#+begin_src emacs-lisp
 ;; dashboard
 (use-package dashboard
   :defer t
@@ -431,7 +648,17 @@
                                     (bookmarks . "book")))
   :config
   (dashboard-setup-startup-hook))
+#+end_src
 
+** Completions framework
+
+This selection comes from [[https://github.com/LionyxML/emacs-kick][emacs-kick]], though it seems to be fairly
+common in newer configurations. To be honest, though, simply turning
+on =ido-mode= sounds tempting.
+
+*** Vertico
+
+#+begin_src emacs-lisp
 ;;; Completions framework
 ;;
 ;; Vertico
@@ -458,7 +685,11 @@
         cand)))
   :hook
    (elpaca-after-init . vertico-mode))
+#+end_src
 
+*** Orderless
+
+#+begin_src emacs-lisp
 ;; Orderless
 (use-package orderless
   :defer t                                    ;; Load Orderless on demand.
@@ -467,13 +698,21 @@
   (setq completion-styles '(orderless basic)  ;; Set the completion styles.
         completion-category-defaults nil      ;; Clear default category settings.
         completion-category-overrides '((file (styles partial-completion))))) ;; Customize file completion styles.
+#+end_src
 
+*** Marginalia
+
+#+begin_src emacs-lisp
 ;; Marginalia
 (use-package marginalia
   :defer t
   :hook
   (elpaca-after-init . marginalia-mode))
+#+end_src
 
+*** Company
+
+#+begin_src emacs-lisp
 ;; Company
 (use-package company
   :defer t
@@ -498,7 +737,11 @@
   (define-key company-active-map (kbd "C-k") 'company-select-previous)
   :hook
   (elpaca-after-init . global-company-mode)) ;; Enable Company Mode globally after initialization.
+#+end_src
 
+*** Consult
+
+#+begin_src emacs-lisp
 ;; Consult
 (use-package consult
   :defer t
@@ -509,17 +752,31 @@
   ;; Use Consult for xref locations with a preview feature.
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref))
+#+end_src
 
+*** Embark
+
+#+begin_src emacs-lisp
 ;; Embark
 (use-package embark
   :defer t)
+#+end_src
 
+*** Embark-Consult
+
+#+begin_src emacs-lisp
 ;; Embark-Consult
 (use-package embark-consult
   :after (:all consult embark)
   :hook
   (embark-collect-mode . consult-preview-at-point-mode)) ;; Enable preview in Embark collect mode.
+#+end_src
 
+** Dired enhancements
+
+Nothing crazy here, just some extensions and quality-of-life improvements for =dired=.
+
+#+begin_src emacs-lisp
 ;;; Dired enhancements
 ;;
 ;; * dired-+
@@ -555,7 +812,13 @@
                      "iso\\|"
                      "epub"
                      "\\)")))
+#+end_src
 
+** Evil mode
+
+For my own sanity, get some Vim motions going here.
+
+#+begin_src emacs-lisp
 ;; Evil - Vim motions
 (use-package evil
   :defer t
@@ -579,7 +842,13 @@
 
   :hook
   (elpaca-after-init . evil-mode))
+#+end_src
 
+*** Evil collection
+
+Provides =evil= support for a bunch of different modes.
+
+#+begin_src emacs-lisp
 ;; Evil-Collection
 (use-package evil-collection
   :defer t
@@ -589,7 +858,15 @@
 
   :hook
   (evil-mode . evil-collection-init))
+#+end_src
 
+** Which-Key
+
+=which-key= is an essetial tool for discoverability. So much so that
+it is probably going to be a built-in functionality in Emacs 30. For
+now, we install it as a regular package.
+
+#+begin_src emacs-lisp
 ;; Which-Key - So many keys
 (use-package which-key
   :defer t
@@ -610,10 +887,23 @@
 
   :hook
   (elpaca-after-init . which-key-mode))
+#+end_src
 
+** Turn me off later!
+
+Because I am not /super/ familiar with the default Emacs bindings just
+yet, we enable =help-quick= on load. This will be switched off rather
+quickly, I think.
+
+#+begin_src emacs-lisp
 ;; Show the help buffer after startup
 ;;(add-hook 'elpaca-after-init-hook 'help-quick)
+#+end_src
 
+** =init.el= footer
+
+#+begin_src emacs-lisp
 (provide 'init)
 
 ;;; init.el ends here
+#+end_src
