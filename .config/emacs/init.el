@@ -321,7 +321,7 @@
 	      org-agenda-current-time-string
 	      "⭠ now ─────────────────────────────────────────────────")
 
-  (setq org-ellipsis "..."))
+  (setq org-ellipsis " "))
 
 ;; org-tempo
 (use-package org-tempo

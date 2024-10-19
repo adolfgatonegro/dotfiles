@@ -485,7 +485,7 @@ First, Org mode itself.
 	      org-agenda-current-time-string
 	      "⭠ now ─────────────────────────────────────────────────")
 
-  (setq org-ellipsis "..."))
+  (setq org-ellipsis " "))
 #+end_src
 
 ** org-tempo
