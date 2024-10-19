@@ -71,7 +71,7 @@ gitall(){
 
 # Set xkeyboard options, remap caps-lock, and repeat rate
 kbd() {
-	setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
+	# setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
 	[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
 	xset r rate 250 100
 }
