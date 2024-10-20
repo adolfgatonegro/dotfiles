@@ -362,7 +362,6 @@ defaults, because the... /default/ defaults are not exactly sane.
 
 ** Dired
 
-
 Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again.
 
 #+begin_src emacs-lisp
@@ -370,7 +369,7 @@ Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emac
 (use-package dired
   :ensure nil
   :custom
-  (dired-listing-switches "-lah --group-directories-first") ;; Display files in a human-readable format and group directories first.
+  (dired-listing-switches "-oah --group-directories-first") ;; Display files in a human-readable format and group directories first.
   (dired-dwim-target t) ;; Enable "do what I mean" for target directories.
   (dired-guess-shell-alist-user
    '((".*" "open" "xdg-open"))) ;; Use xdg-open to open everything.

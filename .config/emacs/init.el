@@ -232,7 +232,7 @@
 (use-package dired
   :ensure nil
   :custom
-  (dired-listing-switches "-lah --group-directories-first") ;; Display files in a human-readable format and group directories first.
+  (dired-listing-switches "-oah --group-directories-first") ;; Display files in a human-readable format and group directories first.
   (dired-dwim-target t) ;; Enable "do what I mean" for target directories.
   (dired-guess-shell-alist-user
    '((".*" "open" "xdg-open"))) ;; Use xdg-open to open everything.
