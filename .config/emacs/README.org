@@ -1,7 +1,7 @@
 #+title: My GNU Emacs Configuration
 #+author: Gatonegro
 #+language: en
-#+STARTUP: contents
+#+STARTUP: overview
 #+OPTIONS: toc:2
 
 * An exercise in restraint
