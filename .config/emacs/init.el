@@ -174,7 +174,7 @@
   (global-visual-line-mode t)               ;; Visual-Line mode in all buffers.
   (indicate-buffer-boundaries 'left)        ;; Show buffer top and bottom in the margin.
   (show-paren-mode t)                       ;; Highlight matching parens.
-  (show-trailing-whitespace t)              ;; Self-explanatory.
+  (show-trailing-whitespace nil)            ;; Self-explanatory.
   (switch-to-buffer-obey-display-actions t) ;; Make switching buffers more consistent.
   (x-underline-at-descent-line nil)         ;; Prettier underlines.
 
@@ -574,8 +574,7 @@
         evil-split-window-below t
         evil-respect-visual-line-mode t
         evil-want-Y-yank-to-eol t
-        evil-undo-system 'undo-redo
-        evil-want-C-u-scroll t)
+        evil-undo-system 'undo-redo)
 
   ;; Unbind SPC and TAB so we can use them elsewhere.
   (with-eval-after-load 'evil-maps
@@ -673,9 +672,9 @@
 (gato/leader-keys
   "." '(find-file :wk "Find file")
   "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Edit Emacs configuration")
-  "f r" '(consult-recent-file :wk "Find recent files"))
-  ;; "f u" '(sudo-edit-find-file :wk "Sudo find file")
-  ;; "f U" '(sudo-edit :wk "Sudo edit this file"))
+  "f r" '(consult-recent-file :wk "Find recent files")
+  "f u" '(sudo-edit-find-file :wk "Sudo find file")
+  "f U" '(sudo-edit :wk "Sudo edit this file"))
 
 ;; Help functions
 (gato/leader-keys
@@ -728,6 +727,23 @@
   ;;"w L" '(buf-move-right :wk "Buffer move right"))
 
 ) ;; end of general.el keybindings
+
+;; Rainbow delimiters
+(use-package rainbow-delimiters
+  :defer t
+  :ensure t
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+;; Rainbow mode
+(use-package rainbow-mode
+  :defer t
+  :diminish
+  :hook org-mode prog-mode)
+
+;; Sudo-edit
+(use-package sudo-edit
+  :defer t)
 
 ;; Which-Key - So many keys
 (use-package which-key
