@@ -732,8 +732,7 @@
 (use-package rainbow-delimiters
   :defer t
   :ensure t
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
+  :hook org-mode prog-mode)
 
 ;; Rainbow mode
 (use-package rainbow-mode
