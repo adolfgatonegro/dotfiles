@@ -1,7 +1,7 @@
 #+title: Neovim configuration
 #+author: Gatonegro
 #+language: en
-#+STARTUP: contents
+#+STARTUP: content
 #+OPTIONS: toc:2
 
 This is my literate Neovim configuration file. While a "structured" or "modular" setup has many advantages, it can sometimes make modifications more difficult than they should be, since one must remember, or, at least have a good idea of which file contains the configuration option that we want to change. On the other hand, keeping a monolithic single-file configuration becomes unweildy rather quickly, as there can be hundreds or thousands of lines of code to parse, just to find whatever it is that we are looking for.
