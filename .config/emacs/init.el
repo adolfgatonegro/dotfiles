@@ -598,6 +598,137 @@
   :hook
   (evil-mode . evil-collection-init))
 
+(use-package general
+  :config
+  (general-evil-setup) ;; integrate general with evil
+
+  ;; set up 'SPC' as the global leader key
+  (general-create-definer gato/leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "SPC" ;; set leader
+    :global-prefix "M-SPC") ;; access leader in insert mode
+
+  ;; set up ',' as the local leader key
+  (general-create-definer gato/local-leader-keys
+    :states '(normal insert visual emacs)
+    :keymaps 'override
+    :prefix "," ;; set local leader
+    :global-prefix "M-,") ;; access local leader in insert mode
+
+;; Buffers
+(gato/leader-keys
+  "b" '(:ignore t :wk "Buffer")
+  "b b" '(switch-to-buffer :wk "Switch buffer")
+  "b i" '(ibuffer :wk "Ibuffer")
+  "b k" '(kill-this-buffer :wk "Kill current buffer")
+  "b n" '(next-buffer :wk "Next buffer")
+  "b p" '(previous-buffer :wk "Previous buffer")
+  "b r" '(revert-buffer :wk "Revert buffer"))
+
+;; Extended command
+(gato/leader-keys
+  "SPC" '(execute-extended-command :wk "Execute extended command"))
+
+;; Dired
+(gato/leader-keys
+  "d" '(:ignore t :wk "dired")
+  "d d" '(dired :wk "Open dired")
+  "d j" '(dired-jump :wk "Dired jump to current")
+  "d w" '(:ignore t :wk "Writable dired")
+  "d w w" '(wdired-change-to-wdired-mode :wk "Enable writable dired")
+  "d w a" '(wdired-abort-changes :wk "Abort writable dired changes")
+  "d w f" '(wdired-finish-edit :wk "Finish writable dired edit"))
+
+(general-define-key
+  :states 'normal
+  :keymaps 'dired-mode-map
+  "M-RET" 'dired-display-file
+  "h" 'dired-up-directory
+  "l" 'dired-open-file
+  "m" 'dired-mark
+  "t" 'dired-toggle-marks
+  "u" 'dired-unmark
+  "p" 'dired-preview-mode
+  "v" 'dired-view-file
+  "C" 'dired-do-copy
+  "D" 'dired-do-delete
+  "J" 'dired-goto-file
+  "M" 'dired-do-chmod
+  "O" 'dired-do-chown
+  "P" 'dired-do-print
+  "R" 'dired-do-rename
+  "T" 'dired-do-touch
+  "Z" 'dired-do-compress
+  "+" 'dired-create-directory
+  "-" 'dired-up-directory
+  "% l" 'dired-downcase
+  "% m" 'dired-mark-files-regexp
+  "% u" 'dired-upcase
+  "* %" 'dired-mark-files-regexp
+  "* ." 'dired-mark-extension
+  "* /" 'dired-mark-directories)
+
+;; Find files
+(gato/leader-keys
+  "." '(find-file :wk "Find file")
+  "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Edit Emacs configuration")
+  "f r" '(consult-recent-file :wk "Find recent files"))
+  ;; "f u" '(sudo-edit-find-file :wk "Sudo find file")
+  ;; "f U" '(sudo-edit :wk "Sudo edit this file"))
+
+;; Help functions
+(gato/leader-keys
+ "h" '(:ignore t :wk "Help")
+ "h f" '(describe-function :wk "Describe function")
+ "h k" '(describe-key :wk "Describe key")
+ "h t" '(load-theme :wk "Load theme")
+ "h v" '(describe-variable :wk "Describe variable")
+ "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
+
+;; Toggle
+(gato/leader-keys
+  "t" '(:ignore t :wk "Toggle")
+  ;;"t c" '(visual-line-fill-column-mode :wk "Toggle fill column")
+  "t h" '(hl-line-mode :wk "Toggle line highlight")
+  "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
+  "t t" '(visual-line-mode :wk "Toggle truncated lines")
+  "t v" '(vterm-toggle :wk "Toggle vterm"))
+
+;; Toggle comments in normal and visual mode.
+(general-define-key
+  :states '(normal)
+  "g c c" '((lambda () (interactive)
+      (comment-or-uncomment-region
+        (line-beginning-position) (line-end-position)))
+        :wk "Toggle comment"))
+
+(general-define-key
+  :states '(visual)
+  "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
+
+;; Windows
+(gato/leader-keys
+  "w" '(:ignore t :wk "Windows")
+  ;; Window splits
+  "w c" '(evil-window-delete :wk "Close window")
+  "w n" '(evil-window-new :wk "New window")
+  "w s" '(evil-window-split :wk "Horizontal split")
+  "w v" '(evil-window-vsplit :wk "Vertical split")
+  ;; Window motions
+  "w h" '(evil-window-left :wk "Window left")
+  "w j" '(evil-window-down :wk "Window down")
+  "w k" '(evil-window-up :wk "Window up")
+  "w l" '(evil-window-right :wk "Window right")
+  "w w" '(evil-window-next :wk "Goto next window"))
+  ;; Move windows
+  ;;"w H" '(buf-move-left :wk "Buffer move left")
+  ;;"w J" '(buf-move-down :wk "Buffer move down")
+  ;;"w K" '(buf-move-up :wk "Buffer move up")
+  ;;"w L" '(buf-move-right :wk "Buffer move right"))
+
+) ;; end of general.el keybindings
+
 ;; Which-Key - So many keys
 (use-package which-key
   :defer t
