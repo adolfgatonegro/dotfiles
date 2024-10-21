@@ -1109,7 +1109,7 @@ Here we have a section for random small tools, that do not merit their own separ
 
 *** Nov.el
 
-
+Major mode for reading EPUB documents.
 
 #+begin_src emacs-lisp
 (use-package nov
@@ -1182,9 +1182,7 @@ Edit files with =sudo= privileges.
 
 ** Which-Key
 
-=which-key= is an essetial tool for discoverability. So much so that
-it is probably going to be a built-in functionality in Emacs 30. For
-now, we install it as a regular package.
+=which-key= is an essetial tool for discoverability. So much so that it is probably going to be a built-in functionality in Emacs 30. For now, we install it as a regular package.
 
 #+begin_src emacs-lisp
 ;; Which-Key - So many keys
@@ -1211,9 +1209,7 @@ now, we install it as a regular package.
 
 ** Turn me off later!
 
-Because I am not /super/ familiar with the default Emacs bindings just
-yet, we enable =help-quick= on load. This will be switched off rather
-quickly, I think.
+Because I am not /super/ familiar with the default Emacs bindings just yet, we enable =help-quick= on load. This will be switched off rather quickly, I think.
 
 #+begin_src emacs-lisp
 ;; Show the help buffer after startup
