@@ -768,6 +768,8 @@ on =ido-mode= sounds tempting.
 
 *** Consult
 
+Better search and navigation commands. [[*Consult][Consult keybindings]].
+
 #+begin_src emacs-lisp
 ;; Consult
 (use-package consult
@@ -926,6 +928,19 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
     "b r" '(revert-buffer :wk "Revert buffer"))
 #+end_src
 
+*** Consult
+
+#+begin_src emacs-lisp
+  ;; Consult
+  (gato/leader-keys
+    "c" '(:ignore t :wk "Consult")
+    "c f" '(consult-fd :wk "Find files with 'fd' in DIR")
+    "c g" '(consult-grep :wk "Find files with 'grep' in DIR")
+    "c h" '(consult-outline :wk "Jump to outline heading")
+    "c l" '(consult-line :wk "Find matching line")
+    "c o" '(consult-org-heading :wk "Jump to Org heading"))
+#+end_src
+
 *** Diff-hl
 
 #+begin_src emacs-lisp
@@ -1004,13 +1019,13 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
 
 #+begin_src emacs-lisp
 ;; Find files
-(gato/leader-keys
-  "." '(find-file :wk "Find file")
-  "f" '(:ignore t :wk "Find")
-  "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Emacs configuration")
-  "f r" '(recentf :wk "Recent files")
-  "f u" '(sudo-edit-find-file :wk "Sudo find file")
-  "f U" '(sudo-edit :wk "Sudo edit this file"))
+  (gato/leader-keys
+    "." '(find-file :wk "Find file")
+    "f" '(:ignore t :wk "Find")
+    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Emacs configuration")
+    "f r" '(recentf :wk "Recent files")
+    "f u" '(sudo-edit-find-file :wk "Sudo find file")
+    "f U" '(sudo-edit :wk "Sudo edit this file"))
 #+end_src
 
 *** Help
@@ -1025,7 +1040,7 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
    "h m" '(describe-mode :wk "Describe mode")
    "h v" '(describe-variable :wk "Describe variable")
    "h x" '(describe-command :wk "Describe command")
-   "h t" '(load-theme :wk "Load theme")
+   "h t" '(consult-theme :wk "Consult-theme")
    "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
 #+end_src
 

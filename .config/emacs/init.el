@@ -562,6 +562,15 @@
   "b p" '(previous-buffer :wk "Previous buffer")
   "b r" '(revert-buffer :wk "Revert buffer"))
 
+;; Consult
+(gato/leader-keys
+  "c" '(:ignore t :wk "Consult")
+  "c f" '(consult-fd :wk "Find files with 'fd' in DIR")
+  "c g" '(consult-grep :wk "Find files with 'grep' in DIR")
+  "c h" '(consult-outline :wk "Jump to outline heading")
+  "c l" '(consult-line :wk "Find matching line")
+  "c o" '(consult-org-heading :wk "Jump to Org heading"))
+
 (general-define-key
   :states 'normal
   "] c" '(diff-hl-next-hunk :wk "Next diff hunk")
@@ -621,13 +630,13 @@
   "SPC" '(execute-extended-command :wk "Execute extended command"))
 
 ;; Find files
-(gato/leader-keys
-  "." '(find-file :wk "Find file")
-  "f" '(:ignore t :wk "Find")
-  "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Emacs configuration")
-  "f r" '(recentf :wk "Recent files")
-  "f u" '(sudo-edit-find-file :wk "Sudo find file")
-  "f U" '(sudo-edit :wk "Sudo edit this file"))
+  (gato/leader-keys
+    "." '(find-file :wk "Find file")
+    "f" '(:ignore t :wk "Find")
+    "f c" '((lambda () (interactive) (find-file "~/.config/emacs/README.org")) :wk "Emacs configuration")
+    "f r" '(recentf :wk "Recent files")
+    "f u" '(sudo-edit-find-file :wk "Sudo find file")
+    "f U" '(sudo-edit :wk "Sudo edit this file"))
 
 ;; Help functions
 (gato/leader-keys
@@ -638,7 +647,7 @@
  "h m" '(describe-mode :wk "Describe mode")
  "h v" '(describe-variable :wk "Describe variable")
  "h x" '(describe-command :wk "Describe command")
- "h t" '(load-theme :wk "Load theme")
+ "h t" '(consult-theme :wk "Consult-theme")
  "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
 
 (general-define-key
