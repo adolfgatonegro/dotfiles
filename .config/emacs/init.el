@@ -289,14 +289,14 @@
 ;;
 ;; Define default, variable pitch, and fixed pitch fonts.
 (set-face-attribute 'default nil
-  :font "monospace"
+  :family "monospace"
   :height 90)
 (set-face-attribute 'variable-pitch nil
-  :font "ETbb"
+  :family "ETbb"
   :height 1.25
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
-  :font "monospace"
+  :family "monospace"
   :height 1.0)
 
 ;; Display commented text and keywords in italics, requires a font with italics support.
