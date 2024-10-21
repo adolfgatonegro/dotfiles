@@ -68,9 +68,11 @@ Configuring Emacs is, essentially, an exercise in restraint. Because it is endle
 3. *Neovim -* My preferred tool, one I am significantly more familiar and comfortable with. Trying to turn Emacs into Neovim seems silly; I already have a Neovim configuration, and it does everything I need. My Emacs configuration should be its own thing, /an Emacs thing/, that works in Emacs ways. There is probably an exception to be made here regarding modal editing and Vim motions, because Vim brain is a thing.
 
 * The early initialisation of Emacs - =early-init.el=
+:PROPERTIES:
+:header-args: :tangle early-init.el
+:END:
 
 ** =early-init.el= header
-#+PROPERTY: header-args :tangle "early-init.el"
 
 Because we are doing things the "Emacs way", we begin by following convention, and having a nice header in our =early-init.el= file. We will also have a footer once we're done.
 
@@ -173,7 +175,10 @@ That's all for the early initialisation. Now we can finish with the footer:
 #+end_src
 
 * Emacs configuration
-#+PROPERTY: header-args :tangle "init.el"
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
+
 With the =early-init.el= taken care of, we can begin configuring Emacs itself.
 
 ** =init.el= header

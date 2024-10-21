@@ -28,6 +28,8 @@
 (setq read-process-output-max (* 1024 1024 4))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 
+(setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
+
 ;;; Minimal UI
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -36,9 +38,11 @@
 (pixel-scroll-precision-mode 1) ;; Enable smooth scrolling
 
 (setq inhibit-startup-echo-area-message (user-login-name)) ;; Silence startup message
+(advice-add #'display-startup-echo-area-message :override #'ignore)
 
 (setq inhibit-splash-screen t
       use-file-dialog nil
+      use-dialog-box nil
       tab-bar-new-button-show nil
       tab-bar-close-button-show nil
       tab-line-close-button-show nil)
