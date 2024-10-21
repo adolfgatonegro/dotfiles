@@ -650,7 +650,7 @@
     "t" '(:ignore t :wk "Toggle")
     "t h" '(hl-line-mode :wk "Line highlight")
     "t l" '(display-line-numbers-mode :wk "Line numbers")
-    "t o" '(visual-line-mode :wk "Olivetti")
+    "t o" '(olivetti-mode :wk "Olivetti")
     "t t" '(visual-line-mode :wk "Truncated lines"))
     ;; "t v" '(vterm-toggle :wk "Vterm"))
 
