@@ -190,6 +190,10 @@
                      `(lambda (c)
                     (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
+(use-package project
+  :ensure nil
+  :defer t)
+
 ;;; Emacs window management
 (use-package window
   :ensure nil
@@ -361,19 +365,17 @@
   (setq initial-buffer-choice 'dashboard-open
         dashboard-set-heading-icons t
         dashboard-set-file-icons t
+        dashboard-icon-type 'nerd-icons
         dashboard-banner-logo-title "«Objects such as corpses, painful to view in themselves, can become delightful to contemplate.»"
         ;;dashboard-startup-banner 'logo ;; use standard emacs logo as banner
         dashboard-startup-banner (concat user-emacs-directory "themes/gatonegro.png")
-        dashboard-projects-backend 'projectile
+        dashboard-projects-backend 'project-el
         dashboard-center-content t ;; set to 't' for centered content
         dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
                           (projects . 3)
                           (registers . 3)))
-  :custom
-  (dashboard-modify-heading-icons '((recents . "file-text")
-                                    (bookmarks . "book")))
   :config
   (dashboard-setup-startup-hook))
 
@@ -650,6 +652,11 @@
  "h t" '(consult-theme :wk "Consult-theme")
  "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
 
+;; Magit
+(gato/leader-keys
+ "g" '(:ignore t :wk "Magit")
+ "g s" '(magit-status :wk "Status"))
+
 (general-define-key
   :states 'normal
   :keymaps 'nov-mode-map
@@ -726,6 +733,15 @@
                                   (unknown . "?")
                                   (ignored . "i"))))
 
+;; Transient - Install updated version needed by Magit
+(use-package transient
+  :defer t)
+
+;; Magit - Git client for Emacs
+(use-package magit
+  :after transient
+  :defer t)
+
 (use-package nov
   :defer t
 
@@ -741,11 +757,6 @@
 
   :config
   (setq olivetti-body-width 82))
-
-(use-package projectile
-  :defer t
-  :hook
-  (elpaca-after-init . projectile-mode))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters

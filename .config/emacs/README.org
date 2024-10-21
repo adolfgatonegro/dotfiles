@@ -22,6 +22,7 @@
   - [[#emacs-itself][Emacs itself]]
   - [[#dired][Dired]]
   - [[#electric][Electric]]
+  - [[#projectel][Project.el]]
   - [[#window-management][Window management]]
 - [[#org-mode][Org mode]]
   - [[#org-settings][Org settings]]
@@ -412,6 +413,14 @@ TODO: move org-src indent to its proper location.
                     (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 #+end_src
 
+** Project.el
+
+#+begin_src emacs-lisp
+(use-package project
+  :ensure nil
+  :defer t)
+#+end_src
+
 ** Window management
 
 Some window management tweaks (no, not that kind), based on [[https://github.com/LionyxML/emacs-kick][emacs-kick]].
@@ -660,19 +669,17 @@ Entirely unnecessary, but it looks good.
   (setq initial-buffer-choice 'dashboard-open
         dashboard-set-heading-icons t
         dashboard-set-file-icons t
+        dashboard-icon-type 'nerd-icons
         dashboard-banner-logo-title "«Objects such as corpses, painful to view in themselves, can become delightful to contemplate.»"
         ;;dashboard-startup-banner 'logo ;; use standard emacs logo as banner
         dashboard-startup-banner (concat user-emacs-directory "themes/gatonegro.png")
-        dashboard-projects-backend 'projectile
+        dashboard-projects-backend 'project-el
         dashboard-center-content t ;; set to 't' for centered content
         dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
                           (projects . 3)
                           (registers . 3)))
-  :custom
-  (dashboard-modify-heading-icons '((recents . "file-text")
-                                    (bookmarks . "book")))
   :config
   (dashboard-setup-startup-hook))
 #+end_src
@@ -1044,6 +1051,15 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
    "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
 #+end_src
 
+*** Magit
+
+#+begin_src emacs-lisp
+;; Magit
+(gato/leader-keys
+ "g" '(:ignore t :wk "Magit")
+ "g s" '(magit-status :wk "Status"))
+#+end_src
+
 *** Nov.el
 
 #+begin_src emacs-lisp
@@ -1152,6 +1168,21 @@ Here we have a section for random small tools, that do not merit their own separ
                                   (ignored . "i"))))
 #+end_src
 
+*** Magit
+
+The Emacs git client. [[*Magit][Magit keybindings]].
+
+#+begin_src emacs-lisp
+;; Transient - Install updated version needed by Magit
+(use-package transient
+  :defer t)
+
+;; Magit - Git client for Emacs
+(use-package magit
+  :after transient
+  :defer t)
+#+end_src
+
 *** Nov.el
 
 Major mode for reading EPUB documents. [[*Nov.el][Nov.el keybindings]].
@@ -1178,15 +1209,6 @@ A distraction-free writing environment. [[*Toggles][Olivetti keybindings]].
 
   :config
   (setq olivetti-body-width 82))
-#+end_src
-
-*** Projectile
-
-#+begin_src emacs-lisp
-(use-package projectile
-  :defer t
-  :hook
-  (elpaca-after-init . projectile-mode))
 #+end_src
 
 *** Rainbow delimiters
