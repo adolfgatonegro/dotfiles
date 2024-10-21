@@ -34,7 +34,7 @@
   - [[#dired-enhancements][Dired enhancements]]
   - [[#evil-mode][Evil mode]]
   - [[#general---keybindings][General - Keybindings]]
-  - [[#various-tools][Various tools]]
+  - [[#tools][Tools]]
   - [[#which-key][Which-Key]]
   - [[#turn-me-off-later][Turn me off later!]]
 - [[#lsp][LSP]]
@@ -361,12 +361,13 @@ defaults, because the... /default/ defaults are not exactly sane.
 
   ;; Disable line numbers and hl-line mode in certain contexts.
   (dolist (mode
-           '(org-mode-hook
-             term-mode-hook
-             shell-mode-hook
+           '(dashboard-mode-hook
              eshell-mode-hook
-             dashboard-mode-hook
              markdown-mode-hook
+             nov-mode-hook
+             org-mode-hook
+             shell-mode-hook
+             term-mode-hook
              typst-ts-mode-hook))
     (add-hook mode (lambda () (hl-line-mode 0)))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -453,6 +454,9 @@ Some window management tweaks (no, not that kind), based on [[https://github.com
 #+end_src
 
 * Org mode
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
 
 Org seems to be /massive/. We're not going to be doing much with it at
 this point, because I don't quite understand what is going on there.
@@ -543,6 +547,9 @@ Use UTF-8 characters to display bullets in Org, instead of the default asterisks
 #+end_src
 
 * Third-party packages
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
 
 Don't overdo it, though.
 
@@ -566,12 +573,12 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
   :font "monospace"
   :height 90)
 (set-face-attribute 'variable-pitch nil
-  :font "sans-serif"
-  :height 90
+  :font "ETbb"
+  :height 1.25
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :font "monospace"
-  :height 90)
+  :height 1.0)
 
 ;; Display commented text and keywords in italics, requires a font with italics support.
 (set-face-attribute 'font-lock-comment-face nil
@@ -580,7 +587,7 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
   :slant 'italic)
 
 ;; Adjust line spacing.
-(setq-default line-spacing 0.15)
+(setq-default line-spacing 0.25)
 #+end_src
 
 *** Nerd Icons
@@ -919,14 +926,6 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
     "b r" '(revert-buffer :wk "Revert buffer"))
 #+end_src
 
-*** Extended command (=M-x=)
-
-#+begin_src emacs-lisp
-  ;; Extended command
-  (gato/leader-keys
-    "SPC" '(execute-extended-command :wk "Execute extended command"))
-#+end_src
-
 *** Dired
 
 #+begin_src emacs-lisp
@@ -984,6 +983,14 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
   "e r" '(eval-region :wk "Evaluate Elisp in region"))
 #+end_src
 
+*** Extended command (=M-x=)
+
+#+begin_src emacs-lisp
+  ;; Extended command
+  (gato/leader-keys
+    "SPC" '(execute-extended-command :wk "Execute extended command"))
+#+end_src
+
 *** Find files
 
 #+begin_src emacs-lisp
@@ -1011,6 +1018,20 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
    "h x" '(describe-command :wk "Describe command")
    "h t" '(load-theme :wk "Load theme")
    "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
+#+end_src
+
+*** Nov.el
+
+#+begin_src emacs-lisp
+  (general-define-key
+    :states 'normal
+    :keymaps 'nov-mode-map
+    "J" 'nov-scroll-up
+    "K" 'nov-scroll-down
+    "t" 'nov-goto-toc
+    "H" 'nov-previous-document
+    "L" 'nov-next-document)
+
 #+end_src
 
 *** Toggles
@@ -1082,9 +1103,37 @@ Compile, watch, and preview compiled =typst= documents.
 ) ;; end of general.el keybindings
 #+end_src
 
-** Various tools
+** Tools
 
 Here we have a section for random small tools, that do not merit their own separate category.
+
+*** Nov.el
+
+
+
+#+begin_src emacs-lisp
+(use-package nov
+  :defer t
+
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+  :config
+  (setq nov-text-width t)
+  (add-hook 'nov-mode-hook 'olivetti-mode))
+#+end_src
+
+*** Olivetti
+
+A distraction-free writing environment.
+
+#+begin_src emacs-lisp
+(use-package olivetti
+  :defer t
+
+  :config
+  (setq olivetti-body-width 82))
+#+end_src
 
 *** Projectile
 
@@ -1131,18 +1180,6 @@ Edit files with =sudo= privileges.
   :defer t)
 #+end_src
 
-*** Olivetti
-
-A distraction-free writing environment.
-
-#+begin_src emacs-lisp
-(use-package olivetti
-  :defer t
-
-  :config
-  (setq olivetti-body-width 82))
-#+end_src
-
 ** Which-Key
 
 =which-key= is an essetial tool for discoverability. So much so that
@@ -1184,6 +1221,9 @@ quickly, I think.
 #+end_src
 
 * LSP
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
 
 ** Flycheck
 
@@ -1263,6 +1303,10 @@ quickly, I think.
 #+end_src
 
 * Language support
+:PROPERTIES:
+:header-args: :tangle init.el
+:END:
+
 ** Markdown
 
 #+begin_src emacs-lisp

@@ -154,12 +154,13 @@
 
   ;; Disable line numbers and hl-line mode in certain contexts.
   (dolist (mode
-           '(org-mode-hook
-             term-mode-hook
-             shell-mode-hook
+           '(dashboard-mode-hook
              eshell-mode-hook
-             dashboard-mode-hook
              markdown-mode-hook
+             nov-mode-hook
+             org-mode-hook
+             shell-mode-hook
+             term-mode-hook
              typst-ts-mode-hook))
     (add-hook mode (lambda () (hl-line-mode 0)))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -291,12 +292,12 @@
   :font "monospace"
   :height 90)
 (set-face-attribute 'variable-pitch nil
-  :font "sans-serif"
-  :height 90
+  :font "ETbb"
+  :height 1.25
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :font "monospace"
-  :height 90)
+  :height 1.0)
 
 ;; Display commented text and keywords in italics, requires a font with italics support.
 (set-face-attribute 'font-lock-comment-face nil
@@ -305,7 +306,7 @@
   :slant 'italic)
 
 ;; Adjust line spacing.
-(setq-default line-spacing 0.15)
+(setq-default line-spacing 0.25)
 
 ;;; Icons
 ;;
@@ -561,10 +562,6 @@
   "b p" '(previous-buffer :wk "Previous buffer")
   "b r" '(revert-buffer :wk "Revert buffer"))
 
-;; Extended command
-(gato/leader-keys
-  "SPC" '(execute-extended-command :wk "Execute extended command"))
-
 ;; Dired
 (gato/leader-keys
   "d" '(:ignore t :wk "Dired")
@@ -614,6 +611,10 @@
   "e l" '(eval-last-sexp :wk "Evaluate Elisp expression before point")
   "e r" '(eval-region :wk "Evaluate Elisp in region"))
 
+;; Extended command
+(gato/leader-keys
+  "SPC" '(execute-extended-command :wk "Execute extended command"))
+
 ;; Find files
 (gato/leader-keys
   "." '(find-file :wk "Find file")
@@ -634,6 +635,15 @@
  "h x" '(describe-command :wk "Describe command")
  "h t" '(load-theme :wk "Load theme")
  "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
+
+(general-define-key
+  :states 'normal
+  :keymaps 'nov-mode-map
+  "J" 'nov-scroll-up
+  "K" 'nov-scroll-down
+  "t" 'nov-goto-toc
+  "H" 'nov-previous-document
+  "L" 'nov-next-document)
 
 ;; Toggle
   (gato/leader-keys
@@ -686,6 +696,22 @@
 
 ) ;; end of general.el keybindings
 
+(use-package nov
+  :defer t
+
+  :init
+  (add-to-list 'auto-mode-alist '("\\.epub\\'" . nov-mode))
+
+  :config
+  (setq nov-text-width t)
+  (add-hook 'nov-mode-hook 'olivetti-mode))
+
+(use-package olivetti
+  :defer t
+
+  :config
+  (setq olivetti-body-width 82))
+
 (use-package projectile
   :defer t
   :hook
@@ -706,12 +732,6 @@
 ;; Sudo-edit
 (use-package sudo-edit
   :defer t)
-
-(use-package olivetti
-  :defer t
-
-  :config
-  (setq olivetti-body-width 82))
 
 ;; Which-Key - So many keys
 (use-package which-key
