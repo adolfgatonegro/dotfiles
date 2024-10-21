@@ -214,7 +214,7 @@
   ;; Hide commands in M-x which don't work in the current mode.
   (setq read-extended-command-predicate #'command-completion-default-include-p))
 
-  ;; Disable line numbers in certain contexts.
+  ;; Disable line numbers and hl-line mode in certain contexts.
   (dolist (mode
            '(org-mode-hook
              term-mode-hook
@@ -222,11 +222,8 @@
              eshell-mode-hook
              dashboard-mode-hook
              typst-ts-mode-hook))
-    (add-hook mode (lambda () (hl-line-mode 0))))
-
-  ;; Highlight current line in certain modes
-  ;(let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
-  ;  (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
+    (add-hook mode (lambda () (hl-line-mode 0)))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 ;;; Dired configuration
 (use-package dired
@@ -427,12 +424,12 @@
         dashboard-banner-logo-title "«Objects such as corpses, painful to view in themselves, can become delightful to contemplate.»"
         ;;dashboard-startup-banner 'logo ;; use standard emacs logo as banner
         dashboard-startup-banner (concat user-emacs-directory "themes/gatonegro.png")
-        ;;dashboard-projects-backend 'projectile
+        dashboard-projects-backend 'projectile
         dashboard-center-content t ;; set to 't' for centered content
         dashboard-items '((recents . 5)
                           (agenda . 5 )
                           (bookmarks . 3)
-                          ;;(projects . 3)
+                          (projects . 3)
                           (registers . 3)))
   :custom
   (dashboard-modify-heading-icons '((recents . "file-text")
@@ -720,6 +717,14 @@
   :states '(visual)
   "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
 
+(gato/leader-keys
+  :keymaps 'typst-ts-mode-map
+  "p" '(:ignore t :wk "Typst")
+  "p c" '(typst-ts-compile :wk "Compile")
+  "p w" '(typst-ts-watch-mode :wk "Watch")
+  "p o" '(typst-ts-mode-preview :wk "Open compiled document")
+  "p p" '(typst-ts-compile-and-preview :wk "Compile and preview"))
+
 ;; Windows
 (gato/leader-keys
   "w" '(:ignore t :wk "Windows")
@@ -741,6 +746,11 @@
   ;;"w L" '(buf-move-right :wk "Buffer move right"))
 
 ) ;; end of general.el keybindings
+
+(use-package projectile
+  :defer t
+  :hook
+  (elpaca-after-init . projectile-mode))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
@@ -781,6 +791,101 @@
 
 ;; Show the help buffer after startup
 ;;(add-hook 'elpaca-after-init-hook 'help-quick)
+
+;; Flycheck
+(use-package flycheck
+  :defer t
+  :init (global-flycheck-mode))
+
+;; Treesit-auto
+(use-package treesit-auto
+  :after emacs
+  :custom
+  (treesit-auto-install 'prompt)
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
+  (global-treesit-auto-mode t))
+
+;;; LSP-mode
+(use-package lsp-mode
+  :defer t
+  :hook (
+         (bash-ts-mode . lsp)  ;; Bash
+         (lua-mode . lsp)      ;; Lua
+         (python-mode . lsp)   ;; Python
+         (typst-ts-mode . lsp) ;; Typst
+         (lsp-mode . lsp-enable-which-key-integration)) ;; Integrate with Which Key
+  :commands lsp
+  :custom
+  (lsp-keymap-prefix "C-c l")                           ;; Set the prefix for LSP commands.
+  (lsp-inlay-hint-enable t)                             ;; Enable inlay hints.
+  (lsp-completion-provider :none)                       ;; Disable the default completion provider.
+  (lsp-session-file (locate-user-emacs-file ".lsp-session")) ;; Specify session file location.
+  (lsp-log-io nil)                                      ;; Disable IO logging for speed.
+  (lsp-idle-delay 0)                                    ;; Set the delay for LSP to 0 (debouncing).
+  (lsp-keep-workspace-alive nil)                        ;; Disable keeping the workspace alive.
+  ;; Core settings
+  (lsp-enable-xref t)                                   ;; Enable cross-references.
+  (lsp-auto-configure t)                                ;; Automatically configure LSP.
+  (lsp-enable-links nil)                                ;; Disable links.
+  (lsp-eldoc-enable-hover t)                            ;; Enable ElDoc hover.
+  (lsp-enable-file-watchers nil)                        ;; Disable file watchers.
+  (lsp-enable-folding nil)                              ;; Disable folding.
+  (lsp-enable-imenu t)                                  ;; Enable Imenu support.
+  (lsp-enable-indentation nil)                          ;; Disable indentation.
+  (lsp-enable-on-type-formatting nil)                   ;; Disable on-type formatting.
+  (lsp-enable-suggest-server-download t)                ;; Enable server download suggestion.
+  (lsp-enable-symbol-highlighting t)                    ;; Enable symbol highlighting.
+  (lsp-enable-text-document-color nil)                  ;; Disable text document color.
+  ;; Modeline settings
+  (lsp-modeline-code-actions-enable nil)                ;; Keep modeline clean.
+  (lsp-modeline-diagnostics-enable nil)                 ;; Use `flycheck' instead.
+  (lsp-modeline-workspace-status-enable t)              ;; Display "LSP" in the modeline when enabled.
+  (lsp-signature-doc-lines 1)                           ;; Limit echo area to one line.
+  (lsp-eldoc-render-all nil)                            ;; Render all ElDoc messages.
+  ;; Completion settings
+  (lsp-completion-enable t)                             ;; Enable completion.
+  (lsp-completion-enable-additional-text-edit t)        ;; Enable additional text edits for completions.
+  (lsp-enable-snippet nil)                              ;; Disable snippets
+  (lsp-completion-show-kind t)                          ;; Show kind in completions.
+  ;; Headerline settings
+  (lsp-headerline-breadcrumb-enable nil)                ;; Enable symbol numbers in the headerline.
+  (lsp-headerline-breadcrumb-enable-symbol-numbers nil) ;; Enable symbol numbers in the headerline.
+  (lsp-headerline-arrow "▶")                            ;; Set arrow for headerline.
+  (lsp-headerline-breadcrumb-enable-diagnostics nil)    ;; Disable diagnostics in headerline.
+  (lsp-headerline-breadcrumb-icons-enable nil)          ;; Disable icons in breadcrumb.
+  ;; Semantic settings
+  (lsp-semantic-tokens-enable nil))                     ;; Disable semantic tokens.
+
+;; Markdown
+(use-package markdown-mode
+  :defer t
+  :init (setq markdown-command "multimarkdown"))
+
+;; Lua
+(use-package lua-mode
+  :defer t)
+
+;; Typst support
+(use-package typst-ts-mode
+  :defer t
+  :ensure (:type git :host codeberg :repo "meow_king/typst-ts-mode"
+                 :files (:defaults "*.el"))
+  :custom
+  (typst-ts-watch-options "--open")
+  (typst-ts-mode-grammar-location (expand-file-name "tree-sitter/libtree-sitter-typst.so" user-emacs-directory))
+  (typst-ts-mode-enable-raw-blocks-highlight t)
+
+  ;; Register `tinymist' as the Typst language server
+  :config
+  (with-eval-after-load 'lsp-mode
+    (add-to-list 'lsp-language-id-configuration
+                 '(typst-ts-mode . "typst"))
+
+    (lsp-register-client
+     (make-lsp-client :new-connection (lsp-stdio-connection "tinymist")
+                      :activation-fn (lsp-activate-on "typst")
+                      :server-id 'tinymist))))
 
 (provide 'init)
 
