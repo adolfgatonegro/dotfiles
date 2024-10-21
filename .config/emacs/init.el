@@ -221,6 +221,7 @@
              shell-mode-hook
              eshell-mode-hook
              dashboard-mode-hook
+             markdown-mode-hook
              typst-ts-mode-hook))
     (add-hook mode (lambda () (hl-line-mode 0)))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -697,25 +698,25 @@
  "h r" '((lambda () (interactive) (load-file user-init-file)) :wk "Reload Emacs config"))
 
 ;; Toggle
-(gato/leader-keys
-  "t" '(:ignore t :wk "Toggle")
-  ;;"t c" '(visual-line-fill-column-mode :wk "Toggle fill column")
-  "t h" '(hl-line-mode :wk "Toggle line highlight")
-  "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-  "t t" '(visual-line-mode :wk "Toggle truncated lines")
-  "t v" '(vterm-toggle :wk "Toggle vterm"))
+  (gato/leader-keys
+    "t" '(:ignore t :wk "Toggle")
+    "t h" '(hl-line-mode :wk "Line highlight")
+    "t l" '(display-line-numbers-mode :wk "Line numbers")
+    "t o" '(visual-line-mode :wk "Olivetti")
+    "t t" '(visual-line-mode :wk "Truncated lines"))
+    ;; "t v" '(vterm-toggle :wk "Vterm"))
 
-;; Toggle comments in normal and visual mode.
-(general-define-key
-  :states '(normal)
-  "g c c" '((lambda () (interactive)
-      (comment-or-uncomment-region
-        (line-beginning-position) (line-end-position)))
-        :wk "Toggle comment"))
+  ;; Toggle comments in normal and visual mode.
+  (general-define-key
+    :states '(normal)
+    "g c c" '((lambda () (interactive)
+        (comment-or-uncomment-region
+          (line-beginning-position) (line-end-position)))
+          :wk "Toggle comment"))
 
-(general-define-key
-  :states '(visual)
-  "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
+  (general-define-key
+    :states '(visual)
+    "g c" '(comment-or-uncomment-region :wk "Toggle comment"))
 
 (gato/leader-keys
   :keymaps 'typst-ts-mode-map
@@ -767,6 +768,12 @@
 ;; Sudo-edit
 (use-package sudo-edit
   :defer t)
+
+(use-package olivetti
+  :defer t
+
+  :config
+  (setq olivetti-body-width 82))
 
 ;; Which-Key - So many keys
 (use-package which-key

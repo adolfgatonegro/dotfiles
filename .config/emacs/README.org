@@ -361,6 +361,7 @@ defaults, because the... /default/ defaults are not exactly sane.
              shell-mode-hook
              eshell-mode-hook
              dashboard-mode-hook
+             markdown-mode-hook
              typst-ts-mode-hook))
     (add-hook mode (lambda () (hl-line-mode 0)))
     (add-hook mode (lambda () (display-line-numbers-mode 0))))
@@ -1010,14 +1011,14 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
 *** Toggles
 
 #+begin_src emacs-lisp
-  ;; Toggle
+;; Toggle
   (gato/leader-keys
     "t" '(:ignore t :wk "Toggle")
-    ;;"t c" '(visual-line-fill-column-mode :wk "Toggle fill column")
-    "t h" '(hl-line-mode :wk "Toggle line highlight")
-    "t l" '(display-line-numbers-mode :wk "Toggle line numbers")
-    "t t" '(visual-line-mode :wk "Toggle truncated lines")
-    "t v" '(vterm-toggle :wk "Toggle vterm"))
+    "t h" '(hl-line-mode :wk "Line highlight")
+    "t l" '(display-line-numbers-mode :wk "Line numbers")
+    "t o" '(visual-line-mode :wk "Olivetti")
+    "t t" '(visual-line-mode :wk "Truncated lines"))
+    ;; "t v" '(vterm-toggle :wk "Vterm"))
 
   ;; Toggle comments in normal and visual mode.
   (general-define-key
@@ -1123,6 +1124,18 @@ Edit files with =sudo= privileges.
 ;; Sudo-edit
 (use-package sudo-edit
   :defer t)
+#+end_src
+
+*** Olivetti
+
+A distraction-free writing environment.
+
+#+begin_src emacs-lisp
+(use-package olivetti
+  :defer t
+
+  :config
+  (setq olivetti-body-width 82))
 #+end_src
 
 ** Which-Key
