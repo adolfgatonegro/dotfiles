@@ -375,7 +375,7 @@ defaults, because the... /default/ defaults are not exactly sane.
 
 ** Dired
 
-Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again.
+Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again. [[*Dired enhancements][Dired enhancements]], [[*Dired][Dired keybindings]].
 
 #+begin_src emacs-lisp
 ;;; Dired configuration
@@ -1031,7 +1031,6 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
     "t" 'nov-goto-toc
     "H" 'nov-previous-document
     "L" 'nov-next-document)
-
 #+end_src
 
 *** Toggles
@@ -1109,7 +1108,7 @@ Here we have a section for random small tools, that do not merit their own separ
 
 *** Nov.el
 
-Major mode for reading EPUB documents.
+Major mode for reading EPUB documents. [[*Nov.el][Nov.el keybindings]].
 
 #+begin_src emacs-lisp
 (use-package nov
@@ -1125,7 +1124,7 @@ Major mode for reading EPUB documents.
 
 *** Olivetti
 
-A distraction-free writing environment.
+A distraction-free writing environment. [[*Toggles][Olivetti keybindings]].
 
 #+begin_src emacs-lisp
 (use-package olivetti
@@ -1170,9 +1169,7 @@ Colorise colour names and codes in buffers.
 
 *** Sudo-Edit
 
-Edit files with =sudo= privileges. 
-
-[[*Find files][sudo-edit key bindings]]
+Edit files with =sudo= privileges. [[*Find files][Sudo-edit keybindings]]
 
 #+begin_src emacs-lisp
 ;; Sudo-edit
@@ -1322,7 +1319,7 @@ Because I am not /super/ familiar with the default Emacs bindings just yet, we e
 
 ** Typst
 
-Add full support for =typst=, including syntax highlighting and lsp functionality.
+Add full support for =typst=, including syntax highlighting and lsp functionality. [[*Typst][Typst keybindings]].
 
 Requires:
 
