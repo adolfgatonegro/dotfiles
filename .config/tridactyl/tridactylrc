@@ -68,7 +68,7 @@ set searchurls.g https://google.com/search?hl=en&&udm=14&q=%s
 set searchurls.gb https://google.com/search?tbm=bks&q=%s
 set searchurls.gh https://github.com/search?utf8=✓&q=%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
-set searchurls.lg https://libgen.lol/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
+set searchurls.lg https://libgen.st/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.r https://old.reddit.com/r/%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
