@@ -1073,6 +1073,22 @@ There is no denying that the default Emacs keybindings are... /sub-optimal/, if 
     "L" 'nov-next-document)
 #+end_src
 
+*** pdf-tools
+
+#+begin_src emacs-lisp
+(general-define-key
+  :states 'normal
+  :keymaps 'pdf-view-mode-map
+  "j" 'pdf-view-next-line-or-next-page
+  "k" 'pdf-view-previous-line-or-previous-page
+  "r" 'pdf-view-themed-minor-mode
+  "g g" 'pdf-view-first-page
+  "G" 'pdf-view-last-page
+  "g p" 'pdf-view-goto-page
+  "=" 'pdf-view-enlarge
+  "-" 'pdf-view-shrink)
+#+end_src
+
 *** Toggles
 
 #+begin_src emacs-lisp
@@ -1209,6 +1225,29 @@ A distraction-free writing environment. [[*Toggles][Olivetti keybindings]].
 
   :config
   (setq olivetti-body-width 82))
+#+end_src
+
+*** pdf-tools
+
+=pdf-tools= improves support of PDF files in Emacs using =poppler= instead of the native ~ghostscript~-based built-in DocView mode. It adds annotations, as well. [[*pdf-tools][pdf-tools keybindings]].
+
+There is one problem, however — =pdf-tools= still lacks some basic stuff, like continuous page scrolling. The author/maintainer does not seem to be spending much time on it lately, and a [[https://github.com/vedang/pdf-tools/pull/224][PR adding "pdf roll"]] has been sitting on the GitHub repo, collecting dust, for over a year. I definitely want this feature, so we're installing the "pdf-roll" branch from this fork, instead of the regular release of =pdf-tools=. If/when the PR is merged and the official package updated, we will switch back to the official version.
+
+#+begin_src emacs-lisp
+(use-package pdf-tools
+  :defer t
+  :ensure (:type git :host github :repo "aikrahguzar/pdf-tools"
+                 :branch "upstream-pdf-roll")
+  :commands (pdf-loader-installer)
+  :mode "\\.pdf\\'"
+  :init (pdf-loader-install)
+  :config
+    (add-to-list 'revert-without-query ".pdf")
+     )
+
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)
+                                                         (pdf-view-themed-minor-mode t)
+                                                         (pdf-view-roll-minor-mode)))
 #+end_src
 
 *** Rainbow delimiters

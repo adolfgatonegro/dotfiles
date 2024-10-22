@@ -666,6 +666,18 @@
   "H" 'nov-previous-document
   "L" 'nov-next-document)
 
+(general-define-key
+  :states 'normal
+  :keymaps 'pdf-view-mode-map
+  "j" 'pdf-view-next-line-or-next-page
+  "k" 'pdf-view-previous-line-or-previous-page
+  "r" 'pdf-view-themed-minor-mode
+  "g g" 'pdf-view-first-page
+  "G" 'pdf-view-last-page
+  "g p" 'pdf-view-goto-page
+  "=" 'pdf-view-enlarge
+  "-" 'pdf-view-shrink)
+
 ;; Toggle
   (gato/leader-keys
     "t" '(:ignore t :wk "Toggle")
@@ -757,6 +769,21 @@
 
   :config
   (setq olivetti-body-width 82))
+
+(use-package pdf-tools
+  :defer t
+  :ensure (:type git :host github :repo "aikrahguzar/pdf-tools"
+                 :branch "upstream-pdf-roll")
+  :commands (pdf-loader-installer)
+  :mode "\\.pdf\\'"
+  :init (pdf-loader-install)
+  :config
+    (add-to-list 'revert-without-query ".pdf")
+     )
+
+(add-hook 'pdf-view-mode-hook #'(lambda () (interactive) (display-line-numbers-mode -1)
+                                                         (pdf-view-themed-minor-mode t)
+                                                         (pdf-view-roll-minor-mode)))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
