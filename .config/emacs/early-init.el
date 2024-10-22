@@ -23,6 +23,39 @@
           (lambda ()
             (setq gc-cons-threshold gato-gc-cons-threshold)))
 
+;; Prefer loading newer compiled files
+(setq load-prefer-newer t)
+
+;; Font compacting can be very resource-intensive, especially when rendering
+;; icon fonts on Windows. This will increase memory usage.
+(setq inhibit-compacting-font-caches t)
+
+(unless (daemonp)
+  (let ((old-value (default-toplevel-value 'file-name-handler-alist)))
+    (set-default-toplevel-value
+     'file-name-handler-alist
+     ;; Determine the state of bundled libraries using calc-loaddefs.el.
+     ;; If compressed, retain the gzip handler in `file-name-handler-alist`.
+     ;; If compiled or neither, omit the gzip handler during startup for
+     ;; improved startup and package load time.
+     (if (eval-when-compile
+           (locate-file-internal "calc-loaddefs.el" load-path))
+         nil
+       (list (rassq 'jka-compr-handler old-value))))
+    ;; Ensure the new value persists through any current let-binding.
+    (set-default-toplevel-value 'file-name-handler-alist
+                                file-name-handler-alist)
+    ;; Remember the old value to reset it as needed.
+    (add-hook 'elpaca-after-init-startup-hook
+              (lambda ()
+                (set-default-toplevel-value
+                 'file-name-handler-alist
+                 ;; Merge instead of overwrite to preserve any changes made
+                 ;; since startup.
+                 (delete-dups (append file-name-handler-alist old-value))))
+              101))
+        (setq command-line-x-option-alist nil))
+
 ;; Native compilation and Byte compilation
 (if (and (featurep 'native-compile)
          (fboundp 'native-comp-available-p)
@@ -36,7 +69,6 @@
 
 (setq byte-compile-warnings '(not obsolete))
 (setq native-comp-async-report-warnings-errors 'silent)
-(setq read-process-output-max (* 1024 1024 4))
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 
 (setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
