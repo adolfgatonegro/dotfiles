@@ -23,6 +23,17 @@
           (lambda ()
             (setq gc-cons-threshold gato-gc-cons-threshold)))
 
+;; Native compilation and Byte compilation
+(if (and (featurep 'native-compile)
+         (fboundp 'native-comp-available-p)
+         (native-comp-available-p))
+    ;; Activate `native-compile'
+    (setq native-comp-jit-compilation t
+          native-comp-deferred-compilation t  ; Obsolete since Emacs 29.1
+          package-native-compile t)
+  ;; Deactivate the `native-compile' feature if it is not available
+  (setq features (delq 'native-compile features)))
+
 (setq byte-compile-warnings '(not obsolete))
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq read-process-output-max (* 1024 1024 4))
@@ -54,6 +65,8 @@
                             (horizontal-scroll-bars . nil)
                             (background-color . "#1a1a26")
                             (ns-appearance . dark)
+                            (alpha . 100)
+                            (alpha-background . 90)
                             (ns-transparent-titlebar . t)))
 
 (provide 'early-init)

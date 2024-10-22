@@ -144,11 +144,6 @@
   ;; Vim brain.
   (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
-  ;; Less noise when compiling elisp.
-  (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
-  (setq native-comp-async-report-warnings-errors nil)
-  (setq load-prefer-newer t)
-
   ;; Hide commands in M-x which don't work in the current mode.
   (setq read-extended-command-predicate #'command-completion-default-include-p))
 
@@ -513,7 +508,7 @@
         evil-split-window-below t
         evil-respect-visual-line-mode t
         evil-want-Y-yank-to-eol t
-        evil-undo-system 'undo-redo)
+        evil-undo-system 'undo-fu)
 
   ;; Unbind SPC and TAB so we can use them elsewhere.
   (with-eval-after-load 'evil-maps
@@ -800,6 +795,10 @@
 ;; Sudo-edit
 (use-package sudo-edit
   :defer t)
+
+(use-package undo-fu
+  :defer t
+  :after emacs)
 
 ;; Which-Key - So many keys
 (use-package which-key
