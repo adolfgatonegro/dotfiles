@@ -128,6 +128,12 @@
   (enable-recursive-minibuffers t)                ; Use the minibuffer whilst in the minibuffer.
   (tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent.
 
+  ;; Display a counter showing the number of the current and the other
+  ;; matches.  Place it before the prompt, though it can be after it.
+  (setq isearch-lazy-count t)
+  (setq lazy-count-prefix-format "(%s/%s) ")
+  (setq lazy-count-suffix-format nil)
+
   (keymap-set minibuffer-mode-map "TAB" 'minibuffer-complete) ; TAB acts more like how it does in the shell.
 
   :config
