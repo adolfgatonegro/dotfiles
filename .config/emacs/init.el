@@ -616,6 +616,7 @@
   "m" 'dired-mark
   "t" 'dired-toggle-marks
   "u" 'dired-unmark
+  "o" 'dired-open-xdg
   "p" 'dired-preview-mode
   "v" 'dired-view-file
   "C" 'dired-do-copy
