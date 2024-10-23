@@ -380,6 +380,19 @@
   :config
   (dashboard-setup-startup-hook))
 
+(use-package spacious-padding
+  :defer t
+  :config
+    (setq spacious-padding-widths
+      '( :internal-border-width 15
+         :header-line-width 4
+         :mode-line-width 0
+         :tab-width 4
+         :right-divider-width 15
+         :scroll-bar-width 4))
+  :hook
+   (elpaca-after-init . spacious-padding-mode))
+
 ;;; Completions framework
 ;;
 ;; Vertico
