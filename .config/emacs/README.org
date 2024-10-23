@@ -545,7 +545,7 @@ First, Org mode itself.
   (customize-set-variable 'org-mouse-1-follows-link t)
 
   ;; Styling, hide markup, etc. (recommended by org-modern)
-  (setq org-hide-emphasis-markers t
+  (setq org-hide-emphasis-markers nil
 	      org-src-fontify-natively t ;; fontify source blocks natively
 	      org-highlight-latex-and-related '(native) ;; fontify latex blocks natively
 	      org-pretty-entities t)
