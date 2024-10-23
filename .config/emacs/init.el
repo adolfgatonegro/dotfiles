@@ -840,9 +840,6 @@
   :hook
   (elpaca-after-init . which-key-mode))
 
-;; Show the help buffer after startup
-;;(add-hook 'elpaca-after-init-hook 'help-quick)
-
 ;; Flycheck
 (use-package flycheck
   :defer t

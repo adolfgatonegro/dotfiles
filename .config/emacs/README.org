@@ -37,7 +37,6 @@
   - [[#general---keybindings][General - Keybindings]]
   - [[#tools][Tools]]
   - [[#which-key][Which-Key]]
-  - [[#turn-me-off-later][Turn me off later!]]
 - [[#lsp][LSP]]
   - [[#flycheck][Flycheck]]
   - [[#treesit-auto][Treesit-auto]]
@@ -1384,15 +1383,6 @@ Simple, stable linear undo with redo for Emacs.
 
   :hook
   (elpaca-after-init . which-key-mode))
-#+end_src
-
-** Turn me off later!
-
-Because I am not /super/ familiar with the default Emacs bindings just yet, we enable =help-quick= on load. This will be switched off rather quickly, I think.
-
-#+begin_src emacs-lisp
-;; Show the help buffer after startup
-;;(add-hook 'elpaca-after-init-hook 'help-quick)
 #+end_src
 
 * LSP
