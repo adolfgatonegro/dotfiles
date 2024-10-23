@@ -934,7 +934,7 @@ For my own sanity, get some Vim motions going here.
         evil-split-window-below t
         evil-respect-visual-line-mode t
         evil-want-Y-yank-to-eol t
-        evil-undo-system 'undo-fu)
+        evil-undo-system 'undo-tree)
 
   ;; Unbind SPC and TAB so we can use them elsewhere.
   (with-eval-after-load 'evil-maps
@@ -1353,14 +1353,24 @@ Edit files with =sudo= privileges. [[*Find files][Sudo-edit keybindings]]
   :defer t)
 #+end_src
 
-*** Undo-fu
+*** Undo-tree
 
-Simple, stable linear undo with redo for Emacs.
+Don't particularly care about the tree, but persistent undo history is nice.
 
 #+begin_src emacs-lisp
-(use-package undo-fu
+(use-package undo-tree
   :defer t
-  :after emacs)
+  :hook
+  (elpaca-after-init . global-undo-tree-mode)
+  :init
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-visualizer-diff t
+        ;; Increase undo limits to avoid losing history due to Emacs' garbage collection.
+        undo-limit 800000                     ;; Limit for undo entries.
+        undo-strong-limit 12000000            ;; Strong limit for undo entries.
+        undo-outer-limit 120000000)           ;; Outer limit for undo entries.
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.config/emacs/.cache/undo"))))
 #+end_src
 
 ** Which-Key

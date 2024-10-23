@@ -532,7 +532,7 @@
         evil-split-window-below t
         evil-respect-visual-line-mode t
         evil-want-Y-yank-to-eol t
-        evil-undo-system 'undo-fu)
+        evil-undo-system 'undo-tree)
 
   ;; Unbind SPC and TAB so we can use them elsewhere.
   (with-eval-after-load 'evil-maps
@@ -820,9 +820,19 @@
 (use-package sudo-edit
   :defer t)
 
-(use-package undo-fu
+(use-package undo-tree
   :defer t
-  :after emacs)
+  :hook
+  (elpaca-after-init . global-undo-tree-mode)
+  :init
+  (setq undo-tree-visualizer-timestamps t
+        undo-tree-visualizer-diff t
+        ;; Increase undo limits to avoid losing history due to Emacs' garbage collection.
+        undo-limit 800000                     ;; Limit for undo entries.
+        undo-strong-limit 12000000            ;; Strong limit for undo entries.
+        undo-outer-limit 120000000)           ;; Outer limit for undo entries.
+  :config
+  (setq undo-tree-history-directory-alist '(("." . "~/.config/emacs/.cache/undo"))))
 
 ;; Which-Key - So many keys
 (use-package which-key
