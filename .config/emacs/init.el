@@ -169,12 +169,17 @@
 ;;; Dired configuration
 (use-package dired
   :ensure nil
-  :custom
-  (dired-listing-switches "-oah --group-directories-first") ;; Display files in a human-readable format and group directories first.
-  (dired-dwim-target t) ;; Enable "do what I mean" for target directories.
-  (dired-guess-shell-alist-user
-   '((".*" "open" "xdg-open"))) ;; Use xdg-open to open everything.
-  (dired-kill-when-opening-new-dired-buffer t)) ;; Close the previous buffer when opening a new `dired' instance.
+  :config
+  (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
+        dired-dwim-target t
+        dired-guess-shell-alist-user '((".*" "open" "xdg-open"))
+        dired-kill-when-opening-new-dired-buffer t
+        dired-auto-revert-buffer #'dired-directory-changed-p
+        dired-make-directory-clickable t
+        dired-mouse-drag-files t)
+
+  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
+  (add-hook 'dired-mode-hook #'hl-line-mode))
 
 ;;; Electric
 (use-package electric
