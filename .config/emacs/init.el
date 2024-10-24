@@ -241,34 +241,38 @@
   :ensure nil
   :defer t
   :init
-  ;; Edit settings (recommended by org-modern)
+  ;; Edit settings
   (setq org-auto-align-tags nil
-	      org-tags-column 0
-	      org-catch-invisible-edits 'show-and-error
-	      org-special-ctrl-a/e t ;; special navigation behaviour in headlines
-	      org-insert-heading-respect-content t)
+	    org-tags-column 0
+	    org-catch-invisible-edits 'show-and-error
+	    org-special-ctrl-a/e t ;; special navigation behaviour in headlines
+	    org-insert-heading-respect-content t
+
+        ;; Styling, hide markup, etc.
+        org-startup-indented nil
+        org-pretty-entities t
+        org-use-sub-superscripts "{}"
+        org-hide-emphasis-markers nil
+        org-startup-with-inline-images t
+        org-image-actual-width '(300)
+        org-src-fontify-natively t
+        org-highlight-latex-and-related '(native)
+
+        ;; Agenda styling
+        org-agenda-tags-column 0
+	    org-agenda-block-separator ?─
+	    org-agenda-time-grid
+	    '((daily today require-timed)
+	      (800 1000 1200 1400 1600 1800 2000)
+	      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+	    org-agenda-current-time-string
+	    "⭠ now ─────────────────────────────────────────────────")
+
+  (setq org-ellipsis " ")
 
   ;;; Return or left-click with mouse follows link
   (customize-set-variable 'org-return-follows-link t)
-  (customize-set-variable 'org-mouse-1-follows-link t)
-
-  ;; Styling, hide markup, etc. (recommended by org-modern)
-  (setq org-hide-emphasis-markers nil
-	      org-src-fontify-natively t ;; fontify source blocks natively
-	      org-highlight-latex-and-related '(native) ;; fontify latex blocks natively
-	      org-pretty-entities t)
-
-  ;; Agenda styling (recommended by org-modern)
-  (setq org-agenda-tags-column 0
-	      org-agenda-block-separator ?─
-	      org-agenda-time-grid
-	      '((daily today require-timed)
-	        (800 1000 1200 1400 1600 1800 2000)
-	        " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
-	      org-agenda-current-time-string
-	      "⭠ now ─────────────────────────────────────────────────")
-
-  (setq org-ellipsis " "))
+  (customize-set-variable 'org-mouse-1-follows-link t))
 
 ;; org-tempo
 (use-package org-tempo
@@ -287,12 +291,17 @@
   :commands toc-org-enable
   :init (add-hook 'org-mode-hook 'toc-org-enable))
 
-;; org-bullets
-(add-hook 'org-mode-hook 'org-indent-mode)
-(use-package org-bullets
-  :after org)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+;;; org-modern
+(use-package org-modern
+  :defer t
+  :hook
+  (org-mode . global-org-modern-mode)
+  :custom
+  (org-modern-keyword nil)
+  (org-modern-checkbox nil)
+  (org-modern-table nil))
 
+;; org-tree-slide
 (use-package org-tree-slide
   :defer t)
 
@@ -303,10 +312,10 @@
 ;; Define default, variable pitch, and fixed pitch fonts.
 (set-face-attribute 'default nil
   :family "monospace"
-  :height 90)
+  :height 100)
 (set-face-attribute 'variable-pitch nil
   :family "ETbb"
-  :height 1.25
+  :height 1.5
   :weight 'medium)
 (set-face-attribute 'fixed-pitch nil
   :family "monospace"
@@ -319,7 +328,7 @@
   :slant 'italic)
 
 ;; Adjust line spacing.
-(setq-default line-spacing 0.25)
+(setq-default line-spacing 0.35)
 
 ;;; Icons
 ;;
@@ -387,19 +396,6 @@
                           (registers . 3)))
   :config
   (dashboard-setup-startup-hook))
-
-(use-package spacious-padding
-  :defer t
-  :config
-    (setq spacious-padding-widths
-      '( :internal-border-width 15
-         :header-line-width 4
-         :mode-line-width 0
-         :tab-width 4
-         :right-divider-width 15
-         :scroll-bar-width 4))
-  :hook
-   (elpaca-after-init . spacious-padding-mode))
 
 ;;; Completions framework
 ;;
