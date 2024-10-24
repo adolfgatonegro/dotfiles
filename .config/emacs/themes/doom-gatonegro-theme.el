@@ -122,7 +122,7 @@
    (vc-deleted     red)
 
    ;; custom categories
-   (hidden     `(,(car bg) "black" "black"))
+   (hidden     (car bg))
    (-modeline-bright doom-gatonegro-brighter-modeline)
    (-modeline-pad
     (when doom-gatonegro-padded-modeline
