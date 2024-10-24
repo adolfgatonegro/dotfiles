@@ -30,6 +30,7 @@
   - [[#toc-org][toc-org]]
   - [[#org-modern][org-modern]]
   - [[#org-tree-slide][org-tree-slide]]
+  - [[#ox-typst][ox-typst]]
 - [[#third-party-packages][Third-party packages]]
   - [[#appearance][Appearance]]
   - [[#completions-framework][Completions framework]]
@@ -619,6 +620,18 @@ Generate tables of contents inside Org documents.
 ;; org-tree-slide
 (use-package org-tree-slide
   :defer t)
+#+end_src
+
+** TODO ox-typst
+
+Org mode to Typst exporter, very early in development. [[https://github.com/jmpunkt/ox-typst][jmpunkt/ox-typst]]
+
+#+begin_src emacs-lisp :tangle no
+;; ox-typst
+(use-package ox-typst
+  :defer t
+  :after org
+  :ensure (ox-typst :host github :repo "jmpunkt/ox-typst"))
 #+end_src
 
 * Third-party packages
@@ -1546,7 +1559,6 @@ Support enabled by following this:
 
 - ~lsp-mode~: adding a new language
    https://emacs-lsp.github.io/lsp-mode/page/adding-new-language/
-
 
 #+begin_src emacs-lisp
 ;; Typst support
