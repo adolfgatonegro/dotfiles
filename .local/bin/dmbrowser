@@ -35,7 +35,7 @@ declare -a options=(
 	" Search - Brave"
 	"󰇥 Search - DuckDuckGo"
 	"󰊭 Search - Google"
-	" Search - Wikipedia"
+	"󰖬 Search - Wikipedia"
 	"󰗃 Search - YouTube"
 	"󰈆 Exit"
 )
