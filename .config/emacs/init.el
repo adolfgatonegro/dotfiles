@@ -252,7 +252,7 @@
         org-startup-indented nil
         org-pretty-entities t
         org-use-sub-superscripts "{}"
-        org-hide-emphasis-markers nil
+        org-hide-emphasis-markers t
         org-startup-with-inline-images t
         org-image-actual-width '(300)
         org-src-fontify-natively t
@@ -273,6 +273,16 @@
   ;;; Return or left-click with mouse follows link
   (customize-set-variable 'org-return-follows-link t)
   (customize-set-variable 'org-mouse-1-follows-link t))
+
+(use-package org-appear
+  :defer t
+  :after org
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autosubmarkers t
+        org-appear-autolinks t)
+  :hook
+  (org-mode . org-appear-mode))
 
 ;; org-tempo
 (use-package org-tempo

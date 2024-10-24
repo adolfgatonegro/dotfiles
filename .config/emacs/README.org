@@ -26,6 +26,7 @@
   - [[#window-management][Window management]]
 - [[#org-mode][Org mode]]
   - [[#org-settings][Org settings]]
+  - [[#org-appear][org-appear]]
   - [[#org-tempo][org-tempo]]
   - [[#toc-org][toc-org]]
   - [[#org-modern][org-modern]]
@@ -546,7 +547,7 @@ First, Org mode itself.
         org-startup-indented nil
         org-pretty-entities t
         org-use-sub-superscripts "{}"
-        org-hide-emphasis-markers nil
+        org-hide-emphasis-markers t
         org-startup-with-inline-images t
         org-image-actual-width '(300)
         org-src-fontify-natively t
@@ -567,6 +568,20 @@ First, Org mode itself.
   ;;; Return or left-click with mouse follows link
   (customize-set-variable 'org-return-follows-link t)
   (customize-set-variable 'org-mouse-1-follows-link t))
+#+end_src
+
+** org-appear
+
+#+begin_src emacs-lisp
+(use-package org-appear
+  :defer t
+  :after org
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autosubmarkers t
+        org-appear-autolinks t)
+  :hook
+  (org-mode . org-appear-mode))
 #+end_src
 
 ** org-tempo
