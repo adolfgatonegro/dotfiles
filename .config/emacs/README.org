@@ -200,18 +200,6 @@ We want a keyboard-driven environment, and for that we do not need any of these 
 
 #+begin_src emacs-lisp
 ;; Default frame configuration
-
-;; Add frame borders and window dividers (from org-modern)
-(modify-all-frames-parameters
- '((right-divider-width . 20)
-   (internal-border-width . 20)))
-(dolist (face '(window-divider
-                window-divider-first-pixel
-                window-divider-last-pixel))
-  (face-spec-reset-face face)
-  (set-face-foreground face (face-attribute 'default :background)))
-(set-face-background 'fringe (face-attribute 'default :background))
-
 (setq frame-resize-pixelwise t)
 (setq default-frame-alist '((fullscreen . maximized)
                             (vertical-scroll-bars . nil)
@@ -669,7 +657,7 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
 ;; Define default, variable pitch, and fixed pitch fonts.
 (set-face-attribute 'default nil
   :family "monospace"
-  :height 100)
+  :height 90)
 (set-face-attribute 'variable-pitch nil
   :family "ETbb"
   :height 1.5
@@ -771,6 +759,25 @@ Entirely unnecessary, but it looks good.
                           (registers . 3)))
   :config
   (dashboard-setup-startup-hook))
+#+end_src
+
+*** Spacious-padding
+
+The lack of padding around the buffers is 1) baffling; and 2) rather annoying. This here is a bit of a hack, from what I can gather, but it is better than having text running into the edge of the frame.
+
+#+begin_src emacs-lisp
+(use-package spacious-padding
+  :defer t
+  :config
+    (setq spacious-padding-widths
+      '( :internal-border-width 20
+         :header-line-width 4
+         :mode-line-width 0
+         :tab-width 4
+         :right-divider-width 15
+         :scroll-bar-width 4))
+  :hook
+   (elpaca-after-init . spacious-padding-mode))
 #+end_src
 
 ** Completions framework
