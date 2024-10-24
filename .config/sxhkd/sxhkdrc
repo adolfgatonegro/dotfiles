@@ -16,7 +16,7 @@ super + s ; {k,u,p,l}
     {books,dmunicode,dmdisplay,linkhandler}
 
 # power menu
-super + x
+super + shift + x
 	dmsys
 
 # browser menu
@@ -49,28 +49,14 @@ super + shift +F8
 super + t
     st
 
-# browser
-super + b
-    librewolf
+# key chord launch applications
+# books, unicode, multi-monitor
+super + x ; {b,d,f,n,v}
+    {librewolf,discord,st -e yazi,obsidian,st -e nvim}
 
-# discord
-super + d
-	discord
-
-# text editor
-super + {e,shift + e}
-	{st -e nvim,emacsclient -c -a emacs}
-
-# file manager
-super + f
-	st -e yazi
-
-super + shift + f
-	emacsclient -c -a emacs --eval "(dired nil)"
-
-# notes
-super + n
-	obsidian
+# key chord emacs
+super + e ; {e,d}
+    emacsclient -c -a emacs{ , --eval "(dired nil)"}
 
 # }}
 
