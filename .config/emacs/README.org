@@ -29,7 +29,6 @@
   - [[#org-tempo][org-tempo]]
   - [[#toc-org][toc-org]]
   - [[#org-modern][org-modern]]
-  - [[#org-bullets][org-bullets]]
   - [[#org-tree-slide][org-tree-slide]]
 - [[#third-party-packages][Third-party packages]]
   - [[#appearance][Appearance]]
@@ -610,18 +609,8 @@ Generate tables of contents inside Org documents.
   :custom
   (org-modern-keyword nil)
   (org-modern-checkbox nil)
-  (org-modern-table nil))
-#+end_src
-** org-bullets
-
-Use UTF-8 characters to display bullets in Org, instead of the default asterisks.
-
-#+begin_src emacs-lisp :tangle no
-;; org-bullets
-(add-hook 'org-mode-hook 'org-indent-mode)
-(use-package org-bullets
-  :after org)
-(add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+  (org-modern-table nil)
+  (org-modern-star 'replace))
 #+end_src
 
 ** org-tree-slide
@@ -674,6 +663,15 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
 
 ;; Adjust line spacing.
 (setq-default line-spacing 0.35)
+
+;; Org mode title heights
+;; (custom-set-faces
+;;   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+;;   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
+;;   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+;;   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+;;   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+;; )
 #+end_src
 
 *** Nerd Icons

@@ -299,7 +299,8 @@
   :custom
   (org-modern-keyword nil)
   (org-modern-checkbox nil)
-  (org-modern-table nil))
+  (org-modern-table nil)
+  (org-modern-star 'replace))
 
 ;; org-tree-slide
 (use-package org-tree-slide
@@ -329,6 +330,15 @@
 
 ;; Adjust line spacing.
 (setq-default line-spacing 0.35)
+
+;; Org mode title heights
+;; (custom-set-faces
+;;   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
+;;   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
+;;   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
+;;   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+;;   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+;; )
 
 ;;; Icons
 ;;
