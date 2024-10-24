@@ -293,6 +293,9 @@
   :after org)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
 
+(use-package org-tree-slide
+  :defer t)
+
 ;;; Third-party packages
 
 ;;; Fonts

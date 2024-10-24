@@ -29,6 +29,7 @@
   - [[#org-tempo][org-tempo]]
   - [[#toc-org][toc-org]]
   - [[#org-bullets][org-bullets]]
+  - [[#org-tree-slide][org-tree-slide]]
 - [[#third-party-packages][Third-party packages]]
   - [[#appearance][Appearance]]
   - [[#completions-framework][Completions framework]]
@@ -603,6 +604,13 @@ Use UTF-8 characters to display bullets in Org, instead of the default asterisks
 (use-package org-bullets
   :after org)
 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))
+#+end_src
+
+** org-tree-slide
+
+#+begin_src emacs-lisp
+(use-package org-tree-slide
+  :defer t)
 #+end_src
 
 * Third-party packages
