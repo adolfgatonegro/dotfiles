@@ -641,6 +641,7 @@
 
 (general-define-key
   :states 'normal
+  :keymaps 'override
   :keymaps 'dired-mode-map
   "M-RET" 'dired-display-file
   "h" 'dired-up-directory
