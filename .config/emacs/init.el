@@ -172,7 +172,7 @@
   :config
   (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
         dired-dwim-target t
-        dired-guess-shell-alist-user '((".*" "open" "xdg-open"))
+        dired-guess-shell-alist-user '((".*" "xdg-open"))
         dired-kill-when-opening-new-dired-buffer t
         dired-auto-revert-buffer #'dired-directory-changed-p
         dired-make-directory-clickable t
