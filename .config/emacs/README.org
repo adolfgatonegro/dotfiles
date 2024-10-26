@@ -740,14 +740,18 @@ It's Tokyo Night with custom colours, what else would it be?
 ;; doom-themes
 (use-package doom-themes
   :config
+  ;; Global settings
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-gatonegro t)
-
+  ;; doom-themes tweaks
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+
+  ;; Load a theme
+  (load-theme 'doom-gatonegro t))
 
 ;; doom-modeline
+;; NOTE: Install `extra/ttf-nerd-fonts-symbols-mono', otherwise icon spacing is broken
 (use-package doom-modeline
   :defer t
   :config

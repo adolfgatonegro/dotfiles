@@ -385,6 +385,7 @@
   (doom-themes-org-config))
 
 ;; doom-modeline
+;; NOTE: Install `extra/ttf-nerd-fonts-symbols-mono', otherwise icon spacing is broken
 (use-package doom-modeline
   :defer t
   :config
