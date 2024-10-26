@@ -42,7 +42,7 @@ determine the exact padding."
   "A vibrant, neon colored theme."
 
   ;; name        default   256       16
-  ((bg         '("#16161c" "#16161c" nil           ))
+  ((bg         '("#111117" "#111117" nil           ))
    (bg-alt     '("#1a1a26" "#1a1a26" nil           ))
    (base0      '("#1a1a30" "#1a1a30" "black"       ))
    (base1      '("#1a1a40" "#1a1a40" "brightblack" ))
@@ -53,7 +53,7 @@ determine the exact padding."
    (base6      '("#5a5a90" "#5a5a90" "brightblack" ))
    (base7      '("#4a4a88" "#4a4a88" "brightblack" ))
    (base8      '("#8181bb" "#8181bb" "white"       ))
-   (fg-alt     '("#7979bb" "#7979bb" "white"       ))
+   (fg-alt     '("#9999d0" "#9999d0" "white"       ))
    (fg         '("#d1d1f1" "#d1d1f1" "brightwhite" ))
 
    (grey       '("#545a90" "#545a90" "gray"          ))

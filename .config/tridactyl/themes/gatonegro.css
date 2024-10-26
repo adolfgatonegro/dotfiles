@@ -9,7 +9,7 @@
     --tridactyl-cmplt-border-top: 1px solid var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-fg: #a1b1d1;
     --tridactyl-firefox-2021-redesign-background: #111117;
-    --tridactyl-header-first-bg: #16161e;
+    --tridactyl-header-first-bg: #111117;
     --tridactyl-header-second-bg: var(--tridactyl-header-first-bg);
     --tridactyl-header-third-bg: var(--tridactyl-header-first-bg);
     --tridactyl-highlight-box-bg: var( --tridactyl-photon-colours-in-content-box-background);

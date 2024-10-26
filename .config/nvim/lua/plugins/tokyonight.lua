@@ -12,7 +12,8 @@ return {
 		},
 		on_colors = function(colors)
 			colors.fg = "#c1c1d1"
-			colors.bg = "#1a1a26"
+			-- colors.bg = "#111117"
+			colors.bg = "#16161c"
 			colors.blue = "#0077ff"
 			colors.cyan = "#00ffe0"
 			colors.green = "#aaee00"
