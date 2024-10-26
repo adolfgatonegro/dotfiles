@@ -1,0 +1,31 @@
+#!/bin/sh
+
+# Try to start the emacsclient and edit the file(s) passed as arguments
+# If emacs daemon is not running: start it, create a frame
+# If daemon but no frame: create a frame
+# If daemon with frame: focus that frame
+
+get_emacs_daemon_state () {
+    emacs_get_state_script='(if (> (length (frame-list)) 1) "daemon-with-frame" "daemon-no-frame")'
+    emacsclient -e "$emacs_get_state_script" -a "echo no-daemon" 2>/dev/null |
+        tr -d \" | cut -d' ' -f1
+}
+
+state=$(get_emacs_daemon_state)
+create_frame_arg=""
+
+if [[ $state = no-daemon ]]; then
+    emacs --daemon
+fi
+if [[ $state != daemon-with-frame ]]; then
+    create_frame_arg="--create-frame"
+fi
+
+client="emacsclient --no-wait $create_frame_arg"
+if [[ $# -gt 0 ]]; then
+    # open files passed as arguments
+    $client "$@"
+else
+    # if no file passed, just focus the frame
+    $client --eval "(select-frame-set-input-focus (selected-frame))" >/dev/null
+fi
