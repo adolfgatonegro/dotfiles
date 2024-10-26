@@ -205,7 +205,7 @@ We want a keyboard-driven environment, and for that we do not need any of these 
 (setq default-frame-alist '((fullscreen . maximized)
                             (vertical-scroll-bars . nil)
                             (horizontal-scroll-bars . nil)
-                            (background-color . "#1a1a26")
+                            (background-color . "#16161c")
                             (ns-appearance . dark)
                             (alpha . 100)
                             (alpha-background . 100)
@@ -674,7 +674,7 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
 ;; Define default, variable pitch, and fixed pitch fonts.
 (set-face-attribute 'default nil
   :family "monospace"
-  :height 90)
+  :height 100)
 (set-face-attribute 'variable-pitch nil
   :family "ETbb"
   :height 1.5

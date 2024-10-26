@@ -95,7 +95,7 @@
 (setq default-frame-alist '((fullscreen . maximized)
                             (vertical-scroll-bars . nil)
                             (horizontal-scroll-bars . nil)
-                            (background-color . "#1a1a26")
+                            (background-color . "#16161c")
                             (ns-appearance . dark)
                             (alpha . 100)
                             (alpha-background . 100)

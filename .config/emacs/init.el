@@ -323,7 +323,7 @@
 ;; Define default, variable pitch, and fixed pitch fonts.
 (set-face-attribute 'default nil
   :family "monospace"
-  :height 90)
+  :height 100)
 (set-face-attribute 'variable-pitch nil
   :family "ETbb"
   :height 1.5
@@ -377,12 +377,15 @@
 ;; doom-themes
 (use-package doom-themes
   :config
+  ;; Global settings
   (setq doom-themes-enable-bold t
         doom-themes-enable-italic t)
-  (load-theme 'doom-gatonegro t)
-
+  ;; doom-themes tweaks
   (doom-themes-visual-bell-config)
-  (doom-themes-org-config))
+  (doom-themes-org-config)
+
+  ;; Load a theme
+  (load-theme 'doom-gatonegro t))
 
 ;; doom-modeline
 ;; NOTE: Install `extra/ttf-nerd-fonts-symbols-mono', otherwise icon spacing is broken
