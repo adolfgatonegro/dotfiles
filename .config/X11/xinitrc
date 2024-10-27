@@ -27,7 +27,7 @@ jamesdsp --tray &
 redshift -l $(cat $XDG_CONFIG_HOME/latlong) &
 setwall $HOME/pictures/wallpapers &
 xss-lock -- slock &
-canberra-gtk-play -f $XDG_CONFIG_HOME/startup.ogg &
+mpv --no-video --no-keep-open $XDG_CONFIG_HOME/startup.ogg &
 emacs --daemon &
 
 # dwm
