@@ -55,8 +55,8 @@ super + x ; {b,d,f,n,v}
     {librewolf,discord,st -e yazi,obsidian,st -e nvim}
 
 # key chord emacs
-super + e ; {e,d}
-    emacsclient -c -a emacs{ , --eval "(dired nil)"}
+super + e ; {e,d,s}
+    emacsclient -c -a emacs{ , --eval "(dired nil)", --eval "(eshell)"}
 
 # }}
 
