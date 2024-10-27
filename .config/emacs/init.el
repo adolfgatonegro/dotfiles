@@ -589,6 +589,11 @@
   :custom
   (evil-collection-want-find-usages-bindings t)
 
+  :config
+  ;; bind `xdg-open' in dired
+  (evil-define-key nil 'dired-mode-map
+    (kbd "o") 'dired-open-xdg)
+
   :hook
   (evil-mode . evil-collection-init))
 
