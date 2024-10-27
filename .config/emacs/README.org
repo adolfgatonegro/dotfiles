@@ -208,7 +208,7 @@ We want a keyboard-driven environment, and for that we do not need any of these 
                             (background-color . "#16161c")
                             (ns-appearance . dark)
                             (alpha . 100)
-                            (alpha-background . 100)
+                            (alpha-background . 90)
                             (ns-transparent-titlebar . t)))
 #+end_src
 
@@ -797,6 +797,7 @@ The lack of padding around the buffers is 1) baffling; and 2) rather annoying. T
 
 #+begin_src emacs-lisp
 (use-package spacious-padding
+  :disabled t
   :defer t
   :config
     (setq spacious-padding-widths
@@ -1551,7 +1552,9 @@ Don't particularly care about the tree, but persistent undo history is nice.
 ;; Markdown
 (use-package markdown-mode
   :defer t
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "pandoc"
+              markdown-header-scaling t
+              markdown-hide-markup t))
 #+end_src
 
 ** Lua

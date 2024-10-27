@@ -422,6 +422,7 @@
   (dashboard-setup-startup-hook))
 
 (use-package spacious-padding
+  :disabled t
   :defer t
   :config
     (setq spacious-padding-widths
@@ -960,7 +961,9 @@
 ;; Markdown
 (use-package markdown-mode
   :defer t
-  :init (setq markdown-command "multimarkdown"))
+  :init (setq markdown-command "pandoc"
+              markdown-header-scaling t
+              markdown-hide-markup t))
 
 ;; Lua
 (use-package lua-mode

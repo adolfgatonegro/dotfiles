@@ -98,7 +98,7 @@
                             (background-color . "#16161c")
                             (ns-appearance . dark)
                             (alpha . 100)
-                            (alpha-background . 100)
+                            (alpha-background . 90)
                             (ns-transparent-titlebar . t)))
 
 (provide 'early-init)
