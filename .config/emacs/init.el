@@ -807,6 +807,15 @@
                                   (unknown . "?")
                                   (ignored . "i"))))
 
+(use-package jinx
+  :defer t
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :config
+  (setq jinx-languages "en_GB es fr it")
+  :hook
+  (elpaca-after-init . global-jinx-mode))
+
 ;; Transient - Install updated version needed by Magit
 (use-package transient
   :defer t)

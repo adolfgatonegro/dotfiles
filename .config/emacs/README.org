@@ -1317,6 +1317,21 @@ Here we have a section for random small tools, that do not merit their own separ
                                   (ignored . "i"))))
 #+end_src
 
+*** Jinx
+
+A fast JIT spell-checker for Emacs.
+
+#+begin_src emacs-lisp
+(use-package jinx
+  :defer t
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages))
+  :config
+  (setq jinx-languages "en_GB es fr it")
+  :hook
+  (elpaca-after-init . global-jinx-mode))
+#+end_src
+
 *** Magit
 
 The Emacs git client. [[*Magit][Magit keybindings]].
