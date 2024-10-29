@@ -169,6 +169,7 @@
 ;;; Dired configuration
 (use-package dired
   :ensure nil
+  :defines dired-mode-map
   :config
   (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
         dired-dwim-target t
@@ -177,9 +178,14 @@
         dired-auto-revert-buffer #'dired-directory-changed-p
         dired-make-directory-clickable t
         dired-mouse-drag-files t)
-
-  (add-hook 'dired-mode-hook #'dired-hide-details-mode)
-  (add-hook 'dired-mode-hook #'hl-line-mode))
+  :init
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (dired-hide-details-mode)
+              (hl-line-mode)
+              (auto-revert-mode)
+              (setq-default auto-revert-interval 1)
+              (auto-revert-set-timer))))
 
 ;;; Electric
 (use-package electric
@@ -405,6 +411,7 @@
   :defer t
   :init
   (setq initial-buffer-choice 'dashboard-open
+        dashboard-path-style 'truncate-middle
         dashboard-set-heading-icons t
         dashboard-set-file-icons t
         dashboard-icon-type 'nerd-icons
@@ -588,11 +595,6 @@
 
   :custom
   (evil-collection-want-find-usages-bindings t)
-
-  :config
-  ;; bind `xdg-open' in dired
-  (evil-define-key nil 'dired-mode-map
-    (kbd "o") 'dired-open-xdg)
 
   :hook
   (evil-mode . evil-collection-init))
