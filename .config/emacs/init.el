@@ -654,6 +654,7 @@
 (general-define-key
   :states 'normal
   :keymaps 'dired-mode-map
+  "C-c o" 'dired-open-xdg
   "M-RET" 'dired-display-file
   "h" 'dired-up-directory
   "l" 'dired-open-file
