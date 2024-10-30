@@ -271,13 +271,21 @@
 ;;; org-modern
 (use-package org-modern
   :defer t
-  :hook
-  (org-mode . global-org-modern-mode)
+  :config
+  (setq org-modern-fold-stars '(("󰬪" . "󰬦")
+                                ("󰬫" . "󰬧")
+                                ("󰅂" . "󰅀")
+                                ("󰄾" . "󰄼")
+                                ("󰶻" . "󰶹")))
   :custom
-  (org-modern-keyword nil)
+  (org-modern-hide-stars 'leading)
+  (org-modern-keyword t)
   (org-modern-checkbox nil)
   (org-modern-table nil)
-  (org-modern-star 'replace))
+  (org-modern-star 'fold)
+
+  :hook
+  (org-mode . global-org-modern-mode))
 
 ;; org-tree-slide
 (use-package org-tree-slide
