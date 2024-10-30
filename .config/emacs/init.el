@@ -202,45 +202,6 @@
                      `(lambda (c)
                     (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 
-(use-package project
-  :ensure nil
-  :defer t)
-
-;;; Emacs window management
-(use-package window
-  :ensure nil
-  :custom
-  (display-buffer-alist
-   '(
-	 ;; ("\\*.*e?shell\\*"
-     ;;  (display-buffer-in-side-window)
-     ;;  (window-height . 0.25)
-     ;;  (side . bottom)
-     ;;  (slot . -1))
-
-     ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Bookmark List\\|Ibuffer\\|Occur\\|eldoc.*\\)\\*"
-      (display-buffer-in-side-window)
-      (window-height . 0.25)
-      (side . bottom)
-      (slot . 0))
-
-     ;; Example configuration for the LSP help buffer,
-     ;; keeps it always on bottom using 25% of the available space:
-     ("\\*\\(lsp-help\\)\\*"
-      (display-buffer-in-side-window)
-      (window-height . 0.25)
-      (side . bottom)
-      (slot . 0))
-
-     ;; Configuration for displaying various diagnostic buffers on
-     ;; bottom 25%:
-     ("\\*\\(Flymake diagnostics\\|Flycheck error messages\\||xref\\|ivy\\|Swiper\\|Completions\\)"
-      (display-buffer-in-side-window)
-      (window-height . 0.25)
-      (side . bottom)
-      (slot . 1))
-   )))
-
 ;;; Org mode
 ;;
 (use-package org
@@ -322,6 +283,45 @@
 (use-package org-tree-slide
   :defer t)
 
+(use-package project
+  :ensure nil
+  :defer t)
+
+;;; Emacs window management
+(use-package window
+  :ensure nil
+  :custom
+  (display-buffer-alist
+   '(
+	 ;; ("\\*.*e?shell\\*"
+     ;;  (display-buffer-in-side-window)
+     ;;  (window-height . 0.25)
+     ;;  (side . bottom)
+     ;;  (slot . -1))
+
+     ("\\*\\(Backtrace\\|Warnings\\|Compile-Log\\|[Hh]elp\\|Messages\\|Bookmark List\\|Ibuffer\\|Occur\\|eldoc.*\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 0))
+
+     ;; Example configuration for the LSP help buffer,
+     ;; keeps it always on bottom using 25% of the available space:
+     ("\\*\\(lsp-help\\)\\*"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 0))
+
+     ;; Configuration for displaying various diagnostic buffers on
+     ;; bottom 25%:
+     ("\\*\\(Flymake diagnostics\\|Flycheck error messages\\||xref\\|ivy\\|Swiper\\|Completions\\)"
+      (display-buffer-in-side-window)
+      (window-height . 0.25)
+      (side . bottom)
+      (slot . 1))
+   )))
+
 ;;; Third-party packages
 
 ;;; Fonts
@@ -348,13 +348,13 @@
 (setq-default line-spacing 0.35)
 
 ;; Org mode title heights
-;; (custom-set-faces
-;;   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
-;;   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
-;;   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-;;   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
-;;   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
-;; )
+(custom-set-faces
+  '(org-document-title ((t (:inherit default :height 1.4))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 
 ;;; Icons
 ;;

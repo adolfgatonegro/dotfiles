@@ -22,16 +22,9 @@
   - [[#emacs-itself][Emacs itself]]
   - [[#dired][Dired]]
   - [[#electric][Electric]]
+  - [[#org][Org]]
   - [[#projectel][Project.el]]
   - [[#window-management][Window management]]
-- [[#org-mode][Org mode]]
-  - [[#org-settings][Org settings]]
-  - [[#org-appear][org-appear]]
-  - [[#org-tempo][org-tempo]]
-  - [[#toc-org][toc-org]]
-  - [[#org-modern][org-modern]]
-  - [[#org-tree-slide][org-tree-slide]]
-  - [[#ox-typst][ox-typst]]
 - [[#third-party-packages][Third-party packages]]
   - [[#appearance][Appearance]]
   - [[#completions-framework][Completions framework]]
@@ -472,6 +465,137 @@ TODO: move org-src indent to its proper location.
                     (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))
 #+end_src
 
+** Org
+
+Org seems to be /massive/. We're not going to be doing much with it at
+this point, because I don't quite understand what is going on there.
++Still, something tells me that having a separate top-level heading for
+everything Org-related is a wise idea.+
+
+*** Org settings
+
+First, Org mode itself.
+
+#+begin_src emacs-lisp
+;;; Org mode
+;;
+(use-package org
+  :ensure nil
+  :defer t
+  :init
+  ;; Edit settings
+  (setq org-auto-align-tags nil
+	    org-tags-column 0
+	    org-catch-invisible-edits 'show-and-error
+	    org-special-ctrl-a/e t ;; special navigation behaviour in headlines
+	    org-insert-heading-respect-content t
+
+        ;; Styling, hide markup, etc.
+        org-startup-indented nil
+        org-pretty-entities t
+        org-use-sub-superscripts "{}"
+        org-hide-emphasis-markers t
+        org-startup-with-inline-images t
+        org-image-actual-width '(300)
+        org-src-fontify-natively t
+        org-highlight-latex-and-related '(native)
+
+        ;; Agenda styling
+        org-agenda-tags-column 0
+	    org-agenda-block-separator ?─
+	    org-agenda-time-grid
+	    '((daily today require-timed)
+	      (800 1000 1200 1400 1600 1800 2000)
+	      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
+	    org-agenda-current-time-string
+	    "⭠ now ─────────────────────────────────────────────────")
+
+  (setq org-ellipsis " ")
+
+  ;;; Return or left-click with mouse follows link
+  (customize-set-variable 'org-return-follows-link t)
+  (customize-set-variable 'org-mouse-1-follows-link t))
+#+end_src
+
+*** org-appear
+
+#+begin_src emacs-lisp
+(use-package org-appear
+  :defer t
+  :after org
+  :config
+  (setq org-appear-autoemphasis t
+        org-appear-autosubmarkers t
+        org-appear-autolinks t)
+  :hook
+  (org-mode . org-appear-mode))
+#+end_src
+
+*** org-tempo
+
+=org-tempo= provides template expansion for Org documents. Why is it
+disabled by default? Only RMS knows.
+
+#+begin_src emacs-lisp
+;; org-tempo
+(use-package org-tempo
+  :ensure nil
+  :after org
+  :config
+   (dolist (item '(("sh" . "src sh")
+                   ("el" . "src emacs-lisp")
+                   ("lu" . "src lua")
+                   ("py" . "src python")))
+   (add-to-list 'org-structure-template-alist item)))
+#+end_src
+
+*** toc-org
+
+Generate tables of contents inside Org documents.
+
+#+begin_src emacs-lisp
+;; toc-org
+(use-package toc-org
+  :after org
+  :commands toc-org-enable
+  :init (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+*** org-modern
+
+#+begin_src emacs-lisp
+;;; org-modern
+(use-package org-modern
+  :defer t
+  :hook
+  (org-mode . global-org-modern-mode)
+  :custom
+  (org-modern-keyword nil)
+  (org-modern-checkbox nil)
+  (org-modern-table nil)
+  (org-modern-star 'replace))
+#+end_src
+
+*** org-tree-slide
+
+#+begin_src emacs-lisp
+;; org-tree-slide
+(use-package org-tree-slide
+  :defer t)
+#+end_src
+
+*** TODO ox-typst
+
+Org mode to Typst exporter, very early in development. [[https://github.com/jmpunkt/ox-typst][jmpunkt/ox-typst]]
+
+#+begin_src emacs-lisp :tangle no
+;; ox-typst
+(use-package ox-typst
+  :defer t
+  :after org
+  :ensure (ox-typst :host github :repo "jmpunkt/ox-typst"))
+#+end_src
+
 ** Project.el
 
 #+begin_src emacs-lisp
@@ -521,140 +645,6 @@ Some window management tweaks (no, not that kind), based on [[https://github.com
    )))
 #+end_src
 
-* Org mode
-:PROPERTIES:
-:header-args: :tangle init.el
-:END:
-
-Org seems to be /massive/. We're not going to be doing much with it at
-this point, because I don't quite understand what is going on there.
-Still, something tells me that having a separate top-level heading for
-everything Org-related is a wise idea.
-
-** Org settings
-
-First, Org mode itself.
-
-#+begin_src emacs-lisp
-;;; Org mode
-;;
-(use-package org
-  :ensure nil
-  :defer t
-  :init
-  ;; Edit settings
-  (setq org-auto-align-tags nil
-	    org-tags-column 0
-	    org-catch-invisible-edits 'show-and-error
-	    org-special-ctrl-a/e t ;; special navigation behaviour in headlines
-	    org-insert-heading-respect-content t
-
-        ;; Styling, hide markup, etc.
-        org-startup-indented nil
-        org-pretty-entities t
-        org-use-sub-superscripts "{}"
-        org-hide-emphasis-markers t
-        org-startup-with-inline-images t
-        org-image-actual-width '(300)
-        org-src-fontify-natively t
-        org-highlight-latex-and-related '(native)
-
-        ;; Agenda styling
-        org-agenda-tags-column 0
-	    org-agenda-block-separator ?─
-	    org-agenda-time-grid
-	    '((daily today require-timed)
-	      (800 1000 1200 1400 1600 1800 2000)
-	      " ┄┄┄┄┄ " "┄┄┄┄┄┄┄┄┄┄┄┄┄┄┄")
-	    org-agenda-current-time-string
-	    "⭠ now ─────────────────────────────────────────────────")
-
-  (setq org-ellipsis " ")
-
-  ;;; Return or left-click with mouse follows link
-  (customize-set-variable 'org-return-follows-link t)
-  (customize-set-variable 'org-mouse-1-follows-link t))
-#+end_src
-
-** org-appear
-
-#+begin_src emacs-lisp
-(use-package org-appear
-  :defer t
-  :after org
-  :config
-  (setq org-appear-autoemphasis t
-        org-appear-autosubmarkers t
-        org-appear-autolinks t)
-  :hook
-  (org-mode . org-appear-mode))
-#+end_src
-
-** org-tempo
-
-=org-tempo= provides template expansion for Org documents. Why is it
-disabled by default? Only RMS knows.
-
-#+begin_src emacs-lisp
-;; org-tempo
-(use-package org-tempo
-  :ensure nil
-  :after org
-  :config
-   (dolist (item '(("sh" . "src sh")
-                   ("el" . "src emacs-lisp")
-                   ("lu" . "src lua")
-                   ("py" . "src python")))
-   (add-to-list 'org-structure-template-alist item)))
-#+end_src
-
-** toc-org
-
-Generate tables of contents inside Org documents.
-
-#+begin_src emacs-lisp
-;; toc-org
-(use-package toc-org
-  :after org
-  :commands toc-org-enable
-  :init (add-hook 'org-mode-hook 'toc-org-enable))
-#+end_src
-
-** org-modern
-
-#+begin_src emacs-lisp
-;;; org-modern
-(use-package org-modern
-  :defer t
-  :hook
-  (org-mode . global-org-modern-mode)
-  :custom
-  (org-modern-keyword nil)
-  (org-modern-checkbox nil)
-  (org-modern-table nil)
-  (org-modern-star 'replace))
-#+end_src
-
-** org-tree-slide
-
-#+begin_src emacs-lisp
-;; org-tree-slide
-(use-package org-tree-slide
-  :defer t)
-#+end_src
-
-** TODO ox-typst
-
-Org mode to Typst exporter, very early in development. [[https://github.com/jmpunkt/ox-typst][jmpunkt/ox-typst]]
-
-#+begin_src emacs-lisp :tangle no
-;; ox-typst
-(use-package ox-typst
-  :defer t
-  :after org
-  :ensure (ox-typst :host github :repo "jmpunkt/ox-typst"))
-#+end_src
-
 * Third-party packages
 :PROPERTIES:
 :header-args: :tangle init.el
@@ -699,13 +689,13 @@ Define the default fonts we want Emacs to use, as well as some more comfortable 
 (setq-default line-spacing 0.35)
 
 ;; Org mode title heights
-;; (custom-set-faces
-;;   '(org-level-1 ((t (:inherit outline-1 :height 1.5))))
-;;   '(org-level-2 ((t (:inherit outline-2 :height 1.25))))
-;;   '(org-level-3 ((t (:inherit outline-3 :height 1.1))))
-;;   '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
-;;   '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
-;; )
+(custom-set-faces
+  '(org-document-title ((t (:inherit default :height 1.4))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
 #+end_src
 
 *** Nerd Icons
