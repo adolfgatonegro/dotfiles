@@ -56,7 +56,7 @@ case $choice in
 	" Search - Brave") search $braveSearch;;
 	"󰇥 Search - DuckDuckGo") search $ddgSearch;;
 	"󰊭 Search - Google") search $googleSearch;;
-	" Search - Wikipedia") search $wikipediaSearch;;
+	"󰖬 Search - Wikipedia") search $wikipediaSearch;;
 	"󰗃 Search - YouTube") search $youtubeSearch;;
 	"󰈆 Exit") exit 0 ;;
 	# When user input doesn't match any choice, check if it's a valid URL. If
