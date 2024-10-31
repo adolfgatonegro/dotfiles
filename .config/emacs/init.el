@@ -291,9 +291,10 @@
 (use-package org-tree-slide
   :defer t)
 
-(use-package project
-  :ensure nil
-  :defer t)
+(use-package projectile
+  :defer t
+  :hook
+  (elpaca-after-init . projectile-mode))
 
 ;;; Emacs window management
 (use-package window
@@ -426,7 +427,7 @@
         dashboard-banner-logo-title "«Objects such as corpses, painful to view in themselves, can become delightful to contemplate.»"
         ;;dashboard-startup-banner 'logo ;; use standard emacs logo as banner
         dashboard-startup-banner (concat user-emacs-directory "themes/gatonegro.png")
-        dashboard-projects-backend 'project-el
+        dashboard-projects-backend 'projectile
         dashboard-center-content t ;; set to 't' for centered content
         dashboard-items '((recents . 5)
                           (agenda . 5 )
