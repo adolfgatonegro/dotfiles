@@ -56,7 +56,7 @@ super + x ; {b,d,f,n,v}
 
 # key chord emacs
 super + e ; {e,d,s}
-    emacsclient -c -a emacs{ , --eval "(dired nil)", --eval "(eshell)"}
+    emacsclient -c -a ""{ , --eval "(dired nil)", --eval "(eshell)"}
 
 # }}
 

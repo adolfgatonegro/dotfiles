@@ -1,2 +1,9 @@
 #!/bin/sh
-exec emacsclient -r -a '' "$@"
+
+# set flags according to session type
+case $XDG_SESSION_TYPE in
+	"x11") flags="-r";;
+	*) flags="-t";;
+esac
+
+exec emacsclient $flags -a '' "$@"
