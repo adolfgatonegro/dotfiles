@@ -20,8 +20,8 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export TERM="st-256color"
 export TERMINAL="st"
-export EDITOR='nvim'
-export VISUAL='nvim'
+export EDITOR='em'
+export VISUAL='em'
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export BROWSER="librewolf"
