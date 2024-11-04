@@ -281,11 +281,11 @@
 (use-package org-modern
   :defer t
   :config
-  (setq org-modern-fold-stars '(("󰬪" . "󰬦")
-                                ("󰬫" . "󰬧")
-                                ("󰅂" . "󰅀")
-                                ("󰄾" . "󰄼")
-                                ("󰶻" . "󰶹")))
+  (setq org-modern-fold-stars '(("◉" . "○")
+                                ("●" . "○")
+                                ("●" . "○")
+                                ("●" . "○")
+                                ("●" . "○")))
   :custom
   (org-modern-hide-stars 'leading)
   (org-modern-keyword t)
@@ -367,12 +367,15 @@
 
 ;; Org mode title heights
 (custom-set-faces
-  '(org-document-title ((t (:inherit default :height 1.4))))
-  '(org-level-1 ((t (:inherit outline-1 :height 1.4))))
-  '(org-level-2 ((t (:inherit outline-2 :height 1.3))))
-  '(org-level-3 ((t (:inherit outline-3 :height 1.2))))
-  '(org-level-4 ((t (:inherit outline-4 :height 1.1))))
-  '(org-level-5 ((t (:inherit outline-5 :height 1.0)))))
+  '(org-document-title ((t (:inherit default :height 1.3))))
+  '(org-level-1 ((t (:inherit outline-1 :height 1.2))))
+  '(org-level-2 ((t (:inherit outline-2 :height 1.1))))
+  '(org-level-3 ((t (:inherit outline-3 :height 1.05))))
+  '(org-level-4 ((t (:inherit outline-4 :height 1.0))))
+  '(org-level-5 ((t (:inherit outline-5 :height 1.0))))
+  '(org-level-6 ((t (:inherit outline-5 :height 1.0))))
+  '(org-level-7 ((t (:inherit outline-5 :height 1.0))))
+  '(org-level-8 ((t (:inherit outline-5 :height 1.0)))))
 
 ;;; Icons
 ;;
