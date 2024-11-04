@@ -55,6 +55,15 @@
 ;; Always ensure the packages we want are installed.
 (setq use-package-always-ensure t)
 
+(defun gato/smart-kill-or-delete (&optional arg)
+  (interactive "p")
+  (if (not (daemonp))
+      (save-buffers-kill-emacs)
+    (save-some-buffers (eq arg 4))
+    (mapc 'delete-frame (frames-on-display-list))))
+
+(global-set-key "\C-x\C-c"  'gato/smart-kill-or-delete)
+
 ;;; Configuring Emacs itself
 (use-package emacs
   :ensure nil ;; Important for built-in packages.

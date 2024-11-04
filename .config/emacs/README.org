@@ -19,6 +19,7 @@
 - [[#emacs-configuration][Emacs configuration]]
   - [[#initel-header][=init.el= header]]
   - [[#package-management---elpaca][Package management - Elpaca]]
+  - [[#custom-functions][Custom functions]]
   - [[#emacs-itself][Emacs itself]]
   - [[#dired][Dired]]
   - [[#electric][Electric]]
@@ -294,6 +295,21 @@ by default, to make sure we always have the packages we need.
   (elpaca-use-package-mode))
 ;; Always ensure the packages we want are installed.
 (setq use-package-always-ensure t)
+#+end_src
+
+** Custom functions
+
+If Emacs is running in server mode, =C-x C-c= offers to save the buffers and deletes the frame, otherwise offer to save buffers and kill Emacs.
+
+#+begin_src emacs-lisp
+(defun gato/smart-kill-or-delete (&optional arg)
+  (interactive "p")
+  (if (not (daemonp))
+      (save-buffers-kill-emacs)
+    (save-some-buffers (eq arg 4))
+    (mapc 'delete-frame (frames-on-display-list))))
+
+(global-set-key "\C-x\C-c"  'gato/smart-kill-or-delete)
 #+end_src
 
 ** Emacs itself
