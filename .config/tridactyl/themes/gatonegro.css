@@ -26,7 +26,11 @@
     --tridactyl-scrollbar-color: var(--tridactyl-fg);
     --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-url-fg: #a9b1d6;
+    --tridactyl-font-size: 12pt !important;
 }
 
 :root.TridactylThemeGatonegro #tridactyl-reader { font-family: serif; }
 
+#completions > div > table {
+    font-size: 10pt !important;
+}
