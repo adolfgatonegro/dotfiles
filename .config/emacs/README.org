@@ -183,6 +183,24 @@ Enable =use-package= support.
              (expand-file-name "themes" user-emacs-directory))
 #+end_src
 
+*** Custom functions
+
+If Emacs is running in server mode, =C-x C-c= offers to save the buffers and deletes the frame, otherwise offer to save buffers and kill Emacs.
+
+#+begin_src emacs-lisp
+  (defun gato/smart-kill-or-delete (&optional arg)
+    "If Emacs is running as daemon, delete the current frame,
+  otherwise, prompt to save buffers and exit completely."
+    (interactive "p")
+    (if (not (daemonp))
+        (save-buffers-kill-emacs)
+      (save-some-buffers (eq arg 4))
+      (mapc 'delete-frame (frames-on-display-list))))
+#+end_src
+
+#+RESULTS:
+: gato/smart-kill-or-delete
+
 ** Emacs essentials
 
 For consistency, we configure Emacs via a =use-package= statement, in the same way we configure everything else. This is mostly about better defaults, because the... /default/ defaults are not exactly sane.
@@ -300,6 +318,7 @@ The main attraction.
     (tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent.
 
     :bind (:map global-map
+           ("C-x C-c" . 'gato/smart-kill-or-delete)
            ("C-x k" . kill-current-buffer)
            ("C-z" . nil)
            ("C-x C-z" . nil)
@@ -421,27 +440,100 @@ Directional window motions.
 Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again. [[*Dired enhancements][Dired enhancements]], [[*Dired][Dired keybindings]].
 
 #+begin_src emacs-lisp
-  ;;; Dired configuration
-  (use-package dired
+    ;;; Dired configuration
+    (use-package dired
+      :ensure nil
+      :commands (dired)
+      :defines dired-mode-map
+      :config
+      (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
+            dired-dwim-target t
+            dired-guess-shell-alist-user '((".*" "xdg-open"))
+            dired-kill-when-opening-new-dired-buffer t
+            dired-auto-revert-buffer #'dired-directory-changed-p
+            dired-recursive-copies 'always
+            dired-recursive-deletes 'always
+            dired-make-directory-clickable t
+            dired-mouse-drag-files t
+            delete-by-moving-to-trash t)
+      :init
+      (add-hook 'dired-mode-hook
+                (lambda ()
+                  (dired-hide-details-mode)
+                  (hl-line-mode)))
+      :bind (:map dired-mode-map
+                  ("<left>" . dired-up-directory)
+                  ("C-+" . dired-create-empty-file)))
+#+end_src
+
+*** Dired enhancements
+
+Nothing crazy here, just some extensions and quality-of-life improvements for =dired=.
+
+#+begin_src emacs-lisp
+  ;;; Dired enhancements
+  ;;
+  ;; dired-aux
+  (use-package dired-aux
     :ensure nil
-    :commands (dired)
-    :defines dired-mode-map
+    :after dired
     :config
-    (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
-          dired-dwim-target t
-          dired-guess-shell-alist-user '((".*" "xdg-open"))
-          dired-kill-when-opening-new-dired-buffer t
-          dired-auto-revert-buffer #'dired-directory-changed-p
-          dired-recursive-copies 'always
-          dired-recursive-deletes 'always
-          dired-make-directory-clickable t
-          dired-mouse-drag-files t
-          delete-by-moving-to-trash t)
-    :init
-    (add-hook 'dired-mode-hook
-              (lambda ()
-                (dired-hide-details-mode)
-                (hl-line-mode))))
+    (setq dired-isearch-filenames 'dwim)
+    (setq dired-create-destination-dirs 'ask)
+    (setq dired-vc-rename-file t)
+    (setq dired-do-revert-buffer (lambda (dir) (not (file-remote-p dir))))
+    (setq dired-create-destination-dirs-on-trailing-dirsep t))
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; dired-x
+  (use-package dired-x
+    :ensure nil
+    :after dired
+    :bind (:map dired-mode-map
+                ("I" . dired-info))
+    :config
+    (setq dired-clean-up-buffers-too t)
+    (setq dired-clean-confirm-killing-deleted-buffers t)
+    (setq dired-x-hands-off-my-keys t))
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; dired-open
+  (use-package dired-open
+    :after dired
+    :config
+    (setq dired-open-extensions '(("gif" . "xdg-open")
+                                  ("jpg" . "xdg-open")
+                                  ("png" . "xdg-open")
+                                  ("mkv" . "xdg-open")
+                                  ("m4v" . "xdg-open")
+                                  ("mp4" . "xdg-open")))
+    :bind (:map dired-mode-map
+                ("<right>" . dired-open-file)
+                ("C-<return>" . dired-open-xdg)))
+#+end_src
+
+#+begin_src emacs-lisp
+  ;; dired-preview
+  (use-package dired-preview
+    :after dired
+    :config
+       (setq dired-preview-delay 0.7)
+       (setq dired-preview-max-size (expt 2 20))
+       (setq dired-preview-ignored-extensions-regexp
+               (concat "\\."
+                       "\\(gz\\|"
+                       "zst\\|"
+                       "tar\\|"
+                       "xz\\|"
+                       "rar\\|"
+                       "zip\\|"
+                       "iso\\|"
+                       "epub"
+                       "\\)"))
+   :bind (:map dired-mode-map
+               ("p" . dired-preview-mode)))
 #+end_src
 
 * Visual

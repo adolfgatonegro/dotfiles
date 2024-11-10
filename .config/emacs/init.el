@@ -50,6 +50,15 @@
 (add-to-list 'custom-theme-load-path
              (expand-file-name "themes" user-emacs-directory))
 
+(defun gato/smart-kill-or-delete (&optional arg)
+  "If Emacs is running as daemon, delete the current frame,
+otherwise, prompt to save buffers and exit completely."
+  (interactive "p")
+  (if (not (daemonp))
+      (save-buffers-kill-emacs)
+    (save-some-buffers (eq arg 4))
+    (mapc 'delete-frame (frames-on-display-list))))
+
 ;;; Emacs essentials
 (use-package emacs
   :ensure nil
@@ -158,6 +167,7 @@
   (tab-always-indent 'complete)                   ; When I hit TAB, try to complete, otherwise, indent.
 
   :bind (:map global-map
+         ("C-x C-c" . 'gato/smart-kill-or-delete)
          ("C-x k" . kill-current-buffer)
          ("C-z" . nil)
          ("C-x C-z" . nil)
@@ -261,7 +271,68 @@
   (add-hook 'dired-mode-hook
             (lambda ()
               (dired-hide-details-mode)
-              (hl-line-mode))))
+              (hl-line-mode)))
+  :bind (:map dired-mode-map
+              ("<left>" . dired-up-directory)
+              ("C-+" . dired-create-empty-file)))
+
+;;; Dired enhancements
+;;
+;; dired-aux
+(use-package dired-aux
+  :ensure nil
+  :after dired
+  :config
+  (setq dired-isearch-filenames 'dwim)
+  (setq dired-create-destination-dirs 'ask)
+  (setq dired-vc-rename-file t)
+  (setq dired-do-revert-buffer (lambda (dir) (not (file-remote-p dir))))
+  (setq dired-create-destination-dirs-on-trailing-dirsep t))
+
+;; dired-x
+(use-package dired-x
+  :ensure nil
+  :after dired
+  :bind (:map dired-mode-map
+              ("I" . dired-info))
+  :config
+  (setq dired-clean-up-buffers-too t)
+  (setq dired-clean-confirm-killing-deleted-buffers t)
+  (setq dired-x-hands-off-my-keys t))
+
+;; dired-open
+(use-package dired-open
+  :after dired
+  :config
+  (setq dired-open-extensions '(("gif" . "xdg-open")
+                                ("jpg" . "xdg-open")
+                                ("png" . "xdg-open")
+                                ("mkv" . "xdg-open")
+                                ("m4v" . "xdg-open")
+                                ("mp4" . "xdg-open")))
+  :bind (:map dired-mode-map
+              ("<right>" . dired-open-file)
+              ("C-<return>" . dired-open-xdg)))
+
+;; dired-preview
+(use-package dired-preview
+  :after dired
+  :config
+     (setq dired-preview-delay 0.7)
+     (setq dired-preview-max-size (expt 2 20))
+     (setq dired-preview-ignored-extensions-regexp
+             (concat "\\."
+                     "\\(gz\\|"
+                     "zst\\|"
+                     "tar\\|"
+                     "xz\\|"
+                     "rar\\|"
+                     "zip\\|"
+                     "iso\\|"
+                     "epub"
+                     "\\)"))
+ :bind (:map dired-mode-map
+             ("p" . dired-preview-mode)))
 
 ;;; Fonts
 ;;
