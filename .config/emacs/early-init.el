@@ -1,27 +1,26 @@
-;;; early-init.el --- Early Init -*- no-byte-compile: t; lexical-binding: t; -*-
-
-;; Author: Adolf Gatonegro
-;; URL: https://github.com/adolfgatonegro
-
-;;; Commentary:
-;; Early initialisation file for my GNU Emacs configuration.
-
-;;; Code:
-
 ;; Disable `package.el' here, required to use Elpaca later
 (setq package-enable-at-startup nil)
 
-;;; Garbage collection
-;; Garbage collection significantly affects startup times. This setting delays
-;; garbage collection during startup but will be reset later.
-(defvar gato-gc-cons-threshold (* 16 1024 1024)
-  "The value of `gc-cons-threshold' after Emacs startup.")
+;; Temporarily increase garbage collection threshold to reduce
+;; startup time. We will change this value to something less
+;; aggressive once we're done with startup.
+(setq gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.5)
 
-(setq gc-cons-threshold most-positive-fixnum)
+;; Lifted from Prot's `early-init.el', we store the default
+;; values, set them to `nil' for startup, then restore them.
+(defvar gato--file-name-handler-alist file-name-handler-alist)
+(defvar gato--vc-handled-backends vc-handled-backends)
+
+(setq file-name-handler-alist nil
+      vc-handled-backends nil)
 
 (add-hook 'elpaca-after-init-hook
           (lambda ()
-            (setq gc-cons-threshold gato-gc-cons-threshold)))
+            (setq gc-cons-threshold (* 1000 1000 8)
+                  gc-cons-percentage 0.1
+                  file-name-handler-alist gato--file-name-handler-alist
+                  vc-handled-backends gato--vc-handled-backends)))
 
 ;; Prefer loading newer compiled files
 (setq load-prefer-newer t)
@@ -71,36 +70,24 @@
 (setq native-comp-async-report-warnings-errors 'silent)
 (setq warning-suppress-log-types '((comp) (bytecomp)))
 
-(setopt initial-major-mode 'fundamental-mode)  ; default mode for the *scratch* buffer
+(setq frame-resize-pixelwise t
+      frame-inhibit-implied-resize t
+      frame-title-format '("%b")
+      use-dialog-box nil
+      use-file-dialog nil
+      use-short-answers t
+      inhibit-splash-screen t
+      inhibit-startup-screen t
+      inhibit-startup-echo-area-message user-login-name
+      inhibit-startup-buffer-menu t)
 
 ;;; Minimal UI
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (tooltip-mode -1)
 (scroll-bar-mode -1)
-(pixel-scroll-precision-mode 1) ;; Enable smooth scrolling
+(pixel-scroll-precision-mode 1)
 
-(setq inhibit-startup-echo-area-message (user-login-name)) ;; Silence startup message
-(advice-add #'display-startup-echo-area-message :override #'ignore)
-
-(setq inhibit-splash-screen t
-      use-file-dialog nil
-      use-dialog-box nil
-      tab-bar-new-button-show nil
-      tab-bar-close-button-show nil
-      tab-line-close-button-show nil)
-
-;; Default frame configuration
-(setq frame-resize-pixelwise t)
-(setq default-frame-alist '((fullscreen . maximized)
-                            (vertical-scroll-bars . nil)
-                            (horizontal-scroll-bars . nil)
-                            (background-color . "#16161c")
-                            (ns-appearance . dark)
-                            (alpha . 100)
-                            (alpha-background . 90)
-                            (ns-transparent-titlebar . t)))
-
-(provide 'early-init)
-
-;;; early-init.el ends here
+;;; Set frame alpha
+(push '(alpha . 100) default-frame-alist)
+(push '(alpha-background . 100) default-frame-alist)
