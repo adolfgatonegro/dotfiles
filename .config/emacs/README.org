@@ -8,7 +8,7 @@ So, we're configuring Emacs from scratch again. Nothing wrong with the previous 
 Modal editing is fantastic, and =evil= itself is a quite decent implementation, but the fact that it is bolted on top of Emacs became very obvious during use — the experience is generally seamless, and you can at times forget that you are using an add-on, but then there are the odd things that don't quite work with =evil=, or that do work but require some additional tweaking, an extra package, and things of that nature. The general seamlessness of it all makes the odd inconsistencies all the more 
 jarring.
 
-Version 2 is much closer to vanilla Emacs. Notably, it lacks any form of modal editing — I briefly tried =god-mode=, which works alright, and considered =meow= despite the fact that the "selection -> action" way of doing things would probably be more confusing for my Vim brain. In the end, I have opted to use vanilla Emacs bindings, leveraging =keyd= on a system-wide level to provide basic Vim-like navigation, and to simplify the default modifier-based workflow instead.
+Version 2 is much closer to vanilla Emacs. Notably, it lacks any form of modal editing — I briefly tried =god-mode=, which works alright, and considered =meow= despite the fact that the "selection -> action" way of doing things would probably be more confusing for my Vim brain. In the end, I have opted to use vanilla Emacs bindings, leveraging =keyd= on a system-wide level to provide basic Vim-like navigation, and to simplify the default modifier-based workflow instead. That being said, a section on modal editing is still present, because I find the problem itself rather interesting, and because the settings I've collected in that section, though not ideal, could be useful at some point. 
 
 * Early init
 :PROPERTIES:
@@ -562,6 +562,81 @@ Nothing crazy here, just some extensions and quality-of-life improvements for =d
         which-key-separator "  ")
   :hook
   (elpaca-after-init . which-key-mode))
+#+end_src
+
+* Modal editing :INACTIVE:
+
+** Evil :INACTIVE:
+
+This is a minimalist implementation of =evil=, which /could/ be useful in a configuration such as this one. Modal editing does have benefits, and though it is a learned habit — my first text editor was probably =EDIT= on MS-DOS, which obviously has no modes — it is a hard one to drop.
+
+The idea of this implementation is: (i) retain Vim motions for navigating and editing text; and (ii) use Emacs bindings everywhere else. In theory, this removes the issue of inconsistent =evil= support for various random major and minor modes, negates the need for additional packages like =evil-collection=, and ultimately reduces the amount of faffing about with custom bindings. The final workflow would rely on Emacs bindings for everything except for actual text navigation and editing, where Vim motions are (in my opinion, likely because I am used to them) better. Also, it would offer the benefit of not needing to press a modifier to get =hjkl= navigation through =keyd=.
+
+#+begin_src emacs-lisp
+  (use-package evil
+    :hook (elpaca-after-init . evil-mode)
+    :custom
+    (evil-undo-system 'undo-redo)
+    ;; use Emacs bindings in insert-mode
+    (evil-disable-insert-state-bindings t)
+    (evil-want-keybindings nil)
+    :config
+    ;; define modes which should start in Emacs state
+    (evil-set-initial-state 'pdf-view-mode 'emacs)
+
+    ;; define custom bindings
+    (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
+    (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
+    (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
+    (evil-define-key 'normal dired-mode-map "l" 'dired-open-file))
+
+  ;; limit `evil' outside actual text navigation and editing
+  (with-eval-after-load 'evil-maps
+    (define-key evil-motion-state-map (kbd "SPC") nil)
+    (define-key evil-motion-state-map (kbd "RET") nil)
+    (define-key evil-normal-state-map (kbd "<escape>") 'keyboard-escape-quit)
+    (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+    (define-key evil-motion-state-map (kbd "TAB") nil))
+#+end_src
+
+** God Mode :INACTIVE:
+
+An alternative is =god-mode=, but it introduces its own set of problems, especially if we try to bend it into behaving similar to Vim, e.g. due to the way =god-mode= is designed, =hjkl= navigation is actually =C-h C-j C-k C-l= navigation, which means some default Emacs bindings are being sacrificed. This is, of course, not a fault with the original package, but a self-inflicted problem. Conflicts such as these seem like a steep price to pay for Vim-like navigation, especially considering the fact that no other Vim motions would even work. Indeed, =god-mode= is probably a good choice if used for its intended purpose — reducing the amount of modifiers one needs to press when using Emacs — but it is not meant to provide anything resembling a Vim-like experience.
+
+#+begin_src emacs-lisp
+  (use-package god-mode
+    :init
+    (setq god-exempt-major-modes nil)
+    (add-hook 'elpaca-after-init-hook 'god-mode)
+
+    :config (god-mode-all)
+    (defun god-set-cursor-type (type)
+      (if (display-graphic-p)
+          (setq cursor-type type)
+        (let* ((shape (or (car-safe type) type))
+               (param (cond ((eq shape 'bar) "6")
+                            ((eq shape 'hbar) "4")
+                            (t "2"))))
+          (send-string-to-terminal (concat "\e[" param " q")))))
+
+    (defun god-mode-update-cursor ()
+      (if (or god-local-mode buffer-read-only)
+          (god-set-cursor-type 'box)
+        (god-set-cursor-type 'bar)))
+
+    (add-hook 'dired-mode-hook #'god-mode)
+    (add-hook 'post-command-hook #'god-mode-update-cursor)
+
+    ;;; Define god bindings
+    ;; Toggle `god-mode'
+    (global-set-key (kbd "<escape>") #'god-local-mode)
+    (define-key god-local-mode-map (kbd "i") #'god-local-mode)
+    (define-key god-local-mode-map (kbd "<escape>") 'keyboard-escape-quit)
+    ;; Pseudo-Vim motions
+    (define-key god-local-mode-map (kbd "C-j") 'next-line)
+    (define-key god-local-mode-map (kbd "C-k") 'previous-line)
+    (define-key god-local-mode-map (kbd "C-h") 'backward-char)
+    (define-key god-local-mode-map (kbd "C-l") 'forward-char))
 #+end_src
 
 * Visual
