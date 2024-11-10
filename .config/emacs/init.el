@@ -67,7 +67,7 @@ otherwise, prompt to save buffers and exit completely."
   :config
   ;; Disable backups and lockfiles.
   (setq make-backup-files nil)
-  (setq backup-inhibited nil)
+  (setq backup-inhibited t)
   (setq create-lockfiles nil)
 
   ;; Disable the custom file.

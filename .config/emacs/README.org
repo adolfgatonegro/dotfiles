@@ -218,7 +218,7 @@ The main attraction.
     :config
     ;; Disable backups and lockfiles.
     (setq make-backup-files nil)
-    (setq backup-inhibited nil)
+    (setq backup-inhibited t)
     (setq create-lockfiles nil)
 
     ;; Disable the custom file.
@@ -331,6 +331,9 @@ The main attraction.
            ("M-z" . zap-up-to-char))
     ) ;; End of `use-package'
 #+end_src
+
+#+RESULTS:
+: zap-up-to-char
 
 *** Auto-revert
 
