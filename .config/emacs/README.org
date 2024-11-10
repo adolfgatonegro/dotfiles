@@ -966,14 +966,15 @@ A fast JIT spell-checker for Emacs.
 
 ** Olivetti
 
-A distraction-free writing environment. [[*Toggles][Olivetti keybindings]].
+A distraction-free writing environment.
 
 #+begin_src emacs-lisp
   (use-package olivetti
     :defer t
-
     :config
-    (setq olivetti-body-width 82))
+    (setq olivetti-body-width 82)
+    :bind (:map global-map
+                ("C-c t o" . olivetti-mode)))
 #+end_src
 
 ** Rainbow delimiters

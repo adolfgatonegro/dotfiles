@@ -632,9 +632,10 @@ otherwise, prompt to save buffers and exit completely."
 
 (use-package olivetti
   :defer t
-
   :config
-  (setq olivetti-body-width 82))
+  (setq olivetti-body-width 82)
+  :bind (:map global-map
+              ("C-c t o" . olivetti-mode)))
 
 ;; Rainbow delimiters
 (use-package rainbow-delimiters
