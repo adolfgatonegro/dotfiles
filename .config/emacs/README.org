@@ -836,12 +836,16 @@ Better search and navigation commands. [[*Consult][Consult keybindings]].
           xref-show-definitions-function #'consult-xref)
     :bind (:map global-map
            ("M-s M-b" . consult-buffer)
-           ("M-s M-f"  . consult-find)
-           ("M-s M-g"  . consult-grep)
-           ("M-s M-l"  . consult-line)
-           ("M-s M-s"  . consult-outline)
-           ("M-g M-g"  . consult-goto-line)))
+           ("M-s M-m" . consult-bookmark)
+           ("M-s M-f" . consult-find)
+           ("M-s M-g" . consult-grep)
+           ("M-s M-l" . consult-line)
+           ("M-s M-s" . consult-outline)
+           ("M-g M-g" . consult-goto-line)))
 #+end_src
+
+#+RESULTS:
+: [nil 26416 62068 324442 nil elpaca-process-queues nil nil 152000 nil]
 
 ** Embark
 

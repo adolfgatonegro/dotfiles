@@ -555,11 +555,12 @@ otherwise, prompt to save buffers and exit completely."
         xref-show-definitions-function #'consult-xref)
   :bind (:map global-map
          ("M-s M-b" . consult-buffer)
-         ("M-s M-f"  . consult-find)
-         ("M-s M-g"  . consult-grep)
-         ("M-s M-l"  . consult-line)
-         ("M-s M-s"  . consult-outline)
-         ("M-g M-g"  . consult-goto-line)))
+         ("M-s M-m" . consult-bookmark)
+         ("M-s M-f" . consult-find)
+         ("M-s M-g" . consult-grep)
+         ("M-s M-l" . consult-line)
+         ("M-s M-s" . consult-outline)
+         ("M-g M-g" . consult-goto-line)))
 
 ;; Embark
 (use-package embark
