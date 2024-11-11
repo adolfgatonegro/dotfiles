@@ -372,18 +372,18 @@ Another one taken from Prot's config.
 Enable and configure Electric to take care of parens matching.
 
 #+begin_src emacs-lisp
-;;; Electric
-(use-package electric
-  :ensure nil
-  :init
-  (electric-pair-mode +1) ;; automatically insert closing parens
-  (electric-indent-mode -1) ;; weird and inconsistent as hell, go away
-  (setq electric-pair-preserve-balance t)
-  ;; Do not auto-pair <> in Org mode, otherwise org-tempo can break.
-  (add-hook 'org-mode-hook (lambda ()
-             (setq-local electric-pair-inhibit-predicate
-                     `(lambda (c)
-                    (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))))
+  ;;; Electric
+  (use-package electric
+    :ensure nil
+    :init
+    (electric-pair-mode +1) ;; automatically insert closing parens
+    (electric-indent-mode -1) ;; weird and inconsistent as hell, go away
+    (setq electric-pair-preserve-balance t)
+    ;; Do not auto-pair <> in Org mode, otherwise org-tempo can break.
+    (add-hook 'org-mode-hook (lambda ()
+               (setq-local electric-pair-inhibit-predicate
+                       `(lambda (c)
+                      (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))))
 #+end_src
 
 *** Delete selection
