@@ -202,6 +202,19 @@ otherwise, prompt to save buffers and exit completely."
   ;; (e.g. power failure).
   (setq bookmark-save-flag 1))
 
+;;; Electric
+(use-package electric
+  :ensure nil
+  :init
+  (electric-pair-mode +1) ;; automatically insert closing parens
+  (electric-indent-mode -1) ;; weird and inconsistent as hell, go away
+  (setq electric-pair-preserve-balance t)
+  ;; Do not auto-pair <> in Org mode, otherwise org-tempo can break.
+  (add-hook 'org-mode-hook (lambda ()
+             (setq-local electric-pair-inhibit-predicate
+                     `(lambda (c)
+                    (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c))))))))
+
 ;;;; Delete selection
 (use-package delsel
   :ensure nil
