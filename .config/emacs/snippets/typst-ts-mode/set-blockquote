@@ -1,0 +1,12 @@
+# -*- mode: snippet -*-
+# name: set blockquote
+# key: _bquote
+# --
+#set quote(
+  block: ${1:true}, 
+  quotes: ${2:true},
+)
+#show quote: set pad(
+  x: ${3:4em},
+)
+${0}

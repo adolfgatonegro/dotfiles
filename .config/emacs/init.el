@@ -284,7 +284,10 @@ otherwise, prompt to save buffers and exit completely."
   (add-hook 'dired-mode-hook
             (lambda ()
               (dired-hide-details-mode)
-              (hl-line-mode)))
+              (hl-line-mode)
+              (auto-revert-mode)
+              (setq-default auto-revert-interval 1)
+              (auto-revert-set-timer)))
   :bind (:map dired-mode-map
               ("<left>" . dired-up-directory)
               ("C-+" . dired-create-empty-file)))
@@ -685,6 +688,13 @@ otherwise, prompt to save buffers and exit completely."
 ;; Sudo-edit
 (use-package sudo-edit
   :defer t)
+
+(use-package yasnippet
+  :defer t
+  :config
+  (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
+  :hook
+  (elpaca-after-init . yas-global-mode))
 
 ;;; Org mode
 ;;

@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: set paragraph
+# key: _par
+# --
+#set par(
+  justify: ${1:true},
+  leading: ${2:1.0em},
+  first-line-indent: ${3:1.2em},
+)
+${0}

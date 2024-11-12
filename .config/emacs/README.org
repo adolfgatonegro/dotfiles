@@ -462,30 +462,33 @@ Directional window motions.
 Some better defaults for =dired=, courtesy of [[https://github.com/LionyxML/emacs-kick][emacs-kick]] again. [[*Dired enhancements][Dired enhancements]], [[*Dired][Dired keybindings]].
 
 #+begin_src emacs-lisp
-    ;;; Dired configuration
-    (use-package dired
-      :ensure nil
-      :commands (dired)
-      :defines dired-mode-map
-      :config
-      (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
-            dired-dwim-target t
-            dired-guess-shell-alist-user '((".*" "xdg-open"))
-            dired-kill-when-opening-new-dired-buffer t
-            dired-auto-revert-buffer #'dired-directory-changed-p
-            dired-recursive-copies 'always
-            dired-recursive-deletes 'always
-            dired-make-directory-clickable t
-            dired-mouse-drag-files t
-            delete-by-moving-to-trash t)
-      :init
-      (add-hook 'dired-mode-hook
-                (lambda ()
-                  (dired-hide-details-mode)
-                  (hl-line-mode)))
-      :bind (:map dired-mode-map
-                  ("<left>" . dired-up-directory)
-                  ("C-+" . dired-create-empty-file)))
+  ;;; Dired configuration
+  (use-package dired
+    :ensure nil
+    :commands (dired)
+    :defines dired-mode-map
+    :config
+    (setq dired-listing-switches "-AGFhlv --group-directories-first --time-style=long-iso"
+          dired-dwim-target t
+          dired-guess-shell-alist-user '((".*" "xdg-open"))
+          dired-kill-when-opening-new-dired-buffer t
+          dired-auto-revert-buffer #'dired-directory-changed-p
+          dired-recursive-copies 'always
+          dired-recursive-deletes 'always
+          dired-make-directory-clickable t
+          dired-mouse-drag-files t
+          delete-by-moving-to-trash t)
+    :init
+    (add-hook 'dired-mode-hook
+              (lambda ()
+                (dired-hide-details-mode)
+                (hl-line-mode)
+                (auto-revert-mode)
+                (setq-default auto-revert-interval 1)
+                (auto-revert-set-timer)))
+    :bind (:map dired-mode-map
+                ("<left>" . dired-up-directory)
+                ("C-+" . dired-create-empty-file)))
 #+end_src
 
 *** Dired enhancements
@@ -1156,6 +1159,22 @@ Don't particularly care about the tree, but persistent undo history is nice.
     :config
     (setq undo-tree-history-directory-alist '(("." . "~/.config/emacs/.cache/undo"))))
 #+end_src
+
+** YASnippet
+
+A snippet engine for Emacs.
+
+#+begin_src emacs-lisp
+  (use-package yasnippet
+    :defer t
+    :config
+    (setq yas-snippet-dirs '("~/.config/emacs/snippets"))
+    :hook
+    (elpaca-after-init . yas-global-mode))
+#+end_src
+
+#+RESULTS:
+: [nil 26418 42605 756442 nil elpaca-process-queues nil nil 596000 nil]
 
 * Org mode
 

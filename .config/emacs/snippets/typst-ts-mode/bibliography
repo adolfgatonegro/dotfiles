@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: bibliography
+# key: _bib
+# --
+#set par(leading: 0.65em, first-line-indent: 0em)
+#bibliography("${0}", style: "${1:apa}")
