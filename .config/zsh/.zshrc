@@ -106,4 +106,5 @@ bindkey "^D" zsh_exit
 eval "$(fzf --zsh)"
 eval "$(zoxide init --cmd cd zsh)"
 
+autopair-init
 gato
