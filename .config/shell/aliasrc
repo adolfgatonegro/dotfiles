@@ -6,8 +6,6 @@
 # pacman
 alias \
 	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
-	# pacman="pikaur" \
-	up="pikaur -Syu" \
 	paclog="cat /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
@@ -17,8 +15,7 @@ alias \
 	free="free -mt" \
 	cp="cp -iv" \
 	mv="mv -iv" \
-	ip="ip -color=auto" \
-	# wget="wget --hsts-file=$XDG_CACHE_HOME/.wget-hist"
+	ip="ip -color=auto"
 
 # abbreviations
 alias \
@@ -30,8 +27,7 @@ alias \
 	cuetag="cuetag.sh" \
 	mpa="mpv --audio-display=no --no-video" \
 	o="xdg-open" \
-	z="zathura" \
-	hx="helix"
+	z="zathura"
 
 # hipster coreutil replacements
 alias \
@@ -42,10 +38,6 @@ alias \
 	tree="ls --tree" \
 	cat="bat -p" \
 	less="bat"
-
-# non-hipster replacements
-alias \
-	lf="lfpv" \
 
 # git
 alias \
