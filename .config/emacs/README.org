@@ -1308,6 +1308,24 @@ Org mode to Typst exporter, very early in development. [[https://github.com/jmpu
 
 I do not do a ton of programming. The things we add here are mainly related to writing prose using =markdown= and =typst=.
 
+** Eglot
+
+Turns out I can get LSP functionality going by simply passing a couple of lines to =eglot=, instead of bringing in the whole mess of =lsp-mode=. Here, we do just that to enable support for =typst=.
+
+Requires:
+
+- ~tinymist~: language service for typst (binary should be in `'$PATH')
+  https://github.com/Myriad-Dreamin/tinymist
+
+#+begin_src emacs-lisp
+  (use-package eglot
+    :ensure nil
+    :config
+    (add-to-list 'eglot-server-programs '((typst-ts-mode) "tinymist"))
+    :hook
+    (typst-ts-mode . eglot-ensure))
+#+end_src
+
 ** Treesit-auto
 
 #+begin_src emacs-lisp
@@ -1384,20 +1402,7 @@ I do not do a ton of programming. The things we add here are mainly related to w
 
 ** Typst
 
-Add +full+ support for =typst=, including syntax highlighting +and lsp functionality.+ The code for =lsp-mode= is here, but we're not using it right now — bringing in the whole LSP machinery just for Typst and maybe some shell scripting here and there seems excessive.
-
-Requires:
-
-- ~typst-ts-mode~: typst treesitter major mode
-  https://codeberg.org/meow_king/typst-ts-mode/
-
-- ~tinymist~: language service for typst (binary should be in `'$PATH')
-  https://github.com/Myriad-Dreamin/tinymist
-
-Support enabled by following this:
-
-- ~lsp-mode~: adding a new language
-   https://emacs-lsp.github.io/lsp-mode/page/adding-new-language/
+Add support for =typst= using Tree-sitter.
 
 #+begin_src emacs-lisp
 ;; Typst support
@@ -1409,16 +1414,5 @@ Support enabled by following this:
   (typst-ts-watch-options "--open")
   (typst-ts-mode-grammar-location (expand-file-name "tree-sitter/libtree-sitter-typst.so" user-emacs-directory))
   (typst-ts-mode-enable-raw-blocks-highlight t))
-
-  ;; Register `tinymist' as the Typst language server
-  ;;:config
-  ;;(with-eval-after-load 'lsp-mode
-  ;;  (add-to-list 'lsp-language-id-configuration
-  ;;               '(typst-ts-mode . "typst"))
-  ;;
-  ;;  (lsp-register-client
-  ;;   (make-lsp-client :new-connection (lsp-stdio-connection "tinymist")
-  ;;                    :activation-fn (lsp-activate-on "typst")
-  ;;                    :server-id 'tinymist)))
 #+end_src
 

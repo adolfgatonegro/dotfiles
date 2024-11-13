@@ -779,6 +779,13 @@ otherwise, prompt to save buffers and exit completely."
 (use-package org-tree-slide
   :defer t)
 
+(use-package eglot
+  :ensure nil
+  :config
+  (add-to-list 'eglot-server-programs '((typst-ts-mode) "tinymist"))
+  :hook
+  (typst-ts-mode . eglot-ensure))
+
 ;; Treesit-auto
 (use-package treesit-auto
   :after emacs
@@ -847,14 +854,3 @@ otherwise, prompt to save buffers and exit completely."
   (typst-ts-watch-options "--open")
   (typst-ts-mode-grammar-location (expand-file-name "tree-sitter/libtree-sitter-typst.so" user-emacs-directory))
   (typst-ts-mode-enable-raw-blocks-highlight t))
-
-  ;; Register `tinymist' as the Typst language server
-  ;;:config
-  ;;(with-eval-after-load 'lsp-mode
-  ;;  (add-to-list 'lsp-language-id-configuration
-  ;;               '(typst-ts-mode . "typst"))
-  ;;
-  ;;  (lsp-register-client
-  ;;   (make-lsp-client :new-connection (lsp-stdio-connection "tinymist")
-  ;;                    :activation-fn (lsp-activate-on "typst")
-  ;;                    :server-id 'tinymist)))
