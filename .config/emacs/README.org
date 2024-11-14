@@ -198,9 +198,6 @@ If Emacs is running in server mode, =C-x C-c= offers to save the buffers and del
       (mapc 'delete-frame (frames-on-display-list))))
 #+end_src
 
-#+RESULTS:
-: gato/smart-kill-or-delete
-
 ** Emacs essentials
 
 For consistency, we configure Emacs via a =use-package= statement, in the same way we configure everything else. This is mostly about better defaults, because the... /default/ defaults are not exactly sane.
@@ -331,9 +328,6 @@ The main attraction.
            ("M-z" . zap-up-to-char))
     ) ;; End of `use-package'
 #+end_src
-
-#+RESULTS:
-: zap-up-to-char
 
 *** Auto-revert
 
@@ -969,9 +963,6 @@ Better search and navigation commands. [[*Consult][Consult keybindings]].
            ("M-g M-g" . consult-goto-line)))
 #+end_src
 
-#+RESULTS:
-: [nil 26416 62068 324442 nil elpaca-process-queues nil nil 152000 nil]
-
 ** Embark
 
 #+begin_src emacs-lisp
@@ -1173,9 +1164,6 @@ A snippet engine for Emacs.
     (elpaca-after-init . yas-global-mode))
 #+end_src
 
-#+RESULTS:
-: [nil 26418 42605 756442 nil elpaca-process-queues nil nil 596000 nil]
-
 * Org mode
 
 There is /a lot/ of stuff going on in Org, but we do not need most of it for now. These changes are mainly aesthetic, to improve the writing experience.
@@ -1338,9 +1326,6 @@ Requires:
   (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode t))
 #+end_src
-
-#+RESULTS:
-: [nil 26417 24733 813336 nil elpaca-process-queues nil nil 142000 nil]
 
 ** Markdown
 
