@@ -737,7 +737,7 @@ return {
 }
 #+end_src
 
-*** =plugins.dashboard= - Exactly what it says on the tin:
+*** COMMENT =plugins.dashboard= - Exactly what it says on the tin:
 
 Adds a dashboard to Neovim, with customisable ASCII art and menu items. I've come to like =emacs-dashboard=, so Neovim gets its own dashboard as well. The code below was mostly lifted from [[https://lazyvim.org/plugins/ui#dashboard-nvim][LazyVim]], because I don't feel like figuring out how to configure this myself.
 
@@ -1210,7 +1210,6 @@ A completion plugin for Neovim. It depends on =LuaSnip=, =cmp_luasnip=, and =fri
 	},
 }
 #+end_src
-
 
 ** =plugins.nvim-treesitter= - Treesitter configurations and abstraction layer
 
