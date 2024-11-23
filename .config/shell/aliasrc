@@ -36,8 +36,9 @@ alias \
 	la="ls -al" \
 	lh="ls -d .*" \
 	tree="ls --tree" \
-	cat="bat -p" \
-	less="bat"
+	less="/usr/share/nvim/runtime/macros/less.sh"
+    #cat="bat -p" \
+	#less="bat"
 
 # git
 alias \

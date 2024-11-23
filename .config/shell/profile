@@ -20,9 +20,9 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 export TERM="st-256color"
 export TERMINAL="st"
-export EDITOR='em'
-export VISUAL='em'
-export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export EDITOR="emacsclient -r -a ''"
+export VISUAL="emacsclient -r -a ''"
+export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-c"
 export BROWSER="librewolf"
 export FILEMANAGER="yazi"

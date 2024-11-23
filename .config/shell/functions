@@ -95,9 +95,9 @@ yy() {
 	rm -f -- "$tmp"
 }
 
-se() { fd -tf . ~/.local/bin | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a script from .local/bin
+se() { fd -tf . ~/.local/bin | fzf --bind 'enter:become($EDITOR {})' ;} # edit a script from .local/bin
 
-ce() { fd -tf -H -d 2 . ~/.config | fzf --preview 'bat -p --color=always {}' --bind 'enter:become($EDITOR {})' ;} # edit a config file
+ce() { fd -tf -H -d 2 . ~/.config | fzf --bind 'enter:become($EDITOR {})' ;} # edit a config file
 
 colours() {
 	for i in {0..255}; do print -Pn "%K{$i}  %k%F{$i}${(l:3::0:)i}%f " ${${(M)$((i%6)):#3}:+$'\n'}; done
