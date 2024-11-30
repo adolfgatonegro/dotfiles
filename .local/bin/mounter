@@ -43,7 +43,7 @@ unopenedluks="$(for drive in $allluks; do
 done | filter)"
 
 # Get all normal, non-encrypted or decrypted partitions that are not mounted.
-normalparts="$(echo "$lsblkoutput"| grep -v crypto_LUKS | grep 'part\|rom\|crypt' | sed "s/^/💾 /" | filter )"
+normalparts="$(echo "$lsblkoutput"| grep -v crypto_LUKS | grep 'part\|rom\|crypt\|KOBOeReader' | sed "s/^/💾 /" | filter )"
 
 # Add all to one variable. If no mountable drives found, exit.
 alldrives="$(echo "$phones
