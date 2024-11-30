@@ -580,9 +580,9 @@ Nothing crazy here, just some extensions and quality-of-life improvements for =d
   (elpaca-after-init . which-key-mode))
 #+end_src
 
-* Modal editing :INACTIVE:
+* Modal editing
 
-** Evil :INACTIVE:
+** Evil
 
 This is a minimalist implementation of =evil=, which /could/ be useful in a configuration such as this one. Modal editing does have benefits, and though it is a learned habit — my first text editor was probably =EDIT= on MS-DOS, which obviously has no modes — it is a hard one to drop.
 
@@ -597,6 +597,8 @@ The idea of this implementation is: (i) retain Vim motions for navigating and ed
     (evil-disable-insert-state-bindings t)
     (evil-want-keybindings nil)
     :config
+    (evil-respect-visual-line-mode t)
+    (evil-want-Y-yank-to-eol t)
     ;; define modes which should start in Emacs state
     (evil-set-initial-state 'pdf-view-mode 'emacs)
 
@@ -614,6 +616,8 @@ The idea of this implementation is: (i) retain Vim motions for navigating and ed
     (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
     (define-key evil-motion-state-map (kbd "TAB") nil))
 #+end_src
+
+#+RESULTS:
 
 ** God Mode :INACTIVE:
 
@@ -1285,11 +1289,10 @@ Simple slideshow functionality for Org documents based on headings.
 Org mode to Typst exporter, very early in development. [[https://github.com/jmpunkt/ox-typst][jmpunkt/ox-typst]]
 
 #+begin_src emacs-lisp
-;; ox-typst
-(use-package ox-typst
-  :defer t
-  :after org
-  :ensure (ox-typst :host github :repo "jmpunkt/ox-typst"))
+  ;; ox-typst
+  (use-package ox-typst
+    :defer t
+    :after org)
 #+end_src
 
 * Languages

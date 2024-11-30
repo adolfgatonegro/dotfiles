@@ -369,6 +369,33 @@ otherwise, prompt to save buffers and exit completely."
   :hook
   (elpaca-after-init . which-key-mode))
 
+(use-package evil
+  :hook (elpaca-after-init . evil-mode)
+  :custom
+  (evil-undo-system 'undo-redo)
+  ;; use Emacs bindings in insert-mode
+  (evil-disable-insert-state-bindings t)
+  (evil-want-keybindings nil)
+  :config
+  (evil-respect-visual-line-mode t)
+  (evil-want-Y-yank-to-eol t)
+  ;; define modes which should start in Emacs state
+  (evil-set-initial-state 'pdf-view-mode 'emacs)
+
+  ;; define custom bindings
+  (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
+  (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
+  (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
+  (evil-define-key 'normal dired-mode-map "l" 'dired-open-file))
+
+;; limit `evil' outside actual text navigation and editing
+(with-eval-after-load 'evil-maps
+  (define-key evil-motion-state-map (kbd "SPC") nil)
+  (define-key evil-motion-state-map (kbd "RET") nil)
+  (define-key evil-normal-state-map (kbd "<escape>") 'keyboard-escape-quit)
+  (define-key evil-insert-state-map (kbd "<escape>") 'evil-normal-state)
+  (define-key evil-motion-state-map (kbd "TAB") nil))
+
 ;;; Fonts
 ;;
 ;; Define default, variable pitch, and fixed pitch fonts.
