@@ -376,17 +376,12 @@ otherwise, prompt to save buffers and exit completely."
   ;; use Emacs bindings in insert-mode
   (evil-disable-insert-state-bindings t)
   (evil-want-keybindings nil)
-  :config
+  ;; respect visual-line mode
   (evil-respect-visual-line-mode t)
-  (evil-want-Y-yank-to-eol t)
+  :config
   ;; define modes which should start in Emacs state
   (evil-set-initial-state 'pdf-view-mode 'emacs)
-
-  ;; define custom bindings
-  (evil-define-key 'normal dired-mode-map "h" 'dired-up-directory)
-  (evil-define-key 'normal dired-mode-map "j" 'dired-next-line)
-  (evil-define-key 'normal dired-mode-map "k" 'dired-previous-line)
-  (evil-define-key 'normal dired-mode-map "l" 'dired-open-file))
+  (evil-set-initial-state 'dired-mode 'emacs))
 
 ;; limit `evil' outside actual text navigation and editing
 (with-eval-after-load 'evil-maps
