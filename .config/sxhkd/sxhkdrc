@@ -12,8 +12,8 @@ super + space
 
 # key chord dmenu scripts
 # books, unicode, multi-monitor
-super + s ; {k,u,p,l}
-    {books,dmunicode,dmdisplay,linkhandler}
+super + s ; {k,u,p,l,m,a}
+    {books,dmunicode,dmdisplay,linkhandler,bmks dmenu,bmks add}
 
 # power menu
 super + shift + x
@@ -22,10 +22,6 @@ super + shift + x
 # browser menu
 super + shift + b
     dmbrowser
-
-# bookmarks
-super + shift + m ; {m,a}
-    bmks {dmenu,add}
 
 # usb mounter
 super + F8

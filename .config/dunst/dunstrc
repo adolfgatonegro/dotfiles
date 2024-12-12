@@ -3,7 +3,6 @@
 	follow = mouse
 
 	width = 300
-	height = 300
 	origin = top-right
 	offset = 4x29
 	scale = 0
