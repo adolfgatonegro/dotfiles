@@ -1,9 +1,8 @@
 #!/bin/sh
 case $BLOCK_BUTTON in
 	1) gsimplecal ;;
-	# 2) "$TERMINAL" -e "$EDITOR" "$0" ;;
-	2) nsxiv -t $HOME/pictures/wallpapers ;;
-	3) unischedule ;;
+	2) "$TERMINAL" -e "$EDITOR" "$0" ;;
+	3) nsxiv -t $HOME/pictures/wallpapers ;;
 esac
 
 date '+%a %d %H:%M'
