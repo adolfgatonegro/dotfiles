@@ -23,8 +23,8 @@ if $(playerctl status > /dev/null 2>&1); then
 			icon="" ;;
 	esac
 	# get artist and title from playerctl
-	artist="$(playerctl metadata xesam:artist)"
-	title="$(playerctl metadata xesam:title)"
+	artist="$(playerctl metadata artist)"
+	title="$(playerctl metadata title)"
 	# if a player is available but not playing, we'll get an error
 	# from playerctl, so we check if title is not empty
 	if [[ $title != "" ]]; then
@@ -32,8 +32,11 @@ if $(playerctl status > /dev/null 2>&1); then
 		# e.g. "firefox is playing media". in this case, printo only the title,
 		# otherwise print "title - artist"
 		case $artist in
-			"") printf "%s %.48s%s\\n" "^C$colour^$icon" "$title" "^C7^" ;;
-			*) printf "%s %.48s%s\\n" "^C$colour^$icon" "$title - $artist" "^C7^" ;;
+			"") [[ ${#title} -gt 40 ]] && title="${title:0:40}…"
+				printf "%s %.48s%s\\n" "^C$colour^$icon" "$title" "^C7^" ;;
+			*) [[ ${#title} -gt 20 ]] && title="${title:0:20}…"
+			   [[ ${#artist} -gt 18 ]] && artist="${artist:0:18}…"
+				printf "%s %.48s%s\\n" "^C$colour^$icon"  "$title | $artist" "^C7^" ;;
 		esac
 	fi
 else
