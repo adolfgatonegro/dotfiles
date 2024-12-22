@@ -6,3 +6,4 @@ case $BLOCK_BUTTON in
 esac
 
 date '+%a %d %H:%M'
+
