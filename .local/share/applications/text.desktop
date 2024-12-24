@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Text editor
-# Exec=/usr/local/bin/st -e vim %u
-Exec=em %u
+Exec=/usr/local/bin/st -e vim %u
+#Exec=em %u
