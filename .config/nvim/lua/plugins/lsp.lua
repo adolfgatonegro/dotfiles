@@ -41,7 +41,7 @@ return {
 		}
 
 		-- ltex gets horribly confused by typst, disable for now
-      --
+  --
 		-- lspconfig.ltex.setup{
 		-- 	capabilities = capabilities,
 		-- 	filetypes = {
