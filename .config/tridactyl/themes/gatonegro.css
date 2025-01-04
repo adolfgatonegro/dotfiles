@@ -15,7 +15,7 @@
     --tridactyl-highlight-box-bg: var( --tridactyl-photon-colours-in-content-box-background);
     --tridactyl-highlight-box-fg: var( --tridactyl-photon-colours-in-content-text-color);
     --tridactyl-hint-active-bg: rgba(66,135,245,0.25);
-    --tridactyl-hint-active-fg: #111117;
+    --tridactyl-hint-active-fg: #c1c1d1;
     --tridactyl-hint-active-outline: 0px solid rgba(0,0,0,0);
     --tridactyl-hint-bg: rgba(0,0,0,0);
     --tridactyl-hint-outline: 0px solid rgba(0,0,0,0);

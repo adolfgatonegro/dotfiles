@@ -123,5 +123,8 @@ command archive js javascript:void(open('http://archive.today/?run=1&url='+encod
 " Open the ProtonDB page for the current Steam game.
 command protondb js javascript:void(window.location.href = 'https://protondb.com/app/' + window.location.pathname.split('/')[2])
 
+" Open current paper in Sci-Hub
+command scihub js javascript:void(window.location='https://sci-hub.se/'+window.location)
+
 " Force the use of old.reddit
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
