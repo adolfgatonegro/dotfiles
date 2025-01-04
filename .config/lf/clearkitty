@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-kitten icat --clear --stdin no --silent --transfer-mode file < /dev/null > /dev/tty
