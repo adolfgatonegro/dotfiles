@@ -18,7 +18,7 @@ if [ ${HOSTNAME} = "psyche" ]; then
 fi
 
 # autostart
-lxsession &
+# lxsession &
 picom -b &
 numlockx on &
 sxhkd &
@@ -27,7 +27,7 @@ jamesdsp --tray &
 redshift -l $(cat $XDG_CONFIG_HOME/latlong) &
 setwall $HOME/pictures/wallpapers &
 xss-lock -- slock &
-mpv --no-video --no-keep-open $XDG_CONFIG_HOME/startup.ogg &
+ffplay -v 0 -nodisp -autoexit $XDG_CONFIG_HOME/startup.ogg &
 emacs --daemon &
 
 # dwm
