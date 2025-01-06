@@ -74,6 +74,7 @@ kbd() {
 	# setxkbmap -model pc104 -layout us -variant altgr-intl -option caps:escape
 	[ -r $XDG_CONFIG_HOME/X11/Xmodmap ] && xmodmap $XDG_CONFIG_HOME/X11/Xmodmap
 	xset r rate 250 100
+	xinput set-prop "ARESON ProFit Ergo Vertical Wired Trackball" "libinput Accel Profile Enabled" 0, 1
 }
 
 # convert the specified files to mp3 320kbps
