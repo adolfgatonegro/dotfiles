@@ -68,7 +68,8 @@ k("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files"})
 -- Toggle key bindings
 k("n", "<leader>t",  "<Nop>",              { desc = "Toggle" } )
 k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Highlight for last search term" } )
-k("n", "<leader>tw", ":set wrap!<CR>",     { desc = "Line wrapping" } )
+k("n", "<leader>tl", ":set wrap!<CR>",     { desc = "Line wrapping" } )
+k("n", "<leader>tw", ":ToggleWrapMode<CR>",     { desc = "Soft/Hard wrap mode" } )
 
 -- Toggle Stay-Centered (disabled)
 -- k({"n", "v"}, "<leader>tc", function()

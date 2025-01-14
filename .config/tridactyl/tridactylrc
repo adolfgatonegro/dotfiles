@@ -79,8 +79,11 @@ set searchurls.yt https://youtube.com/results?search_query=%s
 set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
 set followpagepatterns.prev ^(prev(ious)?|older|précédent|anterior)\b|«|<<
 
+" Open current URL in mpv
+bind gm composite get_current_url | exclaim_quiet mpv --no-terminal
+
 " Hint and open with linkhandler.
-bind M hint -W exclaim_quiet linkhandler
+bind gh hint -W exclaim_quiet linkhandler
 
 " Hint and open in private window.
 bind gp hint -wp
@@ -90,9 +93,9 @@ bind m exclaim_quiet bmks
 bind A composite get_current_url | exclaim_quiet bmks add
 
 " Control tab groups.
-bind gs fillcmdline tgroupswitch
-bind gm fillcmdline tgroupmove
-bind gc fillcmdline tgroupclose
+"bind gs fillcmdline tgroupswitch
+"bind gm fillcmdline tgroupmove
+"bind gc fillcmdline tgroupclose
 
 " d closes tab and moves left instead of right.
 bind d composite tabprev; tabclose #
