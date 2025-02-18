@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: quote 
-# key: quote
+# key: _quote
 # --
 #quote(block:${1:false})[${0}]
