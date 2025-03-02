@@ -1,7 +1,6 @@
-"query:Update Feeds:tags # \"Updates\""
+"query:Updates:tags # \"Updates\""
 https://annas-archive.org/blog/rss.xml "Updates" "tech"
 https://archlinux.org/feeds/news/ "Updates" "tech" "linux" "~Arch Linux News"
-https://osdn.net/projects/ezarch/releases/rss "Updates" "tech" "linux" "~Ezarch Releases"
 https://status.proton.me/history.atom "Updates" "tech" "~Proton Service Incident History"
 https://suckless.org/atom.xml "Updates" "tech" "linux"
 
@@ -9,30 +8,32 @@ https://suckless.org/atom.xml "Updates" "tech" "linux"
 https://www.gleech.org/feed.xml "Blog" "psychology"
 https://www.experimental-history.com/feed "Blog" "philosophy"
 https://fakenous.substack.com/feed "Blog" "philosophy" "politics"
-https://magnusvinding.com/feed/ "Blog" "philosophy"
 https://www.metaphysicalexile.com/feeds/posts/default "Blog" "philosophy"
 https://schopenhaueronmars.com/feed/ "Blog" "philosophy"
 https://smallpotatoes.paulbloom.net/feed "Blog" "psychology" "~Small Potatoes | Paul Bloom"
 https://superbowl.substack.com/feed "Blog" "tech" "psychology" "religion"
 https://americanpsychoanalyst.substack.com/feed "Blog" "psychoanalysis"
 https://gurwinder.substack.com/feed "Blog" "tech" "psychology" "philosophy"
-https://feeds.buzzsprout.com/2131830.rss "Podcast" "psychology" #Ordinary Unhappiness
-https://anchor.fm/s/2c675710/podcast/rss "Podcast" "philosophy" #Eternalised
-https://anchor.fm/s/471f49a0/podcast/rss "Podcast" "philosophy" #The Nietzsche Podcast
-https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
-https://thisjungianlife.com/feed/ "Podcast" "psychology" #This Jungian Life
-https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
-
 "query:Science & Technology:tags # \"tech\""
 https://sneak.berlin/feed.xml "Blog" "tech"
-https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTube" "tech" #Luke Smith
-https://youtube.com/feeds/videos.xml?channel_id=UCLB7AzTwc6VFZrBsO2ucBMg "YouTube" "tech" "ai" #Robert Miles
 
 "query:Miscellanea:tags # \"misc\""
 https://dancarlin.substack.com/feed "Blog" "misc" "~Dan Carlin"
 https://lukesmith.xyz/index.xml "Blog" "tech" "philosophy" "sociology" "misc" "~Luke Smith"
+
+"query:Podcasts:tags # \"podcast\""
 https://feeds.feedburner.com/dancarlin/commonsense?format=xml "Podcast" "~Dan Carlin's Common Sense"
 https://feeds.feedburner.com/dancarlin/history?format=xml "Podcast" "history" "~Dan Carlin's Hardcore History"
+https://anchor.fm/s/2c675710/podcast/rss "Podcast" "philosophy" #Eternalised
+https://thisjungianlife.com/feed/ "Podcast" "psychology" #This Jungian Life
+https://anchor.fm/s/471f49a0/podcast/rss "Podcast" "philosophy" #The Nietzsche Podcast
 https://notrelated.xyz/rss "Podcast" "tech" "philosophy" "sociology" "misc"
+https://psychiatrypodcast.libsyn.com/rss "Podcast" "psychology" #Psychiatry & Psychotherapy - David Puder
+
+"query:YouTube:tags # \"YouTube\""
+https://www.youtube.com/feeds/videos.xml?channel_id=UCtscFf8VayggrDYjOwDke_Q "YouTube" "science" "tech" #Angela Collier
+https://youtube.com/feeds/videos.xml?channel_id=UCnEuIogVV2Mv6Q1a3nHIRsQ "YouTube" "philosophy" #Carefree Wandering
+https://www.youtube.com/feeds/videos.xml?channel_id=UCX60pqsaaAPFh2sUZEaNKJA "YouTube" "misc" #HGModernism
+https://youtube.com/feeds/videos.xml?channel_id=UC2eYFnH61tmytImy1mTYvhA "YouTube" "tech" #Luke Smith
 https://youtube.com/feeds/videos.xml?channel_id=UCDAjO0-hd_RS8ZYJ4W-Iq5Q "YouTube" "literature" "philosophy" #Savannah Brown
 https://youtube.com/feeds/videos.xml?channel_id=UCl_dlV_7ofr4qeP1drJQ-qg "YouTube" "music" #Tantacrul
