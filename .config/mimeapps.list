@@ -20,3 +20,6 @@ x-scheme-handler/chrome=browser.desktop
 x-scheme-handler/http=browser.desktop
 x-scheme-handler/https=browser.desktop
 x-scheme-handler/magnet=torrent.desktop
+
+[Added Associations]
+video/mp4=video.desktop;

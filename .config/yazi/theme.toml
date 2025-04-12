@@ -25,16 +25,20 @@ rules = [
 
 [icon]
 prepend_dirs  = [
-	{ name = ".config", text = "" },
-	{ name = ".git", text = "" },
-	{ name = "documents", text = "" },
-	{ name = "downloads", text = "" },
-	{ name = "music", text = "" },
-	{ name = "pictures", text = "" },
-	{ name = "psychology", text = "" },
-	{ name = "repos", text = "" },
-	{ name = "shared", text = "" },
-	{ name = "videos", text = "" },
+	{ name = ".config", text = " " },
+	{ name = ".git", text = " " },
+	{ name = "documents", text = " " },
+	{ name = "downloads", text = " " },
+	{ name = "dumpster", text = " " },
+	{ name = "music", text = " " },
+	{ name = "games", text = " " },
+	{ name = "pictures", text = " " },
+	{ name = "psychology", text = " " },
+	{ name = "repos", text = " " },
+	{ name = "shared", text = " " },
+	{ name = "videos", text = " " },
+	{ name = "work", text = "󱥉 " },
+	{ name = "www", text = "󰖟 " },
 ]
 prepend_exts = [
 	{ name = "tif", text = "", fg_dark = "#a074c4", fg_light = "#6b4d83" },

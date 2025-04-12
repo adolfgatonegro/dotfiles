@@ -72,6 +72,7 @@ set searchurls.lg https://libgen.st/search.php?req=%s&lg_topic=libgen&open=0&vie
 set searchurls.r https://old.reddit.com/r/%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
 set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
+set searchurls.sp https://open.spotify.com/search/%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://youtube.com/results?search_query=%s
 
