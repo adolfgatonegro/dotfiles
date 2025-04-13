@@ -39,6 +39,8 @@ k("n", "h", "<Backspace>")
 k("n", "j", "<Down>", { remap = true })
 k("n", "k", "<Up>", { remap = true })
 k("n", "l", "<Space>")
+k("v", "j", "gj", { remap = true })
+k("v", "k", "gk", { remap = true })
 
 -- oil.nvim
 k("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
