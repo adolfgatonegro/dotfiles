@@ -75,6 +75,7 @@ set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
 set searchurls.sp https://open.spotify.com/search/%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://youtube.com/results?search_query=%s
+set searchurls.ym https://music.youtube.com/search?q=%s
 
 " Support FR and ES for `followpage`
 set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
