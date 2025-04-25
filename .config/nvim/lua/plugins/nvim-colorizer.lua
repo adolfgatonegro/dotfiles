@@ -9,6 +9,7 @@ return {
 				"!md",
 				"!text",
 				"!typst",
+				"!oil",
 			}
 		})
 	end,
