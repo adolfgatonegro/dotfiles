@@ -24,7 +24,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export MANPAGER="less -R --use-color -Dd+r -Du+b"
 export MANROFFOPT="-c"
-export BROWSER="librewolf"
+export BROWSER="firefox"
 export FILEMANAGER="yazi"
 # export BROWSER="vivaldi"
 
