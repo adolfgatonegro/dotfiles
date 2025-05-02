@@ -48,7 +48,7 @@ super + t
 # key chord launch applications
 # books, unicode, multi-monitor
 super + x ; {b,d,f,n,v}
-    {librewolf,discord,st -e yazi,obsidian,st -e nvim}
+    {firefox,discord,st -e yazi,obsidian,st -e nvim}
 
 # key chord emacs
 super + e ; {e,d,s}
