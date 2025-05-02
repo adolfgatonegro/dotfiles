@@ -45,11 +45,11 @@ ex (){
 }
 
 flacsplit(){
-	[ $# != 2 ] && echo "flacsplit: convert single-file flac albums into tagged 320kpbs mp3 tracks\nUsage: flacsplit /path/to/cue /path/to/flac" && return ||
+	[ $# != 2 ] && echo "flacsplit: convert single-file flac albums into tagged 320kpbs ogg tracks\nUsage: flacsplit /path/to/cue /path/to/flac" && return ||
 	if [ -e "$1" -a -e "$2" ] && expr "$1" : '.*\.cue$' > /dev/null && expr "$2" : '.*\.flac$' > /dev/null || expr "$2" : '.*\.ape$' > /dev/null || expr "$2" : '.*\.wav$' > /dev/null; then
 		tmpdir=$(mktemp -d /tmp/flacsplit.XXXXXX.d)
 		echo "Splitting FLAC file into tracks..."
-		shnsplit -t "%n %t" -d "$tmpdir" -o "cust ext=mp3 ffmpeg -i - -ab 320k %f" -f "$1" "$2"
+		shnsplit -t "%n %t" -d "$tmpdir" -o "cust ext=ogg ffmpeg -i - -ab 320k %f" -f "$1" "$2"
 		echo "Tagging tracks..."
 		cuetag.sh "$1" "$tmpdir"/*
 		echo -n "\nDone! Importing to beets music library..." && \
@@ -78,10 +78,10 @@ kbd() {
 }
 
 # convert the specified files to mp3 320kbps
-mp3conv(){
-	[ $# != 1 ] && echo "mp3conv: find files in a directory and covert them to 320kbps mp3\nUsage: tomp3 [extension], e.g. flac, wav, etc." && return ||
-	tmpdir=$(mktemp -d /tmp/mp3conv.XXXXXX.d)
-	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.'$1'}.mp3"' {} \; || \
+oggconv(){
+	[ $# != 1 ] && echo "oggconv: find files in a directory and covert them to 320kbps ogg\nUsage: oggconv [extension], e.g. flac, wav, etc." && return ||
+	tmpdir=$(mktemp -d /tmp/oggconv.XXXXXX.d)
+	find -name "*.$1" -exec sh -c 'ffmpeg -i "{}" -ab 320k "'$tmpdir'/${0/.'$1'}.ogg"' {} \; || \
 	echo -n "\nDone! Importing to beets music library..." && \
 	beet import "$tmpdir" && \
 	echo "\nCleaning up..." && rm -r "$tmpdir"
