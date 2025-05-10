@@ -10,6 +10,7 @@ return {
 				"!text",
 				"!typst",
 				"!oil",
+				"!bib",
 			}
 		})
 	end,
