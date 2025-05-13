@@ -11,16 +11,18 @@ set browser librewolf
 " Use a blank page for new tab.
 set newtab about:blank
 
-" Disable the mode indicator.
+" Mode indicator and keys
 set modeindicator false
+set modeindicatorshowkeys true
 
 " Enable smooth(er?) scrolling.
 set smoothscroll true
 
 " Better (numeric) hinting.
 set hintfiltermode vimperator-reflow
-set hintchars 1234567890
-set hintnames numeric
+set hintchars 5432167890
+set hintnames short
+set hintuppercase false
 
 " Stop pages from stealing focus.
 set allowautofocus false
@@ -82,13 +84,15 @@ set followpagepatterns.next ^(next|newer|prochain|siguiente)\b|»|>
 set followpagepatterns.prev ^(prev(ious)?|older|précédent|anterior)\b|«|<<
 
 " Open current URL in mpv
-bind gm composite get_current_url | exclaim_quiet mpv --no-terminal
+bind ;m composite get_current_url | exclaim_quiet umpv
+bind ;M hint -W exclaim_quiet umpv
 
 " Hint and open with linkhandler.
-bind gh hint -W exclaim_quiet linkhandler
+bind ;h composite get_current_url | exclaim_quiet linkhandler
+bind ;H hint -W exclaim_quiet linkhandler
 
 " Hint and open in private window.
-bind gp hint -wp
+bind ;P hint -wp
 
 " Interact with bmks script.
 bind m exclaim_quiet bmks
@@ -102,7 +106,7 @@ bind A composite get_current_url | exclaim_quiet bmks add
 " d closes tab and moves left instead of right.
 bind d composite tabprev; tabclose #
 bind D tabclose
-"
+
 " These just feel... backwards to me?
 bind K tabprev
 bind J tabnext

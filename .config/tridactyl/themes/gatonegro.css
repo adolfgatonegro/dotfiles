@@ -1,10 +1,9 @@
-/* ultima.css - colourscheme for tridactyl */
-/* for FF-ULTIMA userChrome and Tokyo Night theme */
 /* gatoneg.ro */
 
 :root.TridactylThemeGatonegro {
     --tridactyl-bg: var(--tridactyl-firefox-2021-redesign-background);
-    --tridactyl-cmdl-bg: var(--tridactyl-firefox-2021-redesign-background);
+	--tridactyl-status-border-radius: 0px !important;
+	--tridactyl-cmdl-bg: var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-cmdl-fg: var(--tridactyl-fg);
     --tridactyl-cmplt-border-top: 1px solid var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-fg: #a1b1d1;
@@ -26,13 +25,13 @@
     --tridactyl-scrollbar-color: var(--tridactyl-fg);
     --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-url-fg: #a9b1d6;
-    --tridactyl-font-size: 10pt !important;
-    --tridactyl-cmdl-font-family: serif !important;
-    --tridactyl-cmplt-font-family: serif !important;
+    /* --tridactyl-font-size: 8pt !important; */
+    --tridactyl-cmdl-font-family: monospace !important;
+    --tridactyl-cmplt-font-family: monospace !important;
 }
 
 :root.TridactylThemeGatonegro #tridactyl-reader { font-family: serif; }
 
-#completions > div > table {
-    font-size: 10pt !important;
-}
+/* #completions > div > table { */
+/*     font-size: 8pt !important; */
+/* } */
