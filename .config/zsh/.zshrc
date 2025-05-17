@@ -76,6 +76,7 @@ source "${ZDOTDIR:-$HOME/.config/zsh}/zsh-plugins.zsh"
 # Plugins
 zsh_add_plugin "Aloxaf/fzf-tab"
 zsh_add_plugin "zdharma-continuum/fast-syntax-highlighting"
+zsh_add_plugin "hlissner/zsh-autopair"
 
 # ~~~ Completion ~~~
 zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
@@ -88,5 +89,6 @@ zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 autoload -Uz compinit
 compinit -u
+autopair-init
 
 echo "󱙧  $(shuf -n 1 ~/.config/tarot) 󱙧"
