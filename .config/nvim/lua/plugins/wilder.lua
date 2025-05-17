@@ -6,10 +6,6 @@ return {
 
 		wilder.setup({
 			modes = {':', '/', '?'},
-			next_key = '<C-j>',
-			previous_key = '<C-k>',
-			accept_key = '<C-l>',
-			reject_key = '<C-h>',
 		})
 
 		wilder.set_option('renderer', wilder.popupmenu_renderer(
