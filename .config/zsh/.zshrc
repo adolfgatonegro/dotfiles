@@ -68,7 +68,6 @@ prompt pure
 [ -f "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions" ] && source "${XDG_CONFIG_HOME:-$HOME/.config}/shell/functions"
 
 source <(fzf --zsh)
-eval "$(zoxide init --cmd cd zsh)"
 
 # PLugin manager
 source "${ZDOTDIR:-$HOME/.config/zsh}/zsh-plugins.zsh"
@@ -85,7 +84,6 @@ zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' menu no
 zstyle ':completion:*' special-dirs true
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
-zstyle ':fzf-tab:complete:__zoxide_z:*' fzf-preview 'ls --color $realpath'
 
 autoload -Uz compinit
 compinit -u
