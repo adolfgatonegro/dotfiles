@@ -1,11 +1,12 @@
-[manager]
-border_style    = { fg = "#0a0a15" }
-# preview_hovered = { underline = false }
+[mgr]
+cwd = { fg = "cyan", italic = true }
+border_symbol = ""
+border_style    = { fg = "darkgrey" }
 
 [status]
-separator_open  = ""
-separator_close = ""
-separator_style = { fg = "#16161e", bg = "#16161e" }
+overall   = {}
+sep_left  = { open = "", close = "" }
+sep_right = { open = "", close = "" }
 
 [filetype]
 
@@ -43,3 +44,16 @@ prepend_dirs  = [
 prepend_exts = [
 	{ name = "tif", text = "", fg_dark = "#a074c4", fg_light = "#6b4d83" },
 ]
+
+[tabs]
+active   = { fg = "red", bold = true }
+inactive = { fg = "darkgrey", italic = true, bg = "reset" }
+
+# Separator
+sep_inner = { open = "", close = "" }
+sep_outer = { open = "", close = "" }
+
+[mode]
+normal_main = { fg = "#222222", bg = "lightblue", bold = true }
+normal_alt  = { fg = "lightblue", bg = "reset" }
+
