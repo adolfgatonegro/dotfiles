@@ -31,6 +31,13 @@ super + F8
 super + shift +F8
 	unmounter
 
+# dmrecord
+super + F12
+	dmrecord
+
+super + shift + F12
+	dmrecord kill
+
 # }}
 
 # dwmc {{
