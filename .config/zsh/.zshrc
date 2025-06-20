@@ -82,7 +82,7 @@ zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
 zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' insert-unambiguous true
 zstyle ':completion:*' menu no
-zstyle ':completion:*' special-dirs true
+# zstyle ':completion:*' special-dirs true
 zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 
 autoload -Uz compinit
