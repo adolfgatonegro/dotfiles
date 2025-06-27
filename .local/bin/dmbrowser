@@ -17,6 +17,7 @@ ddgSearch="https://duckduckgo.com/?q="
 googleSearch="https://google.com/search?hl=en&client=firefox-b-d&udm=14&q="
 wikipediaSearch="https://en.wikipedia.org/wiki/Special:Search/"
 youtubeSearch="https://youtube.com/results?persist_gl=0&gl=US&search_query="
+ytmusicSearch="https://music.youtube.com/search?q="
 
 defaultSearch=$ddgSearch
 
@@ -37,6 +38,7 @@ declare -a options=(
 	"󰊭 Search - Google"
 	"󰖬 Search - Wikipedia"
 	"󰗃 Search - YouTube"
+	"󰝚 Search - YouTube Music"
 	"󰈆 Exit"
 )
 
@@ -58,6 +60,7 @@ case $choice in
 	"󰊭 Search - Google") search $googleSearch;;
 	"󰖬 Search - Wikipedia") search $wikipediaSearch;;
 	"󰗃 Search - YouTube") search $youtubeSearch;;
+	"󰝚 Search - YouTube Music") search $ytmusicSearch;;
 	"󰈆 Exit") exit 0 ;;
 	# When user input doesn't match any choice, check if it's a valid URL. If
 	# it is, open it in the browser, otherwise treat it as a search string.
