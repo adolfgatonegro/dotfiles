@@ -21,7 +21,7 @@ config.set('colors.webpage.darkmode.enabled', False, 'file://*')
 c.colors.webpage.darkmode.threshold.background = 100
 
 # autosave session
-c.auto_save.session = True
+c.auto_save.session = False
 # disable autoplay
 c.content.autoplay = False
 # set nvim as editor
@@ -31,8 +31,8 @@ c.editor.command = ['st','-e','nvim', '{}']
 c.tabs.padding = {'bottom': 4, 'left': 4, 'right': 4, 'top': 4}
 c.tabs.indicator.width = 0
 c.tabs.title.format = "{audio}{current_title}"
-c.fonts.tabs.selected = '8pt Cozette'
-c.fonts.tabs.unselected = '8pt Cozette'
+c.fonts.tabs.selected = '10pt CozetteVector'
+c.fonts.tabs.unselected = '10pt CozetteVector'
 c.fonts.web.family.sans_serif = 'serif'
 c.fonts.web.family.serif = 'serif'
 c.fonts.web.family.standard = 'serif'
@@ -42,8 +42,10 @@ c.fonts.web.family.fixed = 'monospace'
 c.completion.height = '40%'
 
 # set default pages
-c.url.default_page = 'https://gatoneg.ro'
-c.url.start_pages = 'https://gatoneg.ro'
+# c.url.default_page = 'https://gatoneg.ro'
+# c.url.start_pages = 'https://gatoneg.ro'
+c.url.start_pages = 'file:///home/gatonegro/.config/qutebrowser/start.html'
+c.url.default_page = 'file:///home/gatonegro/.config/qutebrowser/start.html'
 
 # enable notifications & protocol handlers
 config.set('content.notifications.enabled', True, 'https://web.whatsapp.com/*')
