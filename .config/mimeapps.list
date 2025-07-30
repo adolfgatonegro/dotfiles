@@ -9,6 +9,7 @@ application/x-wine-extension-ini=text.desktop
 image/gif=img.desktop
 image/jpeg=img.desktop
 image/png=img.desktop
+image/tiff=img.desktop
 image/vnd.djvu=pdf.desktop
 inode/directory=file.desktop
 text/*=text.desktop
