@@ -8,6 +8,7 @@ config.load_autoconfig(False)
 # key bindings
 config.bind(',M', 'hint links spawn linkhandler {hint-url}')
 config.bind(',m', 'spawn linkhandler {url}')
+config.bind(',p', 'spawn dmenu_bw')
 config.bind('tD', 'config-cycle -p colors.webpage.darkmode.enabled true false')
 # Per-URL setting doesn't seem to work?
 # config.bind('tD', 'config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled true false')

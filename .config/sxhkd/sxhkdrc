@@ -40,6 +40,9 @@ super + shift + F12
 
 # }}
 
+super + v
+    sleep 0.25 && xdotool type --clearmodifiers "$(xclip -o -selection primary)" && sleep 1 && xclip -selection primary /dev/null
+
 # dwmc {{
 # setlayout
 # super + ctrl {t,d,g,m}

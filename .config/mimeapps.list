@@ -24,3 +24,5 @@ x-scheme-handler/magnet=torrent.desktop
 
 [Added Associations]
 video/mp4=video.desktop;
+application/x-bibtex=text.desktop;
+text/x-bibtex=text.desktop;
