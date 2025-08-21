@@ -13,6 +13,10 @@ config.bind('tD', 'config-cycle -p colors.webpage.darkmode.enabled true false')
 # Per-URL setting doesn't seem to work?
 # config.bind('tD', 'config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled true false')
 
+#bind some stylesheets
+config.bind('cm', 'config-list-add content.user_stylesheets "~/.config/qutebrowser/css/serif.css"')
+config.bind('Cm', 'config-list-remove content.user_stylesheets "~/.config/qutebrowser/css/serif.css"')
+
 # dark mode
 c.colors.webpage.preferred_color_scheme = 'dark'
 c.colors.webpage.darkmode.enabled = False
@@ -27,24 +31,22 @@ c.auto_save.session = False
 c.content.autoplay = False
 # set nvim as editor
 c.editor.command = ['st','-e','nvim', '{}']
+# set downloads dispatcher
+c.editor.command = ['st -e yazi {}']
+# cookies
+c.content.cookies.accept = 'no-unknown-3rdparty'
 
 # cosmetic tweaks
+c.content.user_stylesheets = ["~/.config/qutebrowser/css/none.css", "~/.config/qutebrowser/css/serif.css"]
 c.tabs.padding = {'bottom': 4, 'left': 4, 'right': 4, 'top': 4}
 c.tabs.indicator.width = 0
 c.tabs.title.format = "{audio}{current_title}"
 c.fonts.tabs.selected = '10pt CozetteVector'
 c.fonts.tabs.unselected = '10pt CozetteVector'
-c.fonts.web.family.sans_serif = 'serif'
-c.fonts.web.family.serif = 'serif'
-c.fonts.web.family.standard = 'serif'
-c.fonts.web.family.cursive = 'serif'
-c.fonts.web.family.fantasy = 'serif'
-c.fonts.web.family.fixed = 'monospace'
+
 c.completion.height = '40%'
 
 # set default pages
-# c.url.default_page = 'https://gatoneg.ro'
-# c.url.start_pages = 'https://gatoneg.ro'
 c.url.start_pages = 'file:///home/gatonegro/.config/qutebrowser/start.html'
 c.url.default_page = 'file:///home/gatonegro/.config/qutebrowser/start.html'
 
