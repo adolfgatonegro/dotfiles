@@ -32,7 +32,7 @@ c.content.autoplay = False
 # set nvim as editor
 c.editor.command = ['st','-e','nvim', '{}']
 # set downloads dispatcher
-c.editor.command = ['st -e yazi {}']
+c.downloads.open_dispatcher = 'st -e yazi {}'
 # cookies
 c.content.cookies.accept = 'no-unknown-3rdparty'
 
