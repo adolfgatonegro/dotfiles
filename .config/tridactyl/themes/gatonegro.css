@@ -1,14 +1,14 @@
 /* gatoneg.ro */
 
 :root.TridactylThemeGatonegro {
-    --tridactyl-bg: var(--tridactyl-firefox-2021-redesign-background);
+    --tridactyl-bg: rgba(0,0,0,0.8);
 	--tridactyl-status-border-radius: 0px !important;
-	--tridactyl-cmdl-bg: var(--tridactyl-firefox-2021-redesign-background);
+	--tridactyl-cmdl-bg: var(--tridactyl-bg);
     --tridactyl-cmdl-fg: var(--tridactyl-fg);
     --tridactyl-cmplt-border-top: 1px solid var(--tridactyl-firefox-2021-redesign-background);
     --tridactyl-fg: #a1b1d1;
     --tridactyl-firefox-2021-redesign-background: #111117;
-    --tridactyl-header-first-bg: #111117;
+    --tridactyl-header-first-bg: rgba(0,0,0,0.5);
     --tridactyl-header-second-bg: var(--tridactyl-header-first-bg);
     --tridactyl-header-third-bg: var(--tridactyl-header-first-bg);
     --tridactyl-highlight-box-bg: var( --tridactyl-photon-colours-in-content-box-background);
@@ -23,15 +23,16 @@
     --tridactyl-of-bg: #343749;
     --tridactyl-of-fg: #a1b1d1;
     --tridactyl-scrollbar-color: var(--tridactyl-fg);
-    --tridactyl-url-bg: var(--tridactyl-firefox-2021-redesign-background);
+    --tridactyl-url-bg: transparent !important;
     --tridactyl-url-fg: #a9b1d6;
     /* --tridactyl-font-size: 8pt !important; */
     --tridactyl-cmdl-font-family: monospace !important;
     --tridactyl-cmplt-font-family: monospace !important;
+	backdrop-filter: blur(10px);
 }
 
 :root.TridactylThemeGatonegro #tridactyl-reader { font-family: serif; }
 
-/* #completions > div > table { */
-/*     font-size: 8pt !important; */
-/* } */
+:root #cmdline_iframe {
+    color-scheme: only light; /* Prevent Firefox from adding a white background on dark-mode sites */
+}
