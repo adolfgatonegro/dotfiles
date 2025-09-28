@@ -12,20 +12,13 @@ return {
 
 	config = function()
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
-		local lspconfig = require("lspconfig")
+		-- local lspconfig = require("lspconfig")
 
-		-- lspconfig.typst_lsp.setup{
-		-- 	capabilities = capabilities,
-		-- 	-- exportPdf = "onSave"
-		-- }
+		vim.lsp.config('tinymist', {
+			settings = {exportPdf = "onSave", },
+		})
 
-		lspconfig.tinymist.setup {
-			settings = {
-				exportPdf = "onType",
-			},
-		}
-
-		lspconfig.lua_ls.setup{
+		vim.lsp.config('lua_ls', {
 			capabilities = capabilities,
 			settings = {
 				Lua = {
@@ -34,40 +27,10 @@ return {
 					},
 				},
 			},
-		}
+		})
 
-		lspconfig.clangd.setup{
-			capabilities = capabilities,
-		}
-
-		-- ltex gets horribly confused by typst, disable for now
-  --
-		-- lspconfig.ltex.setup{
-		-- 	capabilities = capabilities,
-		-- 	filetypes = {
-		-- 		"latex",
-		-- 		"typst",
-		-- 		"typ",
-		-- 		"bib",
-		-- 		"markdown",
-		-- 		"plaintex",
-		-- 		"tex"
-		-- 	},
-		-- 	settings = {
-		-- 		ltex = {
-		-- 			language = "en-GB",
-		-- 			enabled = {
-		-- 				"latex",
-		-- 				"typst",
-		-- 				"typ",
-		-- 				"bib",
-		-- 				"markdown",
-		-- 				"plaintex",
-		-- 				"tex"
-		-- 			},
-		-- 		}
-		-- 	}
-		-- }
+		vim.lsp.enable('tinymist')
+		vim.lsp.enable('lua_ls')
 	end
 },
 
