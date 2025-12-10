@@ -21,6 +21,8 @@ x-scheme-handler/chrome=browser.desktop
 x-scheme-handler/http=browser.desktop
 x-scheme-handler/https=browser.desktop
 x-scheme-handler/magnet=torrent.desktop
+x-scheme-handler/nxm=modorganizer2-nxm-handler.desktop
+x-scheme-handler/discord=vesktop.desktop
 
 [Added Associations]
 video/mp4=video.desktop;

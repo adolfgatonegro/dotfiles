@@ -7,8 +7,8 @@ path=(~/.local/bin ~/.local/bin/statusbar $path)
 export HOSTNAME=$(cat /etc/hostname)
 
 if [ ${HOSTNAME} = "foxes" ]; then
-	export VDPAU_DRIVER=nvidia
-	export LIBVA_DRIVER_NAME=nvidia
+	export VDPAU_DRIVER=radeonsi
+	export LIBVA_DRIVER_NAME=radeonsi
 fi
 
 if [ ${HOSTNAME} = "lucille" ]; then
