@@ -28,6 +28,27 @@ killrecording() {
 	pkill -RTMIN+18 dwmblocks
 }
 
+# screencast() {
+# 	askaudiosource
+# 	sleep 1
+# 	ffmpeg \
+# 		-hide_banner \
+# 		-y \
+# 		-f x11grab \
+# 		-framerate 60 \
+# 		-i $DISPLAY \
+# 		-f pulse \
+# 		-i $audiosource \
+# 		-c:v libx264 \
+# 		-preset ultrafast \
+# 		-c:a aac \
+# 		-vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
+# 		-pix_fmt yuv420p \
+# 	 	"$recordingsdir/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
+# 	echo $! > /tmp/recordingpid
+# 	updateicon "^C1^雷   ^C7^"
+# }
+#
 screencast() {
 	askaudiosource
 	sleep 1
@@ -36,12 +57,10 @@ screencast() {
 		-y \
 		-f x11grab \
 		-framerate 60 \
-		-i $DISPLAY \
-		-f pulse \
-		-i $audiosource \
-		-c:v libx264 \
-		-preset ultrafast \
-		-c:a aac \
+		-i "$DISPLAY" \
+		-f pulse -thread_queue_size 1024 -i $audiosource \
+		-c:v h264 \
+		-crf 0 -preset ultrafast -c:a aac \
 		-vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
 		-pix_fmt yuv420p \
 	 	"$recordingsdir/screencast-$(date '+%y%m%d-%H%M-%S').mp4" &
@@ -50,18 +69,6 @@ screencast() {
 }
 
 desktop() {
-	# ffmpeg \
-	# 	-hide_banner \
-	# 	-f x11grab \
-	# 	-framerate 30 \
-	# 	-i $DISPLAY \
-	# 	-c:v h264_nvenc \
-	# 	-g 24 \
-	# 	-b:v 2M \
-	# 	-preset slow \
-	# 	-vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" \
-	# 	-pix_fmt yuv420p \
-	# 	"$recordingsdir/desktop-$(date '+%y%m%d-%H%M-%S').mp4" &
 	ffmpeg \
 		-hide_banner \
 		-f x11grab \

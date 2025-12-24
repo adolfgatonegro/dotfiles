@@ -5,7 +5,7 @@
 
 # pacman
 alias \
-	ch="checkupdates ; pikaur -Qua 2>/dev/null" \
+	ch="checkupdates ; yay -Qua" \
 	paclog="less /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
@@ -36,7 +36,7 @@ alias \
 	la="ls -al" \
 	lh="ls -d .*" \
 	tree="ls --tree" \
-	less="/usr/share/nvim/runtime/scripts/less.sh"
+	# less="/usr/share/nvim/runtime/scripts/less.sh"
     #cat="bat -p" \
 	#less="bat"
 
