@@ -3,16 +3,15 @@
 
 * {
     background-color: transparent;
-    text-color:     #c1c1d1;
-    spacing:        40;
+    text-color:     #777777;
+    spacing:        25;
 	columns:		2;
 }
 
 window {
-    font: "Monospace SemiBold 10";
-    // font: "JetBrainsMono Nerd Font Medium 9";
-    fullscreen: 		true;
-    background-color: 	#0a0a1599;
+    font:               "Monospace 9";
+    fullscreen:         true;
+    background-color:   #0a0a0abb;
     children: [ dummy1, hdum, dummy2 ];
 }
 
@@ -24,7 +23,7 @@ element-text{
 	text-color:	inherit;
 }
 element selected {
-    text-color: #ff00aa;
+    text-color: #ffffff;
 }
-
+element-icon { size: 1em; }
 /* vim: ft=sass

@@ -8,7 +8,7 @@ super + ctrl + s
 
 # dmenu {{
 super + space
-	dmrun -p "run:"
+	rofi -show drun -show-icons
 
 # key chord dmenu scripts
 # books, unicode, multi-monitor
@@ -17,7 +17,7 @@ super + s ; {k,u,p,l,m,a}
 
 # power menu
 super + shift + x
-	dmsys
+	rofi -show p -modi p:"rofi-power-menu --choices=lockscreen/logout/suspend/reboot/shutdown" -theme-str "* \{horizontal-align: 0.5;\} entry \{text-color: transparent;\} prompt \{enabled: false;\} listview \{lines: 5;\}"
 
 # browser menu
 super + shift + b

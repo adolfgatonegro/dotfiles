@@ -2,12 +2,11 @@
 // gatoneg.ro
  
 configuration {
-    display-window: "window:";
-    display-run: "run:";
-    display-drun: "drun:";
-	display-calc: "calc:";
-	modi: "drun,run,window,calc";
-	kb-mode-next: "Shift+Right,Control+Tab,Super+Tab";
-	run-shell-command: "kitty --hold {cmd}";
+  display-drun: "Launch:";
+  display-run: "Command:";
+  display-rofi-power-menu: "";
+  modi: "drun,run";
+  kb-mode-next: "Control+Tab";
+  run-shell-command: 'st -e zsh -ic "{cmd} && read"';
 }
-@theme "gato_fullscreen"
+@theme "gato-full"

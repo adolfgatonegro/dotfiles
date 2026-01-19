@@ -89,5 +89,3 @@ zstyle ':fzf-tab:complete:cd:*' fzf-preview 'ls --color $realpath'
 autoload -Uz compinit
 compinit -u
 autopair-init
-
-echo "󱙧  $(shuf -n 1 ~/.config/tarot) 󱙧"

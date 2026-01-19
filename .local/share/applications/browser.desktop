@@ -1,4 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Web Browser
+NoDisplay=true
 Exec=/usr/bin/firefox %u

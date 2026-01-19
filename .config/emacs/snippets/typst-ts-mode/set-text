@@ -1,9 +1,0 @@
-# -*- mode: snippet -*-
-# name: set text
-# key: _text
-# --
-#set text(
-  lang: "${1:es}", 
-  size: ${2:11pt}
-)
-${0}

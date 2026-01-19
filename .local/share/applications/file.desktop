@@ -2,4 +2,4 @@
 Type=Application
 Name=File Manager
 Exec=/usr/local/bin/st -e yazi %u
-#Exec=em --eval '(dired "%u")'
+NoDisplay=true

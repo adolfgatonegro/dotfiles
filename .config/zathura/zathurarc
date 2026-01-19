@@ -5,43 +5,43 @@ set window-title-basename "true"
 set selection-clipboard "clipboard"
 
 # tokyonight-gatonegro color theme
-set notification-error-bg       "#ff00aa" # Red
-set notification-error-fg       "#c1c1e1" # Foreground
+set notification-error-bg       "#ffffff" # Red
+set notification-error-fg       "#1a1a1a" # Foreground
 set notification-warning-bg     "#ff8700" # Orange
-set notification-warning-fg     "#363649" # Selection
-set notification-bg             "rgba(10,10,21,0.5)" # Background
-set notification-fg             "#c1c1e1" # Foreground
+set notification-warning-fg     "#363636" # Selection
+set notification-bg             "rgba(10,10,10,0.5)" # Background
+set notification-fg             "#c1c1c1" # Foreground
 
-set completion-bg               "rgba(10,10,21,0.5)" # Background
-set completion-fg               "#c1c1e1" # Comment
-set completion-group-bg         "rgba(10,10,21,0.5)" # Background
-set completion-group-fg         "#c1c1e1" # Comment
-set completion-highlight-bg     "#363649" # Selection
-set completion-highlight-fg     "#c1c1e1" # Foreground
+set completion-bg               "rgba(10,10,10,0.5)" # Background
+set completion-fg               "#c1c1c1" # Comment
+set completion-group-bg         "rgba(10,10,10,0.5)" # Background
+set completion-group-fg         "#c1c1c1" # Comment
+set completion-highlight-bg     "#363636" # Selection
+set completion-highlight-fg     "#c1c1c1" # Foreground
 
-set index-bg                    "rgba(10,10,21,0.5)" # Background
-set index-fg                    "#c1c1e1" # Foreground
+set index-bg                    "rgba(10,10,10,0.5)" # Background
+set index-fg                    "#c1c1c1" # Foreground
 set index-active-bg             "rgba(54,54,73, 0.5)" # Current Line
-set index-active-fg             "#c1c1e1" # Foreground
+set index-active-fg             "#c1c1c1" # Foreground
 
-set inputbar-bg                 "rgba(10,10,21,0.5)" # Background
-set inputbar-fg                 "#c1c1e1" # Foreground
-set statusbar-bg                "rgba(10,10,21,0.5)" # Background
-set statusbar-fg                "#c1c1e1" # Foreground
+set inputbar-bg                 "rgba(10,10,10,0.5)" # Background
+set inputbar-fg                 "#c1c1c1" # Foreground
+set statusbar-bg                "rgba(10,10,10,0.5)" # Background
+set statusbar-fg                "#c1c1c1" # Foreground
 
 set highlight-color             "rgba(0,255,224,0.4)" # Orange
 set highlight-active-color      "rgba(255,135,0,0.4)" # Pink
 
-set default-bg                  "rgba(10,10,21,0.85)" # Background
-set default-fg                  "#c1c1e1" # Foreground
+set default-bg                  "rgba(10,10,10,0.85)" # Background
+set default-fg                  "#c1c1c1" # Foreground
 
 set render-loading              "true"
-set render-loading-fg           "#262639" # Background
-set render-loading-bg           "#c1c1e1" # Foreground
+set render-loading-fg           "#262626" # Background
+set render-loading-bg           "#c1c1c1" # Foreground
 
 # Recolor mode settings
-set recolor-lightcolor          "rgba(38,38,57,0)" # Background
-set recolor-darkcolor           "#c1c1e1" # Foreground
+set recolor-lightcolor          "rgba(38,38,38,0)" # Background
+set recolor-darkcolor           "#c1c1c1" # Foreground
 
 # Startup options
 set adjust-open width

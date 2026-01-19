@@ -3,6 +3,7 @@ application/epub+zip=ebook.desktop
 application/pdf=pdf.desktop
 application/postscript=pdf.desktop
 application/rss+xml=rss.desktop
+application/x-bibtex=text.desktop;
 application/x-bittorrent=torrent.desktop
 application/x-mobipocket-ebook=ebook.desktop
 application/x-wine-extension-ini=text.desktop
@@ -16,6 +17,8 @@ text/*=text.desktop
 text/html=browser.desktop
 text/plain=text.desktop
 text/x-shellscript=text.desktop
+text/x-bibtex=text.desktop;
+audio/*=video.desktop
 video/*=video.desktop
 x-scheme-handler/chrome=browser.desktop
 x-scheme-handler/http=browser.desktop
@@ -23,8 +26,3 @@ x-scheme-handler/https=browser.desktop
 x-scheme-handler/magnet=torrent.desktop
 x-scheme-handler/nxm=modorganizer2-nxm-handler.desktop
 x-scheme-handler/discord=vesktop.desktop
-
-[Added Associations]
-video/mp4=video.desktop;
-application/x-bibtex=text.desktop;
-text/x-bibtex=text.desktop;

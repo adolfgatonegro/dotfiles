@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Ebook Reader
-#Exec=em %u
+NoDisplay=true
 Exec=koreader %u

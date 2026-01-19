@@ -1,5 +1,0 @@
-# -*- mode: snippet -*-
-# name: cite
-# key: _cite
-# --
-#cite(<${1:Key}>, form:"${2:prose}", supplement: "${3}")${0}

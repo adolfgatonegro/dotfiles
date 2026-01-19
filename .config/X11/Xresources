@@ -11,69 +11,69 @@ st.font: Monospace-10
 !! dmenu options
 dmenu.font: CozetteVector-10
 ! dmenu.background:    #0a0a15
-dmenu.background:    #111117
-dmenu.foreground:    #c1c1d1
-dmenu.selbackground: #262639
+dmenu.background:    #111111
+dmenu.foreground:    #c1c1c1
+dmenu.selbackground: #262626
 dmenu.selforeground: #ff00aa
-dmenu.outbackground: #1a1a25
+dmenu.outbackground: #1a1a1a
 dmenu.outforeground: #00ffe0
 
 !! dwm colours
-dwm.normfgcolor:            #c1c1d1
-dwm.normbgcolor:            #111117
-dwm.normbordercolor:        #111117
-dwm.normfloatcolor:         #111117
+dwm.normfgcolor:            #cccccc
+dwm.normbgcolor:            #111111
+dwm.normbordercolor:        #111111
+dwm.normfloatcolor:         #111111
             
-dwm.selfgcolor:             #c1c1d1
-dwm.selbgcolor:             #111117
-dwm.selbordercolor:         #ff00aa
-dwm.selfloatcolor:          #ff00aa
+dwm.selfgcolor:             #ffffff
+dwm.selbgcolor:             #111111
+dwm.selbordercolor:         #ffffff
+dwm.selfloatcolor:          #ffffff
             
-dwm.titlenormfgcolor:       #c1c1d1
-dwm.titlenormbgcolor:       #111117
-dwm.titlenormbordercolor:   #111117
-dwm.titlenormfloatcolor:    #111117
+dwm.titlenormfgcolor:       #c1c1c1
+dwm.titlenormbgcolor:       #111111
+dwm.titlenormbordercolor:   #111111
+dwm.titlenormfloatcolor:    #111111
             
-dwm.titleselfgcolor:        #c1c1d1
-dwm.titleselbgcolor:        #111117
-dwm.titleselbordercolor:    #111117
-dwm.titleselfloatcolor:     #111117
+dwm.titleselfgcolor:        #c1c1c1
+dwm.titleselbgcolor:        #111111
+dwm.titleselbordercolor:    #111111
+dwm.titleselfloatcolor:     #111111
             
-dwm.tagsnormfgcolor:        #c1c1d1
-dwm.tagsnormbgcolor:        #111117
-dwm.tagsnormbordercolor:    #111117
-dwm.tagsnormfloatcolor:     #111117
+dwm.tagsnormfgcolor:        #666666
+dwm.tagsnormbgcolor:        #111111
+dwm.tagsnormbordercolor:    #111111
+dwm.tagsnormfloatcolor:     #111111
             
-dwm.tagsselfgcolor:         #ff00aa
-dwm.tagsselbgcolor:         #111117
-dwm.tagsselbordercolor:     #111117
-dwm.tagsselfloatcolor:      #111117
+dwm.tagsselfgcolor:         #ffffff
+dwm.tagsselbgcolor:         #111111
+dwm.tagsselbordercolor:     #111111
+dwm.tagsselfloatcolor:      #111111
             
-dwm.hidnormfgcolor:         #00ffe0
+dwm.hidnormfgcolor:         #999999
 dwm.hidnormbgcolor:         #207fec
-dwm.hidselfgcolor:          #262639
-dwm.hidselbgcolor:          #262639
+dwm.hidselfgcolor:          #262626
+dwm.hidselbgcolor:          #262626
             
-dwm.urgfgcolor:             #00ffe0
-dwm.urgbgcolor:             #111117
+dwm.urgfgcolor:             #999999
+dwm.urgbgcolor:             #111111
 dwm.urgbordercolor:         #ff0055
 dwm.urgfloatcolor:          #ff0055
             
-dwm.scratchselfgcolor:      #d1d1f1
+dwm.scratchselfgcolor:      #c1c1c1
 dwm.scratchselbgcolor:      #77547E
 dwm.scratchselbordercolor:  #aaee00
 dwm.scratchselfloatcolor:   #aaee00
             
-dwm.scratchnormfgcolor:     #d1d1f1
+dwm.scratchnormfgcolor:     #c1c1c1
 dwm.scratchnormbgcolor:     #664C67
 dwm.scratchnormbordercolor: #648c00
 dwm.scratchnormfloatcolor:  #648c00
 
 ! Generic
-*.foreground:    #c1c1d1
-*.background:    #111117
-*.cursorColor:   #c1c1d1
-*.highlightColor:#363649
+*.foreground:    #c1c1c1
+*.background:    #111111
+*.cursorColor:   #c1c1c1
+*.highlightColor:#363636
 
 !*fading:                  40
 !*fadeColor:               S_base03
@@ -92,7 +92,7 @@ dwm.scratchnormfloatcolor:  #648c00
 ! 7 White     15 White
 
 ! Black colours
-*.color0:        #111117
+*.color0:        #111111
 *.color8:        #414158
 ! Red colours
 *.color1:        #ff00aa
@@ -113,7 +113,7 @@ dwm.scratchnormfloatcolor:  #648c00
 *.color6:        #00ffed
 *.color14:       #20ecde
 ! White colours
-*.color7:        #c1c1d1
+*.color7:        #c1c1c1
 *.color15:       #b1b1d1
 
 Xft.dpi: 96

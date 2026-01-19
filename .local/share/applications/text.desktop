@@ -2,4 +2,4 @@
 Type=Application
 Name=Text editor
 Exec=/usr/local/bin/st -e vim %u
-#Exec=em %u
+NoDisplay=true
