@@ -412,11 +412,11 @@ binds {
     Mod+Space hotkey-overlay-title="Run: rofi" { spawn "rofi" "-show" "drun"; }
     Mod+D hotkey-overlay-title="Run: Discord" { spawn "vesktop"; }
     Mod+B hotkey-overlay-title="Run: Firefox" { spawn "firefox"; }
-    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id=nvim" "-e" "nvim"; }
-    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "foot" "--app-id=cmus" "-e" "cmus"; }
-    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "--app-id=yazi" "-e" "yazi"; }
-    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "kitty" "--app-id=nvim" "-e" "nvim"; }
+    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "kitty" "--app-id=cmus" "-e" "cmus"; }
+    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "kitty" "--app-id=yazi" "-e" "yazi"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
 
 	// DMS
 	Mod+F1  hotkey-overlay-title="DMS: Control Centre" { spawn "dms" "ipc" "call" "control-center" "toggle"; }

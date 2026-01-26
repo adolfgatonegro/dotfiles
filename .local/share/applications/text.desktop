@@ -1,5 +1,5 @@
 [Desktop Entry]
 Type=Application
 Name=Text editor
-Exec=/usr/local/bin/st -e vim %u
+Exec=/usr/bin/kitty --app-id=nvim -e nvim %u
 NoDisplay=true

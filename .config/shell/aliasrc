@@ -31,7 +31,7 @@ alias \
 
 # hipster coreutil replacements
 alias \
-	ls="eza --color=always --group-directories-first --icons=always" \
+	ls="eza --color=always --group-directories-first --icons=always --hyperlink" \
 	ll="ls -l" \
 	la="ls -al" \
 	lh="ls -d .*" \
