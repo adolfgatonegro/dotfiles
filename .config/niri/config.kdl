@@ -350,10 +350,14 @@ window-rule {
     open-floating true
 }
 
+// window-rule {
+// 	match app-id="mpv" 
+// 	open-on-workspace "media"
+// }
+
 window-rule {
 	match app-id="cmus" 
 	open-on-workspace "media"
-	open-maximized true
 }
 
 window-rule {
