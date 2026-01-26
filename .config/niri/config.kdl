@@ -333,10 +333,8 @@ animations {
 // Workspaces
 
 workspace "browser"
-workspace "media"
 workspace "discord"
 workspace "gaming"
-workspace "graphics"
 
 // Window rules
 
@@ -354,11 +352,11 @@ window-rule {
 // 	match app-id="mpv" 
 // 	open-on-workspace "media"
 // }
-
-window-rule {
-	match app-id="cmus" 
-	open-on-workspace "media"
-}
+//
+// window-rule {
+// 	match app-id="cmus" 
+// 	open-on-workspace "media"
+// }
 
 window-rule {
 	match app-id="vesktop" 
@@ -372,21 +370,19 @@ window-rule {
 	open-maximized true
 }
 
-window-rule {
-	match app-id=r#"steam$"# 
-	open-on-workspace "gaming"
-	open-floating true
-}
+// window-rule {
+// 	match app-id=r#"steam$"# 
+// 	open-on-workspace "gaming"
+// 	open-floating true
+// }
 
 window-rule {
 	match app-id="gimp$"
-	open-on-workspace "graphics"
 	open-maximized true
 }
 
 window-rule {
 	match app-id="Inkscape" title="- Inkscape$"
-	open-on-workspace "graphics"
 	open-maximized true
 }
 
