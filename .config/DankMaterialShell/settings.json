@@ -338,7 +338,7 @@
         {
           "id": "music",
           "enabled": true,
-          "mediaSize": 1
+          "mediaSize": 2
         },
         {
           "id": "systemTray",
@@ -346,10 +346,6 @@
         },
         {
           "id": "systemUpdate",
-          "enabled": true
-        },
-        {
-          "id": "notificationButton",
           "enabled": true
         },
         {

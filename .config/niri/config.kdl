@@ -367,6 +367,12 @@ window-rule {
 }
 
 window-rule {
+	match app-id=r#"steam"# 
+	open-on-workspace "gaming"
+	open-maximized true
+}
+
+window-rule {
 	match app-id=r#"steam$"# 
 	open-on-workspace "gaming"
 	open-floating true
@@ -410,12 +416,17 @@ binds {
     Mod+Space hotkey-overlay-title="Run: rofi" { spawn "rofi" "-show" "drun"; }
     Mod+D hotkey-overlay-title="Run: Discord" { spawn "vesktop"; }
     Mod+B hotkey-overlay-title="Run: Firefox" { spawn "firefox"; }
-    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "-e" "nvim"; }
-    Mod+M hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id=cmus" "-e" "cmus"; }
-    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "-e" "yazi"; }
+    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id=nvim" "-e" "nvim"; }
+    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "foot" "--app-id=cmus" "-e" "cmus"; }
+    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "--app-id=yazi" "-e" "yazi"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-	Mod+F10 hotkey-overlay-title="DMS: Task Manager" {spawn "dms" "ipc" "call" "processlist" "focusOrToggle";}
+
+	// DMS
+	Mod+F1  hotkey-overlay-title="DMS: Control Centre" { spawn "dms" "ipc" "call" "control-center" "toggle"; }
+	Mod+F2  hotkey-overlay-title="DMS: Notification Centre" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
+	Mod+F3  hotkey-overlay-title="DMS: Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
+	Mod+F10 hotkey-overlay-title="DMS: Task Manager" { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
 
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
