@@ -1,7 +1,7 @@
 [mgr]
-cwd = { fg = "white", italic = true }
+# cwd = { fg = "white", italic = true }
 border_symbol = ""
-border_style    = { fg = "darkgrey" }
+# border_style    = { fg = "darkgrey" }
 
 [indicator]
 padding = { open = "█", close = "█" }
@@ -11,19 +11,19 @@ overall   = {}
 sep_left  = { open = "", close = "" }
 sep_right = { open = "", close = "" }
 
-[filetype]
-rules = [
-	{ mime = "{image,audio,video}/*", fg = "white" },
-	{ mime = "application/{,g}zip", fg = "white" },
-	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "white" },
-	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "white" },
-	{ url = "*", is = "orphan", bg = "red" },
-	{ url = "*", is = "exec"  , fg = "white", bold = true },
-	{ url = "*", is = "dummy", bg = "red" },
-	{ url = "*/", is = "dummy", bg = "red" },
-	{ url = "*/", is = "link", fg = "white", italic = true },
-	{ url = "*/", fg = "white" }
-]
+# [filetype]
+# rules = [
+# 	{ mime = "{image,audio,video}/*", fg = "white" },
+# 	{ mime = "application/{,g}zip", fg = "white" },
+# 	{ mime = "application/x-{tar,bzip*,7z-compressed,xz,rar}", fg = "white" },
+# 	{ mime = "application/{pdf,doc,rtf,vnd.*}", fg = "white" },
+# 	{ url = "*", is = "orphan", bg = "red" },
+# 	{ url = "*", is = "exec"  , fg = "white", bold = true },
+# 	{ url = "*", is = "dummy", bg = "red" },
+# 	{ url = "*/", is = "dummy", bg = "red" },
+# 	{ url = "*/", is = "link", fg = "white", italic = true },
+# 	{ url = "*/", fg = "white" }
+# ]
 
 [icon]
 prepend_dirs  = [
@@ -32,29 +32,28 @@ prepend_dirs  = [
 	{ name = "documents", text = " " },
 	{ name = "downloads", text = " " },
 	{ name = "dumpster", text = " " },
-	{ name = "music", text = " " },
+	{ name = "music", text = "󰝚 " },
 	{ name = "games", text = " " },
-	{ name = "pictures", text = " " },
-	{ name = "psychology", text = " " },
+	{ name = "pictures", text = " " },
+	{ name = "psychology", text = "󱆉 " },
 	{ name = "repos", text = " " },
 	{ name = "shared", text = " " },
-	{ name = "videos", text = " " },
-	{ name = "work", text = "󱥉 " },
+	{ name = "videos", text = " " },
+	{ name = "work", text = " " },
 	{ name = "www", text = "󰖟 " },
 ]
-prepend_exts = [
-	{ name = "tif", text = "", fg_dark = "#a074c4", fg_light = "#6b4d83" },
-]
+# prepend_exts = [
+# 	{ name = "tif", text = " ", fg_dark = "#a074c4", fg_light = "#6b4d83" },
+# ]
 
 [tabs]
-active   = { fg = "white", bold = true }
-inactive = { fg = "darkgrey", italic = true, bg = "reset" }
+# active   = { fg = "white", bold = true }
+# inactive = { fg = "darkgrey", italic = true, bg = "reset" }
 
 # Separator
 sep_inner = { open = "", close = "" }
 sep_outer = { open = "", close = "" }
 
-[mode]
-normal_main = { fg = "#111111", bg = "white", bold = true }
-normal_alt  = { fg = "white", bg = "reset" }
-
+# [mode]
+# normal_main = { fg = "#111111", bg = "white", bold = true }
+# normal_alt  = { fg = "white", bg = "reset" }
