@@ -348,6 +348,11 @@ window-rule {
     open-floating true
 }
 
+window-rule {
+	match app-id="flameshot"
+	open-floating true
+}
+
 // window-rule {
 // 	match app-id="mpv" 
 // 	open-on-workspace "media"
@@ -664,6 +669,7 @@ binds {
     // Mod+Shift+Space { switch-layout "prev"; }
 
     Print { screenshot; }
+    Shift+Print { spawn "flameshot" "gui"; }
     Ctrl+Print { screenshot-screen; }
     Alt+Print { screenshot-window; }
 
