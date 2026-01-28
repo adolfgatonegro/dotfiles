@@ -1,7 +1,5 @@
-// This config is in the KDL format: https://kdl.dev
-// "/-" comments out the following node.
-// Check the wiki for a full description of the configuration:
-// https://yalter.github.io/niri/Configuration:-Introduction
+// Niri - config.kdl
+// gatoneg.ro
 
 // Input device configuration.
 // Find the full list of options on the wiki:
@@ -292,7 +290,6 @@ layer-rule {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
-// JamesDSP audio effects processor
 spawn-at-startup "jamesdsp" "-t"
 spawn-sh-at-startup "ffplay -v 0 -nodisp -autoexit $XDG_CONFIG_HOME/startup.ogg"
 
@@ -345,23 +342,9 @@ window-rule {
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	match app-id="flameshot"
     open-floating true
 }
-
-window-rule {
-	match app-id="flameshot"
-	open-floating true
-}
-
-// window-rule {
-// 	match app-id="mpv" 
-// 	open-on-workspace "media"
-// }
-//
-// window-rule {
-// 	match app-id="cmus" 
-// 	open-on-workspace "media"
-// }
 
 window-rule {
 	match app-id="vesktop" 
@@ -375,22 +358,43 @@ window-rule {
 	open-maximized true
 }
 
-// window-rule {
-// 	match app-id=r#"steam$"# 
-// 	open-on-workspace "gaming"
-// 	open-floating true
-// }
-
 window-rule {
-	match app-id="gimp$"
+	match app-id=r#"gimp"#
+	match app-id="Inkscape"
 	open-maximized true
 }
 
 window-rule {
-	match app-id="Inkscape" title="- Inkscape$"
-	open-maximized true
+    match app-id=r#"^org\.gnome\."#
+    draw-border-with-background false
+    geometry-corner-radius 12
+    clip-to-geometry true
 }
 
+window-rule {
+    match app-id=r#"^org\.wezfurlong\.wezterm$"#
+    match app-id="Alacritty"
+    match app-id="zen"
+    match app-id="com.mitchellh.ghostty"
+    match app-id="kitty"
+    draw-border-with-background false
+}
+
+window-rule {
+    match is-active=false
+    opacity 0.95
+}
+
+window-rule {
+    geometry-corner-radius 12
+    clip-to-geometry true
+}
+
+// Open DMS windows as floating by default
+window-rule {
+    match app-id=r#"org.quickshell$"#
+    open-floating true
+}
 
 // Example: block out two password managers from screen capture.
 // (This example rule is commented out with a "/-" in front.)
@@ -402,13 +406,6 @@ window-rule {
 
     // Use this instead if you want them visible on third-party screenshot tools.
     // block-out-from "screencast"
-}
-
-// Example: enable rounded corners for all windows.
-// (This example rule is commented out with a "/-" in front.)
-/-window-rule {
-    geometry-corner-radius 12
-    clip-to-geometry true
 }
 
 binds {
