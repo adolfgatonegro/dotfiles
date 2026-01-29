@@ -5,15 +5,13 @@
 # 
 # A script for controlling on/off state for available displays in niri.
 # Probes niri for Probes xrandr for connected displays and allows the user
-# to select one to sue. Also provides access to the DMS Displays settings page.
+# to select one to use.
 #
 # Currently, it supports using either a single display, or all connected
 # displays. Might add other options later, but this works fine for my use cases.
-
-# TODO: Screen mirroring
-# Niri doesn’t have built-in output mirroring yet, but `wl-mirror` can be used
-# as a workaround.
-# See: https://yalter.github.io/niri/Screencasting.html#screen-mirroring
+# 
+# "Open display settings" requires DankMaterialShell
+# Mirroring requires wl-mirror
 
 displays=()
 while IFS= read -r display; do
@@ -44,12 +42,13 @@ multiscreen(){
 	done
 }
 
-selected=$(printf '%s\n' "${displays[@]}" "Multi-display" "Open display settings" | rofi -dmenu -p "Select display:")
+selected=$(printf '%s\n' "${displays[@]}" "Multi-display" "Mirror displays" "Open display settings" | rofi -dmenu -i -p "Select display:")
 
 [[ -z "$selected" ]] && exit 0
 
 case "$selected" in
 	"Open display settings") dms ipc call settings openWith displays ; exit ;;
 	"Multi-display") multiscreen ;;
+	"Mirror displays") wl-mirror $(niri msg focused-output | awk '/^Output / { gsub(/.*\(|\)/,""); print }') ;;
 	*) singlescreen "$selected" ;;
 esac
