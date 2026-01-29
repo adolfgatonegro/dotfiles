@@ -623,6 +623,7 @@ binds {
     Mod+Ctrl+R { reset-window-height; }
     Mod+Y { maximize-column; }
     Mod+Shift+Y { fullscreen-window; }
+    Mod+Ctrl+Shift+Y { toggle-windowed-fullscreen; }
 
     // Expand the focused column to space not taken up by other fully visible columns.
     // Makes the column "fill the rest of the space".
@@ -686,7 +687,7 @@ binds {
 
     // Powers off the monitors. To turn them back on, do any input like
     // moving the mouse or pressing any other key.
-    Mod+Shift+P { power-off-monitors; }
+    Mod+Shift+P { spawn "niri-displays"; }
 }
 
 include "dms/alttab.kdl"
