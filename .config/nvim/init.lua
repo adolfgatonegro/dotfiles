@@ -43,11 +43,66 @@ local now, later = MiniDeps.now, MiniDeps.later
 add({ source = 'kdheepak/monochrome.nvim' })
 add({ source = 'stevearc/oil.nvim' })
 add({ source = 'kaarmu/typst.vim' })
-add({ source = 'folke/which-key.nvim' })
+-- add({ source = 'folke/which-key.nvim' })
 add({ source = 'andrewferrier/wrapping.nvim' })
 
 now(function() require('mini.icons').setup() end)
+later(function() require('mini.clue').setup({
+  triggers = {
+	-- Leader triggers
+	{ mode = { 'n', 'x' }, keys = '<Leader>' },
+
+	-- `[` and `]` keys
+	{ mode = 'n', keys = '[' },
+	{ mode = 'n', keys = ']' },
+
+	-- Built-in completion
+	{ mode = 'i', keys = '<C-x>' },
+
+	-- `g` key
+	{ mode = { 'n', 'x' }, keys = 'g' },
+
+	-- Marks
+	{ mode = { 'n', 'x' }, keys = "'" },
+	{ mode = { 'n', 'x' }, keys = '`' },
+
+	-- Registers
+	{ mode = { 'n', 'x' }, keys = '"' },
+	{ mode = { 'i', 'c' }, keys = '<C-r>' },
+
+	-- Window commands
+	{ mode = 'n', keys = '<C-w>' },
+
+	-- `z` key
+	{ mode = { 'n', 'x' }, keys = 'z' },
+  },
+}) end)
 now(function() require('mini.pairs').setup() end)
+-- now(function() require('mini.base16').setup({
+-- 	palette = {
+-- 		base00= '#1a1a1a',
+-- 		base01= '#d85e3c',
+-- 		base02= '#6ed682',
+-- 		base03= '#d0db7b',
+-- 		base04= '#de4ba7',
+-- 		base05= '#df4aa8',
+-- 		base06= '#ff00aa',
+-- 		base07= '#abb2bf',
+-- 		base08= '#5c6370',
+-- 		base09= '#e07a5f',
+-- 		base0A= '#86e097',
+-- 		base0B= '#dfe897',
+-- 		base0C= '#ffb9e5',
+-- 		base0D= '#be53ab',
+-- 		base0E= '#b75e8c',
+-- 		base0F= '#ffffff',
+-- 	},
+-- 	use_cterm = true,
+-- 	plugins = {
+-- 		default = false,
+-- 		['nvim-mini/mini.nvim'] = true,
+-- 	},
+-- }) end)
 now(function() require('oil').setup({
 	delete_to_trash = true,
 	skip_confirm_for_simple_edits = true,
@@ -56,15 +111,15 @@ now(function() require('oil').setup({
 	keymaps = { ["q"] = "actions.close", },
 }) end)
 
-later(function() require('which-key').setup({
-	preset = "helix",
-	delay = "750",
-	win = {
-		padding = { 1, 1, 1, 1 },
-		border = "single"
-	},
-	layout = { height = { min = 4, max = 10 } }
-}) end)
+-- later(function() require('which-key').setup({
+-- 	preset = "helix",
+-- 	delay = "750",
+-- 	win = {
+-- 		padding = { 1, 1, 1, 1 },
+-- 		border = "single"
+-- 	},
+-- 	layout = { height = { min = 4, max = 10 } }
+-- }) end)
 
 now(function() require('wrapping').setup({
 	softener = { typst = 1.5 },
