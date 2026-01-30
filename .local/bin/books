@@ -11,7 +11,7 @@ fi
 
 # Function to select a book so we can return to it if needed
 select_book(){
-	title=$(ls $library | dmenu -F -i -p "Select a book:" -l 20)
+	title=$(ls $library | rofi -dmenu -F -i -p "Select a book:" -l 20)
 }
 
 main(){
@@ -60,7 +60,7 @@ main(){
 			"[Exit]"
 		)
 
-		choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Select an action:")
+		choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i -l 20 -p "Select an action:")
 
 		case $choice in
 			"[Open]"*) xdg-open "$file" & exit 0 ;;

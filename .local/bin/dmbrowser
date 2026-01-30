@@ -42,10 +42,10 @@ declare -a options=(
 	"󰈆 Exit"
 )
 
-choice=$(printf '%s\n' "${options[@]}" | dmenu -i -l 20 -p "Browser menu:")
+choice=$(printf '%s\n' "${options[@]}" | rofi -dmenu -i -l 20 -p "Browser menu:")
 
 search(){
-	searchString=$(:| dmenu -p "${choice}:")
+	searchString=$(:| rofi -dmenu -p "${choice}:")
 	[ -n "$searchString" ] && ${browserPrivateCmd} "$1${searchString}" & disown
 }
 
