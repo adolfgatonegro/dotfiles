@@ -1,0 +1,53 @@
+# swayimg configuration file
+# gatoeng.ro
+#
+# vim: filetype=dosini
+[general]
+decoration = no
+mode = viewer
+
+[viewer]
+preload = 1
+window = #000000ff
+
+[slideshow]
+window = #000000ff
+
+[gallery]
+cache = 200
+preload = yes
+preload = yes
+pstore = yes
+selected_scale = 1
+size = 120
+window = #000000ff
+
+[list]
+all = yes
+
+[font]
+size = 10
+
+[keys.viewer]
+l = next_file
+h = prev_file
+Shift+l = last_file
+Shift+h = first_file
+Shift+Delete = exec trash-put '%' && echo "File trashed: %"; skip_file
+
+[keys.gallery]
+l = step_right
+h = step_left
+j = step_down
+k = step_up
+Shift+j = page_down
+Shift+k = page_up
+Shift+l = last_file
+Shift+h = first_file
+Shift+Delete = exec trash-put '%' && echo "File trashed: %"; skip_file
+
+[keys.slideshow]
+l = next_file
+h = prev_file
+Shift+l = last_file
+Shift+h = first_file
