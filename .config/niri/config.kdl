@@ -426,6 +426,12 @@ binds {
 	Mod+F3  hotkey-overlay-title="DMS: Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
 	Mod+F10 hotkey-overlay-title="DMS: Task Manager" { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
 
+	// Scripts
+    Alt+Shift+M { spawn "bmks"; }
+    Alt+Shift+K { spawn "books"; }
+    Alt+Shift+B { spawn "dmbrowser"; }
+    Alt+Shift+P { spawn "niri-displays"; }
+
     // Keys consist of modifiers separated by + signs, followed by an XKB key name
     // in the end. To find an XKB name for a particular key, you may use a program
     // like wev.
@@ -684,10 +690,6 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
-
-    // Powers off the monitors. To turn them back on, do any input like
-    // moving the mouse or pressing any other key.
-    Mod+Shift+P { spawn "niri-displays"; }
 }
 
 include "dms/alttab.kdl"
