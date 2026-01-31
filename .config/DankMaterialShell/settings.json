@@ -305,7 +305,7 @@
   "customPowerActionPowerOff": "",
   "updaterHideWidget": false,
   "updaterUseCustomCommand": true,
-  "updaterCustomCommand": "yay -Syu",
+  "updaterCustomCommand": "paru -Syu",
   "updaterTerminalAdditionalParams": "",
   "displayNameMode": "system",
   "screenPreferences": {},
