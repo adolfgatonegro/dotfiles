@@ -73,6 +73,7 @@ bindkey -M menuselect 'k'   vi-up-line-or-history
 bindkey -M menuselect 'j'   vi-down-line-or-history
 bindkey -M menuselect 'l'   vi-forward-char
 bindkey -M menuselect '^xi' vi-insert
+bindkey '^ ' autosuggest-accept
 
 # Load zinit
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
