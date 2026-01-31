@@ -52,7 +52,6 @@ export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 # Xorg
 export XAUTHORITY=$XDG_CACHE_HOME/X11/Xauthority
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
-export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
 
 # XDG compliance for various programmes
 export CARGO_HOME=$XDG_DATA_HOME/cargo
