@@ -463,8 +463,8 @@ binds {
     XF86AudioNext allow-when-locked=true { spawn "dms" "ipc" "call" "mpris" "next"; }
 
 	// Brightness
-    XF86MonBrightnessUp allow-when-locked=true   { spawn "dms" "ipc" "call" "brightness" "increment" "10"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "10"; }
+    XF86MonBrightnessUp allow-when-locked=true   { spawn "dms" "ipc" "call" "brightness" "increment" "10" "backlight:amdgpu_bl1"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "dms" "ipc" "call" "brightness" "decrement" "10" "backlight:amdgpu_bl1"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
