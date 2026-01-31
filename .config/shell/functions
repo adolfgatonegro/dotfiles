@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/zsh
 
 # cd up [1-9] times
 .{1..9} (){ local d=.; repeat ${0:1} d+=/..; cd $d;}

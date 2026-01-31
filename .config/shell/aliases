@@ -1,7 +1,4 @@
-#!/bin/sh
-
-# Use $XINITRC variable if file exists.
-[ -f "$XINITRC" ] && alias startx="startx $XINITRC"
+#!/bin/zsh
 
 # pacman
 alias \
@@ -53,7 +50,3 @@ alias \
 	gb="git branch" \
 	gba="git branch -a" \
 	gdl="git branch -d"
-
-# plugins
-alias \
-	zshplugs="find \"$ZDOTDIR/plugins\" -type d -exec test -e '{}/.git' ';' -print0 | xargs -I {} -0 git -C {} pull -q"

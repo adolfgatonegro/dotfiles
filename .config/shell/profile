@@ -1,11 +1,11 @@
 #!/bin/zsh
+# .zprofile
+# gatoneg.ro
 
-#export path
-typeset -U path
-path=(~/.local/bin ~/.local/bin/statusbar $path)
-
+# Host name
 export HOSTNAME=$(cat /etc/hostname)
 
+# Host-dependent variables
 if [ ${HOSTNAME} = "foxes" ]; then
 	export VDPAU_DRIVER=radeonsi
 	export LIBVA_DRIVER_NAME=radeonsi
@@ -15,20 +15,7 @@ if [ ${HOSTNAME} = "lucille" ]; then
 	export MPV_PROFILE="--profile=720p"
 fi
 
-export QT_QPA_PLATFORMTHEME=qt5ct
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
-
-export TERM="st-256color"
-export TERMINAL="kitty"
-export EDITOR="vim"
-export VISUAL="vim"
-export MANPAGER="nvim +Man!"
-# export MANROFFOPT="-c"
-export BROWSER="firefox"
-export FILEMANAGER="yazi"
-# export BROWSER="vivaldi"
-
-# xdg dirs
+# XDG Base Directories
 export XDG_DATA_DIRS=/usr/local/share:/usr/share
 export XDG_CONFIG_DIRS=/etc/xdg
 export XDG_CONFIG_HOME=$HOME/.config
@@ -36,49 +23,57 @@ export XDG_CACHE_HOME=$HOME/.cache
 export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
+# Terminal
+export TERM="xterm-kitty"
+export TERMINAL="kitty"
+
+# Editor
+export EDITOR="vim"
+export VISUAL="vim"
+
+# Manpager
+export MANPAGER="nvim +Man!"
+
+# Browser
+export BROWSER="firefox"
+
+# File manager
+export FILEMANAGER="yazi"
+
+# zsh
+export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 typeset -U path
 path=(~/.local/bin ~/.local/bin/statusbar $path)
 
+
+# ssh-agent
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# Xorg
 export XAUTHORITY=$XDG_CACHE_HOME/X11/Xauthority
 export XINITRC=$XDG_CONFIG_HOME/X11/xinitrc
+export XCOMPOSEFILE="$XDG_CONFIG_HOME"/X11/xcompose
 
-# XDG compliance settings for various programs
+# XDG compliance for various programmes
 export CARGO_HOME=$XDG_DATA_HOME/cargo
-export CUDA_CACHE_PATH=$XDG_CACHE_HOME/nv
-export DOCKER_CONFIG="$XDG_CONFIG_HOME"/docker
 export GNUPGHOME=$XDG_CONFIG_HOME/gnupg
-export GOPATH="$XDG_DATA_HOME"/go
-export GTK2_RC_FILES=$XDG_CONFIG_HOME/gtk-2.0/gtkrc
+export GOPATH=$XDG_DATA_HOME/go
 export LESSHISTFILE=$XDG_CACHE_HOME/lesshst
 export NPM_CONFIG_PREFIX=$XDG_DATA_HOME/node/node_modules
 export NPM_CONFIG_USERCONFIG=$XDG_CONFIG_HOME/npm/npmrc
-export TEXMFHOME=$XDG_DATA_HOME/texmf
-export IPFS_PATH="$XDG_DATA_HOME"/ipfs 
-export _JAVA_OPTIONS=-Djavafx.cachedir="$XDG_CACHE_HOME"/openjfx
-export _JAVA_OPTIONS=-Djava.util.prefs.userRoot="$XDG_CONFIG_HOME"/java 
-# export VIMINIT='source $MYVIMRC'
-# export MYVIMRC=$XDG_CONFIG_HOME/vim/vimrc
-# export VIMINIT='let $MYVIMRC = !has("nvim") ? "$XDG_CONFIG_HOME/vim/vimrc" : "$XDG_CONFIG_HOME/nvim/init.lua" | so $MYVIMRC'
+export _JAVA_OPTIONS=-Djavafx.cachedir=$XDG_CACHE_HOME/openjfx
+export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
-export ZDOTDIR=$XDG_CONFIG_HOME/zsh
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonstartup.py"
-export SUDO_ASKPASS="$HOME/.local/bin/dmpass"
-export FZF_CTRL_T_COMMAND="fd --type f --strip-cwd-prefix"
-export FZF_DEFAULT_COMMAND="fd --type f --strip-cwd-prefix"
-export FZF_ALT_C_COMMAND="fd --max-depth=6 -td . ~"
-export FZF_CTRL_R_OPTS="
-  --preview 'echo {}' --preview-window up:3:hidden:wrap
-  --color header:italic"
-export FZF_DEFAULT_OPTS="--reverse"
-export FZF_DEFAULT_OPTS="$FZF_DEFAULT_OPTS \
---color=fg:#c1c1d1,bg:#0a0a15,hl:#ff00aa \
---color=fg+:#c1c1d1,bg+:#0a0a15,hl+:#ff00aa \
---color=info:#aaee00,prompt:#00ffe0,pointer:#00ffe0 \
---color=marker:#ff9700,spinner:#ff9700,header:#ff9700"
-export TEXMFHOME=$XDG_DATA_HOME/texmf
-export TEXMFVAR=$XDG_CACHE_HOME/texlive/texmf-var
-export TEXMFCONFIG=$XDG_CONFIG_HOME/texlive/texmf-config
-export NBRC_PATH="$XDG_CONFIG_HOME/nb/nbrc"
 
+
+# Export path
+typeset -U path
+path=(~/.local/bin ~/.local/bin/statusbar $path)
+
+
+# Start Xorg session
 # [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
+
+# Start niri Wayland session
 [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && niri-session
