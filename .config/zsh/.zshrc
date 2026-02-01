@@ -97,6 +97,7 @@ zinit light romkatv/powerlevel10k
 autoload -U compinit colors 
 colors
 compinit
+compdef config=git
 
 # Source p10k
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
