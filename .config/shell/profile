@@ -42,9 +42,10 @@ export FILEMANAGER="yazi"
 
 # zsh
 export ZDOTDIR=$XDG_CONFIG_HOME/zsh
+
+# Export zsh path
 typeset -U path
 path=(~/.local/bin ~/.local/bin/statusbar $path)
-
 
 # ssh-agent
 export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
@@ -64,12 +65,7 @@ export _JAVA_OPTIONS=-Djavafx.cachedir=$XDG_CACHE_HOME/openjfx
 export _JAVA_OPTIONS=-Djava.util.prefs.userRoot=$XDG_CONFIG_HOME/java 
 export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonstartup.py"
-
-
-# Export path
-typeset -U path
-path=(~/.local/bin ~/.local/bin/statusbar $path)
-
+export SUDO_ASKPASS="$HOME/.local/bin/rofi-pass"
 
 # Start Xorg session
 # [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
