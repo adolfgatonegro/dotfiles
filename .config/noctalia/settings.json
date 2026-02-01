@@ -176,7 +176,7 @@
     "settingsPanelMode": "window",
     "wifiDetailsViewMode": "grid",
     "bluetoothDetailsViewMode": "grid",
-    "networkPanelView": "ethernet",
+    "networkPanelView": "wifi",
     "bluetoothHideUnnamedDevices": false,
     "boxBorderEnabled": false
   },
@@ -368,7 +368,7 @@
     "animationSpeed": 1
   },
   "network": {
-    "wifiEnabled": false,
+    "wifiEnabled": true,
     "bluetoothRssiPollingEnabled": false,
     "bluetoothRssiPollIntervalMs": 10000,
     "wifiDetailsViewMode": "grid",

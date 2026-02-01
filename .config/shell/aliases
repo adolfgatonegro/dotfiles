@@ -2,7 +2,7 @@
 
 # pacman
 alias \
-	ch="checkupdates ; yay -Qua" \
+	ch="checkupdates; yay -Quq" \
 	paclog="less /var/log/pacman.log" \
 	mirrors="sudo reflector --latest 20 --fastest 20 --number 10 --sort rate --verbose --save /etc/pacman.d/mirrorlist"
 
