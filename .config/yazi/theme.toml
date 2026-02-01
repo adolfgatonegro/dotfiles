@@ -57,3 +57,7 @@ sep_outer = { open = "", close = "" }
 # [mode]
 # normal_main = { fg = "#111111", bg = "white", bold = true }
 # normal_alt  = { fg = "white", bg = "reset" }
+
+[flavor]
+dark  = "noctalia"
+light = "noctalia"
