@@ -39,6 +39,9 @@ setopt auto_menu menu_complete # autocmp first menu match
 setopt auto_param_slash # when a dir is completed, add a / instead of a trailing space
 setopt no_case_glob no_case_match # make cmp case insensitive
 
+# zsh-autosuggestions
+ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+
 # Completions
 zstyle ':completion:*' completer _complete _correct _approximate 
 zstyle ':completion:*' matcher-list '' 'm:{a-zA-Z}={A-Za-z}' 'r:|[._-]=* r:|=*' 'l:|=* r:|=*'
@@ -68,11 +71,11 @@ bindkey -M viins '^?' backward-delete-char
 
 # Bindings for complist module
 zmodload zsh/complist
-bindkey -M menuselect 'h'   vi-backward-char
-bindkey -M menuselect 'k'   vi-up-line-or-history
-bindkey -M menuselect 'j'   vi-down-line-or-history
-bindkey -M menuselect 'l'   vi-forward-char
-bindkey -M menuselect '^xi' vi-insert
+bindkey -M menuselect 'h' vi-backward-char
+bindkey -M menuselect 'k' vi-up-line-or-history
+bindkey -M menuselect 'j' vi-down-line-or-history
+bindkey -M menuselect 'l' vi-forward-char
+bindkey -M menuselect 'i' vi-insert
 bindkey '^ ' autosuggest-accept
 
 # Load zinit
