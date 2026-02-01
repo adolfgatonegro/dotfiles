@@ -359,6 +359,11 @@ window-rule {
 }
 
 window-rule {
+	match app-id="btop"
+	open-floating true
+}
+
+window-rule {
 	match app-id=r#"gimp"#
 	match app-id="Inkscape"
 	open-maximized true
@@ -417,6 +422,7 @@ binds {
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "kitty" "--app-id=nvim" "-e" "nvim"; }
     Mod+M hotkey-overlay-title="Run: CMUS" { spawn "kitty" "--app-id=cmus" "-e" "cmus"; }
     Mod+F hotkey-overlay-title="Run: Yazi" { spawn "kitty" "--app-id=yazi" "-e" "yazi"; }
+    Mod+F10 hotkey-overlay-title="Run: btop" { spawn "kitty" "--app-id=btop" "-e" "btop"; }
     Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
     Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
 
@@ -424,7 +430,6 @@ binds {
 	Mod+F1  hotkey-overlay-title="DMS: Control Centre" { spawn "dms" "ipc" "call" "control-center" "toggle"; }
 	Mod+F2  hotkey-overlay-title="DMS: Notification Centre" { spawn "dms" "ipc" "call" "notifications" "toggle"; }
 	Mod+F3  hotkey-overlay-title="DMS: Clipboard Manager" { spawn "dms" "ipc" "call" "clipboard" "toggle"; }
-	Mod+F10 hotkey-overlay-title="DMS: Task Manager" { spawn "dms" "ipc" "call" "processlist" "focusOrToggle"; }
 
 	// Scripts
     Alt+Shift+M { spawn "bmks"; }
