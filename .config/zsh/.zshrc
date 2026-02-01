@@ -40,7 +40,7 @@ setopt auto_param_slash # when a dir is completed, add a / instead of a trailing
 setopt no_case_glob no_case_match # make cmp case insensitive
 
 # zsh-autosuggestions
-ZSH_AUTOSUGGEST_STRATEGY=(completion history)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 
 # Completions
 zstyle ':completion:*' completer _complete _correct _approximate 
