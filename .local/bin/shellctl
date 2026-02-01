@@ -1,0 +1,133 @@
+#!/bin/sh
+
+control-centre(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call controlCenter toggle ;;
+		dms) dms ipc call control-center toggle ;;
+	esac
+}
+
+notifications(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call notifications toggleHistory ;;
+		dms) dms ipc call notifications toggle ;;
+	esac
+}
+
+clipboard(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call launcher clipboard ;;
+		dms) dms ipc call clipboard toggle ;;
+	esac
+}
+
+emoji(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call launcher emoji ;;
+		dms) notify-send "shellctl emoji" "Command not configured."  ;;
+	esac
+}
+
+lock-screen(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call lockScreen lock ;;
+		dms) dms ipc call lock lock ;;
+	esac
+}
+
+session-menu(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call sessionMenu toggle ;;
+		dms) dms ipc call powermenu toggle ;;
+	esac
+}
+
+volume-up(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call volume increase ;;
+		dms) dms ipc call audio increment 2 ;;
+	esac
+}
+
+volume-down(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call volume decrease ;;
+		dms) dms ipc call audio decrement 2 ;;
+	esac
+}
+
+volume-mute-output(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call volume muteOutput ;;
+		dms) dms ipc call audio mute ;;
+	esac
+}
+
+volume-mute-input(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call volume muteInput ;;
+		dms) dms ipc call audio micmute ;;
+	esac
+}
+
+mpris-play-pause(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call media playPause ;;
+		dms) dms ipc call mpris playPause ;;
+	esac
+}
+
+mpris-stop(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call media stop ;;
+		dms) dms ipc call mpris stop ;;
+	esac
+}
+
+mpris-previous(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call media previous ;;
+		dms) dms ipc call mpris previous ;;
+	esac
+}
+
+mpris-next(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call media next ;;
+		dms) dms ipc call mpris next ;;
+	esac
+}
+
+brightness-up(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call brighness increase ;;
+		dms) dms ipc call brightness increment 10 backlight:amdgpu_bl1 ;;
+	esac
+}
+
+brightness-down(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call brighness decrease ;;
+		dms) dms ipc call brightness decrement 10 backlight:amdgpu_bl1 ;;
+	esac
+}
+
+case "$1" in
+	control-centre) control-centre ;;
+	notifications) notifications ;;
+	clipboard) clipboard ;;
+	emoji) emoji ;;
+	lock-screen) lock-screen ;;
+	session-menu) session-menu ;;
+	volume-up) volume-up ;;
+	volume-down) volume-down ;;
+	volume-mute-output) volume-mute-output ;;
+	volume-mute-input) volume-mute-input ;;
+	mpris-play-pause) mpris-play-pause ;;
+	mpris-stop) mpris-stop ;;
+	mpris-previous) mpris-previous ;;
+	mpris-next) mpris-next ;;
+	brightness-up) brightness-up ;;
+	brightness-down) brightness-down ;;
+	*) echo "LOL" ;;
+esac
