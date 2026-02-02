@@ -81,6 +81,11 @@ export WGETRC=$XDG_CONFIG_HOME/wgetrc
 export PYTHONSTARTUP="${XDG_CONFIG_HOME:-$HOME/.config}/python/pythonstartup.py"
 export SUDO_ASKPASS="$HOME/.local/bin/rofi-pass"
 
+# Set appearance gsettings
+gsettings set org.gnome.desktop.interface gtk-theme 'adw-gtk3'
+gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
+gsettings set org.gnome.desktop.interface font-name "sans 9"
+
 # Start Xorg session
 # [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && startx $XINITRC
 
