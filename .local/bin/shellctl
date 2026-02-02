@@ -112,6 +112,13 @@ brightness-down(){
 	esac
 }
 
+screen-record(){
+	case $WAYLAND_SHELL in
+		noctalia) qs -c noctalia-shell ipc call plugin:screen-recorder toggle ;;
+		dms) notify-send "shellctl screen-record" "Command not configured." ;;
+	esac
+}
+
 case "$1" in
 	control-centre) control-centre ;;
 	notifications) notifications ;;
@@ -129,5 +136,6 @@ case "$1" in
 	mpris-next) mpris-next ;;
 	brightness-up) brightness-up ;;
 	brightness-down) brightness-down ;;
+	screen-record) screen-record ;;
 	*) echo "LOL" ;;
 esac
