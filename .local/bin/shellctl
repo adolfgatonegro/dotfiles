@@ -100,14 +100,14 @@ mpris-next(){
 
 brightness-up(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call brighness increase ;;
+		noctalia) qs -c noctalia-shell ipc call brightness increase ;;
 		dms) dms ipc call brightness increment 10 backlight:amdgpu_bl1 ;;
 	esac
 }
 
 brightness-down(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call brighness decrease ;;
+		noctalia) qs -c noctalia-shell ipc call brightness decrease ;;
 		dms) dms ipc call brightness decrement 10 backlight:amdgpu_bl1 ;;
 	esac
 }
