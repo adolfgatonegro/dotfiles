@@ -43,10 +43,11 @@ local now, later = MiniDeps.now, MiniDeps.later
 add({ source = 'kdheepak/monochrome.nvim' })
 add({ source = 'stevearc/oil.nvim' })
 add({ source = 'kaarmu/typst.vim' })
--- add({ source = 'folke/which-key.nvim' })
 add({ source = 'andrewferrier/wrapping.nvim' })
 
+-- mini.nvim
 now(function() require('mini.icons').setup() end)
+now(function() require('mini.pairs').setup() end)
 later(function() require('mini.clue').setup({
   triggers = {
 	-- Leader triggers
@@ -77,32 +78,8 @@ later(function() require('mini.clue').setup({
 	{ mode = { 'n', 'x' }, keys = 'z' },
   },
 }) end)
-now(function() require('mini.pairs').setup() end)
--- now(function() require('mini.base16').setup({
--- 	palette = {
--- 		base00= '#1a1a1a',
--- 		base01= '#d85e3c',
--- 		base02= '#6ed682',
--- 		base03= '#d0db7b',
--- 		base04= '#de4ba7',
--- 		base05= '#df4aa8',
--- 		base06= '#ff00aa',
--- 		base07= '#abb2bf',
--- 		base08= '#5c6370',
--- 		base09= '#e07a5f',
--- 		base0A= '#86e097',
--- 		base0B= '#dfe897',
--- 		base0C= '#ffb9e5',
--- 		base0D= '#be53ab',
--- 		base0E= '#b75e8c',
--- 		base0F= '#ffffff',
--- 	},
--- 	use_cterm = true,
--- 	plugins = {
--- 		default = false,
--- 		['nvim-mini/mini.nvim'] = true,
--- 	},
--- }) end)
+
+-- Oil.nvim
 now(function() require('oil').setup({
 	delete_to_trash = true,
 	skip_confirm_for_simple_edits = true,
@@ -111,16 +88,7 @@ now(function() require('oil').setup({
 	keymaps = { ["q"] = "actions.close", },
 }) end)
 
--- later(function() require('which-key').setup({
--- 	preset = "helix",
--- 	delay = "750",
--- 	win = {
--- 		padding = { 1, 1, 1, 1 },
--- 		border = "single"
--- 	},
--- 	layout = { height = { min = 4, max = 10 } }
--- }) end)
-
+-- Wrapping.nvim
 now(function() require('wrapping').setup({
 	softener = { typst = 1.5 },
 }) end)
@@ -207,7 +175,12 @@ k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
 -- Compiler
 k("n", "<leader>c",  "<Nop>",                                { desc = "Compiler" } )
 k("n", "<leader>cc", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
-k("n", "<leader>cp", ":silent! !opout \"%:p\"<CR>",          { desc = "Open compiled document" })
+k("n", "<leader>co", ":silent! !opout \"%:p\"<CR>",          { desc = "Open compiled document" })
+
+-- Typst
+k("n", "<leader>t",  "<Nop>", { desc = "Typst" } )
+k("n", "<leader>tw", ":call TypstWatch()<CR>", { desc = "Watch this file" })
+k("n", "<leader>to", ":silent exec \"!zathura --fork \" .expand (\"%:p:r\") . \".pdf &\"<CR>", { desc = "Open PDF" })
 
 -- Find files
 k("n", "<leader>f", ":find ", { desc = "Find files"})
@@ -230,10 +203,10 @@ k("n", "<C-Left>", ":vert res +2<CR>")
 k("n", "<C-Right>", ":vert res -2<CR>")
 
 -- Toggle key bindings
-k("n", "<leader>t",  "<Nop>",              { desc = "Toggle" } )
-k("n", "<leader>th", ":set hlsearch!<CR>", { desc = "Highlight for last search term" } )
-k("n", "<leader>tl", ":set wrap!<CR>",     { desc = "Line wrapping" } )
-k("n", "<leader>tw", ":ToggleWrapMode<CR>",     { desc = "Soft/Hard wrap mode" } )
+k("n", "<leader>s",  "<Nop>",              { desc = "Set option..." } )
+k("n", "<leader>sh", ":set hlsearch!<CR>", { desc = "Highlight for last search term" } )
+k("n", "<leader>sl", ":set wrap!<CR>",     { desc = "Line wrapping" } )
+k("n", "<leader>sw", ":ToggleWrapMode<CR>",     { desc = "Soft/Hard wrap mode" } )
 
 -- Go to last change in current buffer
 k("n", "gl", '`.', { desc = "Go to last change in current buffer" } )
@@ -316,3 +289,19 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
 		end
 	end,
 })
+
+-- FUNCTIONS
+--
+-- TypstWatch
+cmd [[
+function GitRoot()
+	return fnamemodify(finddir('.git', ";"), ":h")
+endfunc
+
+function TypstWatch()
+	vsp
+	vertical resize 20
+	exec 'terminal ' .. 'typst watch --root ' .. GitRoot() .. " " .. expand("%:")
+	exec "norm \<c-w>h"
+endfunc
+]]
