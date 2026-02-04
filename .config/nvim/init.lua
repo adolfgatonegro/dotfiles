@@ -40,10 +40,15 @@ require('mini.deps').setup() -- use default config
 local add = MiniDeps.add
 local now, later = MiniDeps.now, MiniDeps.later
 
-add({ source = 'kdheepak/monochrome.nvim' })
+-- add({ source = 'kdheepak/monochrome.nvim' })
 add({ source = 'stevearc/oil.nvim' })
 add({ source = 'kaarmu/typst.vim' })
 add({ source = 'andrewferrier/wrapping.nvim' })
+add({ source = 'RRethy/base16-nvim' })
+
+-- Base16/Matugen colourscheme
+now(function() require('base16-colorscheme').setup() end)
+now(function() require('matugen').setup() end)
 
 -- mini.nvim
 now(function() require('mini.icons').setup() end)
@@ -95,7 +100,7 @@ now(function() require('wrapping').setup({
 
 --  OPTIONS
 -- Theme
-cmd('colorscheme monochrome')
+-- cmd('colorscheme monochrome')
 
 --  Editor preferences
 --
@@ -241,14 +246,14 @@ k("x", "<", "<gv")
 
 -- AUTOCOMMANDS
 --
--- Automatically rebalance windows on vim resize
--- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
-autocmd('VimResized', {
-	callback = function()
-		cmd('tabdo wincmd =')
-	end,
-	desc = "Auto resize windows when size changes",
-})
+-- -- Automatically rebalance windows on vim resize
+-- -- https://dev.to/voyeg3r/my-lazy-neovim-config-3h6o
+-- autocmd('VimResized', {
+-- 	callback = function()
+-- 		cmd('tabdo wincmd =')
+-- 	end,
+-- 	desc = "Auto resize windows when size changes",
+-- })
 
 -- Set conceallevel and spellchecking for markdown, typst, and text files
 autocmd({ "FileType" }, {
