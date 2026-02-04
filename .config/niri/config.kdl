@@ -288,6 +288,7 @@ layout {
 
 spawn-at-startup "jamesdsp" "-t"
 spawn-sh-at-startup "ffplay -v 0 -nodisp -autoexit $XDG_CONFIG_HOME/startup.ogg"
+spawn-at-startup "qs" "-c" "noctalia-shell" "ipc" "call" "wallpaper" "random"
 
 // To run a shell command (with variables, pipes, etc.), use spawn-sh-at-startup:
 // spawn-sh-at-startup "qs -c ~/source/qs/MyAwesomeShell"
