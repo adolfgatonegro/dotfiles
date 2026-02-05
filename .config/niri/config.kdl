@@ -383,7 +383,7 @@ window-rule {
     match app-id="Alacritty"
     match app-id="zen"
     match app-id="com.mitchellh.ghostty"
-    match app-id="kitty"
+    match app-id="foot"
     draw-border-with-background false
 }
 
@@ -428,12 +428,12 @@ binds {
     Mod+Space hotkey-overlay-title="Run: rofi" { spawn "rofi" "-show" "drun"; }
     Mod+D hotkey-overlay-title="Run: Discord" { spawn "vesktop"; }
     Mod+B hotkey-overlay-title="Run: Firefox" { spawn "firefox"; }
-    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "kitty" "--app-id=nvim" "-e" "nvim"; }
-    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "kitty" "--app-id=cmus" "-e" "cmus"; }
-    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "kitty" "--app-id=yazi" "-e" "yazi"; }
-    Mod+F10 hotkey-overlay-title="Run: btop" { spawn "kitty" "--app-id=btop" "-e" "btop"; }
-    Mod+Return hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
-    Mod+T hotkey-overlay-title="Open a Terminal: kitty" { spawn "kitty"; }
+    Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
+    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "foot" "--app-id" "cmus" "-e" "cmus"; }
+    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "--app-id" "yazi" "-e" "yazi"; }
+    Mod+F10 hotkey-overlay-title="Run: btop" { spawn "foot" "--app-id" "btop" "-e" "btop"; }
+    Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
 
 	// Shell components
 	Mod+F1 hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }

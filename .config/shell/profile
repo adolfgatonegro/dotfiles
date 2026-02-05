@@ -24,11 +24,8 @@ export XDG_DATA_HOME=$HOME/.local/share
 export XDG_STATE_HOME=$HOME/.local/state
 
 # Terminal
-# Workaround for https://github.com/kovidgoyal/kitty/issues/9416
-# Because "use nightly" or "downgrade less" for this is idiotic.
-# export TERM="xterm-kitty"
 export TERM="xterm-265color"
-export TERMINAL="kitty"
+export TERMINAL="foot"
 
 # Editor
 export EDITOR="vim"
