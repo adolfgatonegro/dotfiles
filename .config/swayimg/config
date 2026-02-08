@@ -34,6 +34,7 @@ h = prev_file
 Shift+l = last_file
 Shift+h = first_file
 Shift+Delete = exec trash-put '%' && echo "File trashed: %"; skip_file
+Shift+w = exec qs -c noctalia-shell ipc call  wallpaper set "%" ""
 
 [keys.gallery]
 l = step_right
