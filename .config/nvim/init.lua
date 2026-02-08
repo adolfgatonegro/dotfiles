@@ -45,6 +45,7 @@ add({ source = 'stevearc/oil.nvim' })
 add({ source = 'kaarmu/typst.vim' })
 add({ source = 'andrewferrier/wrapping.nvim' })
 add({ source = 'RRethy/base16-nvim' })
+add({ source = 'folke/which-key.nvim' })
 
 -- Base16/Matugen colourscheme
 now(function() require('base16-colorscheme').setup() end)
@@ -53,35 +54,15 @@ now(function() require('matugen').setup() end)
 -- mini.nvim
 now(function() require('mini.icons').setup() end)
 now(function() require('mini.pairs').setup() end)
-later(function() require('mini.clue').setup({
-  triggers = {
-	-- Leader triggers
-	{ mode = { 'n', 'x' }, keys = '<Leader>' },
 
-	-- `[` and `]` keys
-	{ mode = 'n', keys = '[' },
-	{ mode = 'n', keys = ']' },
-
-	-- Built-in completion
-	{ mode = 'i', keys = '<C-x>' },
-
-	-- `g` key
-	{ mode = { 'n', 'x' }, keys = 'g' },
-
-	-- Marks
-	{ mode = { 'n', 'x' }, keys = "'" },
-	{ mode = { 'n', 'x' }, keys = '`' },
-
-	-- Registers
-	{ mode = { 'n', 'x' }, keys = '"' },
-	{ mode = { 'i', 'c' }, keys = '<C-r>' },
-
-	-- Window commands
-	{ mode = 'n', keys = '<C-w>' },
-
-	-- `z` key
-	{ mode = { 'n', 'x' }, keys = 'z' },
-  },
+later(function() require('which-key').setup({
+	preset = "helix",
+	delay = "750",
+	win = {
+		padding = { 1, 1, 1, 1 },
+		border = "single"
+	},
+	layout = { height = { min = 4, max = 10 } }
 }) end)
 
 -- Oil.nvim
