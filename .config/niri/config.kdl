@@ -453,7 +453,7 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
 	// Record screen
-	Alt+Shift+R hotkey-overlay-title="Record screen" { spawn "shellctl" "screen-record"; } 
+	Mod+Shift+C hotkey-overlay-title="Record screen" { spawn "shellctl" "screen-record"; } 
 
     // Lock screen and power/session menu
 	Super+Alt+L hotkey-overlay-title="Lock the screen" { spawn "shellctl" "lock-screen"; } 
