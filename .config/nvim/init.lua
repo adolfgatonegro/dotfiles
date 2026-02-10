@@ -291,3 +291,5 @@ function TypstWatch()
 	exec "norm \<c-w>h"
 endfunc
 ]]
+
+vim.lsp.enable({"tinymist"})
