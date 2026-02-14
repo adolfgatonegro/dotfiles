@@ -471,6 +471,11 @@ binds {
     XF86AudioPrev allow-when-locked=true { spawn "shellctl" "mpris-previous"; } 
     XF86AudioNext allow-when-locked=true { spawn "shellctl" "mpris-next"; }  
 
+    Mod+Up allow-when-locked=true { spawn "shellctl" "mpris-play-pause"; }   
+    Mod+Down allow-when-locked=true { spawn "shellctl" "mpris-stop"; }   
+    Mod+Left allow-when-locked=true { spawn "shellctl" "mpris-previous"; }   
+    Mod+Right allow-when-locked=true { spawn "shellctl" "mpris-next"; }   
+
 	// Brightness
 	XF86MonBrightnessUp allow-when-locked=true   { spawn "shellctl" "brightness-up"; } 
 	XF86MonBrightnessDown allow-when-locked=true { spawn "shellctl" "brightness-down"; } 
@@ -483,10 +488,10 @@ binds {
 	// Columns and monitors
 
 	// Column focus
-    Mod+Left  { focus-column-left; }
-    Mod+Down  { focus-window-or-workspace-down; }
-    Mod+Up    { focus-window-or-workspace-up; }
-    Mod+Right { focus-column-right; }
+    // Mod+Left  { focus-column-left; }
+    // Mod+Down  { focus-window-or-workspace-down; }
+    // Mod+Up    { focus-window-or-workspace-up; }
+    // Mod+Right { focus-column-right; }
     Mod+H     { focus-column-left; }
     Mod+J     { focus-window-or-workspace-down; }
     Mod+K     { focus-window-or-workspace-up; }
