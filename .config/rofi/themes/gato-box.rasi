@@ -1,15 +1,17 @@
 // launcher box theme
 // gatoneg.ro
 
+@import "noctalia.rasi"
+
 * {
     font:   "Serif 10";
 
-    bg0:     #131313;
-    bg1:     #131313;
-    fg0:     #DDDDDD;
-
-    accent-color:     #DDDDDD;
-    urgent-color:     #EBEBEB;
+    // bg0:     #131313;
+    // bg1:     #131313;
+    // fg0:     #DDDDDD;
+    //
+    // accent-color:     #DDDDDD;
+    // urgent-color:     #EBEBEB;
 
     background-color:   transparent;
     text-color:         @fg0;
