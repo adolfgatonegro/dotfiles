@@ -59,7 +59,7 @@ setnull searchurls.yahoo
 setnull searchurls.youtube
 
 " Define search engines.
-set searchurls.aa https://annas-archive.pm/search?q=%s&ext=epub
+set searchurls.aa https://annas-archive.gl/search?q=%s&ext=epub
 set searchurls.ap https://archlinux.org/packages/?sort=&q=%s
 set searchurls.aur https://aur.archlinux.org/packages?K=%s
 set searchurls.aw https://wiki.archlinux.org/index.php?search=%s
