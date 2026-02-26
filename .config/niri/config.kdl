@@ -286,6 +286,7 @@ layout {
 // which may be more convenient to use.
 // See the binds section below for more spawn examples.
 
+spawn-at-startup "qs" "-c" "noctalia-shell" "--no-duplicate"
 spawn-at-startup "jamesdsp" "-t"
 spawn-sh-at-startup "ffplay -v 0 -nodisp -autoexit $XDG_CONFIG_HOME/startup.ogg"
 spawn-at-startup "niri-tile-to-n"
