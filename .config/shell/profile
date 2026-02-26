@@ -91,3 +91,4 @@ gsettings set org.gnome.desktop.interface font-name "sans 9"
 
 # Start niri Wayland session
 [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && niri-session
+# [ -z "$DISPLAY" ] && [ $XDG_VTNR -eq 1 ] && exec mango
