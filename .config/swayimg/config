@@ -29,8 +29,10 @@ all = yes
 size = 10
 
 [keys.viewer]
-l = next_file
-h = prev_file
+l = step_right
+h = step_left
+j = step_down
+k = step_up
 Shift+l = last_file
 Shift+h = first_file
 Shift+Delete = exec trash-put '%' && echo "File trashed: %"; skip_file

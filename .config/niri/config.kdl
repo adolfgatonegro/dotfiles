@@ -129,7 +129,7 @@ environment {
 // https://yalter.github.io/niri/Configuration:-Layout
 layout {
     // Set gaps around windows in logical pixels.
-    gaps 5
+    gaps 4
 	background-color "transparent"
 
     // When to center a column when changing focus, options are:
@@ -369,6 +369,7 @@ window-rule {
 window-rule {
 	match app-id=r#"gimp"#
 	match app-id="Inkscape"
+	match app-id="affinity.exe"
 	open-maximized true
 }
 
@@ -401,6 +402,7 @@ window-rule {
 // Open Quickshell windows as floating by default
 window-rule {
     match app-id=r#"org.quickshell$"#
+    match app-id=r#"dev.noctalia.noctalia-qs$"#
     open-floating true
 }
 
