@@ -433,12 +433,12 @@ binds {
 
 	// Applications
     Mod+Space hotkey-overlay-title="Run: rofi" { spawn "rofi" "-show" "drun"; }
-    Mod+D hotkey-overlay-title="Run: Discord" { spawn "vesktop"; }
-    Mod+B hotkey-overlay-title="Run: Firefox" { spawn "firefox"; }
+    Mod+D hotkey-overlay-title="Run: Discord" { spawn "niri-rof vesktop vesktop"; }
+    Mod+B hotkey-overlay-title="Run: Firefox" { spawn-sh "niri-rof firefox firefox"; }
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
-    Mod+M hotkey-overlay-title="Run: CMUS" { spawn "foot" "--app-id" "cmus" "-e" "cmus"; }
+    Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot --app-id cmus -e cmus\""; }
     Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "--app-id" "yazi" "-e" "yazi"; }
-    Mod+F10 hotkey-overlay-title="Run: btop" { spawn "foot" "--app-id" "btop" "-e" "btop"; }
+    Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot --app-id btop -e btop\""; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
 
