@@ -425,6 +425,10 @@ layer-rule {
 	place-within-backdrop true
 }
 
+switch-events {
+	lid-close { spawn "shellctl" "lock-screen"; }
+}
+
 binds {
 
 	// Applications
