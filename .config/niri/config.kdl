@@ -433,7 +433,7 @@ binds {
 
 	// Applications
     Mod+Space hotkey-overlay-title="Run: rofi" { spawn "rofi" "-show" "drun"; }
-    Mod+D hotkey-overlay-title="Run: Discord" { spawn "niri-rof vesktop vesktop"; }
+    Mod+D hotkey-overlay-title="Run: Discord" { spawn-sh "niri-rof vesktop vesktop"; }
     Mod+B hotkey-overlay-title="Run: Firefox" { spawn-sh "niri-rof firefox firefox"; }
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
     Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot --app-id cmus -e cmus\""; }
