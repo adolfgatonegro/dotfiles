@@ -443,10 +443,10 @@ binds {
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
 
 	// Shell components
-	Mod+F1 hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
-	Mod+F2 hotkey-overlay-title="Notification Centre" { spawn "shellctl" "notifications"; }
-	Mod+F3 hotkey-overlay-title="Clipboard" { spawn "shellctl" "clipboard"; }
-    Mod+F4 hotkey-overlay-title="Emoji" { spawn "shellctl" "emoji"; }
+	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
+	Alt+Shift+N hotkey-overlay-title="Notification Centre" { spawn "shellctl" "notifications"; }
+	Alt+Shift+C hotkey-overlay-title="Clipboard" { spawn "shellctl" "clipboard"; }
+	Alt+Shift+E hotkey-overlay-title="Emoji" { spawn "shellctl" "emoji"; }
 
 	// Scripts
     Alt+Shift+M { spawn "bmks"; }
@@ -463,7 +463,7 @@ binds {
 	Mod+Shift+C hotkey-overlay-title="Record screen" { spawn "shellctl" "screen-record"; } 
 
     // Lock screen and power/session menu
-	Super+Alt+L hotkey-overlay-title="Lock the screen" { spawn "shellctl" "lock-screen"; } 
+	Alt+Shift+L hotkey-overlay-title="Lock the screen" { spawn "shellctl" "lock-screen"; } 
 	Super+Shift+X hotkey-overlay-title="Session menu" { spawn "shellctl" "session-menu"; } 
 
 	// Volume control
