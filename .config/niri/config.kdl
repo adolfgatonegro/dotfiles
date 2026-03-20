@@ -436,11 +436,12 @@ binds {
     Mod+D hotkey-overlay-title="Run: Discord" { spawn-sh "niri-rof vesktop vesktop"; }
     Mod+B hotkey-overlay-title="Run: Firefox" { spawn-sh "niri-rof firefox firefox"; }
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
-    Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot --app-id cmus -e cmus\""; }
-    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "--app-id" "yazi" "-e" "yazi"; }
-    Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot --app-id btop -e btop\""; }
+    Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot -a cmus -e cmus\""; }
+    Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "-a" "yazi" "-e" "yazi"; }
+    Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -w 1000x800 -e btop\""; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
+    Mod+grave hotkey-overlay-title="Window list" { spawn "rofi" "-show" "window"; }
 
 	// Shell components
 	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
@@ -526,8 +527,8 @@ binds {
     Mod+Ctrl+Up    { focus-monitor-up; }
     Mod+Ctrl+Right { focus-monitor-right; }
     Mod+Ctrl+H     { focus-monitor-left; }
-    Mod+Ctrl+J     { focus-monitor-down; }
-    Mod+Ctrl+K     { focus-monitor-up; }
+    // Mod+Ctrl+J     { focus-monitor-down; }
+    // Mod+Ctrl+K     { focus-monitor-up; }
     Mod+Ctrl+L     { focus-monitor-right; }
 
 	// Move colum to monitor
@@ -536,8 +537,8 @@ binds {
     Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
     Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
+    // Mod+Shift+Ctrl+J     { move-column-to-monitor-down; }
+    // Mod+Shift+Ctrl+K     { move-column-to-monitor-up; }
     Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
 
     // Alternatively, there are commands to move just a single window:
@@ -564,8 +565,8 @@ binds {
 
     Mod+Shift+Page_Down { move-workspace-down; }
     Mod+Shift+Page_Up   { move-workspace-up; }
-    Mod+Shift+U         { move-workspace-down; }
-    Mod+Shift+I         { move-workspace-up; }
+    Mod+Shift+Ctrl+J         { move-workspace-down; }
+    Mod+Shift+Ctrl+K         { move-workspace-up; }
 
     // You can bind mouse wheel scroll ticks using the following syntax.
     // These binds will change direction based on the natural-scroll setting.

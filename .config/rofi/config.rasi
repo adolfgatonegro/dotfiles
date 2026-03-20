@@ -4,7 +4,8 @@
 configuration {
   display-drun: "drun:";
   display-run: "run:";
-  modi: "drun,run";
+  display-window: "window:";
+  modi: "drun,run,window";
   kb-mode-next: "Control+Tab";
   run-shell-command: 'foot -e zsh -ic "{cmd} && read"';
   show-icons: true;
