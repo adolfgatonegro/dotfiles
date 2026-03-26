@@ -118,7 +118,7 @@ input {
 environment {
 	ELECTRO_OZONE_PLATFORM_HINT "auto"
 	QT_QPA_PLATFORM "wayland"
-	QT_QPA_PLATFORMTHEME "qt6ct"
+	QT_QPA_PLATFORMTHEME "gtk3"
 	QT_QPA_PLATFORMTHEME_QT6 "qt6ct"
 	WAYLAND_SHELL "noctalia"
 	XDG_CURRENT_DESKTOP "niri"
@@ -420,7 +420,6 @@ window-rule {
 
 // Set the overview wallpaper on the backdrop.
 layer-rule {
-	// match namespace="dms:blurwallpaper" // DMS
 	match namespace="^noctalia-overview*" // Noctalia
 	place-within-backdrop true
 }
@@ -723,12 +722,3 @@ binds {
 
 // Noctalia includes
 include "noctalia.kdl"
-
-// DMS includes
-// include "dms/alttab.kdl"
-// include "dms/binds.kdl"
-// include "dms/colors.kdl"
-// include "dms/cursor.kdl"
-// include "dms/layout.kdl"
-// include "dms/outputs.kdl"
-// include "dms/wpblur.kdl"
