@@ -17,68 +17,6 @@ local map = function(mode, lhs, rhs, opts)
 end
 local k = map
 
---  PLUGINS
---  Set up mini.nvim
---
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    'https://github.com/nvim-mini/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
-
-require('mini.deps').setup() -- use default config
-
---  Add plugins
---
-local add = MiniDeps.add
-local now, later = MiniDeps.now, MiniDeps.later
-
--- add({ source = 'kdheepak/monochrome.nvim' })
-add({ source = 'stevearc/oil.nvim' })
-add({ source = 'kaarmu/typst.vim' })
-add({ source = 'andrewferrier/wrapping.nvim' })
-add({ source = 'RRethy/base16-nvim' })
-add({ source = 'folke/which-key.nvim' })
-
--- Base16/Matugen colourscheme
-now(function() require('base16-colorscheme').setup() end)
-now(function() require('matugen').setup() end)
-
--- mini.nvim
-now(function() require('mini.icons').setup() end)
-now(function() require('mini.pairs').setup() end)
-
-later(function() require('which-key').setup({
-	preset = "helix",
-	delay = "750",
-	win = {
-		padding = { 1, 1, 1, 1 },
-		border = "single"
-	},
-	layout = { height = { min = 4, max = 10 } }
-}) end)
-
--- Oil.nvim
-now(function() require('oil').setup({
-	delete_to_trash = true,
-	skip_confirm_for_simple_edits = true,
-	columns = { "icon", },
-	float = { padding = 4, },
-	keymaps = { ["q"] = "actions.close", },
-}) end)
-
--- Wrapping.nvim
-now(function() require('wrapping').setup({
-	softener = { typst = 1.5 },
-}) end)
-
 --  OPTIONS
 -- Theme
 -- cmd('colorscheme monochrome')
@@ -128,6 +66,77 @@ opt.shortmess:append("c")
 for k, v in pairs(options) do
 	opt[k] = v
 end
+
+--  PLUGINS
+--  Set up mini.nvim
+--
+local path_package = vim.fn.stdpath('data') .. '/site'
+local mini_path = path_package .. '/pack/deps/start/mini.nvim'
+if not vim.loop.fs_stat(mini_path) then
+  vim.cmd('echo "Installing `mini.nvim`" | redraw')
+  local clone_cmd = {
+    'git', 'clone', '--filter=blob:none',
+    'https://github.com/nvim-mini/mini.nvim', mini_path
+  }
+  vim.fn.system(clone_cmd)
+  vim.cmd('packadd mini.nvim | helptags ALL')
+  vim.cmd('echo "Installed `mini.nvim`" | redraw')
+end
+
+require('mini.deps').setup() -- use default config
+
+--  Add plugins
+--
+local add = MiniDeps.add
+local now, later = MiniDeps.now, MiniDeps.later
+
+-- add({ source = 'kdheepak/monochrome.nvim' })
+add({ source = 'stevearc/oil.nvim' })
+add({ source = 'kaarmu/typst.vim' })
+add({ source = 'andrewferrier/wrapping.nvim' })
+add({ source = 'RRethy/base16-nvim' })
+add({ source = 'folke/which-key.nvim' })
+add({ source = 'catgoose/nvim-colorizer.lua' })
+
+-- Base16/Matugen colourscheme
+now(function() require('base16-colorscheme').setup() end)
+now(function() require('matugen').setup() end)
+
+-- mini.nvim
+now(function() require('mini.icons').setup() end)
+now(function() require('mini.pairs').setup() end)
+
+now(function() require('colorizer').setup({
+	filetypes = {
+		"*",
+		"!markdown",
+		"!typst",
+	},
+}) end)
+
+later(function() require('which-key').setup({
+	preset = "helix",
+	delay = "750",
+	win = {
+		padding = { 1, 1, 1, 1 },
+		border = "single"
+	},
+	layout = { height = { min = 4, max = 10 } }
+}) end)
+
+-- Oil.nvim
+now(function() require('oil').setup({
+	delete_to_trash = true,
+	skip_confirm_for_simple_edits = true,
+	columns = { "icon", },
+	float = { padding = 4, },
+	keymaps = { ["q"] = "actions.close", },
+}) end)
+
+-- Wrapping.nvim
+now(function() require('wrapping').setup({
+	softener = { typst = 1.5 },
+}) end)
 
 --  Set transparent background colours
 --
