@@ -3,7 +3,7 @@
  
 configuration {
 	/*---------- General setting ----------*/
-	modi: "drun,run,filebrowser,window";
+	modi: "drun,run,filebrowser,window,calc";
 	case-sensitive: false;
 	cycle: true;
 	filter: "";
@@ -75,6 +75,7 @@ configuration {
 	display-combi: "Combi";
 	display-keys: "Keys";
 	display-filebrowser: "Files";
+	display-calc: "Calc";
 
 	/*---------- Misc setting ----------*/
 	terminal: "rofi-sensible-terminal";
@@ -87,7 +88,7 @@ configuration {
 
 	/*---------- File browser settings ----------*/
     filebrowser {
-/*	  directory: "/home";*/
+	  directory: "/home";
       directories-first: true;
       sorting-method:    "name";
     }
@@ -97,6 +98,12 @@ configuration {
       action: "kb-cancel";
       delay:  0;
     }
+
+	/*---------- Calc settings -----------*/
+	calc {
+	  hint-result: "Result: ";
+	  hint-welcome: "";
+	}
 }
 
 @theme "gato-box-fancy"

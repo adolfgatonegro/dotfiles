@@ -447,7 +447,7 @@ binds {
 	// Shell components
 	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
 	Alt+Shift+N hotkey-overlay-title="Notification Centre" { spawn "shellctl" "notifications"; }
-	Alt+Shift+C hotkey-overlay-title="Clipboard" { spawn "shellctl" "clipboard"; }
+	Alt+Shift+I hotkey-overlay-title="Clipboard" { spawn "shellctl" "clipboard"; }
 	Alt+Shift+E hotkey-overlay-title="Emoji" { spawn "shellctl" "emoji"; }
 
 	// Scripts
@@ -455,6 +455,7 @@ binds {
     Alt+Shift+K { spawn "books"; }
     Alt+Shift+B { spawn "dmbrowser"; }
     Alt+Shift+P { spawn "niri-displays"; }
+    Alt+Shift+C { spawn "rofi" "-show" "calc"; }
     Mod+F8 { spawn "rofi-mount"; }
     Mod+Shift+F8 { spawn "rofi-unmount"; }
 
