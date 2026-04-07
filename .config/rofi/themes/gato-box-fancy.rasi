@@ -11,7 +11,7 @@ configuration {
     display-window:             " Windows";
     display-calc:               " Calculator";
 	drun-display-format:        "{name}";
-	window-format:              "{w} · {c} · {t}";
+	window-format:              "{w}{c} - {t}";
 }
 
 /*****----- Global Properties -----*****/
