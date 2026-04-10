@@ -72,6 +72,9 @@ swayimg.viewer.on_key("Shift+w", function()
   os.execute("qs -c noctalia-shell ipc call wallpaper set "..image.path)
   swayimg.text.set_status("Wallpaper set: "..image.path)
 end)
+swayimg.viewer.on_key("Equal", function()
+  swayimg.viewer.set_fix_scale("optimal")
+end)
 
 -- Keys - Gallery
 swayimg.gallery.on_key("Q", function()
