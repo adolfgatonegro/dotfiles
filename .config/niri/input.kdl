@@ -1,0 +1,28 @@
+input {
+    focus-follows-mouse max-scroll-amount="0%"
+    workspace-auto-back-and-forth
+    warp-mouse-to-focus
+
+    keyboard {
+		repeat-delay 250
+		repeat-rate 100
+        xkb {
+			layout "us"
+			variant "altgr-intl"
+        }
+        numlock
+    }
+
+    touchpad {
+        tap
+        natural-scroll
+    }
+
+    mouse {
+        accel-speed 0.0
+        accel-profile "flat"
+    }
+
+    trackpoint {
+    }
+}
