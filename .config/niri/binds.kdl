@@ -94,12 +94,8 @@ binds {
 	Mod+Comma  { focus-monitor-left; }
 
 	// Move colum to monitor
-    Mod+Shift+Ctrl+Left  { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+Down  { move-column-to-monitor-down; }
-    Mod+Shift+Ctrl+Up    { move-column-to-monitor-up; }
-    Mod+Shift+Ctrl+Right { move-column-to-monitor-right; }
-    Mod+Shift+Ctrl+H     { move-column-to-monitor-left; }
-    Mod+Shift+Ctrl+L     { move-column-to-monitor-right; }
+    Mod+Shift+Comma  { move-column-to-monitor-left; }
+    Mod+Shift+Period { move-column-to-monitor-right; }
 
 	// Workspaces
     Mod+Page_Down      { focus-workspace-down; }
