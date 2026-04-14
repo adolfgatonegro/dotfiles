@@ -5,8 +5,11 @@ window-rule {
 
 window-rule {
     match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-	match app-id="flameshot"
+	// match app-id="flameshot"
     open-floating true
+    default-floating-position x=6 y=6 relative-to="bottom-right"
+	default-window-height { proportion 0.25; }
+	default-column-width { proportion 0.25; }
 }
 
 window-rule {
