@@ -44,6 +44,7 @@ local options = {
 	shiftwidth = 4,
 	showtabline = 0,
 	showmode = false,
+	signcolumn = "yes",
 	softtabstop = 0,
 	spelllang = "en_gb,es,fr,it",
 	splitbelow = true,
@@ -67,54 +68,31 @@ for k, v in pairs(options) do
 	opt[k] = v
 end
 
---  PLUGINS
---  Set up mini.nvim
---
-local path_package = vim.fn.stdpath('data') .. '/site'
-local mini_path = path_package .. '/pack/deps/start/mini.nvim'
-if not vim.loop.fs_stat(mini_path) then
-  vim.cmd('echo "Installing `mini.nvim`" | redraw')
-  local clone_cmd = {
-    'git', 'clone', '--filter=blob:none',
-    'https://github.com/nvim-mini/mini.nvim', mini_path
-  }
-  vim.fn.system(clone_cmd)
-  vim.cmd('packadd mini.nvim | helptags ALL')
-  vim.cmd('echo "Installed `mini.nvim`" | redraw')
-end
+-- Plugins
 
-require('mini.deps').setup() -- use default config
+vim.pack.add({
+  'https://github.com/nvim-mini/mini.nvim',
+  'https://github.com/stevearc/oil.nvim',
+  'https://github.com/kaarmu/typst.vim',
+  'https://github.com/andrewferrier/wrapping.nvim',
+  'https://github.com/RRethy/base16-nvim',
+  'https://github.com/folke/which-key.nvim',
+  'https://github.com/catgoose/nvim-colorizer.lua',
+})
 
---  Add plugins
---
-local add = MiniDeps.add
-local now, later = MiniDeps.now, MiniDeps.later
-
--- add({ source = 'kdheepak/monochrome.nvim' })
-add({ source = 'stevearc/oil.nvim' })
-add({ source = 'kaarmu/typst.vim' })
-add({ source = 'andrewferrier/wrapping.nvim' })
-add({ source = 'RRethy/base16-nvim' })
-add({ source = 'folke/which-key.nvim' })
-add({ source = 'catgoose/nvim-colorizer.lua' })
-
--- Base16/Matugen colourscheme
-now(function() require('base16-colorscheme').setup() end)
-now(function() require('matugen').setup() end)
-
--- mini.nvim
-now(function() require('mini.icons').setup() end)
-now(function() require('mini.pairs').setup() end)
-
-now(function() require('colorizer').setup({
+require('base16-colorscheme').setup()
+require('matugen').setup()
+require('mini.icons').setup()
+require('mini.pairs').setup()
+require('colorizer').setup({
 	filetypes = {
 		"*",
 		"!markdown",
 		"!typst",
 	},
-}) end)
+})
 
-later(function() require('which-key').setup({
+require('which-key').setup({
 	preset = "helix",
 	delay = "750",
 	win = {
@@ -122,31 +100,35 @@ later(function() require('which-key').setup({
 		border = "single"
 	},
 	layout = { height = { min = 4, max = 10 } }
-}) end)
+})
 
--- Oil.nvim
-now(function() require('oil').setup({
+require('oil').setup({
 	delete_to_trash = true,
 	skip_confirm_for_simple_edits = true,
 	columns = { "icon", },
 	float = { padding = 4, },
 	keymaps = { ["q"] = "actions.close", },
-}) end)
+})
 
--- Wrapping.nvim
-now(function() require('wrapping').setup({
+require('wrapping').setup({
 	softener = { typst = 1.5 },
-}) end)
+})
+
+vim.lsp.enable({ 'tinymist' })
 
 --  Set transparent background colours
 --
 cmd [[
   highlight Normal guibg=none
-  highlight NormalFloat guibg=none
-  highlight NonText guibg=none
   highlight Normal ctermbg=none
-  highlight NormalFloat ctermbg=none
+  highlight NonText guibg=none
   highlight NonText ctermbg=none
+  highlight NormalFloat guibg=none
+  highlight NormalFloat ctermbg=none
+  highlight SignColumn guibg=none
+  highlight SignColumn ctermbg=none
+  highlight LineNr guibg=none
+  highlight LineNr ctermbg=none
 ]]   
 
 --  KEYMAPS
@@ -288,17 +270,17 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
 -- FUNCTIONS
 --
 -- TypstWatch
-cmd [[
-function GitRoot()
-	return fnamemodify(finddir('.git', ";"), ":h")
-endfunc
-
-function TypstWatch()
-	vsp
-	vertical resize 20
-	exec 'terminal ' .. 'typst watch --root ' .. GitRoot() .. " " .. expand("%:")
-	exec "norm \<c-w>h"
-endfunc
-]]
-
-vim.lsp.enable({"tinymist"})
+-- cmd [[
+-- function GitRoot()
+-- 	return fnamemodify(finddir('.git', ";"), ":h")
+-- endfunc
+--
+-- function TypstWatch()
+-- 	vsp
+-- 	vertical resize 20
+-- 	exec 'terminal ' .. 'typst watch --root ' .. GitRoot() .. " " .. expand("%:")
+-- 	exec "norm \<c-w>h"
+-- endfunc
+-- ]]
+--
+-- vim.lsp.enable({"tinymist"})
