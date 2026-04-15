@@ -9,9 +9,9 @@ config.load_autoconfig(False)
 config.bind(',M', 'hint links spawn linkhandler {hint-url}')
 config.bind(',m', 'spawn linkhandler {url}')
 config.bind(',p', 'spawn dmenu_bw')
-config.bind('tD', 'config-cycle -p colors.webpage.darkmode.enabled true false')
+# config.bind('tD', 'config-cycle -p colors.webpage.darkmode.enabled true false')
 # Per-URL setting doesn't seem to work?
-# config.bind('tD', 'config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled true false')
+config.bind('tD', 'config-cycle -p -u *://{url:host}/* colors.webpage.darkmode.enabled true false')
 
 #bind some stylesheets
 config.bind('cm', 'config-list-add content.user_stylesheets "~/.config/qutebrowser/css/serif.css"')
@@ -58,7 +58,7 @@ config.set('content.register_protocol_handler', True, 'https://mail.proton.me/*'
 # search engines
 c.url.searchengines = {
        'DEFAULT': 'https://search.brave.com/search?q={}',
-        'aa': 'https://annas-archive.org/search?q={}&ext=epub',
+        'aa': 'https://annas-archive.gl/search?q={}&ext=epub',
         'apkg': 'https://archlinux.org/packages/?sort=&q={}',
         'aur': 'https://aur.archlinux.org/packages?K={}',
         'aw': 'https://wiki.archlinux.org/index.php?search={}',
