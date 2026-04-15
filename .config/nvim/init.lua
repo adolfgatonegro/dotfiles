@@ -78,12 +78,20 @@ vim.pack.add({
   'https://github.com/RRethy/base16-nvim',
   'https://github.com/folke/which-key.nvim',
   'https://github.com/catgoose/nvim-colorizer.lua',
+  'https://github.com/neovim/nvim-lspconfig',
+  {
+    src = 'https://github.com/saghen/blink.cmp',
+	name = 'blink.cmp',
+	version = 'v1'
+  }
 })
 
 require('base16-colorscheme').setup()
 require('matugen').setup()
 require('mini.icons').setup()
 require('mini.pairs').setup()
+require('mini.pick').setup()
+require('blink.cmp').setup()
 require('colorizer').setup({
 	filetypes = {
 		"*",
@@ -149,6 +157,12 @@ k("n", "<leader>bk", ":bd<CR>",        { desc = "Delete current buffer" } )
 k("n", "<leader>bn", ":bnext<CR>",     { desc = "Goto next buffer" } )
 k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
 
+k("n", "<leader>p",  "<Nop>", { desc = "Pick" } )
+k("n", "<leader>pb",  ":Pick buffers<CR>", { desc = "... buffers" } )
+k("n", "<leader>pf",  ":Pick files<CR>", { desc = "... files" } )
+k("n", "<leader>ph",  ":Pick help<CR>", { desc = "... help" } )
+k("n", "<leader>ph",  ":Pick grep_live<CR>", { desc = "... grep" } )
+
 -- Compiler
 k("n", "<leader>c",  "<Nop>",                                { desc = "Compiler" } )
 k("n", "<leader>cc", ":w! | silent!  !compiler \"%:p\"<CR>", { desc = "Compile document" })
@@ -172,6 +186,9 @@ k("v", "k", "gk", { remap = true })
 
 -- oil.nvim
 k("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
+
+-- LSP
+k("n", "<leader>lf", vim.lsp.buf.format, { desc = "LSP Buffer Format" } )
 
 -- Splits - resize with arrow keys
 k("n", "<C-Up>", ":res +2<CR>")
