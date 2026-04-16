@@ -16,12 +16,14 @@ window-rule {
 	match app-id="vesktop" 
 	open-on-workspace "discord"
 	open-maximized true
+	open-focused false
 }
 
 window-rule {
 	match app-id=r#"steam"# 
 	open-on-workspace "gaming"
 	open-maximized true
+	open-focused false
 }
 
 window-rule {
