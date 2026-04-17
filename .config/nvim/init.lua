@@ -43,7 +43,7 @@ local options = {
 	scrolloff = 10,
 	shiftwidth = 4,
 	showtabline = 0,
-	showmode = false,
+	showmode = true,
 	signcolumn = "yes",
 	softtabstop = 0,
 	spelllang = "en_gb,es,fr,it",
@@ -97,6 +97,7 @@ require('colorizer').setup({
 		"*",
 		"!markdown",
 		"!typst",
+		"!oil",
 	},
 })
 
