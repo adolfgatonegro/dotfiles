@@ -5,11 +5,11 @@
 configuration {
 	modi:                       "drun,run,filebrowser,window,calc";
     show-icons:                 true;
-    display-drun:               " Apps";
-    display-run:                " Run";
-    display-filebrowser:        " Files";
-    display-window:             " Windows";
-    display-calc:               " Calculator";
+    display-drun:               "   Apps";
+    display-run:                "   Run";
+    display-filebrowser:        "   Files";
+    display-window:             "   Windows";
+    display-calc:               "  Calculator";
 	drun-display-format:        "{name}";
 	window-format:              "{t}";
 }
