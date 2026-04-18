@@ -6,7 +6,7 @@
 sanitise tridactyllocal tridactylsync
 
 "
-set browser librewolf
+set browser firefox
 
 " Use a blank page for new tab.
 set newtab about:blank
@@ -71,10 +71,10 @@ set searchurls.gb https://google.com/search?tbm=bks&q=%s
 set searchurls.gh https://github.com/search?utf8=✓&q=%s
 set searchurls.gs https://scholar.google.com/scholar?hl=en&q=%s
 set searchurls.kb https://knaben.org/search/%s/0/1/seeders
-set searchurls.lg https://libgen.st/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
+"set searchurls.lg https://libgen.st/search.php?req=%s&lg_topic=libgen&open=0&view=simple&res=25&phrase=1&column=def
 set searchurls.r https://old.reddit.com/r/%s
 set searchurls.rt https://rutracker.org/forum/tracker.php?nm=%s
-set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
+"set searchurls.sep https://plato.stanford.edu/search/searcher.py?query=%s
 set searchurls.sp https://open.spotify.com/search/%s
 set searchurls.w https://en.wikipedia.org/wiki/Special:Search/%s
 set searchurls.yt https://youtube.com/results?search_query=%s
@@ -137,4 +137,4 @@ command protondb js javascript:void(window.location.href = 'https://protondb.com
 command scihub js javascript:void(window.location='https://sci-hub.ru/'+window.location)
 
 " Force the use of old.reddit
-autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+"autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
