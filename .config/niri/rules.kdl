@@ -56,7 +56,7 @@ window-rule {
 
 window-rule {
     match is-active=false
-    opacity 0.95
+    opacity 1.0
 }
 
 window-rule {

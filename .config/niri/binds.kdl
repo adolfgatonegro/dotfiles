@@ -8,7 +8,7 @@ binds {
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
     Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot -a cmus -e cmus\""; }
     Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "-a" "yazi" "-e" "yazi"; }
-    Mod+Shift+F hotkey-overlay-title="Run: File Picker" { spawn "rofi" "-show" "filebrowser"; }
+    Mod+Shift+F hotkey-overlay-title="Run: PCManFM" { spawn "pcmanfm"; }
     Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -w 1000x800 -e btop\""; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
@@ -26,6 +26,7 @@ binds {
     Alt+Shift+B { spawn "dmbrowser"; }
     Alt+Shift+P { spawn "niri-displays"; }
     Alt+Shift+C { spawn "rofi" "-show" "calc"; }
+    Alt+Shift+F hotkey-overlay-title="Run: File Picker" { spawn "rofi" "-show" "filebrowser"; }
     Mod+F8 { spawn "rofi-mount"; }
     Mod+Shift+F8 { spawn "rofi-unmount"; }
 
