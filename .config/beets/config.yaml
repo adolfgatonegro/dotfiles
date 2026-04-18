@@ -17,7 +17,7 @@ paths:
     default: $albumartist/$album/$track $title
     comp: $album/$track $title
 
-plugins: scrub edit zero fetchart musicbrainz
+plugins: scrub edit zero fetchart discogs musicbrainz
 
 fetchart:
     minwidth: 500
