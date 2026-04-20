@@ -97,7 +97,7 @@ bind ;P hint -wp
 
 " Interact with bmks script.
 bind m exclaim_quiet bmks
-bind A composite get_current_url | exclaim_quiet bmks add
+bind M composite get_current_url | exclaim_quiet bmks add
 
 " Control tab groups.
 "bind gs fillcmdline tgroupswitch
