@@ -89,13 +89,14 @@ inputbar {
     border-color:                @border-colour;
     background-color:            transparent;
     text-color:                  @foreground-colour;
-    children:                    [ "textbox-prompt-colon", "entry" ];
+    children:                    [ "prompt", "entry" ];
 }
 
 prompt {
     enabled:                     true;
+	padding:                     5px 0px;
     background-color:            inherit;
-    text-color:                  inherit;
+    text-color:                  @border-colour;
 }
 textbox-prompt-colon {
     enabled:                     true;
@@ -111,7 +112,7 @@ entry {
     background-color:            inherit;
     text-color:                  inherit;
     cursor:                      text;
-    placeholder:                 "Search...";
+    // placeholder:                 "Search...";
     placeholder-color:           inherit;
 }
 num-filtered-rows {
