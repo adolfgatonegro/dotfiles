@@ -153,10 +153,11 @@ g.maplocalleader = "\\"
 k("n", "Q", "<Nop>") -- Disable Ex mode
 
 -- Buffers
-k("n", "<leader>b",  "<Nop>",          { desc = "Buffers" } )
-k("n", "<leader>bk", ":bd<CR>",        { desc = "Delete current buffer" } )
-k("n", "<leader>bn", ":bnext<CR>",     { desc = "Goto next buffer" } )
-k("n", "<leader>bp", ":bprevious<CR>", { desc = "Goto previous buffer" } )
+k("n", "<leader>b",  "<Nop>",             { desc = "Buffers" } )
+k("n", "<leader>bb", ":Pick buffers<CR>", { desc = "Pick buffers" } )
+k("n", "<leader>bk", ":bd<CR>",           { desc = "Delete current buffer" } )
+k("n", "<leader>bn", ":bnext<CR>",        { desc = "Goto next buffer" } )
+k("n", "<leader>bp", ":bprevious<CR>",    { desc = "Goto previous buffer" } )
 
 k("n", "<leader>p",  "<Nop>", { desc = "Pick" } )
 k("n", "<leader>pb",  ":Pick buffers<CR>", { desc = "... buffers" } )
