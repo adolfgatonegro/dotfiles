@@ -1,0 +1,83 @@
+#!/bin/sh
+#
+# rofi-display
+# gatoneg.ro
+# 
+# A script for controlling on/off state for available displays in Wayland.
+# Probes wlr-randr for connected displays and allows the user
+# to select one to use.
+#
+# Requires wlr-randr.
+# Mirroring requires wl-mirror
+
+# Get all available displays, extract their names
+displays=()
+while IFS= read -r line; do
+    if [[ "$line" =~ ^([A-Za-z0-9_-]+)[[:space:]]+\" ]]; then
+        displays+=("${BASH_REMATCH[1]}")
+    fi
+done < <(wlr-randr)
+
+# Sort display names alphabetically
+mapfile -t displays < <(printf '%s\n' "${displays[@]}" | sort)
+
+# Count available displays
+count=${#displays[@]}
+
+# If there is only one available display
+if (( count == 1 )); then
+	notify-send "rofi-display" "Only one display detected (${displays[0]})."
+	exit 0
+fi
+
+# Multi-display handler
+multiscreen() {
+	case "$(printf '%s\n' "${displays[@]}" | wc -l)" in
+		2) twoscreen ;;
+		*) threescreen ;;
+	esac ;}
+
+# User selects a single display to use
+onescreen(){
+	for display in "${displays[@]}"; do
+	  if [[ "$display" == "$selected" ]]; then
+		wlr-randr --output "$display" --on --pos 0,0
+	  else
+		wlr-randr --output "$display" --off
+	  fi
+	done
+}
+
+# User selects two displays
+twoscreen(){
+    primary=$(printf '%s\n' "${displays[@]}" | rofi -rofi -dmenu -i -p "Select primary display:")
+    secondary=$(printf '%s\n' "${displays[@]}" | grep -v ^"$primary"$)
+    direction=$(printf "left\\nright" | rofi -rofi -dmenu -i -p "What side of $primary should $secondary be on?")
+    wlr-randr --output "$primary" --on --pos 0,0 --output "$secondary" --on --"$direction"-of "$primary"
+}
+
+# User selects three displays
+threescreen() {
+	primary=$(printf '%s\n' "${displays[@]}" | rofi -dmenu -i -p "Select primary display:")
+	secondary=$(printf '%s\n' "${displays[@]}" | grep -v ^"$primary"$ | rofi -dmenu -i -p "Select secondary display:")
+	direction=$(printf "left\\nright" | rofi -dmenu -i -p "What side of $primary should $secondary be on?")
+	tertiary=$(printf '%s\n' "${displays[@]}" | grep -v ^"$primary"$ | grep -v ^"$secondary"$ | rofi -dmenu -i -p "Select third display:")
+	wlr-randr --output "$primary" --on --pos 0,0 --output "$secondary" --on --"$direction"-of "$primary" --output "$tertiary" --on --"$(printf "left\\nright" | grep -v "$direction")"-of "$primary"
+	}
+
+# Screen mirroring handler
+mirrorscreen() {
+    primary=$(printf '%s\n' "${displays[@]}" | rofi -dmenu -i -p "Select display to mirror:")
+	wl-mirror "$primary"
+}
+
+# Get user selection
+selected=$(printf '%s\n' "${displays[@]}" "Multi-display" "Mirror displays" | rofi -rofi -dmenu -i -p "Select display:")
+
+[[ -z "$selected" ]] && exit 0
+
+case "$selected" in
+	"Multi-display") multiscreen ;;
+	"Mirror displays") mirrorscreen ;;
+	*) onescreen "$selected" ;;
+esac

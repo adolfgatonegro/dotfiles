@@ -24,7 +24,7 @@ binds {
     Alt+Shift+M { spawn "bmks"; }
     Alt+Shift+K { spawn "books"; }
     Alt+Shift+B { spawn "dmbrowser"; }
-    Alt+Shift+P { spawn "niri-displays"; }
+    Alt+Shift+P { spawn "rofi-display"; }
     Alt+Shift+C { spawn "rofi" "-show" "calc"; }
     Alt+Shift+F hotkey-overlay-title="Run: File Picker" { spawn "rofi" "-show" "filebrowser"; }
     Mod+F8 { spawn "rofi-mount"; }
