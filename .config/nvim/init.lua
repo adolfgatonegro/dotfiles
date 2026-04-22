@@ -91,6 +91,7 @@ require('matugen').setup()
 require('mini.icons').setup()
 require('mini.pairs').setup()
 require('mini.pick').setup()
+require('mini.surround').setup()
 require('blink.cmp').setup()
 require('colorizer').setup({
 	filetypes = {
