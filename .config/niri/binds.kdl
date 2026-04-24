@@ -9,7 +9,8 @@ binds {
     Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot -a cmus -e cmus\""; }
     Mod+F hotkey-overlay-title="Run: Yazi" { spawn "foot" "-a" "yazi" "-e" "yazi"; }
     Mod+Shift+F hotkey-overlay-title="Run: PCManFM" { spawn "pcmanfm"; }
-    Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -w 1000x800 -e btop\""; }
+    // Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -w 1000x800 -e btop\""; }
+    Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -e btop\""; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+grave hotkey-overlay-title="Window list" { spawn "rofi" "-show" "window"; }
