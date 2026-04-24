@@ -137,4 +137,4 @@ command protondb js javascript:void(window.location.href = 'https://protondb.com
 command scihub js javascript:void(window.location='https://sci-hub.ru/'+window.location)
 
 " Force the use of old.reddit
-"autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
