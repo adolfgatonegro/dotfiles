@@ -1,22 +1,35 @@
 window-rule {
+	draw-border-with-background false
 	match app-id=r#"firefox$"# 
 	open-on-workspace "browser"
+	opacity 0.9
+	background-effect {
+		blur true
+		xray true
+	}
 }
 
 window-rule {
-    match app-id=r#"firefox$"# title="^Picture-in-Picture$"
+	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
 	// match app-id="flameshot"
-    open-floating true
-    default-floating-position x=6 y=6 relative-to="bottom-right"
+	open-floating true
+	default-floating-position x=6 y=6 relative-to="bottom-right"
 	default-window-height { proportion 0.25; }
 	default-column-width { proportion 0.25; }
 }
 
 window-rule {
 	match app-id="vesktop" 
+	match app-id="discord" 
+	draw-border-with-background false
 	open-on-workspace "discord"
 	open-maximized true
 	open-focused false
+	opacity 0.9
+	background-effect {
+		blur true
+		xray true
+	}
 }
 
 window-rule {
@@ -39,36 +52,48 @@ window-rule {
 }
 
 window-rule {
-    match app-id=r#"^org\.gnome\."#
-    draw-border-with-background false
-    geometry-corner-radius 12
-    clip-to-geometry true
+	match app-id=r#"^org\.gnome\."#
+	draw-border-with-background false
+	geometry-corner-radius 12
+	clip-to-geometry true
 }
 
 window-rule {
-    match app-id=r#"^org\.wezfurlong\.wezterm$"#
-    match app-id="Alacritty"
-    match app-id="zen"
-    match app-id="com.mitchellh.ghostty"
-    match app-id="foot"
-    draw-border-with-background false
+	match app-id=r#"^org\.wezfurlong\.wezterm$"#
+	match app-id="Alacritty"
+	match app-id="zen"
+	match app-id="com.mitchellh.ghostty"
+	match app-id="foot"
+	draw-border-with-background false
 }
 
-window-rule {
-    match is-active=false
-    opacity 1.0
-}
+// Generic blur rule
 
 window-rule {
-    geometry-corner-radius 0
-    clip-to-geometry true
+	match app-id="org.pwmt.zathura"
+	match app-id="pcmanfm"
+	opacity 0.9
+	background-effect {
+	  blur true
+	  xray true
+	}
+}
+
+// window-rule {
+// 	match is-active=false
+// 	opacity 0.8
+// }
+
+window-rule {
+	geometry-corner-radius 0
+	clip-to-geometry true
 }
 
 // Open Quickshell windows as floating by default
 window-rule {
-    match app-id=r#"org.quickshell$"#
-    match app-id=r#"dev.noctalia.noctalia-qs$"#
-    open-floating true
+	match app-id=r#"org.quickshell$"#
+	match app-id=r#"dev.noctalia.noctalia-qs$"#
+	open-floating true
 }
 
 // Set the overview wallpaper on the backdrop.
