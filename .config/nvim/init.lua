@@ -180,12 +180,8 @@ k("n", "<leader>to", ":silent exec \"!zathura --fork \" .expand (\"%:p:r\") . \"
 k("n", "<leader>f", ":find ", { desc = "Find files"})
 
 -- Line navigation
-k("n", "h", "<Backspace>")
-k("n", "j", "<Down>", { remap = true })
-k("n", "k", "<Up>", { remap = true })
-k("n", "l", "<Space>")
-k("v", "j", "gj", { remap = true })
-k("v", "k", "gk", { remap = true })
+k({ "n", "v"}, "j", "gj")
+k({ "n", "v"}, "k", "gk")
 
 -- oil.nvim
 k("n", "-", "<cmd>Oil<CR>", { desc = "Open Oil" })
