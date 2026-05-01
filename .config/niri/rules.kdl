@@ -1,17 +1,18 @@
+layer-rule {
+    match layer="top"
+    match layer="overlay"
+    background-effect {
+        xray false
+    }
+}
 window-rule {
 	draw-border-with-background false
 	match app-id=r#"firefox$"# 
 	open-on-workspace "browser"
-	opacity 0.9
-	background-effect {
-		blur true
-		xray true
-	}
 }
 
 window-rule {
 	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-	// match app-id="flameshot"
 	open-floating true
 	default-floating-position x=6 y=6 relative-to="bottom-right"
 	default-window-height { proportion 0.25; }
@@ -28,7 +29,7 @@ window-rule {
 	opacity 0.9
 	background-effect {
 		blur true
-		xray true
+		xray false
 	}
 }
 
@@ -37,6 +38,13 @@ window-rule {
 	open-on-workspace "gaming"
 	open-maximized true
 	open-focused false
+}
+
+window-rule {
+	match app-id="org.duckstation.DuckStation" 
+	match app-id="pcsx2-qt" 
+	open-on-workspace "gaming"
+	open-maximized true
 }
 
 // window-rule {
@@ -64,25 +72,24 @@ window-rule {
 	match app-id="zen"
 	match app-id="com.mitchellh.ghostty"
 	match app-id="foot"
+	match app-id="yazi"
+	match app-id="cmus"
+	match app-id="btop"
 	draw-border-with-background false
+	background-effect {
+		xray false
+	}
 }
 
 // Generic blur rule
 
 window-rule {
 	match app-id="org.pwmt.zathura"
-	match app-id="pcmanfm"
-	opacity 0.9
 	background-effect {
 	  blur true
-	  xray true
+	  xray false
 	}
 }
-
-// window-rule {
-// 	match is-active=false
-// 	opacity 0.8
-// }
 
 window-rule {
 	geometry-corner-radius 0
