@@ -138,3 +138,6 @@ command scihub js javascript:void(window.location='https://sci-hub.ru/'+window.l
 
 " Force the use of old.reddit
 autocmd DocStart ^http(s?)://www.reddit.com js tri.excmds.urlmodify("-t", "www", "old")
+
+" Invidious redirect
+command inv js javascript:location.assign('https://inv.nadeko.net'+location.pathname+location.search+location.hash);
