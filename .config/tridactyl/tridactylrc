@@ -3,7 +3,7 @@
 " Wipe out all existing settings, ensures that these settings are applied
 " correctly, and everything else remains as default. If a setting is removed
 " from here, it will return to its default state.
-sanitise tridactyllocal tridactylsync
+"sanitise tridactyllocal tridactylsync
 
 "
 set browser firefox
