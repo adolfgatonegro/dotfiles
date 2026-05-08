@@ -1,10 +1,12 @@
 #!/bin/zsh
 
+repos_dir="${XDG_PROJECTS_DIR:-$HOME/projects}/repos"
+
 # cd up [1-9] times
 .{1..9} (){ local d=.; repeat ${0:1} d+=/..; cd $d;}
 
 config() {
-	local git_cmd=(git -C $HOME --git-dir=$HOME/repos/dotfiles.git --work-tree=$HOME)
+	local git_cmd=(git -C $HOME --git-dir=$repos_dir/dotfiles.git --work-tree=$HOME)
 
     if [[ $# -eq 0 ]]; then
         "${git_cmd[@]}" status --short
@@ -60,12 +62,12 @@ flacsplit(){
 	fi
 }
 
-# run gitsum on $HOME/repos, and $HOMe/.local/src if it exists
+# run gitsum on $repos_dir, and $HOME/.local/src if it exists
 gitall(){
 	if [ -d "$HOME/.local/src" ]; then
-		gitsum $HOME/.local/src && echo " " && gitsum $HOME/repos
+		gitsum $HOME/.local/src && echo " " && gitsum $repos_dir
 	else
-		gitsum $HOME/repos
+		gitsum $repos_dir
 	fi
 }
 
