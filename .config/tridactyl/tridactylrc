@@ -6,7 +6,7 @@
 "sanitise tridactyllocal tridactylsync
 
 "
-set browser zen-browser
+set browser floorp
 
 " Use a blank page for new tab.
 set newtab about:blank

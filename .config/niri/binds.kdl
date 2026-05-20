@@ -4,7 +4,7 @@ binds {
     Mod+Space hotkey-overlay-title="Run: Rofi" { spawn "rofi" "-show" "drun"; }
     Mod+Shift+Space hotkey-overlay-title="Run: Command" { spawn "rofi" "-show" "run"; }
     Mod+D hotkey-overlay-title="Run: Discord" { spawn-sh "niri-rof vesktop vesktop"; }
-    Mod+B hotkey-overlay-title="Run: Zen" { spawn-sh "niri-rof zen zen-browser"; }
+    Mod+B hotkey-overlay-title="Run: Floorp" { spawn-sh "niri-rof floorp floorp"; }
     Mod+Shift+B hotkey-overlay-title="Run: Firefox" { spawn-sh "niri-rof firefox firefox"; }
     Mod+E hotkey-overlay-title="Run: Neovim" { spawn "foot" "--app-id" "nvim" "-e" "nvim"; }
     Mod+M hotkey-overlay-title="Run: cmus" { spawn-sh "niri-rof cmus \"foot -a cmus -e cmus\""; }
