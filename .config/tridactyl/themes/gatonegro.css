@@ -28,9 +28,9 @@
     --tridactyl-cmdl-font-family: monospace !important;
     --tridactyl-cmplt-font-family: monospace !important;
     --tridactyl-cmplt-font-family: monospace !important;
-    /* --tridactyl-cmplt-font-size: 0.8em; */
+    --tridactyl-cmplt-font-size: 0.8em;
     --tridactyl-cmplt-line-height: 1.5;
-    /* --tridactyl-cmdl-font-size: 1.05em; */
+    --tridactyl-cmdl-font-size: 1.05em;
     --tridactyl-cmdl-line-height: 1.5;
 	/* backdrop-filter: blur(25px); */
 }

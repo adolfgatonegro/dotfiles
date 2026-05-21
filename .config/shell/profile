@@ -63,7 +63,7 @@ export VISUAL="vim"
 export MANPAGER="nvim +Man!"
 
 # Browser
-export BROWSER="zen-browser"
+export BROWSER="firefox"
 
 # File manager
 export FILEMANAGER="yazi"

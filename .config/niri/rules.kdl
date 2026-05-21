@@ -8,13 +8,11 @@ layer-rule {
 window-rule {
 	draw-border-with-background false
 	match app-id=r#"firefox$"# 
-	match app-id="zen"
 	open-on-workspace "browser"
 }
 
 window-rule {
 	match app-id=r#"firefox$"# title="^Picture-in-Picture$"
-	match app-id="zen" title="^Picture-in-Picture$"
 	open-floating true
 	default-floating-position x=6 y=6 relative-to="bottom-right"
 	default-window-height { proportion 0.25; }

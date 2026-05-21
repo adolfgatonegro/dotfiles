@@ -2,4 +2,4 @@
 Type=Application
 Name=Web Browser
 NoDisplay=true
-Exec=/usr/bin/zen-browser %u
+Exec=/usr/bin/firefox %u
