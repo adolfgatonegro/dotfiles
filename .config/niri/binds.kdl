@@ -13,7 +13,7 @@ binds {
     Mod+F10 hotkey-overlay-title="Run: btop" { spawn-sh "niri-rof btop \"foot -a btop -e btop\""; }
     Mod+Return hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
     Mod+T hotkey-overlay-title="Open a Terminal: foot" { spawn "foot"; }
-    Mod+grave hotkey-overlay-title="Window list" { spawn "rofi" "-show" "window"; }
+    Alt+Tab hotkey-overlay-title="Window list" { spawn "rofi" "-show" "window"; }
 
 	// Shell components
 	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
@@ -206,5 +206,12 @@ binds {
     // The quit action will show a confirmation dialog to avoid accidental exits.
     Mod+Shift+E { quit; }
     Ctrl+Alt+Delete { quit; }
+}
+
+recent-windows {
+	binds {
+		Mod+grave { next-window; }
+		Mod+Shift+grave { previous-window; }
+	}
 }
 
