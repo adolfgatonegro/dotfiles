@@ -61,6 +61,8 @@ binds {
 	// Brightness
 	XF86MonBrightnessUp allow-when-locked=true   { spawn "shellctl" "brightness-up"; } 
 	XF86MonBrightnessDown allow-when-locked=true { spawn "shellctl" "brightness-down"; } 
+	Mod+F2 allow-when-locked=true   { spawn "shellctl" "brightness-up"; } 
+	Mod+F1 allow-when-locked=true { spawn "shellctl" "brightness-down"; } 
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
