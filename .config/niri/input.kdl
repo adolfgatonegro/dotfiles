@@ -9,6 +9,7 @@ input {
         xkb {
 			layout "us"
 			variant "altgr-intl"
+			options "compose:menu"
         }
         numlock
     }
@@ -31,3 +32,4 @@ input {
 		accel-profile "flat"
     }
 }
+
