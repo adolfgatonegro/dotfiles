@@ -2,119 +2,119 @@
 
 control-centre(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call controlCenter toggle ;;
+		noctalia) noctalia msg panel-toggle control-center ;;
 		dms) dms ipc call control-center toggle ;;
 	esac
 }
 
 notifications(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call notifications toggleHistory ;;
+		noctalia) noctalia msg panel-toggle control-center notifications ;;
 		dms) dms ipc call notifications toggle ;;
 	esac
 }
 
 clipboard(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call launcher clipboard ;;
+		noctalia) noctalia msg panel-toggle clipboard ;;
 		dms) dms ipc call clipboard toggle ;;
 	esac
 }
 
 emoji(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call launcher emoji ;;
+		noctalia) noctalia msg panel-toggle launcher "/emo" ;;
 		dms) notify-send "shellctl emoji" "Command not configured."  ;;
 	esac
 }
 
 lock-screen(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call lockScreen lock ;;
+		noctalia) noctalia msg session lock ;;
 		dms) dms ipc call lock lock ;;
 	esac
 }
 
 session-menu(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call sessionMenu toggle ;;
+		noctalia) noctalia msg panel-toggle session ;;
 		dms) dms ipc call powermenu toggle ;;
 	esac
 }
 
 volume-up(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call volume increase ;;
+		noctalia) noctalia msg volume-up 2 ;;
 		dms) dms ipc call audio increment 2 ;;
 	esac
 }
 
 volume-down(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call volume decrease ;;
+		noctalia) noctalia msg volume-down 2 ;;
 		dms) dms ipc call audio decrement 2 ;;
 	esac
 }
 
 volume-mute-output(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call volume muteOutput ;;
+		noctalia) noctalia msg volume-mute ;;
 		dms) dms ipc call audio mute ;;
 	esac
 }
 
 volume-mute-input(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call volume muteInput ;;
+		noctalia) noctalia msg mic-mute ;;
 		dms) dms ipc call audio micmute ;;
 	esac
 }
 
 mpris-play-pause(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call media playPause ;;
+		noctalia) noctalia msg media toggle ;;
 		dms) dms ipc call mpris playPause ;;
 	esac
 }
 
 mpris-stop(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call media stop ;;
+		noctalia) noctalia msg media stop ;;
 		dms) dms ipc call mpris stop ;;
 	esac
 }
 
 mpris-previous(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call media previous ;;
+		noctalia) noctalia msg media previous ;;
 		dms) dms ipc call mpris previous ;;
 	esac
 }
 
 mpris-next(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call media next ;;
+		noctalia) noctalia msg media next ;;
 		dms) dms ipc call mpris next ;;
 	esac
 }
 
 brightness-up(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call brightness increase ;;
+		noctalia) noctalia msg brightness-up ;;
 		dms) dms ipc call brightness increment 5 "";;
 	esac
 }
 
 brightness-down(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call brightness decrease ;;
+		noctalia) noctalia msg brightness-down ;;
 		dms) dms ipc call brightness decrement 5 "" ;;
 	esac
 }
 
 screen-record(){
 	case $WAYLAND_SHELL in
-		noctalia) qs -c noctalia-shell ipc call plugin:screen-recorder toggle ;;
+		noctalia) noctalia msg plugin noctalia/screen_recorder:service all toggle ;;
 		dms) notify-send "shellctl screen-record" "Command not configured." ;;
 	esac
 }

@@ -300,3 +300,6 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
 -- ]]
 --
 -- vim.lsp.enable({"tinymist"})
+
+local ok, matugen = pcall(require, 'matugen')
+if ok then matugen.setup() end

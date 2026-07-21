@@ -127,6 +127,9 @@ unbind <C-f>
 " No highlighting for search results.
 bind ,<Space> nohlsearch
 
+" Toggle mute
+bind gm mute toggle
+
 " Open archived version of current URL.
 command archive js javascript:void(open('http://archive.today/?run=1&url='+encodeURIComponent(document.location)))
 
