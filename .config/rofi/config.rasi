@@ -1,6 +1,6 @@
 // rofi configuration
 // gatoneg.ro
- 
+
 configuration {
 	/*---------- General setting ----------*/
 	modi: "drun,run,filebrowser,window,calc";

@@ -79,7 +79,7 @@ mpris-play-pause(){
 
 mpris-stop(){
 	case $WAYLAND_SHELL in
-		noctalia) noctalia msg media stop ;;
+		noctalia) playerctl stop ;;
 		dms) dms ipc call mpris stop ;;
 	esac
 }
