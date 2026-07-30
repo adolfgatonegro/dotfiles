@@ -1,0 +1,351 @@
+[audio]
+enable_sounds = true
+
+[backdrop]
+enabled = true
+
+[bar]
+order = [ "default" ]
+
+    [bar.default]
+    background_opacity = 0.0
+    capsule = true
+    capsule_opacity = 0.99999997764825821
+    capsule_padding = 12.0
+    capsule_radius = "auto"
+    capsule_thickness = 0.99999998137354851
+    center = [ "media" ]
+    concave_edge_corners = false
+    end = [ "group:g1" ]
+    hover_highlight = false
+    margin_edge = 6
+    margin_ends = 0
+    padding = 6
+    radius = 0
+    scale = 0.85000000521540642
+    shadow = false
+    start = [ "workspaces" ]
+    thickness = 28
+    widget_spacing = 6
+
+        [[bar.default.capsule_group]]
+        enabled = true
+        fill = "surface_variant"
+        id = "g1"
+        members = [
+            "recorder",
+            "tray",
+            "bluetooth",
+            "network_rx",
+            "network",
+            "brightness",
+            "volume",
+            "clock",
+            "control-center"
+        ]
+        opacity = 1.0
+        padding = 12.0
+
+[brightness]
+enable_ddcutil = true
+minimum_brightness = 0.04999999888241291
+
+[config]
+
+[control_center]
+hidden_tabs = [ "power" ]
+
+    [control_center.calendar]
+    show_events_card = false
+
+    [[control_center.shortcuts]]
+    type = "bluetooth"
+
+    [[control_center.shortcuts]]
+    type = "caffeine"
+
+    [[control_center.shortcuts]]
+    type = "nightlight"
+
+    [[control_center.shortcuts]]
+    type = "session"
+
+[desktop_widgets]
+enabled = false
+
+[idle]
+behavior_order = [ "lock", "screen-off", "lock-and-suspend" ]
+
+    [idle.behavior.lock]
+    action = "lock"
+    enabled = true
+    timeout = 300.0
+
+    [idle.behavior.lock-and-suspend]
+    action = "lock_and_suspend"
+    enabled = true
+    timeout = 600.0
+
+    [idle.behavior.screen-off]
+    action = "screen_off"
+    enabled = true
+    timeout = 360.0
+
+[location]
+address = "Cuernavaca, Mexico"
+latitude = 18.965199999999999
+longitude = -99.246799999999993
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [
+    "lockscreen-login-box@HDMI-A-2",
+    "lockscreen-login-box@HDMI-A-1",
+    "lockscreen-widget-0000000000000001",
+    "lockscreen-widget-0000000000000002",
+    "lockscreen-widget-0000000000000003"
+]
+
+    [lockscreen_widgets.grid]
+    cell_size = 16
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 960.0
+    cy = 600.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.0
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-2"]
+    box_height = 229.0
+    box_width = 810.0
+    cx = 683.0
+    cy = 577.5
+    output = "HDMI-A-2"
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@HDMI-A-2".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "regular"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = true
+        show_session_buttons = true
+        show_weather = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 112.0
+    box_width = 240.0
+    cx = 960.0
+    cy = 224.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        background_radius = 32
+        center_text = true
+        clock_style = "digital"
+        shadow = true
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 128.0
+    box_width = 336.0
+    cx = 1712.0
+    cy = 1106.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "media_player"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000003]
+    box_height = 80.0
+    box_width = 272.0
+    cx = 960.0
+    cy = 336.0
+    output = "HDMI-A-1"
+    rotation = 0.0
+    type = "weather"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000003.settings]
+        background = false
+        font_family = ""
+        show_forecast = false
+
+[nightlight]
+enabled = true
+
+[notification]
+background_opacity = 0.84999998100101948
+scale = 0.80000000447034836
+
+[osd]
+position = "top_right"
+position_vertical = "top_right"
+
+    [osd.kinds]
+    lock_keys = false
+
+[plugin_settings."noctalia/screen_recorder"]
+color_range = "full"
+directory = "~/videos/"
+filename_pattern = "Screen_%Y%m%d_%H%M%S"
+hide_inactive = true
+
+[plugins]
+enabled = [ "noctalia/screen_recorder" ]
+
+[shell]
+avatar_path = "/home/gatonegro/pictures/malmhaus_crop.jpg"
+corner_radius_scale = 0.0
+polkit_agent = true
+
+    [shell.panel]
+    open_near_click_control_center = true
+    session_placement = "floating"
+    session_position = "center"
+    shadow = false
+    transparency_mode = "glass"
+    wallpaper_placement = "floating"
+    wallpaper_position = "center"
+
+    [shell.screenshot]
+    directory = "/home/gatonegro/pictures/screenshots"
+
+    [[shell.session.actions]]
+    action = "lock"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "l"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "logout"
+    countdown_seconds = 0.0
+    enabled = true
+    shortcut = "o"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "lock_and_suspend"
+    countdown_seconds = 5.0
+    enabled = true
+    shortcut = "s"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "reboot"
+    countdown_seconds = 5.0
+    enabled = true
+    shortcut = "r"
+    variant = "default"
+
+    [[shell.session.actions]]
+    action = "shutdown"
+    countdown_seconds = 5.0
+    enabled = true
+    shortcut = "w"
+    variant = "destructive"
+
+[theme]
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-tonal-spot"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "niri", "qt" ]
+    community_ids = [ "neovim", "yazi", "zathura" ]
+
+        [theme.templates.user.rofi]
+        input_path = "~/.config/noctalia/templates/rofi.rasi"
+        output_path = "~/.config/rofi/themes/noctalia.rasi"
+        post_hook = "pkill -SIGUSR1 rofi"
+
+[wallpaper]
+directory = "/home/gatonegro/pictures/wallpapers"
+transition = [ "fade" ]
+transition_on_startup = true
+
+    [wallpaper.default]
+    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+
+    [wallpaper.last]
+    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+
+    [wallpaper.monitors.HDMI-A-1]
+    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+
+    [[wallpaper.favorite]]
+    path = "/home/gatonegro/pictures/wallpapers/Friedrich, Caspar David - Meeresstrand im Nebel.jpg"
+    theme_mode = "auto"
+
+[widget.brightness]
+show_label = false
+
+[widget.clock]
+format = "{:%a %d  %H:%M}"
+
+[widget.mangowm-keymode]
+hide_on_default = true
+type = "gambled23/mangowm-keymode:mangowm-keymode"
+
+[widget.media]
+hide_when_no_media = true
+max_length = 450
+title_scroll = "on_hover"
+
+[widget.network]
+show_label = false
+
+[widget.network_rx]
+show_label = false
+
+[widget.network_tx]
+show_label = false
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
+
+[widget.tray]
+drawer = false
+match_adjacent_spacing = false
+
+[widget.volume.actions]
+scroll_down = "volume-down 2%"
+scroll_up = "volume-up 2%"
+
+[widget.workspaces]
+font_weight = 700
+hide_when_empty = true
+scale = 0.85000000000000009
+style = "minimal"

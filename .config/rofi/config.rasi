@@ -88,7 +88,7 @@ configuration {
 
 	/*---------- File browser settings ----------*/
     filebrowser {
-	  directory: "/home";
+	  directory: "/home/gatonegro";
       directories-first: true;
       sorting-method:    "name";
     }
