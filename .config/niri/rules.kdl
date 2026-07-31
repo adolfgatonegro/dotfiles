@@ -93,7 +93,7 @@ window-rule {
 }
 
 window-rule {
-	geometry-corner-radius 0
+	geometry-corner-radius 6
 	clip-to-geometry true
 }
 
@@ -103,10 +103,19 @@ window-rule {
   Noctalia publishes blur regions automatically when ext-background-effects is available.
 */
 layer-rule {
-  match namespace="^noctalia-(bar-[^\"]+|notification|dock|panel|attached-panel|osd)$"
+  match namespace="noctalia-bar"
   background-effect {
     xray false
+	// disable blur for bar
     blur false
+  }
+}
+
+layer-rule {
+  match namespace="^noctalia-(notification-[^\"]+|dock|panel|attached-panel|osd)$"
+  background-effect {
+    xray false
+    // blur false
   }
 }
 

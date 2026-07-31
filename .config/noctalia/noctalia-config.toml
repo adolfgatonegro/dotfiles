@@ -3,6 +3,7 @@ enable_sounds = true
 
 [backdrop]
 enabled = true
+tint_intensity = 0.74999998323619366
 
 [bar]
 order = [ "default" ]
@@ -16,15 +17,15 @@ order = [ "default" ]
     capsule_thickness = 0.99999998137354851
     center = [ "media" ]
     concave_edge_corners = false
-    end = [ "group:g1" ]
+    end = [ "tray", "group:g1" ]
     hover_highlight = false
     margin_edge = 6
     margin_ends = 0
     padding = 6
     radius = 0
     scale = 0.85000000521540642
-    shadow = false
-    start = [ "workspaces" ]
+    shadow = true
+    start = [ "workspaces", "active_window" ]
     thickness = 28
     widget_spacing = 6
 
@@ -32,17 +33,7 @@ order = [ "default" ]
         enabled = true
         fill = "surface_variant"
         id = "g1"
-        members = [
-            "recorder",
-            "tray",
-            "bluetooth",
-            "network_rx",
-            "network",
-            "brightness",
-            "volume",
-            "clock",
-            "control-center"
-        ]
+        members = [ "recorder", "bluetooth", "network_rx", "network", "brightness", "volume", "clock", "control-center" ]
         opacity = 1.0
         padding = 12.0
 
@@ -222,6 +213,11 @@ directory = "~/videos/"
 filename_pattern = "Screen_%Y%m%d_%H%M%S"
 hide_inactive = true
 
+[plugin_settings."yuuto/arch-updater"]
+aur_helper = "paru"
+auto_check_hours = 8
+flatpak_enabled = false
+
 [plugins]
 enabled = [ "noctalia/screen_recorder" ]
 
@@ -235,7 +231,7 @@ polkit_agent = true
     session_placement = "floating"
     session_position = "center"
     shadow = false
-    transparency_mode = "glass"
+    transparency_mode = "soft"
     wallpaper_placement = "floating"
     wallpaper_position = "center"
 
@@ -278,6 +274,7 @@ polkit_agent = true
     variant = "destructive"
 
 [theme]
+builtin = "Tokyo-Night"
 mode = "dark"
 source = "wallpaper"
 wallpaper_scheme = "m3-tonal-spot"
@@ -297,17 +294,20 @@ transition = [ "fade" ]
 transition_on_startup = true
 
     [wallpaper.default]
-    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+    path = "/home/gatonegro/pictures/wallpapers/144.jpg"
 
     [wallpaper.last]
-    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+    path = "/home/gatonegro/pictures/wallpapers/144.jpg"
 
     [wallpaper.monitors.HDMI-A-1]
-    path = "/home/gatonegro/pictures/wallpapers/022.jpg"
+    path = "/home/gatonegro/pictures/wallpapers/144.jpg"
 
     [[wallpaper.favorite]]
     path = "/home/gatonegro/pictures/wallpapers/Friedrich, Caspar David - Meeresstrand im Nebel.jpg"
     theme_mode = "auto"
+
+[widget.active_window]
+title_scroll = "on_hover"
 
 [widget.brightness]
 show_label = false
@@ -321,7 +321,7 @@ type = "gambled23/mangowm-keymode:mangowm-keymode"
 
 [widget.media]
 hide_when_no_media = true
-max_length = 450
+max_length = 350
 title_scroll = "on_hover"
 
 [widget.network]
@@ -336,6 +336,9 @@ show_label = false
 [widget.recorder]
 type = "noctalia/screen_recorder:recorder"
 
+[widget.taskbar]
+inactive_opacity = 0.65000000000000002
+
 [widget.tray]
 drawer = false
 match_adjacent_spacing = false
@@ -343,6 +346,10 @@ match_adjacent_spacing = false
 [widget.volume.actions]
 scroll_down = "volume-down 2%"
 scroll_up = "volume-up 2%"
+
+[widget.widget]
+hide_on_empty = true
+type = "yuuto/arch-updater:widget"
 
 [widget.workspaces]
 font_weight = 700
