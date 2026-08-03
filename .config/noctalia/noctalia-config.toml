@@ -33,7 +33,7 @@ order = [ "default" ]
         enabled = true
         fill = "surface_variant"
         id = "g1"
-        members = [ "recorder", "bluetooth", "network_rx", "network", "brightness", "volume", "clock", "control-center" ]
+        members = [ "recorder", "bluetooth", "network_rx", "network", "brightness", "volume", "clock" ]
         opacity = 1.0
         padding = 12.0
 
@@ -314,6 +314,9 @@ show_label = false
 
 [widget.clock]
 format = "{:%a %d  %H:%M}"
+
+    [widget.clock.actions]
+    right = "panel-toggle control-center"
 
 [widget.mangowm-keymode]
 hide_on_default = true
