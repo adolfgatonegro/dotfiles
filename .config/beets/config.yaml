@@ -3,7 +3,7 @@ directory: /home/gatonegro/music
 import:
     copy: yes
     write: yes
-art_filename: albumart
+art_filename: cover
 ui:
     color: yes
 
@@ -17,13 +17,13 @@ paths:
     default: $albumartist/$album/$track $title
     comp: $album/$track $title
 
-plugins: scrub edit zero fetchart discogs musicbrainz
+plugins: scrub edit zero fetchart embedart discogs musicbrainz
 
 fetchart:
     minwidth: 500
     maxwidth: 750
     store_source: yes
-    cover_format: JPEG
+    cover_format: jpg
 
 embedart:
     auto: yes
