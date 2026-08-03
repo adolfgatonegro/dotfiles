@@ -18,10 +18,10 @@ binds {
     Alt+Tab hotkey-overlay-title="Window list" { spawn "rofi" "-show" "window"; }
 
 	// Shell components
-	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "shellctl" "control-centre"; }
-	Alt+Shift+N hotkey-overlay-title="Notification Centre" { spawn "shellctl" "notifications"; }
-	Alt+Shift+I hotkey-overlay-title="Clipboard" { spawn "shellctl" "clipboard"; }
-	Alt+Shift+E hotkey-overlay-title="Emoji" { spawn "shellctl" "emoji"; }
+	Alt+Shift+T hotkey-overlay-title="Control Centre" { spawn "noctalia" "msg" "panel-toggle" "control-center"; }
+	Alt+Shift+N hotkey-overlay-title="Notification Centre" { spawn "noctalia" "msg" "panel-toggle" "control-center" "notifications"; }
+	Alt+Shift+I hotkey-overlay-title="Clipboard" { spawn "noctalia" "msg" "panel-toggle" "clipboard"; }
+	Alt+Shift+E hotkey-overlay-title="Emoji" { spawn "noctalia" "msg" "panel-toggle" "launcher" "/emo"; }
 
 	// Scripts
     Alt+Shift+M { spawn "bmks"; }
@@ -37,34 +37,34 @@ binds {
     Mod+Shift+Slash { show-hotkey-overlay; }
 
 	// Record screen
-	Mod+Shift+C hotkey-overlay-title="Record screen" { spawn "shellctl" "screen-record"; } 
+	Mod+Shift+C hotkey-overlay-title="Record screen" { spawn "noctalia" "msg" "plugin" "noctalia/screen_recorder:service" "all" "toggle"; } 
 
     // Lock screen and power/session menu
-	Alt+Shift+L hotkey-overlay-title="Lock the screen" { spawn "shellctl" "lock-screen"; } 
-	Super+Shift+X hotkey-overlay-title="Session menu" { spawn "shellctl" "session-menu"; } 
+	Alt+Shift+L hotkey-overlay-title="Lock the screen" { spawn "noctalia" "msg" "session" "lock"; }
+	Super+Shift+X hotkey-overlay-title="Session menu" { spawn "noctalia" "msg" "panel-toggle" "session"; }
 
 	// Volume control
-	XF86AudioRaiseVolume allow-when-locked=true { spawn "shellctl" "volume-up"; }
-	XF86AudioLowerVolume allow-when-locked=true { spawn "shellctl" "volume-down"; }
-	XF86AudioMute        allow-when-locked=true { spawn "shellctl" "volume-mute-output"; }
-	XF86AudioMicMute     allow-when-locked=true { spawn "shellctl" "volume-mute-input"; }
+	XF86AudioRaiseVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-up" "2"; }
+	XF86AudioLowerVolume allow-when-locked=true { spawn "noctalia" "msg" "volume-down" "2"; }
+	XF86AudioMute        allow-when-locked=true { spawn "noctalia" "msg" "volume-mute"; }
+	XF86AudioMicMute     allow-when-locked=true { spawn "noctalia" "msg" "mic-mute"; }
 
 	// MPRIS media player control
-    XF86AudioPlay allow-when-locked=true { spawn "shellctl" "mpris-play-pause"; }   
-    XF86AudioStop allow-when-locked=true { spawn "shellctl" "mpris-stop"; }   
-    XF86AudioPrev allow-when-locked=true { spawn "shellctl" "mpris-previous"; } 
-    XF86AudioNext allow-when-locked=true { spawn "shellctl" "mpris-next"; }  
+    XF86AudioPlay allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    XF86AudioStop allow-when-locked=true { spawn "noctalia" "msg" "media" "stop"; }
+    XF86AudioPrev allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+    XF86AudioNext allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
 
-    Mod+Up allow-when-locked=true { spawn "shellctl" "mpris-play-pause"; }   
-    Mod+Down allow-when-locked=true { spawn "shellctl" "mpris-stop"; }   
-    Mod+Left allow-when-locked=true { spawn "shellctl" "mpris-previous"; }   
-    Mod+Right allow-when-locked=true { spawn "shellctl" "mpris-next"; }   
+    Mod+Up allow-when-locked=true { spawn "noctalia" "msg" "media" "toggle"; }
+    Mod+Down allow-when-locked=true { spawn "noctalia" "msg" "media" "stop"; }
+    Mod+Left allow-when-locked=true { spawn "noctalia" "msg" "media" "previous"; }
+    Mod+Right allow-when-locked=true { spawn "noctalia" "msg" "media" "next"; }
 
 	// Brightness
-	XF86MonBrightnessUp allow-when-locked=true   { spawn "shellctl" "brightness-up"; } 
-	XF86MonBrightnessDown allow-when-locked=true { spawn "shellctl" "brightness-down"; } 
-	Mod+F2 allow-when-locked=true   { spawn "shellctl" "brightness-up"; } 
-	Mod+F1 allow-when-locked=true { spawn "shellctl" "brightness-down"; } 
+	XF86MonBrightnessUp allow-when-locked=true   { spawn "noctalia" "msg" "brightness-up"; }
+	XF86MonBrightnessDown allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
+	Mod+F2 allow-when-locked=true   { spawn "noctalia" "msg" "brightness-up"; }
+	Mod+F1 allow-when-locked=true { spawn "noctalia" "msg" "brightness-down"; }
 
     // Open/close the Overview: a zoomed-out view of workspaces and windows.
     Mod+O repeat=false { toggle-overview; }
