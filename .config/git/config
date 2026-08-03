@@ -25,3 +25,8 @@
     insteadOf = aur:
 [url "aur@aur.archlinux.org:"]
 	pushInsteadOf = "aur:"
+
+[url "https://codeberg.org/"]
+    insteadOf = cb:
+[url "ssh://git@codeberg.org/"]
+    pushInsteadOf = "cb:"
