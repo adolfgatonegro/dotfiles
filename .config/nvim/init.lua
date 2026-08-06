@@ -287,7 +287,7 @@ local ok, matugen = pcall(require, 'matugen')
 if ok then matugen.setup() end
 
 -- Theme
-cmd('colorscheme base16-black-metal')
+cmd('colorscheme base16-default-dark')
 
 -- Make background transparent
 local function make_transparent()
