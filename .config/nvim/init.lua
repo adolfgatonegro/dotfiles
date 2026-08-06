@@ -18,8 +18,6 @@ end
 local k = map
 
 --  OPTIONS
--- Theme
--- cmd('colorscheme monochrome')
 
 --  Editor preferences
 --
@@ -126,23 +124,7 @@ require('wrapping').setup({
 
 vim.lsp.enable({ 'tinymist' })
 
---  Set transparent background colours
---
-cmd [[
-  highlight Normal guibg=none
-  highlight Normal ctermbg=none
-  highlight NonText guibg=none
-  highlight NonText ctermbg=none
-  highlight NormalFloat guibg=none
-  highlight NormalFloat ctermbg=none
-  highlight SignColumn guibg=none
-  highlight SignColumn ctermbg=none
-  highlight LineNr guibg=none
-  highlight LineNr ctermbg=none
-]]   
-
 --  KEYMAPS
---
 
 -- Unbind <space> before defining it as leader
 k("", "<Space>", "<Nop>")
@@ -303,3 +285,20 @@ autocmd({ 'BufLeave', 'FocusLost', 'InsertEnter', 'CmdlineEnter', 'WinLeave' }, 
 
 local ok, matugen = pcall(require, 'matugen')
 if ok then matugen.setup() end
+
+-- Theme
+cmd('colorscheme base16-black-metal')
+
+-- Make background transparent
+local function make_transparent()
+  local groups = {'Normal', 'NormalNC', 'NormalFloat', 'SignColumn',
+                  'StatusLine', 'StatusLineNC', 'EndOfBuffer', 'LineNr'}
+  for _, group in ipairs(groups) do
+    vim.api.nvim_set_hl(0, group, { bg = 'NONE', ctermbg = 'NONE' })
+  end
+end
+
+make_transparent()
+vim.api.nvim_create_autocmd('ColorScheme', {
+  callback = make_transparent,
+})   
